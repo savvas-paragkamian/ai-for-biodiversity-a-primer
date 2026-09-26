@@ -1,0 +1,219 @@
+\chapter{The Agentic Coding Workflow}
+\label{ch:agentic}
+
+The change this chapter describes is not that code gets written faster. It is
+that the job changes. You stop being the person who writes the code and become
+the person who specifies it, constrains the environment it runs in, and verifies
+what came out. That is closer to system administration than to programming, and
+the skills that transfer are the operational ones: permissions, logging,
+reproducibility, knowing what you would do if it went wrong.
+
+\section{Terminology, briefly}
+
+\term{Vibe coding} was coined in early 2025 for accepting AI-generated code
+without close review --- going with the flow. It has since been diluted into
+shorthand for any AI-assisted coding, which loses the distinction.
+
+\term{Chat-oriented programming (CHOP)} is the more useful term: an iterative
+loop in which you describe intent, the system proposes code, you run it, and you
+refine. The distinguishing feature is that you read and verify at each step.
+
+The difference is whether verification is in the loop. Vibe coding is fine for a
+throwaway plot. It is not fine for anything entering a manuscript, a database,
+or a pipeline someone else will run.
+
+\begin{keypoint}
+The question is not whether AI wrote the code. It is whether anyone checked it.
+You are accountable for what you publish regardless of what produced it.
+\end{keypoint}
+
+\section{Architecture: chatbot versus harness}
+
+\begin{table}[htbp]
+\centering
+\caption{Two interaction models, two risk profiles.}
+\label{tab:chat-vs-harness}
+\small
+\begin{tabularx}{\textwidth}{lXX}
+\toprule
+ & \textbf{Chatbot} & \textbf{Harness} \\
+\midrule
+Interface     & Web or app & Terminal, in your project \\
+Sees          & What you paste & Your files, directly \\
+Acts          & No & Runs commands, edits files \\
+Verification  & You copy, paste, run & It runs, reads the error, retries \\
+Failure cost  & A wrong snippet & Modified or deleted files \\
+Good for      & Explaining, drafting & Multi-file work, refactors, pipelines \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The capability difference comes from the feedback loop. A harness sees the
+traceback. A chatbot sees what you chose to paste, which is usually the last
+five lines, which is usually not where the problem is.
+
+\section{The while loop}
+
+\textcite{liu2026claudecode} analysed a production coding agent's source and
+found the core to be exactly the loop from \Cref{ch:landscape}: call the model,
+execute requested tools, feed results back, repeat until done. Their analysis
+traces five motivating values --- human decision authority, safety and security,
+reliable execution, capability amplification, contextual adaptability --- through
+thirteen design principles to implementation choices.
+
+The distribution of code is the finding worth internalising. Almost none of it is
+the loop. The bulk is the permission system, context management, error recovery
+and memory. When you evaluate a harness, evaluate those, because that is what
+differs.
+
+\section{A file is all you need}
+
+\textcite{piskala2026files} makes the Unix argument for agent design: collapse
+heterogeneous resources into uniform file-like interfaces. In practice this means
+your project communicates with an agent through files, and those files are
+readable by you.
+
+\subsection{README.md}
+
+Written for a human, read by both. It should state what the project does, how to
+run it, what the data is and where it lives, what the dependencies are, and
+what the current state is. If a new postdoc could not start from it, an agent
+cannot either.
+
+\subsection{AGENTS.md}
+
+This is the behavioural contract. Not aspirations --- constraints, written in
+response to failures you have observed.
+
+\begin{lstlisting}[caption={An AGENTS.md that earns its place}]
+# Conventions
+
+## Environment
+- R 4.4 via renv. Activate with `renv::restore()`.
+- Never install packages globally. Add to renv.lock.
+
+## Data
+- data/raw/ is READ-ONLY. Never write there, never modify.
+- All derived data goes to data/processed/ and must be
+  regenerable by running scripts/ in numeric order.
+- Coordinates are WGS84 decimal degrees. Do not reproject
+  silently; if a reprojection is needed, say so first.
+
+## Code
+- Tidyverse style. snake_case. No magic numbers.
+- Every script starts by reading from data/ and ends by
+  writing to results/. No side effects elsewhere.
+- Taxon names go through taxonomic backbone matching before
+  any join. Never join on raw name strings.
+
+## Don't
+- Don't commit. I commit.
+- Don't touch manuscript/ unless explicitly asked.
+- Don't add dependencies without asking.
+\end{lstlisting}
+
+Each line there closes a specific failure. The taxon name rule exists because
+joining on unmatched names silently drops records. The reprojection rule exists
+because a silent CRS change produces a map that looks fine and is wrong.
+
+\subsection{Skills and packaged instructions}
+
+Several harnesses support bundling instructions, scripts and reference material
+into reusable units --- variously called skills, plugins or commands
+\parencite{anthropic2026skills}. The useful ones are, again, just directories of
+files: a description of when to use them, the procedure, and any scripts needed.
+For a laboratory with a standard analysis protocol, packaging it this way is a
+reasonable way to make the protocol executable rather than merely documented.
+
+\subsection{Memory}
+
+Some harnesses maintain persistent memory across sessions. When they do, prefer
+the implementations that store it as files you can read and edit. Opaque memory
+is a reproducibility problem: if the agent behaves differently today and you
+cannot see why, you have lost control of your own environment.
+
+\section{Tokens, context and cost}
+
+Tokens are the unit of both billing and context. The approximations from
+\Cref{ch:powers}: one token is about four characters or three-quarters of a
+word; a 200-line R script is roughly 1,000--2,000 tokens.
+
+Everything in the context window is re-sent on every turn. A long session with a
+large file loaded is paying for that file repeatedly. Subscription plans meter
+this: a typical consumer tier allocates on the order of tens of thousands of
+tokens per rolling five-hour window, which a single large refactor can consume.
+
+Practical economy:
+
+\begin{itemize}
+  \item Start a new session per task. Do not carry an hour of unrelated history.
+  \item Point at files rather than pasting them; let the agent read what it
+    needs.
+  \item Ask for a diff, not a rewritten file.
+  \item Use a smaller model for mechanical work. Not everything needs the
+    frontier model.
+  \item Keep a scratch file for intermediate results instead of keeping them in
+    context.
+\end{itemize}
+
+\section{Prompting, practically}
+
+Prompt engineering as a discipline is overstated for frontier models and
+genuinely important for smaller local ones. What consistently helps:
+
+\textbf{State the goal, the constraints, and the definition of done.} ``Fix the
+script'' produces guesswork. ``The script fails at line 40 with this traceback;
+it should output one row per station with mean abundance; do not change the input
+format'' produces a fix.
+
+\textbf{Provide an example.} One worked input--output pair beats three
+paragraphs of specification, particularly for data transformation.
+
+\textbf{Ask for a plan first on anything non-trivial.} Reviewing a plan costs a
+minute. Reviewing a wrong 400-line implementation costs an hour.
+
+\textbf{Say what not to do.} Negative constraints are effective and
+underused. ``Do not modify data/raw. Do not add dependencies. Do not reformat
+unrelated code.''
+
+\textbf{Give it a way to check itself.} A test, an assertion, an expected row
+count. An agent that can verify will iterate to correctness; one that cannot will
+report success.
+
+\section{The review discipline}
+
+The failure mode that matters is not bad code. It is plausible code that runs,
+produces output of the right shape, and is subtly wrong.
+
+\begin{enumerate}
+  \item \textbf{Commit before.} Always. A clean checkpoint makes everything
+    reversible.
+  \item \textbf{Read the diff.} All of it. If it is too large to read, the task
+    was too large --- revert and split it.
+  \item \textbf{Check the boundaries.} Empty inputs, single rows, missing values,
+    duplicate keys. These are where generated code fails.
+  \item \textbf{Verify the joins.} Row counts before and after. Silent row loss
+    in a merge is the single most common serious error in ecological data
+    processing, and agents produce it readily.
+  \item \textbf{Run it twice.} Same input, same output. If not, there is hidden
+    state or unseeded randomness.
+  \item \textbf{Sanity-check the science.} Does the magnitude make sense? Are
+    the units right? Would you have expected this? The agent has no domain
+    intuition and will not flag a biologically impossible result.
+\end{enumerate}
+
+\begin{keypoint}
+Agents fail loudly on syntax and quietly on semantics. Your review should spend
+its time on the second kind.
+\end{keypoint}
+
+\section{Scope control}
+
+The most reliable determinant of success is task size. Agents are good at
+bounded, well-specified tasks and degrade sharply as scope grows --- which is
+what \textcite{guo2026promptbio} measured across 244 bioinformatics tasks.
+
+Good scope: ``write a function that reads this CSV and returns a tidy data frame
+with these columns.'' Bad scope: ``build the analysis pipeline.'' The second is a
+sequence of the first, and running it as a sequence gives you a review point
+between each step.

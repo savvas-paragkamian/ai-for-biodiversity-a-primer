@@ -1,0 +1,169 @@
+\chapter{Hardware for Local Inference}
+\label{ch:hardware}
+
+Concrete numbers. They will age; the reasoning will not.
+
+\section{Why memory, not compute}
+
+Generating a token requires reading the model's weights through the compute
+units. Generate a thousand tokens and you have read the weights a thousand times.
+Token throughput is therefore governed by memory bandwidth, and the model has to
+fit in memory at all before bandwidth becomes the question.
+
+This inverts the usual HPC intuition. A discrete GPU with enormous compute and
+16\,GB of VRAM cannot run a model that needs 40\,GB --- at any speed. A machine
+with 128\,GB of moderately fast unified memory can.
+
+\begin{keypoint}
+Capacity first: can the model fit? Bandwidth second: how fast can it be read?
+Compute third. Buying for FLOPs is the standard mistake.
+\end{keypoint}
+
+\section{Unified memory architecture}
+
+Traditional PC architecture separates system RAM from GPU VRAM. Anything the GPU
+computes on must first be copied across PCIe, and VRAM is fixed at purchase.
+
+Unified memory architectures --- Apple Silicon, AMD's Ryzen AI Max, Qualcomm
+Snapdragon X, NVIDIA's Grace Blackwell desktop parts --- put CPU and GPU on one
+memory pool. No copying, and capacity is whatever you specified. A laptop with
+64\,GB unified memory can allocate most of it to a model. A desktop with a
+16\,GB discrete GPU cannot, regardless of how much system RAM it has.
+
+This is the reason Apple hardware is disproportionately represented in local
+inference work. It is an architectural advantage, not a brand preference, and AMD
+and Qualcomm are now shipping the same idea.
+
+The trade is straightforward. A separate graphics card has far more bandwidth
+(1--3\,TB/s against 200--800\,GB/s) and is the only sensible choice if you also
+want to train models. A shared-memory machine holds far larger models (16--512\,GB
+against 8--48\,GB) and draws a fraction of the power --- 30--120\,W rather than
+300--700\,W.
+
+If the model fits on the graphics card, the card is faster, often several times
+faster. The shared-memory advantage is that large models fit at all.
+
+\section{Machines, and what they run}
+
+Prices are indicative EUR at time of writing, for the memory configuration
+stated. They move.
+
+\begin{table}[htbp]
+\centering
+\caption{Representative machines for local inference.}
+\label{tab:hardware}
+\footnotesize
+\begin{tabularx}{\textwidth}{Xllll}
+\toprule
+\textbf{Machine} & \textbf{Memory} & \textbf{Price} & \textbf{Comfortably runs} & \textbf{Power} \\
+\midrule
+Mac mini M4 Pro            & 24--64\,GB  & 1{,}600--2{,}800 & 12--32B Q4 & 65\,W \\
+Mac Studio M4 Max/Ultra    & 64--192\,GB & 3{,}000--7{,}000 & 30--120B Q4 & 150\,W \\
+MacBook Pro M4 Max         & 36--128\,GB & 3{,}000--6{,}000 & 12--70B Q4 & 90\,W \\
+Framework Desktop (AI Max+ 395) & 64--128\,GB & 2{,}000--2{,}800 & 30--70B Q4 & 120\,W \\
+Beelink GTR9 Pro / GMKtec EVO-X2 & 64--128\,GB & 1{,}800--2{,}500 & 30--70B Q4 & 120\,W \\
+NVIDIA DGX Spark (GB10)    & 128\,GB     & 3{,}000--4{,}000 & 70--120B Q4 & 170\,W \\
+Workstation + RTX 5090     & 32\,GB VRAM & 3{,}500--5{,}000 & 12--32B Q4, fast & 600\,W \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Reading the table}
+
+\textbf{Under 2,000 EUR.} A Mac mini M4 Pro at 48\,GB, or an AMD Ryzen AI Max
+mini-PC at 64\,GB. Both run a 30B model at Q4 usefully. This is the entry point
+for serious local work and it is a reasonable line item on most equipment
+budgets.
+
+\textbf{Around 3,000 EUR.} A Mac Studio or a DGX Spark at 128\,GB opens 70B
+models, which is where open-weight quality becomes genuinely competitive for
+scoped work. For a group, this is the sweet spot --- one machine serving several
+people over the network via vLLM.
+
+\textbf{Discrete GPU.} Choose this if you also need to train or fine-tune, or if
+you need maximum interactive speed on models under 32\,GB. Note the power figure:
+600\,W continuous has implications for cooling, for the electricity bill, and
+for where in the building it can live.
+
+\section{Sizing by task}
+
+\begin{table}[htbp]
+\centering
+\caption{What to buy for what you actually want to do.}
+\label{tab:sizing}
+\small
+\begin{tabularx}{\textwidth}{XllX}
+\toprule
+\textbf{Task} & \textbf{Model size} & \textbf{Memory} & \textbf{Notes} \\
+\midrule
+Text classification, NER & 1--7B & 8--16\,GB & Often a fine-tuned small model beats a large general one \\
+Summarising, extraction & 7--14B & 16--32\,GB & Q4 is fine; quality loss is small \\
+Coding, scoped edits & 12--32B & 32--64\,GB & Needs 32K+ context; budget for the KV cache \\
+Multi-file agentic work & 30--70B & 64--128\,GB & Below this, expect frustration \\
+Embeddings at scale & <1B & 8\,GB & CPU is adequate; this is throughput, not latency \\
+Whisper transcription & 1.5B (large-v3) & 8--16\,GB & Core ML or CUDA gives 3$\times$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Quantisation}
+
+Quantisation reduces the numerical precision of the weights. Q4 --- roughly four
+bits per parameter --- cuts memory to about a quarter of FP16 with modest quality
+loss on most tasks.
+
+Practical guidance: \textbf{Q4\_K\_M} is the default worth starting from. It is
+the best quality-per-byte point for most models and most tasks. \textbf{Q5} or
+\textbf{Q6} if you have headroom and the task is precision-sensitive.
+\textbf{Q8} only if you have a specific reason. \textbf{Q2 and Q3} degrade
+noticeably; a smaller model at Q4 is usually better than a larger model at Q3.
+
+Given a fixed amount of memory, a larger model at Q4 beats a smaller one at Q8.
+Size buys more than precision does, down to about four bits.
+
+\section{Models worth having locally}
+
+Names date quickly; the categories do not.
+
+\begin{itemize}
+  \item \textbf{A coding model, 12--30B.} Dense Apache-2.0 models in this range
+    handle scoped edits, explanation and boilerplate well. Verify tool-calling
+    support before committing to one for agent use.
+  \item \textbf{A general instruct model, 7--30B.} For summarisation, extraction
+    and classification. Apache-2.0 licensing is available and worth insisting on.
+  \item \textbf{An embedding model.} \code{bge-m3} or \code{nomic-embed-text}.
+    Small, fast, and the foundation of any RAG pipeline.
+  \item \textbf{A reranker.} \code{bge-reranker}. Cheap, and it improves
+    retrieval quality more than most alternatives at the same cost.
+  \item \textbf{Whisper large-v3.} For transcription.
+  \item \textbf{A small fast model, 1--4B.} For classification at volume and for
+    routing. Not everything needs the big model.
+\end{itemize}
+
+Check the licence on each. Several widely-used ``open'' models carry use
+restrictions that fail the Open Source Definition, and that matters if you are
+building infrastructure meant to be shared.
+
+\section{Shared deployment}
+
+For a group, one good machine beats several mediocre ones. Run vLLM on a server
+with 128\,GB, expose an OpenAI-compatible endpoint on the institutional network,
+and point everyone's tooling at it.
+
+Advantages: better hardware utilisation, one model set to maintain, centralised
+logging for provenance, no per-desk maintenance. The cost is a single point of
+failure and someone's time to administer it.
+
+\begin{lstlisting}[style=shell,caption={Minimal shared serving}]
+# On the server
+vllm serve Qwen/Qwen3-30B-A3B-Instruct \
+    --host 0.0.0.0 --port 8000 \
+    --max-model-len 32768
+
+# On each workstation
+export OPENAI_BASE_URL=http://gpu-server.local:8000/v1
+export OPENAI_API_KEY=not-used-but-required
+\end{lstlisting}
+
+Put it behind the institutional firewall, not on a public address. An open
+inference endpoint is an open compute resource, and it will be found.

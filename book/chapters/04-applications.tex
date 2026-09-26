@@ -1,0 +1,198 @@
+\chapter{Applications in Biology and Ecology}
+\label{ch:applications}
+
+A survey of where these methods have actually produced results, and where the
+claims outrun the evidence. The distinction matters: the successes and the
+overreaches have a recognisable shape, and learning to tell them apart is
+worth more than memorising either list.
+
+\section{The pattern behind the successes}
+
+Structure prediction is the canonical case. AlphaFold worked because protein
+folding had the properties a deep learning problem needs: a large corpus of
+solved structures as ground truth, a well-defined input--output mapping, a
+physically constrained output space, and an unambiguous evaluation metric. The
+model learned a real regularity because a real regularity was there and was
+densely sampled.
+
+\textcite{brixi2026evo2} extend the same logic to genomes --- modelling and
+design across all domains of life, at scale, from DNA sequence. Again: enormous
+training corpus, discrete well-defined alphabet, evaluable output.
+
+\textcite{jiang2025aibioinformatics} survey the broader field and report the
+landmark numbers: near-atomic protein structure prediction at median 0.96\,\AA{}
+on CASP14, protein design success rates up to 92\%, sensitive cancer detection
+at AUC $\approx$ 0.93.
+
+\begin{keypoint}
+Deep learning succeeds where there is a large, densely-sampled, well-labelled
+corpus and an unambiguous target. Ecological field data rarely has any of the
+three.
+\end{keypoint}
+
+\section{Where ecology has genuine wins}
+
+\subsection{Image classification}
+
+Camera traps, acoustic monitoring and remote sensing are the strongest cases,
+and for the same reason as structure prediction: large labelled corpora and an
+unambiguous target. Species identification from camera trap imagery routinely
+exceeds 90\% accuracy for well-represented taxa while collapsing manual
+annotation time \parencite{mishra2026notready}. Satellite imagery classification
+for forest cover change and vegetation type operates at spatial and temporal
+resolutions that were previously unattainable.
+
+The caveats are the usual ones and they are not minor. Accuracy is reported on
+common species; rare species --- the ones conservation actually cares about ---
+are underrepresented in training data and classified worst. Models trained in
+one biogeographic region transfer poorly to another. And a classifier confident
+about a species outside its range is a data quality problem that propagates
+silently into downstream analysis.
+
+\subsection{Natural history collections}
+
+\textcite{johnson2026collections} report robotic imaging combined with AI-driven
+transcription of specimen labels at scale. This is a strong application because
+the bottleneck was always transcription throughput, not scientific judgement,
+and because the output is verifiable against the physical specimen. Roughly a
+billion specimens sit in the world's collections with label data locked in
+handwriting and typescript. Mobilising that is a mass-transcription problem, and
+mass transcription is what these systems do.
+
+\subsection{Text mining the literature}
+
+Biodiversity knowledge is disproportionately locked in prose --- in taxonomic
+descriptions, expedition reports, faunal lists, and the grey literature.
+\textcite{castro2024unstructured} demonstrate LLM extraction from exactly this
+material.
+
+\textcite{takola2026topicmodelling} traces the methodological arc for
+conservation specifically: Latent Semantic Analysis to Latent Dirichlet
+Allocation to embedding-based models like BERTopic and Top2Vec to LLMs. Her
+conclusion deserves attention because it runs against the upgrade narrative:
+traditional probabilistic models remain valuable. They are interpretable,
+cheap, reproducible and auditable. An LLM topic assignment is none of those
+things. Newer is not automatically better when what you need is a method section
+you can defend.
+
+Bibliometric synthesis is a related and undersold application.
+\textcite{ioannou2025onehealth} map One Health research across environmental,
+animal and human health dimensions in coastal and marine contexts --- the kind
+of cross-domain landscape analysis that is tedious manually and tractable
+computationally.
+
+Infrastructure is appearing for the retrieval side. Biodiversity PMC
+\parencite{pasche2026biodivpmc} indexes biodiversity literature specifically.
+\textcite{krug2026ipbes} examine the role of AI in IPBES assessments and pose the
+question in their title --- hype or salvation --- without resolving it, which is
+the right answer for assessment work, where every statement has to be traceable
+to a source.
+
+\subsection{Microbiome and multi-omics}
+
+\textcite{yu2026microbiomes} review the move from descriptive microbiome
+analysis toward predictive modelling and hypothesis generation, covering
+integrative analysis of microbial genomes, community structure and functional
+potential. They are explicit about what blocks the field: model
+interpretability, generalisability across cohorts, and causal inference. The
+first two are engineering problems. The third is not.
+
+\subsection{Curation support}
+
+\textcite{pombase2026curation} describe the application closest to ELIXIR's own
+operations: AI-assisted literature curation for biological knowledgebases.
+Their framing is the correct one --- \term{human-in-the-loop}, with generative
+methods accelerating routine tasks (recommendation, entity recognition,
+extraction, summarisation, ontology development, quality control) while curators
+retain critical evaluation. They identify the risks precisely: scarce training
+data, difficulty extracting complex relationships, and error propagation into
+resources that other work depends on.
+
+The last one is the reason this must stay human-supervised. A knowledgebase error
+does not stay local; it propagates into every analysis downstream, and
+attribution back to its source becomes impossible once it has been cited.
+
+\subsection{Query generation}
+
+\textcite{smeros2025sparqlllm} address a real friction point: writing SPARQL
+against federated life science knowledge graphs is a specialist skill that
+excludes most domain scientists. Their system generates queries from natural
+language questions and --- unusually, and to their credit --- evaluates on
+federated query capability, runtime and cost rather than accuracy alone.
+
+This pattern generalises well. Generating a query is safe in a way that
+generating an answer is not: the query is inspectable before execution, the
+database provides ground truth, and a wrong query usually fails loudly. Prefer
+query generation over answer generation wherever the data is in a queryable
+store.
+
+\section{Where the claims outrun the evidence}
+
+\textcite{mishra2026notready} makes the case directly, and the argument is worth
+stating in full because it is the most important dissent in this literature.
+Ecological data is heterogeneous, spatially and temporally biased, sparse for
+the taxa that matter most, and generated by processes that are causal rather
+than merely correlational. A model that predicts species occurrence from
+environmental covariates learns the sampling effort as readily as the ecology.
+Deploying such models for conservation decisions transfers the bias into policy
+while adding a veneer of quantitative authority.
+
+The specific hazards:
+
+\begin{itemize}
+  \item \textbf{Sampling bias passed off as signal.} Occurrence data records
+    where people looked. A model trained on it predicts where people looked.
+  \item \textbf{Absent causal structure.} Correlation between a covariate and a
+    distribution is not a mechanism, and extrapolating to novel climate
+    conditions requires the mechanism.
+  \item \textbf{Uncertainty that does not propagate.} Deep learning outputs are
+    typically point predictions. Ecological inference needs intervals, and
+    downstream decisions need them honestly propagated.
+  \item \textbf{Unfalsifiable models.} An uninterpretable model that fits well
+    cannot be distinguished from one that fits well for the wrong reason.
+\end{itemize}
+
+\begin{keypoint}
+Before applying a model to an ecological question, ask what would have to be true
+of the data for the answer to be valid --- and whether it is. The question is not
+whether the method is powerful. It is whether the data can support the inference.
+\end{keypoint}
+
+\section{Agents in the life sciences}
+
+A distinct category: not models that classify, but agents that run analyses.
+Biomni \parencite{huang2025biomni} is a general-purpose biomedical agent;
+PantheonOS \parencite{xu2026pantheonos} a multi-agent framework for genomics
+discovery; OmicClaw \parencite{zeng2026omicclaw} targets executable and
+reproducible natural-language multi-omics analysis. Domain-specific skill
+libraries are emerging alongside them.
+
+The evaluation literature is the useful part.
+\textcite{guo2026promptbio} benchmarked these systems on 244 expert-curated
+bioinformatics tasks and found comparable performance between leading agents and
+sharp decline with difficulty. The honest reading: useful for scoped,
+well-specified analytical tasks; unreliable for anything requiring sustained
+judgement about whether the analysis is the right one.
+
+Nor is the randomness solved. Two runs of the same agent on the same input can
+give different answers. If the workflow has to be reproducible, that is a
+serious problem rather than a rough edge --- see \Cref{ch:reproducibility}.
+
+\section{Domain assistants}
+
+UNEP's EnvironmentGPT \parencite{unep2026environmentgpt} is instructive as a
+design pattern: a RAG system restricted to a curated library of UNEP and partner
+publications, rather than a general model over uncontrolled web text. The
+tradeoff is explicit --- narrower coverage in exchange for citable answers and
+reduced hallucination.
+
+\textcite{sigillo2026embllibrarian} generalise this into infrastructure: a
+life-sciences knowledge layer that AI agents query, rather than each agent
+scraping and indexing independently. This is the right architecture. The
+alternative, in which every group builds its own RAG pipeline over the same
+literature, wastes effort and produces inconsistent answers to identical
+questions.
+
+For an assistant of this kind, a curated set of documents with citations beats a
+larger model without them. The value is in the documents and in being able to
+check where an answer came from, not in the model.

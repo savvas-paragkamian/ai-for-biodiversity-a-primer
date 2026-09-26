@@ -1,0 +1,178 @@
+\chapter{Organising and Protecting Your Data}
+\label{ch:organisation}
+
+This chapter is about filing and backups. It is in a book about AI because
+agentic workflows amplify both the value of good organisation and the cost of
+bad organisation, and because an agent with write access to a badly-backed-up
+directory is a new category of risk.
+
+\section{Why this matters more now}
+
+An agent navigates your project by reading it. A directory tree with meaningful
+names, a \code{README.md} that explains the structure, and consistent file
+naming lets an agent locate the right file in one or two operations. A tree
+named \code{final/}, \code{final2/}, \code{new\_final/}, \code{Untitled1.csv}
+forces it to read everything, burn context on irrelevant material, and guess.
+
+The second reason is blunter. Agents delete files. Sometimes because you asked
+them to, sometimes through a misread instruction, occasionally through a bug.
+\textcite{shapira2026agentsofchaos} document execution of destructive
+system-level actions among the failure modes observed when autonomous agents
+were given real file system and shell access in a live environment. Your backup
+strategy is the thing standing between that and a lost field season.
+
+\section{PARA}
+
+PARA is a general-purpose organisation method that adapts well to research. Four
+top-level categories, by \emph{actionability} rather than topic:
+
+\begin{description}
+  \item[Projects] Active work with a defined outcome and an end date. A
+    manuscript in preparation, a specific analysis, a deliverable.
+  \item[Areas] Ongoing responsibilities with no end date. A long-term monitoring
+    programme, a database you maintain, teaching.
+  \item[Resources] Reference material of future interest. Literature,
+    protocols, reusable code, notes.
+  \item[Archive] Anything from the first three that is finished or dormant.
+\end{description}
+
+The mechanism that makes it work is the archive. When a project closes it moves
+to \code{Archive/} intact. The active tree stays small, which keeps it
+navigable --- for you and for an agent.
+
+\begin{lstlisting}[style=shell,caption={A research tree, PARA-shaped}]
+~/work/
+  10_projects/
+    2026_posidonia_edna/
+      README.md          # what, why, status, how to run
+      AGENTS.md          # conventions for agents working here
+      data/
+        raw/             # never edited, read-only, checksummed
+        processed/       # derived; regenerable from raw + scripts
+      scripts/
+      results/
+      manuscript/
+  20_areas/
+    monitoring_network/
+    teaching/
+  30_resources/
+    literature/
+    protocols/
+  40_archive/
+    2024_thermal_tolerance/
+\end{lstlisting}
+
+The numeric prefixes keep sort order stable and make paths easy to type and to
+reference in conversation.
+
+\section{Naming}
+
+Three rules cover most of it.
+
+\textbf{Sortable dates.} \code{YYYY-MM-DD} or \code{YYYYMMDD}. These sort
+lexicographically into chronological order, which no other format does.
+
+\textbf{No spaces or special characters.} Underscores between fields, hyphens
+within them. Spaces break shell pipelines, require quoting everywhere, and
+produce a steady trickle of bugs in scripts written by humans and agents alike.
+
+\textbf{Machine-readable structure.} Encode the metadata in the name, in
+consistent field order:
+
+\begin{lstlisting}[style=shell]
+20260415_crete-north_station03_16S_rep1.fastq.gz
+20260415_crete-north_station03_16S_rep2.fastq.gz
+^date     ^site        ^station  ^marker ^replicate
+\end{lstlisting}
+
+This is greppable, globbable, and parseable into a data frame with one split.
+
+A name a script can select and split is worth more than a descriptive sentence.
+Put the description in the README.
+
+\section{Raw data is read-only}
+
+The single most valuable convention in this chapter: raw data is never modified.
+Set it read-only, checksum it, and derive everything else.
+
+\begin{lstlisting}[style=shell]
+chmod -R a-w data/raw/
+find data/raw -type f -exec sha256sum {} + > data/raw/CHECKSUMS.sha256
+sha256sum -c data/raw/CHECKSUMS.sha256      # verify later
+\end{lstlisting}
+
+Everything in \code{processed/} should be reconstructible by running the scripts
+against \code{raw/}. If it is not, that is a gap in the pipeline, and it is
+better to find out now than during review.
+
+This convention also protects you from agents. An agent instructed to clean a
+dataset will happily clean it in place. Read-only permissions turn that into a
+visible error rather than a silent loss.
+
+\section{Backup: the 3-2-1 rule}
+
+Three copies of the data, on two different media, with one off-site.
+
+\begin{itemize}
+  \item \textbf{Copy 1} --- the working copy on your machine.
+  \item \textbf{Copy 2} --- a local backup on different physical media. An
+    external drive, a NAS. Different media matters: a second partition on the
+    same disk dies with the disk.
+  \item \textbf{Copy 3} --- off-site. Institutional storage, cloud sync, a drive
+    at another building. This is the copy that survives fire, theft and flood.
+\end{itemize}
+
+\subsection{RAID is not a backup}
+
+RAID protects against \emph{drive failure}. It does not protect against
+accidental deletion, ransomware, filesystem corruption, controller failure, a
+power event, theft, or an agent running \code{rm -rf} against the wrong path.
+Every one of those propagates instantly to every disk in the array.
+
+A NAS with RAID is a good copy~2. It is not copies 2 and 3, and treating it as
+both is the most common backup mistake in research computing.
+
+\subsection{Verify restores}
+
+An unverified backup is a hypothesis. Schedule a restore test --- pick a random
+file, restore it from each copy, diff it against the original. Quarterly is
+enough. The failure you are testing for is the one where backups have been
+silently failing for eight months.
+
+\section{Version control}
+
+Git for code, always. For a project that involves agents, it stops being
+optional: \code{git diff} is how you review what an agent actually changed,
+\code{git checkout} is how you undo it, and commit granularity is how you
+bisect when something breaks three steps later.
+
+\begin{lstlisting}[style=shell,caption={Minimum viable discipline}]
+git init
+git add README.md AGENTS.md scripts/ .gitignore
+git commit -m "Initial structure"
+
+# commit before letting an agent loose
+git commit -am "checkpoint before refactor"
+# ... agent works ...
+git diff                    # review every line
+git checkout -- .           # or undo the lot
+\end{lstlisting}
+
+Large data files do not belong in Git. Use Git LFS, DVC, or --- most often the
+right answer --- keep data out of the repository entirely and record its location
+and checksum in the README. Zenodo gives you a DOI and long-term storage for the
+archival copy.
+
+\section{Plain text lasts}
+
+A closing principle that runs through the rest of this book. The formats that
+survive are the simple ones: plain text, Markdown, CSV, TSV, and well-specified
+binary formats with open readers such as Parquet and NetCDF.
+
+Plain text is greppable, diffable, version-controllable, readable by every tool,
+and legible in fifty years without a specific application. It is also the format
+agents work with best, which is not a coincidence --- they were trained on it.
+
+Proprietary formats, database-internal state and application-specific exports are
+where data goes to become inaccessible. When a system offers you a choice, take
+the text.

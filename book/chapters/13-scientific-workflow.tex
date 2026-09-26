@@ -1,0 +1,213 @@
+\chapter{Changes Across the Scientific Workflow}
+\label{ch:scientificworkflow}
+
+Where these tools actually land in the work, stage by stage, with the
+verification each stage requires.
+
+\section{Literature retrieval}
+
+The stage that has changed most.
+
+Keyword search over an exponentially growing literature has been failing for a
+while. \textcite{zhang2025deepresearch} trace the progression from keyword search
+through retrieval-augmented generation to \term{agentic deep research}: systems
+that decompose a question, search iteratively, read what they find, refine the
+query based on it, and synthesise across sources. The difference from RAG is the
+loop --- the system decides what to search for next based on what it has read.
+
+For a genuinely multi-part question --- ``what is known about thermal tolerance
+in Mediterranean seagrass, including grey literature and non-English sources''
+--- this outperforms manual search substantially, both in recall and in time.
+
+\subsection{Resources}
+
+\begin{table}[htbp]
+\centering
+\caption{Literature sources, and what each is good for.}
+\label{tab:literature}
+\small
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Resource} & \textbf{Use} \\
+\midrule
+PubMed & Biomedical and molecular; excellent structured metadata \\
+OpenAlex & Open bibliographic graph; free API; good for bulk analysis \\
+Google Scholar & Broadest coverage including grey literature; no usable API \\
+Biodiversity Heritage Library & Historical taxonomic literature; irreplaceable \\
+Biodiversity PMC & Biodiversity-specific full text \parencite{pasche2026biodivpmc} \\
+Web of Science, Scopus & Curated, subscription; citation analysis \\
+Dimensions & Links publications to grants, patents, policy documents \\
+Zenodo / BioSysLit & Preprints, datasets, community collections \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+OpenAlex deserves particular mention for this work: a free API over the full
+bibliographic graph makes it the natural backend for a custom retrieval pipeline,
+and it does not impose the query limits that make Scholar unusable
+programmatically.
+
+\subsection{The verification requirement}
+
+Every reference gets resolved. \textcite{zhao2026citations} found roughly 147,000
+hallucinated citations in 2025 alone across the major preprint and literature
+servers. A hallucinated reference has real authors, a real journal and a
+plausible title; it fails only on lookup.
+
+\begin{lstlisting}[style=shell,caption={Resolve every DOI before it enters a manuscript}]
+# Extract DOIs from a .bib and check each resolves
+grep -oP 'doi\s*=\s*\{\K[^}]+' references.bib | while read -r doi; do
+    code=$(curl -s -o /dev/null -w "%{http_code}" \
+           -H "Accept: application/json" "https://doi.org/$doi")
+    [ "$code" = "200" ] || echo "UNRESOLVED: $doi"
+done
+\end{lstlisting}
+
+Entries without a DOI need manual checking. Do it.
+
+\begin{keypoint}
+Never cite a paper you have not opened. An AI-assisted search is a way to find
+candidates, not a way to avoid reading them.
+\end{keypoint}
+
+\section{Reading}
+
+Models are good at explaining a paper's method, at translating, and at answering
+specific questions from a document you supply. That last qualifier matters: with
+the PDF in context, the model is constrained by it. Asked about a paper from
+memory, it will invent details.
+
+If you are building a corpus, the quality of the PDF extraction sets the ceiling
+for everything after it.
+\textcite{auer2024docling} describe Docling --- MIT-licensed, layout-aware, with
+table structure recognition, running on commodity hardware. Naive text extraction
+mangles multi-column layouts, drops tables, and interleaves figure captions into
+body text; everything downstream inherits that damage.
+
+What models cannot do is judge whether a paper is any good. Sample size adequacy,
+whether controls were appropriate, whether the statistics match the design,
+whether the conclusion follows --- this is domain judgement, and the confident
+summary of a bad paper reads exactly like the confident summary of a good one.
+
+\section{Analysis}
+
+Covered in \Cref{ch:agentic} and \Cref{ch:reproducibility}. The summary: use
+models to generate code, not results. Code is inspectable, deterministic,
+version-controllable and reviewable. A number produced directly by a model is
+none of those.
+
+The verification points specific to ecological data, repeated because they are
+where real errors occur:
+
+\begin{itemize}
+  \item Row counts before and after every join.
+  \item Coordinate reference systems --- explicit, never inferred.
+  \item Taxonomic names matched against a backbone before joining, never joined
+    as raw strings.
+  \item Units, including the ones embedded in column names.
+  \item Date parsing, especially with mixed formats and two-digit years.
+  \item Missing data treatment --- silently dropped rows are the most common
+    serious error in this domain.
+\end{itemize}
+
+\section{Writing}
+
+The most contested stage, with a literature that has converged faster than
+expected.
+
+\textcite{salvagno2023scientificwriting} made the early case: these tools help
+with organisation, first drafts and proofreading, and the responsibility for
+content remains with the authors. \textcite{granjeiro2025futurewriting} survey the
+tools and ethical implications more broadly.
+
+The interesting strand is authorial voice.
+\textcite{alhosni2025preservingvoice} reviews the evidence that generative tools
+homogenise academic prose --- the boundary between author-written and
+AI-generated text blurring in a way that costs something real.
+\textcite{singh2025authorialvoice} take the constructive approach, describing a
+system designed to \emph{develop} authorial voice rather than substitute for it,
+supporting both writing performance and authorship belief.
+
+The distinction is worth holding onto. A tool that drafts for you and a tool that
+helps you draft are different tools, and only one of them leaves you a better
+writer.
+
+\subsection{Policy}
+
+\textcite{naturemethods2026responsibly} sets out where journal policy has
+settled, and the convergence across publishers is substantial:
+
+\begin{itemize}
+  \item \textbf{AI cannot be an author.} Authorship entails accountability, which
+    requires an entity that can be held accountable.
+  \item \textbf{Use must be disclosed.} In methods or acknowledgements,
+    specifically.
+  \item \textbf{Authors are fully responsible} for all content, including
+    anything a model produced.
+  \item \textbf{Peer review is generally off-limits.} Uploading a confidential
+    manuscript to a third-party service breaches confidentiality. Some publishers
+    prohibit it outright.
+\end{itemize}
+
+That last point is frequently overlooked and is the most serious. A manuscript
+under review is confidential. Pasting it into a hosted chat interface transmits
+it to a third party, may enter a training corpus, and is a breach of the
+reviewer's undertaking. If you want model assistance with a review, use a local
+model. This is one of the cleanest cases for local-first in this book.
+
+\section{Peer review and editorial work}
+
+Automated screening --- reference resolution, statistical reporting checks,
+figure duplication detection, methods completeness --- is legitimate and useful,
+and does not require a generative model.
+
+Automated review judgement is not. The reviewer's contribution is domain
+judgement about whether the work is sound and whether the conclusions follow. A
+model produces text shaped like a review without the judgement, and its
+plausibility is the problem rather than the value.
+
+\section{Synthesis and assessment}
+
+\textcite{krug2026ipbes} examine AI in IPBES assessments and pose the hype-or-
+salvation question without answering it, which is appropriate. Assessment work
+has a formal requirement that every statement be traceable to a source and
+carry a calibrated confidence term. Generative summarisation breaks the first and
+fabricates the second.
+
+Where AI helps in assessment: finding candidate literature, extracting structured
+data from many papers into a consistent schema, translating non-English sources,
+flagging inconsistencies. Where it does not: writing the assessment.
+
+\section{Detection and its misuse}
+
+Institutions want to detect AI-written text. The tools are not reliable enough to
+support decisions about people. \textcite{pudasaini2026detection} show that
+detectors reporting high benchmark accuracy largely exploit dataset artefacts,
+with accuracy collapsing out of distribution --- and a systematic bias against
+non-native English writing, which in ecology means a systematic bias against a
+large fraction of the field.
+
+The answer is disclosure policy, not detection technology. Make the expected
+declaration easy and normal, and the incentive to conceal drops.
+
+\section{A summary table}
+
+\begin{table}[htbp]
+\centering
+\caption{Stage by stage: what helps, and what must be checked.}
+\label{tab:workflow}
+\footnotesize
+\begin{tabularx}{\textwidth}{lXX}
+\toprule
+\textbf{Stage} & \textbf{Genuinely useful for} & \textbf{What you must check} \\
+\midrule
+Literature search & Query expansion, multi-source synthesis, translation & Resolve every DOI; read what you cite \\
+Reading & Method explanation, targeted Q\&A with PDF in context & Quality judgement stays yours \\
+Data extraction & Unstructured text to structured records & Manual validation of a random subset \\
+Analysis & Code generation, debugging, plotting & Run it; check joins, units, CRS, row counts \\
+Writing & Structure, first draft, language editing & Every claim; every citation; your voice \\
+Review & Nothing involving the manuscript on a hosted service & Use a local model or none \\
+Assessment & Candidate finding, structured extraction & Traceability to source; confidence terms \\
+\bottomrule
+\end{tabularx}
+\end{table}

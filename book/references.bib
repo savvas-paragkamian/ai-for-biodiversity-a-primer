@@ -1,0 +1,829 @@
+% ---------------------------------------------------------------------------
+% references.bib
+% Bibliography for "AI for Ecologists: A Primer"
+%
+% Entries are derived from the files in ../../literature/ (PDFs, .bib, .ris).
+% Grouped by theme; keys are author-year-ish and stable.
+% Encoding: UTF-8. Processed with biber.
+% ---------------------------------------------------------------------------
+
+
+% ===========================================================================
+% 1. FOUNDATIONS: WHAT LLMs ARE, WHY THEY WORK, AND WHY NOW
+% ===========================================================================
+
+@article{krakauer2026emergence,
+  author  = {Krakauer, David C. and Mitchell, Melanie and Krakauer, John W.},
+  title   = {Large language models and emergence: a complex systems perspective},
+  journal = {Philosophical Transactions of the Royal Society A},
+  volume  = {384},
+  number  = {2320},
+  pages   = {20250014},
+  year    = {2026},
+  issn    = {1364-503X},
+  doi     = {10.1098/rsta.2025.0014},
+}
+
+@misc{mitchell2026jagged,
+  author       = {Mitchell, Melanie},
+  title        = {Jagged Intelligence: The Dangerous Unknowns at the Heart of {LLMs}},
+  howpublished = {The Yale Review},
+  year         = {2026},
+  url          = {https://yalereview.org/article/melanie-mitchell-jagged-intelligence},
+}
+
+@article{coppola2026transformers,
+  author        = {Coppola, Greg},
+  title         = {Transformers are {B}ayesian Networks},
+  year          = {2026},
+  eprint        = {2603.17063},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+}
+
+@techreport{kimi2026attnres,
+  author      = {{Kimi Team}},
+  title       = {Attention Residuals},
+  institution = {Moonshot AI},
+  year        = {2026},
+  note        = {arXiv:2603.15031},
+  url         = {https://github.com/MoonshotAI/Attention-Residuals},
+}
+
+@techreport{aiindex2026,
+  author      = {{Stanford Institute for Human-Centered Artificial Intelligence}},
+  title       = {Artificial Intelligence Index Report 2026},
+  institution = {Stanford University},
+  year        = {2026},
+  url         = {https://aiindex.stanford.edu/},
+}
+
+@article{ritchie1974unix,
+  author  = {Ritchie, Dennis M. and Thompson, Ken},
+  title   = {The {UNIX} Time-Sharing System},
+  journal = {Communications of the ACM},
+  volume  = {17},
+  number  = {7},
+  pages   = {365--375},
+  year    = {1974},
+  doi     = {10.1145/361011.361061},
+}
+
+@incollection{vonneumann1955survive,
+  author    = {von Neumann, John},
+  title     = {Can We Survive Technology?},
+  booktitle = {The Neumann Compendium},
+  publisher = {Fortune},
+  year      = {1955},
+  pages     = {658--673},
+}
+
+
+% ===========================================================================
+% 2. LIMITATIONS: HALLUCINATION, SYCOPHANCY, PROVENANCE, DETECTION
+% ===========================================================================
+
+@article{kalai2025hallucinate,
+  author        = {Kalai, Adam Tauman and Nachum, Ofir and Vempala, Santosh S. and Zhang, Edwin},
+  title         = {Why Language Models Hallucinate},
+  year          = {2025},
+  eprint        = {2509.04664},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+}
+
+@article{zhao2026citations,
+  author        = {Zhao, Zhenyue and Wang, Yihe and Stuart, Toby and De Vaan, Mathijs and Ginsparg, Paul and Yin, Yian},
+  title         = {{LLM} hallucinations in the wild: Large-scale evidence from non-existent citations},
+  year          = {2026},
+  eprint        = {2605.07723},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.DL},
+}
+
+@article{magesh2025legalrag,
+  author  = {Magesh, Varun and Surani, Faiz and Dahl, Matthew and Suzgun, Mirac and Manning, Christopher D. and Ho, Daniel E.},
+  title   = {Hallucination-Free? {A}ssessing the Reliability of Leading {AI} Legal Research Tools},
+  journal = {Journal of Empirical Legal Studies},
+  year    = {2025},
+  doi     = {10.1111/jels.12413},
+}
+
+@article{cheng2026sycophancy,
+  author  = {Cheng, Myra and Lee, Cinoo and Khadpe, Pranav and Yu, Sunny and Han, Dyllan and Jurafsky, Dan},
+  title   = {Sycophantic {AI} decreases prosocial intentions and promotes dependence},
+  journal = {Science},
+  year    = {2026},
+  doi     = {10.1126/science.aec8352},
+}
+
+@article{chandra2026spiraling,
+  author        = {Chandra, Kartik and Kleiman-Weiner, Max and Ragan-Kelley, Jonathan and Tenenbaum, Joshua B.},
+  title         = {Sycophantic Chatbots Cause Delusional Spiraling, Even in Ideal {B}ayesians},
+  year          = {2026},
+  eprint        = {2602.19141},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+}
+
+@article{sole2026cognitivevirus,
+  author        = {Sol{\'e}, Ricard and Ruffini, Giulio and Castaldo, Francesca and Tuccio, Marco and Seoane, Luis F. and De Domenico, Manlio and Elena, Santiago F. and Krakauer, David C. and Levin, Michael},
+  title         = {Large-Language Models as a Cognitive Virus},
+  year          = {2026},
+  eprint        = {2609.03344},
+  archivePrefix = {arXiv},
+  primaryClass  = {physics.soc-ph},
+}
+
+@article{pudasaini2026detection,
+  author        = {Pudasaini, Shushanta and Lillis, David and Miralles-Pechu{\'a}n, Luis and Llorens Salvador, Marisa},
+  title         = {Why {AI}-Generated Text Detection Fails: Evidence from Explainable {AI} Beyond Benchmark Accuracy},
+  year          = {2026},
+  eprint        = {2603.23146},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+}
+
+
+% ===========================================================================
+% 3. AI IN ECOLOGY, BIODIVERSITY AND THE LIFE SCIENCES
+% ===========================================================================
+
+@article{mishra2026notready,
+  author  = {Mishra, Gayatri},
+  title   = {Ecology is not yet ready for {AI}---and why that matters},
+  journal = {Proceedings of the National Academy of Sciences},
+  year    = {2026},
+  doi     = {10.1073/pnas.2533976123},
+}
+
+@article{castro2024unstructured,
+  author  = {Castro, Andry and Pinto, Jo{\~a}o and Reino, Lu{\'i}s and Pipek, Pavel and Capinha, C{\'e}sar},
+  title   = {Large language models overcome the challenges of unstructured text data in ecology},
+  journal = {Ecological Informatics},
+  volume  = {82},
+  pages   = {102742},
+  year    = {2024},
+  doi     = {10.1016/j.ecoinf.2024.102742},
+}
+
+@article{takola2026topicmodelling,
+  author  = {Takola, Elina},
+  title   = {From {LSA} to {LLM}: Evolution and limitations of topic modelling methods for biodiversity conservation},
+  journal = {Ecological Informatics},
+  volume  = {95},
+  pages   = {103725},
+  year    = {2026},
+  doi     = {10.1016/j.ecoinf.2026.103725},
+}
+
+@article{placitelli2026seaturtle,
+  author  = {Placitelli, Alessio Pierluigi and Hochscheid, Sandra and Maffucci, Fulvio and Rees, Alan F. and Treglia, Gianluca and Staiano, Antonino},
+  title   = {Towards decentralized ecological monitoring: A local-first web-based {AI} platform for sea turtle detection},
+  journal = {Ecological Informatics},
+  year    = {2026},
+  doi     = {10.1016/j.ecoinf.2025.103569},
+}
+
+@article{johnson2026collections,
+  author  = {Johnson, Christine A. and Willigan, Erin M. and Hwang, Ellen Y. and Austin, Parker M. and Chang, Kyle L. and Daly, Peter and Davis, Ann and Gonzalez, Jovanni M. and Kao, Chia-Ni and Mifsud, Isobel E. J. and Miller, Kitri A. and Nicolescu, Marinela and Ruiz, Ana Maria and Ruo, Elliott Y. and Schwartzman, Julia L. and Seeman, Alyssa B. and Stenzel, Janice and Zurita, Natalia C. and Berniker, Lily F. and Rodr{\'i}guez, Estefan{\'i}a},
+  title   = {Unlocking biodiversity data with robotic imaging and {AI}-driven transcription of natural history collections},
+  journal = {Science Advances},
+  year    = {2026},
+  doi     = {10.1126/sciadv.aeb6975},
+}
+
+@article{yu2026microbiomes,
+  author  = {Yu, Wanqian and Qu, Hua and Wang, Shaopu and Shi, Mang and Lu, Yingzhou and Xia, Shuting and Stanton, Catherine and Zhang, Chenhong and Wang, Yuhao and Zhu, Tongyu and Zhu, Dong and Zhou, Xin and Ross, R. Paul and Zhou, Zhemin and Huang, Yuan},
+  title   = {From microbiomes to predictive ecosystems: challenges and opportunities in artificial intelligence-based approaches},
+  journal = {The Lancet Microbe},
+  pages   = {101428},
+  year    = {2026},
+  doi     = {10.1016/j.lanmic.2026.101428},
+}
+
+@article{jiang2025aibioinformatics,
+  author  = {Jiang, Jiyue and Li, Yunke and Cao, Shiwei and Shan, Yuheng and Liu, Yuexing and Fei, Tianyi and Yu, Yule and Feng, Yi and Li, Yu and Li, Yixue and Yuan, Jiao},
+  title   = {Artificial intelligence in bioinformatics: a survey},
+  journal = {Briefings in Bioinformatics},
+  volume  = {26},
+  number  = {6},
+  pages   = {bbaf576},
+  year    = {2025},
+  doi     = {10.1093/bib/bbaf576},
+}
+
+@article{brixi2026evo2,
+  author  = {Brixi, Garyk and Durrant, Matthew G. and Ku, Jerome and Naghipourfar, Mohsen and Poli, Michael and Sun, Gwanggyu and Hsu, Patrick D. and Hie, Brian L.},
+  title   = {Genome modelling and design across all domains of life with {Evo 2}},
+  journal = {Nature},
+  year    = {2026},
+  doi     = {10.1038/s41586-026-10176-5},
+}
+
+@article{ioannou2025onehealth,
+  author  = {Ioannou, Alexandra and Bataka, Evmorfia and Kokosis, Nikolaos and Billinis, Charalambos and Laspidou, Chrysi},
+  title   = {One Health in Coastal and Marine Contexts: A Critical Bibliometric Analysis Across Environmental, Animal, and Human Health Dimensions},
+  journal = {International Journal of Environmental Research and Public Health},
+  volume  = {22},
+  number  = {10},
+  pages   = {1523},
+  year    = {2025},
+  doi     = {10.3390/ijerph22101523},
+}
+
+@techreport{theodosopoulou2022greek,
+  author      = {Theodosopoulou, Danai},
+  title       = {The Bioinformatics Landscape in {G}reek Environmental Omics},
+  institution = {ELIXIR-GR Pilot Action: Marine, IMBBC, HCMR},
+  year        = {2022},
+}
+
+
+% ===========================================================================
+% 4. AGENTS, HARNESSES AND AUTONOMOUS SCIENCE
+% ===========================================================================
+
+@article{liu2026claudecode,
+  author        = {Liu, Jiacheng and Zhao, Xiaohan and Shang, Xinyi and Shen, Zhiqiang},
+  title         = {Dive into {C}laude {C}ode: The Design Space of Today's and Future {AI} Agent Systems},
+  year          = {2026},
+  eprint        = {2604.14228},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.SE},
+}
+
+@article{piskala2026files,
+  author        = {Piskala, Deepak Babu},
+  title         = {From ``Everything is a File'' to ``Files Are All You Need'': How {U}nix Philosophy Informs the Design of Agentic {AI} Systems},
+  year          = {2026},
+  eprint        = {2601.11672},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.SE},
+}
+
+@article{du2026memory,
+  author        = {Du, Pengfei},
+  title         = {Memory for Autonomous {LLM} Agents: Mechanisms, Evaluation, and Emerging Frontiers},
+  year          = {2026},
+  eprint        = {2603.07670},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+}
+
+@article{huang2025biomni,
+  author  = {Huang, Kexin and Zhang, Serena and Wang, Hanchen and Qu, Yuanhao and Lu, Yingzhou and Roohani, Yusuf and Cong, Le and Regev, Aviv and Leskovec, Jure},
+  title   = {{Biomni}: A General-Purpose Biomedical {AI} Agent},
+  journal = {bioRxiv},
+  year    = {2025},
+  doi     = {10.1101/2025.05.30.656746},
+}
+
+@article{xu2026pantheonos,
+  author  = {Xu, Weize and Poussi, Erwin and Zhong, Quan and Zeng, Zehua and Zou, Christopher and Wang, Xuehai and Engreitz, Jesse M. and Qiu, Xiaojie},
+  title   = {{PantheonOS}: An Evolvable Multi-Agent Framework for Automatic Genomics Discovery},
+  journal = {bioRxiv},
+  year    = {2026},
+  doi     = {10.64898/2026.02.26.707870},
+}
+
+@article{zeng2026omicclaw,
+  author  = {Zeng, Zehua and Wang, Xuehai and Luo, Zhi and Zheng, Yawen and Hu, Lei and Xing, Cencan and Du, Hongwu},
+  title   = {{OmicClaw}: executable and reproducible natural-language multi-omics analysis over the unified {OmicVerse} ecosystem},
+  journal = {bioRxiv},
+  year    = {2026},
+  doi     = {10.64898/2026.03.13.711464},
+}
+
+@article{guo2026promptbio,
+  author  = {Guo, Wenbin and Zhang, Minzhe and Han, Bowei and Ma, Youjia and Leng, Yang and Hebbar, Shishir and Zhou, Xiaoyuan and Gu, Wenhao and Yang, Xiao and Dhar, Shashi},
+  title   = {{PromptBio-Bench}: Benchmarking {LLM}-based Bioinformatics Agents for End-to-End Data Analysis},
+  journal = {bioRxiv},
+  year    = {2026},
+  doi     = {10.64898/2026.05.05.723092},
+}
+
+@article{lu2026aiscientist,
+  author  = {Lu, Chris and Lu, Cong and Lange, Robert Tjarko and Yamada, Yutaro and Hu, Shengran and Foerster, Jakob and Ha, David and Clune, Jeff},
+  title   = {Towards end-to-end automation of {AI} research},
+  journal = {Nature},
+  year    = {2026},
+  doi     = {10.1038/s41586-026-10265-5},
+}
+
+@article{feng2026aletheia,
+  author        = {Feng, Tony and Trinh, Trieu H. and Bingham, Garrett and Gukov, Sergei and Hassabis, Demis and Kavukcuoglu, Koray and Le, Quoc V. and Luong, Thang},
+  title         = {Towards Autonomous Mathematics Research},
+  year          = {2026},
+  eprint        = {2602.10177},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+}
+
+@article{qu2026coral,
+  author        = {Qu, Ao and Zheng, Han and Ong, Shao Yong and Kong, Minwei and Wu, Cathy and Liang, Paul Pu and Low, Bryan Kian Hsiang and Zhao, Jinhua},
+  title         = {{CORAL}: Towards Autonomous Multi-Agent Evolution for Open-Ended Discovery},
+  year          = {2026},
+  eprint        = {2604.01658},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+}
+
+@article{song2026paperorchestra,
+  author        = {Song, Yiwen and Song, Yale and Pfister, Tomas and Yoon, Jinsung},
+  title         = {{PaperOrchestra}: A Multi-Agent Framework for Automated {AI} Research Paper Writing},
+  year          = {2026},
+  eprint        = {2604.05018},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+}
+
+@inproceedings{kurniawan2024ragfailures,
+  author    = {Kurniawan, Stefanus and Thudumu, Srikanth and Barnett, Scott},
+  title     = {Seven Failure Points When Engineering a Retrieval Augmented Generation System},
+  booktitle = {Proceedings of the IEEE/ACM 3rd International Conference on AI Engineering (CAIN)},
+  year      = {2024},
+  doi       = {10.1145/3644815.3644945},
+}
+
+
+% ===========================================================================
+% 5. RETRIEVAL, KNOWLEDGE LAYERS AND LITERATURE WORK
+% ===========================================================================
+
+@article{zhang2025deepresearch,
+  author        = {Zhang, Weizhi and Li, Yangning and Bei, Yuanchen and Luo, Junyu and Wan, Guancheng and Yang, Liangwei and King, Irwin and Yu, Philip S.},
+  title         = {From Web Search towards Agentic Deep Research: Incentivizing Search with Reasoning Agents},
+  year          = {2025},
+  eprint        = {2506.18959},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.IR},
+}
+
+@article{sigillo2026embllibrarian,
+  author        = {Sigillo, Luigi and Silvestri, Matteo and Tabaro, Francesco and Bhatnagar, Rajat and Mubashar, Syed Irtaza and Jeffryes, Matt and Nijjer, Daljit and Perera, Vittorio and Spjuth, Ola and Saez-Rodriguez, Julio and Harrison, Melissa and Petroni, Fabio},
+  title         = {{EMBL AI} Librarian: Life-Sciences Knowledge Layer for {AI} Agents},
+  year          = {2026},
+  eprint        = {2607.28229},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+}
+
+@article{smeros2025sparqlllm,
+  author        = {Smeros, Panayiotis and Emonet, Vincent and Wang, Ruijie and Sima, Ana-Claudia and Mendes de Farias, Tarcisio},
+  title         = {{SPARQL-LLM}: Real-Time {SPARQL} Query Generation from Natural Language Questions},
+  year          = {2025},
+  eprint        = {2512.14277},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.IR},
+}
+
+@article{auer2024docling,
+  author        = {Auer, Christoph and Lysak, Maksym and Nassar, Ahmed and Dolfi, Michele and Livathinos, Nikolaos and Staar, Peter W. J.},
+  title         = {Docling Technical Report},
+  year          = {2024},
+  eprint        = {2408.09869},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+}
+
+@article{pombase2026curation,
+  author  = {{PomBase and ELIXIR Curation Consortium}},
+  title   = {Empowering biological knowledgebases: advances in human-in-the-loop {AI}-driven literature curation},
+  journal = {Bioinformatics Advances},
+  volume  = {6},
+  number  = {1},
+  pages   = {vbag028},
+  year    = {2026},
+  doi     = {10.1093/bioadv/vbag028},
+}
+
+@inproceedings{pasche2026biodivpmc,
+  author    = {Pasche, Emilie and Gobeill, Julien and Penev, Lyubomir and Agosti, Donat and B{\'e}nichou, Laurence and Flament, Alexandre and Michel, Pierre-Andr{\'e} and Liyanapathirana, Jeevanthi and Ruch, Patrick},
+  title     = {How {B}iodiversity {PMC} can support literature search for biodiversity research},
+  booktitle = {World Biodiversity Forum 2026},
+  year      = {2026},
+  doi       = {10.5194/wbf2026-511},
+}
+
+@inproceedings{krug2026ipbes,
+  author    = {Krug, Rainer and Ruch, Patrick},
+  title     = {The Role of {AI} in {IPBES} Assessments and Biodiversity Literature Analysis --- Hype or Salvation?},
+  booktitle = {World Biodiversity Forum 2026},
+  year      = {2026},
+  doi       = {10.5194/wbf2026-968},
+}
+
+@techreport{unep2026environmentgpt,
+  author      = {{United Nations Environment Programme}},
+  title       = {{EnvironmentGPT}: What it is and how it works},
+  institution = {UNEP},
+  year        = {2026},
+}
+
+
+% ===========================================================================
+% 6. AI-READY DATA, STANDARDS AND INFRASTRUCTURE
+% ===========================================================================
+
+@article{magagna2021iadopt,
+  author        = {Magagna, Barbara and Rosati, Ilaria and Stoica, Maria and Schindler, Sirko and Moncoiff{\'e}, Gwenaelle and Devaraju, Anusuriya and Peterseil, Johannes and Huber, Robert},
+  title         = {The {I-ADOPT} Interoperability Framework for {FAIR}er data descriptions of biodiversity},
+  year          = {2021},
+  eprint        = {2107.06547},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+}
+
+@article{koljalg2019plutof,
+  author  = {K{\~o}ljalg, Urmas and Abarenkov, Kessy and Zirk, Allan and Runnel, Veljo and Piirmann, Timo and P{\"o}h{\"o}nen, Raivo and Ivanov, Filipp},
+  title   = {{PlutoF}: Biodiversity data management platform for the complete data lifecycle},
+  journal = {Biodiversity Information Science and Standards},
+  volume  = {3},
+  pages   = {e37398},
+  year    = {2019},
+  doi     = {10.3897/biss.3.37398},
+}
+
+@article{gill2023dataharmonizer,
+  author  = {Gill, Ivan S. and Griffiths, Emma J. and Dooley, Damion and Cameron, Rhiannon and Savi{\'c} Kalles{\o}e, Sarah and John, Nithu Sara and Van Domselaar, Gary and Hsiao, William W. L.},
+  title   = {The {DataHarmonizer}: a tool for faster data harmonization, validation, aggregation and analysis of pathogen genomics contextual information},
+  journal = {Microbial Genomics},
+  volume  = {9},
+  year    = {2023},
+  doi     = {10.1099/mgen.0.000908},
+}
+
+@article{wilson2013foss,
+  author  = {Wilson, Michael L. and Tchantchaleishvili, Vakhtang},
+  title   = {The Importance of Free and Open Source Software and Open Standards in Modern Scientific Publishing},
+  journal = {Publications},
+  volume  = {1},
+  number  = {2},
+  pages   = {49--55},
+  year    = {2013},
+  doi     = {10.3390/publications1020049},
+}
+
+@article{nagraj2026sniff,
+  author  = {Nagraj, V. P. and Siller, Karsten H. and Stewart, Thomas and Magee, Neal and Turner, Stephen D.},
+  title   = {Ten quick tips to {SNIFF} out sustainable and secure scientific software},
+  journal = {PLOS Computational Biology},
+  volume  = {22},
+  number  = {7},
+  pages   = {1--9},
+  year    = {2026},
+  doi     = {10.1371/journal.pcbi.1014510},
+}
+
+
+% ===========================================================================
+% 7. LOCAL-FIRST, SOVEREIGNTY AND OPENNESS
+% ===========================================================================
+
+@inproceedings{kleppmann2019localfirst,
+  author    = {Kleppmann, Martin and Wiggins, Adam and van Hardenberg, Peter and McGranaghan, Mark},
+  title     = {Local-First Software: You Own Your Data, in spite of the Cloud},
+  booktitle = {Proceedings of the 2019 ACM SIGPLAN International Symposium on New Ideas, New Paradigms, and Reflections on Programming and Software (Onward!)},
+  year      = {2019},
+  doi       = {10.1145/3359591.3359737},
+}
+
+@inproceedings{kleppmann2024bluesky,
+  author    = {Kleppmann, Martin and Frazee, Paul and Gold, Jake and Graber, Jay},
+  title     = {Bluesky and the {AT} Protocol: Usable Decentralized Social Media},
+  booktitle = {Proceedings of the ACM CoNEXT 2024 Workshop},
+  year      = {2024},
+  doi       = {10.1145/3694809.3700740},
+}
+
+@article{haas2025corda,
+  author  = {Haas, Julian and Kuessner, Christian and Mogk, Ragnar and Mezini, Mira},
+  title   = {Think Locally, Act Globally: A Programming Model for Decentralized Applications},
+  journal = {IEEE Internet Computing},
+  year    = {2025},
+  doi     = {10.1109/MIC.2025.3618947},
+}
+
+@article{esposito2026sovereign,
+  author        = {Esposito, Matteo and Marchesi, Lodovica and Tonelli, Roberto and Lenarduzzi, Valentina},
+  title         = {Sovereign-by-Design: A Reference Architecture for {AI} and Blockchain Enabled Systems},
+  year          = {2026},
+  eprint        = {2602.05486},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.SE},
+}
+
+@article{anand2026digitalsovereignty,
+  author  = {Anand, Siraj and Donnelly, Shawn and Ehrenhard, Michel and Nieuwenhuis, Lambert J. M. and Abhishta, Abhishta},
+  title   = {Digital sovereignty and the means to European digital security: identification of the goals related to digital sovereignty from legal texts published by the {E}uropean {U}nion},
+  journal = {European Security},
+  year    = {2026},
+  doi     = {10.1080/09662839.2026.2627905},
+}
+
+@techreport{jrc2025opensovereignty,
+  author      = {{European Commission, Joint Research Centre}},
+  title       = {Open but Not Powerless: Towards a Common Understanding of {EU} Digital Sovereignty},
+  institution = {JRC Science for Policy Brief, Digital Sovereignty Series},
+  number      = {JRC144908},
+  year        = {2025},
+}
+
+@techreport{hai2026sovereignty,
+  author      = {Meinhardt, Caroline and Pava, Juan N. and Yee, Caroline and Landay, James A.},
+  title       = {The Commercial Landscape of {AI} Sovereignty Offerings},
+  institution = {Stanford HAI Policy \& Society Issue Brief},
+  year        = {2026},
+}
+
+@misc{hai2026openweight,
+  author       = {{Stanford Institute for Human-Centered Artificial Intelligence}},
+  title        = {Open-Weight Models Aren't Enough. We Need Truly Open Source {AI} Models for Science and Society},
+  howpublished = {Stanford HAI News},
+  year         = {2026},
+  url          = {https://hai.stanford.edu/news/open-weight-models-arent-enough},
+}
+
+@misc{redhat2026hybrid,
+  author       = {Brown, Andrew},
+  title        = {The future of {AI} demands a hybrid foundation},
+  howpublished = {Red Hat Blog},
+  year         = {2026},
+  url          = {https://www.redhat.com/en/blog/future-ai-demands-hybrid-foundation},
+}
+
+@misc{monshed2026ollamapodman,
+  author       = {Monshed, Yazan},
+  title        = {Running {Ollama} Locally with {Podman} on {Fedora} {Linux}},
+  howpublished = {Fedora Magazine},
+  year         = {2026},
+  url          = {https://fedoramagazine.org/running-ollama-locally-with-podman-on-fedora-linux/},
+}
+
+@misc{confidence2026localstack,
+  author       = {{confidence.sh}},
+  title        = {Local {AI} Stack: How To Selfhost Your Own {AI} Inference Infra},
+  howpublished = {confidence.sh blog},
+  year         = {2026},
+  url          = {https://confidence.sh/blog/how-to-selfhost-your-own-ai-inference-infra/},
+}
+
+@techreport{openai2026industrialpolicy,
+  author      = {{OpenAI}},
+  title       = {Industrial Policy for the Intelligence Age: Ideas to Keep People First},
+  institution = {OpenAI},
+  year        = {2026},
+}
+
+
+% ===========================================================================
+% 8. SECURITY, BIORISK AND GOVERNANCE
+% ===========================================================================
+
+@article{slattery2026riskrepository,
+  author  = {Slattery, Peter and Saeri, Alexander K. and Grundy, Emily A. C. and Graham, Jess and Noetel, Michael and Uuk, Risto and Dao, James and Pour, Soroush and Casper, Stephen and Thompson, Neil},
+  title   = {The {AI} risk repository: A meta-review, database, and taxonomy of risks from artificial intelligence},
+  journal = {Patterns},
+  volume  = {7},
+  number  = {5},
+  year    = {2026},
+  doi     = {10.1016/j.patter.2026.101517},
+}
+
+@article{peppin2025biorisk,
+  author        = {Peppin, Aidan and Reuel, Anka and Casper, Stephen and Jones, Elliot and Strait, Andrew and Anwar, Usman and Agrawal, Anurag and Kapoor, Sayash and Koyejo, Sanmi and Pellat, Marie and Bommasani, Rishi},
+  title         = {The Reality of {AI} and Biorisk},
+  year          = {2025},
+  eprint        = {2412.01946},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+}
+
+@techreport{brent2025bioweapons,
+  author      = {Brent, Roger and McKelvey, T. Greg},
+  title       = {Contemporary {AI} foundation models increase biological weapons risk},
+  institution = {RAND Global and Emerging Risks},
+  number      = {WR-A3853-1},
+  year        = {2025},
+}
+
+@techreport{barkan2026restricting,
+  author      = {Barkan, Casey O. and Rodriguez, Christopher and Chowdhury, Swaptik and Zhang, Li Ang and Brent, Roger},
+  title       = {Restricting {AI} Agent Use of Biological Tools: Exploring the Feasibility of Software Barriers},
+  institution = {RAND Corporation},
+  number      = {RR-A5000-1},
+  year        = {2026},
+}
+
+@article{zhang2026uplift,
+  author        = {Zhang, Chen Bo Calvin and Knight, Christina Q. and Kruus, Nicholas and Hausenloy, Jason and Medeiros, Pedro and Li, Nathaniel and Donoughe, Seth and Michael, Julian},
+  title         = {{LLM} Novice Uplift on Dual-Use, In Silico Biology Tasks},
+  year          = {2026},
+  eprint        = {2602.23329},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+}
+
+@techreport{turner2026biosecuritybenchmarks,
+  author      = {Turner, Stephen D.},
+  title       = {{AI} Biosecurity Benchmarks and Real-World Risk},
+  institution = {University of Virginia School of Data Science},
+  year        = {2026},
+}
+
+@article{holko2026relationalbiosecurity,
+  author  = {Holko, Michelle},
+  title   = {Toward relational biosecurity: understanding {AI}-enabled biology as a connected system},
+  journal = {Frontiers in Microbiology},
+  volume  = {17},
+  pages   = {1856819},
+  year    = {2026},
+  doi     = {10.3389/fmicb.2026.1856819},
+}
+
+@article{rashidi2026execsecurity,
+  author        = {Rashidi, Mohammadreza},
+  title         = {The Balkanization of Execution-Security Research for {AI} Coding Agents: Isolation, Access Control, and Time-of-Check-to-Time-of-Use Vulnerabilities},
+  year          = {2026},
+  eprint        = {2607.05743},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CR},
+}
+
+@article{shapira2026agentsofchaos,
+  author        = {Shapira, Natalie and Wendler, Chris and Yen, Avery and Sarti, Gabriele and Pal, Koyena and Manheim, David and Ullman, Tomer and Bau, David},
+  title         = {Agents of Chaos},
+  year          = {2026},
+  eprint        = {2602.20021},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+}
+
+@techreport{qasemi2026cyberattacks,
+  author      = {Qasemi, Behzad},
+  title       = {{AI}-Powered Cyber Attacks: Analysis and Defense Mechanisms},
+  institution = {Independent Researcher},
+  year        = {2026},
+}
+
+@misc{openai2026huggingface,
+  author       = {{OpenAI}},
+  title        = {{OpenAI} and {Hugging Face} partner to address security incident during model evaluation},
+  howpublished = {OpenAI},
+  year         = {2026},
+  url          = {https://openai.com/index/hugging-face-model-evaluation-security-incident/},
+}
+
+@misc{ibtimes2026claudechats,
+  author       = {{International Business Times UK}},
+  title        = {{Claude} Shared Chats Surface in Search Results Containing {API} Keys and Personal Data},
+  howpublished = {IBTimes UK},
+  year         = {2026},
+}
+
+@misc{hai2026privacylaws,
+  author       = {{Stanford Institute for Human-Centered Artificial Intelligence}},
+  title        = {Companies That Buy and Sell Your Data Are Not Following {California}'s Strict Privacy Laws},
+  howpublished = {Stanford HAI News},
+  year         = {2026},
+}
+
+@misc{hai2026mentalhealth,
+  author       = {{Stanford Institute for Human-Centered Artificial Intelligence}},
+  title        = {The Complexities of Governing Mental Health {AI}},
+  howpublished = {Stanford HAI News},
+  year         = {2026},
+}
+
+
+% ===========================================================================
+% 9. SCIENTIFIC WRITING, INTEGRITY AND AUTHORSHIP
+% ===========================================================================
+
+@article{naturemethods2026responsibly,
+  author  = {{Nature Methods Editorial}},
+  title   = {Using {AI} responsibly in scientific publishing},
+  journal = {Nature Methods},
+  volume  = {23},
+  number  = {2},
+  pages   = {271},
+  year    = {2026},
+  doi     = {10.1038/s41592-026-03020-1},
+}
+
+@article{salvagno2023scientificwriting,
+  author  = {Salvagno, Michele and Taccone, Fabio Silvio and Gerli, Alberto Giovanni},
+  title   = {Can artificial intelligence help for scientific writing?},
+  journal = {Critical Care},
+  volume  = {27},
+  pages   = {75},
+  year    = {2023},
+  doi     = {10.1186/s13054-023-04380-2},
+}
+
+@article{granjeiro2025futurewriting,
+  author  = {Granjeiro, Jos{\'e} Mauro and Del Bel Cury, Altair Antoninha and Cury, Jaime Aparecido and Bueno, Mike and Sousa-Neto, Manoel Dami{\~a}o and Estrela, Carlos},
+  title   = {The Future of Scientific Writing: {AI} Tools, Benefits, and Ethical Implications},
+  journal = {Brazilian Dental Journal},
+  volume  = {36},
+  pages   = {e25-6471},
+  year    = {2025},
+  doi     = {10.1590/0103-644020256471},
+}
+
+@article{singh2025authorialvoice,
+  author  = {Singh, Jasbir Karneil and Daniel, Ben K. and Koh, Joyce Hwee Ling},
+  title   = {Empowering Authorship with {AI}: a Novel Academic Writing Technology for Authorial Voice},
+  journal = {International Journal of Artificial Intelligence in Education},
+  volume  = {35},
+  pages   = {3406--3428},
+  year    = {2025},
+  doi     = {10.1007/s40593-025-00503-8},
+}
+
+@article{alhosni2025preservingvoice,
+  author  = {Al Hosni, Jokha},
+  title   = {Preserving Authorial Voice in Academic Texts in the Age of Generative {AI}: A Thematic Literature Review},
+  journal = {Arab World English Journal},
+  volume  = {16},
+  number  = {3},
+  pages   = {244--258},
+  year    = {2025},
+  doi     = {10.24093/awej/vol16no3.14},
+}
+
+
+% ===========================================================================
+% 10. LONG VIEW: BIOSPHERE, NOOSPHERE AND EVOLUTION
+% ===========================================================================
+
+@incollection{vernadsky1938noosphere,
+  author    = {Vernadsky, Vladimir I.},
+  title     = {The Transition From the Biosphere To the No{\"o}sphere},
+  booktitle = {Scientific Thought as a Planetary Phenomenon},
+  note      = {Translated by William Jones, 21st Century Science \& Technology, Spring-Summer 2012},
+  year      = {1938},
+}
+
+@article{vidal2024noosphere,
+  author  = {Vidal, Cl{\'e}ment},
+  title   = {What is the noosphere? {P}lanetary superorganism, major evolutionary transition and emergence},
+  journal = {Systems Research and Behavioral Science},
+  year    = {2024},
+  doi     = {10.1002/sres.2997},
+}
+
+@book{lovelock2019novacene,
+  author    = {Lovelock, James and Appleyard, Bryan},
+  title     = {Novacene: The Coming Age of Hyperintelligence},
+  publisher = {MIT Press},
+  address   = {Cambridge, MA},
+  year      = {2019},
+  isbn      = {9780262043649},
+}
+
+@article{muller2026evolvableai,
+  author  = {M{\"u}ller, Viktor and Steels, Luc and Szathm{\'a}ry, E{\"o}rs},
+  title   = {Evolvable {AI}: Threats of a new major transition in evolution},
+  journal = {Proceedings of the National Academy of Sciences},
+  year    = {2026},
+  doi     = {10.1073/pnas.2527700123},
+}
+
+@article{korecki2025biosphericai,
+  author        = {Korecki, Marcin},
+  title         = {Biospheric {AI}},
+  year          = {2025},
+  eprint        = {2401.17805},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CY},
+}
+
+
+% ===========================================================================
+% 11. THE TRAINING-DATA COMMONS
+% ===========================================================================
+
+@misc{james2026anthropicbooks,
+  author       = {James, Kathryn},
+  title        = {Why is {Anthropic} destroying books?},
+  howpublished = {The Guardian},
+  year         = {2026},
+  url          = {https://www.theguardian.com/commentisfree/2026/aug/05},
+}
+
+@misc{annasarchive2026scanning,
+  author       = {{Anna's Archive}},
+  title        = {{AI} companies destroy physical books --- let's scan rare books before it's too late},
+  howpublished = {Anna's Blog},
+  year         = {2026},
+  url          = {https://annas-archive.gl/blog/physical-destruction.html},
+}
+
+@techreport{anthropic2026skills,
+  author      = {{Anthropic}},
+  title       = {The Complete Guide to Building Skills for {Claude}},
+  institution = {Anthropic},
+  year        = {2026},
+}

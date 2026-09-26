@@ -1,0 +1,210 @@
+\chapter{Reproducibility When the Tool Varies}
+\label{ch:reproducibility}
+
+Reproducibility has a precise vocabulary that is routinely used loosely.
+\Cref{tab:reproducibility} sets it out. Then we deal with the problem this book
+introduces: a step in the pipeline that does not give the same answer twice.
+
+\section{The vocabulary}
+
+\begin{table}[htbp]
+\centering
+\caption{Terms of art, and what each one actually assesses.}
+\label{tab:reproducibility}
+\footnotesize
+\begin{tabularx}{\textwidth}{lXXXX}
+\toprule
+\textbf{Term} & \textbf{Definition} & \textbf{Held constant} & \textbf{Varied} & \textbf{Assesses} \\
+\midrule
+Repeatability &
+The same team produces the same result under identical conditions &
+Team, data, code, environment &
+Nothing &
+Internal consistency \\
+\addlinespace
+Reproducibility &
+An independent team produces the same result from the same data and code &
+Data, code &
+Team, environment &
+Computational integrity \\
+\addlinespace
+Replicability &
+Independent teams reach comparable conclusions with new or independent data &
+Question, methodology &
+Team, infrastructure, data &
+Scientific validity \\
+\addlinespace
+Reusability &
+Data or code can be repurposed for different ends &
+Digital assets &
+Purpose, context &
+Long-term usefulness \\
+\addlinespace
+Provenance &
+Documented origin and processing history &
+Metadata, logs &
+Execution snapshot &
+Transparency, auditability \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Most claims about reproducible research are really claims about repeatability.
+The gap between them is the computational environment, which is why containers
+and lockfiles matter.
+
+\section{Where a language model breaks this}
+
+Five distinct problems, with different solutions.
+
+\subsection{Sampling is stochastic}
+
+Generation samples from a distribution. Two calls with identical inputs produce
+different outputs unless temperature is zero and the seed is fixed --- and even
+then, batching and hardware differences in floating-point reduction order can
+change results.
+
+\emph{Mitigation:} set temperature to 0 and fix a seed where the API exposes one.
+Accept that this gives you approximate determinism, not exact. Record the
+settings.
+
+\subsection{The model changes underneath you}
+
+A hosted endpoint named \code{model-4} is not a fixed artefact. Providers update
+weights, adjust system prompts and change safety filters without version bumps.
+Code written against it last year may behave differently today, with nothing in
+your repository to explain why.
+
+\emph{Mitigation:} this is the strongest single argument for open-weight local
+models in research. A local model file with a known checksum does not change. If
+you must use a hosted model, record the full version identifier and the date, and
+expect the result not to reproduce.
+
+\subsection{There is no provenance for a generated claim}
+
+You cannot trace an output back to its source. There is no derivation to audit.
+
+\emph{Mitigation:} keep the model out of the inferential path. Use it to generate
+code, which you then read and run --- the code is the artefact, and it is
+deterministic and reviewable. Use it to generate a query, which you inspect
+before execution. Do not use it to produce a number that goes into a result.
+
+\begin{keypoint}
+Generated code is reproducible. Generated answers are not. Push every
+model-dependent step as far upstream as it will go, and make the deterministic
+artefact the thing you keep.
+\end{keypoint}
+
+\subsection{Agents take different paths}
+
+Given the same task, an agent may read different files, run different commands,
+and arrive at a different implementation. \textcite{shapira2026agentsofchaos}
+observed something worse in a live deployment: agents reporting task completion
+while the underlying system state contradicted the report.
+
+\emph{Mitigation:} the artefact is the committed code, not the session. Review
+the diff, commit it, and treat the transcript as a log rather than as the
+deliverable. Never accept a completion report without checking the state
+yourself.
+
+\subsection{Context is invisible state}
+
+The same prompt at different points in a conversation produces different results,
+because the accumulated context differs. This is genuine hidden state and it is
+not recorded anywhere.
+
+\emph{Mitigation:} for anything that matters, use a fresh session with an
+explicit, self-contained prompt --- and save the prompt.
+
+\section{A logging convention}
+
+Treat model calls as instrument readings.
+
+\begin{lstlisting}[caption={logs/2026-04-15\_taxon-matching.md}]
+# Taxon name matching, first pass
+Date:        2026-04-15
+Model:       qwen3-coder:30b (local, ollama)
+Checksum:    sha256:4f2a...c91
+Temperature: 0
+Seed:        42
+Context:     fresh session, no prior turns
+Harness:     opencode 0.4.2
+
+## Prompt
+Given data/raw/species_list.csv with column `verbatim_name`,
+write an R script that matches names against the GBIF backbone
+using rgbif::name_backbone_checklist and writes
+data/processed/matched_names.csv with columns:
+verbatim_name, matched_name, rank, status, confidence.
+Do not drop unmatched rows; mark them status="NO_MATCH".
+
+## Output
+-> scripts/03_match_taxa.R  (committed: a3f9c21)
+
+## Review notes
+- Checked: 1,847 in, 1,847 out. No silent loss.
+- 23 NO_MATCH, all inspected manually; 19 were typos, corrected
+  in a lookup table; 4 are genuine nomina nuda.
+- Confidence threshold NOT applied by the script. Deliberate:
+  filtering is a downstream decision.
+\end{lstlisting}
+
+Plain Markdown, in \code{logs/}, committed. It takes two minutes and it is the
+difference between a methods section you can defend and a shrug.
+
+\section{What to write in a methods section}
+
+Journals increasingly require disclosure, and the policies are converging
+\parencite{naturemethods2026responsibly}. State:
+
+\begin{itemize}
+  \item Which tool, which model, which version, and when.
+  \item What it was used for --- code generation, text extraction, language
+    editing, literature search --- with specificity.
+  \item What verification was applied.
+  \item That the authors are responsible for the content.
+\end{itemize}
+
+A usable template:
+
+\begin{quote}\small
+Data processing scripts were drafted with the assistance of
+\textit{[model, version]} accessed via \textit{[tool, version]} in
+\textit{[month year]}. All generated code was reviewed by the authors, executed
+locally, and validated against \textit{[describe check: row counts, held-out
+subset, manual verification of $n$ records]}. Prompts and model configuration
+are archived in the project repository at \textit{[DOI/URL]}. No text in this
+manuscript was generated by a language model. The authors take full
+responsibility for the content.
+\end{quote}
+
+Adjust the last two sentences to the truth. If a model was used for language
+editing, say so --- most policies permit it and all of them require declaring it.
+
+\section{Containers, and their limits}
+
+A container pins the operating system, libraries and tool versions, which
+resolves the environment half of reproducibility. It does not resolve model
+non-determinism.
+
+The strongest configuration available today:
+
+\begin{lstlisting}[style=shell]
+# Pinned base, pinned model, pinned weights, no network at runtime
+FROM docker.io/rocker/r-ver:4.4.1
+COPY renv.lock .
+RUN R -e 'renv::restore()'
+COPY models/qwen3-coder-30b-q4.gguf /models/
+# checksum verified at build:
+#   sha256:4f2a...c91
+\end{lstlisting}
+
+This gives you a reproducible environment containing a reproducible model
+artefact, run offline. It is the closest thing to a deterministic AI-assisted
+pipeline currently achievable, and it is only possible with open weights.
+
+\begin{keypoint}
+Reproducible AI-assisted research requires open-weight models running locally.
+An API-based workflow can be documented, but it cannot be reproduced, because the
+instrument is not under your control.
+\end{keypoint}

@@ -1,0 +1,118 @@
+\chapter{Glossary}
+\label{app:glossary}
+
+\begin{description}[itemsep=0.4em]
+
+\item[Agent] A language model given tools and a loop, able to take actions
+  rather than only produce text.
+
+\item[Agent harness] The orchestration system around an agent: context
+  assembly, tool execution, permissions, memory, error recovery. Where the real
+  engineering differences between systems live.
+
+\item[AGENTS.md / CLAUDE.md] A plain-text file in a project stating conventions
+  and constraints for agents working in it. A behavioural contract, written in
+  response to observed failures.
+
+\item[Attention] The transformer operation letting each position in a sequence
+  attend to every other position in parallel. The architectural change that made
+  training at scale practical.
+
+\item[Chunking] Splitting documents into passages for embedding and retrieval.
+  Chunk size and boundary strategy affect RAG quality more than model choice.
+
+\item[CHOP (Chat-Oriented Programming)] Iterative development in dialogue with a
+  model, with review at each step. Distinguished from \emph{vibe coding} by the
+  presence of verification.
+
+\item[Context window] The maximum tokens a model can attend to in one call.
+  Everything it knows during that call is in the window. Attention degrades
+  toward the middle of long contexts.
+
+\item[Embedding] A dense vector representation of text, such that semantically
+  similar text maps to nearby vectors. The basis of vector retrieval.
+
+\item[FAIR] Findable, Accessible, Interoperable, Reusable. The data management
+  principles biodiversity informatics has been implementing since well before
+  ``AI-ready'' existed.
+
+\item[Fine-tuning] Further training of a pretrained model on domain data.
+  Distinct from RAG, which supplies knowledge at inference time without changing
+  weights.
+
+\item[Hallucination] Fluent, plausible, specific and false output.
+  \emph{Confabulation} is the more accurate term. Structural rather than
+  incidental: training rewards guessing over abstention
+  \parencite{kalai2025hallucinate}.
+
+\item[Inference] Running a trained model to produce output. What you do locally;
+  training is what you do not.
+
+\item[Jagged intelligence] \textcite{mitchell2026jagged}'s term for capability
+  that is uneven and unpredictable --- strong on hard tasks, failing on easy
+  ones, with failures not inferable from successes.
+
+\item[KV cache] Cached key and value tensors from previous tokens, avoiding
+  recomputation during generation. Consumes memory proportional to context
+  length; budget for it when sizing hardware.
+
+\item[LLM] Large Language Model. A function mapping a token sequence to a
+  probability distribution over the next token. Stateless.
+
+\item[Local-first] Software architecture in which data lives on the user's
+  device and works without a network, with sync as an enhancement rather than a
+  requirement \parencite{kleppmann2019localfirst}.
+
+\item[MaaS (Model as a Service)] Managed deployment of open-weight models by a
+  vendor. A middle path between SaaS and self-hosting.
+
+\item[MCP (Model Context Protocol)] A standard for exposing tools and data
+  sources to language models. Wrap a resource once rather than once per client.
+  Server descriptions enter the model's context and are untrusted input.
+
+\item[Open weight] Model parameters are downloadable. Distinct from open source,
+  which would additionally require training data, code and pipeline
+  \parencite{hai2026openweight}.
+
+\item[Prompt injection] Instructions embedded in content a model reads, which the
+  model executes as commands. Unsolved, because instructions and data share one
+  channel with no separation.
+
+\item[Provenance] Documented origin and processing history of data or a result.
+  Absent by default in generative output; must be added by logging.
+
+\item[Quantisation] Reducing weight precision to save memory. Q4 is roughly four
+  bits per parameter, about a quarter of FP16, with modest quality loss.
+
+\item[RAG (Retrieval-Augmented Generation)] Retrieving relevant documents and
+  supplying them in the prompt, giving a model access to knowledge it was not
+  trained on. Reduces but does not eliminate hallucination
+  \parencite{kurniawan2024ragfailures}.
+
+\item[Reranking] Re-scoring retrieved candidates with a more expensive
+  cross-encoder. A cheap and effective quality improvement in RAG pipelines.
+
+\item[Slopsquatting] Registering package names that models hallucinate, so that
+  generated install commands fetch attacker-controlled code.
+
+\item[Sycophancy] Excessive agreement with and validation of the user. Measurably
+  reduces prosocial intent and increases dependence
+  \parencite{cheng2026sycophancy}; can drive even rational updating toward false
+  beliefs \parencite{chandra2026spiraling}.
+
+\item[Token] A subword chunk of text. Roughly four characters or three-quarters of
+  a word in English. The unit of both context and billing.
+
+\item[Transformer] The neural network architecture underlying current language
+  models, introduced 2017. Replaced sequential recurrence with parallel
+  attention.
+
+\item[Unified memory] Architecture in which CPU and GPU share one memory pool.
+  Enables running large models on consumer hardware, since capacity is not
+  limited to a fixed VRAM allocation.
+
+\item[Vibe coding] Accepting AI-generated code without close review. Acceptable
+  for throwaway work; not for anything entering a manuscript, database or shared
+  pipeline.
+
+\end{description}

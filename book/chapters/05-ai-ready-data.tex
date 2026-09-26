@@ -1,0 +1,249 @@
+\chapter{AI-Ready Data}
+\label{ch:aireadydata}
+
+For several decades, biodiversity data has been published openly. Occurrence
+records, sequences, taxonomies, trait databases, ecological time series ---
+curated, standard-compliant, documented, and given away. This was the product of
+sustained, unglamorous, badly-funded work by people who believed that shared
+data compounds.
+
+\term{AI-ready} arrived as a description of what that work made possible. The
+term is worth examining, because it is doing something other than describing a
+technical property.
+
+\section{What the term conceals}
+
+Data is called AI-ready when it is machine-parseable, uses controlled
+vocabularies, carries structured metadata, is available in bulk without
+per-record negotiation, and is licensed permissively. Every one of those
+properties is a description of good data management, which is what the
+biodiversity informatics community has been doing since well before the term
+existed.
+
+What the term adds is a consumer. And the consumer is frequently a commercial
+entity that will ingest the corpus, produce a model, and release neither the
+model weights nor any attribution to the curators. Decades of public and volunteer labour flow one way; a product under restrictive
+terms flows back, if anything does.
+
+This is not an argument against openness. Open data has been enormously
+productive for ecology and the alternative is worse. It is an argument for
+paying attention to terms.
+
+\begin{keypoint}
+When a funder or partner asks you to make data ``AI-ready'', the useful
+follow-up questions are: ready for whom, under what licence, with what
+attribution, and does anything come back to the people maintaining it?
+\end{keypoint}
+
+\section{Standards worth knowing}
+
+Standards are what make data useful to anything other than the person who
+produced it. The ones that matter here fall into layers.
+
+\subsection{Data description}
+
+Darwin Core remains the backbone of biodiversity occurrence exchange, with
+Darwin Core Archive as the packaging format. ABCD covers collection and
+observation data. MIxS specifies minimum information for sequence data ---
+critical for environmental omics, and the reason a metagenome from a Greek
+coastal site can be compared against one from the North Sea.
+
+Ontologies do the semantic work: ENVO for environments, EnvThes and EUNIS for
+habitat classification, the Plant Ontology, the Gene Ontology and its relatives.
+Choosing between overlapping vocabularies --- ENVO versus EUNIS versus LUCAS for
+a habitat field --- is a real design decision with downstream consequences, not
+a formality.
+
+\textcite{magagna2021iadopt} address the layer above: I-ADOPT provides an
+interoperability framework for variable descriptions, decomposing a measured
+variable into its components so that ``sea surface temperature'' from two
+networks can be recognised as the same thing. This is the sort of infrastructure
+that pays off invisibly and is invisible when it is missing.
+
+\subsection{Machine interfaces}
+
+\begin{itemize}
+  \item \textbf{POSIX} --- the file and process abstractions everything else
+    assumes. Unglamorous, and everything rests on it \parencite{ritchie1974unix}.
+  \item \textbf{OpenAPI} --- machine-readable HTTP API description. If your
+    service has an OpenAPI specification, an agent can discover and call it
+    without custom integration.
+  \item \textbf{MCP (Model Context Protocol)} --- a standard for exposing tools
+    and data sources to language models. The practical significance is that a
+    resource needs to be wrapped once rather than once per client. Treat it as
+    infrastructure, and read \Cref{ch:security} before exposing anything
+    sensitive through it.
+  \item \textbf{SPARQL and RDF} --- for the knowledge graph layer.
+    \textcite{smeros2025sparqlllm} show that LLM query generation over these is
+    now practical, which changes the accessibility calculus for federated
+    resources.
+\end{itemize}
+
+\subsection{Data harmonisation in practice}
+
+\textcite{gill2023dataharmonizer} describe a tool for exactly the problem that
+consumes most of the time in any integration project: taking contextual metadata
+in whatever shape it arrived and validating it against a specification. This
+work is not interesting and it is the difference between a dataset that can be
+combined with others and one that cannot.
+
+\section{Infrastructure}
+
+\subsection{Biodiversity platforms}
+
+GBIF aggregates occurrence records globally. OBIS does the marine equivalent.
+PlutoF \parencite{koljalg2019plutof} manages the complete data lifecycle from
+collection through publication, with UNITE for fungal sequence identification
+built on the same foundations. BOLD holds barcode sequences; ENA, GenBank and
+SRA hold the rest.
+
+The pattern to notice: these are institutional, long-lived, and funded through
+research infrastructure programmes rather than commercially. Their persistence
+is a policy achievement, not a market outcome, and it is not guaranteed.
+
+\subsection{Model and dataset platforms}
+
+Hugging Face has become the default distribution point for open-weight models
+and, increasingly, datasets. Convenient, and worth understanding as a dependency
+--- it is a single commercial point of failure for a large part of the open model
+ecosystem.
+
+It is also an attack surface. \textcite{openai2026huggingface} describe a
+security incident arising during model evaluation, and the general problem is
+structural: downloading and executing a model artefact from a public repository
+is code execution from an untrusted source. Pickle-format weights can carry
+arbitrary payloads. Prefer safetensors; verify checksums; treat a model download
+with the same suspicion you would give a random binary.
+
+\subsection{Standards and governance bodies}
+
+The argument for open standards in scientific publishing predates this cycle
+and applies to it unchanged \parencite{wilson2013foss}: formats and tools that
+anyone can implement are the ones that outlive the organisations that introduced
+them.
+
+The LF AI \& Data Foundation hosts a number of the projects underpinning open
+model tooling. TDWG (Biodiversity Information Standards) governs Darwin Core and
+its relatives. ELIXIR coordinates life science data infrastructure across Europe
+and maintains the Core Data Resources designation that marks which databases the
+community has committed to sustaining.
+
+\section{Open weights, open source, and the difference}
+
+The distinction is frequently blurred and it matters.
+
+\textbf{Open weight} means the model parameters are downloadable. You can run
+it, fine-tune it, and inspect its outputs. You cannot reproduce it, audit what it
+was trained on, or verify claims about its data.
+
+\textbf{Open source}, applied properly, would require the training data, the
+training code, the data processing pipeline, and the weights --- everything
+needed to reproduce the artefact.
+
+Almost every model marketed as open is open-weight.
+\textcite{hai2026openweight} argue this is insufficient for science and society:
+without training data disclosure you cannot assess contamination, audit for bias,
+verify that your evaluation set was not in the training corpus, or reproduce the
+result. For a scientific instrument, that is a serious gap.
+
+Licences vary more than the labels suggest. Apache-2.0 and MIT are genuine open
+source licences. Several prominent ``open'' model licences impose use
+restrictions or downstream conditions that do not meet the Open Source
+Definition. Read the licence before building anything you intend to maintain.
+
+\begin{table}[htbp]
+\centering
+\caption{Degrees of openness. Only the last row supports reproduction.}
+\label{tab:openness}
+\small
+\begin{tabularx}{\textwidth}{lXX}
+\toprule
+\textbf{Level} & \textbf{You get} & \textbf{You cannot} \\
+\midrule
+API only      & An endpoint & Run offline; pin a version; audit anything \\
+Open weight, restricted licence & Weights, conditional use & Use freely commercially; audit training data \\
+Open weight, Apache/MIT & Weights, unrestricted use & Audit training data; reproduce \\
+Fully open source & Weights, data, code, pipeline & --- \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Retrieval-augmented generation}
+
+RAG is the main technique for giving a model access to knowledge it was not
+trained on, without retraining. The mechanism is simple enough to state in a
+paragraph.
+
+Ask a model ``what colour is my ball?'' and it will invent an answer. Say ``I
+have a green box with a red ball in it --- what colour is my ball?'' and it will
+answer correctly. RAG automates the insertion of that second clause: a retrieval
+system searches a document store for material relevant to the question and
+prepends it to the prompt.
+
+The pipeline:
+
+\begin{enumerate}
+  \item \textbf{Ingest} --- convert source documents to text. For PDFs this is
+    the hardest step and the quality ceiling for everything downstream.
+    \textcite{auer2024docling} describe Docling, an MIT-licensed converter using
+    layout analysis and table structure recognition that runs on commodity
+    hardware. Worth using over naive extraction.
+  \item \textbf{Chunk} --- split into passages. Too small loses context; too
+    large dilutes the embedding. Respect document structure where you can.
+  \item \textbf{Embed} --- map each chunk to a vector. \code{bge-m3} (MIT) and
+    \code{nomic-embed-text} (Apache-2.0) are solid open choices.
+  \item \textbf{Index} --- store vectors with metadata. PostgreSQL with
+    \code{pgvector} keeps text, embeddings and metadata in one ACID database and
+    scales to around a million documents comfortably. Qdrant is the dedicated
+    alternative when throughput demands it.
+  \item \textbf{Retrieve} --- hybrid search (full-text plus vector) outperforms
+    either alone. Rerank with a cross-encoder such as \code{bge-reranker}.
+  \item \textbf{Generate} --- pass retrieved context plus question to the model,
+    requiring citation of the retrieved passages.
+\end{enumerate}
+
+\subsection{Where it breaks}
+
+\textcite{kurniawan2024ragfailures} identify seven failure points, each of which
+produces a confident wrong answer:
+
+\begin{enumerate}[label=\arabic*.]
+  \item Missing content --- the answer is not in the corpus.
+  \item Missed top-ranked documents --- it is there, retrieval ranked it low.
+  \item Not in context --- retrieved, but truncated out of the window.
+  \item Not extracted --- present in context, the model missed it.
+  \item Wrong format --- the output does not match the requested structure.
+  \item Incorrect specificity --- too general or too narrow to be useful.
+  \item Incomplete --- partially correct, missing material qualifications.
+\end{enumerate}
+
+Note that failures 1--3 are retrieval problems and 4--7 are generation problems.
+They need different instrumentation. Log what was retrieved, separately from what
+was generated, or you cannot tell which half is broken.
+
+\subsection{An alternative worth considering}
+
+RAG is not the only option. For a bounded corpus, compiling the knowledge into a
+structured document --- a wiki, a set of curated notes --- and placing it in
+context directly can outperform vector retrieval, because it removes the
+retrieval failure modes entirely. This works when the corpus is small enough to
+fit and stable enough to be worth compiling. It is worth benchmarking against a
+RAG pipeline before assuming retrieval is required.
+
+\section{Provenance as a first-class requirement}
+
+Everything in this chapter converges on one point. If a model-assisted result is
+going to stand up to scrutiny, the path from source to claim has to be written
+down.
+
+\begin{itemize}
+  \item Retrieved passages, with document identifiers and versions.
+  \item Model identifier and version string.
+  \item Generation parameters, including temperature and seed where available.
+  \item The raw output, before editing.
+  \item The date. Hosted models change without announcement.
+\end{itemize}
+
+Plain text, in the repository, next to the analysis. This is the same discipline
+as recording instrument calibration, and it is not optional if the result is
+going into a paper.

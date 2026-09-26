@@ -1,0 +1,89 @@
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+This is written for ecologists, taxonomists, biodiversity informaticians and the
+people who keep the databases running. It assumes you can write a script, that
+you have opinions about data quality, and that someone has recently asked you
+what you are doing about AI.
+
+It does not assume you want to become a machine learning researcher. Almost
+nobody in ecology does. What most people need is a working idea of what these
+systems are, an honest account of what they can and cannot do, and enough
+practical detail to use them without damaging their data, their credibility or
+their institution's security.
+
+\section*{Three things this book argues}
+
+\textbf{The interesting change is not the chatbot.} It is the loop that lets a
+model read files, run commands, look at the result and try again. Chat
+interfaces made language models visible; that loop made them consequential. The
+change in daily work is from writing code to specifying it, constraining what it
+can touch, and checking what came back. That is closer to running a system than
+to programming it.
+
+\textbf{Data work is the bottleneck, and ecology already did most of it.} The
+phrase ``AI-ready data'' arrived late to a community that has spent thirty years
+building Darwin Core, GBIF, ontologies and curated databases by hand. Those
+resources are what makes any of this work in our field. It is worth being clear
+about who built them, on what funding, and on what terms they are now being
+used.
+
+\textbf{Running models on your own machine is a reasonable choice, not
+nostalgia.} It costs more up front and less per query, keeps unpublished data off
+other people's servers, survives a service being withdrawn, and is the only
+option that works on a research vessel with no connection. It is not always
+right. It should always be on the table.
+
+\section*{What this book is not}
+
+It is not a survey of model architectures and it will not teach you to fine-tune
+anything. It is not a table of benchmark scores; those go stale in weeks. It is
+not an argument that ecology should adopt AI, nor that it should refuse. The
+reading behind it includes a paper arguing forcefully that ecology is \emph{not}
+ready \parencite{mishra2026notready} --- that biased sampling, patchy data and
+missing causal structure make many current applications premature. That argument
+is taken seriously here rather than answered.
+
+\section*{How to read it}
+
+Part~I is the landscape: what these systems are, why they arrived when they did,
+what they do well and where they fail. Part~II is data. Part~III is working with
+agents day to day. Part~IV is the case for running things locally, with prices.
+Part~V covers security, dual-use risk, scientific integrity, and keeping up with
+a field that moves faster than the review cycle.
+
+Chapters are short and mostly independent. Skip freely. If you read only one,
+read \Cref{ch:powers}.
+
+\section*{On dates and numbers}
+
+Model names, prices and benchmark figures here were accurate when written and
+will not stay that way. They are included because concrete examples teach better
+than abstractions, not because the particular values matter. Where a claim is
+about something slower-moving --- memory bandwidth, the cost of inference, why
+models invent citations --- it is flagged as such.
+
+\section*{How this book was written}
+
+With AI agents, extensively: for drafting, for reading the source literature, and
+for assembling the bibliography. A book recommending a set of practices ought to
+have been produced under them, so it was.
+
+Every entry in the bibliography corresponds to a document in the project's own
+literature directory. Nothing was cited from a model's memory --- which is the
+failure \Cref{ch:powers} describes, and the reason
+\Cref{ch:scientificworkflow} insists on resolving every identifier before it
+reaches a manuscript. That check was then run on this bibliography: all 39 DOIs
+resolve through Crossref and all 23 arXiv identifiers resolve through the arXiv
+API, with titles matching the entry in each case. The remaining references are
+reports, books and web pages that carry no such identifier and were verified by
+hand.
+
+Doing this took about ten minutes of scripted work, which is the point.
+
+The errors that remain are mine.
+
+\section*{Acknowledgements}
+
+The reading behind this was assembled over two years of the Kybele project and
+ELIXIR-GR work at HCMR.

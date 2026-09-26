@@ -1,0 +1,67 @@
+% ===========================================================================
+% AI for Ecologists: A Primer
+%
+% Build:  latexmk -pdf main.tex
+% Engine: pdflatex + biber
+% ===========================================================================
+
+\documentclass[11pt,a4paper,oneside]{book}
+
+\input{preamble}
+
+\title{AI for Ecologists\\[0.3em]\large A Primer}
+\author{Savvas Paragkamian}
+\date{%
+  \today\\[2em]
+  \normalsize\normalfont
+  Written with the assistance of AI agents.\\
+  Every claim, citation and recommendation was checked by the author,\\
+  who is responsible for all of it.%
+}
+
+\begin{document}
+
+\frontmatter
+
+\maketitle
+
+\tableofcontents
+
+\input{chapters/00-preface}
+
+\mainmatter
+
+\part{The Landscape}
+\input{chapters/01-landscape}
+\input{chapters/02-why-now}
+\input{chapters/03-powers-and-limits}
+\input{chapters/04-applications}
+
+\part{Data}
+\input{chapters/05-ai-ready-data}
+\input{chapters/06-organisation-and-backup}
+
+\part{Working with Agents}
+\input{chapters/07-agentic-workflow}
+\input{chapters/08-software-stack}
+\input{chapters/09-reproducibility}
+
+\part{Local-First}
+\input{chapters/10-local-first}
+\input{chapters/11-hardware}
+
+\part{Risk, Integrity and Keeping Up}
+\input{chapters/12-security-and-biorisk}
+\input{chapters/13-scientific-workflow}
+\input{chapters/14-keeping-up}
+
+\appendix
+\part{Appendices}
+\input{chapters/A1-glossary}
+\input{chapters/A2-checklists}
+
+\backmatter
+
+\printbibliography[heading=bibintoc,title={References}]
+
+\end{document}

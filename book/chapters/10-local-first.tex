@@ -1,0 +1,230 @@
+\chapter{The Local-First Approach}
+\label{ch:localfirst}
+
+\textcite{kleppmann2019localfirst} set out seven properties software should have
+if the user is to genuinely own their data: it should be fast, work across
+devices, work offline, support collaboration, last forever, be secure and private
+by default, and give the user ultimate ownership and control. The paper predates
+the current AI cycle and applies to it exactly.
+
+\section{The argument}
+
+\subsection{Nothing leaves the machine}
+
+The decisive property for research. Unpublished occurrence records, sensitive
+locality data for threatened species, embargoed sequences, draft manuscripts,
+personal data from interviews or citizen science --- none of it goes anywhere.
+
+This is not hypothetical caution. Shared conversations from a commercial assistant
+were found surfacing in public search results containing API keys and personal
+data \parencite{ibtimes2026claudechats}. Data brokers routinely fail to comply
+with existing privacy law \parencite{hai2026privacylaws}. A local model has no
+such failure mode, because there is no transmission.
+
+For European institutions there is a compliance dimension. GDPR obligations
+around personal data, contractual restrictions in data-sharing agreements, and
+national rules on sensitive species localities are all substantially simpler when
+the answer to ``where did the data go'' is ``nowhere''.
+
+\subsection{No marginal cost}
+
+After the hardware, inference is free. This changes what you do. You stop
+rationing queries. You run the classifier over the entire corpus rather than a
+sample. You leave a batch job running overnight. Behaviour that is uneconomic at
+a per-token price is free once the machine is paid for.
+
+\subsection{It works offline}
+
+Research vessels. Field stations. Remote sites. Institutional networks with
+restrictive egress rules. Any of these makes a cloud-dependent workflow
+unusable, and all of them are ordinary conditions in ecology.
+
+\subsection{Digital sovereignty}
+
+The policy layer. \textcite{jrc2025opensovereignty} frames EU digital sovereignty
+as the capacity to exercise strategic independence in the digital domain while
+remaining open and connected --- not autarky, but the ability to not be coerced.
+\textcite{anand2026digitalsovereignty} extract the concrete goals from EU legal
+texts. \textcite{hai2026sovereignty} survey the commercial offerings that have
+appeared in response, and are sceptical: much of what is marketed as sovereign AI
+is a regional deployment of the same proprietary stack, which relocates the data
+without changing who controls the model.
+
+\textcite{esposito2026sovereign} go further and propose a reference
+architecture --- sovereignty as a design property of the system rather than a
+procurement checkbox applied afterwards. That is the right level at which to
+address it, though it presumes more freedom in system design than most
+institutions have.
+
+For a public research institution the practical questions are narrower. Can you
+continue your work if a provider changes terms, raises prices, or withdraws from
+your market? Can you audit what you depend on? Are you building infrastructure
+that will outlive a commercial contract?
+
+\subsection{Longevity}
+
+An API endpoint is deprecated on the provider's schedule. A model file on your
+disk is not. Research infrastructure has a ten-year horizon; commercial API
+products frequently do not.
+
+\section{The costs, stated honestly}
+
+\subsection{Capability}
+
+The gap is real. Frontier hosted models outperform anything you can run on a
+workstation on hard reasoning, long-context work, and multi-file code changes.
+For the most demanding tasks this gap matters and pretending otherwise wastes
+your time.
+
+It is also narrowing, and the shape of the narrowing is favourable. Open-weight
+models in the 12--30B range now handle scoped coding, extraction,
+classification and summarisation well. Larger open-weight releases --- dense
+models in the 27B class, mixture-of-experts models at much larger nominal
+parameter counts --- close much of the remainder for users with the memory to run
+them.
+
+\subsection{Hardware and maintenance}
+
+Real money up front (\Cref{ch:hardware}) and real time in maintenance: drivers,
+runtimes, model management, debugging. Somebody has to do this. In a small group
+that somebody is a researcher not doing research, and that cost is frequently
+omitted from the comparison.
+
+\subsection{Speed}
+
+Local inference is slower, sometimes considerably. For interactive work this is
+noticeable. For batch work it is irrelevant --- the job runs overnight either
+way.
+
+\section{Open, closed, and the layers between}
+
+\begin{table}[htbp]
+\centering
+\caption{Deployment models and their tradeoffs.}
+\label{tab:deployment}
+\small
+\begin{tabularx}{\textwidth}{lXX}
+\toprule
+\textbf{Model} & \textbf{You get} & \textbf{You give up} \\
+\midrule
+SaaS (hosted chat) & Zero setup, best capability & Data control, versioning, offline use \\
+API & Programmability, scale & Same, plus cost per token \\
+MaaS (managed open weights) & Open models, no ops & Data still transits; vendor dependency \\
+Self-hosted open weights & Full control, privacy, offline & Capability gap, hardware, ops burden \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\term{Model as a Service} is the middle path that has emerged: vendors including
+Red Hat and Ollama offer managed or supported deployment of open-weight models.
+\textcite{redhat2026hybrid} argue for a hybrid foundation --- workloads placed
+where their requirements put them rather than uniformly in one place. This is the
+pragmatic position and it is probably right for most institutions.
+
+\subsection{A sensible hybrid policy}
+
+\begin{itemize}
+  \item \textbf{Local, always:} unpublished data, sensitive localities, personal
+    data, anything under an embargo or a restrictive data-sharing agreement.
+  \item \textbf{Local, by default:} bulk processing, routine extraction,
+    classification over large corpora, anything where per-token cost would
+    otherwise constrain the design.
+  \item \textbf{Hosted, acceptable:} public data, published literature, general
+    explanation, hard reasoning tasks where the capability gap binds.
+  \item \textbf{Hosted, with care:} code generation --- check first whether your
+    repository or its context is being transmitted, and whether your licence or
+    institutional policy permits it.
+\end{itemize}
+
+Write this down as a group policy. The decision should not be made freshly by
+each person under time pressure.
+
+\section{A reference architecture}
+
+A layered design, arranged so that the parts which must last are the simplest
+ones.
+
+\begin{description}
+  \item[Client] Browser on the workstation; mobile via the same web interface
+    added to the home screen. No native applications required.
+  \item[Interface] Open WebUI or LibreChat. One chat surface, model switchable
+    per conversation. Owns no long-term knowledge.
+  \item[Routing] An OpenAI-compatible API layer. Providers are interchangeable
+    behind it --- local Ollama, or a hosted endpoint, chosen per request.
+  \item[Runtime] Ollama or vLLM. Stateless. Input to output, no history, no
+    opinions.
+  \item[Retrieval] PostgreSQL with \code{pgvector} for embeddings, metadata and
+    full-text search in one ACID store. LlamaIndex or Haystack for the pipeline.
+  \item[Archive] Plain Markdown or text files. Append-only, human-readable,
+    independent of any interface or database. This is the real long-term memory.
+  \item[Sync and backup] File-based sync (Nextcloud, WebDAV, Dropbox, git), under
+    normal 3-2-1 rules (\Cref{ch:organisation}).
+\end{description}
+
+The principle underneath the layering:
+
+\begin{quote}
+\emph{The UI is for talking, the models are for thinking, and plain text is for
+remembering.}
+\end{quote}
+
+Interfaces are swappable. Models are stateless calculators. The Markdown archive
+is the notebook, and it is the only layer that must survive. Every component
+above it can be replaced without loss.
+
+\subsection{The logging proxy}
+
+One refinement worth the effort. Insert a small OpenAI-compatible proxy between
+the interface and the backends. It forwards requests unchanged and writes each
+exchange to a timestamped Markdown file with model name, role and content.
+
+This gives you an append-only, greppable, audit-friendly trail that survives
+interface changes, database migrations and vendor departures. Organise it as
+\code{\textasciitilde/chatlogs/YYYY-MM/topic.md} and sync it with everything
+else. It is also, not incidentally, exactly the provenance record
+\Cref{ch:reproducibility} asks for.
+
+\section{A FOSS stack, concretely}
+
+Permissively licensed throughout, sized for roughly a million documents:
+
+\begin{itemize}
+  \item \textbf{Embeddings:} \code{bge-m3} (MIT) or \code{nomic-embed-text-v1.5}
+    (Apache-2.0).
+  \item \textbf{Vector store, metadata and full-text search:} PostgreSQL +
+    \code{pgvector} (PostgreSQL licence), with PostGIS if the data is spatial.
+  \item \textbf{Retrieval:} hybrid full-text plus vector, reranked with
+    \code{bge-reranker}.
+  \item \textbf{Generation:} an Apache-2.0 instruct model sized to your hardware
+    --- 12B if you have 32\,GB, 30B if you have 64\,GB.
+  \item \textbf{Orchestration:} LlamaIndex or Haystack; LangGraph if the
+    workflow is genuinely a graph.
+  \item \textbf{Serving:} Ollama for single-user, vLLM for shared.
+  \item \textbf{Interface:} Open WebUI.
+  \item \textbf{Analytics:} DuckDB over Parquet for the tabular side.
+\end{itemize}
+
+Note what this stack does not require: an account, a contract, a network
+connection, or anyone's permission. For the operational details of standing one
+up --- reverse proxy, TLS, model management, resource limits ---
+\textcite{confidence2026localstack} is a practical walkthrough.
+
+\section{Decentralised ecology}
+
+\textcite{placitelli2026seaturtle} is the proof that this is not theoretical for
+our field: a local-first, browser-based AI platform for sea turtle detection,
+built for decentralised ecological monitoring. Inference runs in the browser on
+the device that captured the image. No upload, no server, no connectivity
+requirement.
+
+For citizen science this architecture is strictly better. Volunteers keep their
+data, the system works in the field where the connection does not, and there is
+no server cost that ends when the grant does.
+
+\textcite{haas2025corda} generalise the programming model --- convergent
+replicated dataflows that let developers write local operations while the runtime
+reconciles global state. \textcite{kleppmann2024bluesky} demonstrate the
+federated-identity version at social-network scale. The infrastructure for
+decentralised scientific applications is maturing, and biodiversity monitoring
+--- distributed, intermittently connected, institutionally fragmented --- is close
+to its ideal use case.

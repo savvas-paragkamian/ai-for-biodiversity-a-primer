@@ -1,0 +1,134 @@
+\chapter{Why Now?}
+\label{ch:whynow}
+
+The mathematics of neural networks is old. Backpropagation dates to the 1970s
+and 1980s; the perceptron to 1958. The question is not why neural networks
+work, but why they started working \emph{this well} in the last few years. Three
+curves crossed at roughly the same time, and no one of them would have been
+sufficient.
+
+\section{Compute}
+
+GPUs were built to shade triangles. The operation they do fastest --- dense
+matrix multiplication over many parallel lanes --- happens to be the operation
+neural network training consists of almost entirely. That coincidence is the
+hardware story in one sentence.
+
+What changed recently is not the coincidence but the scale of investment behind
+it. The framing has moved from product development to national industrial
+strategy \parencite{openai2026industrialpolicy}, and the numbers have followed. Training runs that would have been institutionally unthinkable in 2015 are
+now routine at a handful of companies, and the capital expenditure numbers have
+moved into the range of national infrastructure programmes: the major cloud
+providers each committed to full-year capital outlays in the hundreds of
+billions of dollars through the 2026 cycle.
+
+The consequence for everyone else is a two-tier world. Training a frontier model
+is out of reach for any university or research institute. Running one, on
+hardware you can buy, is not --- and that gap is what \Cref{ch:localfirst} is
+about.
+
+\subsection{The memory wall}
+
+When you run a model on your own machine, the limit is not processor speed. It
+is memory: how much you have, and how fast you can read it. Model weights must
+be streamed through the compute units for every token generated, so tokens per
+second is governed by memory bandwidth far more than by raw FLOPs.
+
+The rough sizing rule, widely used and accurate enough for planning:
+
+\begin{table}[htbp]
+\centering
+\caption{Memory required to hold model weights, by precision.}
+\label{tab:quantisation}
+\begin{tabular}{lll}
+\toprule
+\textbf{Precision} & \textbf{Bytes per parameter} & \textbf{A 7B model needs} \\
+\midrule
+FP16 (full)    & 2            & $\approx$ 14 GB \\
+INT8           & 1            & $\approx$ 7 GB \\
+Q4 (4-bit)     & 0.5--0.7     & $\approx$ 3.5--5 GB \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Add roughly 20--30\% for the key-value cache and runtime overhead, more if you
+want a long context window. A 32\,GB machine comfortably runs a quantised 12B
+model with a 32K context; a 70B model at usable quality wants 48\,GB or more.
+
+So when sizing a machine, count memory first and processor speed last --- the
+reverse of the habit most people bring from cluster computing.
+\Cref{ch:hardware} works through the numbers.
+
+\section{Architecture}
+
+The transformer, introduced in 2017, removed the sequential bottleneck of
+recurrent networks. Attention lets every position see every other position in
+one parallel operation, which means the whole sequence trains at once rather
+than one step at a time. This made the compute curve usable: you could actually
+spend the GPUs you had.
+
+Refinement continues. \textcite{kimi2026attnres} observe that standard residual
+connections accumulate every layer's output with fixed unit weights, which
+dilutes each layer's contribution as depth grows, and replace the fixed
+accumulation with learned attention over preceding layers. The pattern is
+typical: the architecture is not finished, but the changes are now incremental
+rather than paradigmatic.
+
+\section{Data, and who paid for it}
+
+The third curve is text. Pretraining consumed the accessible written output of
+the internet, and once that was exhausted the search moved to less accessible
+corpora --- which is where the story becomes uncomfortable for people who care
+about libraries.
+
+Several AI companies have acquired physical books in bulk, cut the spines off,
+scanned the pages destructively, and discarded the remains
+\parencite{james2026anthropicbooks}. The economics are straightforward:
+destructive scanning is faster and cheaper than non-destructive scanning, and
+buying a book outright avoids a licensing negotiation. Volunteers have begun
+racing to scan rare material non-destructively before it enters that pipeline
+\parencite{annasarchive2026scanning}.
+
+For biodiversity this is not abstract. The Biodiversity Heritage Library holds
+digitised taxonomic literature going back to the eighteenth century --- original
+species descriptions, type designations, expedition reports. Much of it exists in
+one or a handful of physical copies. The material is simultaneously the
+foundation of nomenclatural practice and an attractive training corpus, and the
+institutions holding it are not funded to defend it.
+
+\begin{keypoint}
+Ecology's data commons was built by people, deliberately, over decades, to be
+shared. ``AI-ready'' describes what that work made possible. It does not describe
+who did it, or on what terms it is now being consumed.
+\end{keypoint}
+
+\section{Convergence, and what it means for a field like ours}
+
+None of the three curves alone explains the moment. Cheap compute without the
+transformer gave you slow recurrent networks. The transformer without compute
+gave you a promising paper. Both without the corpus gave you a well-engineered
+model of nothing.
+
+For ecology the relevant question is which of the three we actually have. Compute
+we can rent or buy. Architecture we get for free from the open-weight ecosystem.
+Data --- domain data, curated, standardised, with provenance --- is the one we
+own, and the one that determines whether any of this produces science rather
+than plausible text. That is the subject of Part~II.
+
+\section{Is this a bubble?}
+
+It is a fair question, and the honest answer is that two things are being asked
+at once: whether the models work, and whether the money spent on them comes
+back. The capability is real and measurable: the AI Index
+\parencite{aiindex2026} tracks steady benchmark improvement across domains. Whether
+the capital deployed returns to the firms deploying it is a question about
+business models, not about whether the models work.
+
+Two knock-on effects reach research budgets either way. The first is hardware
+pricing: sustained demand for high-bandwidth memory has
+raised RAM and storage costs across the board, which affects every laboratory
+that buys a workstation. The second is dependency: infrastructure procured on
+the assumption of cheap API access becomes fragile if pricing changes, and the
+switching cost is paid by whoever built on top of it.
+
+Keeping some capability on your own hardware is partly insurance against both.

@@ -1,0 +1,175 @@
+\chapter{Chatbots, Models and Agents}
+\label{ch:landscape}
+
+Three words get used interchangeably and mean quite different things. Getting
+them apart is the first useful step.
+
+\section{The model}
+
+A large language model is a function. It takes a sequence of tokens and returns
+a probability distribution over the next token. That is the whole interface.
+Everything else --- conversation, tool use, reasoning, refusal --- is built on
+top of that one operation, repeated.
+
+The model itself is stateless. It has no memory of your previous question, no
+file system, no clock, and no ability to act. Each call is independent. If a
+system appears to remember something, that is because the text was fed back in.
+
+\begin{keypoint}
+The model is a calculator, not a colleague. It has no persistent state. Anything
+that looks like continuity is machinery around the model, not in it.
+\end{keypoint}
+
+\subsection{What ``training'' produced}
+
+Pretraining fits the next-token function on a very large corpus. This is where
+the model acquires syntax, factual associations, code idioms, and the statistical
+shape of academic prose. A second stage --- instruction tuning and preference
+optimisation --- reshapes the outputs to be helpful, to follow instructions, and
+to decline certain requests.
+
+That second stage matters more than it looks. It is where sycophancy comes from
+(\Cref{ch:powers}), where refusal behaviour is installed, and where the model
+learns to guess confidently rather than say it does not know
+\parencite{kalai2025hallucinate}.
+
+\subsection{Emergence, and whether it is real}
+
+Claims that language models display \term{emergent} capabilities --- abilities
+that appear abruptly at scale rather than improving smoothly --- have been
+central to the field's self-description. \textcite{krakauer2026emergence} examine
+these claims from a complex systems perspective and are careful about them:
+much apparent emergence is an artefact of discontinuous evaluation metrics, and
+the deeper question of whether LLMs possess emergent \emph{intelligence} rather
+than emergent \emph{capability} remains open.
+
+\textcite{mitchell2026jagged} names the practical version of this problem:
+\term{jagged intelligence}. Performance is not a single number. A system that
+handles a research-level reasoning task can fail at counting, at a spatial
+relation, or at a variant of the same question with different surface form. The
+jaggedness is not noise around a trend; it is the shape of the capability
+itself. This is why benchmark scores translate so poorly into expectations about
+your own task.
+
+There is also a formal strand arguing that the architecture is more legible than
+its reputation suggests. \textcite{coppola2026transformers} proves that a sigmoid
+transformer implements weighted loopy belief propagation on an implicit factor
+graph --- one layer is one round of belief propagation. Whether this reframing
+changes anything in practice is unsettled, but it does undercut the claim that
+transformers cannot be understood.
+
+\section{The chatbot}
+
+A chatbot is a model plus a conversation buffer plus a web interface. The buffer
+is the important part: it concatenates the history and resubmits it on every
+turn. This is why long conversations get expensive, why they eventually forget
+the beginning, and why starting fresh often fixes a stuck session.
+
+Chatbots are good for: drafting, explaining, translating, rephrasing,
+brainstorming, reading a paper you would otherwise skim. They are bad for
+anything requiring verified fact, current information, or action in the world.
+
+\section{The agent and the harness}
+
+An \term{agent} is a model given tools and a loop. An \term{agent harness} is the
+orchestration system that manages that loop: it decides what the model sees,
+executes the tool calls the model requests, feeds results back, enforces
+permissions, and decides when to stop.
+
+The core is unremarkable. \textcite{liu2026claudecode} analysed the architecture
+of a production coding agent and found the centre of the system to be a simple
+while-loop: call the model, run the tools it asks for, repeat. Most of the code
+is not in the loop. It is in the systems around it --- the permission layer, the
+context manager, the memory, the error recovery.
+
+\begin{lstlisting}[style=shell,caption={The whole idea, in pseudocode}]
+while not done:
+    response = model(context)
+    if response.wants_tool:
+        result = run_tool(response.tool, response.args)   # <- permissions here
+        context += result
+    else:
+        done = True
+\end{lstlisting}
+
+That single \code{run\_tool} line is where the security risk lives. It is the
+point at which a text generator becomes something that can delete your files.
+
+\subsection{Why the harness matters more than the model}
+
+Two harnesses running the same model behave very differently. The differences
+come from:
+
+\begin{itemize}
+  \item \textbf{Context assembly} --- what goes into the prompt, in what order,
+    and what gets dropped when space runs out.
+  \item \textbf{Tool design} --- a good file-edit tool that fails loudly beats a
+    clever one that fails silently.
+  \item \textbf{Permission model} --- what runs without asking, what prompts,
+    what is refused outright.
+  \item \textbf{Memory} --- what persists across sessions, and in what form.
+\end{itemize}
+
+\textcite{du2026memory} surveys agent memory as a \term{write--manage--read} loop
+coupled to perception and action, spanning context-resident compression,
+retrieval-augmented stores, reflective self-improvement and hierarchical virtual
+context. The taxonomy is useful, but the practical finding for our purposes is
+simpler: the memory that works most reliably today is a plain file on disk that
+the agent reads at the start of every session.
+
+\subsection{Files are all you need}
+
+\textcite{piskala2026files} traces this explicitly to Unix. The 1970s abstraction
+--- \emph{everything is a file} \parencite{ritchie1974unix} --- collapsed
+heterogeneous resources into one uniform interface, and it survived fifty years
+of hardware change. Agents face the analogous problem: databases, APIs, cloud
+infrastructure, memories, human input, each with its own protocol. The same
+solution works. Designing an agent around file-like abstractions makes it
+inspectable, versionable, greppable and diffable.
+
+This has a direct consequence for how you set up a project. A \code{README.md}
+that explains the repository and an \code{AGENTS.md} (or \code{CLAUDE.md}) that
+states the conventions will do more for agent performance than most prompt
+engineering. They are plain text, they live in version control, and you can read
+them yourself.
+
+\begin{keypoint}
+\code{AGENTS.md} is not a wish list. It is a behavioural contract that closes
+specific failure modes you have actually observed. Write it after something goes
+wrong, not before.
+\end{keypoint}
+
+\section{The ecosystem, briefly}
+
+The tooling layer is crowded and turns over fast. As of writing, the
+terminal-first agent harnesses in common use include Claude Code, OpenCode,
+Codex, Gemini CLI, Copilot CLI and Aider; IDE-embedded ones include Cline,
+Continue and Roo Code. Domain-specific agents exist for the life sciences:
+Biomni \parencite{huang2025biomni}, PantheonOS \parencite{xu2026pantheonos},
+OmicClaw \parencite{zeng2026omicclaw}, and others appearing monthly.
+
+Names will change. The design --- model, loop, tools, permissions, files --- has
+been stable since the pattern emerged, and is the thing worth learning. Pick one
+that runs in your terminal, works with the models you can afford, and shows you
+what it is about to do. That is most of the decision.
+
+\section{Where agents are going}
+
+Two directions are worth watching because they bear on research practice
+directly.
+
+The first is autonomous research. \textcite{lu2026aiscientist} report a system
+that navigates the research process end to end --- idea generation, experiment,
+writing --- and \textcite{feng2026aletheia} describe a mathematics research agent
+that has produced genuine results. \textcite{song2026paperorchestra} automate
+manuscript production from raw materials. \textcite{qu2026coral} push toward
+multi-agent evolution for open-ended discovery. Whether this scales to field
+ecology, where the bottleneck is fieldwork rather than analysis, is a separate
+question.
+
+The second is the benchmark reality check. \textcite{guo2026promptbio} evaluated
+bioinformatics agents across 244 expert-curated tasks and found performance
+declining sharply with task difficulty. The honest summary is that agents are
+useful for scoped, well-specified analytical work and unreliable for anything
+requiring sustained judgement. That gap is where a domain expert remains
+necessary, and it is not obviously closing.
