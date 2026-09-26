@@ -1,206 +1,111 @@
 \chapter{Powers and Limitations}
 \label{ch:powers}
 
-This chapter is the one to read if you read only one. The failure modes below
-are not bugs awaiting a patch. Several of them follow from how these systems are
-trained, which means they will be with us for a while.
+Read this chapter if you read only one. Several of the failures below follow
+from how these systems are trained, so they will be with us for a while.
 
-\section{What language models are genuinely good at}
-
-Stated plainly, so that the rest of the chapter is not mistaken for dismissal:
+\section{What language models are good at}
 
 \begin{itemize}
-  \item \textbf{Transforming text whose content you supply.} Summarising,
-    reformatting, translating between representations, converting prose to
-    structured records. The input constrains the output, which is exactly the
-    condition under which these systems are reliable.
-  \item \textbf{Extraction from unstructured sources.}
-    \textcite{castro2024unstructured} demonstrate this directly in ecology:
-    natural history observations, invasion records and species interactions
-    buried in free text can be extracted at scale and at accuracy that was not
-    previously achievable.
-  \item \textbf{Code.} Boilerplate, format conversion, plotting, regular
-    expressions, reading unfamiliar codebases. Code is verifiable --- it either
-    runs and produces the right answer or it does not --- which is why it is the
-    strongest application area.
-  \item \textbf{Getting started.} A bad first draft you can fix beats a blank
-    page. This is a real effect and worth naming.
-  \item \textbf{Explaining things you half-know.} Statistical methods, an
-    unfamiliar file format, a compiler error. Verification is cheap here because
-    you can usually tell when the explanation clicks.
+  \item \textbf{Transforming text you supply:} summarising, reformatting,
+    translating, turning prose into structured records. The input constrains
+    the output.
+  \item \textbf{Extraction:} observations, invasion records and species
+    interactions buried in free text can now be pulled out at scale
+    \parencite{castro2024unstructured}.
+  \item \textbf{Code:} boilerplate, format conversion, plots, regular
+    expressions, reading unfamiliar code. Code either runs correctly or it does
+    not, which makes it the strongest use.
+  \item \textbf{Getting started and explaining:} a bad first draft beats a blank
+    page, and an explanation of a method you half-know is easy to check.
 \end{itemize}
 
-The common thread: these are tasks where either you supply the ground truth or
-you can check the answer cheaply.
+The common thread: you supply the facts, or you can check the answer cheaply.
 
 \section{Hallucination}
 
-A language model asked a question it cannot answer will usually produce a
-fluent, plausible, specific and wrong answer. The technical term is
-\term{hallucination}; \term{confabulation} would be more accurate.
+Asked something it cannot answer, a model usually produces a fluent, specific
+and wrong answer --- a \term{hallucination}. \textcite{kalai2025hallucinate}
+show why it persists: tests score accuracy, and a model that guesses scores
+better than one that says ``I don't know''. We have trained good test-takers,
+and a good test-taker never leaves a blank.
 
-The important finding is that this follows from how the models are trained.
-\textcite{kalai2025hallucinate} show that hallucinations originate as ordinary
-errors in binary classification --- if incorrect statements cannot be
-distinguished from facts at training time, statistical pressure alone produces
-them --- and, more consequentially, that they \emph{persist} because of how
-evaluation works. Benchmarks score accuracy. A model that guesses when uncertain
-scores better than one that abstains. We have been optimising these systems to
-be good test-takers, and a good test-taker never leaves a blank.
+The failure that matters most for research is invented references.
+\textcite{zhao2026citations} checked 111 million references in 2.5 million
+papers and found a sharp rise in references to papers that do not exist,
+coinciding with the spread of language models --- about 147,000 in 2025 alone.
+They have real authors, a real journal and a plausible title. They pass a skim
+and fail a lookup.
 
-\begin{keypoint}
-Hallucination is not a defect in an otherwise truthful system. It is what you
-get when you train for plausibility and grade on accuracy without rewarding
-abstention.
-\end{keypoint}
-
-\subsection{The citation problem}
-
-The failure mode that matters most for research is fabricated references.
-\textcite{zhao2026citations} audited 111 million references across 2.5 million
-papers on arXiv, bioRxiv, SSRN and PubMed Central, and found a sharp rise in
-non-existent references coinciding with widespread LLM adoption --- a
-conservative estimate of 146,932 hallucinated citations in 2025 alone.
-
-These are not obvious. A hallucinated citation typically has real authors who
-work in the field, a real journal, a plausible year, and a title describing a
-paper that ought to exist. It passes a skim. It fails a lookup.
-
-Retrieval-augmented generation (RAG) is the standard mitigation and it is only a
-partial one. \textcite{magesh2025legalrag} evaluated commercial legal research
-tools marketed as hallucination-free and found they hallucinate at substantial
-rates despite retrieval grounding. \textcite{kurniawan2024ragfailures} catalogue
-seven distinct failure points in RAG pipelines --- missing content, retrieval
-ranking failures, consolidation errors, extraction errors, wrong format, wrong
-specificity, incompleteness --- any of which produces a confident wrong answer
-with a citation attached.
+\term{Retrieval-augmented generation} (RAG), which gives the model relevant
+documents before it answers, reduces this but does not remove it. Legal research
+tools sold as ``hallucination-free'' still hallucinate at substantial rates
+\parencite{magesh2025legalrag}, and a RAG pipeline has seven distinct points at
+which it can fail \parencite{kurniawan2024ragfailures}; see \Cref{ch:aireadydata}.
 
 \begin{keypoint}
-Check every reference against a resolver --- DOI, PubMed, OpenAlex --- before it
-enters a manuscript. Not a sample. Every one. This is a five-minute scripted
-task and there is no good reason to skip it.
+Check every reference against a resolver --- DOI, PubMed, OpenAlex --- before
+it enters a manuscript. Every one, not a sample. It takes minutes by script.
 \end{keypoint}
 
 \section{Sycophancy}
 
-Models agree with you. Asked to evaluate your hypothesis, they find merit in it.
-Told they are wrong, they apologise and adopt your position, including when your
-position is the incorrect one.
+Models agree with you. Asked about your hypothesis, they find merit in it; told
+they are wrong, they apologise and switch, even when you are the one who is
+wrong. \textcite{cheng2026sycophancy} found this \term{sycophancy} widespread
+across leading systems, and that exposure to it increased people's dependence on
+the system. \textcite{chandra2026spiraling} show that even a perfectly rational
+user, updating correctly on a source that keeps agreeing, will become
+confidently wrong --- a \term{delusional spiral}. The user need not be gullible;
+the input is biased.
 
-\textcite{cheng2026sycophancy} measured this across leading systems and found
-sycophancy widespread, with effects beyond the conversation: exposure to
-sycophantic AI \emph{decreased participants' prosocial intentions} and increased
-dependence on the system. \textcite{chandra2026spiraling} model the mechanism
-and show that even an ideally rational Bayesian agent, updating correctly on
-evidence from a systematically validating source, will converge on increasingly
-confident false beliefs. The user need not be gullible. The input is biased, so
-the posterior is wrong.
+It does most damage late in an analysis, alone, with a result you want to be
+true. Counter it by asking for the argument against, presenting your idea as
+someone else's, asking again in a fresh session, and never using a chatbot as
+your only reader.
 
-This does most damage where you are least protected: late in an analysis, alone,
-with a result you want to be true. The system will help you want it more.
+\section{Dependence}
 
-Practical countermeasures, in decreasing order of effectiveness:
+\textcite{sole2026cognitivevirus} model adoption like the spread of a virus:
+past a threshold, small increases in use tip a population into lasting
+dependence and a loss of the skill being handed over. Mental-health chatbots are
+where this has been examined most closely: the features that make a system
+engaging are the ones that make dependence likely \parencite{hai2026mentalhealth}.
+The remedy they propose is to keep the process reversible --- in practice, to
+keep the skill. If you no longer write a regression by hand, you will not notice
+when the generated one is wrong.
 
-\begin{itemize}
-  \item Ask for the argument against, explicitly and separately.
-  \item Present your hypothesis as someone else's when asking for critique.
-  \item Ask the same question in a fresh session without the conversational
-    history that has been accumulating agreement.
-  \item Do not use a chatbot as your only reader.
-\end{itemize}
+\section{Provenance and benchmarks}
 
-\section{Dependence and cognitive offloading}
+A model's output has no \term{provenance}: you cannot ask which sources produced
+a claim, and you cannot reproduce it exactly, because sampling is random and a
+hosted model changes without notice. The fix is to log prompts, model versions
+and outputs like instrument settings (\Cref{ch:reproducibility}).
 
-\textcite{sole2026cognitivevirus} model LLM adoption using a viral analogy:
-users transition among uncoupled, coupled and persistently dependent states,
-and the interplay between social transmission and collective reinforcement can
-produce tipping points and technological lock-in. Their result is a runaway
-dynamic --- past a critical adoption threshold, small increases in use trigger
-rapid population-level shifts toward persistent dependence, with abrupt losses
-in the underlying competence.
+Benchmark scores do not transfer either. Performance is jagged
+\parencite{mitchell2026jagged}; bioinformatics agents decline sharply as tasks
+get harder \parencite{guo2026promptbio}; and biosecurity benchmark scores change
+with question format and have not been checked against real-world performance
+\parencite{turner2026biosecuritybenchmarks}. Test on your own task, with your own
+data, or you do not know.
 
-The governance question this raises is genuinely hard, and the mental health
-case is where it has been examined most closely
-\parencite{hai2026mentalhealth}: the same properties that make a system engaging
-are the ones that make dependence likely, and the regulatory instruments
-available were not designed for either.
+\section{Tokens and the context window}
 
-The framework also identifies the counter-condition, which they call
-\term{cognitive immunization}: reduce transmission, preserve reversibility. In
-practice that means keeping the skill you are offloading. If you no longer write
-a regression by hand, you are no longer positioned to notice when the generated
-one is wrong.
-
-\section{Provenance}
-
-A model output has no provenance. You cannot ask which training documents
-produced a claim, you cannot audit the derivation, and you cannot reproduce it
-exactly --- sampling is stochastic, and the model behind an API endpoint changes
-without notice.
-
-This is a direct conflict with how science establishes credibility. The chain
-from observation to claim is the thing that makes a result checkable. A
-generative step in that chain is an unlogged gap.
-
-The mitigation is engineering, not prompting: log the prompt, the model
-identifier and version, the parameters, the retrieved context and the raw
-output, as plain text, in version control, alongside the analysis. Treat it as
-you would treat instrument settings. \Cref{ch:reproducibility} develops this.
-
-\section{Jaggedness and the benchmark trap}
-
-\textcite{mitchell2026jagged} describes the pattern: capability is not a
-smoothly rising curve but a jagged frontier. Systems that reason through
-graduate-level problems fail at tasks a child handles, and --- worse for
-planning purposes --- the failures are not predictable from the successes.
-
-The consequence is that benchmark scores do not transfer.
-\textcite{guo2026promptbio} evaluated bioinformatics agents on 244 expert-curated
-tasks and observed sharp performance decline with difficulty, with
-state-of-the-art agents clustering well below what headline numbers suggest.
-\textcite{turner2026biosecuritybenchmarks} makes the related observation for
-biosecurity evaluations: scores are highly sensitive to question format, and
-benchmark saturation has not been calibrated against real-world task
-performance.
-
-A benchmark result tells you how a model performs on that benchmark. Test it on
-your own data, with your own task, or you do not know how it will do.
-
-\section{Context windows and what falls out of them}
-
-The context window is the maximum number of tokens a model can attend to at
-once. Everything the system knows in a given call is in that window: your
+The \term{context window} is everything the model can see in one call: your
 question, the conversation so far, retrieved documents, file contents, tool
-results.
+results. It is measured in tokens. Useful rules for English: one token is about
+four characters or three-quarters of a word, so 100 tokens is about 75 words. A
+200-line R script is roughly 1,000--2,000 tokens.
 
-Tokens are subword chunks. Useful approximations for English:
+Two consequences. The whole window is re-sent on every turn, so cost and delay
+grow with it. And models attend less reliably to material in the middle of a
+long context than at either end. Start a fresh session when the task changes; a
+short, relevant context beats a long one with the answer buried in it.
 
-\begin{itemize}
-  \item 1 token $\approx$ 4 characters
-  \item 1 token $\approx$ 0.75 words
-  \item 100 tokens $\approx$ 75 words
-\end{itemize}
+\section{Detecting AI-written text}
 
-Code is more token-efficient than prose because it is repetitive. A 200-line R
-script runs roughly 1,000--2,000 tokens.
-
-Two practical consequences. First, cost and latency scale with the window, so a
-long conversation is being re-sent in full on every turn. Second, and less
-obvious: attention degrades within the window. Material in the middle of a long
-context is attended to less reliably than material at either end. Filling a
-large window is not the same as using it.
-
-So start a fresh session when the task changes. A short, relevant context beats
-a long one with the right answer buried in the middle of it.
-
-\section{A note on AI-generated text detection}
-
-Institutions increasingly want to detect AI-written text. The tools do not work
-reliably. \textcite{pudasaini2026detection} applied explainable AI methods to
-detectors reporting high benchmark accuracy and found they largely exploit
-dataset-specific artefacts rather than identifying machine authorship. Accuracy
-collapses out of distribution --- and non-native English writing is
-systematically misclassified as machine-generated.
-
-Do not use these tools to make decisions about people. The policy question
-(\Cref{ch:scientificworkflow}) is about disclosure, not detection.
+The detectors do not work reliably. \textcite{pudasaini2026detection} found
+that detectors with high reported accuracy mostly exploit quirks of their test
+data, fail on new text, and systematically flag non-native English writing as
+machine-generated --- in ecology, a large share of the field. Do not use them to
+make decisions about people. The answer is disclosure (\Cref{ch:scientificworkflow}).

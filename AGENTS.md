@@ -40,7 +40,7 @@ Before any reference goes in:
 
 Verification is scripted, not sampled. Run it over the whole file after any
 change to the bibliography — it takes about ten minutes and there is no
-acceptable reason to skip it. All 42 DOIs and all 23 arXiv IDs currently pass.
+acceptable reason to skip it. All 46 DOIs and all 23 arXiv IDs currently pass.
 
 Every entry must be cited at least once. `biber` reports no undefined keys and
 the file should have no orphans either.
@@ -69,7 +69,7 @@ Minimal. That is the deliberate house style; don't improve it.
 - `\begin{keypoint}` for a section's one real takeaway. **At most one per
   chapter.** There were 24 in the first draft; that was a tic, not a structure.
   If you add one, remove one.
-- Tables only where a table beats a paragraph. Currently 10. Don't add a table
+- Tables only where a table beats a paragraph. Currently 6. Don't add a table
   that restates the prose next to it.
 - `\code{}` for literals, `\term{}` for a term being introduced.
 - Cross-references with `cleveref`: `\Cref{ch:powers}`, `\Cref{tab:hardware}`.

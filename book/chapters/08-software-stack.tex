@@ -1,187 +1,87 @@
 \chapter{The Software Stack}
 \label{ch:stack}
 
-A map of the layers you will actually touch, and the choices that are worth
-making deliberately.
+The layers you will touch, and the choices worth making deliberately.
 
-\section{Layers}
+\section{Layers and interfaces}
 
 \begin{description}
-  \item[Operating system] Linux is the path of least resistance: the tooling
-    targets it first, containers are native, and the permission model is the one
-    every guide assumes. macOS is a close second and has a specific advantage for
-    local inference (\Cref{ch:hardware}). Windows works through WSL2, which is
-    Linux with extra steps.
-  \item[Language and libraries] R for ecological statistics and spatial work;
-    Python for machine learning and general glue. Most projects end up using
-    both, and that is fine.
-  \item[Environment management] \code{renv} for R, \code{uv} or \code{conda} for
-    Python. Essential if the work needs to run more than once.
-  \item[Containers] Podman or Docker for the hard reproducibility cases and for
-    sandboxing agents. Podman is rootless by default, which matters here.
-  \item[Editor and harness] Positron, RStudio, VS Code, Neovim --- plus whichever
-    agent harness you settle on.
-  \item[Version control] Git, plus a forge. GitHub, GitLab, or an institutional
-    instance.
-  \item[Workflow engine] \code{targets} for R, Snakemake or Nextflow for
-    multi-tool pipelines. These give you dependency tracking and selective
-    re-execution, which matters more as pipelines grow.
+  \item[Operating system] Linux is the path of least resistance; macOS is close
+    and has an advantage for local models (\Cref{ch:hardware}); Windows works
+    through WSL2.
+  \item[Languages and environments] R for ecological statistics, Python for
+    machine learning; most projects use both. Pin packages with \code{renv}
+    for R and \code{uv} or \code{conda} for Python.
+  \item[Containers] Podman or Docker, for hard reproducibility cases and for
+    fencing in agents. Podman runs without root privileges by default.
+  \item[Editor, harness, version control] Positron, RStudio, VS Code or Neovim,
+    plus an agent harness and Git with a forge.
+  \item[Workflow engines] \code{targets} for R, Snakemake or Nextflow for
+    multi-tool pipelines: they track dependencies and rerun only what changed.
 \end{description}
 
-\section{Interfaces}
+There are four ways to talk to a system. A graphical interface (GUI) is easy to
+explore and cannot be scripted. A text interface in the terminal (TUI) works
+over a remote connection. A command line (CLI) can be scripted and logged. An
+API does anything, if you write the code. For reproducibility the command line
+wins: a command is a record of what you did, a series of clicks is not.
+That is also why agent harnesses live in the terminal.
 
-Four ways to talk to a system. A graphical interface is easy to explore and
-impossible to script. A terminal interface works over SSH and takes longer to
-learn. A command line composes, scripts and logs, if you know the commands. An
-API does anything, if you write the code.
-
-For reproducibility the command line wins, and not narrowly. A command is a record of
-what you did; a sequence of clicks is not. This is why agent harnesses are
-terminal-first --- the same property that makes a CLI reproducible makes it
-automatable.
-
-\section{Ten rules for code that survives}
-
-Collected from practice and from \textcite{nagraj2026sniff}, whose SNIFF
-framework --- Source, Network, Interaction, Fit, Fragility --- is aimed at the
-under-served question of how to evaluate software you are about to \emph{depend
-on} rather than software you are writing.
+\section{Ten rules for code that lasts}
 
 \begin{enumerate}
-  \item \textbf{Minimise dependencies.} Every package is a maintenance liability
-    and a supply chain risk. Prefer base and well-established libraries. Ask
-    whether a dependency earns its place.
-  \item \textbf{Pin versions.} \code{renv.lock}, \code{uv.lock},
-    \code{requirements.txt} with exact versions. ``It worked last month'' is not
-    a state you can return to otherwise.
-  \item \textbf{Version control everything textual.} Code, configuration,
-    documentation, parameter files, notes.
-  \item \textbf{One script, one job.} Numbered, in order, each reading from
-    defined inputs and writing to defined outputs. No hidden state between them.
-  \item \textbf{No absolute paths.} Relative to project root. \code{here::here()}
-    in R, \code{pathlib} in Python.
-  \item \textbf{Set seeds.} Everywhere there is randomness. Record them.
-  \item \textbf{Assert your assumptions.} Row counts, value ranges, no
-    unexpected \code{NA}s, join cardinality. Failing loudly beats propagating
-    silently.
-  \item \textbf{Write the README as you go.} Written afterwards, it is written
-    badly or not at all.
-  \item \textbf{Automate the whole run.} One command from raw data to figures.
-    If you cannot, you do not know that it works.
-  \item \textbf{Evaluate before adopting.} Apply SNIFF: who maintains it and why,
-    is it part of a wider ecosystem, are developers and users active, does it fit
-    the use case and licence requirements, how fragile are its dependencies?
+  \item Minimise dependencies; each is a maintenance and security liability.
+  \item Pin exact versions in a lockfile.
+  \item Keep everything textual under version control.
+  \item One script, one job, numbered, with defined inputs and outputs.
+  \item No absolute paths (\code{here::here()} in R, \code{pathlib} in Python).
+  \item Set and record random seeds.
+  \item Assert your assumptions: row counts, value ranges, join cardinality.
+  \item Write the README as you go.
+  \item Run everything from raw data to figures with one command.
+  \item Evaluate a tool before depending on it, using SNIFF: \textbf{S}ource
+    (who maintains it and why), \textbf{N}etwork (is it part of an ecosystem),
+    \textbf{I}nteraction (are developers and users active), \textbf{F}it (use
+    case and licence) and \textbf{F}ragility (its own dependencies)
+    \parencite{nagraj2026sniff}.
 \end{enumerate}
 
-Working with agents raises the payoff on all ten. An agent in a well-organised
-project is fast and safe. The same agent in a disorganised one is fast and
-dangerous.
+An agent in a well-organised project is fast and safe; in a disorganised one it
+is fast and dangerous.
 
 \section{Local model tooling}
 
-\subsection{Runtimes}
+\textbf{Ollama} is the usual starting point: it downloads and runs models and
+offers an OpenAI-compatible API on \code{localhost:11434}. \textbf{llama.cpp}
+sits underneath much of this and gives finer control; \textbf{vLLM} serves many
+users at once; \textbf{LM Studio} is the point-and-click option. On Linux, run
+the runtime in a rootless container; \textcite{monshed2026ollamapodman} give a
+working Podman recipe that also solves GPU access. \textbf{Open WebUI} provides
+a familiar chat window over local and remote models. Interfaces with extensions
+can rewrite what goes in and out: Jensen's \emph{Seshat} adds PubMed results to
+a prompt before the model sees it --- a domain RAG layer as a plug-in.
 
-\textbf{Ollama} is the standard on-ramp. It packages weights, configuration and
-parameters into a Modelfile, serves an OpenAI-compatible API on
-\code{localhost:11434}, and handles the chat templating. \textbf{llama.cpp} sits
-underneath much of this and is what you use when you need control.
-\textbf{vLLM} targets throughput for multi-user serving. \textbf{LM Studio} is
-the GUI option. On Linux, running the runtime in a rootless container is
-straightforward and worth doing --- \textcite{monshed2026ollamapodman} give a
-working Podman recipe on Fedora, which also solves the GPU passthrough question
-that otherwise consumes an afternoon.
-
-\subsection{Interfaces}
-
-\textbf{Open WebUI} gives you a familiar chat interface over one or more
-backends, local and remote, switchable per conversation.
-\textbf{text-generation-webui} is the more configurable alternative, with an
-extension system.
-
-The extension mechanism is more interesting than it first appears. Extensions can
-rewrite what goes into the model and what comes out. Jensen's \emph{Seshat}, for
-instance, enriches a prompt with material retrieved from PubMed before it reaches
-the model, and post-processes the output to strip inflated language. That is a
-domain-specific RAG layer implemented as a plugin, and the pattern generalises to
-any field with a good literature API.
-
-\subsection{A working configuration}
-
-\begin{lstlisting}[style=shell,caption={Local coding setup with Ollama and OpenCode}]
-# 1. Pull a coding model
+\begin{lstlisting}[style=shell,caption={A local coding model with a usable context}]
 ollama pull gemma4:12b
-
-# 2. Bake in a usable context window.
-#    The 4K default silently breaks agent tool loops.
 ollama run gemma4:12b
-  /set parameter num_ctx 32768     # 65536 if RAM allows
+  /set parameter num_ctx 32768     # the 4K default breaks agent loops
   /save gemma4:12b-32k
-  /bye
-
-# 3. Verify while the agent is running
-ollama ps        # CONTEXT must read 32768, not 4096
+ollama ps                          # CONTEXT must read 32768
 \end{lstlisting}
 
-\begin{lstlisting}[caption={opencode.json --- the two things that must be right}]
-{
-  "provider": {
-    "ollama": {
-      "npm": "@ai-sdk/openai-compatible",
-      "options": { "baseURL": "http://localhost:11434/v1" },
-      "models": {
-        "gemma4:12b-32k": { "name": "Gemma 4 12B", "tools": true }
-      }
-    }
-  }
-}
-\end{lstlisting}
+Two settings cause most local-agent failures: the harness must be told the
+model supports tools (in OpenCode, \code{"tools": true}), and the context must
+be enlarged, or the loop truncates in ways that look like incompetence. A 12B
+local model is useful for small edits and explanation, and well behind frontier
+models on work spanning many files.
 
-Two failure modes account for most local-agent problems. Without
-\code{"tools": true} the model stalls on its first tool call. Without the
-enlarged \code{num\_ctx} the agent loop truncates and behaves erratically in ways
-that look like model incompetence.
+\section{Speech to text}
 
-Set expectations accordingly: a 12B local model is genuinely useful for scoped
-edits, explanation and boilerplate, and well behind frontier models on
-multi-file reasoning. Drive it carefully and keep tasks small.
-
-\section{Speech-to-text}
-
-Worth a section because interview and field-recording transcription is a real
-need and the tooling is mature.
-
-\code{whisper.cpp} runs Whisper locally with no API dependency. On Apple Silicon
-it can use the Neural Engine via Core ML for roughly a threefold speedup over CPU.
-
-\begin{lstlisting}[style=shell]
-git clone https://github.com/ggml-org/whisper.cpp
-cd whisper.cpp
-sh ./models/download-ggml-model.sh large-v3    # best multilingual
-
-cmake -B build                                  # -DWHISPER_COREML=1 on macOS
-cmake --build build -j --config Release
-
-# 16-bit WAV only; convert first
-ffmpeg -i input.mp3 -ar 16000 -ac 1 -c:a pcm_s16le out.wav
-
-./build/bin/whisper-cli -m models/ggml-large-v3.bin \
-    -f out.wav -l el -otxt --print-colors --threads 7
-\end{lstlisting}
-
-\subsection{A failure mode worth knowing}
-
-Whisper hallucinates on silence. On quiet passages, music, or background noise it
-emits plausible text that was never spoken --- most notoriously the caption
-\code{AUTHORWAVE}, an artefact of subtitle data in the training corpus.
-
-This is documented in the corpus-building literature. The Greek Podcast Corpus
-team, transcribing with WhisperX, removed segments containing the
-``Ypotitloi AUTHORWAVE'' caption (``AUTHORWAVE subtitles'') and, separately, segments with code-switched
-English--Greek phrases where the monolingual phoneme aligner produced bad
-timestamps. Between voice-activity filtering and post-processing they discarded
-roughly 20\% of their data.
-
-The lesson transfers: run voice activity detection first, filter known
-hallucination markers, and spot-check. Never treat an automatic transcript as
-ground truth without review --- particularly for interview material, where an
-invented sentence attributed to a named person is a serious problem.
+\code{whisper.cpp} runs the Whisper transcription model locally; on Apple
+Silicon it can be about three times faster using the Neural Engine. Beware:
+Whisper invents text over silence, music or noise. A Greek podcast corpus built
+with it had to remove segments containing a subtitle credit that was never
+spoken, and discarded about 20\% of its audio overall. Filter silence first,
+remove known phantom phrases, and never treat an automatic transcript as ground
+truth --- least of all an interview, where an invented sentence is attributed to
+a real person.

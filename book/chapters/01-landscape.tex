@@ -1,25 +1,24 @@
 \chapter{Chatbots, Models and Agents}
 \label{ch:landscape}
 
-Three words get used interchangeably and mean quite different things. Getting
-them apart is the first useful step. First, though, some history, because the
-choices in front of us now were argued out once already.
+Three words get used interchangeably and mean quite different things. Before
+separating them, some history, because the choices in front of us were argued
+out once already.
 
 \section{An argument from the 1960s}
 
 \textcite{waldrop2002dreammachine} tells it through J.\,C.\,R. Licklider, the
 psychologist who funded much of early interactive computing. In 1957 Licklider
-kept a record of his own working hours. About 85 per cent of
-his ``thinking'' time went on getting into a position to think: searching,
-calculating, plotting, transforming data. His 1960 paper
-\emph{Man-Computer Symbiosis} proposed a division of labour. People set goals,
-form hypotheses and judge results; the machine does the clerical work between
-decisions. He was sceptical of the artificial-intelligence claims of his day and
-expected people and computers to work as partners for a long time to come.
-
-Anyone who has spent a week cleaning an occurrence table will recognise the 85
-per cent. It is the frame this book uses: the machine takes the drudgery, and
-the judgement stays with the ecologist.
+kept a record of his own working hours. About 85 per cent of his ``thinking''
+time went on ``getting into a position to think'': searching, calculating, plotting,
+transforming data. His 1960 paper \emph{Man-Computer Symbiosis} proposed a
+division of labour. People set goals, form hypotheses and judge results; the
+machine does the clerical work between decisions. He was sceptical of the
+artificial-intelligence claims of his day and expected people and computers to
+work as partners for a long time to come. Anyone who has spent a week cleaning
+an occurrence table will recognise the 85 per cent. It is the frame of this
+book: the machine takes the drudgery, and the judgement stays with the
+ecologist.
 
 Computers were then too expensive for one person, so the answer was
 \term{time-sharing}: one central machine divided among many users at terminals.
@@ -32,102 +31,72 @@ and in 1969 Bell Labs withdrew from it.
 Two of the Bell Labs programmers, Ken Thompson and Dennis Ritchie, missed
 interactive computing enough to build their own on a discarded PDP-7. Their rule
 was lean, clean and simple. The result was Unix \parencite{ritchie1974unix}: a
-small kernel and a set of small tools, each doing one job, joined together with
-pipes. AT\&T was not allowed to sell it, so the source code went out on tape for
-the cost of materials. Users changed it, passed their changes around, and it
-spread to thousands of machines.
+small kernel and a set of small tools, each doing one job, joined with pipes.
+AT\&T was not allowed to sell it, so the source code went out on tape for the
+cost of materials. Users changed it, shared their changes, and it spread to
+thousands of machines.
 
 In the author's view the pattern is repeating. Frontier AI is an information
 utility: a few very large central systems, rented by the call, justified by the
 belief that bigger is better. Open-weight models on your own hardware are the
-Unix branch: smaller, inspectable, changeable, and yours. This book leans towards
-the second for the reasons Unix lasted --- plain text as the common interface,
-small parts that combine, and source you can read (\Cref{ch:localfirst}).
-
-One more lesson from the time-sharing years. Robert Fano, who ran Project MAC,
-found that users did not only consume the service: they put their own programs
-and data into it, and ``the system became the repository of the knowledge of the
-community'' \parencite{waldrop2002dreammachine}. Biodiversity databases are
-repositories of exactly that kind. Whether AI systems give back to them or only
-draw from them is the question behind \Cref{ch:aireadydata}.
+Unix branch: smaller, inspectable, changeable, and yours. This book leans
+towards the second for the reasons Unix lasted --- plain text as the common
+interface, small parts that combine, and source you can read. One more lesson
+from those years: Robert Fano, who ran Project MAC, found that users put their
+own programs and data into the system, so that ``the system became the
+repository of the knowledge of the community''
+\parencite{waldrop2002dreammachine}. Biodiversity databases are repositories of
+exactly that kind; whether AI gives back to them or only draws from them is the
+question behind \Cref{ch:aireadydata}.
 
 \section{The model}
 
-A large language model is a function. It takes a sequence of tokens and returns
-a probability distribution over the next token. That is the whole interface.
-Everything else --- conversation, tool use, reasoning, refusal --- is built on
-top of that one operation, repeated.
+A large language model is a function. It takes a sequence of \term{tokens} ---
+chunks of text, roughly three-quarters of a word each --- and returns a
+probability for every possible next token. Conversation, tool use, reasoning and
+refusal are all built on that one operation, repeated. The model has no memory
+of your last question, no files, no clock and no ability to act. Anything that
+looks like continuity is machinery around it.
 
-The model itself is stateless. It has no memory of your previous question, no
-file system, no clock, and no ability to act. Each call is independent. If a
-system appears to remember something, that is because the text was fed back in.
-The continuity is in the machinery around the model, not in it.
+\term{Pretraining} fits that function to a very large body of text; this is
+where the model picks up grammar, facts, code and the shape of academic prose. A
+second stage, \term{instruction tuning}, teaches it to be helpful, follow
+instructions and decline some requests. That second stage is where sycophancy
+comes from (\Cref{ch:powers}) and where the model learns to guess confidently
+rather than admit it does not know \parencite{kalai2025hallucinate}.
 
-\subsection{What ``training'' produced}
-
-Pretraining fits the next-token function on a very large corpus. This is where
-the model acquires syntax, factual associations, code idioms, and the statistical
-shape of academic prose. A second stage --- instruction tuning and preference
-optimisation --- reshapes the outputs to be helpful, to follow instructions, and
-to decline certain requests.
-
-That second stage matters more than it looks. It is where sycophancy comes from
-(\Cref{ch:powers}), where refusal behaviour is installed, and where the model
-learns to guess confidently rather than say it does not know
-\parencite{kalai2025hallucinate}.
-
-\subsection{Emergence, and whether it is real}
-
-Claims that language models display \term{emergent} capabilities --- abilities
-that appear abruptly at scale rather than improving smoothly --- have been
-central to the field's self-description. \textcite{krakauer2026emergence} examine
-these claims from a complex systems perspective and are careful about them:
-much apparent emergence is an artefact of discontinuous evaluation metrics, and
-the deeper question of whether LLMs possess emergent \emph{intelligence} rather
-than emergent \emph{capability} remains open.
-\textcite{aguerayarcas2025intelligence} takes the opposite position: prediction
-is the basis of all intelligence, living or not, so a system trained to predict
-is intelligent in a real if partial sense. It is a serious argument, not a
+How capable are these models? Claims of \term{emergent} abilities, which
+appear suddenly at scale, are partly an artefact of how tests are scored, and
+whether the models have emergent \emph{intelligence} is an open question
+\parencite{krakauer2026emergence}. \textcite{mitchell2026jagged} calls the
+practical problem \term{jagged intelligence}: a system that solves a
+research-level problem can fail at counting or at a reworded version of the same
+question, so benchmark scores say little about your task.
+\textcite{coppola2026transformers} argues the architecture is more
+understandable than its reputation, proving that a transformer layer performs one
+round of a well-known statistical inference method (belief propagation). At the
+other pole, \textcite{aguerayarcas2025intelligence} argues that prediction is
+the basis of all intelligence, living or not, so a system trained to predict is
+intelligent in a real if partial sense. It is a serious argument, not a
 consensus.
-
-\textcite{mitchell2026jagged} names the practical version of this problem:
-\term{jagged intelligence}. Performance is not a single number. A system that
-handles a research-level reasoning task can fail at counting, at a spatial
-relation, or at a variant of the same question with different surface form. The
-jaggedness is not noise around a trend; it is the shape of the capability
-itself. This is why benchmark scores translate so poorly into expectations about
-your own task.
-
-There is also a formal strand arguing that the architecture is more legible than
-its reputation suggests. \textcite{coppola2026transformers} proves that a sigmoid
-transformer implements weighted loopy belief propagation on an implicit factor
-graph --- one layer is one round of belief propagation. Whether this reframing
-changes anything in practice is unsettled, but it does undercut the claim that
-transformers cannot be understood.
 
 \section{The chatbot}
 
-A chatbot is a model plus a conversation buffer plus a web interface. The buffer
-is the important part: it concatenates the history and resubmits it on every
-turn. This is why long conversations get expensive, why they eventually forget
-the beginning, and why starting fresh often fixes a stuck session.
-
-Chatbots are good for: drafting, explaining, translating, rephrasing,
-brainstorming, reading a paper you would otherwise skim. They are bad for
-anything requiring verified fact, current information, or action in the world.
+A chatbot is a model plus a conversation buffer plus a web page. The buffer
+re-sends the whole history on every turn, which is why long conversations get
+slow and expensive, forget their beginning, and are often fixed by starting
+again. Chatbots are good for drafting, explaining, translating and brainstorming.
+They are bad at verified fact, current information, and anything that requires
+acting in the world.
 
 \section{The agent and the harness}
 
-An \term{agent} is a model given tools and a loop. An \term{agent harness} is the
-orchestration system that manages that loop: it decides what the model sees,
-executes the tool calls the model requests, feeds results back, enforces
-permissions, and decides when to stop.
-
-The core is unremarkable. \textcite{liu2026claudecode} analysed the architecture
-of a production coding agent and found the centre of the system to be a simple
-while-loop: call the model, run the tools it asks for, repeat. Most of the code
-is not in the loop. It is in the systems around it --- the permission layer, the
-context manager, the memory, the error recovery.
+An \term{agent} is a model given tools and a loop. The \term{harness} is the
+program that runs the loop: it decides what the model sees, runs the tools the
+model asks for, feeds back the results, enforces permissions and decides when to
+stop. \textcite{liu2026claudecode} examined a production coding agent and found
+the core is a simple loop; most of the code is the permission system, context
+management, error recovery and memory around it.
 
 \begin{lstlisting}[style=shell,caption={The whole idea, in pseudocode}]
 while not done:
@@ -139,84 +108,42 @@ while not done:
         done = True
 \end{lstlisting}
 
-That single \code{run\_tool} line is where the security risk lives. It is the
-point at which a text generator becomes something that can delete your files.
-
-\subsection{Why the harness matters more than the model}
-
-Two harnesses running the same model behave very differently. The differences
-come from:
-
-\begin{itemize}
-  \item \textbf{Context assembly} --- what goes into the prompt, in what order,
-    and what gets dropped when space runs out.
-  \item \textbf{Tool design} --- a good file-edit tool that fails loudly beats a
-    clever one that fails silently.
-  \item \textbf{Permission model} --- what runs without asking, what prompts,
-    what is refused outright.
-  \item \textbf{Memory} --- what persists across sessions, and in what form.
-\end{itemize}
-
-\textcite{du2026memory} surveys agent memory as a \term{write--manage--read} loop
-coupled to perception and action, spanning context-resident compression,
-retrieval-augmented stores, reflective self-improvement and hierarchical virtual
-context. The taxonomy is useful, but the practical finding for our purposes is
-simpler: the memory that works most reliably today is a plain file on disk that
-the agent reads at the start of every session.
+The \code{run\_tool} line is where a text generator becomes something that can
+delete your files, and where the security risk lives (\Cref{ch:security}). Two
+harnesses running the same model can behave quite differently. They differ in
+what they put into the context, how well their tools report errors, what they
+allow without asking, and what they remember between sessions.
+\textcite{du2026memory} survey the many designs for agent memory; the one that
+works most reliably today is a plain file the agent reads at the start of each
+session.
 
 \subsection{Files are all you need}
 
-\textcite{piskala2026files} traces this explicitly to Unix. The 1970s abstraction
---- \emph{everything is a file} \parencite{ritchie1974unix} --- collapsed
-heterogeneous resources into one uniform interface, and it survived fifty years
-of hardware change. Agents face the analogous problem: databases, APIs, cloud
-infrastructure, memories, human input, each with its own protocol. The same
-solution works. Designing an agent around file-like abstractions makes it
-inspectable, versionable, greppable and diffable.
-
-This has a direct consequence for how you set up a project. A \code{README.md}
-that explains the repository and an \code{AGENTS.md} (or \code{CLAUDE.md}) that
-states the conventions will do more for agent performance than most prompt
-engineering. They are plain text, they live in version control, and you can read
-them yourself.
+\textcite{piskala2026files} traces this back to Unix's rule that
+\emph{everything is a file}. Agents face many kinds of resource --- databases,
+APIs, memories, people --- and treating them all as files makes an agent's work
+readable, versionable and searchable with ordinary tools. In practice: a
+\code{README.md} that explains the project and an \code{AGENTS.md} that states
+its rules will do more for an agent than clever prompting, and you can read them
+yourself (\Cref{ch:agentic}).
 
 \begin{keypoint}
-\code{AGENTS.md} is not a wish list. It is a behavioural contract that closes
-specific failure modes you have actually observed. Write it after something goes
-wrong, not before.
+\code{AGENTS.md} is not a wish list. It is a contract that closes failures you
+have seen. Write it after something goes wrong, not before.
 \end{keypoint}
 
 \section{The ecosystem, briefly}
 
-The tooling layer is crowded and turns over fast. As of writing, the
-terminal-first agent harnesses in common use include Claude Code, OpenCode,
-Codex, Gemini CLI, Copilot CLI and Aider; IDE-embedded ones include Cline,
-Continue and Roo Code. Domain-specific agents exist for the life sciences:
-Biomni \parencite{huang2025biomni}, PantheonOS \parencite{xu2026pantheonos},
-OmicClaw \parencite{zeng2026omicclaw}, and others appearing monthly.
-
-Names will change. The design --- model, loop, tools, permissions, files --- has
-been stable since the pattern emerged, and is the thing worth learning. Pick one
-that runs in your terminal, works with the models you can afford, and shows you
-what it is about to do. That is most of the decision.
-
-\section{Where agents are going}
-
-Two directions are worth watching because they bear on research practice
-directly.
-
-The first is autonomous research. \textcite{lu2026aiscientist} report a system
-that navigates the research process end to end --- idea generation, experiment,
-writing --- and \textcite{feng2026aletheia} describe a mathematics research agent
-that has produced genuine results. \textcite{song2026paperorchestra} automate
-manuscript production from raw materials. \textcite{qu2026coral} push toward
-multi-agent evolution for open-ended discovery. Whether this scales to field
-ecology, where the bottleneck is fieldwork rather than analysis, is a separate
-question.
-
-The second is the benchmark reality check. \textcite{guo2026promptbio} evaluated
-bioinformatics agents across 244 expert-curated tasks and found performance
-declining sharply with task difficulty. The honest summary is that agents are
-useful for scoped, well-specified analytical work and unreliable for anything
-requiring sustained judgement. That gap is where a domain expert remains
-necessary, and it is not obviously closing.
+Terminal-based harnesses in common use include Claude Code, OpenCode, Codex,
+Gemini CLI, Copilot CLI and Aider; Cline, Continue and Roo Code live inside code
+editors. Life-science agents include Biomni \parencite{huang2025biomni},
+PantheonOS \parencite{xu2026pantheonos} and OmicClaw
+\parencite{zeng2026omicclaw}. At the far end, systems now attempt whole research
+projects: generating ideas, running experiments and writing papers
+\parencite{lu2026aiscientist}, producing new mathematics
+\parencite{feng2026aletheia}, assembling manuscripts \parencite{song2026paperorchestra}
+or evolving solutions with many cooperating agents \parencite{qu2026coral}. On
+real bioinformatics tasks, though, agent performance drops sharply as tasks get
+harder \parencite{guo2026promptbio}. Names will change; the design --- model,
+loop, tools, permissions, files --- has been stable, and is the part worth
+learning.

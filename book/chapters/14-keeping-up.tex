@@ -1,23 +1,14 @@
 \chapter{How to Keep Up}
 \label{ch:keepingup}
 
-You cannot. That is the correct starting position, and accepting it is more
-useful than any reading list.
+You cannot. The field publishes faster than it can be read, models arrive
+weekly, and tools turn over faster than their documentation. Accepting that is
+more useful than any reading list: choose what to track, and accept gaps
+everywhere else.
 
-\section{Why it is impossible, structurally}
+\section{What is stable}
 
-The field publishes faster than it can be read. Model releases arrive weekly,
-benchmarks are superseded within months, and the tooling layer turns over faster
-than documentation can follow. Nobody is across all of it, including the people
-who appear to be.
-
-The practical response is to be deliberate about what you track and to accept
-gaps everywhere else.
-
-\section{What is actually stable}
-
-Sort what you could learn by how long it stays true. This is the most useful
-filter there is.
+Sort what you might learn by how long it stays true.
 
 \begin{table}[htbp]
 \centering
@@ -28,175 +19,128 @@ filter there is.
 \toprule
 \textbf{Layer} & \textbf{Stays true for} & \textbf{Worth learning?} \\
 \midrule
-Specific model names and versions & Weeks & No. Look them up. \\
+Model names and versions & Weeks & No. Look them up. \\
 Benchmark scores & Months & No. They do not transfer to your task. \\
-Pricing and rate limits & Months & Only when procuring. \\
-Tool names and CLI flags & 6--12 months & Lightly; read the docs when needed. \\
-Architectural patterns (harness, RAG, agent loop) & Years & Yes. \\
-Failure modes (hallucination, sycophancy, injection) & Years & Yes, thoroughly. \\
-Data standards, provenance, reproducibility & Decades & Yes. This is the part that lasts. \\
-Domain expertise in ecology & Career & Yes. It is what makes you useful here. \\
+Prices and usage limits & Months & Only when buying. \\
+Tool names and options & 6--12 months & Lightly; read the documentation. \\
+Patterns (harness, RAG, agent loop) & Years & Yes. \\
+Failures (hallucination, sycophancy, injection) & Years & Yes, thoroughly. \\
+Data standards, provenance, reproducibility & Decades & Yes. This is what lasts. \\
+Ecological expertise & A career & Yes. It is what makes you useful here. \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
 \begin{keypoint}
-Invest your learning time at the bottom of that table. Everything at the top is a
-lookup, and treating it as knowledge to be maintained is how the field consumes
-attention without returning anything.
+Spend your learning time at the bottom of that table. Everything at the top is a
+lookup.
 \end{keypoint}
 
 \section{People worth following}
 
-A short list beats a long one. These are people whose output is worth reading
-because they are careful, not because they are fast.
+A short list of people who are careful rather than fast.
 
 \begin{description}
-  \item[Melanie Mitchell (Santa Fe Institute)] The most reliable sceptical voice
-    on AI capability claims. \textcite{mitchell2026jagged} and her work with
-    \textcite{krakauer2026emergence} are the antidote to both hype and dismissal.
+  \item[Melanie Mitchell (Santa Fe Institute)] The most reliable sceptic of AI
+    capability claims \parencite{mitchell2026jagged,krakauer2026emergence}.
   \item[Blaise Ag\"uera y Arcas (Google)] Argues that prediction underlies both
-    life and intelligence \parencite{aguerayarcas2025intelligence}, and so that
-    current models are intelligent in a real sense. Read him for the strongest
-    form of that case.
-  \item[Anil Seth] A neuroscientist of consciousness who also puts
-    prediction at the centre of the mind, but who is cited by
+    life and intelligence, so current models are intelligent in a real sense
+    \parencite{aguerayarcas2025intelligence}. The strongest form of that case.
+  \item[Anil Seth] A neuroscientist of consciousness who also puts prediction at
+    the centre of the mind, but who is cited by
     \textcite{aguerayarcas2025intelligence} as holding that AI is not
     intelligent in the way we are. Read the two together.
-  \item[Christopher Manning (Stanford)] NLP foundations; co-author on the legal
-    RAG evaluation \parencite{magesh2025legalrag} that is the best empirical work
-    on retrieval grounding's limits.
-  \item[Lars Juhl Jensen (Copenhagen)] Biomedical text mining, dictionary-based
-    NER, and practical tooling. The pre-LLM text mining tradition he represents
-    is still the right approach for a great many problems.
-  \item[Sophia Ananiadou (Manchester)] Biomedical NLP, in the department where
-    Turing worked --- a lineage from cryptanalysis to text mining that is more
-    than a curiosity.
-  \item[Anne Thessen] Biodiversity informatics, ontologies, and the data layer
-    this all depends on.
-  \item[Boris Cherny (Anthropic)] One of the creators of Claude Code, which
-    they describe as ``a Unix utility rather than a traditional product'', built
-    from the smallest blocks that are ``useful, understandable, and extensible''
-    \parencite{liu2026claudecode}. The design argument of \Cref{ch:landscape},
-    from the people building the tool.
-  \item[Martin Kleppmann (Cambridge)] Local-first software
-    \parencite{kleppmann2019localfirst} and distributed systems. The architectural
-    case for owning your data.
-  \item[Hadley Wickham (Posit)] On what an agent is, and on AI in data analysis,
-    from someone who has thought hard about tool design for scientists.
+  \item[Ewan Birney (EMBL-EBI)] Director of the European Bioinformatics
+    Institute; a clear voice against hype from someone who lived through the
+    genomics boom \parencite{birney2026genomics}.
+  \item[Boris Cherny (Anthropic)] One of the creators of Claude Code, which they
+    describe as ``a Unix utility rather than a traditional product'', made of
+    the smallest pieces that are ``useful, understandable, and extensible''
+    \parencite{liu2026claudecode} --- the argument of \Cref{ch:landscape}, from
+    the people building the tool.
+  \item[Christopher Manning (Stanford)] Foundations of language processing;
+    co-author of the best empirical test of retrieval's limits
+    \parencite{magesh2025legalrag}.
+  \item[Lars Juhl Jensen (Copenhagen)] Biomedical text mining with dictionaries
+    and practical tools --- still the right approach for many problems.
+  \item[Sophia Ananiadou (Manchester)] Biomedical text mining, in the department
+    where Turing worked.
+  \item[Anne Thessen] Biodiversity informatics and ontologies: the data layer
+    all of this depends on.
+  \item[Martin Kleppmann (Cambridge)] Local-first software and distributed
+    systems \parencite{kleppmann2019localfirst}.
+  \item[Hadley Wickham (Posit)] On agents and AI in data analysis, from someone
+    who has thought hard about tools for scientists.
 \end{description}
 
-\section{Sources, by type}
+\section{Sources}
 
-\subsection{Primary}
+\textbf{Primary.} arXiv (\code{cs.CL}, \code{cs.AI}, \code{cs.IR}) and bioRxiv.
+Do not try to follow them; search them when you have a question, with alerts on
+narrow terms only. Once a year, read the AI Index \parencite{aiindex2026}, the
+best single overview. \textbf{Blogs and newsletters.} A few careful writers test
+things by hand and report what fails: Simon Willison on local models
+\parencite{willison2026qwen38}, Stephen Turner on AI in genomics and biosecurity
+\parencite{turner2026slop}. \textbf{Lists and tutorials.} ``Awesome'' lists on
+GitHub for RAG and agents, the mailing lists of the tools you use, and ELIXIR's
+TeSS portal for training; check when a list was last updated, since a stale one
+is worse than none. \textbf{Documentation.} Hugging Face for models, Ollama's
+library for what runs locally, and your harness's own documentation, which
+changes faster than any guide about it.
 
-arXiv \code{cs.CL}, \code{cs.AI}, \code{cs.IR}; bioRxiv bioinformatics. Do not
-attempt to follow these; search them when you have a question. Set alerts on
-narrow terms only.
+\textbf{Community.} Your domain community is more useful than the AI one. Surveys
+of computational capacity in environmental omics find that what holds groups
+back is training and keeping staff, not tools
+\parencite{theodosopoulou2022greek} --- a corrective when talk turns to
+hardware. TDWG for biodiversity standards, ELIXIR for life-science computing,
+GBIF and OBIS community channels, and the World Biodiversity Forum, where
+\textcite{pasche2026biodivpmc} and \textcite{krug2026ipbes} both appeared: the
+people working on AI \emph{for biodiversity} are a small, findable group.
 
-For the field-level picture once a year, the AI Index \parencite{aiindex2026} is
-the best single document: comprehensive, data-driven, and explicit about its
-methodology.
+\section{A routine}
 
-\subsection{Curated lists}
+Weekly, thirty minutes: skim one aggregator and note things to look up. Monthly,
+two hours: try one thing on a real task of your own. Quarterly, half a day:
+review your tools, update pinned versions, test a backup restore. Yearly, a day:
+read the AI Index, revisit your group's data and disclosure policy, reassess
+hardware. About forty hours a year; more starts competing with doing ecology.
 
-Awesome-lists on GitHub for RAG, agentic deep research, and AI agents remain a
-reasonable way to discover tooling. Check the last commit date --- a stale
-awesome-list is worse than none.
+The fastest way to learn is a small real project: a RAG system over your own
+reprints, a classifier for your camera-trap images, an extraction pipeline for
+species descriptions, an agent-assisted clean-up of an analysis you have been
+avoiding. You will find that PDF extraction is the hard part, that chunking
+matters more than the model, and that the model is confidently wrong in ways you
+can now recognise. None of that transfers from a blog post.
 
-\subsection{Distribution and documentation}
-
-Hugging Face for models and datasets. Ollama's library for what runs locally. The
-documentation for whichever harness you use, which changes faster than any
-third-party guide can track --- read the source documentation, not a blog post
-about it.
-
-\subsection{Community}
-
-Your domain community is more useful than the AI community for your purposes.
-It is also worth knowing its actual composition: national surveys of
-computational capacity in environmental omics
-\parencite{theodosopoulou2022greek} tend to find that what actually holds groups
-back is training and keeping staff, not tooling, which is a useful corrective
-when the discussion turns to hardware.
-TDWG for biodiversity standards. ELIXIR training and TeSS for life science
-computing. GBIF and OBIS community channels. The World Biodiversity Forum, where
-\textcite{pasche2026biodivpmc} and \textcite{krug2026ipbes} both appeared --- the
-people working on AI \emph{for biodiversity} specifically are a small and
-findable group.
-
-\section{A sustainable routine}
-
-\begin{description}
-  \item[Weekly, 30 minutes] Skim one aggregator. Note things to look up later.
-    Do not follow links.
-  \item[Monthly, 2 hours] Try one thing. A model, a tool, a technique, on a real
-    task from your own work. Hands-on beats reading by a wide margin, and a real
-    task beats a tutorial.
-  \item[Quarterly, half a day] Review your stack. Is there something you are
-    doing manually that should be automated, or automated that should be manual?
-    Update pinned versions. Test a backup restore.
-  \item[Annually, a day] Read the AI Index. Revisit your group's policy on data
-    classification and disclosure. Reassess hardware.
-\end{description}
-
-That is roughly forty hours a year. More than that starts competing with doing
-ecology.
-
-\section{Learning by building}
-
-The most efficient path is a small real project. Pick something you actually
-need:
-
-\begin{itemize}
-  \item A RAG system over your own reprint collection.
-  \item A classifier for your camera trap images.
-  \item An extraction pipeline for a corpus of species descriptions.
-  \item An agent-assisted refactor of an analysis you have been avoiding.
-\end{itemize}
-
-Any one of these teaches more than a year of reading, because the failures are
-specific and yours. You will discover that PDF extraction is the hard part, that
-chunking strategy matters more than model choice, that the model is confidently
-wrong in a way you can now recognise. None of that transfers from a blog post.
-
-\section{What to tell colleagues who ask}
-
-You will be asked. A usable short answer:
+\section{What to tell colleagues}
 
 \begin{quote}
-These systems are genuinely useful for transforming text and generating code,
-where you supply the content or can cheaply check the output. They are unreliable
-for anything requiring verified fact --- they fabricate citations at measurable
-rates and agree with you when you are wrong. The main change to daily practice is
-agentic coding, which is more a system administration skill than a programming
-one. The main thing to get right is data organisation and provenance, and that
-was worth getting right anyway. Run models locally where you can, for privacy,
-cost and reproducibility. Verify everything that matters, and disclose what you
-used.
+These systems are useful for transforming text and writing code, where you
+supply the content or can cheaply check the result. They are unreliable for
+facts: they invent citations and agree with you when you are wrong. The main
+change to daily work is agentic coding, which is closer to system administration
+than to programming. The main thing to get right is data organisation and
+provenance, which was worth getting right anyway. Run models locally where you
+can, verify everything that matters, and disclose what you used.
 \end{quote}
 
 \section{A closing note}
 
-The pressure to adopt is institutional, and it is not always aligned with doing
-good work. It is legitimate to conclude that a particular AI method is not
-appropriate for a particular problem, and \textcite{mishra2026notready} makes the
-general version of that case for ecology seriously and well.
+The pressure to adopt is institutional, and it is not always aligned with good
+work. It is legitimate to decide that an AI method does not suit a problem;
+\textcite{mishra2026notready} makes that case for ecology seriously and well. It
+is equally legitimate to use these tools heavily, with discipline. What is not
+reasonable is using them without checking, or staying out of the argument while
+others decide about your data, your infrastructure and your field.
 
-It is equally legitimate to use these tools heavily and with discipline. What is
-not reasonable is using them without checking, or staying out of the argument
-while other people make decisions about your data, your infrastructure and your
-field.
-
-Ayad Akhtar's play \emph{McNeal} \parencite{akhtar2024mcneal} is about a
+Ayad Akhtar's play \emph{McNeal} \parencite{akhtar2024mcneal} follows a
 celebrated novelist who feeds Sophocles, Shakespeare, Flaubert, Ibsen and his
 late wife's journals into a chatbot and lets it help write his next novel.
 Partway through he admits, ``my mind works better now if there's something
 already on the page.'' Read by a scientist, the play is less about whether the
-machine writes well than about what happens to the person who stops writing. That is the risk worth guarding against, more
-than any single wrong answer.
+machine writes well than about what happens to the person who stops writing.
+That is the risk to guard against, more than any single wrong answer.
 
-The skills that last here are the ones ecology already values: knowing where data
-came from, being sceptical of a result that is too convenient, documenting what
-you did so someone else can check it. Those transfer. Everything else is a
-lookup.
+The skills that last are the ones ecology already values: knowing where data
+came from, doubting a result that is too convenient, and recording what you did
+so that someone else can check it. Those transfer. Everything else is a lookup.

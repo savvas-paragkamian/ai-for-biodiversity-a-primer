@@ -1,321 +1,249 @@
 \chapter{The Local-First Approach}
 \label{ch:localfirst}
 
-\textcite{kleppmann2019localfirst} set out seven properties software should have
-if the user is to genuinely own their data: it should be fast, work across
-devices, work offline, support collaboration, last forever, be secure and private
-by default, and give the user ultimate ownership and control. The paper predates
-the current AI cycle and applies to it exactly.
+\textcite{kleppmann2019localfirst} listed what software must do if users are to
+own their data: be fast, work across devices and offline, support
+collaboration, last, be private by default, and leave the user in control. The
+paper predates the current AI boom and applies to it exactly.
 
-\section{The argument}
+\section{The case for local}
 
-\subsection{Nothing leaves the machine}
+\textbf{Nothing leaves the machine.} Unpublished records, locations of
+threatened species, embargoed sequences, draft manuscripts and interview data
+stay where they are. This is not idle caution: shared chatbot conversations have
+turned up in public search results, API keys included
+\parencite{ibtimes2026claudechats}, and data brokers routinely ignore privacy
+law \parencite{hai2026privacylaws}. For European institutions, GDPR and
+data-sharing agreements are far simpler when the answer to ``where did the data
+go?'' is ``nowhere''.
 
-The decisive property for research. Unpublished occurrence records, sensitive
-locality data for threatened species, embargoed sequences, draft manuscripts,
-personal data from interviews or citizen science --- none of it goes anywhere.
+\textbf{No cost per query.} Once the hardware is paid for, you stop rationing:
+you run the classifier over the whole corpus, not a sample, and leave jobs
+running overnight.
 
-This is not hypothetical caution. Shared conversations from a commercial assistant
-were found surfacing in public search results containing API keys and personal
-data \parencite{ibtimes2026claudechats}. Data brokers routinely fail to comply
-with existing privacy law \parencite{hai2026privacylaws}. A local model has no
-such failure mode, because there is no transmission.
+\textbf{It works offline} --- on research vessels, at field stations, and on
+institutional networks that block outside traffic.
 
-For European institutions there is a compliance dimension. GDPR obligations
-around personal data, contractual restrictions in data-sharing agreements, and
-national rules on sensitive species localities are all substantially simpler when
-the answer to ``where did the data go'' is ``nowhere''.
+\textbf{It lasts.} A provider retires an API on its own schedule; a model file
+on your disk does not change. Research infrastructure has a ten-year horizon.
 
-\subsection{No marginal cost}
+\section{Digital sovereignty and data protection}
 
-After the hardware, inference is free. This changes what you do. You stop
-rationing queries. You run the classifier over the entire corpus rather than a
-sample. You leave a batch job running overnight. Behaviour that is uneconomic at
-a per-token price is free once the machine is paid for.
+\textcite{jrc2025opensovereignty} define EU digital sovereignty as the ability to
+act independently in the digital domain while staying open --- not isolation,
+but not being coerced. \textcite{anand2026digitalsovereignty} extract the
+concrete goals from EU law. \textcite{hai2026sovereignty} are sceptical of the
+``sovereign AI'' now on sale: much of it is the same proprietary system hosted in
+a different region, which moves the data without changing who controls the
+model. \textcite{esposito2026sovereign} argue that sovereignty must be designed
+into a system rather than ticked off at procurement.
 
-\subsection{It works offline}
+Governments now treat biological data the same way. Three US bills, endorsed by
+OpenAI and summarised by \textcite{turner2026databills}, would have the national
+standards agency define what ``AI-ready'' means for biological datasets and set
+minimum requirements for federally funded research; create one gateway
+to the federal government's biological data, with access controls in tiers by sensitivity; and
+fund measurement standards, including for biosafety and biosecurity. The head of
+the commission behind them says AI-ready biological data ``must be treated like a
+strategic national resource''; Turner notes that the bill does not say how a
+dataset is assigned to a tier. Two lessons carry over. Data one side calls
+AI-ready, another calls strategic, so control of access is a sovereignty
+question. And tiered access suits sensitive ecological data, such as the
+locations of threatened species --- once the rules for the tiers are written
+down.
 
-Research vessels. Field stations. Remote sites. Institutional networks with
-restrictive egress rules. Any of these makes a cloud-dependent workflow
-unusable, and all of them are ordinary conditions in ecology.
+For a public institution the practical questions are simpler. Could you carry on
+if a provider changed its terms, raised prices or left your market? Can you
+audit what you depend on? Will your infrastructure outlive the contract?
 
-\subsection{Digital sovereignty}
+\section{The costs}
 
-The policy layer. \textcite{jrc2025opensovereignty} frames EU digital sovereignty
-as the capacity to exercise strategic independence in the digital domain while
-remaining open and connected --- not autarky, but the ability to not be coerced.
-\textcite{anand2026digitalsovereignty} extract the concrete goals from EU legal
-texts. \textcite{hai2026sovereignty} survey the commercial offerings that have
-appeared in response, and are sceptical: much of what is marketed as sovereign AI
-is a regional deployment of the same proprietary stack, which relocates the data
-without changing who controls the model.
+\textbf{Capability.} Frontier hosted models are better at hard reasoning, long
+documents and changes spanning many files. The gap is narrowing:
+\textcite{willison2026qwen38} ran Qwen 3.8 27B, an Apache-2.0 model that fits in
+a 17\,GB file, offline on a laptop and on a DGX Spark. It wrote working code,
+drove a coding agent through a repository, and drew accurate boxes around birds
+in a photograph --- in his judgement, what the best proprietary models could do a
+year earlier.
 
-\textcite{esposito2026sovereign} go further and propose a reference
-architecture --- sovereignty as a design property of the system rather than a
-procurement checkbox applied afterwards. That is the right level at which to
-address it, though it presumes more freedom in system design than most
-institutions have.
+\textbf{Speed.} The same model produced 15--30 tokens per second, slow enough
+that he still preferred hosted models for interactive work. For overnight batch
+jobs it does not matter.
 
-Governments have started to treat biological data the same way. Three US bills,
-endorsed by OpenAI and summarised by \textcite{turner2026databills}, would have
-NIST define what ``AI-ready'' means for a biological dataset and set minimum
-requirements for federally funded research; build a single entry point to
-federal biological data, with access controls and cybersecurity safeguards in
-tiers by sensitivity; and fund measurement standards, including for biosafety
-and biosecurity. The head of the commission behind them says AI-ready
-biological data ``must be treated like a strategic national resource''. Turner
-notes that the data-portal bill does not say how a dataset is assigned to a
-tier. Two lessons carry over. Data that one side calls
-AI-ready is data another side calls strategic, so who controls access is a
-sovereignty question (\Cref{ch:aireadydata}). And tiered access is the right
-model for sensitive ecological data too, such as the localities of threatened
-species --- but only once the rules for the tiers are written down.
+\textbf{Hardware and upkeep.} Money up front (\Cref{ch:hardware}) and time
+spent on drivers, updates and debugging. In a small group that time comes out of
+someone's research, and it is usually left out of the comparison.
 
-For a public research institution the practical questions are narrower. Can you
-continue your work if a provider changes terms, raises prices, or withdraws from
-your market? Can you audit what you depend on? Are you building infrastructure
-that will outlive a commercial contract?
-
-\subsection{Longevity}
-
-An API endpoint is deprecated on the provider's schedule. A model file on your
-disk is not. Research infrastructure has a ten-year horizon; commercial API
-products frequently do not.
-
-\section{The costs, stated honestly}
-
-\subsection{Capability}
-
-The gap is real. Frontier hosted models outperform anything you can run on a
-workstation on hard reasoning, long-context work, and multi-file code changes.
-For the most demanding tasks this gap matters and pretending otherwise wastes
-your time.
-
-It is also narrowing. \textcite{willison2026qwen38} ran Qwen 3.8 27B, an
-Apache-2.0 model that fits in a 17\,GB file at Q4, on a 128\,GB laptop and on a
-DGX Spark. Offline, it wrote working code, drove a coding agent through a
-repository with tool calls, and drew accurate bounding boxes around birds in a
-photograph. His judgement was that a year earlier this would have matched the
-best proprietary models.
-
-\subsection{Hardware and maintenance}
-
-Real money up front (\Cref{ch:hardware}) and real time in maintenance: drivers,
-runtimes, model management, debugging. Somebody has to do this. In a small group
-that somebody is a researcher not doing research, and that cost is frequently
-omitted from the comparison.
-
-\subsection{Speed}
-
-Local inference is slower. The same Qwen model ran at 15--30 tokens per second,
-slow enough that Willison still preferred hosted models for interactive work
-\parencite{willison2026qwen38}. For batch work it does not matter --- the job
-runs overnight either way.
-
-\section{Open, closed, and the layers between}
+\section{Open, closed, and in between}
 
 \begin{table}[htbp]
 \centering
-\caption{Deployment models and their tradeoffs.}
+\caption{Ways to use a model, and their tradeoffs.}
 \label{tab:deployment}
 \small
 \begin{tabularx}{\textwidth}{lXX}
 \toprule
 \textbf{Model} & \textbf{You get} & \textbf{You give up} \\
 \midrule
-SaaS (hosted chat) & Zero setup, best capability & Data control, versioning, offline use \\
-API & Programmability, scale & Same, plus cost per token \\
-MaaS (managed open weights) & Open models, no ops & Data still transits; vendor dependency \\
-Self-hosted open weights & Full control, privacy, offline & Capability gap, hardware, ops burden \\
+Hosted chat (SaaS) & No setup, best capability & Data control, versions, offline use \\
+API & Programmability, scale & The same, plus cost per token \\
+Managed open weights (MaaS) & Open models, no upkeep & Data still leaves; vendor dependence \\
+Self-hosted open weights & Control, privacy, offline & Capability gap, hardware, upkeep \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\term{Model as a Service} is the middle path that has emerged: vendors including
-Red Hat and Ollama offer managed or supported deployment of open-weight models.
-\textcite{redhat2026hybrid} argue for a hybrid foundation --- workloads placed
-where their requirements put them rather than uniformly in one place. This is the
-pragmatic position and it is probably right for most institutions.
-
-\subsection{A sensible hybrid policy}
+\term{Model as a Service} is the middle path: firms including Red Hat and Ollama
+offer supported deployment of open-weight models, and \textcite{redhat2026hybrid}
+argue for placing each workload where its needs put it. For most institutions
+that is right. Write it down as a group policy:
 
 \begin{itemize}
-  \item \textbf{Local, always:} unpublished data, sensitive localities, personal
-    data, anything under an embargo or a restrictive data-sharing agreement.
-  \item \textbf{Local, by default:} bulk processing, routine extraction,
-    classification over large corpora, anything where per-token cost would
-    otherwise constrain the design.
-  \item \textbf{Hosted, acceptable:} public data, published literature, general
-    explanation, hard reasoning tasks where the capability gap binds.
-  \item \textbf{Hosted, with care:} code generation --- check first whether your
-    repository or its context is being transmitted, and whether your licence or
-    institutional policy permits it.
+  \item \textbf{Always local:} unpublished data, sensitive localities, personal
+    data, anything under embargo or a restrictive agreement.
+  \item \textbf{Local by default:} bulk processing, extraction and
+    classification over large collections.
+  \item \textbf{Hosted is fine:} public data, published literature, general
+    explanation, and hard reasoning where the capability gap matters.
+  \item \textbf{Hosted with care:} code generation --- check what context is
+    sent and whether your licences and policy allow it.
 \end{itemize}
-
-Write this down as a group policy. The decision should not be made freshly by
-each person under time pressure.
 
 \section{A reference architecture}
 
-A layered design, arranged so that the parts which must last are the simplest
-ones.
+Arrange the layers so that the parts that must last are the simplest.
 
 \begin{description}
-  \item[Client] Browser on the workstation; mobile via the same web interface
-    added to the home screen. No native applications required.
-  \item[Interface] Open WebUI or LibreChat. One chat surface, model switchable
-    per conversation. Owns no long-term knowledge.
-  \item[Routing] An OpenAI-compatible API layer. Providers are interchangeable
-    behind it --- local Ollama, or a hosted endpoint, chosen per request.
-  \item[Runtime] Ollama or vLLM. Stateless. Input to output, no history, no
-    opinions.
-  \item[Retrieval] PostgreSQL with \code{pgvector} for embeddings, metadata and
-    full-text search in one ACID store. LlamaIndex or Haystack for the pipeline.
-  \item[Archive] Plain Markdown or text files. Append-only, human-readable,
-    independent of any interface or database. This is the real long-term memory.
-  \item[Sync and backup] File-based sync (Nextcloud, WebDAV, Dropbox, git), under
-    normal 3-2-1 rules (\Cref{ch:organisation}).
+  \item[Interface] Open WebUI or LibreChat in a browser, with the model
+    switchable per conversation. It stores no long-term knowledge.
+  \item[Routing] An OpenAI-compatible API layer, behind which a local model or a
+    hosted one can be chosen per request.
+  \item[Runtime] Ollama for one user, vLLM for a group. Input in, output out.
+  \item[Retrieval] PostgreSQL with the \code{pgvector} extension, plus PostGIS
+    for spatial data. Embeddings from \code{bge-m3}, reranking with
+    \code{bge-reranker}, and LlamaIndex, Haystack or, for branching workflows,
+    LangGraph to connect them.
+  \item[Archive] Plain Markdown files, append-only. This is the real long-term
+    memory, synced and backed up under 3-2-1 (\Cref{ch:organisation}).
 \end{description}
 
-The principle underneath the layering:
-
-\begin{quote}
-\emph{The UI is for talking, the models are for thinking, and plain text is for
-remembering.}
-\end{quote}
-
-Interfaces are swappable. Models are stateless calculators. The Markdown archive
-is the notebook, and it is the only layer that must survive. Every component
-above it can be replaced without loss.
-
-\subsection{The logging proxy}
-
-One refinement worth the effort. Insert a small OpenAI-compatible proxy between
-the interface and the backends. It forwards requests unchanged and writes each
-exchange to a timestamped Markdown file with model name, role and content.
-
-This gives you an append-only, greppable, audit-friendly trail that survives
-interface changes, database migrations and vendor departures. Organise it as
-\code{\textasciitilde/chatlogs/YYYY-MM/topic.md} and sync it with everything
-else. It is also, not incidentally, exactly the provenance record
-\Cref{ch:reproducibility} asks for.
-
-\section{A FOSS stack, concretely}
-
-Permissively licensed throughout, sized for roughly a million documents:
-
-\begin{itemize}
-  \item \textbf{Embeddings:} \code{bge-m3} (MIT) or \code{nomic-embed-text-v1.5}
-    (Apache-2.0).
-  \item \textbf{Vector store, metadata and full-text search:} PostgreSQL +
-    \code{pgvector} (PostgreSQL licence), with PostGIS if the data is spatial.
-  \item \textbf{Retrieval:} hybrid full-text plus vector, reranked with
-    \code{bge-reranker}.
-  \item \textbf{Generation:} an Apache-2.0 instruct model sized to your hardware
-    --- 12B if you have 32\,GB, 30B if you have 64\,GB.
-  \item \textbf{Orchestration:} LlamaIndex or Haystack; LangGraph if the
-    workflow is genuinely a graph.
-  \item \textbf{Serving:} Ollama for single-user, vLLM for shared.
-  \item \textbf{Interface:} Open WebUI.
-  \item \textbf{Analytics:} DuckDB over Parquet for the tabular side.
-\end{itemize}
-
-Note what this stack does not require: an account, a contract, a network
-connection, or anyone's permission. For the operational details of standing one
-up --- reverse proxy, TLS, model management, resource limits ---
-\textcite{confidence2026localstack} is a practical walkthrough.
+\emph{The interface is for talking, the models are for thinking, and plain text
+is for remembering.} A small proxy between interface and runtime that writes
+every exchange to a dated Markdown file gives you the provenance record
+\Cref{ch:reproducibility} asks for. None of this needs an account, a contract or
+a network connection; \textcite{confidence2026localstack} walk through the
+practical setup.
 
 \section{A worked example: KYBELE}
 
 KYBELE, a project the author works on, is a literature assistant for Collembola
-(springtails) built on the SIB Literature Services (SIBiLS). It follows the
-reference architecture above, adding two layers: an orchestrator between
-interface and model that holds all the domain rules, and a reverse proxy
-(Caddy) that handles TLS and rate limits for everything public.
-
-\begin{description}
-  \item[Three front doors, one backend] A public website, Open WebUI for
-    registered users signing in through ELIXIR, and an agent skill with a
-    command-line tool for Claude Code or Codex. All three call the same
-    orchestrator, so the rules are written once.
-  \item[Serving] vLLM on the internal network only, never exposed. One small
-    open model at a time --- Qwen3-4B by default --- on a 16\,GB GPU, with
-    context capped at 4{,}096 tokens.
-  \item[Retrieval] SIBiLS and a curated local index, searched in parallel,
-    with \code{bge-m3} embeddings and \code{bge-reranker-v2-m3}.
-\end{description}
-
-The model is the least specialised part. The expertise sits elsewhere:
+(springtails) built on the SIB Literature Services (SIBiLS). It adds two layers
+to the architecture above: an \term{orchestrator} between interface and model
+that holds all the domain rules, and a reverse proxy (Caddy) handling encryption
+and rate limits. A public website, Open WebUI for users signing in through
+ELIXIR, and an agent skill for tools such as Claude Code all call the same
+orchestrator, so the rules are written once. The model --- Qwen3-4B by default,
+served by vLLM on a 16\,GB GPU and never exposed to the internet --- is the least
+specialised part. The expertise sits elsewhere:
 
 \begin{enumerate}
-  \item \textbf{Vocabulary.} Each question is expanded with curated Collembola
-    terms --- synonyms, accepted names, character terms --- by plain
-    lookup, not by the model.
+  \item \textbf{Vocabulary.} Questions are expanded with curated Collembola
+    terms --- synonyms, accepted names, character terms --- by plain lookup.
   \item \textbf{Scope in code.} Results are filtered to Collembola-annotated
-    items and anything else is flagged. The boundary is a filter, not a prompt
-    instruction the model can ignore.
+    items. The boundary is a filter, not a prompt instruction the model can
+    ignore.
   \item \textbf{Saying no.} If the curated evidence does not cover the question,
     the system says so instead of answering.
   \item \textbf{Citation check.} A citation that does not match a retrieved item
     is dropped or flagged.
-  \item \textbf{A gold set.} Expert-written questions with their expected
-    sources, rerun after every change of prompt, model or retrieval.
 \end{enumerate}
 
-The same design has already been tested on another curated resource.
-React-to-Me \parencite{mohammadi2025reacttome} answers questions over the
-expert-curated Reactome pathway knowledgebase. It combines keyword and vector
-search, confines answers to Reactome content with links to each entry, and turns
-to trusted external sources rather than guessing when Reactome does not cover
-the question. Hybrid search beat vector search alone, and in blinded expert
-ratings grounded answers were more often rated higher, with significant gains
-in accuracy, biological specificity and mechanistic depth.
+React-to-Me \parencite{mohammadi2025reacttome} has tested the same design on the
+expert-curated Reactome pathway database: combined keyword and vector search,
+answers confined to Reactome with links to each entry, and trusted outside
+sources instead of guesses when Reactome has no answer. Combined search beat
+vector search alone, and blinded experts more often rated the grounded answers
+higher, with significant gains in accuracy and biological detail. At the time of
+writing KYBELE's serving layer runs and the orchestrator is designed but not
+built; the design is the point here.
 
-At the time of writing the serving layer runs and the orchestrator is designed
-but not built. The design is the point here, not the product.
+\subsection{Testing it}
+
+A single accuracy score hides most of what matters. Three examples show other
+ways to test.
+
+\textbf{Test several things at once.} Karenina, from EMBL-EBI, lets experts
+say in plain language what a sound answer needs and what behaviour to test, and turns that into runnable checks \parencite{carli2026karenina}. On
+144 drug-discovery questions, giving seven models live access to the Open
+Targets database raised accuracy from 51 to 81 per cent. But 11 per cent of the
+answers given with that access were correct yet not supported by the evidence
+retrieved; invented PubMed
+identifiers gave way to a subtler failure, real papers cited for claims they do
+not make; and tool use cost 24 to 121 times more tokens. When a user confidently
+pushed back with false information, models abandoned correct answers 57 per cent
+of the time --- sycophancy, measured (\Cref{ch:powers}). A second model acting
+as a guard flagged 97 per cent of those reversals. On an agent benchmark,
+switching the harness alone moved one model from 50 to 65 per cent, and reading
+the agents' saved code separated flawed biology from failed computing.
+
+\textbf{Ask what a benchmark can prove.} \textcite{saezrodriguez2026benchmarking}
+argue that foundation models are hard to benchmark because they are meant to
+embody the processes that produced the data. They ask whether such models can be
+refuted, verified, or only judged by usefulness, and what part the scientific
+community should play in testing them.
+
+\textbf{Test against the previous version.} When EMBL-EBI rewrote InterProScan,
+its protein annotation pipeline, as a Nextflow workflow, the authors compared
+the new version's annotations of all Swiss-Prot proteins with the old one's. They
+found near-identical precision and sensitivity, at about twice the speed on large
+proteomes \parencite{blum2026interproscan}.
+
+For KYBELE this becomes a test suite, rerun after every change of prompt, model
+or retrieval:
+
+\begin{itemize}
+  \item a gold set of expert Collembola questions with expected sources --- did
+    it find them?
+  \item a grounding check --- is each claim supported by what was retrieved?
+  \item a citation audit --- does the cited paper say this?
+  \item a pushback test --- does it hold a correct answer when challenged?
+  \item the token cost of each answer;
+  \item a comparison with the previous version, so that replacing Qwen3-4B with
+    another model is accepted only if the gold-set results hold.
+\end{itemize}
 
 \subsection{Where fine-tuning fits}
 
-\textcite{asai2026openscholar} show the next step. Their OpenScholar retrieves
-from 45 million open-access papers and answers with citations. Asked to cite
-recent literature without retrieval, GPT-4o fabricated citations in 78--90 per
-cent of cases; OpenScholar's citation accuracy matched that of human experts. The
-part that matters here is how they trained a small model. They ran their own
-retrieval pipeline with a larger open model (Llama 3.1 70B), kept only the
+\textcite{asai2026openscholar} show the next step. OpenScholar retrieves from 45
+million open-access papers and answers with citations. Without retrieval, GPT-4o
+fabricated citations to recent literature in 78--90 per cent of cases;
+OpenScholar's citation accuracy matched human experts'. To train a small model
+they ran their pipeline with a larger open model (Llama 3.1 70B), kept only
 answers that passed a quality filter, mixed them half and half with general
 instruction data, and fine-tuned Llama 3.1 8B on the resulting 130{,}000
 examples. The 8B model beat GPT-4o by 6.1 per cent on correctness in multi-paper
-synthesis, and the code, models and data are all public. The authors are clear
-about the limits: retrieval sometimes misses the most relevant papers, and the
-8B model still makes factual errors.
+synthesis, and everything is public. Retrieval still sometimes misses the most
+relevant papers, and the 8B model still makes factual errors.
 
-KYBELE plans to adapt its small model with \term{LoRA} (low-rank adaptation:
-training a small set of added weights rather than the whole model), and the
-same recipe fits: the retrieval pipeline produces grounded answers to train on,
-and the expert gold set tests whether the tuned model is any better.
+KYBELE plans to adapt its model with \term{LoRA} (low-rank adaptation: training a
+small set of added weights rather than the whole model). The same recipe fits:
+the pipeline produces grounded answers to train on, and the test suite shows
+whether the tuned model is actually better.
 
 \begin{keypoint}
-Put domain expertise into data and code --- vocabulary, scope filter, gold set
---- before putting it into model weights. Fine-tune last, on outputs the
-retrieval pipeline has already grounded.
+Put domain expertise into data, code and tests --- vocabulary, scope filter,
+gold set --- before putting it into model weights. Fine-tune last, and only keep
+a tuned model that passes the tests.
 \end{keypoint}
 
 \section{Decentralised ecology}
 
-\textcite{placitelli2026seaturtle} is the proof that this is not theoretical for
-our field: a local-first, browser-based AI platform for sea turtle detection,
-built for decentralised ecological monitoring. Inference runs in the browser on
-the device that captured the image. No upload, no server, no connectivity
-requirement.
-
-For citizen science this architecture is strictly better. Volunteers keep their
-data, the system works in the field where the connection does not, and there is
-no server cost that ends when the grant does.
-
-\textcite{haas2025corda} generalise the programming model --- convergent
-replicated dataflows that let developers write local operations while the runtime
-reconciles global state. \textcite{kleppmann2024bluesky} demonstrate the
-federated-identity version at social-network scale. The infrastructure for
-decentralised scientific applications is maturing, and biodiversity monitoring
---- distributed, intermittently connected, institutionally fragmented --- is close
-to its ideal use case.
+\textcite{placitelli2026seaturtle} built a sea-turtle detection system that runs
+entirely in the browser of the device that took the photograph: no upload, no
+server, no connection needed. For citizen science this is better on every count:
+volunteers keep their data, it works in the field, and there is no server bill
+that ends with the grant. \textcite{haas2025corda} offer a programming model for
+such applications, in which each device works locally and the system reconciles
+the results, and \textcite{kleppmann2024bluesky} show federated identity working
+at social-network scale. Biodiversity monitoring --- distributed, often offline,
+spread across institutions --- is close to the ideal use.

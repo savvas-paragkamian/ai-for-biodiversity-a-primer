@@ -1,110 +1,64 @@
 \chapter{Checklists}
 \label{app:checklists}
 
-Detachable. Print them if that helps.
-
 \section{Before starting an AI-assisted project}
 
 \begin{itemize}[label=$\square$]
   \item Data classified: what may go to a hosted service, what may not.
-  \item \code{README.md} written --- what, why, how to run, current state.
-  \item \code{AGENTS.md} written --- conventions and explicit prohibitions.
-  \item Git initialised; \code{.gitignore} excludes data and credentials.
-  \item \code{data/raw/} populated, set read-only, checksummed.
-  \item Environment pinned (\code{renv.lock}, \code{uv.lock}).
+  \item \code{README.md} and \code{AGENTS.md} written.
+  \item Git initialised; data and credentials excluded.
+  \item \code{data/raw/} read-only and checksummed; environment pinned.
   \item Backup verified: three copies, two media, one off-site.
-  \item Decided which model, hosted or local, and why.
+  \item Model chosen, hosted or local, and the reason recorded.
 \end{itemize}
 
-\section{Before each agent session}
+\section{Each agent session}
 
 \begin{itemize}[label=$\square$]
-  \item Working tree clean, or checkpoint committed.
-  \item Agent started in the project directory, not \code{\$HOME}.
-  \item No credentials in the working tree or the readable environment.
-  \item Task scoped to something reviewable in one sitting.
-  \item Fresh session if the task changed.
+  \item Before: checkpoint committed; agent started in the project directory; no
+    credentials readable; task small enough to review in one sitting.
+  \item After: whole diff read; new dependencies verified; code run and output
+    inspected; row counts checked at every join; edge cases tried; run twice
+    with identical output; result checked against domain sense.
+  \item Prompt, model, version and settings logged; committed with a message.
 \end{itemize}
 
-\section{After each agent session}
+\section{Testing a model or assistant}
 
 \begin{itemize}[label=$\square$]
-  \item \code{git diff} read in full. All of it.
-  \item Any new dependency verified to exist and to be the intended package.
-  \item Code executed; output inspected, not just the exit status.
-  \item Row counts checked before and after every join.
-  \item Edge cases exercised: empty input, single row, \code{NA}s, duplicates.
-  \item Run twice; output identical.
-  \item Result sanity-checked against domain expectation.
-  \item Prompt, model, version and parameters logged to \code{logs/}.
-  \item Committed with a message stating what changed and why.
-\end{itemize}
-
-\section{Before citing anything}
-
-\begin{itemize}[label=$\square$]
-  \item Every DOI resolves.
-  \item Every reference without a DOI verified manually.
-  \item Every cited paper actually opened and read.
-  \item Author lists, years and journals match the real record.
-  \item The claim you attribute is the claim the paper makes.
+  \item Expert-written questions with expected answers and sources.
+  \item Grounding: every claim supported by what was retrieved.
+  \item Citations: each cited source says what it is cited for.
+  \item Pushback: a correct answer survives a confident false challenge.
+  \item Cost per answer recorded; results compared with the previous version.
 \end{itemize}
 
 \section{Before submitting a manuscript}
 
 \begin{itemize}[label=$\square$]
-  \item Every reference resolved (again --- references get added late).
-  \item AI use disclosed in methods or acknowledgements, specifically.
-  \item Model, version and date recorded.
-  \item Verification procedure described.
-  \item Code and prompts archived with a DOI (Zenodo).
-  \item Data deposited in the appropriate repository.
-  \item No confidential material was sent to a hosted service.
-  \item Every author has read the final text and can defend every claim.
+  \item Every DOI resolves and its title matches; others checked by hand.
+  \item Every cited paper opened, and the claim matches what it says.
+  \item AI use disclosed specifically: model, version, date, purpose, checks.
+  \item Code and prompts archived with a DOI; data deposited.
+  \item No confidential material sent to a hosted service.
+  \item Every author can defend every claim.
 \end{itemize}
 
 \section{Before reviewing a manuscript}
 
 \begin{itemize}[label=$\square$]
-  \item Checked the journal's policy on AI in peer review.
-  \item Manuscript NOT uploaded to any hosted service. Local model or none.
-  \item Judgement about soundness is yours, not a model's.
-\end{itemize}
-
-\section{Evaluating a tool before adopting it (SNIFF)}
-
-After \textcite{nagraj2026sniff}:
-
-\begin{itemize}[label=$\square$]
-  \item \textbf{Source} --- Who maintains it, and why? Funded, or a side project?
-  \item \textbf{Network} --- Part of a wider ecosystem, or isolated?
-  \item \textbf{Interaction} --- Are developers and users active? Issues answered?
-  \item \textbf{Fit} --- Does it match your use case and your licence
-    requirements?
-  \item \textbf{Fragility} --- How many dependencies? How current? Security
-    practices?
-\end{itemize}
-
-\section{Sizing hardware for local inference}
-
-\begin{itemize}[label=$\square$]
-  \item Largest model you need identified.
-  \item Memory computed: parameters $\times$ 0.6 for Q4, plus 25\% overhead.
-  \item Context window requirement added to the memory budget (KV cache).
-  \item Unified memory considered against discrete GPU for that capacity.
-  \item Power and cooling checked against where the machine will live.
-  \item Shared deployment considered --- one good machine usually beats several.
+  \item Journal policy on AI in peer review checked.
+  \item Manuscript not uploaded to any hosted service. Local model or none.
+  \item The judgement of soundness is yours.
 \end{itemize}
 
 \section{Institutional AI policy: minimum contents}
 
 \begin{itemize}[label=$\square$]
-  \item Data classification rules, with specifics, not principles.
+  \item Data classification rules, with specifics.
   \item Approved tools, each with a named owner.
-  \item Publication disclosure requirements.
-  \item Peer review prohibition on hosted services.
-  \item Agent sandboxing requirements; no production access.
-  \item Credential rotation after context exposure.
-  \item Procurement terms: does the vendor train on submitted data?
-  \item Review date. Annually is right.
+  \item Disclosure requirements for publications; no hosted services in review.
+  \item Agent sandboxing; no production access; credential rotation.
+  \item Procurement: does the vendor train on submitted data?
+  \item A review date. Yearly is right.
 \end{itemize}

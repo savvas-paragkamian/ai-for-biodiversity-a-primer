@@ -1,136 +1,129 @@
 \chapter{Glossary}
 \label{app:glossary}
 
-\begin{description}[itemsep=0.4em]
+\begin{description}[itemsep=0.2em]
 
-\item[Agent] A language model given tools and a loop, able to take actions
-  rather than only produce text.
+\item[Agent] A language model given tools and a loop, so it can act as well as
+  write.
 
-\item[Agent harness] The orchestration system around an agent: context
-  assembly, tool execution, permissions, memory, error recovery. Where the real
-  engineering differences between systems live.
+\item[Agent harness] The program around an agent: context, tools, permissions,
+  memory, error recovery. Where systems differ most.
 
-\item[AGENTS.md / CLAUDE.md] A plain-text file in a project stating conventions
-  and constraints for agents working in it. A behavioural contract, written in
-  response to observed failures.
+\item[AGENTS.md / CLAUDE.md] A plain-text file of rules for agents working in a
+  project, written in response to observed failures.
 
-\item[Attention] The transformer operation letting each position in a sequence
-  attend to every other position in parallel. The architectural change that made
-  training at scale practical.
+\item[AI-ready] Machine-readable, standardised, well-described, openly licensed
+  data: good data management with a new consumer (\Cref{ch:aireadydata}).
 
-\item[Chunking] Splitting documents into passages for embedding and retrieval.
-  Chunk size and boundary strategy affect RAG quality more than model choice.
+\item[Attention] The transformer operation that lets every position in a text
+  look at every other in parallel.
 
-\item[CHOP (Chat-Oriented Programming)] Iterative development in dialogue with a
-  model, with review at each step. Distinguished from \emph{vibe coding} by the
-  presence of verification.
+\item[CHOP (Chat-Oriented Programming)] Writing code in dialogue with a model,
+  checking each step. Unlike vibe coding, checking is in the loop.
 
-\item[Context window] The maximum tokens a model can attend to in one call.
-  Everything it knows during that call is in the window. Attention degrades
-  toward the middle of long contexts.
+\item[Chunking] Splitting documents into passages for retrieval.
+
+\item[Context window] Everything a model can see in one call, measured in
+  tokens. Material in the middle of long contexts is used less reliably.
+
+\item[Deep research] Search that breaks a question into parts, reads, and
+  decides what to search next before synthesising.
 
 \item[Deskilling] Losing a skill by handing it to a tool, and with it the
-  ability to check the tool's work \parencite{mammides2026llmecology}.
+  ability to check the tool \parencite{mammides2026llmecology}.
 
-\item[Embedding] A dense vector representation of text, such that semantically
-  similar text maps to nearby vectors. The basis of vector retrieval.
+\item[Embedding] A vector representing a text, such that similar texts lie close
+  together. The basis of vector search.
 
-\item[FAIR] Findable, Accessible, Interoperable, Reusable. The data management
-  principles biodiversity informatics has been implementing since well before
-  ``AI-ready'' existed.
+\item[FAIR] Findable, Accessible, Interoperable, Reusable: data principles
+  biodiversity informatics followed long before ``AI-ready''.
 
-\item[Fine-tuning] Further training of a pretrained model on domain data.
-  Distinct from RAG, which supplies knowledge at inference time without changing
-  weights.
+\item[Fine-tuning] Further training of a model on domain data. Unlike RAG, it
+  changes the weights.
 
-\item[Hallucination] Fluent, plausible, specific and false output.
-  \emph{Confabulation} is the more accurate term. Structural rather than
-  incidental: training rewards guessing over abstention
-  \parencite{kalai2025hallucinate}.
+\item[Hallucination] Fluent, specific and false output. It persists because
+  training rewards guessing over abstaining \parencite{kalai2025hallucinate}.
 
-\item[Inference] Running a trained model to produce output. What you do locally;
-  training is what you do not.
+\item[Inference] Running a trained model. What you do locally.
 
-\item[Jagged intelligence] \textcite{mitchell2026jagged}'s term for capability
-  that is uneven and unpredictable --- strong on hard tasks, failing on easy
-  ones, with failures not inferable from successes.
+\item[Instruction tuning] Training after pretraining that teaches a model to
+  follow instructions and decline some requests. The source of sycophancy.
 
-\item[KV cache] Cached key and value tensors from previous tokens, avoiding
-  recomputation during generation. Consumes memory proportional to context
-  length; budget for it when sizing hardware.
+\item[Jagged intelligence] Capability that is uneven and unpredictable, strong on
+  hard tasks and failing on easy ones \parencite{mitchell2026jagged}.
 
-\item[LLM] Large Language Model. A function mapping a token sequence to a
-  probability distribution over the next token. Stateless.
+\item[KV cache] Memory holding the context during generation; grows with context
+  length. Budget for it when buying hardware.
 
-\item[Local-first] Software architecture in which data lives on the user's
-  device and works without a network, with sync as an enhancement rather than a
-  requirement \parencite{kleppmann2019localfirst}.
+\item[LLM] Large language model: a function from a token sequence to
+  probabilities for the next token.
 
-\item[LoRA (Low-Rank Adaptation)] Fine-tuning that trains a small set of added
-  weights rather than the whole model. Cheap enough for a single GPU.
+\item[Local-first] Software whose data lives on the user's device and works
+  offline, with syncing optional \parencite{kleppmann2019localfirst}.
 
-\item[MaaS (Model as a Service)] Managed deployment of open-weight models by a
-  vendor. A middle path between SaaS and self-hosting.
+\item[LoRA (Low-Rank Adaptation)] Fine-tuning a small set of added weights
+  rather than the whole model. Cheap enough for one GPU.
 
-\item[MCP (Model Context Protocol)] A standard for exposing tools and data
-  sources to language models. Wrap a resource once rather than once per client.
-  Server descriptions enter the model's context and are untrusted input.
+\item[MaaS (Model as a Service)] Vendor-managed deployment of open-weight
+  models, between hosted services and self-hosting.
 
-\item[Multi-token prediction] A cheap mechanism guesses several tokens ahead and
-  the model checks them in one pass. Speeds up local inference where supported.
+\item[MCP (Model Context Protocol)] A standard way to offer tools and data to
+  models. Tool descriptions are untrusted input.
 
-\item[Open weight] Model parameters are downloadable. Distinct from open source,
-  which would additionally require training data, code and pipeline
-  \parencite{hai2026openweight}.
+\item[Multi-token prediction] A cheap guess of several tokens ahead, checked by
+  the model in one pass. Speeds up local inference.
 
-\item[Prompt injection] Instructions embedded in content a model reads, which the
-  model executes as commands. Unsolved, because instructions and data share one
-  channel with no separation.
+\item[Open weight] Downloadable parameters. Not open source, which would also
+  need the training data and code \parencite{hai2026openweight}.
 
-\item[Provenance] Documented origin and processing history of data or a result.
-  Absent by default in generative output; must be added by logging.
+\item[Orchestrator] The service between interface and model holding an
+  application's rules: query expansion, retrieval, filters, citation checks.
 
-\item[Quantisation] Reducing weight precision to save memory. Q4 is roughly four
-  bits per parameter, about a quarter of FP16, with modest quality loss.
+\item[Pretraining] Fitting a model to predict the next token over a large
+  body of text.
 
-\item[RAG (Retrieval-Augmented Generation)] Retrieving relevant documents and
-  supplying them in the prompt, giving a model access to knowledge it was not
-  trained on. Reduces but does not eliminate hallucination
+\item[Prompt injection] Instructions hidden in content a model reads, which it
+  then follows. Unsolved, because instructions and data share one channel.
+
+\item[Provenance] The documented origin and processing history of a result.
+  Missing from generated output unless you log it.
+
+\item[Quantisation] Storing weights at lower precision to save memory; Q4 uses
+  about a quarter of the memory of FP16.
+
+\item[RAG (Retrieval-Augmented Generation)] Supplying retrieved documents in the
+  prompt. Reduces but does not remove hallucination
   \parencite{kurniawan2024ragfailures}.
 
-\item[Reasoning effort] How long a model may write a hidden reasoning trace before
-  answering. Higher is slower and not always better; start low.
+\item[Reasoning effort] How long a model may reason privately before answering.
+  Start low.
 
-\item[Reranking] Re-scoring retrieved candidates with a more expensive
-  cross-encoder. A cheap and effective quality improvement in RAG pipelines.
+\item[Reranking] Re-scoring retrieved passages with a more careful model. Cheap
+  and effective.
 
 \item[Slop] Text produced in bulk by a model and passed on with little human
   thought in it \parencite{turner2026slop}.
 
-\item[Slopsquatting] Registering package names that models hallucinate, so that
-  generated install commands fetch attacker-controlled code.
+\item[Slopsquatting] Registering package names that models invent, so generated
+  install commands fetch an attacker's code.
 
-\item[Sycophancy] Excessive agreement with and validation of the user. Measurably
-  reduces prosocial intent and increases dependence
-  \parencite{cheng2026sycophancy}; can drive even rational updating toward false
+\item[Sycophancy] Excessive agreement with the user. It increases dependence
+  \parencite{cheng2026sycophancy} and can lead even rational users to false
   beliefs \parencite{chandra2026spiraling}.
 
-\item[Time-sharing] One computer divided among many users at terminals. The
-  1960s answer to machines too expensive for one person; see \Cref{ch:landscape}.
+\item[Time-sharing] One computer divided among many users at terminals; the
+  1960s answer to costly machines (\Cref{ch:landscape}).
 
-\item[Token] A subword chunk of text. Roughly four characters or three-quarters of
-  a word in English. The unit of both context and billing.
+\item[Token] A chunk of text, about four characters or three-quarters of an
+  English word. The unit of context and of billing.
 
-\item[Transformer] The neural network architecture underlying current language
-  models, introduced 2017. Replaced sequential recurrence with parallel
-  attention.
+\item[Transformer] The architecture behind current language models (2017),
+  processing whole sequences in parallel through attention.
 
-\item[Unified memory] Architecture in which CPU and GPU share one memory pool.
-  Enables running large models on consumer hardware, since capacity is not
-  limited to a fixed VRAM allocation.
+\item[Unified memory] Processor and graphics sharing one memory pool, so large
+  models fit on ordinary machines.
 
-\item[Vibe coding] Accepting AI-generated code without close review. Acceptable
-  for throwaway work; not for anything entering a manuscript, database or shared
-  pipeline.
+\item[Vibe coding] Accepting generated code without reading it. Fine for
+  throwaway work only.
 
 \end{description}
