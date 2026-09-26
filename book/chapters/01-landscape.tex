@@ -2,7 +2,54 @@
 \label{ch:landscape}
 
 Three words get used interchangeably and mean quite different things. Getting
-them apart is the first useful step.
+them apart is the first useful step. First, though, some history, because the
+choices in front of us now were argued out once already.
+
+\section{An argument from the 1960s}
+
+\textcite{waldrop2002dreammachine} tells it through J.\,C.\,R. Licklider, the
+psychologist who funded much of early interactive computing. In 1957 Licklider
+kept a record of his own working hours. About 85 per cent of
+his ``thinking'' time went on getting into a position to think: searching,
+calculating, plotting, transforming data. His 1960 paper
+\emph{Man-Computer Symbiosis} proposed a division of labour. People set goals,
+form hypotheses and judge results; the machine does the clerical work between
+decisions. He was sceptical of the artificial-intelligence claims of his day and
+expected people and computers to work as partners for a long time to come.
+
+Anyone who has spent a week cleaning an occurrence table will recognise the 85
+per cent. It is the frame this book uses: the machine takes the drudgery, and
+the judgement stays with the ecologist.
+
+Computers were then too expensive for one person, so the answer was
+\term{time-sharing}: one central machine divided among many users at terminals.
+MIT's CTSS (1961) and Project MAC (1963) grew into the plan for an
+``information utility'', supplied like electricity from large central plants on
+the belief that bigger computers were always cheaper per unit of work. Its
+flagship system, Multics, tried to do everything. It was late and complicated,
+and in 1969 Bell Labs withdrew from it.
+
+Two of the Bell Labs programmers, Ken Thompson and Dennis Ritchie, missed
+interactive computing enough to build their own on a discarded PDP-7. Their rule
+was lean, clean and simple. The result was Unix \parencite{ritchie1974unix}: a
+small kernel and a set of small tools, each doing one job, joined together with
+pipes. AT\&T was not allowed to sell it, so the source code went out on tape for
+the cost of materials. Users changed it, passed their changes around, and it
+spread to thousands of machines.
+
+In the author's view the pattern is repeating. Frontier AI is an information
+utility: a few very large central systems, rented by the call, justified by the
+belief that bigger is better. Open-weight models on your own hardware are the
+Unix branch: smaller, inspectable, changeable, and yours. This book leans towards
+the second for the reasons Unix lasted --- plain text as the common interface,
+small parts that combine, and source you can read (\Cref{ch:localfirst}).
+
+One more lesson from the time-sharing years. Robert Fano, who ran Project MAC,
+found that users did not only consume the service: they put their own programs
+and data into it, and ``the system became the repository of the knowledge of the
+community'' \parencite{waldrop2002dreammachine}. Biodiversity databases are
+repositories of exactly that kind. Whether AI systems give back to them or only
+draw from them is the question behind \Cref{ch:aireadydata}.
 
 \section{The model}
 
@@ -14,11 +61,7 @@ top of that one operation, repeated.
 The model itself is stateless. It has no memory of your previous question, no
 file system, no clock, and no ability to act. Each call is independent. If a
 system appears to remember something, that is because the text was fed back in.
-
-\begin{keypoint}
-The model is a calculator, not a colleague. It has no persistent state. Anything
-that looks like continuity is machinery around the model, not in it.
-\end{keypoint}
+The continuity is in the machinery around the model, not in it.
 
 \subsection{What ``training'' produced}
 
@@ -42,6 +85,10 @@ these claims from a complex systems perspective and are careful about them:
 much apparent emergence is an artefact of discontinuous evaluation metrics, and
 the deeper question of whether LLMs possess emergent \emph{intelligence} rather
 than emergent \emph{capability} remains open.
+\textcite{aguerayarcas2025intelligence} takes the opposite position: prediction
+is the basis of all intelligence, living or not, so a system trained to predict
+is intelligent in a real if partial sense. It is a serious argument, not a
+consensus.
 
 \textcite{mitchell2026jagged} names the practical version of this problem:
 \term{jagged intelligence}. Performance is not a single number. A system that

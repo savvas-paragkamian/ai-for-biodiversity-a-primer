@@ -40,7 +40,7 @@ Before any reference goes in:
 
 Verification is scripted, not sampled. Run it over the whole file after any
 change to the bibliography — it takes about ten minutes and there is no
-acceptable reason to skip it. All 39 DOIs and all 23 arXiv IDs currently pass.
+acceptable reason to skip it. All 40 DOIs and all 23 arXiv IDs currently pass.
 
 Every entry must be cited at least once. `biber` reports no undefined keys and
 the file should have no orphans either.

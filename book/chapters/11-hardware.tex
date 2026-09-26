@@ -121,14 +121,36 @@ noticeably; a smaller model at Q4 is usually better than a larger model at Q3.
 Given a fixed amount of memory, a larger model at Q4 beats a smaller one at Q8.
 Size buys more than precision does, down to about four bits.
 
+\section{Reasoning effort}
+
+Many recent open models \emph{think} before answering: they write a hidden
+reasoning trace, and \term{reasoning effort} sets how long it may run. On local
+hardware this setting matters more than the model choice.
+\textcite{willison2026qwen38} found that Qwen 3.8 27B ships with effort at its
+maximum. Asked for an SVG of a circle, it planned an animated ``geometric study''
+for several minutes. A drawing that took 21 minutes with full reasoning took just
+over two with reasoning off. The reasoning also used up the default 8{,}192-token
+context before any answer appeared.
+
+Start with reasoning low or off, and raise it only when the output is wrong ---
+in his tests a small tool did need reasoning to work first time. Two further
+settings help. Give the model more context than the runtime's default. And if
+the model supports \term{multi-token prediction}, where a cheap mechanism
+guesses several tokens ahead and the model checks them, turn it on: llama.cpp
+with it enabled ran Qwen 3.8 27B about 72 per cent faster than the default
+LM Studio build.
+
 \section{Models worth having locally}
 
 Names date quickly; the categories do not.
 
 \begin{itemize}
   \item \textbf{A coding model, 12--30B.} Dense Apache-2.0 models in this range
-    handle scoped edits, explanation and boilerplate well. Verify tool-calling
-    support before committing to one for agent use.
+    handle scoped edits, explanation and boilerplate well; at the time of
+    writing Qwen 3.8 27B can drive a coding agent \parencite{willison2026qwen38}.
+    Verify tool-calling support before committing to one for agent use. Dense
+    models read every weight for every token, so they are the ones memory
+    bandwidth slows most.
   \item \textbf{A general instruct model, 7--30B.} For summarisation, extraction
     and classification. Apache-2.0 licensing is available and worth insisting on.
   \item \textbf{An embedding model.} \code{bge-m3} or \code{nomic-embed-text}.

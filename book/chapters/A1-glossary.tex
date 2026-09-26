@@ -63,12 +63,18 @@
   device and works without a network, with sync as an enhancement rather than a
   requirement \parencite{kleppmann2019localfirst}.
 
+\item[LoRA (Low-Rank Adaptation)] Fine-tuning that trains a small set of added
+  weights rather than the whole model. Cheap enough for a single GPU.
+
 \item[MaaS (Model as a Service)] Managed deployment of open-weight models by a
   vendor. A middle path between SaaS and self-hosting.
 
 \item[MCP (Model Context Protocol)] A standard for exposing tools and data
   sources to language models. Wrap a resource once rather than once per client.
   Server descriptions enter the model's context and are untrusted input.
+
+\item[Multi-token prediction] A cheap mechanism guesses several tokens ahead and
+  the model checks them in one pass. Speeds up local inference where supported.
 
 \item[Open weight] Model parameters are downloadable. Distinct from open source,
   which would additionally require training data, code and pipeline
@@ -89,6 +95,9 @@
   trained on. Reduces but does not eliminate hallucination
   \parencite{kurniawan2024ragfailures}.
 
+\item[Reasoning effort] How long a model may write a hidden reasoning trace before
+  answering. Higher is slower and not always better; start low.
+
 \item[Reranking] Re-scoring retrieved candidates with a more expensive
   cross-encoder. A cheap and effective quality improvement in RAG pipelines.
 
@@ -99,6 +108,9 @@
   reduces prosocial intent and increases dependence
   \parencite{cheng2026sycophancy}; can drive even rational updating toward false
   beliefs \parencite{chandra2026spiraling}.
+
+\item[Time-sharing] One computer divided among many users at terminals. The
+  1960s answer to machines too expensive for one person; see \Cref{ch:landscape}.
 
 \item[Token] A subword chunk of text. Roughly four characters or three-quarters of
   a word in English. The unit of both context and billing.

@@ -76,12 +76,12 @@ workstation on hard reasoning, long-context work, and multi-file code changes.
 For the most demanding tasks this gap matters and pretending otherwise wastes
 your time.
 
-It is also narrowing, and the shape of the narrowing is favourable. Open-weight
-models in the 12--30B range now handle scoped coding, extraction,
-classification and summarisation well. Larger open-weight releases --- dense
-models in the 27B class, mixture-of-experts models at much larger nominal
-parameter counts --- close much of the remainder for users with the memory to run
-them.
+It is also narrowing. \textcite{willison2026qwen38} ran Qwen 3.8 27B, an
+Apache-2.0 model that fits in a 17\,GB file at Q4, on a 128\,GB laptop and on a
+DGX Spark. Offline, it wrote working code, drove a coding agent through a
+repository with tool calls, and drew accurate bounding boxes around birds in a
+photograph. His judgement was that a year earlier this would have matched the
+best proprietary models.
 
 \subsection{Hardware and maintenance}
 
@@ -92,9 +92,10 @@ omitted from the comparison.
 
 \subsection{Speed}
 
-Local inference is slower, sometimes considerably. For interactive work this is
-noticeable. For batch work it is irrelevant --- the job runs overnight either
-way.
+Local inference is slower. The same Qwen model ran at 15--30 tokens per second,
+slow enough that Willison still preferred hosted models for interactive work
+\parencite{willison2026qwen38}. For batch work it does not matter --- the job
+runs overnight either way.
 
 \section{Open, closed, and the layers between}
 
@@ -208,6 +209,72 @@ Note what this stack does not require: an account, a contract, a network
 connection, or anyone's permission. For the operational details of standing one
 up --- reverse proxy, TLS, model management, resource limits ---
 \textcite{confidence2026localstack} is a practical walkthrough.
+
+\section{A worked example: KYBELE}
+
+KYBELE, a project the author works on, is a literature assistant for Collembola
+(springtails) built on the SIB Literature Services (SIBiLS). It follows the
+reference architecture above, adding two layers: an orchestrator between
+interface and model that holds all the domain rules, and a reverse proxy
+(Caddy) that handles TLS and rate limits for everything public.
+
+\begin{description}
+  \item[Three front doors, one backend] A public website, Open WebUI for
+    registered users signing in through ELIXIR, and an agent skill with a
+    command-line tool for Claude Code or Codex. All three call the same
+    orchestrator, so the rules are written once.
+  \item[Serving] vLLM on the internal network only, never exposed. One small
+    open model at a time --- Qwen3-4B by default --- on a 16\,GB GPU, with
+    context capped at 4{,}096 tokens.
+  \item[Retrieval] SIBiLS and a curated local index, searched in parallel,
+    with \code{bge-m3} embeddings and \code{bge-reranker-v2-m3}.
+\end{description}
+
+The model is the least specialised part. The expertise sits elsewhere:
+
+\begin{enumerate}
+  \item \textbf{Vocabulary.} Each question is expanded with curated Collembola
+    terms --- synonyms, accepted names, character terms --- by plain
+    lookup, not by the model.
+  \item \textbf{Scope in code.} Results are filtered to Collembola-annotated
+    items and anything else is flagged. The boundary is a filter, not a prompt
+    instruction the model can ignore.
+  \item \textbf{Saying no.} If the curated evidence does not cover the question,
+    the system says so instead of answering.
+  \item \textbf{Citation check.} A citation that does not match a retrieved item
+    is dropped or flagged.
+  \item \textbf{A gold set.} Expert-written questions with their expected
+    sources, rerun after every change of prompt, model or retrieval.
+\end{enumerate}
+
+At the time of writing the serving layer runs and the orchestrator is designed
+but not built. The design is the point here, not the product.
+
+\subsection{Where fine-tuning fits}
+
+\textcite{asai2026openscholar} show the next step. Their OpenScholar retrieves
+from 45 million open-access papers and answers with citations. Asked to cite
+recent literature without retrieval, GPT-4o fabricated citations in 78--90 per
+cent of cases; OpenScholar's citation accuracy matched that of human experts. The
+part that matters here is how they trained a small model. They ran their own
+retrieval pipeline with a larger open model (Llama 3.1 70B), kept only the
+answers that passed a quality filter, mixed them half and half with general
+instruction data, and fine-tuned Llama 3.1 8B on the resulting 130{,}000
+examples. The 8B model beat GPT-4o by 6.1 per cent on correctness in multi-paper
+synthesis, and the code, models and data are all public. The authors are clear
+about the limits: retrieval sometimes misses the most relevant papers, and the
+8B model still makes factual errors.
+
+KYBELE plans to adapt its small model with \term{LoRA} (low-rank adaptation:
+training a small set of added weights rather than the whole model), and the
+same recipe fits: the retrieval pipeline produces grounded answers to train on,
+and the expert gold set tests whether the tuned model is any better.
+
+\begin{keypoint}
+Put domain expertise into data and code --- vocabulary, scope filter, gold set
+--- before putting it into model weights. Fine-tune last, on outputs the
+retrieval pipeline has already grounded.
+\end{keypoint}
 
 \section{Decentralised ecology}
 
