@@ -1,0 +1,87 @@
+% ---------------------------------------------------------------------------
+% preamble.tex --- minimal formatting, pdflatex + biber
+% ---------------------------------------------------------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+\usepackage[a4paper,margin=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{csquotes}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalise,nameinlink]{cleveref}
+\hypersetup{
+  pdftitle={AI for Ecologists: A Primer},
+  pdfauthor={Savvas Paragkamian},
+  bookmarksnumbered=true,
+}
+
+% --- bibliography ----------------------------------------------------------
+\usepackage[
+  backend=biber,
+  style=authoryear,
+  sorting=nyt,
+  maxbibnames=6,
+  minbibnames=3,
+  maxcitenames=2,
+  giveninits=true,
+  uniquename=init,
+  doi=true,
+  url=true,
+  isbn=false,
+  eprint=true,
+]{biblatex}
+\addbibresource{references.bib}
+
+% --- spacing and headings --------------------------------------------------
+\setlength{\parskip}{0.6em}
+\setlength{\parindent}{0pt}
+\setlist{itemsep=0.15em,topsep=0.3em}
+% description lists with the term on its own line
+\setlist[description]{style=nextline,leftmargin=0pt,labelwidth=0pt,labelindent=0pt}
+
+\usepackage{titlesec}
+\titleformat{\chapter}[hang]{\Large\bfseries}{\thechapter.}{0.6em}{}
+\titlespacing*{\chapter}{0pt}{0pt}{1.5em}
+\titleformat{\section}{\large\bfseries}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.6em}{}
+
+% --- code listings ---------------------------------------------------------
+\definecolor{codebg}{gray}{0.96}
+\lstset{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{codebg},
+  frame=none,
+  breaklines=true,
+  breakatwhitespace=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  xleftmargin=0.8em,
+  framexleftmargin=0.8em,
+  aboveskip=0.8em,
+  belowskip=0.8em,
+  literate={~}{{\textasciitilde}}1
+           {>}{{\textgreater}}1
+           {<}{{\textless}}1
+           {ö}{{\"o}}1 {ü}{{\"u}}1 {é}{{\'e}}1,
+}
+\lstdefinestyle{shell}{language=bash}
+
+% --- a plain "key point" environment (no boxes, minimal) -------------------
+\newenvironment{keypoint}
+  {\par\medskip\noindent\textbf{Key point.}\enspace\itshape}
+  {\par\medskip}
+
+% --- shorthand -------------------------------------------------------------
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\term}[1]{\emph{#1}}
