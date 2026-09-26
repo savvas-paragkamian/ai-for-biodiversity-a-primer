@@ -24,11 +24,67 @@ landmark numbers: near-atomic protein structure prediction at median 0.96\,\AA{}
 on CASP14, protein design success rates up to 92\%, sensitive cancer detection
 at AUC $\approx$ 0.93.
 
-\begin{keypoint}
-Deep learning succeeds where there is a large, densely-sampled, well-labelled
+Deep learning succeeds where there is a large, densely sampled, well-labelled
 corpus and an unambiguous target. Ecological field data rarely has any of the
 three.
-\end{keypoint}
+
+\section{What the ecology literature shows}
+
+Reviews of language models written for ecologists are rare.
+\textcite{mammides2026llmecology} is the fullest so far: 129 documents on
+ecology and conservation (85 peer-reviewed articles, 38 preprints, 6
+conference papers), sorted by what the models were used for. The preprint share
+tells you how young the evidence is. The main uses they found, with an example
+of each:
+
+\begin{description}
+  \item[Extracting data from text] Plant pathogens and their hosts from disease
+    reports, faster than human reviewers and with high accuracy; species
+    interactions from over 80{,}000 articles; wildlife-crime hotspots for sea
+    turtles from 247 Chinese court cases. Accuracy varied a great deal with
+    model and task.
+  \item[Querying databases in plain language] A chatbot over iDigBio, and a
+    pipeline that answers questions about eBird observations.
+  \item[Literature synthesis] Over two million articles screened for evidence
+    on nature-based solutions; literature reviews run as repeated prompting
+    with manual checks.
+  \item[Monitoring public sources] NewsPanda, a fine-tuned classifier used by
+    WWF to track news about thousands of conservation sites; detection of
+    wildlife trafficking in online adverts; visitor reviews of protected areas.
+  \item[Code] Writing, explaining, commenting and translating analysis code,
+    notably from R to Python, for a field where formal programming training is
+    often thin.
+  \item[Images and sound] BioCLIP, trained on 10 million images covering over
+    454{,}000 taxa, identifies species it was not trained on; WildCLIP finds
+    rare events in Serengeti camera-trap data; NatureLM-audio describes animal
+    calls from plain-language prompts.
+  \item[Communication and policy] Translation and editing for non-native
+    English speakers; OceanGPT, retrained on 67{,}000 ocean science documents;
+    checking national biodiversity targets against the global ones; and,
+    speculatively, agents that simulate stakeholders to test a policy.
+\end{description}
+
+Their list of problems is as long as the list of uses. Hallucination is worst
+on uncommon topics, which in ecology means most of them. Answers carry the bias
+of the training data: asked about ecological restoration, ChatGPT favoured
+researchers in high-income countries and underrepresented lower-income regions
+and Indigenous communities. Outputs are hard to reproduce because the models are
+opaque, give different answers to the same prompt, and are withdrawn without
+notice. Paid access and the skills needed may widen the gap between rich
+countries and poorer, often species-rich, ones. Relying on the model for code,
+synthesis and writing risks \term{deskilling} --- losing the skills needed to
+check it. And there is the running cost in energy and water.
+
+One warning in the review deserves repeating for this audience. Field studies
+are already a shrinking share of the literature, and students spend less time
+in the field. If language models pull attention and money further away from
+collecting primary observations, which are what ecological knowledge rests on,
+the authors count that as a major loss. It is the same point
+\textcite{mishra2026notready} makes from the data side.
+
+Their recommendations are the ones this book argues for: choose the model for
+the task, write careful prompts, ground answers with retrieval, keep a person
+checking the output, and publish prompts and workflows with the results.
 
 \section{Where ecology has genuine wins}
 
@@ -173,6 +229,23 @@ bioinformatics tasks and found comparable performance between leading agents and
 sharp decline with difficulty. The honest reading: useful for scoped,
 well-specified analytical tasks; unreliable for anything requiring sustained
 judgement about whether the analysis is the right one.
+
+The most striking result so far comes from inside a model company.
+\textcite{yoon2026art}, at Anthropic, set Claude Code agents loose on reverse
+transcriptases --- enzymes that copy RNA into DNA --- across 1.9 billion protein
+clusters. Worker agents planned and ran each task, supervisor agents reviewed
+them and opened new ones, and all of it went into a shared record: 119 tasks
+and 949 agent sessions over 21.5 hours, with no human intervention. Of 17
+candidate partner genes, 14 turned out to be annotation artefacts or parts of
+known systems. One worker, reading the raw DNA, noticed a run of
+repeats beside a phage enzyme. That became a new family, array-associated
+reverse transcriptases, whose repeat arrays resemble CRISPR arrays.
+
+Two caveats. The paper comes from the model's makers, using their own frontier
+model. And, as the authors say, the finding is a prediction from sequence
+alone: they have not shown that the enzyme is active or what the system
+does for the phage. The agents noticed an anomaly, which is where discovery
+starts; confirming it is still bench work.
 
 Nor is the randomness solved. Two runs of the same agent on the same input can
 give different answers. If the workflow has to be reproducible, that is a

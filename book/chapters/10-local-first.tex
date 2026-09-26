@@ -56,6 +56,21 @@ procurement checkbox applied afterwards. That is the right level at which to
 address it, though it presumes more freedom in system design than most
 institutions have.
 
+Governments have started to treat biological data the same way. Three US bills,
+endorsed by OpenAI and summarised by \textcite{turner2026databills}, would have
+NIST define what ``AI-ready'' means for a biological dataset and set minimum
+requirements for federally funded research; build a single entry point to
+federal biological data, with access controls and cybersecurity safeguards in
+tiers by sensitivity; and fund measurement standards, including for biosafety
+and biosecurity. The head of the commission behind them says AI-ready
+biological data ``must be treated like a strategic national resource''. Turner
+notes that the data-portal bill does not say how a dataset is assigned to a
+tier. Two lessons carry over. Data that one side calls
+AI-ready is data another side calls strategic, so who controls access is a
+sovereignty question (\Cref{ch:aireadydata}). And tiered access is the right
+model for sensitive ecological data too, such as the localities of threatened
+species --- but only once the rules for the tiers are written down.
+
 For a public research institution the practical questions are narrower. Can you
 continue your work if a provider changes terms, raises prices, or withdraws from
 your market? Can you audit what you depend on? Are you building infrastructure
@@ -246,6 +261,15 @@ The model is the least specialised part. The expertise sits elsewhere:
   \item \textbf{A gold set.} Expert-written questions with their expected
     sources, rerun after every change of prompt, model or retrieval.
 \end{enumerate}
+
+The same design has already been tested on another curated resource.
+React-to-Me \parencite{mohammadi2025reacttome} answers questions over the
+expert-curated Reactome pathway knowledgebase. It combines keyword and vector
+search, confines answers to Reactome content with links to each entry, and turns
+to trusted external sources rather than guessing when Reactome does not cover
+the question. Hybrid search beat vector search alone, and in blinded expert
+ratings grounded answers were more often rated higher, with significant gains
+in accuracy, biological specificity and mechanistic depth.
 
 At the time of writing the serving layer runs and the orchestrator is designed
 but not built. The design is the point here, not the product.

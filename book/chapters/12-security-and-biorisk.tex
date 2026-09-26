@@ -139,11 +139,9 @@ dependencies.
   \item Never point an agent at production infrastructure.
 \end{enumerate}
 
-\begin{keypoint}
-Credentials in a chat context should be considered compromised. Shared
+Treat credentials that have appeared in a chat as compromised. Shared
 conversations have surfaced in public search results with API keys intact
 \parencite{ibtimes2026claudechats}. Rotate, do not rationalise.
-\end{keypoint}
 
 \section{Dual use in biology}
 
@@ -234,6 +232,36 @@ from scratch.
   \item \textbf{Procurement.} Whether a service that trains on submitted data is
     acceptable, and under what contract terms.
 \end{itemize}
+
+\section{Risks to judgement}
+
+Not every risk is an attack. Two slow ones damage the research itself.
+
+The first is \term{sycophancy} (\Cref{ch:powers}). A model that agrees with you
+removes the second opinion you thought you were getting. Exposure to
+sycophantic AI increases dependence on it \parencite{cheng2026sycophancy}, and
+even a perfectly rational user who trusts a source that keeps agreeing will
+become confidently wrong \parencite{chandra2026spiraling}. In security terms it
+is a failure of review: the check is there on paper and absent in practice.
+Ask the model to argue against your result, and get a person to check anything
+that matters.
+
+The second is \term{slop}: text produced in bulk by a model and sent on with
+little human thought in it. \textcite{turner2026slop} describes inboxes,
+feeds, papers and grant proposals filling with it. A journal editor who met the
+authors of ten submissions already due for desk rejection found that three
+could not answer basic questions about their own papers and three more
+struggled with the details; the one paper whose authors could answer had a major
+error in its central claim. The consequence is that a publication tells you
+less than it did about what its authors understand. Turner's own experience
+points the same way: when he delegated writing, he lost the thinking that
+writing does. ``You become less capable while appearing more productive.'' This
+is the \term{deskilling} risk that \textcite{mammides2026llmecology} raise for
+ecology.
+
+Neither is fixed by tooling. The defence is the one this book keeps returning
+to: write your own arguments, check claims against sources, and put your name
+only on work you can explain.
 
 \section{The wider frame}
 
