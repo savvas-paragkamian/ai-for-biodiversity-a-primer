@@ -38,9 +38,11 @@ Before any reference goes in:
 3. Anything with neither identifier is verified by hand and the entry says what
    kind of document it is.
 
-Verification is scripted, not sampled. Run it over the whole file after any
-change to the bibliography — it takes about ten minutes and there is no
-acceptable reason to skip it. All 46 DOIs and all 23 arXiv IDs currently pass.
+Verification is scripted, not sampled. Run `python3 scripts/verify_bib.py`
+over the whole file after any change to the bibliography — it takes a few
+minutes and there is no acceptable reason to skip it. All 46 DOIs and all 23
+arXiv IDs currently pass. Each script in `scripts/` has a `--self-test` that
+plants errors; run it after changing a script.
 
 Every entry must be cited at least once. `biber` reports no undefined keys and
 the file should have no orphans either.
