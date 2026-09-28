@@ -38,35 +38,9 @@ fit at all.
 
 \section{Machines, and what they run}
 
-Indicative prices in euros at the time of writing.
-
-\begin{table}[htbp]
-\centering
-\caption{Representative machines for local inference.}
-\label{tab:hardware}
-\footnotesize
-\begin{tabularx}{\textwidth}{Xllll}
-\toprule
-\textbf{Machine} & \textbf{Memory} & \textbf{Price} & \textbf{Comfortably runs} & \textbf{Power} \\
-\midrule
-Mac mini M4 Pro            & 24--64\,GB  & 1{,}600--2{,}800 & 12--32B Q4 & 65\,W \\
-Mac Studio M4 Max/Ultra    & 64--192\,GB & 3{,}000--7{,}000 & 30--120B Q4 & 150\,W \\
-MacBook Pro M4 Max         & 36--128\,GB & 3{,}000--6{,}000 & 12--70B Q4 & 90\,W \\
-Framework Desktop (AI Max+ 395) & 64--128\,GB & 2{,}000--2{,}800 & 30--70B Q4 & 120\,W \\
-Beelink GTR9 Pro / GMKtec EVO-X2 & 64--128\,GB & 1{,}800--2{,}500 & 30--70B Q4 & 120\,W \\
-NVIDIA DGX Spark (GB10)    & 128\,GB     & 3{,}000--4{,}000 & 70--120B Q4 & 170\,W \\
-Workstation + RTX 5090     & 32\,GB VRAM & 3{,}500--5{,}000 & 12--32B Q4, fast & 600\,W \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\textbf{Under 2,000 euros}, a 48\,GB Mac mini or a 64\,GB AMD mini-PC runs a
-30B model usefully: the entry point for serious local work. \textbf{Around
-3,000}, a 128\,GB Mac Studio or DGX Spark opens 70B models, where open weights
-become competitive for scoped work; for a group, one such machine can serve
-several people. \textbf{A separate graphics card} is the choice if you also need
-to train, or want maximum speed on models under 32\,GB --- but 600\,W affects
-cooling, the electricity bill and where the machine can live.
+Representative machines and their prices at the time of writing are in
+\Cref{app:stateofplay}; they will change within a year. The size guide lasts
+longer.
 
 As a guide to size: text classification needs 1--7B models (a small fine-tuned
 model often beats a large general one); summarising and extraction 7--14B;
@@ -98,9 +72,10 @@ model about 72 per cent faster than the default LM Studio build.
 
 \section{Models worth having}
 
-Names date quickly; the categories do not. A coding model of 12--30B (at the time
-of writing Gemma 4, Kimi K2.7 and Qwen 3.7--3.8 families; Qwen 3.8 27B can drive a
-coding agent \parencite{willison2026qwen38}) --- check tool-calling support
+Names date quickly; the categories do not. A coding model of 12--30B (the Qwen, Gemma
+and Kimi families, for instance; Qwen 3.8 27B can drive a coding agent
+\parencite{willison2026qwen38}; versions current at the time of writing are in
+\Cref{app:stateofplay}) --- check tool-calling support
 before relying on it for agents. A general instruct model of 7--30B for
 summarising and extraction. An embedding model (\code{bge-m3}) and a reranker
 (\code{bge-reranker}). Whisper for transcription. A small 1--4B model for

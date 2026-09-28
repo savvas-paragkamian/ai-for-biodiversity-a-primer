@@ -5,7 +5,7 @@ that have actually gone wrong. Read before editing.
 
 ## What this is
 
-A LaTeX textbook, `book/`, called *AI for Ecologists: A Primer*. Source material
+A LaTeX textbook, `book/`, called *AI for Biodiversity: A Primer*. Source material
 is the Markdown notes in this directory and the papers in `../literature/`.
 
 `NOTES.md` is the outline the book follows. Treat it as the table of contents:
@@ -65,7 +65,8 @@ rewording; the author decides which.
 
 ## Prose
 
-The book is for working ecologists, not for machine learning researchers.
+The book is for working ecologists, taxonomists and biodiversity
+informaticians, not for machine learning researchers.
 
 - **Plain words over jargon.** Not "binding constraint", "load-bearing",
   "compositional", "posture", "leverage", "second-order effects", "substrate",
@@ -102,7 +103,11 @@ Minimal. That is the deliberate house style; don't improve it.
 - Cross-references with `cleveref`: `\Cref{ch:powers}`, `\Cref{tab:hardware}`.
 - Citations: `\textcite{}` in running prose, `\parencite{}` parenthetically.
 - Labels: chapters `ch:*`, tables `tab:*`, appendices `app:*`
-  (`app:glossary`, `app:checklists`, `app:tutorials`).
+  (`app:glossary`, `app:checklists`, `app:tutorials`, `app:stateofplay`).
+- Prices, exact model versions, harness lists and usage limits go in
+  `A4-state-of-play.tex` (`app:stateofplay`), dated. Chapters keep the reasoning
+  and the lasting names (Apple M-series unified memory, Qwen, Ollama, Claude
+  Code) and point there for the rest.
 - No Greek or other non-Latin characters in the `.tex` files — the build is
   `pdflatex` with T1 fonts and they fail. Transliterate.
 

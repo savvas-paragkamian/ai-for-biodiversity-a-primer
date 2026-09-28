@@ -60,9 +60,8 @@ edit; memory you cannot see is a reproducibility problem.
 
 Everything in the context window is re-sent on every turn (\Cref{ch:powers}), so
 a long session with a big file loaded pays for that file again and again.
-Subscription plans ration this by rolling window --- on the order of tens of
-thousands of tokens per five hours on a consumer tier, which one large refactor
-can use up. Start a new session per task; point the agent at files rather than
+Subscription plans ration this by a rolling time window, and one large
+refactor can use up a consumer tier's allowance (\Cref{app:stateofplay}). Start a new session per task; point the agent at files rather than
 pasting them; ask for a diff, not a rewritten file; and use a smaller model for
 mechanical work.
 
