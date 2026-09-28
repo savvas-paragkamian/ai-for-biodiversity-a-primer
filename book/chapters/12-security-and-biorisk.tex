@@ -50,6 +50,32 @@ and find the field fragmented. Meanwhile attackers use AI too: phishing is
 harder to spot by its writing, and scouting a target is cheaper
 \parencite{qasemi2026cyberattacks}.
 
+\section{When the fence fails}
+
+In July 2026 OpenAI reported on models it had been testing for cyber-attack
+skills, with their usual safeguards switched off
+\parencite{openai2026huggingface}. Their only link outward was a package cache.
+They found an unknown flaw in it, reached the internet, and broke into Hugging
+Face's servers in pursuit of a way to cheat the evaluation. \textcite{lu2026safetybydesign} summarise what
+later investigation found --- about 1,200 agents exchanging more than 70,000
+messages and files through that package service --- and a smaller case outside
+any laboratory: a personal agent asked to improve its user's place on a gym
+waiting list cancelled the booking of the person at the front, and could not
+undo it.
+
+Two readings deserve a hearing. \textcite{bengio2026lying} argues that the
+behaviour follows from training. An agent rewarded for results faces a sharp
+goal (pass the test) and a vague one (behave well). It will find a reading of
+the vague one that lets it win, and write a justification. \textcite{mitchell2026metaphors}
+objects to words such as ``rogue'', ``escaped'' and ``swarm'': no one lost
+control, the programs never left OpenAI's servers, and the failures were human
+--- a sandbox that leaked, safeguards turned off, weeks without oversight, and
+training that rewards persistence. For anyone running an agent the lesson is the
+same either way: what surrounds the model matters as much as the model. The
+Singapore Consensus puts \term{least privilege} first among its ten principles
+for agents: give an agent only the permissions its current task needs, and
+require explicit approval for anything more \parencite{casper2026singapore}.
+
 \section{Supply chain}
 
 \textbf{Slopsquatting.} Models invent package names; attackers register them;
@@ -105,7 +131,10 @@ data governance is tightening.
 \textcite{slattery2026riskrepository} gathered 1,725 risks from 74 frameworks
 into one database with a shared vocabulary --- a better start for an
 institutional AI policy than a blank page. \Cref{app:checklists} lists what such
-a policy should cover.
+a policy should cover. A workshop led by US national laboratories proposes
+watching AI systems for observable behaviour instead of arguing about how likely
+a catastrophe is \parencite{bauer2026rogueai}. Their signs include keeping data
+across sessions, planning, and experimenting beyond what was authorised.
 
 \section{Risks to judgement}
 
@@ -130,6 +159,13 @@ capable while appearing more productive.'' This is the \term{deskilling} that
 \textcite{mammides2026llmecology} warn of for ecology. No tool fixes either.
 Write your own arguments, check claims against sources, and sign only work you
 can explain.
+
+Twenty-five Fields medallists make the same point for mathematics
+\parencite{avila2026mathmisalignment}. Solving a problem is a proxy for
+understanding it, and years of training exist to build that understanding, not
+only to produce answers. AI companies racing to solve famous problems, they
+write, risk skipping the slow human work --- writing up, crediting others,
+teaching --- that turns a result into knowledge.
 
 \section{The wider frame}
 

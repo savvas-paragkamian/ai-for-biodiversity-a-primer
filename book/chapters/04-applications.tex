@@ -150,3 +150,17 @@ a shared life-science knowledge layer that agents query instead of every group
 building its own pipeline over the same literature. For assistants of this kind,
 a curated set of documents with citations beats a larger model without them
 (\Cref{ch:localfirst} works through an example).
+
+Two efforts are aimed at biodiversity data directly. In iChatBio
+\parencite{elliott2025ichatbio} a general chat agent splits a request into parts
+and hands each to an expert agent for one source: iDigBio, GBIF, iNaturalist,
+BHL, OBIS or the Atlas of Living Australia. Answers can be traced back to the
+records they came from. The EU's EOSC AIssistant project
+\parencite{eosc2026aissistant} started in September 2026, with biodiversity as
+one of three test domains and Naturalis among the partners. Its coordinator,
+TIB, has shown the design in a prototype
+\parencite{auer2025tibvision,oelen2025tibaissistant}. Single-task assistants
+pass results through a shared store and the researcher approves each step. The
+outputs are exported with their provenance as an RO-Crate, a standard bundle of
+files and their metadata. Neither has
+published an evaluation yet; judge them by what they deliver.

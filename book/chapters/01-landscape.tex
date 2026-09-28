@@ -96,7 +96,10 @@ program that runs the loop: it decides what the model sees, runs the tools the
 model asks for, feeds back the results, enforces permissions and decides when to
 stop. \textcite{liu2026claudecode} examined a production coding agent and found
 the core is a simple loop; most of the code is the permission system, context
-management, error recovery and memory around it.
+management, error recovery and memory around it. \textcite{wickham2026nobs}
+puts it in terms an R user already knows: a tool is a function plus a
+description of when to call it, and an agent is a chatbot given one tool that
+reads the state of the world and one that changes it.
 
 \begin{lstlisting}[style=shell,caption={The whole idea, in pseudocode}]
 while not done:
@@ -136,7 +139,10 @@ have seen. Write it after something goes wrong, not before.
 
 Terminal-based harnesses in common use include Claude Code, OpenCode, Codex,
 Gemini CLI, Copilot CLI and Aider; Cline, Continue and Roo Code live inside code
-editors. Life-science agents include Biomni \parencite{huang2025biomni},
+editors. Codex is open source and can drive other companies' models; its
+developers describe the harness as a set of crutches for the model ---
+guardrails, steering, context --- that shrinks as models improve
+\parencite{orosz2026codex}. Life-science agents include Biomni \parencite{huang2025biomni},
 PantheonOS \parencite{xu2026pantheonos} and OmicClaw
 \parencite{zeng2026omicclaw}. At the far end, systems now attempt whole research
 projects: generating ideas, running experiments and writing papers

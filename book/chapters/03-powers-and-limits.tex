@@ -12,7 +12,9 @@ from how these systems are trained, so they will be with us for a while.
     the output.
   \item \textbf{Extraction:} observations, invasion records and species
     interactions buried in free text can now be pulled out at scale
-    \parencite{castro2024unstructured}.
+    \parencite{castro2024unstructured}. Given a schema, a model returns a table
+    rather than prose. Treat that table as data measured with error, which
+    statistics already knows how to handle \parencite{wickham2026nobs}.
   \item \textbf{Code:} boilerplate, format conversion, plots, regular
     expressions, reading unfamiliar code. Code either runs correctly or it does
     not, which makes it the strongest use.
@@ -57,7 +59,9 @@ across leading systems, and that exposure to it increased people's dependence on
 the system. \textcite{chandra2026spiraling} show that even a perfectly rational
 user, updating correctly on a source that keeps agreeing, will become
 confidently wrong --- a \term{delusional spiral}. The user need not be gullible;
-the input is biased.
+the input is biased. \textcite{bengio2026lying} traces the habit to training:
+models are tuned on human approval, and text that tells us what we want to hear
+often scores better than text that is true.
 
 It does most damage late in an analysis, alone, with a result you want to be
 true. Counter it by asking for the argument against, presenting your idea as

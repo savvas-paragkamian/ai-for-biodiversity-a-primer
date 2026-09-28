@@ -55,6 +55,9 @@
 \item[KV cache] Memory holding the context during generation; grows with context
   length. Budget for it when buying hardware.
 
+\item[Least privilege] Giving an agent only the permissions its current task
+  needs, with explicit approval for anything more (\Cref{ch:security}).
+
 \item[LLM] Large language model: a function from a token sequence to
   probabilities for the next token.
 
@@ -100,6 +103,9 @@
 
 \item[Reranking] Re-scoring retrieved passages with a more careful model. Cheap
   and effective.
+
+\item[RO-Crate] A standard bundle of research files and the metadata that
+  describes them, including how they were produced.
 
 \item[Slop] Text produced in bulk by a model and passed on with little human
   thought in it \parencite{turner2026slop}.
