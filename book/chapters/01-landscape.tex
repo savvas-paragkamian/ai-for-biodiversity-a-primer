@@ -98,8 +98,8 @@ stop. \textcite{liu2026claudecode} examined a production coding agent and found
 the core is a simple loop; most of the code is the permission system, context
 management, error recovery and memory around it. \textcite{wickham2026nobs}
 puts it in terms an R user already knows: a tool is a function plus a
-description of when to call it, and an agent is a chatbot given one tool that
-reads the state of the world and one that changes it.
+description of when to call it, and an agent is a chatbot with two tools, one
+to look at the world and one to change it.
 
 \begin{lstlisting}[style=shell,caption={The whole idea, in pseudocode}]
 while not done:
