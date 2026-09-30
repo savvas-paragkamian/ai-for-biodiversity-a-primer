@@ -13,6 +13,20 @@ if you add a chapter, it should correspond to something there, and if you find
 yourself wanting a section that isn't in `NOTES.md`, say so rather than
 inventing one.
 
+## Start here
+
+Any agent, any harness. Read in this order before changing anything:
+
+1. This file, all of it. Then **Decisions already made** and **Open work**
+   near the end, so you don't reopen settled questions or duplicate work.
+2. `book/README.md`: scope, contents by part and chapter, and open issues.
+3. `NOTES.md`: the outline.
+4. The chapter you are about to touch, in full.
+
+You need `latexmk`, `biber`, `pdftotext`, `pandoc` and `hunspell`, and network
+access for `verify_bib.py` (Crossref and the arXiv API). If you can't run a
+check, say so in your report. Don't claim it passed.
+
 ## Never
 
 - **Never delete files.** Not in `../literature/`, not anywhere. If something
@@ -139,6 +153,17 @@ python3 scripts/check_language.py      # style, spelling, long sentences
 python3 scripts/check_plagiarism.py    # 8-word matches against ../literature
 ```
 
+Orphan check (every entry cited, every citation defined). Both lists must be empty:
+
+```bash
+cd book && python3 -c "
+import re,glob
+keys=re.findall(r'^@\w+\{([^,]+),',open('references.bib').read(),re.M)
+tex=''.join(open(f).read() for f in glob.glob('chapters/*.tex'))
+cited={k.strip() for g in re.findall(r'\\\\(?:text|paren)?cite\{([^}]*)\}',tex) for k in g.split(',')}
+print(len(keys),'entries; uncited:',[k for k in keys if k not in cited],'undefined:',sorted(cited-set(keys)))"
+```
+
 ## Web material: Appendix C
 
 Videos, newsletters, blogs, awesome lists and tool repositories are not
@@ -187,3 +212,69 @@ Example keys in the text must be obviously fake.
   `mv` and let the author run it.
 - Before adding new material, find out what is new: compare `../literature/`
   against `references.bib` rather than assuming.
+
+## Decisions already made
+
+Settled by the author. Don't reopen them in reviews or suggestions.
+
+- **Scope is biodiversity.** The title is *AI for Biodiversity: A Primer*. The
+  subject is language models and agents applied to biodiversity data and
+  literature; image, sound and species distribution models stay brief (Ch. 4).
+- **The wider frame stays.** The last section of Ch. 12 (noosphere, evolvable
+  AI, biospheric AI, von Neumann) is where data, complexity and history meet.
+  It is core, not a tangent: strengthen and connect it, never propose cutting it.
+- **KYBELE is the worked example** for biodiversity literature and knowledge
+  retrieval, to be expanded (see Open work).
+- **Details that will date go in Appendix D.** Lasting names stay in the
+  chapters (see Formatting).
+- **Deliberate exclusions from Appendix C:** Anna's Blog, the paper code
+  repositories from `../literature/` (not general tools), and
+  `simplifyingcomplexity.tech` (it couldn't be verified).
+
+## Open work
+
+Pick from here. Items marked **author** need the author's decision or material
+first: propose, don't implement.
+
+| Item | Status | Who |
+|---|---|---|
+| `openai2026huggingface` misattributed in Ch. 5 and Ch. 12 (see Bibliography) | Needs another source from `../literature/`, or rewording | Agent proposes, **author** decides |
+| Expand KYBELE as the running example | Blocked: KYBELE's design documents (repo, design doc, BEeS 2026 abstract, RIO draft) must be in `../literature/` first. `Kybele HCMR.md` covers tools only. Never write KYBELE features or results by inference | **author** |
+| Where KYBELE lives | Undecided. Recommended: thread it through Ch. 5 (retrieval), 7 (its AGENTS.md), 9 (logging), 10 (as now), 12 (scope enforced in code), 13 (literature stage). A dedicated chapter would need a `NOTES.md` entry | **author** |
+| Seth (2026) | Citation file only; needs the PDF in `../literature/` | **author** |
+| Rename "Researchers" in Appendix C to "Researchers and research infrastructures" (the iDigBio webinar sits there) | Offered, unanswered | **author** |
+| Trim the Bauer et al. sentence (Ch. 12 Governance); state that most measured evidence is biomedical, not ecological; guidance for R users; guidance for database maintainers (offering a database to agents via MCP) | Proposed in review, unanswered. The last two need sources in `../literature/` first | **author** |
+| New files in `../literature/` | Check whenever you start: anything not in `references.bib` is a candidate. Read it in full before placing it | Agent |
+
+When you finish an item, update this table and `book/README.md` (Open issues)
+in the same change.
+
+## Working with other agents
+
+Several agents may work here, in different harnesses and sessions. None can see
+another's private memory or chat. **This file and `book/README.md` are the
+shared record**: a decision that exists only in your context is lost to
+everyone else.
+
+- **One file, one agent.** Split work by chapter. `references.bib`, `main.tex`,
+  `AGENTS.md` and `book/README.md` are shared, so only one agent edits each at a
+  time. If you are running in parallel, hand your bibliography entries to
+  whoever owns `references.bib` rather than editing it yourself.
+- **Verify, don't trust.** Re-run the checks on another agent's work before
+  building on it: build, `verify_bib.py`, the orphan check, `check_language.py`,
+  `check_plagiarism.py`. A report that says "all checks passed" without output
+  is not evidence.
+- **Keep the numbers true.** After a bibliography change, update the counts
+  (entries, DOIs, arXiv IDs, checked by hand) here and in `book/README.md`.
+  After adding a key point or table, update those counts in Formatting.
+- **Report back** with:
+  1. what changed, as a diff or a file-and-line list;
+  2. each check, with its actual output;
+  3. what you did not verify, and why;
+  4. questions for the author, kept separate from what you did.
+- **Delegating a task:** give the receiving agent the chapter or files, the
+  source documents in `../literature/`, the checks to run, and the relevant
+  lines from Decisions and Open work. Don't assume it has read this file.
+- Harnesses read different files: Codex and OpenCode read `AGENTS.md`, while
+  Claude Code reads `CLAUDE.md`. If an agent ignores these rules, ask the author
+  whether to add a `CLAUDE.md` that points here. Don't create one yourself.
