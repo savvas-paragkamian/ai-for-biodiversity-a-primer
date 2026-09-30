@@ -1,11 +1,11 @@
 \chapter{Organising and Protecting Your Data}
 \label{ch:organisation}
 
-Filing and backups belong in a book about AI for two reasons. An agent finds its
-way round your project by reading it: meaningful names and a \code{README.md}
-let it find the right file at once, while \code{final2/} and
-\code{Untitled1.csv} make it read everything and guess. And agents delete
-files --- by request, by misreading, or by accident.
+Data organisation and backups matter when working with agents. An agent finds
+its way through a project by reading the files. Meaningful names and a
+\code{README.md} help it find what it needs, while \code{final2/} and
+\code{Untitled1.csv} leave it guessing. Backups matter because agents can
+delete files, whether asked to do so or through a mistake.
 \textcite{shapira2026agentsofchaos} observed agents carrying out destructive
 system commands when given real shell access. Your backups are what stand
 between that and a lost field season.
@@ -59,16 +59,17 @@ permissions turn that into a visible error instead of a silent loss.
 
 \section{Backup: 3-2-1}
 
-Keep three copies, on two different kinds of storage, with one off-site: the
-working copy, a local backup on a separate device such as a NAS, and a copy in
-another building or institutional storage.
+Keep three copies on two different kinds of storage, with one off-site.
+Alongside the working copy, keep a local backup on a separate device such as
+a NAS, and a copy in another building or institutional storage.
 
 \textbf{RAID is not a backup.} A RAID array survives a failed disk. It does not
 survive accidental deletion, ransomware, file-system corruption, theft, or an
 agent running \code{rm -rf} on the wrong path; every one of those reaches every
 disk at once. A NAS with RAID is a good second copy, not the second and third.
-And test restores: an unchecked backup is a hypothesis. Restore a random file
-from each copy every quarter and compare it with the original.
+Check that you can restore the data as well. Every quarter, restore a random
+file from each copy and compare it with the original. This checks that the
+backup will be useful when you need it.
 
 \section{Version control}
 

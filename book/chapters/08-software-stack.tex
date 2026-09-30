@@ -1,7 +1,9 @@
 \chapter{The Software Stack}
 \label{ch:stack}
 
-The layers you will touch, and the choices worth making deliberately.
+An analysis depends on several layers of software, from the operating system
+to the scripts. Understanding what each layer does helps us choose tools and
+keep the workflow reproducible.
 
 \section{Layers and interfaces}
 
@@ -39,15 +41,16 @@ That is also why agent harnesses live in the terminal.
   \item Assert your assumptions: row counts, value ranges, join cardinality.
   \item Write the README as you go.
   \item Run everything from raw data to figures with one command.
-  \item Evaluate a tool before depending on it, using SNIFF: \textbf{S}ource
+  \item Evaluate a tool before depending on it, using SNIFF. Its criteria are \textbf{S}ource
     (who maintains it and why), \textbf{N}etwork (is it part of an ecosystem),
     \textbf{I}nteraction (are developers and users active), \textbf{F}it (use
     case and licence) and \textbf{F}ragility (its own dependencies)
     \parencite{nagraj2026sniff}.
 \end{enumerate}
 
-An agent in a well-organised project is fast and safe; in a disorganised one it
-is fast and dangerous.
+These practices also make an agent's work easier to check. A disorganised
+project lets mistakes spread quickly, even when the agent appears to be
+making progress.
 
 \section{Local model tooling}
 
@@ -69,9 +72,10 @@ ollama run gemma4:12b
 ollama ps                          # CONTEXT must read 32768
 \end{lstlisting}
 
-Two settings cause most local-agent failures: the harness must be told the
-model supports tools (in OpenCode, \code{"tools": true}), and the context must
-be enlarged, or the loop truncates in ways that look like incompetence. A 12B
+Two settings cause most local-agent failures. The harness must be told that
+the model supports tools (in OpenCode, \code{"tools": true}). The context must
+also be enlarged; otherwise, information is cut from the loop and the agent
+appears unable to follow the task. A 12B
 local model is useful for small edits and explanation, and well behind frontier
 models on work spanning many files.
 

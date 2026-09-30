@@ -1,9 +1,9 @@
 \chapter{Reproducibility When the Tool Varies}
 \label{ch:reproducibility}
 
-Reproducibility has a precise vocabulary that is often used loosely
-(\Cref{tab:reproducibility}). This chapter then deals with the new problem: a
-step in the pipeline that does not give the same answer twice.
+Reproducibility covers several distinct questions, described in
+\Cref{tab:reproducibility}. Language models add a difficulty to these familiar
+questions: a step in the pipeline may give a different answer each time it runs.
 
 \begin{table}[htbp]
 \centering
@@ -68,7 +68,8 @@ Review: 1,847 rows in, 1,847 out. 23 NO_MATCH checked by hand:
   19 typos fixed in a lookup table, 4 genuine nomina nuda.
 \end{lstlisting}
 
-Plain Markdown, committed next to the analysis. It takes two minutes.
+Keep this record in plain Markdown alongside the analysis, and commit it with
+the code. A short record is enough if it lets someone check what was done.
 
 \section{The methods section}
 
@@ -86,8 +87,9 @@ at \textit{[DOI]}. The authors take full responsibility for the content.
 \section{Containers}
 
 A container pins the operating system and libraries. It does not remove model
-randomness, but with the model file inside it and no network at run time you
-have the closest thing available to a deterministic AI-assisted pipeline:
+randomness. Including the model file and disabling the network at run time
+brings an AI-assisted pipeline as close to deterministic operation as currently
+possible:
 
 \begin{lstlisting}[style=shell]
 FROM docker.io/rocker/r-ver:4.4.1

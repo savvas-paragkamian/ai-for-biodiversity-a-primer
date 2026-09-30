@@ -6,8 +6,8 @@
 \item[Agent] A language model given tools and a loop, so it can act as well as
   write.
 
-\item[Agent harness] The program around an agent: context, tools, permissions,
-  memory, error recovery. Where systems differ most.
+\item[Agent harness] The program that manages an agent's context, tools,
+  permissions, memory and error recovery. These are where systems differ most.
 
 \item[AGENTS.md / CLAUDE.md] A plain-text file of rules for agents working in a
   project, written in response to observed failures.
@@ -26,8 +26,9 @@
 \item[Context window] Everything a model can see in one call, measured in
   tokens. Material in the middle of long contexts is used less reliably.
 
-\item[Deep research] Search that breaks a question into parts, reads, and
-  decides what to search next before synthesising.
+\item[Deep research] A search process that breaks a question into parts,
+  reads the retrieved material and decides what to search next before
+  bringing the results together.
 
 \item[Deskilling] Losing a skill by handing it to a tool, and with it the
   ability to check the tool \parencite{mammides2026llmecology}.
@@ -44,7 +45,8 @@
 \item[Hallucination] Fluent, specific and false output. It persists because
   training rewards guessing over abstaining \parencite{kalai2025hallucinate}.
 
-\item[Inference] Running a trained model. What you do locally.
+\item[Inference] Running a trained model to produce an output, including
+  when you run a model locally.
 
 \item[Instruction tuning] Training after pretraining that teaches a model to
   follow instructions and decline some requests. The source of sycophancy.

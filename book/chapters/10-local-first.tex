@@ -4,7 +4,8 @@
 \textcite{kleppmann2019localfirst} listed what software must do if users are to
 own their data: be fast, work across devices and offline, support
 collaboration, last, be private by default, and leave the user in control. The
-paper predates the current AI boom and applies to it exactly.
+paper predates the current AI boom, but its questions also help us assess
+how we use models and who controls the data.
 
 \section{The case for local}
 
@@ -39,20 +40,21 @@ model. \textcite{esposito2026sovereign} argue that sovereignty must be designed
 into a system rather than ticked off at procurement.
 
 Governments now treat biological data the same way. Three US bills, endorsed by
-OpenAI and summarised by \textcite{turner2026databills}, would have the national
-standards agency define what ``AI-ready'' means for biological datasets and set
-minimum requirements for federally funded research; create one gateway
-to the federal government's biological data, with access controls in tiers by sensitivity; and
-fund measurement standards, including for biosafety and biosecurity. The head of
-the commission behind them says AI-ready biological data ``must be treated like a
-strategic national resource''; Turner notes that the bill does not say how a
+OpenAI and summarised by \textcite{turner2026databills}, propose changes to how
+biological data is managed. The national standards agency would define
+``AI-ready'' biological datasets and set minimum requirements for federally
+funded research. A single gateway would provide access to federal biological
+data, with tiers based on sensitivity. The bills would also fund measurement
+standards, including for biosafety and biosecurity. The head of
+the commission behind them says ``AI-ready biological data must be treated like a
+strategic national resource''. Turner notes that the bill does not say how a
 dataset is assigned to a tier. Two lessons carry over. Data one side calls
 AI-ready, another calls strategic, so control of access is a sovereignty
 question. And tiered access suits sensitive ecological data, such as the
 locations of threatened species --- once the rules for the tiers are written
 down.
 
-For a public institution the practical questions are simpler. Could you carry on
+For a public institution, these arguments lead to practical questions. Could you carry on
 if a provider changed its terms, raised prices or left your market? Can you
 audit what you depend on? Will your infrastructure outlive the contract?
 
@@ -100,8 +102,9 @@ Self-hosted open weights & Control, privacy, offline & Capability gap, hardware,
 
 \term{Model as a Service} is the middle path: firms including Red Hat and Ollama
 offer supported deployment of open-weight models, and \textcite{redhat2026hybrid}
-argue for placing each workload where its needs put it. For most institutions
-that is right. Write it down as a group policy:
+argue for placing each workload where its needs put it. In my view, this is a
+useful approach for most institutions. A group policy can make these choices
+explicit:
 
 \begin{itemize}
   \item \textbf{Always local:} unpublished data, sensitive localities, personal
@@ -116,7 +119,8 @@ that is right. Write it down as a group policy:
 
 \section{A reference architecture}
 
-Arrange the layers so that the parts that must last are the simplest.
+The architecture follows the same principle: keep the parts that must last
+simple, and allow the others to be replaced. Each layer has a specific role.
 
 \begin{description}
   \item[Interface] Open WebUI or LibreChat in a browser, with the model
@@ -164,9 +168,9 @@ specialised part. The expertise sits elsewhere:
 \end{enumerate}
 
 React-to-Me \parencite{mohammadi2025reacttome} has tested the same design on the
-expert-curated Reactome pathway database: combined keyword and vector search,
-answers confined to Reactome with links to each entry, and trusted outside
-sources instead of guesses when Reactome has no answer. Combined search beat
+expert-curated Reactome pathway database. It combines keyword and vector search
+and confines answers to Reactome, with links to each entry. When Reactome has
+no answer, it uses trusted outside sources instead of guesses. Combined search beat
 vector search alone, and blinded experts more often rated the grounded answers
 higher, with significant gains in accuracy and biological detail. At the time of
 writing KYBELE's serving layer runs and the orchestrator is designed but not
@@ -180,11 +184,11 @@ ways to test.
 \textbf{Test several things at once.} Karenina, from EMBL-EBI, lets experts
 say in plain language what a sound answer needs and what behaviour to test, and turns that into runnable checks \parencite{carli2026karenina}. On
 144 drug-discovery questions, giving seven models live access to the Open
-Targets database raised accuracy from 51 to 81 per cent. But 11 per cent of the
-answers given with that access were correct yet not supported by the evidence
-retrieved; invented PubMed
-identifiers gave way to a subtler failure, real papers cited for claims they do
-not make; and tool use cost 24 to 121 times more tokens. When a user confidently
+Targets database raised accuracy from 51 to 81 per cent. However, 11 per cent
+of the answers given with that access were correct but unsupported by the
+retrieved evidence. Invented PubMed identifiers gave way to real papers cited
+for claims they do not make. Tool use also cost 24 to 121 times more tokens.
+When a user confidently
 pushed back with false information, models abandoned correct answers 57 per cent
 of the time --- sycophancy, measured (\Cref{ch:powers}). A second model acting
 as a guard flagged 97 per cent of those reversals. On an agent benchmark,
@@ -222,11 +226,11 @@ or retrieval:
 \textcite{asai2026openscholar} show the next step. OpenScholar retrieves from 45
 million open-access papers and answers with citations. Without retrieval, GPT-4o
 fabricated citations to recent literature in 78--90 per cent of cases;
-OpenScholar's citation accuracy matched human experts'. To train a small model
-they ran their pipeline with a larger open model (Llama 3.1 70B), kept only
-answers that passed a quality filter, mixed them half and half with general
-instruction data, and fine-tuned Llama 3.1 8B on the resulting 130{,}000
-examples. The 8B model beat GPT-4o by 6.1 per cent on correctness in multi-paper
+OpenScholar's citation accuracy matched human experts'. To train a small model,
+they ran their pipeline with a larger open model (Llama 3.1 70B).
+They kept answers that passed a quality filter and mixed them half and half
+with general instruction data. They then fine-tuned Llama 3.1 8B on the
+resulting 130{,}000 examples. The 8B model beat GPT-4o by 6.1 per cent on correctness in multi-paper
 synthesis, and everything is public. Retrieval still sometimes misses the most
 relevant papers, and the 8B model still makes factual errors.
 
@@ -245,9 +249,9 @@ a tuned model that passes the tests.
 
 \textcite{placitelli2026seaturtle} built a sea-turtle detection system that runs
 entirely in the browser of the device that took the photograph: no upload, no
-server, no connection needed. For citizen science this is better on every count:
-volunteers keep their data, it works in the field, and there is no server bill
-that ends with the grant. \textcite{haas2025corda} offer a programming model for
+server, no connection needed. This offers several advantages for citizen science.
+Volunteers keep their data, the system works in the field, and it can continue
+without a server budget when the grant ends. \textcite{haas2025corda} offer a programming model for
 such applications, in which each device works locally and the system reconciles
 the results, and \textcite{kleppmann2024bluesky} show federated identity working
 at social-network scale. Biodiversity monitoring --- distributed, often offline,

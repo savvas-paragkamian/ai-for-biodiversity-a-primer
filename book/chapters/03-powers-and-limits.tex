@@ -22,7 +22,8 @@ from how these systems are trained, so they will be with us for a while.
     page, and an explanation of a method you half-know is easy to check.
 \end{itemize}
 
-The common thread: you supply the facts, or you can check the answer cheaply.
+These uses have something in common: you supply the facts, or you can check
+the answer without much extra work.
 
 \section{Hallucination}
 
@@ -34,10 +35,10 @@ and a good test-taker never leaves a blank.
 
 The failure that matters most for research is invented references.
 \textcite{zhao2026citations} checked 111 million references in 2.5 million
-papers and found a sharp rise in references to papers that do not exist,
-coinciding with the spread of language models --- about 147,000 in 2025 alone.
-They have real authors, a real journal and a plausible title. They pass a skim
-and fail a lookup.
+papers. They found a sharp rise in references to papers that do not exist,
+coinciding with the spread of language models. About 147,000 appeared in 2025 alone.
+They have real authors, a real journal and a plausible title. They look
+convincing until you try to find the paper.
 
 \term{Retrieval-augmented generation} (RAG), which gives the model relevant
 documents before it answers, reduces this but does not remove it. Legal research
@@ -52,9 +53,9 @@ it enters a manuscript. Every one, not a sample. It takes minutes by script.
 
 \section{Sycophancy}
 
-Models agree with you. Asked about your hypothesis, they find merit in it; told
-they are wrong, they apologise and switch, even when you are the one who is
-wrong. \textcite{cheng2026sycophancy} found this \term{sycophancy} widespread
+Models tend to agree with you. Asked about your hypothesis, they find merit
+in it. Tell them they are wrong and they apologise and change their answer,
+even when your correction is wrong. \textcite{cheng2026sycophancy} found this \term{sycophancy} widespread
 across leading systems, and that exposure to it increased people's dependence on
 the system. \textcite{chandra2026spiraling} show that even a perfectly rational
 user, updating correctly on a source that keeps agreeing, will become
@@ -101,8 +102,8 @@ results. It is measured in tokens. Useful rules for English: one token is about
 four characters or three-quarters of a word, so 100 tokens is about 75 words. A
 200-line R script is roughly 1,000--2,000 tokens.
 
-Two consequences. The whole window is re-sent on every turn, so cost and delay
-grow with it. And models attend less reliably to material in the middle of a
+This has two consequences. The whole window is re-sent on every turn, so cost
+and delay grow with it. Models also attend less reliably to material in the middle of a
 long context than at either end. Start a fresh session when the task changes; a
 short, relevant context beats a long one with the answer buried in it.
 
@@ -110,6 +111,6 @@ short, relevant context beats a long one with the answer buried in it.
 
 The detectors do not work reliably. \textcite{pudasaini2026detection} found
 that detectors with high reported accuracy mostly exploit quirks of their test
-data, fail on new text, and systematically flag non-native English writing as
-machine-generated --- in ecology, a large share of the field. Do not use them to
+data and fail on new text. They systematically flag non-native English writing
+as machine-generated, affecting a large share of ecology. Do not use them to
 make decisions about people. The answer is disclosure (\Cref{ch:scientificworkflow}).

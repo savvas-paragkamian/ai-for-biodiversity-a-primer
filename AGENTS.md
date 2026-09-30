@@ -79,6 +79,10 @@ rewording; the author decides which.
 
 ## Prose
 
+Read `WRITING_STYLE.md` before drafting or revising prose. The author requested
+that the PhD thesis inform structure and flow only, never factual content or
+citations. The reusable guide records that preference.
+
 The book is for working ecologists, taxonomists and biodiversity
 informaticians, not for machine learning researchers.
 
@@ -238,6 +242,7 @@ first: propose, don't implement.
 
 | Item | Status | Who |
 |---|---|---|
+| Linguistic revision and reusable author style guide | Completed 30 September 2026; see `WRITING_STYLE.md` and `LINGUISTIC_REVISION.md` | Agent |
 | `openai2026huggingface` misattributed in Ch. 5 and Ch. 12 (see Bibliography) | Needs another source from `../literature/`, or rewording | Agent proposes, **author** decides |
 | Expand KYBELE as the running example | Blocked: KYBELE's design documents (repo, design doc, BEeS 2026 abstract, RIO draft) must be in `../literature/` first. `Kybele HCMR.md` covers tools only. Never write KYBELE features or results by inference | **author** |
 | Where KYBELE lives | Undecided. Recommended: thread it through Ch. 5 (retrieval), 7 (its AGENTS.md), 9 (logging), 10 (as now), 12 (scope enforced in code), 13 (literature stage). A dedicated chapter would need a `NOTES.md` entry | **author** |

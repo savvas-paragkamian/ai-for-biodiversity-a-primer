@@ -1,9 +1,9 @@
 \chapter{Chatbots, Models and Agents}
 \label{ch:landscape}
 
-Three words get used interchangeably and mean quite different things. Before
-separating them, some history, because the choices in front of us were argued
-out once already.
+Chatbots, models and agents are often discussed as if they were the same thing.
+They do different jobs. Some history helps explain the distinction, because
+today's choices echo an earlier argument about computing.
 
 \section{An argument from the 1960s}
 
@@ -23,8 +23,8 @@ ecologist.
 Computers were then too expensive for one person, so the answer was
 \term{time-sharing}: one central machine divided among many users at terminals.
 MIT's CTSS (1961) and Project MAC (1963) grew into the plan for an
-``information utility'', supplied like electricity from large central plants on
-the belief that bigger computers were always cheaper per unit of work. Its
+``information utility'', supplied like electricity from large central plants.
+The plan assumed that bigger computers were always cheaper per unit of work. Its
 flagship system, Multics, tried to do everything. It was late and complicated,
 and in 1969 Bell Labs withdrew from it.
 
@@ -41,9 +41,9 @@ utility: a few very large central systems, rented by the call, justified by the
 belief that bigger is better. Open-weight models on your own hardware are the
 Unix branch: smaller, inspectable, changeable, and yours. This book leans
 towards the second for the reasons Unix lasted --- plain text as the common
-interface, small parts that combine, and source you can read. One more lesson
-from those years: Robert Fano, who ran Project MAC, found that users put their
-own programs and data into the system, so that ``the system became the
+interface, small parts that combine, and source you can read. Robert Fano,
+who ran Project MAC, noticed another change. Users put their own programs
+and data into it, so that ``the system became the
 repository of the knowledge of the community''
 \parencite{waldrop2002dreammachine}. Biodiversity databases are repositories of
 exactly that kind; whether AI gives back to them or only draws from them is the
@@ -65,13 +65,14 @@ instructions and decline some requests. That second stage is where sycophancy
 comes from (\Cref{ch:powers}) and where the model learns to guess confidently
 rather than admit it does not know \parencite{kalai2025hallucinate}.
 
-How capable are these models? Claims of \term{emergent} abilities, which
-appear suddenly at scale, are partly an artefact of how tests are scored, and
-whether the models have emergent \emph{intelligence} is an open question
+How capable are these models? Some abilities are called \term{emergent}
+because they appear suddenly as models grow. That appearance partly depends
+on how tests are scored. Whether models have emergent \emph{intelligence}
+remains an open question
 \parencite{krakauer2026emergence}. \textcite{mitchell2026jagged} calls the
 practical problem \term{jagged intelligence}: a system that solves a
 research-level problem can fail at counting or at a reworded version of the same
-question, so benchmark scores say little about your task.
+question. Benchmark scores therefore say little about your task.
 \textcite{coppola2026transformers} argues the architecture is more
 understandable than its reputation, proving that a transformer layer performs one
 round of a well-known statistical inference method (belief propagation). At the
@@ -92,14 +93,14 @@ acting in the world.
 \section{The agent and the harness}
 
 An \term{agent} is a model given tools and a loop. The \term{harness} is the
-program that runs the loop: it decides what the model sees, runs the tools the
-model asks for, feeds back the results, enforces permissions and decides when to
-stop. \textcite{liu2026claudecode} examined a production coding agent and found
+program that runs the loop. It decides what the model sees, runs the requested
+tools and feeds back their results. It also enforces permissions and decides
+when to stop. \textcite{liu2026claudecode} examined a production coding agent and found
 the core is a simple loop; most of the code is the permission system, context
 management, error recovery and memory around it. \textcite{wickham2026nobs}
-puts it in terms an R user already knows: a tool is a function plus a
-description of when to call it, and an agent is a chatbot with two tools, one
-to look at the world and one to change it.
+puts it in terms an R user already knows. A tool is a function with a
+description of when to call it. An agent is a chatbot with two tools:
+one to look at the world and one to change it.
 
 \begin{lstlisting}[style=shell,caption={The whole idea, in pseudocode}]
 while not done:

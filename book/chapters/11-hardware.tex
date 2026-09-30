@@ -1,7 +1,9 @@
 \chapter{Hardware for Local Inference}
 \label{ch:hardware}
 
-Concrete numbers. They will date; the reasoning will not.
+Choosing hardware for local models starts with memory capacity and speed.
+The machines will change, but understanding these limits helps us judge what
+is suitable for a particular task.
 
 \section{Memory, not compute}
 
@@ -11,8 +13,9 @@ set by memory bandwidth --- and the model has to fit in memory at all before
 speed is a question. A graphics card with 16\,GB cannot run a model that needs
 40\,GB at any speed; a machine with 128\,GB of slower shared memory can.
 
-The sizing rule: at full precision (FP16) each parameter takes 2 bytes, at 8-bit
-1 byte, and at 4-bit (Q4) about 0.5--0.7 bytes. A 7-billion-parameter (7B) model
+We can estimate the memory needed from the number of parameters and their
+precision. Each parameter takes 2 bytes at full precision (FP16), 1 byte at
+8-bit, and about 0.5--0.7 bytes at 4-bit (Q4). A 7-billion-parameter (7B) model
 therefore needs about 14\,GB, 7\,GB or 4--5\,GB. Add 20--30\% for the context
 (the \term{KV cache}) and overheads. A 32\,GB machine comfortably runs a Q4 12B
 model with a 32K context; a 70B model wants 48\,GB or more.
@@ -25,10 +28,10 @@ Compute third. Buying for raw processing power is the standard mistake.
 \section{Unified memory}
 
 In a conventional PC, the graphics card has its own fixed memory, and anything
-it works on is copied there first. \term{Unified memory} --- Apple Silicon,
-AMD's Ryzen AI Max, Qualcomm Snapdragon X, NVIDIA's desktop Grace Blackwell ---
-puts processor and graphics on one shared pool, so a 64\,GB laptop can give most
-of it to a model. That is why Apple hardware is so common in local AI work: an
+it works on is copied there first. \term{Unified memory} puts processor and graphics on one shared pool,
+so a 64\,GB laptop can give most of it to a model. Examples include Apple
+Silicon, AMD's Ryzen AI Max, Qualcomm Snapdragon X and NVIDIA's desktop
+Grace Blackwell. That is why Apple hardware is so common in local AI work: an
 architectural advantage, not a brand preference. The trade-off is simple. A separate graphics
 card has far more bandwidth (1--3\,TB/s against 200--800\,GB/s) and is the only
 sensible choice for training, but it holds only 8--48\,GB and draws 300--700\,W.
@@ -42,10 +45,11 @@ Representative machines and their prices at the time of writing are in
 \Cref{app:stateofplay}; they will change within a year. The size guide lasts
 longer.
 
-As a guide to size: text classification needs 1--7B models (a small fine-tuned
-model often beats a large general one); summarising and extraction 7--14B;
-scoped coding 12--32B with at least a 32K context; multi-file agent work
-30--70B, below which expect frustration. Embedding models are under 1B and run
+As a guide, text classification needs 1--7B models; a small fine-tuned model
+often beats a large general one. Summarising and extraction need 7--14B.
+Scoped coding needs 12--32B with at least a 32K context, while agent work
+across several files needs 30--70B. Below that, expect frustration.
+Embedding models are under 1B and run
 on an ordinary processor; Whisper for transcription is 1.5B.
 
 \section{Quantisation}
@@ -59,27 +63,30 @@ memory, a larger model at Q4 beats a smaller one at Q8.
 
 Many recent models write a hidden reasoning trace before answering, and
 \term{reasoning effort} sets how long it may run. Locally this setting matters
-more than the choice of model. \textcite{willison2026qwen38} found Qwen 3.8 27B
-ships with effort at maximum: asked for an SVG of a circle, it spent minutes
-planning an animated ``geometric study'', and a drawing that took 21 minutes with
+more than the choice of model. \textcite{willison2026qwen38} found that Qwen 3.8 27B
+ships with effort at maximum. Asked for an SVG of a circle, it spent minutes
+planning an animated ``geometric study''. A drawing that took 21 minutes with
 full reasoning took just over two without. The reasoning also filled the default
 8,192-token context before any answer appeared. Start with reasoning low or off
 and raise it only when the output is wrong --- in his tests one small tool did
-need it. Give the model more context than the runtime's default, and turn on
-\term{multi-token prediction} where supported (a light add-on drafts the next few
-tokens and the full model confirms them in one pass): llama.cpp with it enabled ran the same
-model about 72 per cent faster than the default LM Studio build.
+need it. Give the model more context than the runtime's default. Turn on
+\term{multi-token prediction} where supported: a light add-on drafts the next
+few tokens and the full model confirms them in one pass. With this enabled,
+llama.cpp ran the same model about 72 per cent faster than the default
+LM Studio build.
 
 \section{Models worth having}
 
-Names date quickly; the categories do not. A coding model of 12--30B (the Qwen, Gemma
-and Kimi families, for instance; Qwen 3.8 27B can drive a coding agent
-\parencite{willison2026qwen38}; versions current at the time of writing are in
-\Cref{app:stateofplay}) --- check tool-calling support
-before relying on it for agents. A general instruct model of 7--30B for
-summarising and extraction. An embedding model (\code{bge-m3}) and a reranker
-(\code{bge-reranker}). Whisper for transcription. A small 1--4B model for
-high-volume classification. Dense models read every weight for every token, so
+Names date quickly, but the categories are more stable. Start with a coding
+model of 12--30B, such as those in the Qwen, Gemma and Kimi families.
+Qwen 3.8 27B can drive a coding agent \parencite{willison2026qwen38};
+\Cref{app:stateofplay} lists versions current at the time of writing.
+Check tool-calling support before relying on a model for agents.
+
+For summarising and extraction, keep a general instruct model of 7--30B.
+An embedding model (\code{bge-m3}) and a reranker (\code{bge-reranker}) serve
+retrieval, while Whisper handles transcription. A small 1--4B model is
+useful for high-volume classification. Dense models read every weight for every token, so
 memory bandwidth slows them most. Check each licence: several ``open'' models
 restrict use.
 

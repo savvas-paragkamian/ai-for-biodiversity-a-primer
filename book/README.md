@@ -36,7 +36,7 @@ its serving layer runs and its orchestrator is designed but not built.
 
 ## Contents
 
-About 15,500 words, 73 pages.
+About 16,000 words, 73 pages.
 
 | Part | Chapters |
 |---|---|
@@ -111,6 +111,11 @@ notes will match.
 
 ## Open issues
 
+The linguistic revision was completed on 30 September 2026. See
+[`LINGUISTIC_REVISION.md`](../LINGUISTIC_REVISION.md) for changes and checks.
+The author's thesis informed paragraph structure and flow only; it was not
+used as a factual source.
+
 - `openai2026huggingface` is cited in Chapters 5 and 12 for model files carrying
   executable payloads; the source is about agents escaping a sandbox. Those two
   sentences need another source or rewording.
@@ -124,3 +129,6 @@ notes will match.
 See `../AGENTS.md`. Briefly: minimal formatting, plain words over jargon, at most
 one `keypoint` box per chapter, no table that restates the prose beside it, and
 no citation to anything not sitting in `../../literature/`.
+
+Read [`WRITING_STYLE.md`](../WRITING_STYLE.md) before drafting or revising prose.
+It is the author's reusable guide to paragraph structure, rhythm and tone.

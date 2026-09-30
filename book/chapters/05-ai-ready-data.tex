@@ -1,9 +1,10 @@
 \chapter{AI-Ready Data}
 \label{ch:aireadydata}
 
-For decades biodiversity data has been published openly: occurrence records,
-sequences, taxonomies, traits, time series --- curated, standardised, documented
-and given away, by people who believed shared data compounds.
+For decades, people working in biodiversity have published occurrence records,
+sequences, taxonomies, traits and time series openly. They curated, standardised
+and documented these data so that others could use them and add to the
+knowledge of ecosystems.
 
 \section{What the term hides}
 
@@ -25,25 +26,25 @@ maintain it?
 \section{Standards}
 
 \textbf{Describing data.} Darwin Core is the backbone of occurrence exchange,
-packaged as Darwin Core Archives; ABCD covers collections; MIxS sets the minimum
-information for sequence data, which is why a metagenome from a Greek coast can
-be compared with one from the North Sea. Ontologies do the semantic work: ENVO
+packaged as Darwin Core Archives. ABCD covers collections, while MIxS sets the
+minimum information for sequence data. These descriptions let us compare a
+metagenome from a Greek coast with one from the North Sea. Ontologies do the semantic work: ENVO
 for environments, EUNIS for habitats, the Gene Ontology and others. Choosing
 between overlapping vocabularies --- ENVO, EUNIS or LUCAS for a habitat field ---
 is a real design decision. I-ADOPT breaks a measured variable into its parts so
 that ``sea surface temperature'' from two networks can be recognised as the same
 thing \parencite{magagna2021iadopt}, and DataHarmonizer validates messy
 contextual metadata against a specification
-\parencite{gill2023dataharmonizer}. Dull work, and the difference between data
-that combines and data that does not.
+\parencite{gill2023dataharmonizer}. This work makes it possible to combine data
+collected by different people for different purposes.
 
 \textbf{Machine interfaces.} POSIX, the Unix file and process conventions,
 underlies everything \parencite{ritchie1974unix}. OpenAPI describes web APIs so
 that an agent can discover and call them. The \term{Model Context Protocol}
 (MCP) is a standard way to offer tools and data to language models: a resource is
 wrapped once instead of once per client. EMBL-EBI's InterPro server is a good
-example: an agent can ask in plain language which domains a protein has or which
-structures contain a family, and the server calls the right InterPro services,
+example. An agent can ask in plain language which domains a protein has or
+which structures contain a family. The server calls the right InterPro services,
 with no account needed \parencite{interpro2026mcp}. SPARQL and RDF serve
 knowledge graphs, which models can now query \parencite{smeros2025sparqlllm}.
 Frameworks such as LangChain and LangGraph chain these pieces into applications,

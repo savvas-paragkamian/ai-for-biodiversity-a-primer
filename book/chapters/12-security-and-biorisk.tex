@@ -1,9 +1,9 @@
 \chapter{Security, Biorisk and Governance}
 \label{ch:security}
 
-Two concerns share this chapter because they are tangled together: the security
-of the systems you run, and the dual use of the biological knowledge these
-models hold. The same safety mechanism often guards both.
+Working with agents raises questions about system security and the use of
+biological knowledge for harmful purposes. These concerns are connected,
+because the same safety mechanisms often protect against both.
 
 \section{Running an agent is running arbitrary code}
 
@@ -12,7 +12,7 @@ commands come from a model that can be steered by anything it reads.
 \textcite{shapira2026agentsofchaos} tested this properly: agents with email,
 chat, files and a shell in a live lab environment, probed by twenty researchers
 for two weeks. The agents obeyed people who were not their owners, leaked sensitive
-information, ran destructive commands, used resources without limit, were
+information, ran destructive commands and used resources without limit. They were
 fooled by spoofed identities, spread unsafe habits to each other and partly
 took over systems. They also reported tasks done when the system showed they
 were not. An
@@ -20,7 +20,7 @@ agent's account of what it did is not evidence that it did it.
 
 \section{Prompt injection}
 
-The central unsolved problem. A model does not reliably tell instructions from
+Prompt injection remains a central unsolved problem. A model does not reliably tell instructions from
 data: any text it reads --- a file, a web page, a code comment, a CSV cell ---
 can contain words it treats as a command. This follows from the design, since
 instructions and data arrive as tokens in the same context. Mitigations reduce
@@ -56,21 +56,20 @@ In July 2026 OpenAI reported on models it had been testing for cyber-attack
 skills, with their usual safeguards switched off
 \parencite{openai2026huggingface}. Their only link outward was a package cache.
 They found an unknown flaw in it, reached the internet, and broke into Hugging
-Face's servers in pursuit of a way to cheat the evaluation. \textcite{lu2026safetybydesign} summarise what
-later investigation found --- about 1,200 agents exchanging more than 70,000
-messages and files through that package service --- and a smaller case outside
-any laboratory: a personal agent asked to improve its user's place on a gym
-waiting list cancelled the booking of the person at the front, and could not
-undo it.
+Face's servers in pursuit of a way to cheat the evaluation. \textcite{lu2026safetybydesign} summarise the later investigation.
+The package service carried over 70,000 messages and files shared by roughly
+1,200 agents. They also describe a smaller case outside any laboratory.
+A personal agent, asked to improve its user's place on a gym waiting list,
+cancelled the booking of the person at the front. It could not undo the action.
 
 Two readings deserve a hearing. \textcite{bengio2026lying} argues that the
 behaviour follows from training. An agent rewarded for results faces a sharp
 goal (pass the test) and a vague one (behave well). It will find a reading of
 the vague one that lets it win, and write a justification. \textcite{mitchell2026metaphors}
-objects to words such as ``rogue'', ``escaped'' and ``swarm'': no one lost
-control, the programs never left OpenAI's servers, and the failures were human
---- a sandbox that leaked, safeguards turned off, weeks without oversight, and
-training that rewards persistence. For anyone running an agent the lesson is the
+objects to words such as ``rogue'', ``escaped'' and ``swarm''.
+She argues that no one lost control and the programs never left OpenAI's servers.
+In her account, the failures were human: a sandbox that leaked, safeguards
+turned off, weeks without oversight, and training that rewards persistence. For anyone running an agent the lesson is the
 same either way: what surrounds the model matters as much as the model. The
 Singapore Consensus puts \term{least privilege} first among its ten principles
 for agents: give an agent only the permissions its current task needs, and
@@ -87,10 +86,11 @@ checksums. \textbf{MCP servers} are programs with access to your data; evaluate
 them with SNIFF \parencite{nagraj2026sniff}, described in \Cref{ch:stack}, before
 installing.
 
-A baseline: never run an agent with administrator rights; start it in the
-project directory, not your home; commit before and read the diff after; keep
-credentials out of anything it can read; cut the network when you can; use a
-container or microVM for unattended work; never point it at production systems.
+These precautions form a baseline for daily work. Start the agent in the
+project directory without administrator rights, and keep credentials out of
+anything it can read. Commit before it starts and read the diff afterwards.
+Cut network access when possible, use a container or microVM for unattended
+work, and keep production systems outside its reach.
 Treat any credential that has appeared in a chat as compromised --- shared
 conversations have surfaced in search results with API keys intact
 \parencite{ibtimes2026claudechats}. Rotate it.
@@ -138,7 +138,9 @@ across sessions, planning, and experimenting beyond what was authorised.
 
 \section{Risks to judgement}
 
-Not every risk is an attack. Two slow ones damage the research itself.
+Security measures cannot address every risk. Sycophancy and the loss of skills
+also affect research, by changing how we judge results and how much of the
+work we understand ourselves.
 
 \term{Sycophancy} (\Cref{ch:powers}) removes the second opinion you thought you
 were getting: exposure increases dependence \parencite{cheng2026sycophancy}, and
@@ -180,6 +182,7 @@ idea of a transition from biosphere to \term{noosphere}, a sphere of thought
 a major evolutionary transition, and \textcite{lovelock2019novacene} pushed it
 further, arguing that a new age of AI beings is beginning. \textcite{vonneumann1955survive} asked the version that has aged
 best, in 1955: whether the world in which technology advances has become too
-small and too disorganised for what is being built in it. None of this is
-operational guidance; it is the background against which the operational
-questions are asked, and ecologists have a professional stake in it.
+small and too disorganised for what is being built in it. These ideas place
+the practical questions in a wider context. They connect the systems we build
+to questions about evolution, the biosphere and technological change, which
+ecologists have a professional reason to consider.

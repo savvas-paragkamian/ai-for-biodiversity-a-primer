@@ -1,11 +1,11 @@
 \chapter{The Agentic Coding Workflow}
 \label{ch:agentic}
 
-The change is not that code gets written faster. It is that the job changes: you
-stop writing the code and start specifying it, limiting what it can touch, and
-checking what comes out. That is closer to system administration than to
-programming. The skills that transfer are permissions, logging,
-reproducibility, and knowing what you would do if it went wrong.
+Working with coding agents changes the tasks we spend time on. Instead of
+writing every line, we describe the intended result, set limits on what the
+agent can change and check its work. This brings programming closer to system
+administration. Permissions, logging and reproducibility become central, along
+with knowing how to recover when something goes wrong.
 
 \section{Vibe coding and CHOP}
 
@@ -24,7 +24,7 @@ files (\Cref{ch:landscape}).
 
 \section{The project speaks through files}
 
-\textbf{README.md} is written for a person and read by both. It says what the
+\textbf{README.md} explains the project to people and agents. It says what the
 project does, how to run it, where the data lives and what state it is in. If a
 new postdoc could not start from it, neither can an agent.
 
@@ -45,9 +45,9 @@ seen:
 - Don't add dependencies without asking.
 \end{lstlisting}
 
-The taxon rule exists because joining on unmatched names silently drops records;
-the reprojection rule because a silent coordinate change gives a map that looks
-right and is wrong.
+Each rule addresses a specific problem. Joining on unmatched taxon names can
+silently drop records. A silent coordinate change can produce a map that
+looks right but places the records incorrectly.
 
 \textbf{Skills} bundle instructions, scripts and reference material for one
 recurring task into a folder the harness loads when relevant
@@ -87,8 +87,9 @@ ones. What helps:
 
 \section{Review}
 
-The dangerous failure is not bad code. It is plausible code that runs, produces
-output of the right shape, and is subtly wrong.
+Errors can be difficult to find when plausible code runs and produces the
+expected kind of output. The following checks help reveal mistakes that would
+otherwise remain hidden.
 
 \begin{enumerate}
   \item \textbf{Commit before.} A clean checkpoint makes everything reversible.
