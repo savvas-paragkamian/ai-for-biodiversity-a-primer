@@ -1,0 +1,55 @@
+\chapter{State of Play, September 2026}
+\label{app:stateofplay}
+
+The names, prices and limits below were correct when this book was written and
+will not stay so. The chapters that point here explain what to look for; this
+appendix records what that looked like in September 2026.
+
+\section{Machines and prices}
+
+Indicative prices in euros at the time of writing.
+
+\begin{table}[htbp]
+\centering
+\caption{Representative machines for local inference.}
+\label{tab:hardware}
+\footnotesize
+\begin{tabularx}{\textwidth}{Xllll}
+\toprule
+\textbf{Machine} & \textbf{Memory} & \textbf{Price} & \textbf{Comfortably runs} & \textbf{Power} \\
+\midrule
+Mac mini M4 Pro            & 24--64\,GB  & 1{,}600--2{,}800 & 12--32B Q4 & 65\,W \\
+Mac Studio M4 Max/Ultra    & 64--192\,GB & 3{,}000--7{,}000 & 30--120B Q4 & 150\,W \\
+MacBook Pro M4 Max         & 36--128\,GB & 3{,}000--6{,}000 & 12--70B Q4 & 90\,W \\
+Framework Desktop (AI Max+ 395) & 64--128\,GB & 2{,}000--2{,}800 & 30--70B Q4 & 120\,W \\
+Beelink GTR9 Pro / GMKtec EVO-X2 & 64--128\,GB & 1{,}800--2{,}500 & 30--70B Q4 & 120\,W \\
+NVIDIA DGX Spark (GB10)    & 128\,GB     & 3{,}000--4{,}000 & 70--120B Q4 & 170\,W \\
+Workstation + RTX 5090     & 32\,GB VRAM & 3{,}500--5{,}000 & 12--32B Q4, fast & 600\,W \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textbf{Under 2,000 euros}, a 48\,GB Mac mini or a 64\,GB AMD mini-PC runs a
+30B model usefully: the entry point for serious local work. \textbf{Around
+3,000}, a 128\,GB Mac Studio or DGX Spark opens 70B models, where open weights
+become competitive for scoped work; for a group, one such machine can serve
+several people. \textbf{A separate graphics card} is the choice if you also need
+to train, or want maximum speed on models under 32\,GB --- but 600\,W affects
+cooling, the electricity bill and where the machine can live.
+
+\section{Models}
+
+Coding and general models of 12--30B: the Gemma 4, Kimi K2.7 and Qwen 3.7--3.8
+families. Embedding: \code{bge-m3}; reranking: \code{bge-reranker}.
+Transcription: Whisper.
+
+\section{Harnesses}
+
+In the terminal: Claude Code, OpenCode, Codex, Gemini CLI, Copilot CLI and
+Aider. Inside code editors: Cline and Continue. \Cref{app:tutorials} links to
+the open-source ones.
+
+\section{Subscription limits}
+
+Consumer subscription tiers ration use by a rolling five-hour window, on the
+order of tens of thousands of tokens per window.
