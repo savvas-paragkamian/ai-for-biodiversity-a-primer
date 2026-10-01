@@ -18,6 +18,9 @@
 \item[Attention] The transformer operation that lets every position in a text
   look at every other in parallel.
 
+\item[Balanced accuracy] The mean recall across classes, giving common and
+  rare classes equal weight (\Cref{ch:applications}).
+
 \item[CHOP (Chat-Oriented Programming)] Writing code in dialogue with a model,
   checking each step. Unlike vibe coding, checking is in the loop.
 
@@ -25,6 +28,9 @@
 
 \item[Context window] Everything a model can see in one call, measured in
   tokens. Material in the middle of long contexts is used less reliably.
+
+\item[Coverage] The proportion of test cases for which a system supplies an
+  answer. Report it alongside accuracy when a system can abstain.
 
 \item[Deep research] A search process that breaks a question into parts,
   reads the retrieved material and decides what to search next before
@@ -38,6 +44,10 @@
 
 \item[FAIR] Findable, Accessible, Interoperable, Reusable: data principles
   biodiversity informatics followed long before ``AI-ready''.
+
+\item[F1 score] The harmonic mean of precision and recall:
+  twice their product divided by their sum. Report the averaging method when
+  combining classes or species.
 
 \item[Fine-tuning] Further training of a model on domain data. Unlike RAG, it
   changes the weights.
@@ -84,6 +94,13 @@
 \item[Orchestrator] The service between interface and model holding an
   application's rules: query expansion, retrieval, filters, citation checks.
 
+\item[Phenomenal consciousness] Subjective experience, distinct from task
+  performance or access to information for reasoning
+  \parencite{chandaria2026consciousness}.
+
+\item[Precision] The fraction of positive predictions that are correct.
+  In extraction, the fraction of extracted items matching the reference.
+
 \item[Pretraining] Fitting a model to predict the next token over a large
   body of text.
 
@@ -99,6 +116,9 @@
 \item[RAG (Retrieval-Augmented Generation)] Supplying retrieved documents in the
   prompt. Reduces but does not remove hallucination
   \parencite{kurniawan2024ragfailures}.
+
+\item[Recall] The fraction of reference positives recovered by the system.
+  For a literature search, the fraction of relevant reference papers retrieved.
 
 \item[Reasoning effort] How long a model may reason privately before answering.
   Start low.

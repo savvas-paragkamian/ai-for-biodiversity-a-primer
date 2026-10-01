@@ -50,6 +50,16 @@ and find the field fragmented. Meanwhile attackers use AI too: phishing is
 harder to spot by its writing, and scouting a target is cheaper
 \parencite{qasemi2026cyberattacks}.
 
+Red Hat's account of secure agent onboarding, listed in \Cref{app:tutorials},
+describes one implementation of these boundaries using OpenShell. The runtime
+checks file, process and network access against policy, while a gateway keeps
+service credentials outside the agent's workload. Requests to widen access
+require human approval. This is a vendor's technical account, not an independent
+demonstration that the boundary resists every attack. I would benchmark such a
+deployment with harmless test files and dummy credentials: authorised work
+should succeed, forbidden reads and connections should fail, and the logs
+should record both outcomes.
+
 \section{When the fence fails}
 
 In July 2026 OpenAI reported on models it had been testing for cyber-attack
@@ -186,3 +196,22 @@ small and too disorganised for what is being built in it. These ideas place
 the practical questions in a wider context. They connect the systems we build
 to questions about evolution, the biosphere and technological change, which
 ecologists have a professional reason to consider.
+
+David Krakauer's essay on the fossil logic of AI, listed in \Cref{app:tutorials},
+adds the history of accumulated knowledge to this frame. He compares extracting
+useful work from an inherited archive with extracting energy from fossil fuels.
+The difference matters: reading does not consume knowledge, but returning
+unchecked generated claims to the archive can damage its reliability. This is
+an interpretive analogy, not a measured ecological result. For biodiversity,
+I take its practical implication to be continued investment in collections,
+field observations and careful curation. These activities renew the evidence
+on which later models and researchers depend.
+
+The consciousness framework of \textcite{chandaria2026consciousness} adds a
+different ethical uncertainty. Mistakenly attributing experience to a system can
+divert concern from humans and other animals; overlooking experience, if it
+exists, could conceal suffering. The authors explicitly leave disagreement
+about consciousness unresolved. An ecological accuracy score cannot resolve it
+either. My judgement is to keep these questions visible while assessing
+research systems through their observable effects on data, people and the
+biosphere.

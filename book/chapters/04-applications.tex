@@ -87,9 +87,66 @@ biodiversity literature specifically, and \textcite{krug2026ipbes} ask whether
 AI in IPBES assessments is hype or salvation without deciding, which is right
 for work where every statement must trace to a source.
 
+An extraction study shows why results need separating by field.
+\textcite{gougherty2024extraction} supplied a model with 100 short plant-disease
+reports and compared its answers with human extraction. Pathogen names were
+98.1\% accurate, host names 91.7\%, and countries 100\%. Processing took about
+five minutes against 268 minutes for the human reviewer. Yet disease incidence
+was only 23.8\% accurate: in 53 reports without an incidence value, the model
+supplied 100\%. Where incidence was reported, it recovered 25 of 26 values
+correctly. The same system could extract a stated number and invent an absent
+one. These results concern short, preselected reports, not unrestricted searches
+through full papers.
+
+\textbf{Plant traits.} \textcite{domazetoski2025traits} extracted traits from
+two text collections: Plants of the World Online and Wikipedia. These included
+categorical traits such
+as growth form and numerical traits such as maximum height. They trained text
+classifiers using labels from the GIFT trait database, and used models that
+select answer passages for numerical measurements. On the Plants of the World
+Online test data, DistilBERT reached mean \term{precision} of 90.6\% and
+\term{recall} of 88.5\% across the categorical traits. Precision measures how
+many positive predictions are correct; recall measures how many reference
+positives are recovered. Logistic regression reached 88.4\% and
+85.1\%, respectively, while keyword matching performed worse. These are useful
+gains from a relatively small model on a defined task. Rare trait classes
+performed worse, and inconsistent definitions, such as leaf versus leaflet
+length, complicated numerical extraction. Predicted traits still need checking
+against the descriptions and the intended measurement.
+
 \textbf{Microbiomes.} \textcite{yu2026microbiomes} describe the shift from
 describing microbial communities to predicting them, and name the obstacles:
 interpretability, generalising across studies, and causal inference.
+
+Two new studies make the language-model applications concrete.
+\textcite{munch2026phenotypes} asked models to assign microbial traits from
+species names alone, without retrieving supporting documents. They compared
+predictions with curated phenotype records across ten traits.
+\term{Balanced accuracy} averages recall across classes, giving each equal
+weight. Its mean across models was 89.8\% for spore formation but 53.0\% for biofilm
+formation, with no model best across all traits. The best open-weight model
+was within one percentage point of the best proprietary model in their
+comparison. This supports testing local models for this task; it does not
+establish their suitability for other microbial questions.
+
+The same study tested 57 models on 200 invented taxon names, allowing them to
+say they did not know. Depending on the model, 0.5--92\% of these prompts
+elicited fabricated knowledge \parencite{munch2026phenotypes}. High performance
+on familiar names therefore needs a separate test of unfamiliar and non-existent
+ones. Nor can a name-only prediction establish a strain's measured phenotype.
+I would use these assignments to prioritise curation, retaining a separate
+record of predictions until supporting evidence has been checked.
+
+\textcite{venetsianou2026relatedness} used a locally run model to compare
+16{,}194 pairs of microbiome studies from MGnify. It judged relatedness from
+study titles, descriptions, biome information and linked abstracts. Those
+judgements agreed more strongly with similarities in functional profiles than
+with similarities in taxonomic profiles. This suggests a way to find studies
+worth comparing even when their microbial membership differs. However, the
+authors identify effects from generic descriptions and shared annotation
+pipelines, and the comparison is not a comprehensive expert validation of
+the model's judgements. Biological similarity supplies another line of evidence,
+not a guarantee that studies answer the same research question.
 
 \textbf{Curation.} AI-assisted curation of biological knowledgebases works with
 a person in the loop \parencite{pombase2026curation}: the model suggests, the
@@ -104,8 +161,21 @@ and a wrong query usually fails loudly.
 
 \section{Where the claims outrun the evidence}
 
-\textcite{mishra2026notready} makes the case that ecology is not ready, and it
-is the most important dissent in this literature. Ecological data is patchy,
+Retrieving facts from a supplied description is different from asking a model
+to supply ecological knowledge unaided. \textcite{dorm2026ecologicalknowledge}
+tested two models without external retrieval across species distributions,
+threats and traits. Country-level occurrence answers were often correct, but
+range maps reached mean \term{F1 scores}, combining precision and recall, of
+only 24.7\% and 20.9\%, against 60.7\%
+for a specialised species-distribution model. These map scores excluded
+unusable responses, which the authors counted separately. Absence locations
+near a species' range were much harder than distant ones. A benchmark made
+mostly of easy absences would therefore give a misleading impression of
+ecological usefulness. These findings concern the tested models and conditions;
+\Cref{ch:localfirst} explains how to build a comparison for your own application.
+
+For \textcite{mishra2026notready}, ecology is not ready. This is the most
+important dissent in this literature. Ecological data is patchy,
 biased in space and time, sparse for the taxa that matter most, and produced by
 causal processes. A model that predicts species occurrence from environmental
 variables learns where people looked as readily as where species live. Used for

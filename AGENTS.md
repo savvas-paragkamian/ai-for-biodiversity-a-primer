@@ -56,8 +56,8 @@ Before any reference goes in:
 
 Verification is scripted, not sampled. Run `python3 scripts/verify_bib.py`
 over the whole file after any change to the bibliography — it takes a few
-minutes and there is no acceptable reason to skip it. There are 116 entries:
-all 48 DOIs and all 28 arXiv IDs currently pass, and 40 entries have neither and
+minutes and there is no acceptable reason to skip it. There are 123 entries:
+all 53 DOIs and all 29 arXiv IDs currently pass, and 41 entries have neither and
 were checked by hand. Grant DOIs (CORDIS, `10.3030/...`) carry their title in
 Crossref's `project` field; the script handles that. Each script in `scripts/`
 has a `--self-test` that plants errors; run it after changing a script.
@@ -80,7 +80,7 @@ rewording; the author decides which.
 ## Prose
 
 Read `WRITING_STYLE.md` before drafting or revising prose. The author requested
-that the PhD thesis inform structure and flow only, never factual content or
+that the author's writing sample inform structure and flow only, never factual content or
 citations. The reusable guide records that preference.
 
 The book is for working ecologists, taxonomists and biodiversity
@@ -221,6 +221,10 @@ Example keys in the text must be obviously fake.
 
 Settled by the author. Don't reopen them in reviews or suggestions.
 
+- **Keep the reusable style guide anonymous.** In `WRITING_STYLE.md`, refer to
+  the source as "the author's writing sample". Do not include the author's name,
+  the sample's identifying filename or personal details. Use it for paragraph
+  structure, rhythm and flow only; do not import its claims or references.
 - **Scope is biodiversity.** The title is *AI for Biodiversity: A Primer*. The
   subject is language models and agents applied to biodiversity data and
   literature; image, sound and species distribution models stay brief (Ch. 4).
@@ -243,10 +247,11 @@ first: propose, don't implement.
 | Item | Status | Who |
 |---|---|---|
 | Linguistic revision and reusable author style guide | Completed 30 September 2026; see `WRITING_STYLE.md` and `LINGUISTIC_REVISION.md` | Agent |
+| October literature additions and benchmarks | Completed 1 October 2026: consciousness in Ch. 1; five ecological and microbial studies in Ch. 4; data provenance in Ch. 5; Red Hat guidance and evaluation procedure in Ch. 10 and 12; Krakauer and Levin in Ch. 14; web readings in Appendix C. See `LITERATURE_UPDATE.md` for sources and checks | Agent |
 | `openai2026huggingface` misattributed in Ch. 5 and Ch. 12 (see Bibliography) | Needs another source from `../literature/`, or rewording | Agent proposes, **author** decides |
 | Expand KYBELE as the running example | Blocked: KYBELE's design documents (repo, design doc, BEeS 2026 abstract, RIO draft) must be in `../literature/` first. `Kybele HCMR.md` covers tools only. Never write KYBELE features or results by inference | **author** |
 | Where KYBELE lives | Undecided. Recommended: thread it through Ch. 5 (retrieval), 7 (its AGENTS.md), 9 (logging), 10 (as now), 12 (scope enforced in code), 13 (literature stage). A dedicated chapter would need a `NOTES.md` entry | **author** |
-| Seth (2026) | Citation file only; needs the PDF in `../literature/` | **author** |
+| Seth (2026), standalone article | Citation file only; needs the PDF in `../literature/`. The separate co-authored Chandaria et al. consciousness preprint is now available and cited | **author** |
 | Rename "Researchers" in Appendix C to "Researchers and research infrastructures" (the iDigBio webinar sits there) | Offered, unanswered | **author** |
 | Trim the Bauer et al. sentence (Ch. 12 Governance); state that most measured evidence is biomedical, not ecological; guidance for R users; guidance for database maintainers (offering a database to agents via MCP) | Proposed in review, unanswered. The last two need sources in `../literature/` first | **author** |
 | New files in `../literature/` | Check whenever you start: anything not in `references.bib` is a candidate. Read it in full before placing it | Agent |

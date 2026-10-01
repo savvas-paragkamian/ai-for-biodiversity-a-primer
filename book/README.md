@@ -36,7 +36,7 @@ its serving layer runs and its orchestrator is designed but not built.
 
 ## Contents
 
-About 16,000 words, 73 pages.
+About 18,000 words, 77 pages.
 
 | Part | Chapters |
 |---|---|
@@ -70,7 +70,7 @@ By hand, if you prefer: `pdflatex` -> `biber main` -> `pdflatex` -> `pdflatex`.
 ```
 main.tex          parts and chapter includes
 preamble.tex      packages, formatting, biblatex setup
-references.bib    116 entries, grouped by theme
+references.bib    123 entries, grouped by theme
 chapters/
   00-preface
   01-landscape  02-why-now  03-powers-and-limits  04-applications
@@ -86,8 +86,8 @@ chapters/
 Assembled from the `.bib`, `.ris` and `.bibtex` files in `../../literature/`,
 plus entries taken from the PDFs there.
 
-Verified: all 48 DOIs resolve through Crossref and all 28 arXiv IDs through the
-arXiv API, titles matching in every case. The remaining 40 entries are reports,
+Verified on 1 October 2026: all 53 DOIs resolve through Crossref and all 29 arXiv IDs through the
+arXiv API, titles matching in every case. The remaining 41 entries are reports,
 books, blog posts and web pages with no such identifier, checked by hand. Every
 entry is cited at least once.
 
@@ -116,13 +116,21 @@ The linguistic revision was completed on 30 September 2026. See
 The author's thesis informed paragraph structure and flow only; it was not
 used as a factual source.
 
+The literature update of 1 October 2026 adds consciousness, Red Hat deployment
+guidance, ecological extraction, plant traits, microbial phenotypes and
+microbiome study comparisons. Chapter 10 now gives a practical benchmarking
+procedure, and Chapter 14 includes David C. Krakauer and Michael Levin.
+See [`LITERATURE_UPDATE.md`](../LITERATURE_UPDATE.md) for the source map,
+verification results and remaining limits.
+
 - `openai2026huggingface` is cited in Chapters 5 and 12 for model files carrying
   executable payloads; the source is about agents escaping a sandbox. Those two
   sentences need another source or rewording.
 - KYBELE's expansion as the running example needs its design documents in
   `../../literature/` before it can be written up.
-- Seth (2026) has a citation file in `../../literature/` but no PDF, so it is
-  not cited.
+- Seth's standalone 2026 article has a citation file in `../../literature/`
+  but no PDF, so it is not cited. The separate consciousness preprint by
+  Chandaria et al., which Seth co-authors, is now available and cited.
 
 ## Conventions
 
@@ -132,3 +140,5 @@ no citation to anything not sitting in `../../literature/`.
 
 Read [`WRITING_STYLE.md`](../WRITING_STYLE.md) before drafting or revising prose.
 It is the author's reusable guide to paragraph structure, rhythm and tone.
+Keep the guide anonymous: refer to "the author's writing sample" and omit
+personal names and identifying filenames, as recorded in `../AGENTS.md`.

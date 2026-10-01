@@ -119,6 +119,15 @@ explicit:
 
 \section{A reference architecture}
 
+Red Hat's strategy ebook by \textcite{ferris2025adaptable} makes a useful
+organisational argument: agree on the outcome, invest in staff skills, understand
+where data and applications reside, and keep infrastructure adaptable. It is
+vendor guidance rather than an independent evaluation. For a biodiversity group,
+I would translate it into a specific acceptance test before choosing a platform:
+how many verified records can the workflow produce within the available staff
+time and computing budget? Portability matters when a model changes, but so
+does having someone able to maintain and evaluate its replacement.
+
 The architecture follows the same principle: keep the parts that must last
 simple, and allow the others to be replaced. Each layer has a specific role.
 
@@ -220,6 +229,58 @@ or retrieval:
   \item a comparison with the previous version, so that replacing Qwen3-4B with
     another model is accepted only if the gold-set results hold.
 \end{itemize}
+
+The ecological examples in \Cref{ch:applications} suggest a practical extension
+to this test suite. The following is my proposed procedure for comparing
+extraction, classification and study-retrieval workflows, drawing on their
+different successes and failures
+\parencite{gougherty2024extraction,domazetoski2025traits,dorm2026ecologicalknowledge,munch2026phenotypes,venetsianou2026relatedness}.
+
+\begin{enumerate}
+  \item \textbf{Fix the task and the reference answers.} Specify the fields,
+    trait definitions, units and acceptable evidence. Have experts independently
+    annotate a sample, resolve disagreements and retain uncertain cases as
+    uncertain. Set aside a final test set before adjusting prompts or thresholds.
+    Keep descriptions of the same species, or samples from the same study,
+    together when testing transfer to new species or studies.
+  \item \textbf{Compare like with like.} Run keyword matching or a simple
+    classifier alongside the language model. Include the established domain
+    method where one exists. Test unaided answers, answers given a fixed source
+    passage, and answers using retrieval separately. Record which documents
+    each system could access; these conditions test different abilities.
+  \item \textbf{Score the errors that matter.} For extraction, report precision
+    and recall for each field, plus how often missing information becomes an
+    invented value. Check numerical errors after converting units, stating any
+    transformation used. For traits, show each class's results and balanced
+    accuracy, so common classes cannot conceal failure on rare ones.
+    Count malformed outputs, failures and unanswered cases across the full test
+    set, even when calculating accuracy only on valid answers.
+  \item \textbf{Test uncertainty and unfamiliar cases.} Include absent fields,
+    rare taxa, invented names and difficult negative examples. Report
+    \term{coverage}, the proportion of cases receiving an answer, alongside
+    accuracy. If confidence controls which answers are accepted, check whether
+    higher confidence actually predicts fewer errors. Measure the errors and
+    coverage again at each proposed threshold.
+  \item \textbf{Evaluate retrieval and evidence separately.} For literature
+    assistants, measure how many expert-selected relevant papers appear in the
+    first few results. Then check whether each generated claim is supported by
+    its cited passage. For microbiome comparisons, add independent expert
+    judgements of study compatibility. Agreement between text and biological
+    profiles is useful corroboration, but does not substitute for those checks.
+  \item \textbf{Measure variation and the whole cost.} Repeat runs and modest
+    prompt changes, checking agreement on individual records. Report results
+    by taxon, biome or source collection, with sample sizes and uncertainty
+    intervals. Record runtime, token use, hardware and human correction time.
+    Judge a replacement by verified output per unit of work and by unacceptable
+    errors, with the acceptance criteria fixed before comparing models.
+\end{enumerate}
+
+In the microbiome relatedness study, the authors also tested the similarity
+measures themselves by reducing sequencing depth and asking whether profiles
+still retrieved their original counterparts \parencite{venetsianou2026relatedness}.
+This is a useful distinction: a benchmark's comparison method needs checking
+as well as the language model. Repeating a judgement consistently establishes
+repeatability; an independent reference is needed to assess correctness.
 
 \subsection{Where fine-tuning fits}
 
