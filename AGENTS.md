@@ -246,6 +246,7 @@ first: propose, don't implement.
 
 | Item | Status | Who |
 |---|---|---|
+| The Turing Way reading recommendation | Completed 1 October 2026: official online book linked and described at the start of Appendix C | Agent |
 | Linguistic revision and reusable author style guide | Completed 30 September 2026; see `WRITING_STYLE.md` and `LINGUISTIC_REVISION.md` | Agent |
 | October literature additions and benchmarks | Completed 1 October 2026: consciousness in Ch. 1; five ecological and microbial studies in Ch. 4; data provenance in Ch. 5; Red Hat guidance and evaluation procedure in Ch. 10 and 12; Krakauer and Levin in Ch. 14; web readings in Appendix C. See `LITERATURE_UPDATE.md` for sources and checks | Agent |
 | `openai2026huggingface` misattributed in Ch. 5 and Ch. 12 (see Bibliography) | Needs another source from `../literature/`, or rewording | Agent proposes, **author** decides |

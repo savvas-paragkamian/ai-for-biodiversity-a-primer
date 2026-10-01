@@ -111,6 +111,10 @@ notes will match.
 
 ## Open issues
 
+The Turing Way was added to Appendix C on 1 October 2026 as an online reading
+recommendation, with its title, community authorship and scope checked against
+the official book site.
+
 The linguistic revision was completed on 30 September 2026. See
 [`LINGUISTIC_REVISION.md`](../LINGUISTIC_REVISION.md) for changes and checks.
 The author's thesis informed paragraph structure and flow only; it was not
