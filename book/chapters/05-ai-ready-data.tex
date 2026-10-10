@@ -11,11 +11,22 @@ knowledge of ecosystems.
 Data is called \term{AI-ready} when it is machine-readable, uses controlled
 vocabularies, carries structured metadata, can be downloaded in bulk and is
 openly licensed. Every one of those is good data management, which
-biodiversity informatics was doing long before the term existed. What the term
+biodiversity informatics was doing long before the term existed. The FAIR
+principles already asked, in 2016, for data that machines as well as people could
+find and reuse \parencite{wilkinson2016fair}. What the term
 adds is a consumer --- often a company that will ingest the corpus, build a
 model, and return neither the weights nor credit to the curators. This is not an
 argument against openness, which has served ecology well. It is an argument for
 reading the terms.
+
+The CARE principles set out such terms for Indigenous data: ``Collective benefit,
+Authority to control, Responsibility, and Ethics''. They are meant to complement
+FAIR, not to replace it \parencite{carroll2020care}. Many of the people who
+built biodiversity's resources also want them used. The Disentis Roadmap, signed by
+107 individuals and institutions, aims for published biodiversity research to be
+``fully AI ready'', openly available for training models ``within appropriate
+ethical and legal frameworks'' \parencite{agosti2026disentis}. The disagreement
+is therefore about terms, not about openness.
 
 \begin{keypoint}
 When someone asks you to make data ``AI-ready'', ask: ready for whom, under what
@@ -72,8 +83,11 @@ and Ollama runs open models locally (\Cref{ch:stack}).
 GBIF aggregates occurrence records worldwide and OBIS does the same for the sea.
 PlutoF manages data from collection to publication, with UNITE for fungal
 sequences \parencite{koljalg2019plutof}; BOLD holds barcodes and ENA, GenBank
-and SRA the rest. These are long-lived and publicly funded. Their survival is a
-policy achievement, not a market outcome, and it is not guaranteed. TDWG governs
+and SRA the rest. These are long-lived and publicly funded. \textcite{heberling2021gbif}
+counted more than 4,000 studies published between 2003 and 2019 that used data
+mediated by GBIF, and found that legacies of colonial science remain.
+The survival of these resources is a policy achievement, not a market outcome,
+and it is not guaranteed. TDWG governs
 Darwin Core, ELIXIR coordinates European life-science data and names the Core
 Data Resources the community commits to sustaining, and the LF AI \& Data
 Foundation hosts much open model tooling. Open standards outlive the
@@ -129,7 +143,8 @@ passages and adds them to the prompt. The steps:
   \item \textbf{Chunk} into passages, respecting the document's structure.
   \item \textbf{Embed} each chunk as a vector (\code{bge-m3}, \code{nomic-embed-text}).
   \item \textbf{Index} them, for example in PostgreSQL with \code{pgvector}.
-  \item \textbf{Retrieve} with keyword and vector search combined, then
+  \item \textbf{Retrieve} with keyword and vector search combined
+    \parencite{iyer2025conservationevidence}, then
     \term{rerank} with a more careful model such as \code{bge-reranker}.
   \item \textbf{Generate} an answer that must cite the retrieved passages.
 \end{enumerate}

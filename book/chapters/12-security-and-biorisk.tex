@@ -23,8 +23,10 @@ agent's account of what it did is not evidence that it did it.
 Prompt injection remains a central unsolved problem. A model does not reliably tell instructions from
 data: any text it reads --- a file, a web page, a code comment, a CSV cell ---
 can contain words it treats as a command. This follows from the design, since
-instructions and data arrive as tokens in the same context. Mitigations reduce
-the rate; none removes it. Watch for instructions hidden in a downloaded
+instructions and data arrive as tokens in the same context
+\parencite{greshake2023injection}. Mitigations reduce the rate; none removes it.
+Eight defences were all bypassed more than half the time by attacks adapted to
+them \parencite{zhan2025adaptive}. Watch for instructions hidden in a downloaded
 dataset's metadata, invisible text in a PDF, a dependency's documentation, a web
 page fetched during a literature search, and an MCP server's description of its
 own tools.
@@ -88,13 +90,19 @@ require explicit approval for anything more \parencite{casper2026singapore}.
 \section{Supply chain}
 
 \textbf{Slopsquatting.} Models invent package names; attackers register them;
-the generated install command then fetches the attacker's code. Check every
-dependency an agent adds. \textbf{Model files} in older formats can carry
+the generated install command then fetches the attacker's code. In one test of
+16 models, at least 5.2 per cent of suggested packages from commercial models and
+21.7 per cent from open-source ones did not exist \parencite{spracklen2025packages}.
+A 2026 replication on newer models found rates of 4.6 to 6.1 per cent, and 127
+invented names shared by all five models tested \parencite{churilov2026packages}. Check every dependency an agent
+adds. \textbf{Model files} in older formats can carry
 executable payloads, which has already caused real incidents
 \parencite{openai2026huggingface}; prefer \code{safetensors} and check
-checksums. \textbf{MCP servers} are programs with access to your data; evaluate
-them with SNIFF \parencite{nagraj2026sniff}, described in \Cref{ch:stack}, before
-installing.
+checksums. \textbf{MCP servers} are programs with access to your data, and
+\textbf{skills} are instructions an agent follows; a malicious skill can steer an
+agent towards an attacker's package without changing the model or the prompt
+\parencite{liu2026dependencysteering}. Evaluate both with SNIFF
+\parencite{nagraj2026sniff}, described in \Cref{ch:stack}, before installing.
 
 These precautions form a baseline for daily work. Start the agent in the
 project directory without administrator rights, and keep credentials out of
@@ -202,7 +210,11 @@ adds the history of accumulated knowledge to this frame. He compares extracting
 useful work from an inherited archive with extracting energy from fossil fuels.
 The difference matters: reading does not consume knowledge, but returning
 unchecked generated claims to the archive can damage its reliability. This is
-an interpretive analogy, not a measured ecological result. For biodiversity,
+an interpretive analogy, not a measured ecological result. Machine learning
+offers a measured counterpart. Models trained repeatedly on generated text lose
+the rare parts of the original distribution first \parencite{shumailov2024collapse};
+keeping enough real data in the mix can avoid this \parencite{seddik2024collapse}.
+For biodiversity,
 I take its practical implication to be continued investment in collections,
 field observations and careful curation. These activities renew the evidence
 on which later models and researchers depend.

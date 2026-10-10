@@ -83,9 +83,16 @@ models on work spanning many files.
 
 \code{whisper.cpp} runs the Whisper transcription model locally; on Apple
 Silicon it can be about three times faster using the Neural Engine. Beware:
-Whisper invents text over silence, music or noise. A Greek podcast corpus built
-with it had to remove segments containing a subtitle credit that was never
-spoken, and discarded about 20\% of its audio overall. Filter silence first,
-remove known phantom phrases, and never treat an automatic transcript as ground
-truth --- least of all an interview, where an invented sentence is attributed to
-a real person.
+Whisper invents text over silence, music or noise. In one study, about 1 per cent
+of transcripts contained whole phrases or sentences that were never spoken, more
+often when speakers paused for long stretches \parencite{koenecke2024whisper}.
+
+Greek shows how this looks in practice. When \textcite{paraskevopoulos2024greekpodcast}
+transcribed 800 hours of Greek podcasts, Whisper wrote a subtitle credit,
+``Ypotitloi AUTHORWAVE'' (``AUTHORWAVE subtitles''), over music that voice
+detection had missed. Removing those segments, the detected silences and passages
+mixing Greek with English reduced the corpus by about 20 per cent. Such phantom
+phrases recur often enough to be listed and filtered after transcription
+\parencite{baranski2025whisper}. Filter silence first, remove the known phrases,
+and never treat an automatic transcript as ground truth --- least of all an
+interview, where an invented sentence is attributed to a real person.

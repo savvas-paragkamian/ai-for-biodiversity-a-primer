@@ -36,7 +36,7 @@ its serving layer runs and its orchestrator is designed but not built.
 
 ## Contents
 
-About 19,000 words, 79 pages.
+About 19,800 words, 84 pages.
 
 | Part | Chapters |
 |---|---|
@@ -70,7 +70,7 @@ By hand, if you prefer: `pdflatex` -> `biber main` -> `pdflatex` -> `pdflatex`.
 ```
 main.tex          parts and chapter includes
 preamble.tex      packages, formatting, biblatex setup
-references.bib    126 entries, grouped by theme
+references.bib    169 entries, grouped by theme
 chapters/
   00-preface
   01-landscape  02-why-now  03-powers-and-limits  04-applications
@@ -86,7 +86,7 @@ chapters/
 Assembled from the `.bib`, `.ris` and `.bibtex` files in `../../literature/`,
 plus entries taken from the PDFs there.
 
-Verified on 10 October 2026: all 55 DOIs resolve through Crossref and all 30 arXiv IDs through the
+Verified on 10 October 2026: all 76 DOIs resolve through Crossref and all 52 arXiv IDs through the
 arXiv API, titles matching in every case. The remaining 41 entries are reports,
 books, blog posts and web pages with no such identifier, previously checked by hand. Every
 entry is cited at least once.
@@ -154,6 +154,14 @@ for the task-only diff, checks and remaining link limitations.
   cited together in Chapter 1 and in the people list in Chapter 14.
 - The ZS Associates essay is now in Appendix C, with its authors named and
   its argument distinguished from evidence of skill loss in ecology.
+- The literature gap review of 10 October 2026,
+  [`LITERATURE_GAPS_2026-10-10.md`](../LITERATURE_GAPS_2026-10-10.md),
+  added 43 sources: attributions for sentences that had none, FAIR, CARE and
+  the Disentis Roadmap in Chapter 5, ecological evidence in Chapters 4 and 10,
+  and both sides where sources disagree. Ananiadou and Thessen are now cited
+  in Chapter 14, and the Greek podcast example in Chapter 8 has its source.
+  Nine further sources await PDFs that could not be downloaded; they are
+  listed in the report and not cited.
 - Two existing bibliography links could not be verified in the October 10
   audit: the Financial Times returned access errors, and the saved Anna's
   Archive address failed certificate validation. Neither was replaced with

@@ -46,7 +46,7 @@ Representative machines and their prices at the time of writing are in
 longer.
 
 As a guide, text classification needs 1--7B models; a small fine-tuned model
-often beats a large general one. Summarising and extraction need 7--14B.
+often beats a large general one \parencite{chen2025bionlp}. Summarising and extraction need 7--14B.
 Scoped coding needs 12--32B with at least a 32K context, while agent work
 across several files needs 30--70B. Below that, expect frustration.
 Embedding models are under 1B and run
@@ -57,7 +57,12 @@ on an ordinary processor; Whisper for transcription is 1.5B.
 \term{Quantisation} stores weights at lower precision. Q4\_K\_M, about four bits
 per weight, is the default worth starting from; use Q5 or Q6 if you have room
 and the task is sensitive; Q2 and Q3 degrade noticeably. For a fixed amount of
-memory, a larger model at Q4 beats a smaller one at Q8.
+memory, a larger model at Q4 beats a smaller one at Q8
+\parencite{dettmers2022fourbit}. These averages hide exceptions. At four bits,
+small models can lose much more accuracy than 70B-class ones, and the losses grow
+with long inputs and with text in languages other than English
+\parencite{lee2025quantisation,mekala2025quantlong}. Test the quantised model on
+your own documents before relying on it.
 
 \section{Reasoning effort}
 

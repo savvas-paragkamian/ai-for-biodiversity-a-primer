@@ -68,10 +68,16 @@ drove a coding agent through a repository, and drew accurate boxes around birds
 in a photograph --- in his judgement, what the best proprietary models could do a
 year earlier. The Singapore Consensus puts open-weight models three to twelve
 months behind the frontier on common benchmarks \parencite{casper2026singapore}.
+On environmental geospatial agent tasks, an open-weight model reached 93 per
+cent of the best model's score at less than a tenth of its cost
+\parencite{diazireland2026geonature}.
 Not everyone thinks the gap is worth accepting. In a 2025 talk,
 \textcite{wickham2026nobs} judged that for someone starting out, local models are
 by and large not worth it. His advice was to begin with a hosted model, which is
-more likely to give good results.
+more likely to give good results. A taxonomic test supports the caution. When
+morphological characters were extracted from Australian daisy descriptions, a
+locally run open model was considerably less reproducible than a hosted one, with
+unit errors and skipped characters \parencite{schmidtlebuhn2025morphology}.
 
 \textbf{Speed.} The same model produced 15--30 tokens per second, slow enough
 that he still preferred hosted models for interactive work. For overnight batch
@@ -155,7 +161,9 @@ practical setup.
 \section{A worked example: KYBELE}
 
 KYBELE, a project the author works on, is a literature assistant for Collembola
-(springtails) built on the SIB Literature Services (SIBiLS). It adds two layers
+(springtails) built on the SIB Literature Services (SIBiLS). SIBiLS also reuses
+the taxonomic treatments that Plazi extracts from the literature
+\parencite{agosti2022treatments}. KYBELE adds two layers
 to the architecture above: an \term{orchestrator} between interface and model
 that holds all the domain rules, and a reverse proxy (Caddy) handling encryption
 and rate limits. A public website, Open WebUI for users signing in through
@@ -167,6 +175,9 @@ specialised part. The expertise sits elsewhere:
 \begin{enumerate}
   \item \textbf{Vocabulary.} Questions are expanded with curated Collembola
     terms --- synonyms, accepted names, character terms --- by plain lookup.
+    General models are weakest here: across ten taxonomies they handled
+    specialised domains and the most specific ranks far worse than common
+    ones \parencite{sun2024taxoglimpse}.
   \item \textbf{Scope in code.} Results are filtered to Collembola-annotated
     items. The boundary is a filter, not a prompt instruction the model can
     ignore.
@@ -181,7 +192,11 @@ expert-curated Reactome pathway database. It combines keyword and vector search
 and confines answers to Reactome, with links to each entry. When Reactome has
 no answer, it uses trusted outside sources instead of guesses. Combined search beat
 vector search alone, and blinded experts more often rated the grounded answers
-higher, with significant gains in accuracy and biological detail. At the time of
+higher, with significant gains in accuracy and biological detail.
+\textcite{iyer2025conservationevidence} found the same over the Conservation
+Evidence database. On exam-style questions about conservation interventions,
+combined keyword and vector retrieval performed best by a substantial margin,
+while general models used out of the box were likely to misinform. At the time of
 writing KYBELE's serving layer runs and the orchestrator is designed but not
 built; the design is the point here.
 
@@ -295,8 +310,9 @@ resulting 130{,}000 examples. The 8B model beat GPT-4o by 6.1 per cent on correc
 synthesis, and everything is public. Retrieval still sometimes misses the most
 relevant papers, and the 8B model still makes factual errors.
 
-KYBELE plans to adapt its model with \term{LoRA} (low-rank adaptation: training a
-small set of added weights rather than the whole model). The same recipe fits:
+KYBELE plans to adapt its model with \term{LoRA}, low-rank adaptation, which
+trains a small set of added weights rather than the whole model
+\parencite{hu2021lora}. The same recipe fits:
 the pipeline produces grounded answers to train on, and the test suite shows
 whether the tuned model is actually better.
 

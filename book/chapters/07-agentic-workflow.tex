@@ -47,12 +47,17 @@ seen:
 
 Each rule addresses a specific problem. Joining on unmatched taxon names can
 silently drop records. A silent coordinate change can produce a map that
-looks right but places the records incorrectly.
+looks right but places the records incorrectly. One environmental data system
+shows the value of such a rule: a deterministic check blocked a faulty coordinate
+transformation affecting all 2,452 of its monitoring stations before publication
+\parencite{guan2026envismart}.
 
 \textbf{Skills} bundle instructions, scripts and reference material for one
 recurring task into a folder the harness loads when relevant
 \parencite{anthropic2026skills}. For a laboratory with a standard protocol,
-this makes the protocol executable rather than merely written down.
+this makes the protocol executable rather than merely written down. Install only
+skills you have read: a malicious one can steer an agent towards an attacker's
+package \parencite{liu2026dependencysteering}.
 \textbf{Memory}, where a harness keeps it, should be files you can read and
 edit; memory you cannot see is a reproducibility problem.
 
@@ -88,8 +93,11 @@ ones. What helps:
 \section{Review}
 
 Errors can be difficult to find when plausible code runs and produces the
-expected kind of output. The following checks help reveal mistakes that would
-otherwise remain hidden.
+expected kind of output. Confidence can also rise faster than quality. In one
+study, people using an assistant wrote less secure code yet were more likely to
+believe it secure \parencite{perry2023insecure}. Another found no such harm, and
+more secure solutions on a harder problem \parencite{asare2024copilot}. The
+following checks help reveal mistakes that would otherwise remain hidden.
 
 \begin{enumerate}
   \item \textbf{Commit before.} A clean checkpoint makes everything reversible.
@@ -118,3 +126,11 @@ these columns'' works. ``Build the analysis pipeline'' is a series of the first
 kind, and running it as a series gives you a review point between each step. For
 the design of the harness itself, see \textcite{liu2026claudecode} and
 \textcite{piskala2026files}.
+
+Whether all this saves time is less settled than it feels. In a randomised
+trial with 16 experienced open-source developers, tasks took 19 per cent longer
+with AI tools, although the developers believed the tools had saved them 20 per
+cent \parencite{becker2025metr}. A meta-analysis of 27 effect sizes found a
+moderate overall gain, smaller in open-source and enterprise work than in
+controlled experiments \parencite{maier2026metaanalysis}. Measure your own time
+before assuming either.

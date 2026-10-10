@@ -31,7 +31,8 @@ Provenance & Documented origin and processing history & Metadata, logs & Executi
 
 \textbf{Sampling is random.} The same input can give different outputs. Setting
 the temperature to zero and fixing a seed gives approximate, not exact,
-repeatability. Record the settings.
+repeatability \parencite{ouyang2024nondeterminism,coqueret2026randomness}.
+Record the settings.
 
 \textbf{The model changes underneath you.} A hosted model with a fixed name is
 not a fixed thing; providers update it without notice. A local model file with a
@@ -89,7 +90,8 @@ at \textit{[DOI]}. The authors take full responsibility for the content.
 A container pins the operating system and libraries. It does not remove model
 randomness. Including the model file and disabling the network at run time
 brings an AI-assisted pipeline as close to deterministic operation as currently
-possible:
+possible. Even then, outputs can vary with the hardware and software that run the
+model, so record those as well \parencite{coqueret2026randomness}:
 
 \begin{lstlisting}[style=shell]
 FROM docker.io/rocker/r-ver:4.4.1

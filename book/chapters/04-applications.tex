@@ -75,8 +75,15 @@ works at scale \parencite{johnson2026collections}, because the bottleneck was
 transcription speed, not judgement, and every output can be checked against the
 specimen.
 
-\textbf{Literature.} Much biodiversity knowledge is locked in prose, and
-language models can extract it \parencite{castro2024unstructured}.
+\textbf{Literature.} Much biodiversity knowledge is locked in prose. Text mining
+has worked on it for decades \parencite{thessen2012nlp,farrell2024textmining}, and
+language models can now extract it \parencite{castro2024unstructured}. Some
+entities remain hard even for people: in a gold-standard corpus built from
+Biodiversity Heritage Library texts, annotators agreed least on habitats
+\parencite{nguyen2019copious}. Historical sources are within reach too. In
+nineteenth-century records from W\"urttemberg, language models found species
+mentions with 95 per cent precision and 93 per cent recall. They linked 83 per
+cent of them to the correct GBIF identifier \parencite{teich2026wurttemberg}.
 \textcite{takola2026topicmodelling} traces topic modelling in conservation from
 early statistical methods to language models. Her conclusion is that the older
 methods remain valuable: they are interpretable, cheap and reproducible, and an
@@ -113,6 +120,14 @@ gains from a relatively small model on a defined task. Rare trait classes
 performed worse, and inconsistent definitions, such as leaf versus leaflet
 length, complicated numerical extraction. Predicted traits still need checking
 against the descriptions and the intended measurement.
+
+\textcite{schmidtlebuhn2025morphology} found the same problem in taxonomic
+descriptions. A hosted model filled a table of 51 characters from 1,121
+descriptions of Australian daisies. Checking 109 of the profiles found 5.8 per
+cent of filled cells wrong, mostly values placed under the wrong character, such
+as one kind of bract mistaken for another. When the run was repeated,
+one filled cell in six had a value in only one of the two runs, and a locally run
+open model was less reproducible still (\Cref{ch:localfirst}).
 
 \textbf{Microbiomes.} \textcite{yu2026microbiomes} describe the shift from
 describing microbial communities to predicting them, and name the obstacles:
@@ -198,7 +213,10 @@ Beyond models that classify are agents that run analyses: Biomni
 OmicClaw \parencite{zeng2026omicclaw}. On 244 expert-written bioinformatics
 tasks, leading agents performed similarly and declined sharply with difficulty
 \parencite{guo2026promptbio}: useful for well-specified tasks, unreliable where
-judgement is needed about whether the analysis is the right one.
+judgement is needed about whether the analysis is the right one. Environmental
+work looks similar: on 349 multi-step GIS tasks drawn from practitioners'
+questions, the best agent completed 32.7 per cent under strict scoring
+\parencite{pothuri2026gisagentbench}.
 
 The most striking result so far comes from inside a model company.
 \textcite{yoon2026art} set Claude Code agents to survey reverse transcriptases
