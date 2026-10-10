@@ -56,8 +56,8 @@ Before any reference goes in:
 
 Verification is scripted, not sampled. Run `python3 scripts/verify_bib.py`
 over the whole file after any change to the bibliography — it takes a few
-minutes and there is no acceptable reason to skip it. There are 169 entries:
-all 76 DOIs and all 52 arXiv IDs currently pass, and 41 entries have neither and
+minutes and there is no acceptable reason to skip it. There are 177 entries:
+all 84 DOIs and all 52 arXiv IDs currently pass, and 41 entries have neither and
 were checked by hand. Grant DOIs (CORDIS, `10.3030/...`) carry their title in
 Crossref's `project` field; the script handles that. Each script in `scripts/`
 has a `--self-test` that plants errors; run it after changing a script.
@@ -271,7 +271,7 @@ first: propose, don't implement.
 | October 10 literature and link review | Completed: transformer paper added in Ch. 2 and glossary; Palermo commentary clarified; Stanford lectures and cheatsheet, NVIDIA's Fundamentals of Deep Learning course, Red Hat implementation example and ZS essay linked in Appendix C. NVIDIA's repository address and active status checked through GitHub's API. See `LITERATURE_REVIEW_2026-10-10.md` for checks and link limitations | Agent |
 | Rename "Researchers" in Appendix C to "Researchers and research infrastructures" (the iDigBio webinar sits there) | Offered, unanswered | **author** |
 | Trim the Bauer et al. sentence (Ch. 12 Governance); state that most measured evidence is biomedical, not ecological; guidance for R users; guidance for database maintainers (offering a database to agents via MCP) | Proposed in review, unanswered. The last two need sources in `../literature/` first | **author** |
-| Literature gap review (Consensus Pro, 10 October 2026) | Completed: 43 open-access sources downloaded into `../literature/`, checked and cited across Chs. 2–5 and 7–14 (attribution fixes, data-ethics sources, ecological evidence, both sides where sources disagree). Ananiadou and Thessen now cited; Greek podcast example sourced (Paraskevopoulos et al.). See `LITERATURE_GAPS_2026-10-10.md`. Still needed as PDFs: Fox, Uryu, Khan, Hughes, Berger-Tal, Laignelot (bot-protected sites); Jennings, Tulloch, Cui (closed access) | Agent; PDFs for the nine: **author** |
+| Literature gap review (Consensus Pro, 10 October 2026) | Completed: 43 open-access sources downloaded into `../literature/`, checked and cited across Chs. 2–5 and 7–14 (attribution fixes, data-ethics sources, ecological evidence, both sides where sources disagree). Ananiadou and Thessen now cited; Greek podcast example sourced (Paraskevopoulos et al.). See `LITERATURE_GAPS_2026-10-10.md`. Eight more added from PDFs the author supplied (Fox, Uryu, Khan, Hughes, Berger-Tal, Laignelot, Jennings, Tulloch). Still needed: Cui et al. 2026, *Management Science* (closed access), to pair with the METR trial in Ch. 7 | Agent; Cui PDF: **author** |
 | New files in `../literature/` | Check whenever you start: anything not in `references.bib` is a candidate. Read it in full before placing it | Agent |
 
 When you finish an item, update this table and `book/README.md` (Open issues)
