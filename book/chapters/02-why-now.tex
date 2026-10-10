@@ -18,12 +18,17 @@ running one on hardware you can buy is not, and that gap is what
 \Cref{ch:localfirst} is about. For running models, the limit is memory rather
 than processor speed (\Cref{ch:hardware}).
 
-\textbf{Algorithms.} The \term{transformer}, introduced in 2017, lets every word
-in a text attend to every other in one parallel step, so a whole sequence trains
-at once instead of word by word. That made the available compute usable. The
-design is still being refined --- \textcite{kimi2026attnres}, for instance,
-change how each layer's output is added to the next --- but the changes are now
-small steps rather than new paradigms.
+\textbf{Algorithms.} \textcite{vaswani2017attention} introduced the
+\term{transformer} in 2017, using \term{attention} to combine information from
+different positions in a sequence. During training, many positions can be
+processed in parallel, making better use of GPUs than processing them one
+after another. When predicting the next token, the model is prevented from
+looking ahead at the answer. Generating new text still proceeds token by
+token in this design. The original experiments concerned translation and
+sentence structure; they did not establish ecological expertise
+\parencite{vaswani2017attention}. The design continues to develop:
+\textcite{kimi2026attnres}, for instance, change how information from earlier
+layers is combined.
 
 \textbf{Data.} Pretraining consumed the accessible text of the internet. For
 ecology the equivalent resource is domain data --- curated, standardised, with
@@ -49,9 +54,15 @@ per cent in March 2026 \parencite{aiindex2026}. Open weights are close enough
 to the frontier that running them yourself is a real option, which is the
 subject of Part~IV.
 
-The money is also reaching biology directly. Frontier AI and large technology
-companies have begun buying early-stage biology platform companies, a new kind
-of buyer alongside the pharmaceutical industry \parencite{palermo2026acquirers}.
+The money is also reaching biology directly. In a commentary,
+\textcite{palermo2026acquirers} examines Anthropic's acquisition of Coefficient
+Bio as evidence of a potential new class of biotech buyer. Her distinction is
+between buying a drug candidate and acquiring models, biological datasets and
+the team able to develop them. She expects further acquisitions and
+partnerships; this is a forecast, rather than an established industry pattern.
+For biodiversity infrastructures, the question is what access to valuable
+data will mean for the people and institutions that curate them
+(\Cref{ch:aireadydata}).
 
 \section{Is this a bubble?}
 

@@ -3,10 +3,9 @@
 
 This appendix brings together online books, videos, newsletters, blogs and code repositories
 collected in the author's notes and literature folder while writing this book.
-Titles and names are as
-YouTube, GitHub and the publishers' own sites gave them in September 2026,
-with further readings added on 1 October 2026;
-repositories that have moved are listed at their current address. Web material
+Titles and names were checked against YouTube, GitHub and the publishers'
+own sites in September 2026, with further readings and link checks on
+10 October 2026. Repositories that have moved are listed at their current address. Web material
 is taken down and renamed more often than papers, so some links will break.
 
 % Smaller URLs so the playlist link fits the line; scoped to this appendix.
@@ -18,6 +17,31 @@ covering reproducibility, project design, communication, collaboration and
 research ethics. Its guides can be consulted by topic as questions arise in
 your work.\\
 \url{https://book.the-turing-way.org/}
+
+\emph{Fundamentals of Deep Learning}, from NVIDIA's Deep Learning Institute,
+provides practical exercises in Jupyter notebooks using PyTorch. The course
+starts with image classification, then introduces convolutional networks,
+data augmentation and adapting pretrained models. Its examples let readers
+practise training and checking a model before tackling the language-model
+architectures in the Stanford course below. Slides accompany the notebooks.\\
+\url{https://github.com/NVDLI/fundamentals-of-deep-learning}
+
+\emph{CME 295 -- Transformers \& Large Language Models} is taught by Afshine
+Amidi and Shervine Amidi at Stanford University. It covers how language
+models are built, trained, evaluated and used as agents. The syllabus links
+slides and recorded lectures on YouTube, released week by week during the
+autumn 2026 term. It assumes calculus, linear algebra and basic machine
+learning, so it goes deeper than this book. The first three lectures provide
+a useful route through the foundations: tokens, embeddings and attention;
+model architectures and text generation; then pretraining and subsequent
+tuning. Read the first alongside \textcite{vaswani2017attention} and
+\Cref{ch:whynow}. The third distinguishes learning from example answers from
+learning which answers are preferred.\\
+\url{https://cme295.stanford.edu/syllabus/}
+
+The course's multilingual cheatsheet provides a compact reference for the
+terminology and equations used in the lectures.\\
+\url{https://cme295.stanford.edu/cheatsheet/}
 
 \section{Conference sessions}
 
@@ -77,10 +101,12 @@ your work.\\
 
 \begin{itemize}
   \item \emph{Stanford HAI News}, Stanford Institute for Human-Centered
-    Artificial Intelligence.\\
+    Artificial Intelligence. Its article
+    \href{https://hai.stanford.edu/news/open-weight-models-arent-enough-we-need-truly-open-source-ai-models-for-science-and-society}{``Open-Weight Models Aren't Enough. We Need Truly Open Source AI Models for Science and Society''}
+    (4 August 2026) discusses the distinction used in \Cref{ch:aireadydata}.\\
     \url{https://hai.stanford.edu/news}
   \item \emph{Simplifying AI}, Alvaro Cintas.\\
-    \url{https://newsletter.alvarocintas.com}
+    \url{https://www.simplifyingai.co/subscribe}
   \item \emph{AI: A Guide for Thinking Humans}, Melanie Mitchell (Substack).\\
     \url{https://aiguide.substack.com}
   \item \emph{Paired Ends}, Stephen D. Turner (Substack).\\
@@ -103,13 +129,19 @@ your work.\\
   \item \emph{Fedora Magazine}, the Fedora Project.\\
     \url{https://fedoramagazine.org}
   \item \emph{The official Red Hat blog}, Red Hat.
-    Three saved articles provide starting points.
+    Four saved articles provide starting points.
     ``The future of AI demands a hybrid foundation'' (published 3 June 2026)
     discusses placing workloads across local and hosted infrastructure.
     ``Why flexibility is non-negotiable in the Middle East's AI
     transformation journey'' (4 June 2026) discusses data location and staff skills.
     ``Why Red Hat is building secure agent onboarding''
     (28 September 2026) describes enforcing access policy outside the model.
+    Ganesh Murthy's
+    \href{https://www.redhat.com/en/blog/building-ai-powered-multimodal-compliance-monitor-training-tracking-chat}{``Building an AI-powered multimodal compliance monitor: From training to tracking to chat''}
+    (30 September 2026) follows video detections into a database queried through
+    a language-model interface. It describes read-only database access through
+    MCP and application checks that restrict queries to the selected video.
+    This is an implementation example, not evidence of ecological accuracy.
     These are vendor perspectives; \Cref{ch:localfirst,ch:security} discuss
     their practical implications.\\
     \url{https://www.redhat.com/en/blog}
@@ -123,6 +155,14 @@ your work.\\
     (25 September 2026). An argument for tracing biological data back to
     materials and handling records (\Cref{ch:aireadydata}).\\
     \url{https://undark.org}
+  \item \emph{ZS Associates}, on Medium. Peter MacLean and Emily Shaw
+    McLaughlin's ``The economics of expertise: what AI means for the future
+    of scientific talent'' argues that automating routine research can also
+    remove opportunities to develop judgement. The authors call for deliberate
+    practice and mentoring alongside AI training. This is a perspective on
+    drug-discovery work, not a study measuring skill loss among ecologists;
+    read it alongside \Cref{ch:scientificworkflow}.\\
+    \url{https://medium.com/zs-associates}
   \item \emph{Blog}, confidence.sh.\\
     \url{https://confidence.sh/blog/}
 \end{itemize}

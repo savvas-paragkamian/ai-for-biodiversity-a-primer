@@ -56,14 +56,17 @@ Before any reference goes in:
 
 Verification is scripted, not sampled. Run `python3 scripts/verify_bib.py`
 over the whole file after any change to the bibliography — it takes a few
-minutes and there is no acceptable reason to skip it. There are 123 entries:
-all 53 DOIs and all 29 arXiv IDs currently pass, and 41 entries have neither and
+minutes and there is no acceptable reason to skip it. There are 126 entries:
+all 55 DOIs and all 30 arXiv IDs currently pass, and 41 entries have neither and
 were checked by hand. Grant DOIs (CORDIS, `10.3030/...`) carry their title in
 Crossref's `project` field; the script handles that. Each script in `scripts/`
 has a `--self-test` that plants errors; run it after changing a script.
 
-- **A citation file is not a source.** `CambridgeCore_Citation_28Sep2026.txt`
-  (Seth 2026) has no PDF beside it, so it is not cited.
+- **A citation file is not a source.** Seth's article and the Richards and
+  Agüera y Arcas commentary are now cited from
+  `conscious-artificial-intelligence-and-biological-naturalism.pdf`, supplied
+  on 10 October 2026. The commentary is on pages 76–77 of that combined PDF;
+  no separate commentary PDF is needed.
 - **Web articles:** take the URL from the PDF's page header only if it is
   complete. A truncated URL (`...`) means no `url` field. If the document is
   undated, say in `note` how the year was inferred.
@@ -249,10 +252,14 @@ first: propose, don't implement.
 | The Turing Way reading recommendation | Completed 1 October 2026: official online book linked and described at the start of Appendix C | Agent |
 | Linguistic revision and reusable author style guide | Completed 30 September 2026; see `WRITING_STYLE.md` and `LINGUISTIC_REVISION.md` | Agent |
 | October literature additions and benchmarks | Completed 1 October 2026: consciousness in Ch. 1; five ecological and microbial studies in Ch. 4; data provenance in Ch. 5; Red Hat guidance and evaluation procedure in Ch. 10 and 12; Krakauer and Levin in Ch. 14; web readings in Appendix C. See `LITERATURE_UPDATE.md` for sources and checks | Agent |
-| `openai2026huggingface` misattributed in Ch. 5 and Ch. 12 (see Bibliography) | Needs another source from `../literature/`, or rewording | Agent proposes, **author** decides |
+| `openai2026huggingface` misattributed in Ch. 5 and Ch. 12 (see Bibliography) | Rewording prepared on 10 October in `PROPOSED_SOURCE_CORRECTION.patch`; not applied, awaiting author's decision | Agent proposes, **author** decides |
 | Expand KYBELE as the running example | Blocked: KYBELE's design documents (repo, design doc, BEeS 2026 abstract, RIO draft) must be in `../literature/` first. `Kybele HCMR.md` covers tools only. Never write KYBELE features or results by inference | **author** |
 | Where KYBELE lives | Undecided. Recommended: thread it through Ch. 5 (retrieval), 7 (its AGENTS.md), 9 (logging), 10 (as now), 12 (scope enforced in code), 13 (literature stage). A dedicated chapter would need a `NOTES.md` entry | **author** |
-| Seth (2026), standalone article | Citation file only; needs the PDF in `../literature/`. The separate co-authored Chandaria et al. consciousness preprint is now available and cited | **author** |
+| Seth (2026), standalone article | Completed 10 October 2026: supplied combined PDF read; added with the Richards and Agüera y Arcas reply in Ch. 1 and cited in Ch. 14. Print year 2026; online publication 2025 recorded in the bibliography | Agent |
+| Richards and Agüera y Arcas (2026), BBS commentary on Seth, doi:10.1017/S0140525X25103646 | Completed 10 October 2026: reply found on pp. 76–77 of the combined Seth PDF; added as a pair in Ch. 1 and cited in Agüera y Arcas's Ch. 14 entry | Agent |
+| CME 295 (Stanford, Transformers & LLMs) in Appendix C | Completed 10 October 2026: unsectioned paragraph after The Turing Way. Whether to add a "Courses" section instead is offered, unanswered | Agent; section question **author** |
+| ZS Associates, "The economics of expertise" (Medium, in `../literature/` since 1 October) | Completed 10 October 2026: read and placed in Appendix C as a perspective by Peter MacLean and Emily Shaw McLaughlin; no new blog bibliography entry | Agent |
+| October 10 literature and link review | Completed: transformer paper added in Ch. 2 and glossary; Palermo commentary clarified; Stanford lectures and cheatsheet, NVIDIA's Fundamentals of Deep Learning course, Red Hat implementation example and ZS essay linked in Appendix C. NVIDIA's repository address and active status checked through GitHub's API. See `LITERATURE_REVIEW_2026-10-10.md` for checks and link limitations | Agent |
 | Rename "Researchers" in Appendix C to "Researchers and research infrastructures" (the iDigBio webinar sits there) | Offered, unanswered | **author** |
 | Trim the Bauer et al. sentence (Ch. 12 Governance); state that most measured evidence is biomedical, not ecological; guidance for R users; guidance for database maintainers (offering a database to agents via MCP) | Proposed in review, unanswered. The last two need sources in `../literature/` first | **author** |
 | New files in `../literature/` | Check whenever you start: anything not in `references.bib` is a candidate. Read it in full before placing it | Agent |

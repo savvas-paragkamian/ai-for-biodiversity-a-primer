@@ -36,7 +36,7 @@ its serving layer runs and its orchestrator is designed but not built.
 
 ## Contents
 
-About 18,000 words, 77 pages.
+About 19,000 words, 79 pages.
 
 | Part | Chapters |
 |---|---|
@@ -70,7 +70,7 @@ By hand, if you prefer: `pdflatex` -> `biber main` -> `pdflatex` -> `pdflatex`.
 ```
 main.tex          parts and chapter includes
 preamble.tex      packages, formatting, biblatex setup
-references.bib    123 entries, grouped by theme
+references.bib    126 entries, grouped by theme
 chapters/
   00-preface
   01-landscape  02-why-now  03-powers-and-limits  04-applications
@@ -86,9 +86,9 @@ chapters/
 Assembled from the `.bib`, `.ris` and `.bibtex` files in `../../literature/`,
 plus entries taken from the PDFs there.
 
-Verified on 1 October 2026: all 53 DOIs resolve through Crossref and all 29 arXiv IDs through the
+Verified on 10 October 2026: all 55 DOIs resolve through Crossref and all 30 arXiv IDs through the
 arXiv API, titles matching in every case. The remaining 41 entries are reports,
-books, blog posts and web pages with no such identifier, checked by hand. Every
+books, blog posts and web pages with no such identifier, previously checked by hand. Every
 entry is cited at least once.
 
 Videos, newsletters, blogs and code repositories are not bibliography entries;
@@ -113,7 +113,9 @@ notes will match.
 
 The Turing Way was added to Appendix C on 1 October 2026 as an online reading
 recommendation, with its title, community authorship and scope checked against
-the official book site.
+the official book site. Stanford's CME 295, *Transformers & Large Language
+Models* (Afshine and Shervine Amidi), was added beside it on 10 October 2026,
+with its title and instructors taken from the course site.
 
 The linguistic revision was completed on 30 September 2026. See
 [`LINGUISTIC_REVISION.md`](../LINGUISTIC_REVISION.md) for changes and checks.
@@ -127,14 +129,35 @@ procedure, and Chapter 14 includes David C. Krakauer and Michael Levin.
 See [`LITERATURE_UPDATE.md`](../LITERATURE_UPDATE.md) for the source map,
 verification results and remaining limits.
 
+The review of 10 October 2026 adds Vaswani et al.'s transformer paper and the
+Seth–Richards/Agüera y Arcas consciousness exchange. Chapter 2 distinguishes
+parallel training from sequential text generation and qualifies Palermo's
+biotech acquisition forecast. Appendix C now guides readers through the first
+three Stanford lectures and links the cheatsheet, the ZS expertise essay and
+Red Hat's multimodal implementation example. NVIDIA's Fundamentals of Deep
+Learning course precedes Stanford as a practical introduction using PyTorch
+notebooks; its current repository address and active status were checked.
+The Simplifying AI address is
+updated, and the complete Stanford HAI open-weight article link appears there.
+See [`LITERATURE_REVIEW_2026-10-10.md`](../LITERATURE_REVIEW_2026-10-10.md)
+for the task-only diff, checks and remaining link limitations.
+
 - `openai2026huggingface` is cited in Chapters 5 and 12 for model files carrying
   executable payloads; the source is about agents escaping a sandbox. Those two
-  sentences need another source or rewording.
+  sentences need another source or rewording. A source-supported replacement is
+  prepared in [`PROPOSED_SOURCE_CORRECTION.patch`](../PROPOSED_SOURCE_CORRECTION.patch),
+  awaiting the author's decision as required by `AGENTS.md`.
 - KYBELE's expansion as the running example needs its design documents in
   `../../literature/` before it can be written up.
-- Seth's standalone 2026 article has a citation file in `../../literature/`
-  but no PDF, so it is not cited. The separate consciousness preprint by
-  Chandaria et al., which Seth co-authors, is now available and cited.
+- The combined Seth PDF supplied on 10 October contains both his target
+  article and the Richards/Agüera y Arcas reply (pp. 76–77). Both are now
+  cited together in Chapter 1 and in the people list in Chapter 14.
+- The ZS Associates essay is now in Appendix C, with its authors named and
+  its argument distinguished from evidence of skill loss in ecology.
+- Two existing bibliography links could not be verified in the October 10
+  audit: the Financial Times returned access errors, and the saved Anna's
+  Archive address failed certificate validation. Neither was replaced with
+  a guessed address.
 
 ## Conventions
 

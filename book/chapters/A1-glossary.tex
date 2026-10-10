@@ -15,8 +15,9 @@
 \item[AI-ready] Machine-readable, standardised, well-described, openly licensed
   data: good data management with a new consumer (\Cref{ch:aireadydata}).
 
-\item[Attention] The transformer operation that lets every position in a text
-  look at every other in parallel.
+\item[Attention] An operation that combines information from permitted
+  positions in a sequence using calculated weights. Next-token prediction
+  blocks access to later tokens \parencite{vaswani2017attention}.
 
 \item[Balanced accuracy] The mean recall across classes, giving common and
   rare classes equal weight (\Cref{ch:applications}).
@@ -146,7 +147,9 @@
   English word. The unit of context and of billing.
 
 \item[Transformer] The architecture behind current language models (2017),
-  processing whole sequences in parallel through attention.
+  using attention to process many positions in parallel during training.
+  Its original decoder generates output one token at a time
+  \parencite{vaswani2017attention}.
 
 \item[Unified memory] Processor and graphics sharing one memory pool, so large
   models fit on ordinary machines.
