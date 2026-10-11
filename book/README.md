@@ -31,27 +31,32 @@ views.
 
 **Running example.** KYBELE, a literature assistant for Collembola built on the
 SIB Literature Services, is the worked example of biodiversity literature and
-knowledge retrieval (Chapter 10). It is being expanded; at the time of writing
+knowledge retrieval (Chapter 11). It is being expanded; at the time of writing
 its serving layer runs and its orchestrator is designed but not built.
 
 ## Contents
 
-About 20,000 words, 85 pages.
+About 22,600 words, 94 pages.
 
 | Part | Chapters |
 |---|---|
 | Preface | Audience, the three arguments, how the book was written |
 | I. The Landscape | 1 Chatbots, Models and Agents · 2 Why Now? · 3 Powers and Limitations · 4 Applications in Biology and Ecology |
 | II. Data | 5 AI-Ready Data · 6 Organising and Protecting Your Data |
-| III. Working with Agents | 7 The Agentic Coding Workflow · 8 The Software Stack · 9 Reproducibility When the Tool Varies |
-| IV. Local-First | 10 The Local-First Approach (with the KYBELE example) · 11 Hardware for Local Inference |
-| V. Risk, Integrity and Keeping Up | 12 Security, Biorisk and Governance (ending in the wider frame: noosphere, evolvable AI) · 13 Changes Across the Scientific Workflow · 14 How to Keep Up |
+| III. Working with Agents | 7 The Agentic Coding Workflow · 8 The Software Stack · 9 Reproducibility When the Tool Varies · 10 A First Agent Session (hands-on, in R, with `../workshop/session`) |
+| IV. Local-First | 11 The Local-First Approach (with the KYBELE example) · 12 Hardware for Local Inference · 13 Testing a Model on Your Own Task (with an R exercise, `../workshop/testing`) |
+| V. Risk, Integrity and Keeping Up | 14 Security, Biorisk and Governance (ending in the wider frame: noosphere, evolvable AI, consciousness) · 15 Changes Across the Scientific Workflow · 16 How to Keep Up |
 | Appendices | A Glossary · B Checklists · C Tutorials (videos, newsletters, blogs, awesome lists, tool repositories) · D State of Play, September 2026 (prices, model versions, harnesses, usage limits) |
 
 If you read one chapter, read Chapter 3.
 
 The chapters are written to last; names, prices and limits that will date live
 in Appendix D, and links that will rot live in Appendix C.
+
+## Licence
+
+Creative Commons Attribution 4.0 International (CC BY 4.0), stated on the
+title page. The workshop companion in `../workshop/` carries the same licence.
 
 ## Build
 
@@ -76,7 +81,8 @@ chapters/
   01-landscape  02-why-now  03-powers-and-limits  04-applications
   05-ai-ready-data  06-organisation-and-backup
   07-agentic-workflow  08-software-stack  09-reproducibility
-  10-local-first  11-hardware
+  09b-first-agent-session
+  10-local-first  11-hardware  11b-testing
   12-security-and-biorisk  13-scientific-workflow  14-keeping-up
   A1-glossary  A2-checklists  A3-tutorials  A4-state-of-play
 ```
@@ -142,7 +148,7 @@ updated, and the complete Stanford HAI open-weight article link appears there.
 See [`LITERATURE_REVIEW_2026-10-10.md`](../LITERATURE_REVIEW_2026-10-10.md)
 for the task-only diff, checks and remaining link limitations.
 
-- `openai2026huggingface` is cited in Chapters 5 and 12 for model files carrying
+- `openai2026huggingface` is cited in Chapters 5 and 14 for model files carrying
   executable payloads; the source is about agents escaping a sandbox. Those two
   sentences need another source or rewording. A source-supported replacement is
   prepared in [`PROPOSED_SOURCE_CORRECTION.patch`](../PROPOSED_SOURCE_CORRECTION.patch),
@@ -151,17 +157,30 @@ for the task-only diff, checks and remaining link limitations.
   `../../literature/` before it can be written up.
 - The combined Seth PDF supplied on 10 October contains both his target
   article and the Richards/Agüera y Arcas reply (pp. 76–77). Both are now
-  cited together in Chapter 1 and in the people list in Chapter 14.
+  cited together in the wider frame of Chapter 14 and in the people list in
+  Chapter 16; Chapter 1 keeps one paragraph separating intelligence from
+  experience.
 - The ZS Associates essay is now in Appendix C, with its authors named and
   its argument distinguished from evidence of skill loss in ecology.
 - The literature gap review of 10 October 2026,
   [`LITERATURE_GAPS_2026-10-10.md`](../LITERATURE_GAPS_2026-10-10.md),
   added 43 sources: attributions for sentences that had none, FAIR, CARE and
-  the Disentis Roadmap in Chapter 5, ecological evidence in Chapters 4 and 10,
+  the Disentis Roadmap in Chapter 5, ecological evidence in Chapters 4 and 11,
   and both sides where sources disagree. Ananiadou and Thessen are now cited
-  in Chapter 14, and the Greek podcast example in Chapter 8 has its source.
+  in Chapter 16, and the Greek podcast example in Chapter 8 has its source.
   Eight further sources were added from PDFs the author supplied; one, Cui et
   al. (2026), is still awaited and is not cited.
+- A review of the book's positioning, writing and use as a textbook,
+  [`BOOK_REVIEW_2026-10-10.md`](../BOOK_REVIEW_2026-10-10.md), compares it with
+  comparable articles, books, guides and courses. On 11 October 2026 the
+  author accepted five proposals, now done: a testing chapter (13, moved from
+  the local-first chapter, with an R exercise); a hands-on agent session
+  (Chapter 10, modelled on Stanford's CME 295); the consciousness exchange
+  moved to the wider frame; CC BY 4.0; and a one-figure-per-study rule in
+  `AGENTS.md`, not yet applied to existing chapters. Both exercises were run
+  locally with Ollama on an Apple M1 Max laptop, and the chapters report what
+  happened, failures included. The hosted track of Chapter 10 was not run.
+  Learning outcomes, an index, figures and further sources remain proposals.
 - Two existing bibliography links could not be verified in the October 10
   audit: the Financial Times returned access errors, and the saved Anna's
   Archive address failed certificate validation. Neither was replaced with

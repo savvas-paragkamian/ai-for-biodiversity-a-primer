@@ -104,10 +104,15 @@ informaticians, not for machine learning researchers.
   source must support the sentence by itself; do not add one to pad a list.
   Adding a citation to an existing sentence is usually better than adding
   new prose.
+- **One figure per study.** When summarising a study, keep the one figure
+  that carries the lesson and leave the rest to the source; a reader who
+  wants the others can open it. Results of the book's own exercises are
+  exempt, because readers compare their runs with them. Author's decision,
+  11 October 2026.
 - **Dissent stays in.** `mishra2026notready` argues ecology isn't ready for AI.
   That argument is represented fairly throughout and is not to be smoothed away.
   The same holds elsewhere: Mitchell and Bengio read the 2026 agent incidents
-  differently (Chapter 12), and Wickham's view that local models are not
+  differently (`12-security-and-biorisk.tex`), and Wickham's view that local models are not
   worth it for beginners sits in the local-first chapter on purpose.
 - **When sources disagree on a fact,** state only what they agree on, or give
   both with attribution. Don't pick the more dramatic version.
@@ -237,7 +242,8 @@ Settled by the author. Don't reopen them in reviews or suggestions.
 - **Scope is biodiversity.** The title is *AI for Biodiversity: A Primer*. The
   subject is language models and agents applied to biodiversity data and
   literature; image, sound and species distribution models stay brief (Ch. 4).
-- **The wider frame stays.** The last section of Ch. 12 (noosphere, evolvable
+- **The wider frame stays.** The last section of `12-security-and-biorisk.tex`
+  (noosphere, evolvable
   AI, biospheric AI, von Neumann) is where data, complexity and history meet.
   It is core, not a tangent: strengthen and connect it, never propose cutting it.
 - **KYBELE is the worked example** for biodiversity literature and knowledge
@@ -247,11 +253,17 @@ Settled by the author. Don't reopen them in reviews or suggestions.
 - **Deliberate exclusions from Appendix C:** Anna's Blog, the paper code
   repositories from `../literature/` (not general tools), and
   `simplifyingcomplexity.tech` (it couldn't be verified).
-- **Ananiadou entry, Ch. 14:** "in the department where Turing worked" stays,
+- **Ananiadou entry, `14-keeping-up.tex`:** "in the department where Turing worked" stays,
   by the author's decision of 10 October 2026, although no source in
   `../literature/` covers it. Don't flag it again.
 
 ## Open work
+
+Chapter numbers changed on 11 October 2026, when two chapters were added:
+"A First Agent Session" (`09b-first-agent-session.tex`, Chapter 10) and
+"Testing a Model on Your Own Task" (`11b-testing.tex`, Chapter 13). Former
+Chapters 10–14 are now 11, 12, 14, 15 and 16. Name chapters by file in this
+file; completed rows below keep the numbers in use when they were written.
 
 Pick from here. Items marked **author** need the author's decision or material
 first: propose, don't implement.
@@ -261,17 +273,19 @@ first: propose, don't implement.
 | The Turing Way reading recommendation | Completed 1 October 2026: official online book linked and described at the start of Appendix C | Agent |
 | Linguistic revision and reusable author style guide | Completed 30 September 2026; see `WRITING_STYLE.md` and `LINGUISTIC_REVISION.md` | Agent |
 | October literature additions and benchmarks | Completed 1 October 2026: consciousness in Ch. 1; five ecological and microbial studies in Ch. 4; data provenance in Ch. 5; Red Hat guidance and evaluation procedure in Ch. 10 and 12; Krakauer and Levin in Ch. 14; web readings in Appendix C. See `LITERATURE_UPDATE.md` for sources and checks | Agent |
-| `openai2026huggingface` misattributed in Ch. 5 and Ch. 12 (see Bibliography) | Rewording prepared on 10 October in `PROPOSED_SOURCE_CORRECTION.patch`; not applied, awaiting author's decision | Agent proposes, **author** decides |
+| `openai2026huggingface` misattributed in Ch. 5 and `12-security-and-biorisk.tex` (see Bibliography) | Rewording prepared on 10 October in `PROPOSED_SOURCE_CORRECTION.patch`; not applied, awaiting author's decision | Agent proposes, **author** decides |
 | Expand KYBELE as the running example | Blocked: KYBELE's design documents (repo, design doc, BEeS 2026 abstract, RIO draft) must be in `../literature/` first. `Kybele HCMR.md` covers tools only. Never write KYBELE features or results by inference | **author** |
-| Where KYBELE lives | Undecided. Recommended: thread it through Ch. 5 (retrieval), 7 (its AGENTS.md), 9 (logging), 10 (as now), 12 (scope enforced in code), 13 (literature stage). A dedicated chapter would need a `NOTES.md` entry | **author** |
+| Where KYBELE lives | Undecided. Recommended: thread it through Ch. 5 (retrieval), 7 (its AGENTS.md), 9 (logging), local-first (as now), security (scope enforced in code), scientific workflow (literature stage); the first agent session could use KYBELE data once the design documents exist. A dedicated chapter would need a `NOTES.md` entry | **author** |
 | Seth (2026), standalone article | Completed 10 October 2026: supplied combined PDF read; added with the Richards and Agüera y Arcas reply in Ch. 1 and cited in Ch. 14. Print year 2026; online publication 2025 recorded in the bibliography | Agent |
 | Richards and Agüera y Arcas (2026), BBS commentary on Seth, doi:10.1017/S0140525X25103646 | Completed 10 October 2026: reply found on pp. 76–77 of the combined Seth PDF; added as a pair in Ch. 1 and cited in Agüera y Arcas's Ch. 14 entry | Agent |
 | CME 295 (Stanford, Transformers & LLMs) in Appendix C | Completed 10 October 2026: unsectioned paragraph after The Turing Way. Whether to add a "Courses" section instead is offered, unanswered | Agent; section question **author** |
 | ZS Associates, "The economics of expertise" (Medium, in `../literature/` since 1 October) | Completed 10 October 2026: read and placed in Appendix C as a perspective by Peter MacLean and Emily Shaw McLaughlin; no new blog bibliography entry | Agent |
 | October 10 literature and link review | Completed: transformer paper added in Ch. 2 and glossary; Palermo commentary clarified; Stanford lectures and cheatsheet, NVIDIA's Fundamentals of Deep Learning course, Red Hat implementation example and ZS essay linked in Appendix C. NVIDIA's repository address and active status checked through GitHub's API. See `LITERATURE_REVIEW_2026-10-10.md` for checks and link limitations | Agent |
 | Rename "Researchers" in Appendix C to "Researchers and research infrastructures" (the iDigBio webinar sits there) | Offered, unanswered | **author** |
-| Trim the Bauer et al. sentence (Ch. 12 Governance); state that most measured evidence is biomedical, not ecological; guidance for R users; guidance for database maintainers (offering a database to agents via MCP) | Proposed in review, unanswered. The last two need sources in `../literature/` first | **author** |
+| Trim the Bauer et al. sentence (security chapter, Governance); state that most measured evidence is biomedical, not ecological; guidance for R users; guidance for database maintainers (offering a database to agents via MCP) | Proposed in review, unanswered. The last two need sources in `../literature/` first | **author** |
 | Literature gap review (Consensus Pro, 10 October 2026) | Completed: 43 open-access sources downloaded into `../literature/`, checked and cited across Chs. 2–5 and 7–14 (attribution fixes, data-ethics sources, ecological evidence, both sides where sources disagree). Ananiadou and Thessen now cited; Greek podcast example sourced (Paraskevopoulos et al.). See `LITERATURE_GAPS_2026-10-10.md`. Eight more added from PDFs the author supplied (Fox, Uryu, Khan, Hughes, Berger-Tal, Laignelot, Jennings, Tulloch). Still needed: Cui et al. 2026, *Management Science* (closed access), to pair with the METR trial in Ch. 7 | Agent; Cui PDF: **author** |
+| Book review of 10 October 2026 (`BOOK_REVIEW_2026-10-10.md`): positioning against comparable work, writing, textbook use | Answered 11 October 2026 and done: testing chapter (`11b-testing.tex`, `ch:testing`, with an R exercise); hands-on harness tutorial modelled on CME 295 (`09b-first-agent-session.tex`, `ch:firstsession`); consciousness exchange moved to the wider frame; CC BY 4.0 on the title page; one-figure rule added to Prose. Workshop companion in R started in `workshop/` (session and testing, both tested locally; the hosted track was not run). Not yet done: applying the one-figure rule to Chs. 4, 11 and 14; labs on a retrieval assistant and on reproducibility. Still proposed, unanswered: learning outcomes, index and version; figures; trimming Chapter 4's catalogue; sources on the EU AI Act, the Cali Fund, DOME/TRIPOD-LLM, ARETE and Cooper et al. 2024 | Agent; open items **author** |
+| Workshop housekeeping | Agents don't delete. The author may remove `workshop/testing/key/RULES.md` (a duplicate of `workshop/testing/RULES.md`) and `workshop/testing/results/` (test outputs, kept in `workshop/answers/testing-run-2026-10-11/`), so that learners start with an empty results folder | **author** |
 | New files in `../literature/` | Check whenever you start: anything not in `references.bib` is a candidate. Read it in full before placing it | Agent |
 
 When you finish an item, update this table and `book/README.md` (Open issues)
@@ -303,6 +317,9 @@ everyone else.
 - **Delegating a task:** give the receiving agent the chapter or files, the
   source documents in `../literature/`, the checks to run, and the relevant
   lines from Decisions and Open work. Don't assume it has read this file.
-- Harnesses read different files: Codex and OpenCode read `AGENTS.md`, while
-  Claude Code reads `CLAUDE.md`. If an agent ignores these rules, ask the author
-  whether to add a `CLAUDE.md` that points here. Don't create one yourself.
+- Harnesses read different files. Codex and OpenCode read `AGENTS.md`. Claude
+  Code reads `AGENTS.md` when there is no `CLAUDE.md` in the working directory
+  or above it (version 2.1.277 or later, per its documentation, checked
+  11 October 2026); older versions read only `CLAUDE.md`. If an agent ignores
+  these rules, ask the author whether to add a `CLAUDE.md` containing
+  `@AGENTS.md`. Don't create one yourself.

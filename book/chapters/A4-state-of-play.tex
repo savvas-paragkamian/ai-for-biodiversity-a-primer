@@ -49,6 +49,20 @@ In the terminal: Claude Code, OpenCode, Codex, Gemini CLI, Copilot CLI and
 Aider. Inside code editors: Cline and Continue. \Cref{app:tutorials} links to
 the open-source ones.
 
+\section{Versions used in the workshop, October 2026}
+
+The exercises in \Cref{ch:firstsession,ch:testing} were tested on
+11 October 2026 on a MacBook Pro with an Apple M1 Max chip and 32\,GB of
+unified memory. The local track used Ollama 0.31.1, OpenCode 1.17.11, R 4.5.1,
+\code{ellmer} 0.5.0 and Git 2.54. The models were \code{qwen3:8b} (Qwen3 8B,
+four-bit), used for the extraction exercise and the first agent tests, and
+Gemma 4 12B in its Apple-silicon build (\code{gemma4:12b-mlx}, saved with a 32K
+context). Only the 12B model completed the agent loop, so the companion's
+\code{opencode.json} names \code{gemma4:12b}, the same model for other
+hardware, which was not itself tested. The hosted track was described from Claude
+Code's documentation for version 2.1.296 and was not run: reading
+\code{AGENTS.md} without a \code{CLAUDE.md} needs version 2.1.277 or later.
+
 \section{Subscription limits}
 
 Consumer subscription tiers ration use by a rolling five-hour window, on the

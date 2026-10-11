@@ -73,7 +73,8 @@ ollama ps                          # CONTEXT must read 32768
 \end{lstlisting}
 
 Two settings cause most local-agent failures. The harness must be told that
-the model supports tools (in OpenCode, \code{"tools": true}). The context must
+the model supports tools (in OpenCode, \code{"tool\_call": true} in the model's
+entry). The context must
 also be enlarged; otherwise, information is cut from the loop and the agent
 appears unable to follow the task. A 12B
 local model is useful for small edits and explanation, and well behind frontier

@@ -1,0 +1,184 @@
+\chapter{Testing a Model on Your Own Task}
+\label{ch:testing}
+
+Published benchmarks measure someone else's task. A model that does well on
+them can fail on a reworded question (\Cref{ch:landscape}), and the ecological
+studies in \Cref{ch:applications} show how unevenly the same models perform
+from one task to the next. Whether a model is good enough for your data is
+therefore something to test on your data. This chapter collects ways in which
+other projects have tested models, sets out a procedure for ecological tasks,
+and ends with a small exercise in R that runs the procedure from start to
+finish.
+
+\section{More than one number}
+
+A single accuracy score hides most of what matters. Three examples show other
+ways to test.
+
+\textbf{Test several things at once.} Karenina, from EMBL-EBI, lets experts
+say in plain language what a sound answer needs and what behaviour to test, and turns that into runnable checks \parencite{carli2026karenina}. On
+144 drug-discovery questions, giving seven models live access to the Open
+Targets database raised accuracy from 51 to 81 per cent. However, 11 per cent
+of the answers given with that access were correct but unsupported by the
+retrieved evidence. Invented PubMed identifiers gave way to real papers cited
+for claims they do not make. Tool use also cost 24 to 121 times more tokens.
+When a user confidently
+pushed back with false information, models abandoned correct answers 57 per cent
+of the time --- sycophancy, measured (\Cref{ch:powers}). A second model acting
+as a guard flagged 97 per cent of those reversals. On an agent benchmark,
+switching the harness alone moved one model from 50 to 65 per cent, and reading
+the agents' saved code separated flawed biology from failed computing.
+
+\textbf{Ask what a benchmark can prove.} \textcite{saezrodriguez2026benchmarking}
+argue that foundation models are hard to benchmark because they are meant to
+embody the processes that produced the data. They ask whether such models can be
+refuted, verified, or only judged by usefulness, and what part the scientific
+community should play in testing them.
+
+\textbf{Test against the previous version.} When EMBL-EBI rewrote InterProScan,
+its protein annotation pipeline, as a Nextflow workflow, the authors compared
+the new version's annotations of all Swiss-Prot proteins with the old one's. They
+found near-identical precision and sensitivity, at about twice the speed on large
+proteomes \parencite{blum2026interproscan}.
+
+\section{A procedure for ecological tasks}
+
+The ecological examples in \Cref{ch:applications} suggest a procedure of their
+own. The following is my proposal for comparing extraction, classification and
+study-retrieval workflows, drawing on their different successes and failures
+\parencite{gougherty2024extraction,domazetoski2025traits,dorm2026ecologicalknowledge,munch2026phenotypes,venetsianou2026relatedness}.
+
+\begin{enumerate}
+  \item \textbf{Fix the task and the reference answers.} Specify the fields,
+    trait definitions, units and acceptable evidence. Have experts independently
+    annotate a sample, resolve disagreements and retain uncertain cases as
+    uncertain. Set aside a final test set before adjusting prompts or thresholds.
+    Keep descriptions of the same species, or samples from the same study,
+    together when testing transfer to new species or studies.
+  \item \textbf{Compare like with like.} Run keyword matching or a simple
+    classifier alongside the language model. Include the established domain
+    method where one exists. Test unaided answers, answers given a fixed source
+    passage, and answers using retrieval separately. Record which documents
+    each system could access; these conditions test different abilities.
+  \item \textbf{Score the errors that matter.} For extraction, report precision
+    and recall for each field, plus how often missing information becomes an
+    invented value. Check numerical errors after converting units, stating any
+    transformation used. For traits, show each class's results and balanced
+    accuracy, so common classes cannot conceal failure on rare ones.
+    Count malformed outputs, failures and unanswered cases across the full test
+    set, even when calculating accuracy only on valid answers.
+  \item \textbf{Test uncertainty and unfamiliar cases.} Include absent fields,
+    rare taxa, invented names and difficult negative examples. Report
+    \term{coverage}, the proportion of cases receiving an answer, alongside
+    accuracy. If confidence controls which answers are accepted, check whether
+    higher confidence actually predicts fewer errors. Measure the errors and
+    coverage again at each proposed threshold.
+  \item \textbf{Evaluate retrieval and evidence separately.} For literature
+    assistants, measure how many expert-selected relevant papers appear in the
+    first few results. Then check whether each generated claim is supported by
+    its cited passage. For microbiome comparisons, add independent expert
+    judgements of study compatibility. Agreement between text and biological
+    profiles is useful corroboration, but does not substitute for those checks.
+  \item \textbf{Measure variation and the whole cost.} Repeat runs and modest
+    prompt changes, checking agreement on individual records. Report results
+    by taxon, biome or source collection, with sample sizes and uncertainty
+    intervals. Record runtime, token use, hardware and human correction time.
+    Judge a replacement by verified output per unit of work and by unacceptable
+    errors, with the acceptance criteria fixed before comparing models.
+\end{enumerate}
+
+In the microbiome relatedness study, the authors also tested the similarity
+measures themselves by reducing sequencing depth and asking whether profiles
+still retrieved their original counterparts \parencite{venetsianou2026relatedness}.
+This is a useful distinction: a benchmark's comparison method needs checking
+as well as the language model. Repeating a judgement consistently establishes
+repeatability; an independent reference is needed to assess correctness.
+
+\section{An exercise: ten field notes}
+
+The \code{workshop/testing} folder applies the procedure to a task small
+enough to finish in an afternoon. Ten invented field notes from the survey of
+\Cref{ch:firstsession} each record a station, a date, a habitat and at most one
+species with its count. The task is to turn each note into one row of a table.
+Two notes record failed samples, one gives only an approximate count, one names
+a place without a station number, one mentions a species that was searched for
+and not found, and one misspells a name. These are the absent fields and
+difficult negative examples of step~4.
+
+\textbf{Fix the rules first.} \code{RULES.md} defines each field before
+anything is run. A count is recorded only when an exact number is stated, so
+``roughly a dozen'' is empty rather than 12. Names are copied as written,
+misspellings included, because checking them is a separate step. Habitats come
+from a closed list of six. Before looking at \code{key/key.csv}, annotate the
+ten notes yourself and compare. Where you disagree with the key, decide whether
+the rule or your reading was at fault, and change the rules only now, before
+any model is tested.
+
+\textbf{Run a baseline.} \code{R/01\_baseline.R} uses patterns and keywords
+only: a regular expression for the station code, three date formats, an exact
+match against the checklist, and the number nearest to the name. It needs no
+model and gives the same answer every time.
+
+\textbf{Run a model.} \code{R/02\_extract.R} sends each note to a local model
+through Ollama, using the \code{ellmer} package, and asks for output that fits
+a fixed structure:
+
+\begin{lstlisting}[language=R,caption={The structure the model must fill}]
+type_note <- type_object(
+  station = type_string("Station code S1 to S5, as written",
+                        required = FALSE),
+  date    = type_string("Sampling date as YYYY-MM-DD", required = FALSE),
+  species = type_string("Scientific name exactly as written",
+                        required = FALSE),
+  count   = type_integer("Exact number of individuals", required = FALSE),
+  habitat = type_enum(c("litter", "soil", "moss", "bark", "compost", "cave"),
+                      required = FALSE)
+)
+chat <- chat_ollama(model = model, system_prompt = rules)
+out  <- parallel_chat_structured(chat, as.list(notes$text), type = type_note)
+\end{lstlisting}
+
+Each field is optional, so the model is allowed to leave it empty. Without
+that, a model must fill every field and is pushed towards inventing values.
+The script takes a label, so that repeated runs are kept apart:
+
+\begin{lstlisting}[style=shell,caption={Baseline, three model runs, and a score}]
+Rscript R/01_baseline.R
+for run in run1 run2 run3; do Rscript R/02_extract.R $run; done
+Rscript R/03_score.R
+\end{lstlisting}
+
+\textbf{Score the errors that matter.} \code{R/03\_score.R} compares every file
+in \code{results/} with the key, field by field. It separates wrong values,
+missed values and invented values, where the key is empty but the output is
+not, and then prints each disagreement so that it can be read, not only
+counted.
+
+When the exercise was tested for this book, the baseline got 46 of the 50
+cells right. Its four errors were the cases that need reading rather than
+matching: counts written as words, the misspelt name, and pine needles, which
+the rules count as litter. An 8-billion-parameter local model handled those
+cases correctly in three of four runs, and still scored lower, between 36 and
+41.
+It left station codes empty in four to six notes, and for both failed samples
+it invented a count of zero and a habitat. With the temperature set to zero and
+a fixed seed, two runs gave identical output, and both scored 39. The runs had
+become repeatable without becoming more correct. Each run of ten notes took
+two and a half to three minutes on a laptop.
+
+These numbers describe one small model on ten notes, and your runs will
+differ. The pattern is the reason to test. The model was best where the
+baseline was weakest, and worst at leaving a field empty, which is the failure
+that would corrupt a database most quietly. A sensible design here might use
+the model only for the fields that need reading. That is a decision the scores
+support and the model's fluency does not.
+
+\textbf{Take it further.} Try a larger model, or a hosted one through another
+of \code{ellmer}'s chat functions, and add it to the same table. Record the
+time each run takes and how long you spend checking the output, as step~6
+asks. Then write twenty notes of your own, from your own field books, and keep
+them aside as the test set for the next model you are offered.
+
+The same discipline applies to every choice in \Cref{ch:localfirst,ch:hardware}.
+A quantised model, a fine-tuned one or a new release earns its place by passing
+the tests the previous one passed, judged against criteria fixed in advance.

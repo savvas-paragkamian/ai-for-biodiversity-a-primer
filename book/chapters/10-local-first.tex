@@ -203,37 +203,8 @@ built; the design is the point here.
 
 \subsection{Testing it}
 
-A single accuracy score hides most of what matters. Three examples show other
-ways to test.
-
-\textbf{Test several things at once.} Karenina, from EMBL-EBI, lets experts
-say in plain language what a sound answer needs and what behaviour to test, and turns that into runnable checks \parencite{carli2026karenina}. On
-144 drug-discovery questions, giving seven models live access to the Open
-Targets database raised accuracy from 51 to 81 per cent. However, 11 per cent
-of the answers given with that access were correct but unsupported by the
-retrieved evidence. Invented PubMed identifiers gave way to real papers cited
-for claims they do not make. Tool use also cost 24 to 121 times more tokens.
-When a user confidently
-pushed back with false information, models abandoned correct answers 57 per cent
-of the time --- sycophancy, measured (\Cref{ch:powers}). A second model acting
-as a guard flagged 97 per cent of those reversals. On an agent benchmark,
-switching the harness alone moved one model from 50 to 65 per cent, and reading
-the agents' saved code separated flawed biology from failed computing.
-
-\textbf{Ask what a benchmark can prove.} \textcite{saezrodriguez2026benchmarking}
-argue that foundation models are hard to benchmark because they are meant to
-embody the processes that produced the data. They ask whether such models can be
-refuted, verified, or only judged by usefulness, and what part the scientific
-community should play in testing them.
-
-\textbf{Test against the previous version.} When EMBL-EBI rewrote InterProScan,
-its protein annotation pipeline, as a Nextflow workflow, the authors compared
-the new version's annotations of all Swiss-Prot proteins with the old one's. They
-found near-identical precision and sensitivity, at about twice the speed on large
-proteomes \parencite{blum2026interproscan}.
-
-For KYBELE this becomes a test suite, rerun after every change of prompt, model
-or retrieval:
+For KYBELE, testing means a suite that is rerun after every change of prompt,
+model or retrieval:
 
 \begin{itemize}
   \item a gold set of expert Collembola questions with expected sources --- did
@@ -246,57 +217,8 @@ or retrieval:
     another model is accepted only if the gold-set results hold.
 \end{itemize}
 
-The ecological examples in \Cref{ch:applications} suggest a practical extension
-to this test suite. The following is my proposed procedure for comparing
-extraction, classification and study-retrieval workflows, drawing on their
-different successes and failures
-\parencite{gougherty2024extraction,domazetoski2025traits,dorm2026ecologicalknowledge,munch2026phenotypes,venetsianou2026relatedness}.
-
-\begin{enumerate}
-  \item \textbf{Fix the task and the reference answers.} Specify the fields,
-    trait definitions, units and acceptable evidence. Have experts independently
-    annotate a sample, resolve disagreements and retain uncertain cases as
-    uncertain. Set aside a final test set before adjusting prompts or thresholds.
-    Keep descriptions of the same species, or samples from the same study,
-    together when testing transfer to new species or studies.
-  \item \textbf{Compare like with like.} Run keyword matching or a simple
-    classifier alongside the language model. Include the established domain
-    method where one exists. Test unaided answers, answers given a fixed source
-    passage, and answers using retrieval separately. Record which documents
-    each system could access; these conditions test different abilities.
-  \item \textbf{Score the errors that matter.} For extraction, report precision
-    and recall for each field, plus how often missing information becomes an
-    invented value. Check numerical errors after converting units, stating any
-    transformation used. For traits, show each class's results and balanced
-    accuracy, so common classes cannot conceal failure on rare ones.
-    Count malformed outputs, failures and unanswered cases across the full test
-    set, even when calculating accuracy only on valid answers.
-  \item \textbf{Test uncertainty and unfamiliar cases.} Include absent fields,
-    rare taxa, invented names and difficult negative examples. Report
-    \term{coverage}, the proportion of cases receiving an answer, alongside
-    accuracy. If confidence controls which answers are accepted, check whether
-    higher confidence actually predicts fewer errors. Measure the errors and
-    coverage again at each proposed threshold.
-  \item \textbf{Evaluate retrieval and evidence separately.} For literature
-    assistants, measure how many expert-selected relevant papers appear in the
-    first few results. Then check whether each generated claim is supported by
-    its cited passage. For microbiome comparisons, add independent expert
-    judgements of study compatibility. Agreement between text and biological
-    profiles is useful corroboration, but does not substitute for those checks.
-  \item \textbf{Measure variation and the whole cost.} Repeat runs and modest
-    prompt changes, checking agreement on individual records. Report results
-    by taxon, biome or source collection, with sample sizes and uncertainty
-    intervals. Record runtime, token use, hardware and human correction time.
-    Judge a replacement by verified output per unit of work and by unacceptable
-    errors, with the acceptance criteria fixed before comparing models.
-\end{enumerate}
-
-In the microbiome relatedness study, the authors also tested the similarity
-measures themselves by reducing sequencing depth and asking whether profiles
-still retrieved their original counterparts \parencite{venetsianou2026relatedness}.
-This is a useful distinction: a benchmark's comparison method needs checking
-as well as the language model. Repeating a judgement consistently establishes
-repeatability; an independent reference is needed to assess correctness.
+\Cref{ch:testing} sets out the general procedure behind such a suite, with
+examples from other projects and an exercise.
 
 \subsection{Where fine-tuning fits}
 
