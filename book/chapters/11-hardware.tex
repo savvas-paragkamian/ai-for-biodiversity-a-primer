@@ -22,7 +22,7 @@ model with a 32K context; a 70B model wants 48\,GB or more (\Cref{fig:memory}).
 
 \begin{figure}[htbp]
 \centering
-\fig{ch12-memory-bandwidth}
+\fig{ch13-memory-bandwidth}
 \caption{Memory, not compute. Every weight is read once per token, so the model
 must fit in memory first and speed follows from bandwidth; a 7B model needs
 14, 7 or 4--5\,GB depending on precision.}
@@ -50,7 +50,7 @@ fit at all (\Cref{fig:unified}).
 
 \begin{figure}[htbp]
 \centering
-\fig{ch12-unified-memory}
+\fig{ch13-unified-memory}
 \caption{A separate graphics card against unified memory. The card has more
 bandwidth but holds 8--48\,GB; a shared pool is slower per byte but holds
 16--512\,GB, so large models fit at all.}
@@ -72,7 +72,7 @@ on an ordinary processor; Whisper for transcription is 1.5B (\Cref{fig:sizes}).
 
 \begin{figure}[htbp]
 \centering
-\fig{ch12-size-guide}
+\fig{ch13-size-guide}
 \caption{A size guide. Parameters on a logarithmic scale, with the tasks each
 range serves; names change, but the ranges last longer.}
 \label{fig:sizes}

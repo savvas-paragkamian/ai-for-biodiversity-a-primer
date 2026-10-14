@@ -1,0 +1,1545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/u0PHOLP5GOISTJT2xDrLAd1GHT8</id>
+  <title>arXiv Query: search_query=&amp;id_list=2610.02066,2610.00969,2610.01936,2610.02568,2610.02376,2610.03063,2610.02976,2610.03482,2610.02999,2610.02970,2610.02926,2610.02887,2610.04409,2610.04512,2610.04329,2610.04777,2610.05615,2610.05610,2610.05162,2610.06056,2610.07403,2610.07354,2610.06603,2610.08026,2610.08388,2610.09033,2610.07894,2610.10455,2610.09496,2610.09693,2610.09458,2610.11469,2610.11826,2610.11907,2610.14073,2610.11281,2610.12281,2610.11188,2610.14124,2610.13810,2610.12989,2610.13112,2610.12981,2610.13695,2610.14635,2610.15056,2610.15228,2610.15634,2609.34424,2610.02996,2610.09551,2610.11344,2609.32607&amp;start=0&amp;max_results=100</title>
+  <updated>2026-10-14T14:17:50Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=100&amp;id_list=2610.02066,2610.00969,2610.01936,2610.02568,2610.02376,2610.03063,2610.02976,2610.03482,2610.02999,2610.02970,2610.02926,2610.02887,2610.04409,2610.04512,2610.04329,2610.04777,2610.05615,2610.05610,2610.05162,2610.06056,2610.07403,2610.07354,2610.06603,2610.08026,2610.08388,2610.09033,2610.07894,2610.10455,2610.09496,2610.09693,2610.09458,2610.11469,2610.11826,2610.11907,2610.14073,2610.11281,2610.12281,2610.11188,2610.14124,2610.13810,2610.12989,2610.13112,2610.12981,2610.13695,2610.14635,2610.15056,2610.15228,2610.15634,2609.34424,2610.02996,2610.09551,2610.11344,2609.32607" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>100</opensearch:itemsPerPage>
+  <opensearch:totalResults>53</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02996v1</id>
+    <title>Evolutionary Computation for Trustworthy AI: From Attacks and Defenses to Self-Evolving Era</title>
+    <updated>2026-10-02T08:29:15Z</updated>
+    <link href="https://arxiv.org/abs/2610.02996v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02996v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>As Artificial Intelligence (AI) has evolved from task-specific models to foundation models and agents, the scope of trustworthy AI has expanded from model-level robustness to the reliability and safety of broader AI systems. This evolution has also expanded the attack [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.NE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T08:29:15Z</published>
+    <arxiv:comment>20 pages, 7 figures, 5 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.NE"/>
+    <author>
+      <name>Junhao Dong</name>
+    </author>
+    <author>
+      <name>Chenkai Wang</name>
+    </author>
+    <author>
+      <name>Xuanhui Lin</name>
+    </author>
+    <author>
+      <name>Mingrong Gong</name>
+    </author>
+    <author>
+      <name>Siyu Wang</name>
+    </author>
+    <author>
+      <name>Yuqing Wen</name>
+    </author>
+    <author>
+      <name>Jiao Liu</name>
+    </author>
+    <author>
+      <name>Catherine Huang</name>
+    </author>
+    <author>
+      <name>Gary G. Yen</name>
+    </author>
+    <author>
+      <name>Xin Yao</name>
+    </author>
+    <author>
+      <name>Yew-Soon Ong</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04777v1</id>
+    <title>ARISE: Adaptive Agentic Reasoning with Image-grounded Self-Evaluation for Interpretable IBD Assessment</title>
+    <updated>2026-10-03T21:35:55Z</updated>
+    <link href="https://arxiv.org/abs/2610.04777v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04777v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Inflammatory bowel disease (IBD) requires frequent imaging-based assessment, yet interpretation of modalities such as wireless capsule endoscopy (WCE) and intestinal ultrasound remains heavily dependent on specialist expertise. Vision-Language Models (VLMs) demonstrate significant potential in multimodal medical image analysis, but their [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-03T21:35:55Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Pronoma Banerjee</name>
+    </author>
+    <author>
+      <name>Anuva Shah</name>
+    </author>
+    <author>
+      <name>Jason Wu</name>
+    </author>
+    <author>
+      <name>Md. Masudur Rahman</name>
+    </author>
+    <author>
+      <name>Sanjay Mohanty</name>
+    </author>
+    <author>
+      <name>Satya Kurada</name>
+    </author>
+    <author>
+      <name>Juan P. Wachs</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.11469v1</id>
+    <title>SAGE: Sink-Aware Guided Emphasis for Visual Grounding in Vision-Language Decoders</title>
+    <updated>2026-10-08T08:18:58Z</updated>
+    <link href="https://arxiv.org/abs/2610.11469v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.11469v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent large vision-language models (VLMs) pair a visual encoder with a large language model (LLM) and perform well on diverse image-text tasks, yet their reliability is often limited by decoder attention pathologies that suppress visual evidence and exacerbate hallucinations. In [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T08:18:58Z</published>
+    <arxiv:comment>Accepted to EMNLP 2026 Findings</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Jeonghyo Song</name>
+    </author>
+    <author>
+      <name>YoungJoon Yoo</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04409v1</id>
+    <title>Understanding and Mitigating Hallucination Escape in Tool-Using LLM Agents</title>
+    <updated>2026-10-03T09:57:35Z</updated>
+    <link href="https://arxiv.org/abs/2610.04409v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04409v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) increasingly serve as autonomous agents that invoke external tools. However, this capability introduces tool hallucination, selecting incorrect tools or generating invalid calls. Existing mitigation methods report substantial improvements, yet we identify a previously overlooked failure mode [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-03T09:57:35Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Peigui Qi</name>
+    </author>
+    <author>
+      <name>Kunsheng Tang</name>
+    </author>
+    <author>
+      <name>Yide Song</name>
+    </author>
+    <author>
+      <name>Weiming Zhang</name>
+    </author>
+    <author>
+      <name>Nenghai Yu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.07403v1</id>
+    <title>Defense-in-Depth for LLMs: Evaluating Memory Gates Against Activation-Induced and Memory-Induced Sycophancy</title>
+    <updated>2026-10-05T21:16:06Z</updated>
+    <link href="https://arxiv.org/abs/2610.07403v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.07403v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Long-term memory allows Large Language Models (LLMs) to maintain personalized context across interactions, but retrieved user history can induce memory-induced sycophancy, causing models to favor stored user beliefs over objective evidence. Existing defenses primarily operate on retrieved context and are [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-05T21:16:06Z</published>
+    <arxiv:comment>Accepted to NeurIPS (IAB, RTCA, AIWILD, and CL4FM)</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Ritvij Sharma</name>
+    </author>
+    <author>
+      <name>Russell Dlugosz</name>
+    </author>
+    <author>
+      <name>Ryan Zhou</name>
+    </author>
+    <author>
+      <name>Maheep Chaudhary</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.09496v1</id>
+    <title>Sparse Feature Policy Unlearning Mitigates State Hallucination in Vision-Language-Action Models</title>
+    <updated>2026-10-07T05:52:02Z</updated>
+    <link href="https://arxiv.org/abs/2610.09496v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.09496v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Vision-Language-Action (VLA) models have shown strong generalization in robotic manipulation by leveraging rich representations from pretrained vision-language models. However, their deployment in real-world environments remains limited by recurring unreliable behaviors. In this work, we study state hallucination, a recurring failure [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-07T05:52:02Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Jiho Lee</name>
+    </author>
+    <author>
+      <name>Jeongeun Park</name>
+    </author>
+    <author>
+      <name>Heayoun Choi</name>
+    </author>
+    <author>
+      <name>Taekyung Kim</name>
+    </author>
+    <author>
+      <name>Eunwoo Kim</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.05610v2</id>
+    <title>SEA-LM: Egocentric Spatial Audio Understanding for Wearable Microphone Arrays</title>
+    <updated>2026-10-07T02:08:22Z</updated>
+    <link href="https://arxiv.org/abs/2610.05610v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.05610v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Embodied, ego-centric intelligence fundamentally requires the ability to comprehend spatial audio within complex environments. While large audio-language models excel at mono-channel reasoning, they lack spatial awareness, discarding critical spatial cues that enable sound localization and that can improve the disentanglement [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SD" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-04T23:20:54Z</published>
+    <arxiv:primary_category term="cs.SD"/>
+    <author>
+      <name>Sonal Kumar</name>
+    </author>
+    <author>
+      <name>Sinan Hersek</name>
+    </author>
+    <author>
+      <name>Artem Dementyev</name>
+    </author>
+    <author>
+      <name>Mengzhen Pan</name>
+    </author>
+    <author>
+      <name>Ishan Chatterjee</name>
+    </author>
+    <author>
+      <name>Anurag Kumar</name>
+    </author>
+    <author>
+      <name>Ramani Duraiswami</name>
+    </author>
+    <author>
+      <name>Dinesh Manocha</name>
+    </author>
+    <author>
+      <name>Andrea Colaco</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.11188v1</id>
+    <title>What to Admit and How to Present: Governing Persistent Memory in LLM Agents</title>
+    <updated>2026-10-08T03:45:28Z</updated>
+    <link href="https://arxiv.org/abs/2610.11188v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.11188v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Persistent memory can improve personalization in LLM agents but can also induce sycophancy and cross-domain leakage. We distinguish two governance decisions: admission, which determines what recalled information enters the working context, and presentation, which determines how admitted information is expressed. [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T03:45:28Z</published>
+    <arxiv:comment>Under review at AAMAS 2027</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Chang Liu</name>
+    </author>
+    <author>
+      <name>Deliang Ding</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.34424v1</id>
+    <title>Construction-Reuse Trade-offs for Exact Certificates in Fixed-Rank Threshold Screening</title>
+    <updated>2026-09-28T06:41:27Z</updated>
+    <link href="https://arxiv.org/abs/2609.34424v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.34424v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Repeated threshold queries may reuse selected identities without reusing stale reports, but cheaper certificates need not shorten the complete response. We study selected-lower, atomic-upper (SLA) certificates for fixed-rank conjunctive screening with explicit missing-information semantics. An endpoint characterization and a counterexample [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-28T06:41:27Z</published>
+    <arxiv:comment>7 figures, 12 tables; supplementary material included</arxiv:comment>
+    <arxiv:primary_category term="cs.CE"/>
+    <author>
+      <name>Zisu Li</name>
+    </author>
+    <author>
+      <name>Jingyang Du</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.12981v1</id>
+    <title>The Evidence Anchoring Boundary: Where Visual Interventions Matter and When They Help in Multimodal LLMs</title>
+    <updated>2026-10-09T04:26:50Z</updated>
+    <link href="https://arxiv.org/abs/2610.12981v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.12981v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Visual interventions provide a training-free way to reduce hallucinations in multimodal large language models. However, an intervention may have little leverage at some layers and may damage a correct answer even when it changes the output. We investigate where visual [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-09T04:26:50Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Qiji Zhou</name>
+    </author>
+    <author>
+      <name>Junyi Hu</name>
+    </author>
+    <author>
+      <name>Peiyu Wang</name>
+    </author>
+    <author>
+      <name>Yue Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.15228v1</id>
+    <title>Words to World: Benchmarking LLMs in Interactive Physical Environments</title>
+    <updated>2026-10-10T23:40:54Z</updated>
+    <link href="https://arxiv.org/abs/2610.15228v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.15228v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Words are increasingly becoming an interface for action: large language models (LLMs) can now invoke tools, operate devices, and make decisions that affect the physical world. However, current benchmarks largely evaluate LLMs through static text responses, offline tool calls, or [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-10T23:40:54Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Xinnan Dai</name>
+    </author>
+    <author>
+      <name>Kaiqi Yang</name>
+    </author>
+    <author>
+      <name>Yaxin Li</name>
+    </author>
+    <author>
+      <name>Cheng Luo</name>
+    </author>
+    <author>
+      <name>Wanli Li</name>
+    </author>
+    <author>
+      <name>Mingqing Xiao</name>
+    </author>
+    <author>
+      <name>Xinyang Jiang</name>
+    </author>
+    <author>
+      <name>Daoan Zhang</name>
+    </author>
+    <author>
+      <name>Kaitao Song</name>
+    </author>
+    <author>
+      <name>Fengze Liu</name>
+    </author>
+    <author>
+      <name>Zefan Cai</name>
+    </author>
+    <author>
+      <name>Caihua Shan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02926v1</id>
+    <title>Output Language Confusion under Multilingual Prompt Contamination</title>
+    <updated>2026-10-02T07:16:48Z</updated>
+    <link href="https://arxiv.org/abs/2610.02926v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02926v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Standard factual benchmarks assume clean monolingual prompts and exact-match scoring, two assumptions that break simultaneously in real-world multilingual deployment, from retrieval-augmented generation pipelines returning mixed-language passages to users pasting multilingual web content. We introduce Multilingual Distractor Interference (MDI), a lightweight [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T07:16:48Z</published>
+    <arxiv:comment>Accepted at NeurIPS 2026 Workshop LP4FM</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Riju Marwah</name>
+    </author>
+    <author>
+      <name>Ritvik Garimella</name>
+    </author>
+    <author>
+      <name>Khusham Bansal</name>
+    </author>
+    <author>
+      <name>Atishay Jain</name>
+    </author>
+    <author>
+      <name>Amit Sheth</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.11281v1</id>
+    <title>How to post-train on a surrogate: Envelope sampling mitigates reward hacking</title>
+    <updated>2026-10-08T05:48:31Z</updated>
+    <link href="https://arxiv.org/abs/2610.11281v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.11281v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) are commonly post-trained against LLM judges and other cheap surrogates because the true reward, such as human preference, is too expensive to query at scale. This practice often leads to reward hacking, where reinforcement learning against [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ME" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T05:48:31Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Sanjit Dandapanthula</name>
+    </author>
+    <author>
+      <name>Shuvom Sadhuka</name>
+    </author>
+    <author>
+      <name>Samir Khan</name>
+    </author>
+    <author>
+      <name>Michael Oberst</name>
+    </author>
+    <author>
+      <name>Aaditya Ramdas</name>
+    </author>
+    <author>
+      <name>Alexandra Chouldechova</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.13810v1</id>
+    <title>Tracing and Taming Hallucinated Terms via Subsequence-Association Filtering and Breadth-Aware Selection for LLM Query Expansion</title>
+    <updated>2026-10-09T16:22:16Z</updated>
+    <link href="https://arxiv.org/abs/2610.13810v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.13810v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) are now a standard source of query expansion terms but they hallucinate. They inject non existent entities and off-topic terms that add ranking noise and can hurt strong retrievers. Existing remedies such as corpus grounding, mutual [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-09T16:22:16Z</published>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Amit Kumar Jaiswal</name>
+    </author>
+    <author>
+      <name>Sagar Uprety</name>
+    </author>
+    <author>
+      <name>Prayag Tiwari</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.32607v1</id>
+    <title>VoxMem: Benchmarking Multimodal Memory in Large Audio Language Models</title>
+    <updated>2026-09-26T13:27:12Z</updated>
+    <link href="https://arxiv.org/abs/2609.32607v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.32607v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Spoken conversational systems must recover information from prior interactions (i.e., memory), yet relevant information in speech extends beyond what was said to who said it, how it was spoken, and what was audible, information that exists only in the audio [cut to 40 words for the workshop copy]</summary>
+    <category term="eess.AS" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SD" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-26T13:27:12Z</published>
+    <arxiv:comment>working in process</arxiv:comment>
+    <arxiv:primary_category term="eess.AS"/>
+    <author>
+      <name>Yang Xiao</name>
+    </author>
+    <author>
+      <name>Vidhyasaharan Sethu</name>
+    </author>
+    <author>
+      <name>Eun-Jung Holden</name>
+    </author>
+    <author>
+      <name>Ting Dang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.05162v1</id>
+    <title>Memadapter: Counterfactual Adaptation Against Memory-induced Sycophancy</title>
+    <updated>2026-10-04T12:12:16Z</updated>
+    <link href="https://arxiv.org/abs/2610.05162v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.05162v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Long-term memory enables LLM-based agents to retain and reuse information across tasks and sessions, supporting personalization and long-horizon interactions. However, persistent memories can also induce sycophancy, causing agents to over-align with users' historical beliefs even when they are inaccurate, outdated, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-04T12:12:16Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Ruqing Ning</name>
+    </author>
+    <author>
+      <name>Haibo Meng</name>
+    </author>
+    <author>
+      <name>Zhishang Xiang</name>
+    </author>
+    <author>
+      <name>Zerui Chen</name>
+    </author>
+    <author>
+      <name>Jinsong Su</name>
+    </author>
+    <author>
+      <name>Xin Wang</name>
+    </author>
+    <author>
+      <name>Qinggang Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04512v1</id>
+    <title>Correctness Is a Direction: Geometric Answer Selection in Language Models</title>
+    <updated>2026-10-03T13:21:04Z</updated>
+    <link href="https://arxiv.org/abs/2610.04512v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04512v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Answer correctness is encoded as a recoverable geometric direction in the hidden states of language models. We show that the mean displacement from incorrect to correct answer representations, computed at approximately 70\% of model depth from fifty labeled examples with [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-03T13:21:04Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Marcus Armstrong</name>
+    </author>
+    <author>
+      <name>Navid Ayoobi</name>
+    </author>
+    <author>
+      <name>Pradham Mummaleti</name>
+    </author>
+    <author>
+      <name>Alexander Chulzhanov</name>
+    </author>
+    <author>
+      <name>Arjun Mukherjee</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02376v1</id>
+    <title>Coco: An Agentic Copilot for the Hardware--Software Co-Design Lifecycle</title>
+    <updated>2026-10-01T18:55:52Z</updated>
+    <link href="https://arxiv.org/abs/2610.02376v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02376v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Co-designing ML models and the accelerators that run them is an unusual reasoning task: architects must draw confident, high-stakes conclusions about systems that do not yet exist, and the pace of both model evolution and hardware cadence means the analysis [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.PL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T18:55:52Z</published>
+    <arxiv:primary_category term="cs.PL"/>
+    <author>
+      <name>Samuel Kushnir</name>
+    </author>
+    <author>
+      <name>Kavya Sreedhar</name>
+    </author>
+    <author>
+      <name>Yeshwanth Reddy Pogula</name>
+    </author>
+    <author>
+      <name>Amir Yazdanbakhsh</name>
+    </author>
+    <author>
+      <name>Narges Shahidi</name>
+    </author>
+    <author>
+      <name>Ming Liu</name>
+    </author>
+    <author>
+      <name>Varun Gohil</name>
+    </author>
+    <author>
+      <name>Ravi Iyer</name>
+    </author>
+    <author>
+      <name>Parthasarathy Ranganathan</name>
+    </author>
+    <author>
+      <name>Christina Delimitrou</name>
+    </author>
+    <author>
+      <name>Suvinay Subramanian</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.14124v1</id>
+    <title>The AI's Poker Face: Contrasting Persuasion and Sycophancy in Voice-Based Multi-Turn Conversations</title>
+    <updated>2026-10-09T10:28:28Z</updated>
+    <link href="https://arxiv.org/abs/2610.14124v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.14124v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>As interactions with large language models (LLMs) become increasingly routine, concerns about their capacity to influence users' beliefs grow. Yet how such influence unfolds in sustained dialogue remains insufficiently understood. We conduct a randomized controlled experiment (N=616) where participants engage [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.HC" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-09T10:28:28Z</published>
+    <arxiv:primary_category term="cs.HC"/>
+    <author>
+      <name>Ilia Frantzi</name>
+    </author>
+    <author>
+      <name>Bernie Hogan</name>
+    </author>
+    <author>
+      <name>Max M. Lang</name>
+    </author>
+    <author>
+      <name>Paul C. Bauer</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.13112v1</id>
+    <title>Does Location Matter? A Black-Box Causal Audit Reveals Model-Dependent Audio Grounding in LALM Hallucination</title>
+    <updated>2026-10-09T07:06:24Z</updated>
+    <link href="https://arxiv.org/abs/2610.13112v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.13112v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large audio-language models (LALMs) frequently exhibit object hallucination, affirming absent sounds. The dominant mitigation, Audio-Aware Decoding (AAD), contrasts logits under real audio against an all-zero "blank" waveform, flagged by prior review as out-of-distribution. We introduce a black-box causal test that [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SD" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.AS" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-09T07:06:24Z</published>
+    <arxiv:comment>5 pages, 1 figures, 4 tables. Submitted to IEEE ICASSP 2027</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Mohammad Khalooei</name>
+    </author>
+    <author>
+      <name>Mohammad Sabokrou</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.12281v1</id>
+    <title>Unlocking the Regulatory Genome by ARGUS: An Evidence-Constrained Agentic Framework for Interpreting Single Nucleotide Variants</title>
+    <updated>2026-10-08T16:38:32Z</updated>
+    <link href="https://arxiv.org/abs/2610.12281v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.12281v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Over 90% of disease-associated variants from genome-wide association studies fall in noncoding regulatory regions, yet their functional interpretation remains a central open problem in genomic medicine. Large language models prompted to interpret such variants routinely hallucinate transcription factor (TF) binding [cut to 40 words for the workshop copy]</summary>
+    <category term="q-bio.GN" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T16:38:32Z</published>
+    <arxiv:comment>Accepted at the NeurIPS 2026 Workshop on Agentic AI for Biological Discovery (AgenticLS). Code: https://github.com/duttaprat/ARGUS</arxiv:comment>
+    <arxiv:primary_category term="q-bio.GN"/>
+    <author>
+      <name>Pratik Dutta</name>
+    </author>
+    <author>
+      <name>Matthew B. Obusan</name>
+    </author>
+    <author>
+      <name>Max Chao</name>
+    </author>
+    <author>
+      <name>Rekha Sathian</name>
+    </author>
+    <author>
+      <name>Nimisha Papineni</name>
+    </author>
+    <author>
+      <name>Ramana V. Davuluri</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02970v2</id>
+    <title>A Guideline-Augmented Multi-Agent Framework for Schema-as-Code Biomedical Named Entity Recognition</title>
+    <updated>2026-10-06T08:09:03Z</updated>
+    <link href="https://arxiv.org/abs/2610.02970v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02970v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) have shown promising potential for biomedical named entity recognition (BioNER) through instruction following and in-context learning. However, existing LLM-based BioNER methods still face two key limitations. First, retrieved demonstrations and external biomedical knowledge provide limited support [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T08:06:20Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <arxiv:journal_ref>2026 IEEE International Conference on Bioinformatics and Biomedicine (BIBM), 2026</arxiv:journal_ref>
+    <author>
+      <name>Songtao Li</name>
+    </author>
+    <author>
+      <name>Yijia Zhang</name>
+    </author>
+    <author>
+      <name>Shidi Zhang</name>
+    </author>
+    <author>
+      <name>Jianyuan Yuan</name>
+    </author>
+    <author>
+      <name>Fengyu Zhang</name>
+    </author>
+    <author>
+      <name>Hongfei Lin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.09458v2</id>
+    <title>Right Number, Wrong State? Measuring Cross-Jurisdiction Substitution in LLM Recall of State Policy</title>
+    <updated>2026-10-12T02:25:35Z</updated>
+    <link href="https://arxiv.org/abs/2610.09458v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.09458v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>When an LLM answers a state-specific policy question wrongly, it may be hallucinating, or it may be returning a real value that holds in another state. We test this with a minimal-set design: the question wording is fixed and only [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-07T05:12:42Z</published>
+    <arxiv:comment>6 pages, 3 figures, 1 table</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Jiayu Feng</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.01936v2</id>
+    <title>Rethinking Knowledge Retrieval for Generation: A Survey on RAG Architectures and Applications</title>
+    <updated>2026-10-06T00:32:42Z</updated>
+    <link href="https://arxiv.org/abs/2610.01936v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.01936v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large Language Models (LLMs) have demonstrated remarkable fluency and versatility across natural language tasks but remain fundamentally limited by their static knowledge and susceptibility to hallucinations, especially in domains requiring up to date or attribute grounded information. Retrieval Augmented Generation [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T16:06:05Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Meghana Sunil</name>
+    </author>
+    <author>
+      <name>Shravya V</name>
+    </author>
+    <author>
+      <name>Shravan Venkatraman</name>
+    </author>
+    <author>
+      <name>Joe Dhanith PR</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.07354v1</id>
+    <title>Evaluating Escalation Signals for LLM Routing: Targets, Controls, and Five Ways to Fool Yourself</title>
+    <updated>2026-10-05T20:22:34Z</updated>
+    <link href="https://arxiv.org/abs/2610.07354v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.07354v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Deciding when to escalate a query from a small language model to a larger one requires a cheap signal that predicts, before the large model is called, whether escalating would help. Semantic entropy, originally developed to detect hallucinations, is a [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-05T20:22:34Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Ramin Pishehvar</name>
+    </author>
+    <author>
+      <name>Andrea Morandi</name>
+    </author>
+    <author>
+      <name>Mahesh Viswanathan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.07894v1</id>
+    <title>Rethinking Faithfulness in LLMs: A Pairwise Context-Sensitive Perspective</title>
+    <updated>2026-10-06T07:42:38Z</updated>
+    <link href="https://arxiv.org/abs/2610.07894v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.07894v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) are expected to answer questions faithfully based on the provided context, abstaining when the context information is insufficient to answer the questions. Existing faithfulness evaluations typically assess each question-context instance in isolation; however, such instance-level evaluation [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-06T07:42:38Z</published>
+    <arxiv:comment>22 pages</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Zizhuo Zhang</name>
+    </author>
+    <author>
+      <name>Xiong Peng</name>
+    </author>
+    <author>
+      <name>Jingwei Sun</name>
+    </author>
+    <author>
+      <name>Rong Yao</name>
+    </author>
+    <author>
+      <name>Borui Jiang</name>
+    </author>
+    <author>
+      <name>Bo Han</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02066v1</id>
+    <title>External Observers May See More Clearly: Cross-Model Span-Level Hallucination Detection in Large Language Models via Hidden State Probing</title>
+    <updated>2026-10-01T17:06:53Z</updated>
+    <link href="https://arxiv.org/abs/2610.02066v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02066v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>As Large Language Models (LLMs) increasingly serve as foundational reasoning engines, their tendency to hallucinate remains a critical vulnerability. While recent internal state probes offer a promising alternative to slow external retrieval systems, they largely reduce hallucination detection to a [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T17:06:53Z</published>
+    <arxiv:comment>12 pages, 2 figures, 9 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Kingshuk Gupta</name>
+    </author>
+    <author>
+      <name>Davide Buscaldi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.09693v1</id>
+    <title>A Tale of Two Error Categories: Exploring Concealed Trade-Offs in the Errors of Automated Judges in Evaluation of Uncertainty Quantifiers</title>
+    <updated>2026-10-07T08:52:32Z</updated>
+    <link href="https://arxiv.org/abs/2610.09693v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.09693v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The wide adoption of LLMs across broad NLG applications heightens the importance of providing users with the means to avert errors and hallucinations. Uncertainty quantification is poised to fill that gap; with low uncertainty (high confidence), as a proxy for [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-07T08:52:32Z</published>
+    <arxiv:comment>Accepted at INLG 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Evgenia Ilia</name>
+    </author>
+    <author>
+      <name>Wilker Aziz</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.09551v1</id>
+    <title>A Framework for the Systematic Review of ML Assets in AI Registries</title>
+    <updated>2026-10-07T06:50:15Z</updated>
+    <link href="https://arxiv.org/abs/2610.09551v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.09551v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Background: Modern software systems increasingly rely on Machine Learning (ML) assets (i.e., pre-trained models, datasets, benchmarks) for building, evaluating, and integrating ML-based systems. However, current exploration, selection and reuse practices of ML assets are not supported by systematic retrieval methodologies [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-07T06:50:15Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Alexandra González</name>
+    </author>
+    <author>
+      <name>Quim Motger</name>
+    </author>
+    <author>
+      <name>Xavier Franch</name>
+    </author>
+    <author>
+      <name>Silverio Martínez-Fernández</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.08388v1</id>
+    <title>Foresight-over-Graph: Reasoning Beyond Local Horizons for Knowledge Base Question Answering</title>
+    <updated>2026-10-06T14:07:43Z</updated>
+    <link href="https://arxiv.org/abs/2610.08388v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.08388v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) have demonstrated strong capabilities in question answering, yet they still frequently suffer from hallucinations on knowledge-intensive tasks. Knowledge graphs (KGs) provide LLMs with structured, interpretable, and updatable factual grounding, making them a promising external knowledge source [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-06T14:07:43Z</published>
+    <arxiv:comment>25 pages, 10 figures. Accepted at NeurIPS 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Yang Hong</name>
+    </author>
+    <author>
+      <name>Yajun Yang</name>
+    </author>
+    <author>
+      <name>Xin Wang</name>
+    </author>
+    <author>
+      <name>Liping Jing</name>
+    </author>
+    <author>
+      <name>Qinghua Hu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.11344v1</id>
+    <title>EvoSim: Learning to Model, Modeling to Learn</title>
+    <updated>2026-10-08T06:39:07Z</updated>
+    <link href="https://arxiv.org/abs/2610.11344v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.11344v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Physics-based models connect scientific explanation with quantitative prediction. Constructing them requires selecting physical processes, defining states and governing equations, specifying couplings, and identifying parameters from experiments. Existing AI systems remain limited in making these model structure decisions autonomously. We introduce [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T06:39:07Z</published>
+    <arxiv:comment>43 pages, 6 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Yun-Wei Song</name>
+    </author>
+    <author>
+      <name>Jinkai Tao</name>
+    </author>
+    <author>
+      <name>Jun-Dong Zhang</name>
+    </author>
+    <author>
+      <name>Rui Zhang</name>
+    </author>
+    <author>
+      <name>Yi-Min Wu</name>
+    </author>
+    <author>
+      <name>Qiang Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.10455v2</id>
+    <title>PHRBench: A Behavioral Evaluation of Post-Hallucination Reasoning in LLMs</title>
+    <updated>2026-10-09T07:48:33Z</updated>
+    <link href="https://arxiv.org/abs/2610.10455v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.10455v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Hallucinated information can propagate through multi-stage LLM systems and become part of the context for subsequent reasoning. Existing studies of post-hallucination reasoning (PHR) mainly characterize changes in final outcomes and aggregate reasoning dynamics, leaving how models resolve hallucinated premises at [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-07T17:25:23Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Linghao Meng</name>
+    </author>
+    <author>
+      <name>Feng He</name>
+    </author>
+    <author>
+      <name>Xuan Yang</name>
+    </author>
+    <author>
+      <name>Junyuan Mao</name>
+    </author>
+    <author>
+      <name>Pinze Ren</name>
+    </author>
+    <author>
+      <name>Deqing Mu</name>
+    </author>
+    <author>
+      <name>Hesen Yang</name>
+    </author>
+    <author>
+      <name>Qiankun Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.14073v1</id>
+    <title>Is the Future Predictable? Modeling Future Predictability for Reliable Temporal Reasoning</title>
+    <updated>2026-10-08T03:46:15Z</updated>
+    <link href="https://arxiv.org/abs/2610.14073v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.14073v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) remain unreliable when reasoning about the future. Existing models often overlook the difference among future states, committing to specific answers even when the queried facts are inherently volatile. To capture this challenge, we introduce ChronoRegime, a [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T03:46:15Z</published>
+    <arxiv:comment>Accepted to EMNLP 2026 (Main Conference)</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Yongyi Huang</name>
+    </author>
+    <author>
+      <name>Huaping Zhang</name>
+    </author>
+    <author>
+      <name>Wenyao Cui</name>
+    </author>
+    <author>
+      <name>Qiuchi Li</name>
+    </author>
+    <author>
+      <name>Lei Li</name>
+    </author>
+    <author>
+      <name>Baohua Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.14635v1</id>
+    <title>PVFH-Bench: Benchmarking Premise-Induced Visual Fixation Hallucinations in Vision-Language Models</title>
+    <updated>2026-10-10T06:34:01Z</updated>
+    <link href="https://arxiv.org/abs/2610.14635v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.14635v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large Vision-Language Models (LVLMs) have achieved remarkable progress across a wide range of multimodal tasks. However, object hallucination remains a persistent challenge, undermining model reliability in applications such as visual question answering, embodied agents, and human-AI decision support systems. In [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-10T06:34:01Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Xinhao Wang</name>
+    </author>
+    <author>
+      <name>Junbo Cui</name>
+    </author>
+    <author>
+      <name>Zhenghao Liu</name>
+    </author>
+    <author>
+      <name>Yuan Yao</name>
+    </author>
+    <author>
+      <name>Xiaohua Li</name>
+    </author>
+    <author>
+      <name>Yu Gu</name>
+    </author>
+    <author>
+      <name>Ge Yu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.15634v1</id>
+    <title>Big-Big-SycoBench: A Benchmark to Detect Sycophancy Through Model Responses to Valid vs. Invalid Arguments</title>
+    <updated>2026-10-11T14:08:47Z</updated>
+    <link href="https://arxiv.org/abs/2610.15634v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.15634v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Sycophancy in large language models risks amplifying unsupported claims or beliefs across the knowledge ecosystem as these systems increasingly contribute to research synthesis, evaluation, and decision-making. A reliable model should revise its judgement when a user identifies a genuine flaw, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-11T14:08:47Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Marthe Ballon</name>
+    </author>
+    <author>
+      <name>Arne Vanhoyweghen</name>
+    </author>
+    <author>
+      <name>Seorin Kim</name>
+    </author>
+    <author>
+      <name>Francesca Carlon</name>
+    </author>
+    <author>
+      <name>Lynn Delcon</name>
+    </author>
+    <author>
+      <name>Melika Mobini</name>
+    </author>
+    <author>
+      <name>Vincent Holst</name>
+    </author>
+    <author>
+      <name>Lukas Van de Voorde</name>
+    </author>
+    <author>
+      <name>Tibo Vanleke</name>
+    </author>
+    <author>
+      <name>Mathieu Louis</name>
+    </author>
+    <author>
+      <name>Bert Verbruggen</name>
+    </author>
+    <author>
+      <name>Brecht F. Verbeken</name>
+    </author>
+    <author>
+      <name>Andres Algaba</name>
+    </author>
+    <author>
+      <name>Vincent Ginis</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.00969v1</id>
+    <title>A Citation-Grounded Benchmark for Trustworthy Earnings Call Transcript Analysis with Large Language Models</title>
+    <updated>2026-10-01T02:59:14Z</updated>
+    <link href="https://arxiv.org/abs/2610.00969v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.00969v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) have been increasingly used for financial document analysis, including earnings call transcripts (ECTs). Beyond generating standalone claims, users increasingly prefer grounded analyses that pair claims with verifiable citations from source documents to enable independent validation. However, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T02:59:14Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Yingzhu Zhao</name>
+    </author>
+    <author>
+      <name>Vlad Pandelea</name>
+    </author>
+    <author>
+      <name>Han Yuan</name>
+    </author>
+    <author>
+      <name>Bo Hu</name>
+    </author>
+    <author>
+      <name>Wuqiong Luo</name>
+    </author>
+    <author>
+      <name>Li Zhang</name>
+    </author>
+    <author>
+      <name>Zheng Ma</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02999v2</id>
+    <title>OmniConfess: Eliciting Token Confessions to Mitigate Omni-Modal Hallucination</title>
+    <updated>2026-10-05T04:51:50Z</updated>
+    <link href="https://arxiv.org/abs/2610.02999v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02999v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Omni-modal large language models (OmniLLMs) unify text, images, audio, and video, yet hallucinate when generation relies on the wrong evidence. Existing inference-time methods can reduce hallucinations, but rarely reveal which evidence sustains a generated commitment. We introduce OmniConfess, a training-free [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T08:31:10Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Huiqiang Rong</name>
+    </author>
+    <author>
+      <name>Haoran Luo</name>
+    </author>
+    <author>
+      <name>Hui Feng</name>
+    </author>
+    <author>
+      <name>Zhonghong Ou</name>
+    </author>
+    <author>
+      <name>Kaiwen Xue</name>
+    </author>
+    <author>
+      <name>Guoxin Zhang</name>
+    </author>
+    <author>
+      <name>Yifan Zhu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.09033v1</id>
+    <title>Quad-State Safety Evaluation of Open-Weight Large Language Models on Non-Canonical Inputs</title>
+    <updated>2026-10-06T19:33:24Z</updated>
+    <link href="https://arxiv.org/abs/2610.09033v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.09033v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Standard safety evaluations of large language models assess harmful requests written in canonical plain text, while models in real-world deployment routinely receive inputs containing emojis, altered spellings, encoded strings, and character-level variations. This work introduces the Adversarial Surface-Form Robustness Dataset [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-06T19:33:24Z</published>
+    <arxiv:comment>Accepted at the NeurIPS 2026 Workshop on Self-Evolving Diversity-Driven Search for Robust AI Systems (EvoRobust). 12 pages, 11 tables. Project page: https://www.pavanmaddula.com/quadstate Dataset: https://huggingface.co/datasets/pavanmaddula/ASRD-Dataset</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Pavan Maddula</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.11907v1</id>
+    <title>Beyond Visual Enhancement: Adaptive Multi-Context Steering to Mitigate LVLM Hallucinations</title>
+    <updated>2026-10-08T13:08:44Z</updated>
+    <link href="https://arxiv.org/abs/2610.11907v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.11907v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Hallucination remains a significant challenge in Large Vision-Language Models (LVLMs). Existing training-free methods generally mitigate hallucinations through contrastive decoding or visual enhancement, often increasing the relative influence of visual evidence during generation. This raises a fundamental question: Can LVLMs dynamically [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T13:08:44Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Shuran Ma</name>
+    </author>
+    <author>
+      <name>JiaLe Li</name>
+    </author>
+    <author>
+      <name>Yuxin Dong</name>
+    </author>
+    <author>
+      <name>Shan Zheng</name>
+    </author>
+    <author>
+      <name>Qingyun Jiang</name>
+    </author>
+    <author>
+      <name>Xiang Chen</name>
+    </author>
+    <author>
+      <name>Qi Zhu</name>
+    </author>
+    <author>
+      <name>Deyi Ji</name>
+    </author>
+    <author>
+      <name>Yifan Yang</name>
+    </author>
+    <author>
+      <name>Jianfeng Pan</name>
+    </author>
+    <author>
+      <name>Yu Tian</name>
+    </author>
+    <author>
+      <name>Xue Yang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.11826v1</id>
+    <title>From Suppression to Repair: Mitigating Object Hallucination in Large Vision-Language Models via Localized Distribution Alignment</title>
+    <updated>2026-10-08T12:25:50Z</updated>
+    <link href="https://arxiv.org/abs/2610.11826v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.11826v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Object hallucination remains a major obstacle for large vision-language models (LVLMs) to generate reliable content. An intuitive mitigation strategy is to suppress hallucination-related components in hidden representations. However, these components may also contain useful information, and suppressing them can weaken [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T12:25:50Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Chen Zhao</name>
+    </author>
+    <author>
+      <name>Xingping Dong</name>
+    </author>
+    <author>
+      <name>Jiachun Shi</name>
+    </author>
+    <author>
+      <name>Liang Peng</name>
+    </author>
+    <author>
+      <name>Chong Wang</name>
+    </author>
+    <author>
+      <name>Zhen Lei</name>
+    </author>
+    <author>
+      <name>Ran He</name>
+    </author>
+    <author>
+      <name>Bo Du</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.12989v1</id>
+    <title>Language Models Have Interpretable Narrative Mechanisms</title>
+    <updated>2026-10-09T04:45:52Z</updated>
+    <link href="https://arxiv.org/abs/2610.12989v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.12989v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We investigate whether language models contain internal components that contribute to representing narrativity, the degree to which a text exhibits narrative properties. Across GPT-2-Small, Gemma-2-2B, and Llama-3.1-8B, we identify attention heads, MLP neurons, and sparse autoencoder features whose activations correlate [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-09T04:45:52Z</published>
+    <arxiv:comment>24 pages, 5 figures, 16 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>David Yiyang Liu</name>
+    </author>
+    <author>
+      <name>Aditya Joshi</name>
+    </author>
+    <author>
+      <name>Paul Dawson</name>
+    </author>
+    <author>
+      <name>Andrew Piper</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04329v1</id>
+    <title>Suppressing Pressure, Amplifying Evidence: Self-Guided Attention Steering to Mitigate Sycophancy and Stubbornness</title>
+    <updated>2026-10-03T06:50:38Z</updated>
+    <link href="https://arxiv.org/abs/2610.04329v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04329v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reliable language models should resist unsupported user pressure while effectively using objective contextual information. However, models may exhibit sycophancy by yielding to unsupported user pressure or contextual stubbornness by failing to update their answers when relevant contextual information warrants revision. [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-03T06:50:38Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Yinghao He</name>
+    </author>
+    <author>
+      <name>Mengyu Xu</name>
+    </author>
+    <author>
+      <name>Haixiang Sun</name>
+    </author>
+    <author>
+      <name>Donghan Li</name>
+    </author>
+    <author>
+      <name>Yibo Wang</name>
+    </author>
+    <author>
+      <name>Lixu Wang</name>
+    </author>
+    <author>
+      <name>Kezhen Chen</name>
+    </author>
+    <author>
+      <name>Chi Li</name>
+    </author>
+    <author>
+      <name>Chunwei Liu</name>
+    </author>
+    <author>
+      <name>Bharat Bhargava</name>
+    </author>
+    <author>
+      <name>Chongyang Gao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02568v2</id>
+    <title>Mitigating Social Sycophancy via Pluralistic Preference Optimization</title>
+    <updated>2026-10-05T07:54:49Z</updated>
+    <link href="https://arxiv.org/abs/2610.02568v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02568v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Personal advice, including relationship advice, now ranks among the most common uses of generative AI. But language models (LMs) exhibit sycophancy: they affirm users much more often than humans do, which can make people overconfident and less willing to repair [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T23:00:49Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Stephane Hatgis-Kessell</name>
+    </author>
+    <author>
+      <name>Myra Cheng</name>
+    </author>
+    <author>
+      <name>Xiaoxuan Hou</name>
+    </author>
+    <author>
+      <name>Qian Hu</name>
+    </author>
+    <author>
+      <name>Rahul Gupta</name>
+    </author>
+    <author>
+      <name>Natasha Jaques</name>
+    </author>
+    <author>
+      <name>Emma Brunskill</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03482v3</id>
+    <title>Single-Pass Uncertainty Heads for Claim-Level Hallucination Detection in Persian Medical Language Models</title>
+    <updated>2026-10-07T18:13:33Z</updated>
+    <link href="https://arxiv.org/abs/2610.03482v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03482v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Hallucination detection is particularly important for medical language models, but repeated-sampling approaches are computationally expensive. A faster alternative is a single-pass uncertainty head that predicts hallucination risk from a frozen generator's internal signals. Existing uncertainty heads consume backbone-specific features and [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T15:50:46Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Mehrdad Ghassabi</name>
+    </author>
+    <author>
+      <name>Pedram Rostami</name>
+    </author>
+    <author>
+      <name>Hamidreza Baradaran Kashani</name>
+    </author>
+    <author>
+      <name>Sadra Hakim</name>
+    </author>
+    <author>
+      <name>Audrina Ebrahimi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.06056v1</id>
+    <title>ROT: Rotating Hidden States towards Contextual Vectors for Hallucination Mitigation in LVLMs</title>
+    <updated>2026-10-05T09:49:09Z</updated>
+    <link href="https://arxiv.org/abs/2610.06056v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.06056v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large Vision-Language Models (LVLMs) frequently suffer from object hallucination. Existing training-free interventions primarily manipulate attention weights, which indirectly affect the deep semantics reaching the final predictive layers. In this work, we shift our focus to the hidden state vectors extracted [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-05T09:49:09Z</published>
+    <arxiv:comment>Accepted in EMNLP 2026 Oral</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Yijing Du</name>
+    </author>
+    <author>
+      <name>Xiangcheng Zhan</name>
+    </author>
+    <author>
+      <name>Shuo Yang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.08026v1</id>
+    <title>The Labeling Problem in Hallucination Detection Benchmarks: An Empirical Evaluation</title>
+    <updated>2026-10-06T09:19:10Z</updated>
+    <link href="https://arxiv.org/abs/2610.08026v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.08026v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In recent years, several methods for detecting when large language models (LLMs) hallucinate have been developed. These methods are often benchmarked with open-domain question answering (QA) datasets containing questions and corresponding short reference answers. First, an LLM is used to [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-06T09:19:10Z</published>
+    <arxiv:comment>27 pages. Accepted at the NeurIPS 2026 Evaluations &amp; Datasets Track. Data: https://doi.org/10.7910/DVN/PCHISZ. Code: https://github.com/jova486/LPHB</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Jorma Valjakka</name>
+    </author>
+    <author>
+      <name>Juhani Kivimäki</name>
+    </author>
+    <author>
+      <name>Juha Mylläri</name>
+    </author>
+    <author>
+      <name>Jukka K. Nurminen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.06603v1</id>
+    <title>Word-Level Text Unmixing via Evidence-Preserving Ownership Routing with Language Models</title>
+    <updated>2026-10-05T16:12:41Z</updated>
+    <link href="https://arxiv.org/abs/2610.06603v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.06603v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Text from multiple sources can become interleaved into a single sequence when attribution metadata is lost, such as overlapping speech transcripts, document reading flows, or concurrent agent streams. We formalize this challenge as Word-Level Text Unmixing: given an interleaved lexical [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-05T16:12:41Z</published>
+    <arxiv:comment>34 pages, 5 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Jinglin He</name>
+    </author>
+    <author>
+      <name>Siyang Jiang</name>
+    </author>
+    <author>
+      <name>Lixing He</name>
+    </author>
+    <author>
+      <name>Guoliang Xing</name>
+    </author>
+    <author>
+      <name>Hongkai Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03063v1</id>
+    <title>HARPO: Hallucination-Aware Reinforcement Learning for Faithful and Creative Language Generation</title>
+    <updated>2026-10-02T09:46:40Z</updated>
+    <link href="https://arxiv.org/abs/2610.03063v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03063v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large Language Models (LLMs) are prone to generating hallucinated content, which compromises their reliability in knowledge-intensive tasks. To address this challenge without sacrificing creativity, we propose HARPO, a reinforcement learning framework designed to jointly optimize faithfulness and creativity. HARPO incorporates [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T09:46:40Z</published>
+    <arxiv:comment>11 pages</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Tiezheng Yu</name>
+    </author>
+    <author>
+      <name>Yuxin Jiang</name>
+    </author>
+    <author>
+      <name>Jinpeng Li</name>
+    </author>
+    <author>
+      <name>Shuning Sun</name>
+    </author>
+    <author>
+      <name>Fei Mi</name>
+    </author>
+    <author>
+      <name>Haoli Bai</name>
+    </author>
+    <author>
+      <name>Lifeng Shang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02976v1</id>
+    <title>Relevant Evidence Decoding for Audio-Visual Hallucination Mitigation</title>
+    <updated>2026-10-02T08:09:19Z</updated>
+    <link href="https://arxiv.org/abs/2610.02976v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02976v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Audio-Visual Large Language Models (AV-LLMs) remain prone to cross-modal hallucinations, where one modality incorrectly affects predictions about another. Although contrastive decoding reduces hallucinations in vision-language models, its direct extension to AV-LLMs overlooks a key challenge: different questions require different perceptual [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T08:09:19Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Hyunjae Ra</name>
+    </author>
+    <author>
+      <name>Aecheon Jung</name>
+    </author>
+    <author>
+      <name>Jungin Park</name>
+    </author>
+    <author>
+      <name>Sungeun Hong</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02887v1</id>
+    <title>Revealing Epistemic Uncertainty in MLLMs via Causal-Invariant Masking</title>
+    <updated>2026-10-02T06:29:37Z</updated>
+    <link href="https://arxiv.org/abs/2610.02887v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02887v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multimodal Large Language Models (MLLMs) suffer from hallucinations, creating a critical need for Uncertainty Quantification (UQ) to ensure reliable deployment. However, existing approaches struggle to detect uncertainty caused by superficial associations, especially when the query-relevant signal is weak. We mainly [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T06:29:37Z</published>
+    <arxiv:comment>Accepted by NeurIPS 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Haoyang Luo</name>
+    </author>
+    <author>
+      <name>Linwei Tao</name>
+    </author>
+    <author>
+      <name>Jie Gui</name>
+    </author>
+    <author>
+      <name>Xinghao Chen</name>
+    </author>
+    <author>
+      <name>Chang Xu</name>
+    </author>
+    <author>
+      <name>Jianyuan Guo</name>
+    </author>
+    <author>
+      <name>Minjing Dong</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.05615v3</id>
+    <title>DREAM: Dynamic Resolution Assignment For Multimodal Multi-agent Debate</title>
+    <updated>2026-10-13T02:36:50Z</updated>
+    <link href="https://arxiv.org/abs/2610.05615v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.05615v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multi-agent debate (MAD) has emerged as an effective paradigm to improve the reasoning capabilities of large language models (LLMs) and is increasingly being extended to multimodal settings. However, existing multimodal MAD frameworks typically expose agents to the same fixed visual [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-04T23:23:02Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Khanh-Binh Nguyen</name>
+    </author>
+    <author>
+      <name>Van Dai Do</name>
+    </author>
+    <author>
+      <name>Tien Anh Nguyen</name>
+    </author>
+    <author>
+      <name>Svetha Venkatesh</name>
+    </author>
+    <author>
+      <name>Hung Le</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.13695v2</id>
+    <title>Verifiable Retrieval for Legal Reasoning through Structure-driven Knowledge Graph</title>
+    <updated>2026-10-13T15:05:01Z</updated>
+    <link href="https://arxiv.org/abs/2610.13695v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.13695v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Any automation within reliability-critical contexts such as medicine or law has to be transparent and verifiable. Despite their advantages, current LLM-based systems do not meet these requirements due to their inherent black-box nature. Retrieval Augmented Generation (RAG) attempts to ground [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-09T14:56:31Z</published>
+    <arxiv:comment>Accepted at the RAGE-KG 2026 Workshop, co-located with ISWC 2026. 7 pages, 3 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Ibrahim Siddig</name>
+    </author>
+    <author>
+      <name>Sviatoslav Tugeev</name>
+    </author>
+    <author>
+      <name>Munir Georges</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.15056v1</id>
+    <title>Select or Rewrite: Oracle-Guided Fine-Tuning for Generative ASR Post-Editing from N-Best Hypotheses</title>
+    <updated>2026-10-10T16:48:27Z</updated>
+    <link href="https://arxiv.org/abs/2610.15056v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.15056v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models can post-edit ASR by using linguistic context to compare N-best hypotheses and rewrite the transcript when needed, often improving WER without retraining the recognizer. However, prompt-only correction is brittle: it may over-edit when top-1 is correct and [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-10T16:48:27Z</published>
+    <arxiv:comment>7 pages, 4 figures, 2 tabl</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Shiran Liu</name>
+    </author>
+    <author>
+      <name>Gaohui Xu</name>
+    </author>
+    <author>
+      <name>Sergio Burdisso</name>
+    </author>
+    <author>
+      <name>Thibault Bañeras-Roux</name>
+    </author>
+    <author>
+      <name>Shashi Kumar</name>
+    </author>
+    <author>
+      <name>Petr Motlicek</name>
+    </author>
+  </entry>
+</feed>

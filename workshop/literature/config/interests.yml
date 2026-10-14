@@ -1,0 +1,61 @@
+# The vocabulary of the weekly literature review: the workshop subset.
+#
+# Two of the author's fifteen topics, copied from the repository's
+# config/interests.yml on 14 October 2026 so that the frozen week in
+# data/raw/2026-W41 can be rerun offline. Write your own topics in the same
+# shape; the scripts look these queries up and never change them.
+#
+# Per topic:
+#   europepmc  Europe PMC query (the date range is added by the script)
+#   openalex   OpenAlex title-and-abstract search (boolean AND/OR/NOT, quotes;
+#              words are stemmed, so acronyms that are English words go in quotes)
+#   arxiv      arXiv search_query (ti:/abs:/cat: prefixes; date added by the script)
+#   biodivpmc  Biodiversity PMC query_string over title, abstract and keywords
+#   biodivpmc_cols  collections to search by week: medline (abstracts, current;
+#              it is all of MEDLINE, so add a biodiversity term) and pmc (full
+#              text, about two months behind on 14 October 2026)
+#   biorxiv_categories  bioRxiv categories to fetch; a record is kept for the
+#              topic when one of `terms` matches its title or abstract
+#   terms      words and phrases that mark the topic (case-insensitive, word boundary)
+#   consensus  queries the assistant skill may run through the Consensus MCP
+
+contact: "you@example.org"   # sent in the User-Agent; the services ask who is calling
+overlap_days: 10       # days before the week fetched too, reported only if unseen
+max_per_topic: 25      # listed per topic in the review; the rest are counted
+delay_seconds:
+  default: 1
+  arxiv: 3
+biorxiv_server: biorxiv
+
+topics:
+  - id: collembola
+    label: Collembola, soil fauna and KYBELE
+    terms: [Collembola, collembolan, collembolans, springtail, springtails, "Fauna Europaea", "taxonomic treatment"]
+    europepmc: 'TITLE_ABS:(Collembola OR springtail*)'
+    openalex: 'Collembola OR springtail OR springtails'
+    biodivpmc: 'Collembola OR springtail OR springtails'
+    biodivpmc_cols: [medline, pmc]
+    biorxiv_categories: [ecology, evolutionary_biology, zoology]
+    arxiv: null
+    consensus:
+      - "Collembola responses to soil disturbance"
+      - "springtail new species description"
+
+  - id: coastal-soil-metagenomes
+    label: Coastal and saline soil metagenomes (TREC)
+    terms: ["coastal soil", "saline soil", "salt marsh", "land-sea", "land sea", metagenom, "metagenome-assembled",
+            biocrust, SPIRE, GMGC, SMAG, "Microflora Danica", LUCAS, mOTUs, SingleM]
+    europepmc: 'TITLE_ABS:((coastal OR saline OR salt OR dune OR estuar*) AND soil AND metagenom*)'
+    openalex: '(coastal OR saline OR "salt marsh" OR dune) AND soil AND (metagenome OR metagenomics OR metagenomic)'
+    biodivpmc: '(coastal OR saline OR "salt marsh") AND soil AND (metagenome OR metagenomics OR metagenomic)'
+    biodivpmc_cols: [medline, pmc]
+    biorxiv_categories: [microbiology, bioinformatics, ecology, genomics]
+    arxiv: null
+    consensus:
+      - "coastal soil microbiome land-sea gradient"
+      - "soil metagenome catalogue metagenome-assembled genomes Europe"
+
+people:
+  arxiv_au: []
+  arxiv_cats: [cs.AI]
+  openalex_author_ids: {}

@@ -1,0 +1,2568 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/C1p/N5rpxbn0ZAH3k+lU1LmQGnk</id>
+  <title>arXiv Query: search_query=&amp;id_list=2610.09588,2610.09569,2610.09553,2610.09466,2610.11069,2610.12313,2610.11136,2610.12410,2610.11270,2610.12881,2609.31963,2609.32172,2609.32637,2609.33699,2609.33397,2609.33878,2609.33623,2609.35952,2609.36043,2609.34241,2609.35569,2609.37351,2609.38249,2609.36856,2609.36469,2609.38279,2609.36732,2609.38878,2609.39071,2610.00666,2609.39494,2610.00701,2609.39112,2609.38729,2610.01138,2610.02460,2610.01263,2610.02286,2610.01611,2610.03109,2610.02975,2610.02925,2610.03565,2610.06444,2610.06050,2610.06829,2610.06236,2610.06328,2610.05981,2610.08162,2610.09456,2610.11732,2610.11556,2610.13627,2610.13504,2610.13170,2610.15836,2610.15995,2610.15732,2610.15459,2610.15991,2609.39863,2609.30747,2610.02622,2610.09082,2610.04725,2609.35860,2609.30986,2609.31078,2609.31122,2609.32049,2609.32617,2609.32964,2609.32643,2609.32567,2609.32351,2609.32867,2609.32616,2609.34017,2609.37498,2609.34033,2609.33672,2609.35544,2609.34772,2609.34548,2609.34257,2609.37554,2609.38355,2609.38296,2609.38574,2609.36734,2609.37568,2609.36931,2610.00316,2609.37616,2609.38962,2609.39786,2610.08840,2609.40221,2610.00833&amp;start=0&amp;max_results=100</title>
+  <updated>2026-10-14T14:17:44Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=100&amp;id_list=2610.09588,2610.09569,2610.09553,2610.09466,2610.11069,2610.12313,2610.11136,2610.12410,2610.11270,2610.12881,2609.31963,2609.32172,2609.32637,2609.33699,2609.33397,2609.33878,2609.33623,2609.35952,2609.36043,2609.34241,2609.35569,2609.37351,2609.38249,2609.36856,2609.36469,2609.38279,2609.36732,2609.38878,2609.39071,2610.00666,2609.39494,2610.00701,2609.39112,2609.38729,2610.01138,2610.02460,2610.01263,2610.02286,2610.01611,2610.03109,2610.02975,2610.02925,2610.03565,2610.06444,2610.06050,2610.06829,2610.06236,2610.06328,2610.05981,2610.08162,2610.09456,2610.11732,2610.11556,2610.13627,2610.13504,2610.13170,2610.15836,2610.15995,2610.15732,2610.15459,2610.15991,2609.39863,2609.30747,2610.02622,2610.09082,2610.04725,2609.35860,2609.30986,2609.31078,2609.31122,2609.32049,2609.32617,2609.32964,2609.32643,2609.32567,2609.32351,2609.32867,2609.32616,2609.34017,2609.37498,2609.34033,2609.33672,2609.35544,2609.34772,2609.34548,2609.34257,2609.37554,2609.38355,2609.38296,2609.38574,2609.36734,2609.37568,2609.36931,2610.00316,2609.37616,2609.38962,2609.39786,2610.08840,2609.40221,2610.00833" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>100</opensearch:itemsPerPage>
+  <opensearch:totalResults>100</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38962v1</id>
+    <title>Alleviating Hallucination in Reasoning Tasks with Training-Free Uncertainty-Guided Steering</title>
+    <updated>2026-09-30T04:28:49Z</updated>
+    <link href="https://arxiv.org/abs/2609.38962v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38962v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent work on hallucination detection in large language models has shown that, for a fixed pre-trained model and reasoning task, it is possible to estimate the model's confidence in the correctness of its outputs. Such uncertainty estimates have primarily been [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T04:28:49Z</published>
+    <arxiv:comment>Neurips 2026 main conference paper</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Litian Liu</name>
+    </author>
+    <author>
+      <name>Qiqi Hou</name>
+    </author>
+    <author>
+      <name>Yubing Jian</name>
+    </author>
+    <author>
+      <name>Reza Pourreza</name>
+    </author>
+    <author>
+      <name>Mohammad Ghavamzadeh</name>
+    </author>
+    <author>
+      <name>Roland Memisevic</name>
+    </author>
+    <author>
+      <name>Yao Qin</name>
+    </author>
+    <author>
+      <name>Hong Cai</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.35860v1</id>
+    <title>The Detectability Gap: Hidden Heterogeneity in Hallucination Detection Across Language Models</title>
+    <updated>2026-09-25T17:12:24Z</updated>
+    <link href="https://arxiv.org/abs/2609.35860v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.35860v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Sampling based consistency is widely used for hallucination detection, yet aggregate performance can conceal systematic differences in which errors are detectable. This work studies that heterogeneity across four language models and three factual question answering datasets. Partitioning hallucinations by answer [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-25T17:12:24Z</published>
+    <arxiv:comment>Accepted at GlobalSouthAI @ NeurIPS 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Pranav Darshan</name>
+    </author>
+    <author>
+      <name>Pranav A</name>
+    </author>
+    <author>
+      <name>Sravan Karthick T</name>
+    </author>
+    <author>
+      <name>Minal Moharir</name>
+    </author>
+    <author>
+      <name>Ivan P. Yamshchikov</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39863v1</id>
+    <title>FIGS: Evaluating Multi-Turn Sycophancy Without Penalizing Empathy</title>
+    <updated>2026-09-30T14:46:13Z</updated>
+    <link href="https://arxiv.org/abs/2609.39863v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39863v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models frequently fail to balance staying truthful with being supportive. They often exhibit sycophancy in responses to users, agreeing with false claims, offering unwarranted flattery, and giving advice skewed toward users' expressed views. In reality, sycophancy rarely happens [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T14:46:13Z</published>
+    <arxiv:comment>64 pages, 11 figures, 29 tables. Code: https://github.com/compass-group-tue/FIGSBench ; Data: https://huggingface.co/datasets/compass-group-tue/FIGSBench</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Sidharth Pulipaka</name>
+    </author>
+    <author>
+      <name>Ruta Binkyte</name>
+    </author>
+    <author>
+      <name>Ivaxi Sheth</name>
+    </author>
+    <author>
+      <name>Sahar Abdelnabi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.37568v1</id>
+    <title>Devils in Question Relay: Source-Conditioned Relay Steering to Mitigate Hallucinations in Audio-visual Large Language Models</title>
+    <updated>2026-09-29T13:37:31Z</updated>
+    <link href="https://arxiv.org/abs/2609.37568v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.37568v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Audio-visual large language models (AVLLMs) have made remarkable progress in multimodal understanding and reasoning through interactions among visual, auditory, and linguistic information. However, recent studies show that AVLLMs face a critical challenge: $\textbf{source-confused grounding hallucination}$, where cues from the unused [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T13:37:31Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Yu Zhang</name>
+    </author>
+    <author>
+      <name>Pingrui Zhang</name>
+    </author>
+    <author>
+      <name>Xuefeng Bai</name>
+    </author>
+    <author>
+      <name>Pengfei Zhang</name>
+    </author>
+    <author>
+      <name>Yang Xiang</name>
+    </author>
+    <author>
+      <name>Kehai Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02622v1</id>
+    <title>CuBEs: Culturally-Situated Behavioral Evaluations and the Limitations of Culture-Blind LLM Judges</title>
+    <updated>2026-10-02T00:26:55Z</updated>
+    <link href="https://arxiv.org/abs/2610.02622v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02622v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Evaluating the occurrence and triggers of large language model (LLM) behaviors - such as sycophancy, self-preference, or over-confidence - is critical for predicting real-world model deployment risks. However, existing situated behavioral evaluations typically ignore cultural context, limiting their generalizability across [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T00:26:55Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Hoda Ayad</name>
+    </author>
+    <author>
+      <name>Tanu Mitra</name>
+    </author>
+    <author>
+      <name>Abhishek Mukherji</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.33699v1</id>
+    <title>SpecRead: A Benchmark for Measuring Whether Language Models Understand Hardware Specifications</title>
+    <updated>2026-09-27T16:00:47Z</updated>
+    <link href="https://arxiv.org/abs/2609.33699v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.33699v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Existing benchmarks for large language models (LLMs) in hardware design evaluate downstream artifacts such as generated RTL, assertions, or testbenches. When a model fails such a benchmark, the failure is ambiguous: it may have misread the specification, or it may [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-27T16:00:47Z</published>
+    <arxiv:comment>13 pages. Benchmark data and code at https://github.com/EDGAhab/specread</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Feilian Huang</name>
+      <arxiv:affiliation>Independent Researcher</arxiv:affiliation>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.35952v1</id>
+    <title>HEAR: Real Voices, Real Bias: A Large-Scale Human-Recorded, Demographically Diverse Benchmark for Audio Language Models</title>
+    <updated>2026-09-28T17:30:33Z</updated>
+    <link href="https://arxiv.org/abs/2609.35952v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.35952v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We introduce HEAR (Human-recorded Evaluation of Audio-LLM bias by Real speakers), a large-scale, ecologically valid benchmark comprising 87k real human audio samples from 843 demographically diverse participants. HEAR enables comprehensive evaluation through Multiple Choice Question Answering (MCQA) and open-ended long-form [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SD" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-28T17:30:33Z</published>
+    <arxiv:primary_category term="cs.SD"/>
+    <author>
+      <name>Shen Yan</name>
+    </author>
+    <author>
+      <name>Duc Le</name>
+    </author>
+    <author>
+      <name>Irina-Elena Veliche</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.37351v1</id>
+    <title>Port-Hamiltonian Latent Deliberation: Mitigating the Deliberation Drift Cliff in Test-Time Compute Scaling</title>
+    <updated>2026-09-29T12:17:06Z</updated>
+    <link href="https://arxiv.org/abs/2609.37351v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.37351v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Test-time compute scaling has emerged as a cornerstone of advanced machine reasoning, yet performing iterative deliberation directly within continuous latent representation spaces reveals a catastrophic pathology: the Deliberation Drift Cliff. While unconstrained recurrent latent models achieve initial reasoning gains at [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T12:17:06Z</published>
+    <arxiv:comment>10 pages, 1 figure, 4 tables. Code and evaluation artifacts available</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Zeyu Jia</name>
+      <arxiv:affiliation>School of Biomedical Engineering and Technology, Tianjin Medical University, Medical School, Tianjin University</arxiv:affiliation>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38296v1</id>
+    <title>AI Agents are Vulnerable to Radicalization</title>
+    <updated>2026-09-29T17:45:00Z</updated>
+    <link href="https://arxiv.org/abs/2609.38296v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38296v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) can influence people's beliefs, yet little is known about whether and how they can manipulate each other. To investigate this, we simulate conversations between two agents: a target LLM that role-plays a human persona based on [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T17:45:00Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Ozgur Can Seckin</name>
+    </author>
+    <author>
+      <name>Shalmoli Ghosh</name>
+    </author>
+    <author>
+      <name>Alessandro Flammini</name>
+    </author>
+    <author>
+      <name>Kristina Lerman</name>
+    </author>
+    <author>
+      <name>Maria Elizabeth Grabe</name>
+    </author>
+    <author>
+      <name>Filippo Menczer</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03109v1</id>
+    <title>Emergent Structure in the Marginal Attention Space of Language Models</title>
+    <updated>2026-10-02T10:27:59Z</updated>
+    <link href="https://arxiv.org/abs/2610.03109v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03109v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>While representation similarity across independently trained language models is well-documented, how internal mechanics such as attention behave across models remains far less characterized. Inspired by this gap, we examine the structure of post-softmax attention weights by marginalizing over query positions, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T10:27:59Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Valentino Maiorca</name>
+    </author>
+    <author>
+      <name>Walter Nelson</name>
+    </author>
+    <author>
+      <name>Francesco Locatello</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.06050v1</id>
+    <title>MATE: Adaptive Long- and Short-Term User Memory for LLM-Based Recommendation</title>
+    <updated>2026-10-05T09:44:24Z</updated>
+    <link href="https://arxiv.org/abs/2610.06050v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.06050v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language model (LLM)-enhanced recommender systems leverage rich item semantics to support personalized recommendation. However, semantic representations alone do not determine which historical behaviors reflect persistent preferences and which mainly indicate recent interests, leaving an important aspect of user understanding [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-05T09:44:24Z</published>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Yu Hou</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.06829v1</id>
+    <title>CLIFT: Conformal Self-Verification for Web Agent Training and Test-Time Scaling</title>
+    <updated>2026-10-05T17:57:51Z</updated>
+    <link href="https://arxiv.org/abs/2610.06829v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.06829v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Open-source web agents are now strong enough to execute realistic browser tasks, but training them with reinforcement learning still depends on weak supervision: binary task success is too sparse for credit assignment, while frontier-language-model judges are too expensive to call [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-05T17:57:51Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Yifan Zhang</name>
+    </author>
+    <author>
+      <name>Yutong Dai</name>
+    </author>
+    <author>
+      <name>Viraj Prabhu</name>
+    </author>
+    <author>
+      <name>Zhiyuan Hu</name>
+    </author>
+    <author>
+      <name>Ran Xu</name>
+    </author>
+    <author>
+      <name>Zeyuan Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.09553v1</id>
+    <title>MARS: Malware Analysis with Rule-Based Scoring of LLM Claims</title>
+    <updated>2026-10-07T06:55:35Z</updated>
+    <link href="https://arxiv.org/abs/2610.09553v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.09553v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models can triage malware through direct verdicts or behavioral claims scored by an external policy. We present MARS, a malware triage framework, and compare direct classification with single-pass claim scoring using the same evidence collector and identical static [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-07T06:55:35Z</published>
+    <arxiv:comment>17 pages, 3 figures, 12 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Hyeongjun Choi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.09456v1</id>
+    <title>GeoPrior-Mamba: Structured Process Priors with Mamba for Fine-Resolution XCO2 Reconstruction</title>
+    <updated>2026-10-07T05:11:52Z</updated>
+    <link href="https://arxiv.org/abs/2610.09456v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.09456v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reconstructing fine-resolution column-averaged dry-air CO2 (XCO2) fields from sparse satellite observations requires models to infer spatial structure that is only weakly constrained by direct measurements. Existing learning-based methods typically treat environmental covariates as ordinary numerical inputs and must therefore learn [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-07T05:11:52Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Zhao Meng</name>
+    </author>
+    <author>
+      <name>Yinan Cai</name>
+    </author>
+    <author>
+      <name>Siru Zhong</name>
+    </author>
+    <author>
+      <name>Juepeng Zheng</name>
+    </author>
+    <author>
+      <name>Haohuan Fu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.12881v1</id>
+    <title>Mind the Spatial Gap: A Benchmark for Geospatial Reasoning and Constrained Spatial Editing</title>
+    <updated>2026-10-09T02:16:52Z</updated>
+    <link href="https://arxiv.org/abs/2610.12881v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.12881v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Understanding and manipulating spatial relations is fundamental to AI systems that reason about physical environments and construct grounded world models. However, existing evaluations of multimodal large language models (MLLMs) for spatial reasoning rely predominantly on static question-answering (QA) over small-scale [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-09T02:16:52Z</published>
+    <arxiv:comment>15 pages, 6 figures, 4 tables. Under Review at ICLR 2027</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Zheng Ren</name>
+    </author>
+    <author>
+      <name>Yanning Wang</name>
+    </author>
+    <author>
+      <name>Ziheng Huang</name>
+    </author>
+    <author>
+      <name>Fei Huang</name>
+    </author>
+    <author>
+      <name>Shiqi Wang</name>
+    </author>
+    <author>
+      <name>Ziqian Ye</name>
+    </author>
+    <author>
+      <name>Yang Yue</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.11136v1</id>
+    <title>The "10th Juror": Open-Set Standpoint Screening for Bureaucratic Bias Detection</title>
+    <updated>2026-10-08T03:05:08Z</updated>
+    <link href="https://arxiv.org/abs/2610.11136v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.11136v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Presupposing the boundaries of bias is itself a form of bias. We study closed-loop bias governance for Dutch government documents, where a system must detect biased language, ground decisions in legal and contextual evidence, rewrite problematic sentences when intervention is [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T03:05:08Z</published>
+    <arxiv:comment>19 pages, 6 figures. Accepted at EMNLP 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Yuchen Miao</name>
+    </author>
+    <author>
+      <name>Zijun Wang</name>
+    </author>
+    <author>
+      <name>Chang Han</name>
+    </author>
+    <author>
+      <name>Yurui Shi</name>
+    </author>
+    <author>
+      <name>Mingtai Zhang</name>
+    </author>
+    <author>
+      <name>Siyang Xu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.15459v1</id>
+    <title>When Messages Go Wrong: Understanding Communication Faults in LLM-Based Multi-Agent Systems</title>
+    <updated>2026-10-11T08:59:27Z</updated>
+    <link href="https://arxiv.org/abs/2610.15459v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.15459v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>LLM-based multi-agent systems (LLM-MAS) use specialized agents that exchange messages to accomplish complex tasks. Their reliance on networked protocols, remote tools, and model endpoints exposes communication to message loss, delay, and context expiration. Because agents often exchange open-ended natural language, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-11T08:59:27Z</published>
+    <arxiv:comment>21 pages, 11 figures, 3 tables. Code and experimental artifacts: https://github.com/SonGoKu21/mas_communication/ ; companion website: https://songoku21.github.io/mas_communication/</arxiv:comment>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Jinhao Zhou</name>
+    </author>
+    <author>
+      <name>Xiaoyu Zhang</name>
+    </author>
+    <author>
+      <name>Jiongchi Yu</name>
+    </author>
+    <author>
+      <name>Fahao Chen</name>
+    </author>
+    <author>
+      <name>Jun Wu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.37498v1</id>
+    <title>The Rashomon Wikipedia: A Data-Perspectivist Analysis of Divergent Historical Narratives</title>
+    <updated>2026-09-27T16:25:34Z</updated>
+    <link href="https://arxiv.org/abs/2609.37498v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.37498v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Wikipedia aims to provide a unified, neutral record of history, yet its independent language editions often function as distinct epistemic communities, creating divergent narratives around contested events. This paper investigates cross-lingual historiographical bias by analyzing Wikipedia articles across five languages [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-27T16:25:34Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Claudiu Creanga</name>
+    </author>
+    <author>
+      <name>Liviu P. Dinu</name>
+    </author>
+    <author>
+      <name>Anca Dinu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.36856v1</id>
+    <title>FinRegQA-EU: Corruption-Based Preference Data for Grounded EU Financial Regulatory Question Answering</title>
+    <updated>2026-09-29T07:02:08Z</updated>
+    <link href="https://arxiv.org/abs/2609.36856v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.36856v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large Language Models (LLMs) struggle with region-specific factual knowledge, particularly in financial regulation. While benchmarks such as CFinBench, provide broad coverage of financial knowledge in other regions, no comparable resource exists for European financial regulation. We close this gap by [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T07:02:08Z</published>
+    <arxiv:primary_category term="cs.CE"/>
+    <author>
+      <name>Aulia Kharis Rakhmasari</name>
+    </author>
+    <author>
+      <name>Fan Yu</name>
+    </author>
+    <author>
+      <name>Alexander Hoyle</name>
+    </author>
+    <author>
+      <name>Elliot Ash</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.36734v1</id>
+    <title>Distilling What Matters: Confidence-Aware Selective Distillation for Large Language Models</title>
+    <updated>2026-09-29T05:07:47Z</updated>
+    <link href="https://arxiv.org/abs/2609.36734v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.36734v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Knowledge Distillation (KD) trains a smaller-capacity student model to imitate a larger-capacity teacher model by matching output distributions, implicitly assuming the teacher to be a reliable oracle. In large language models (LLMs), this assumption often fails: teacher predictions can exhibit [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T05:07:47Z</published>
+    <arxiv:comment>Accepted at NeurIPS 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Ayan Sengupta</name>
+    </author>
+    <author>
+      <name>Vaibhav Seth</name>
+    </author>
+    <author>
+      <name>Tanmoy Chakraborty</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39494v1</id>
+    <title>Disentangling Self-Distillation: Measuring and Modeling Acquisition and Retention</title>
+    <updated>2026-09-30T10:54:15Z</updated>
+    <link href="https://arxiv.org/abs/2609.39494v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39494v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Self-distillation with privileged context adapts a language model from demonstrations by letting the model, once conditioned on a reference response, teach its context-free copy token by token. Our taxonomy reveals existing methods differ along three entangled axes: (i) the rollout [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T10:54:15Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Luis Zuin</name>
+    </author>
+    <author>
+      <name>Alexis Huet</name>
+    </author>
+    <author>
+      <name>Dario Rossi</name>
+    </author>
+    <author>
+      <name>Zied Ben Houidi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.40221v1</id>
+    <title>PhantomEnvironments: Training LLM Agents in Fictional Worlds</title>
+    <updated>2026-09-30T17:26:57Z</updated>
+    <link href="https://arxiv.org/abs/2609.40221v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.40221v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Training LLM agents with reinforcement learning (RL) is bottlenecked by environments, which must provide verifiable rewards, support long-horizon interaction, and scale cheaply. Existing approaches rely on costly human-curated data or on LLM-generated environments that risk hallucinations and benchmark contamination. We [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T17:26:57Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Anmol Kabra</name>
+    </author>
+    <author>
+      <name>Swathi Saravana Selvam</name>
+    </author>
+    <author>
+      <name>Albert Gong</name>
+    </author>
+    <author>
+      <name>Chao Wan</name>
+    </author>
+    <author>
+      <name>Christian Belardi</name>
+    </author>
+    <author>
+      <name>Dongyoung Go</name>
+    </author>
+    <author>
+      <name>Katie Z. Luo</name>
+    </author>
+    <author>
+      <name>Kilian Q. Weinberger</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.01611v1</id>
+    <title>Architectural Degradation: How to Measure and to Remediate</title>
+    <updated>2026-10-01T12:51:12Z</updated>
+    <link href="https://arxiv.org/abs/2610.01611v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.01611v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Context. Architectural degradation undermines software maintainability, evolvability, and quality. However, existing research remains fragmented across measurement approaches, metrics, tools, and remediation strategies, limiting our understanding of how these elements relate across the degradation lifecycle. Aim. We consolidate the state of [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T12:51:12Z</published>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Noman Ahmad</name>
+    </author>
+    <author>
+      <name>Ruoyu Su</name>
+    </author>
+    <author>
+      <name>Matteo Esposito</name>
+    </author>
+    <author>
+      <name>Andrea Janes</name>
+    </author>
+    <author>
+      <name>Valentina Lenarduzzi</name>
+    </author>
+    <author>
+      <name>Davide Taibi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04725v1</id>
+    <title>Verb-ICL: Rethinking In-Context Learning for Structured Prediction</title>
+    <updated>2026-10-03T19:30:17Z</updated>
+    <link href="https://arxiv.org/abs/2610.04725v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04725v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Structured prediction tasks pose unique challenges for in-context learning (ICL): their compositional outputs require modeling fine-grained, token-level patterns that sentence-level approaches fail to capture, and their task-specific annotation conventions are human-defined artifacts that cannot be acquired through pretraining alone. We [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-03T19:30:17Z</published>
+    <arxiv:comment>Accepted to COLM 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Fan Bai</name>
+    </author>
+    <author>
+      <name>Hengshuo Miao</name>
+    </author>
+    <author>
+      <name>Sanjit S Batra</name>
+    </author>
+    <author>
+      <name>Hamid Reza Hassanzadeh</name>
+    </author>
+    <author>
+      <name>Ardavan Saeedi</name>
+    </author>
+    <author>
+      <name>Mark Dredze</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.30986v1</id>
+    <title>Evaluating Sycophancy in Chinese Large Language Models on Factual Questions Derived from Online Search Queries</title>
+    <updated>2026-09-25T08:34:19Z</updated>
+    <link href="https://arxiv.org/abs/2609.30986v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.30986v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>As large language models increasingly mediate information access, factually accurate and independent answers are critical. However, these models can exhibit sycophancy by aligning their responses with users' stated beliefs even when those beliefs are incorrect, potentially presenting misinformation as independently [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-25T08:34:19Z</published>
+    <arxiv:comment>19 pages, 34 figures, 4 tables. Geng Liu and Feng Li contributed equally</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Geng Liu</name>
+    </author>
+    <author>
+      <name>Feng Li</name>
+    </author>
+    <author>
+      <name>Mengxiao Zhu</name>
+    </author>
+    <author>
+      <name>Francesco Pierri</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.00833v1</id>
+    <title>VERITYGATE: A Four-Gate Schema-Level Faithfulness Framework and Paired Benchmark for Grounded LLM Narrations over Structured Evidence</title>
+    <updated>2026-09-30T23:44:51Z</updated>
+    <link href="https://arxiv.org/abs/2610.00833v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.00833v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Fluent LLM explanations may not follow the evidence from a structured system. We present VERITYGATE, a four-gate checker for declared evidence IDs, entities, numbers, and claim types. It checks a fixed schema; it does not verify every fact in the [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T23:44:51Z</published>
+    <arxiv:comment>16 pages, 5 figures, 7 tables. Accepted at Grounding Language Models: Learning Faithfully and Efficiently (GroundLM 2026), co-located with EMNLP 2026. Code: https://github.com/sachinkg12/yukti/releases/tag/veritygate-groundlm-2026-v1.0.0 Supplementary artifact: https://doi.org/10.5281/zenodo.22668710</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Sachin Gupta</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.33672v1</id>
+    <title>Reset Is Not Recovery: Evaluating Recoverability from False Conversational Context via Sycophancy Hysteresis</title>
+    <updated>2026-09-27T15:33:35Z</updated>
+    <link href="https://arxiv.org/abs/2609.33672v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.33672v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Grounded language models are usually evaluated by adding relevant context, but multiturn dialogue also contains unsupported user claims that may contaminate later factual answers. We study post-pressure recoverability: whether a model returns to clean-context behavior after a user repeatedly advocates [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-27T15:33:35Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Adi Shnaidman</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.34772v1</id>
+    <title>Before the Token Commits: Trajectory-Level Benchmarking of Visual Hallucinations in Diffusion VLMs</title>
+    <updated>2026-09-28T09:50:37Z</updated>
+    <link href="https://arxiv.org/abs/2609.34772v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.34772v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multimodal diffusion language models generate responses by iteratively unmasking tokens, making each answer the endpoint of a multi-step trajectory rather than an immediate commitment. Hallucination benchmarks built for autoregressive models evaluate only the final output, and therefore cannot determine whether [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-28T09:50:37Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Yadong Wang</name>
+    </author>
+    <author>
+      <name>Siping Yue</name>
+    </author>
+    <author>
+      <name>Yu Tian</name>
+    </author>
+    <author>
+      <name>Chuanxing Geng</name>
+    </author>
+    <author>
+      <name>Xiang Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.34548v1</id>
+    <title>SGG-ReflAct: Sub-Goal Guided ReflAct with Structured Planning for Reliable Long-Horizon Reasoning</title>
+    <updated>2026-09-28T08:10:34Z</updated>
+    <link href="https://arxiv.org/abs/2609.34548v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.34548v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent advances in reasoning backbones have empowered large language model (LLM)agentstotackle complex, multi-step tasks. However, as reasoning horizons grow, inconsistent internal beliefs induce intermediate errors that cause agents to drift from their goals. This limitation also persists in REFLACT, which [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-28T08:10:34Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Jaeho Jung</name>
+    </author>
+    <author>
+      <name>Sung Hoon Jung</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02925v1</id>
+    <title>Positive-Unlabeled Learning for Agent Safety False Alarm Auditing</title>
+    <updated>2026-10-02T07:16:33Z</updated>
+    <link href="https://arxiv.org/abs/2610.02925v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02925v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Safety monitors help safeguard language-model agents interacting with external tools and environments, but conservative monitoring can generate many false alarms, consuming extensive review resources and weakening trust in alerts. Because false and genuine alarms often remain interleaved in native monitor [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T07:16:33Z</published>
+    <arxiv:comment>19 pages</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Xichen Yan</name>
+    </author>
+    <author>
+      <name>Chongyang Gao</name>
+    </author>
+    <author>
+      <name>Kezhen Chen</name>
+    </author>
+    <author>
+      <name>Guangyi Zhang</name>
+    </author>
+    <author>
+      <name>Jiaqi Wu</name>
+    </author>
+    <author>
+      <name>Lixu Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.31963v1</id>
+    <title>Symbolic Guidance for LLM Agents in Distributed Multiagent Coordination</title>
+    <updated>2026-09-25T20:07:57Z</updated>
+    <link href="https://arxiv.org/abs/2609.31963v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.31963v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) are increasingly deployed as autonomous agents in multi-agent systems, yet their ability to reliably execute distributed coordination protocols remains poorly understood. While AgentsNet, a benchmark framework for distributed coordination among LLM agents, enables such coordination, granting [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-25T20:07:57Z</published>
+    <arxiv:comment>A preliminary version of this work was published as an extended abstract in the Proceedings of AAMAS 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Ben Rachmut</name>
+    </author>
+    <author>
+      <name>Ning Zhang</name>
+    </author>
+    <author>
+      <name>Yevgeniy Vorobeychik</name>
+    </author>
+    <author>
+      <name>William Yeoh</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.15991v1</id>
+    <title>Revocation Is Not Complete at Receipt: An Executable Outcome Contract for Distributed Agent-Tool Gateways</title>
+    <updated>2026-10-11T23:41:18Z</updated>
+    <link href="https://arxiv.org/abs/2610.15991v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.15991v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Distributed agent workflows cache delegated authority at tool gateways. Revocation may be reported at issuer commit, transport acknowledgment, or receiver persistence, although none of these observations establishes that all gateways enforced the change or that guarded effects stopped. We define [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-11T23:41:18Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Lifei Liu</name>
+    </author>
+    <author>
+      <name>Haoran Yu</name>
+    </author>
+    <author>
+      <name>Danping Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.11069v1</id>
+    <title>Clinician use of language models diverges from how the models are evaluated</title>
+    <updated>2026-10-08T01:29:04Z</updated>
+    <link href="https://arxiv.org/abs/2610.11069v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.11069v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language model (LLM) assistants are being deployed to clinicians across health systems, and judgments about their readiness rest largely on benchmark scores, most of them derived from examination questions or curated cases. A benchmark predicts performance in deployment only [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T01:29:04Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Krithik Vishwanath</name>
+    </author>
+    <author>
+      <name>Haitong Lin</name>
+    </author>
+    <author>
+      <name>Anton Alyakin</name>
+    </author>
+    <author>
+      <name>Jin Vivian Lee</name>
+    </author>
+    <author>
+      <name>D. Brock Hewitt</name>
+    </author>
+    <author>
+      <name>Jie J. Yao</name>
+    </author>
+    <author>
+      <name>William Robert Small</name>
+    </author>
+    <author>
+      <name>Hammad A. Khan</name>
+    </author>
+    <author>
+      <name>Cordelia Orillac</name>
+    </author>
+    <author>
+      <name>Aakaash Varma</name>
+    </author>
+    <author>
+      <name>Brandon Ye</name>
+    </author>
+    <author>
+      <name>Daniel Alexander Alber</name>
+    </author>
+    <author>
+      <name>Gustavo Stolovitzky</name>
+    </author>
+    <author>
+      <name>Batia Wiesenfeld</name>
+    </author>
+    <author>
+      <name>Oded Nov</name>
+    </author>
+    <author>
+      <name>Wei Wu</name>
+    </author>
+    <author>
+      <name>Kang Zhang</name>
+    </author>
+    <author>
+      <name>Yindalon Aphinyanaphongs</name>
+    </author>
+    <author>
+      <name>Tim Requarth</name>
+    </author>
+    <author>
+      <name>Eric Karl Oermann</name>
+    </author>
+    <author>
+      <name>The International Digital Twin Consortium in Healthcare</name>
+    </author>
+    <author>
+      <name> Medicine</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.09082v1</id>
+    <title>Move Fast and Mend Things: Keeping Up with Evolving AI Harms Using Social Media Commentary</title>
+    <updated>2026-10-06T20:24:10Z</updated>
+    <link href="https://arxiv.org/abs/2610.09082v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.09082v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The rapid deployment of AI systems has created socio-technical, psychological, and operational harms that can elude ex-ante threat modelling and ex-post incident tracking. We introduce an LLM-assisted thematic analysis pipeline to dynamically detect, categorise, and track emerging AI harms from [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.HC" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-06T20:24:10Z</published>
+    <arxiv:primary_category term="cs.HC"/>
+    <author>
+      <name>Jacqueline Rowe</name>
+    </author>
+    <author>
+      <name>Animesh Srivastava</name>
+    </author>
+    <author>
+      <name>Sai Teja Peddinti</name>
+    </author>
+    <author>
+      <name>Seliem El-Sayed</name>
+    </author>
+    <author>
+      <name>Nina Taft</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.34033v1</id>
+    <title>Faithful Activation Verbalization: Reducing Hallucinations in LLM Representation Interpretation</title>
+    <updated>2026-09-27T23:53:34Z</updated>
+    <link href="https://arxiv.org/abs/2609.34033v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.34033v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Activation verbalization methods such as Activation Oracle and Natural Language Autoencoders decode hidden representations of large language models into human-readable natural language. However, existing methods can produce incomplete or hallucinated descriptions, making their activation verbalizations difficult to trust and use [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-27T23:53:34Z</published>
+    <arxiv:comment>34 pages, 13 figures, 13 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Haiyan Zhao</name>
+    </author>
+    <author>
+      <name>Zirui Hei</name>
+    </author>
+    <author>
+      <name>Wei Shi</name>
+    </author>
+    <author>
+      <name>Huiqi Deng</name>
+    </author>
+    <author>
+      <name>Na Zou</name>
+    </author>
+    <author>
+      <name>Mengnan Du</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.34017v1</id>
+    <title>Maat: Independent Deterministic Contract-Based Governance for Multi-Agent LLM Workflows</title>
+    <updated>2026-09-27T23:23:52Z</updated>
+    <link href="https://arxiv.org/abs/2609.34017v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.34017v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large-language-model multi-agent systems (LLM-MAS) introduce a characteristic reliability problem: an error produced by one agent can be accepted as context by downstream agents and propagate across the workflow. Many proposed safeguards rely on learned or LLM-based judges whose verdicts are [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.MA" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-27T23:23:52Z</published>
+    <arxiv:comment>16 pages, 6 figures, 6 tables. Benchmarks: https://github.com/Lorelys/maat-benchmarks ; CrewAI integration demo: https://github.com/Lorelys/maat-crewai-demo</arxiv:comment>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Uliana Elina</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.31122v1</id>
+    <title>LocUS: Head Selection and Subspace Projection for Targeted Activation Steering</title>
+    <updated>2026-09-25T11:13:24Z</updated>
+    <link href="https://arxiv.org/abs/2609.31122v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.31122v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Activation steering is a powerful training-free paradigm for controlling large language models at inference time. However, standard approaches estimate a per-layer steering direction from contrastive data and apply it on the layer's entire representation space, which may couple the intervention [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-25T11:13:24Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Irene Tallini</name>
+    </author>
+    <author>
+      <name>Lorenzo Basile</name>
+    </author>
+    <author>
+      <name>Valentino Maiorca</name>
+    </author>
+    <author>
+      <name>Francesco Locatello</name>
+    </author>
+    <author>
+      <name>Alberto Cazzaniga</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.08162v1</id>
+    <title>The Failure Is in the Readout: Fine-Grained Emotion Recognition Benchmarks Measure Elicitation, Not Perception</title>
+    <updated>2026-10-06T11:14:23Z</updated>
+    <link href="https://arxiv.org/abs/2610.08162v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.08162v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Fine-grained emotion recognition supports therapy tools and social robots, but it needs facial data, which raises privacy and data-protection concerns. EmoNet-Face-HQ answers that with generated portraits, expert-rated over a $40$-category taxonomy far finer than the usual six to eight basic [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-06T11:14:23Z</published>
+    <arxiv:comment>Preprint. 19 pages, 6 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Tobias Hallmen</name>
+    </author>
+    <author>
+      <name>Fabian Deuser</name>
+    </author>
+    <author>
+      <name>Robin-Nico Kampa</name>
+    </author>
+    <author>
+      <name>Norbert Oswald</name>
+    </author>
+    <author>
+      <name>Elisabeth André</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.09569v1</id>
+    <title>RELATE: An Evaluation Framework for measuring Relational Orientation of Large Language Models</title>
+    <updated>2026-10-07T07:10:10Z</updated>
+    <link href="https://arxiv.org/abs/2610.09569v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.09569v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) are increasingly used for emotional support, raising concern that sustained use may draw users away from their real-world relationships. Yet existing evaluations primarily focus on the safety, empathy, or helpfulness of responses, leaving under-examined a relational [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-07T07:10:10Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Shivam Shukla</name>
+    </author>
+    <author>
+      <name>Jihye Kim</name>
+    </author>
+    <author>
+      <name>Shubham Gaur</name>
+    </author>
+    <author>
+      <name>Mahnaz Roshanaei</name>
+    </author>
+    <author>
+      <name>Magy Seif El-Nasr</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.09466v1</id>
+    <title>LLM-Enabled UAV Dispatch: A System-Level Survey and Taxonomy</title>
+    <updated>2026-10-07T05:22:51Z</updated>
+    <link href="https://arxiv.org/abs/2610.09466v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.09466v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Unmanned aerial vehicle (UAV) dispatch is beginning to move beyond isolated path planning and optimization-driven resource allocation toward system-level coordination supported by semantic reasoning and LLM-based interfaces. This survey provides a unified characterization of LLM-enabled UAV dispatch systems that bridges [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-07T05:22:51Z</published>
+    <arxiv:comment>Under Review</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Xiao Han</name>
+    </author>
+    <author>
+      <name>Aoyang Quan</name>
+    </author>
+    <author>
+      <name>Xiangyu Zhao</name>
+    </author>
+    <author>
+      <name>Xiangjie Kong</name>
+    </author>
+    <author>
+      <name>Guojiang Shen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.35569v1</id>
+    <title>Beyond Energy: When Sustainability Dimensions Reshape LLM Serving Decisions</title>
+    <updated>2026-09-28T16:31:50Z</updated>
+    <link href="https://arxiv.org/abs/2609.35569v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.35569v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language model (LLM) serving has environmental impacts across energy consumption, carbon emission, water consumption, and biodiversity loss. Yet these dimensions are largely evaluated in isolation, leaving it unclear when and how they lead to different optimization decisions. We present [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CY" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.DC" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.PF" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-28T16:31:50Z</published>
+    <arxiv:comment>41 pages, 30 figures, 13 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.CY"/>
+    <author>
+      <name>Tianyao Shi</name>
+    </author>
+    <author>
+      <name>Xipeng Shen</name>
+    </author>
+    <author>
+      <name>Yi Ding</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.32637v1</id>
+    <title>Generative AI &amp; Two Forms of Decoupling</title>
+    <updated>2026-09-26T13:59:59Z</updated>
+    <link href="https://arxiv.org/abs/2609.32637v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.32637v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Textual artifacts are sometimes valued not only for the words on the page, but for the human activity involved in producing them. The effort invested in a carefully tailored email can signal genuine interest; composing an apology might involve attending [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-26T13:59:59Z</published>
+    <arxiv:primary_category term="cs.CY"/>
+    <author>
+      <name>Shira Gur-Arieh</name>
+    </author>
+    <author>
+      <name>Sina Fazelpour</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.32617v1</id>
+    <title>The Alignment Paradox: How Post-Training Amplifies Confident Hallucinations in Language Models</title>
+    <updated>2026-09-26T13:39:15Z</updated>
+    <link href="https://arxiv.org/abs/2609.32617v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.32617v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) can produce factually incorrect answers with high confidence, undermining their reliability and limiting the effectiveness of uncertainty-based error detection. While prior research attributes confident hallucinations to factors such as missing knowledge in training data, reasoning errors, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-26T13:39:15Z</published>
+    <arxiv:comment>Code: https://github.com/star5o/HCE</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Qingjia Huang</name>
+    </author>
+    <author>
+      <name>Yakai Li</name>
+    </author>
+    <author>
+      <name>Jianguo Wu</name>
+    </author>
+    <author>
+      <name>Qihang Zhou</name>
+    </author>
+    <author>
+      <name>Aimin Yu</name>
+    </author>
+    <author>
+      <name>Xiaoqi Jia</name>
+    </author>
+    <author>
+      <name>Luping Ma</name>
+    </author>
+    <author>
+      <name>Weijuan Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.30747v1</id>
+    <title>Beyond the Last Truffula Tree: SustainAI - A Water-Aware, Closed-Loop Framework for Environmentally Accountable AI</title>
+    <updated>2026-09-25T03:24:12Z</updated>
+    <link href="https://arxiv.org/abs/2609.30747v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.30747v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>As artificial intelligence (AI) becomes embedded in everyday life, its environmental footprint, particularly water consumption remains largely invisible. While energy and carbon impacts are widely recognized, the substantial freshwater demands of data center cooling and electricity generation receive little attention. [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CY" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.DC" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.HC" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-25T03:24:12Z</published>
+    <arxiv:comment>10 pages, 2 Figures</arxiv:comment>
+    <arxiv:primary_category term="cs.CY"/>
+    <author>
+      <name>Farnaz Farid</name>
+    </author>
+    <author>
+      <name>Tashfia Towkee</name>
+    </author>
+    <author>
+      <name>Sania Nasreen</name>
+    </author>
+    <author>
+      <name>Sami bin Azad</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.05981v1</id>
+    <title>Mechanizing the User's Eye: Pre-Registered Deployment of a Sabotage-Validated Fail-Plausible Observer in a Production LLM Agent Runtime</title>
+    <updated>2026-10-05T08:34:18Z</updated>
+    <link href="https://arxiv.org/abs/2610.05981v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.05981v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A prior longitudinal study of silent failures in a production LLM agent runtime (arXiv:2606.14589) found that about 70% were discovered by a human looking at the product as a user while thousands of tests and governance checks stayed green, and [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-05T08:34:18Z</published>
+    <arxiv:comment>Follow-up to arXiv:2606.14589. 20 pages, 4 figures. Labeled incident corpus, detector source, sabotage-validation harness, and pre-registration texts publicly available at https://github.com/bisdom-cell/openclaw-model-bridge</arxiv:comment>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Wei Wu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.06328v1</id>
+    <title>What Did the AI Take On? Characterizing Cognitive Delegation in LLM Reasoning</title>
+    <updated>2026-10-05T13:39:10Z</updated>
+    <link href="https://arxiv.org/abs/2610.06328v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.06328v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) often perform intermediate cognitive work while carrying out users' requests, yet it remains unclear which parts users intended to delegate and how they wanted to remain involved. This matters because consequential choices may go unnoticed, limiting [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.HC" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-05T13:39:10Z</published>
+    <arxiv:primary_category term="cs.HC"/>
+    <author>
+      <name>Yoonsu Kim</name>
+    </author>
+    <author>
+      <name>Sean Kim</name>
+    </author>
+    <author>
+      <name>Kihoon Son</name>
+    </author>
+    <author>
+      <name>Saelyne Yang</name>
+    </author>
+    <author>
+      <name>Juho Kim</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.06444v1</id>
+    <title>Choosing an energy-efficient software architecture for building system diagnostic support</title>
+    <updated>2026-10-05T14:49:54Z</updated>
+    <link href="https://arxiv.org/abs/2610.06444v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.06444v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Around 30\% of global energy expenditure can be attributed to the building sector, where a large portion of energy-consumption could be avoided by repairing existing faults. Fault detection and diagnosis (FDD) software addresses this issue; however, its creation and operation [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-05T14:49:54Z</published>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Roxane Koitz-Hristov</name>
+    </author>
+    <author>
+      <name>Franz Wotawa</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38279v1</id>
+    <title>How People Use ChatGPT: Conversation-Level Evidence from India, Nigeria, Brazil, and Pakistan</title>
+    <updated>2026-09-29T15:51:26Z</updated>
+    <link href="https://arxiv.org/abs/2609.38279v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38279v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Public understanding of how people use LLM-based conversational AI assistants comes primarily from aggregate platform reports by OpenAI and Anthropic, which apply fixed taxonomies and inferred demographics to hundreds of millions of users and release only summary statistics that outside [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CY" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.HC" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T15:51:26Z</published>
+    <arxiv:comment>29 pages, 22 figures, 9 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.CY"/>
+    <author>
+      <name>Shreyasi Roy Chowdhury</name>
+    </author>
+    <author>
+      <name>Kiran Garimella</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38878v1</id>
+    <title>Audio Token Attention Is Predictable Before the Language Model Runs</title>
+    <updated>2026-09-30T03:28:23Z</updated>
+    <link href="https://arxiv.org/abs/2609.38878v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38878v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A large audio language model (LALM) turns a minute of speech into 750-1,500 tokens and prefills every one. Image-token pruning often cuts after the language model's first layers, where image tokens draw little attention. Audio tokens draw much more attention [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SD" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T03:28:23Z</published>
+    <arxiv:comment>43 pages, 7 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.SD"/>
+    <author>
+      <name>Kyoungjun Park</name>
+    </author>
+    <author>
+      <name>Yunzhe Li</name>
+    </author>
+    <author>
+      <name>Lili Qiu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38729v1</id>
+    <title>Afterglow: A Place-Based Memorial Ecology for AI-Mediated Pet Bereavement</title>
+    <updated>2026-09-30T01:06:20Z</updated>
+    <link href="https://arxiv.org/abs/2609.38729v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38729v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Pet bereavement often receives little social recognition. Generative AI can give a continuing bond a responsive voice, but a comforting reply may also claim authority to forgive or request attention. We investigate how a memorial can support connection without turning [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.HC" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T01:06:20Z</published>
+    <arxiv:comment>32 pages, 4 figures; author preprint</arxiv:comment>
+    <arxiv:primary_category term="cs.HC"/>
+    <author>
+      <name>Hanjing Shi</name>
+    </author>
+    <author>
+      <name>Dominic DiFranzo</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.01138v1</id>
+    <title>Auditing Action Settlement in LLM Agent Environments: Order, Progress, and Replay</title>
+    <updated>2026-10-01T06:17:52Z</updated>
+    <link href="https://arxiv.org/abs/2610.01138v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.01138v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Concurrent actions in large language model (LLM) agent environments require arbitration even when each proposal is individually valid. We implement a typed snapshot-settlement contract and audit three distinct properties: order sensitivity, useful progress, and replay consistency. Five settlement policies are [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T06:17:52Z</published>
+    <arxiv:comment>5 pages, 2 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Haotian Chen</name>
+    </author>
+    <author>
+      <name>Bowen Ye</name>
+    </author>
+    <author>
+      <name>Yuning Zhang</name>
+    </author>
+    <author>
+      <name>Jingkun Yu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.00666v1</id>
+    <title>VisionQ: VLM-as-a-Judge Taxonomy, Dataset and Benchmark for Qualitative Analysis in Computer Vision</title>
+    <updated>2026-09-30T20:03:52Z</updated>
+    <link href="https://arxiv.org/abs/2610.00666v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.00666v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Qualitative comparison figures are central evidence in computer vision papers, and vision-language models (VLMs) are increasingly used to judge them. Yet existing benchmarks score only scalar quality or overall preference, so a judge can be rewarded for picking the preferred [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T20:03:52Z</published>
+    <arxiv:comment>29 pages, 18 figures, 6 tables. Code: https://github.com/ReML-AI/visionq</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Vu Dinh Xuan</name>
+    </author>
+    <author>
+      <name>Duc-Hai Nguyen</name>
+    </author>
+    <author>
+      <name>Minh-Dung Dao</name>
+    </author>
+    <author>
+      <name>Vu Quynh Giao</name>
+    </author>
+    <author>
+      <name>Quang Hong Nguyen</name>
+    </author>
+    <author>
+      <name>Binh-Son Hua</name>
+    </author>
+    <author>
+      <name>Barry O'Sullivan</name>
+    </author>
+    <author>
+      <name>David Murphy</name>
+    </author>
+    <author>
+      <name>Hoang D. Nguyen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.00316v1</id>
+    <title>DuplexSpeechBench-Document Grounding: Benchmarking Document Grounding and Hallucinations in Voice Agents</title>
+    <updated>2026-09-29T01:43:55Z</updated>
+    <link href="https://arxiv.org/abs/2610.00316v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.00316v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Voice agents enable low-latency, natural interaction, yet their ability to faithfully ground responses in external documents remains underexplored. We introduce DuplexSpeechBench-Document Grounding (DSB-DG), a benchmark for evaluating document grounding in voice agents across five professional domains. DSB-DG targets three failure [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T01:43:55Z</published>
+    <arxiv:comment>Under submission at EACL 2027</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Puneet Mathur</name>
+    </author>
+    <author>
+      <name>Nedim Lipka</name>
+    </author>
+    <author>
+      <name>Zeyu Jin</name>
+    </author>
+    <author>
+      <name>Dinesh Manocha</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38355v2</id>
+    <title>Halluscoring 2026: The first shared task on llms hallucination detection and answer verification</title>
+    <updated>2026-10-01T03:25:27Z</updated>
+    <link href="https://arxiv.org/abs/2609.38355v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38355v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We present HalluScoring 2026, a shared task for evaluating hallucination detection and factual verification in Arabic question answering under challenging generalization settings. Its four subtasks are organized into two tasks. Task~1 evaluates binary hallucination detection, considering generalization to unseen questions [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T18:18:18Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Aisha Alansari</name>
+    </author>
+    <author>
+      <name>Abdessalam Bouchekif</name>
+    </author>
+    <author>
+      <name>Ahmed Hasanaath</name>
+    </author>
+    <author>
+      <name>Salah Eddine Bekhouche</name>
+    </author>
+    <author>
+      <name>Malak Alkhorasani</name>
+    </author>
+    <author>
+      <name>Mohammed-En-Nadhir Zighem</name>
+    </author>
+    <author>
+      <name>Saad Ezzini</name>
+    </author>
+    <author>
+      <name>Hichem Telli</name>
+    </author>
+    <author>
+      <name>Hend Al-Khalifa</name>
+    </author>
+    <author>
+      <name>Muhammad Abdul-Mageed</name>
+    </author>
+    <author>
+      <name>Hadid Abdenour</name>
+    </author>
+    <author>
+      <name>Hamzah Luqman</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02286v1</id>
+    <title>BootLoops: an LLM-driven toolkit for exact quantitative science</title>
+    <updated>2026-10-01T14:55:49Z</updated>
+    <link href="https://arxiv.org/abs/2610.02286v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02286v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Much of quantitative science involves difficult mathematical computations: a Feynman integral, evidence for an evolutionary tree, or a regulatory statistic. These are often estimated by Monte Carlo or heuristic search, or computed in floating point without tracking rounding error. Exact [cut to 40 words for the workshop copy]</summary>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T14:55:49Z</published>
+    <arxiv:comment>27 pages, 3 figure, 4 tables</arxiv:comment>
+    <arxiv:primary_category term="hep-ph"/>
+    <author>
+      <name>Matthew D. Schwartz</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.33878v2</id>
+    <title>Curating Merchant-Matching Training Data with Two Confidence-Gated Local LLM Judges</title>
+    <updated>2026-10-04T03:35:55Z</updated>
+    <link href="https://arxiv.org/abs/2609.33878v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.33878v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Merchant matching resolves a noisy payment descriptor to a retrieved merchant entity or returns no match. A key challenge in curating training labels is distinguishing teacher abstention from evidence that no acceptable entity exists: false no-match labels contaminate pseudo-labeled data, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-27T19:55:34Z</published>
+    <arxiv:comment>7 pages, 2 figures, 5 tables, Accepted for publication in 2026 IEEE International Conference on Data Mining Workshops (ICDMW), SENTIRE 2026 Workshop</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Donghao Huang</name>
+    </author>
+    <author>
+      <name>Jinling Pei</name>
+    </author>
+    <author>
+      <name>Zhaoxia Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.12313v1</id>
+    <title>Verdict Without the Rule: Diagnosing and Auditing Regulatory Rule Sensitivity in LLM Compliance Systems</title>
+    <updated>2026-10-08T16:59:40Z</updated>
+    <link href="https://arxiv.org/abs/2610.12313v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.12313v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language model compliance systems are deployed on the assumption that a verdict depends on the regulatory rule it is given. We test this directly across five models and 20 regulatory and platform-policy domains: delete, swap, or negate the governing [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T16:59:40Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Saisab Sadhu</name>
+    </author>
+    <author>
+      <name>Aadit Sengupta</name>
+    </author>
+    <author>
+      <name>Vinay kumar Sankarapu</name>
+    </author>
+    <author>
+      <name>Pratinav Seth</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.11270v1</id>
+    <title>Gated Memory: Admission-Controlled Memory Formation for Conversational AI</title>
+    <updated>2026-10-08T05:27:02Z</updated>
+    <link href="https://arxiv.org/abs/2610.11270v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.11270v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Personalized conversational AI relies on long-term memory systems that extract facts from user utterances and store them in persistent vector stores. Despite progress in retrieval, deduplication, and lifecycle management, the formation stage, the moment a fact is first written to [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T05:27:02Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Preeti Saraswat</name>
+    </author>
+    <author>
+      <name>Divya Neelagiri</name>
+    </author>
+    <author>
+      <name>Ajay Manoj</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03565v1</id>
+    <title>Writerslogic at PAN 2026: Process over Content for Robust Detection under Domain Shift</title>
+    <updated>2026-10-02T16:44:14Z</updated>
+    <link href="https://arxiv.org/abs/2610.03565v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03565v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We describe the Writerslogic systems for three PAN at CLEF 2026 shared tasks (Reasoning Trajectory Detection, Voight-Kampff Generative AI Detection, and Multi-Author Writing Style Analysis), unified by a shared analytical framework: feature robustness under distribution shift is governed by support [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T16:44:14Z</published>
+    <arxiv:comment>13 pages, 1 figure, 6 tables. Notebook for the PAN Lab at CLEF 2026. Code https://github.com/dcondrey/voight-kampff-clef2026 and https://github.com/dcondrey/trajectory-detection-clef2026</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <arxiv:journal_ref>CLEF 2026 Working Notes, CEUR Workshop Proceedings, pp. 5450-5462</arxiv:journal_ref>
+    <author>
+      <name>David L. Condrey</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.15995v1</id>
+    <title>AutoSec-RAN: Specification-Grounded LLM Fine-Tuning for Automated Security Analysis of O-RAN</title>
+    <updated>2026-10-11T23:54:13Z</updated>
+    <link href="https://arxiv.org/abs/2610.15995v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.15995v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper presents AutoSec-RAN, a specification-grounded large language model (LLM) framework for automated security triage of Open Radio Access Network (O-RAN) testing. Unlike approaches relying on static rule sets or privileged access to raw packet captures, AutoSec-RAN fine-tunes Mistral-7B-Instruct through [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-11T23:54:13Z</published>
+    <arxiv:comment>This paper has been accepted in The 14th IEEE Conference on Communications and Network Security (IEEE CNS 2026)</arxiv:comment>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Anoop Mishra</name>
+    </author>
+    <author>
+      <name>Joshua Moore</name>
+    </author>
+    <author>
+      <name>Aly Sabri Abdalla</name>
+    </author>
+    <author>
+      <name>Vuk Marojevic</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.32867v1</id>
+    <title>Are You Sure You're Sure? Two Confounds in a Sycophancy Benchmark</title>
+    <updated>2026-09-26T18:52:35Z</updated>
+    <link href="https://arxiv.org/abs/2609.32867v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.32867v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Sycophancy is a language model's tendency to cave when a user pushes back, abandoning a correct answer for the user's. Several benchmarks now measure it by scripting an objection and recording how often the model caves. Because that objection is [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-26T18:52:35Z</published>
+    <arxiv:comment>22 pages, 19 tables, 3 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Atharv Gupta</name>
+    </author>
+    <author>
+      <name>Akshat Jindal</name>
+    </author>
+    <author>
+      <name>Lavanya Nigam</name>
+    </author>
+    <author>
+      <name>Aryan Sood</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.36931v1</id>
+    <title>Dating the Model: Hidden Dates in System Prompts Affect LLM Evaluation</title>
+    <updated>2026-09-29T07:45:31Z</updated>
+    <link href="https://arxiv.org/abs/2609.36931v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.36931v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reproducibility is essential for scientific research, yet prior work shows that LLM outputs vary with hardware and batching. We identify an overlooked factor: the hidden injection of the current date into system prompts, which users cannot control and which changes [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T07:45:31Z</published>
+    <arxiv:comment>Accepted to AACL 2026 (Main)</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Mario Sanz-Guerrero</name>
+    </author>
+    <author>
+      <name>Minh Duc Bui</name>
+    </author>
+    <author>
+      <name>Manuel Mager</name>
+    </author>
+    <author>
+      <name>Katharina von der Wense</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.36732v1</id>
+    <title>Deep Learning Latency Attacks and Defenses: A Cross-Domain Survey of Availability Threats</title>
+    <updated>2026-09-29T05:06:32Z</updated>
+    <link href="https://arxiv.org/abs/2609.36732v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.36732v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Adversarial machine learning has focused mainly on integrity, but availability is an increasingly consequential complement. Latency attacks (also energy-latency attacks) increase inference-time work, energy, or response time, causing deadline misses, throughput collapse, or resource exhaustion in vehicle controllers, interactive services, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T05:06:32Z</published>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Zonghua Gu</name>
+    </author>
+    <author>
+      <name>Zeyu Gao</name>
+    </author>
+    <author>
+      <name>Amin Saremi</name>
+    </author>
+    <author>
+      <name>Samarjit Chakraborty</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.37554v1</id>
+    <title>Risk-Aware Semantic Grounding for Trustworthy LLM-Based Robot Planning</title>
+    <updated>2026-09-29T13:30:04Z</updated>
+    <link href="https://arxiv.org/abs/2609.37554v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.37554v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) are increasingly used as high-level planners in robot navigation, but their outputs may become unreliable when instructions are ambiguous, unsupported by the environment, or semantically inconsistent. This paper presents a Risk-Aware Semantic Grounding framework for trustworthy [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T13:30:04Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Łukasz Sobczak</name>
+    </author>
+    <author>
+      <name>Nur Keleşoğlu</name>
+    </author>
+    <author>
+      <name>Sławomir Piotr Nowak</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02975v1</id>
+    <title>Reliable Self-Evolution with Imperfect Proxy Rewards</title>
+    <updated>2026-10-02T08:07:27Z</updated>
+    <link href="https://arxiv.org/abs/2610.02975v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02975v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language model (LLM)-based self-evolving search is a promising approach to scientific discovery. However, high-fidelity evaluation of every candidate is prohibitively expensive in some domains. Self-evolving systems in such settings therefore rely on low-cost but imperfect proxy rewards, which may [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T08:07:27Z</published>
+    <arxiv:comment>Preprint</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Kangjun Noh</name>
+    </author>
+    <author>
+      <name>Soyu Kim</name>
+    </author>
+    <author>
+      <name>Kyungwoo Song</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.36043v1</id>
+    <title>SAGE: A Statistical Acceptance Gate for Self-Evolving Agents</title>
+    <updated>2026-09-28T18:07:45Z</updated>
+    <link href="https://arxiv.org/abs/2609.36043v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.36043v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large Language Model (LLM)-based agents increasingly self-evolve by editing a persistent skill document that encodes their workflow, tool-use rules, and decision logic. This loop has two steps, an optimizer that proposes a candidate edit and a gate that accepts or [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-28T18:07:45Z</published>
+    <arxiv:comment>10 pages, 2 figures, 2 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Yihao Wang</name>
+    </author>
+    <author>
+      <name>Linhan Xia</name>
+    </author>
+    <author>
+      <name>Rui Liu</name>
+    </author>
+    <author>
+      <name>Zhaofeng Zhang</name>
+    </author>
+    <author>
+      <name>Hongyu Wu</name>
+    </author>
+    <author>
+      <name>Yang Yang</name>
+    </author>
+    <author>
+      <name>Jinglu He</name>
+    </author>
+    <author>
+      <name>Yu Guo</name>
+    </author>
+    <author>
+      <name>Kai Lei</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38249v2</id>
+    <title>SURE: Framework for Safety to Construct Trustworthy AI</title>
+    <updated>2026-10-01T03:52:22Z</updated>
+    <link href="https://arxiv.org/abs/2609.38249v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38249v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Warning: This paper contains harmful and offensive text. Recently, large language models such as GPT-4, and Claude have revolutionized tasks in various domains. As the use of these large language models increases, people are increasingly concerned about AI safety and [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T07:18:47Z</published>
+    <arxiv:comment>14 pages, 2 figures, 8 tables. Accepted to the 4th Workshop on Ethical Artificial Intelligence: Methods and Applications (EAI) at KDD 2025</arxiv:comment>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Soeun Han</name>
+    </author>
+    <author>
+      <name>Jisoo Lee</name>
+    </author>
+    <author>
+      <name>Jeongyong Shim</name>
+    </author>
+    <author>
+      <name>Eunkyeong Lee</name>
+    </author>
+    <author>
+      <name>Eunmi Kim</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.33623v1</id>
+    <title>Characterizing Memory Misalignment in Human-LLM Interaction From User Perspectives</title>
+    <updated>2026-09-27T14:39:10Z</updated>
+    <link href="https://arxiv.org/abs/2609.33623v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.33623v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>While memory enhances personalization in LLM-based conversational agents, it suffers from memory misalignment, where memories violate user expectations. We present a mixed-methods investigation to characterize and mitigate memory misalignment from user perspectives. First, we collected data from memory usage (N=28, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.HC" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-27T14:39:10Z</published>
+    <arxiv:primary_category term="cs.HC"/>
+    <author>
+      <name>Jingruo Chen</name>
+    </author>
+    <author>
+      <name>Shuning Zhang</name>
+    </author>
+    <author>
+      <name>Eryue Xu</name>
+    </author>
+    <author>
+      <name>Jianing Li</name>
+    </author>
+    <author>
+      <name>Xin Yi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.34257v1</id>
+    <title>Recursive LLM Degradation in Biomedical Question Answering: A Cross-Generation Study</title>
+    <updated>2026-09-28T04:01:53Z</updated>
+    <link href="https://arxiv.org/abs/2609.34257v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.34257v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Repeatedly training language models on their own generated data may create a synthetic-data feedback loop in which errors and distributional biases are reintroduced into subsequent training datasets. This paper studies that process in biomedical question answering (QA) using PubMedQA and [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-28T04:01:53Z</published>
+    <arxiv:comment>6 pages, 2 figures, 1 table</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Bibek Bhandari</name>
+    </author>
+    <author>
+      <name>Kshitij Lingthep</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.34241v1</id>
+    <title>AdaGuard: An Adaptive Guard Model with User-defined Policies</title>
+    <updated>2026-09-28T03:48:12Z</updated>
+    <link href="https://arxiv.org/abs/2609.34241v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.34241v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Guard models support the safe deployment of language model agents, but fixed risk taxonomies limit their ability to accommodate requirements that vary across applications and tasks. Under user-defined policies, detecting violations requires interpreting both the applicable rules and the agent's [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-28T03:48:12Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Yunhao Feng</name>
+    </author>
+    <author>
+      <name>Yifan Ding</name>
+    </author>
+    <author>
+      <name>Yuxiang Xie</name>
+    </author>
+    <author>
+      <name>Zheng Li</name>
+    </author>
+    <author>
+      <name>Mingrui Lao</name>
+    </author>
+    <author>
+      <name>Zeyuan Wang</name>
+    </author>
+    <author>
+      <name>Yanming Guo</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39786v2</id>
+    <title>Explore-over-Graph: Hybrid Embedding-LLM Reasoning for Knowledge Graph Question Answering under Incompleteness</title>
+    <updated>2026-10-03T03:58:32Z</updated>
+    <link href="https://arxiv.org/abs/2609.39786v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39786v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) are increasingly combined with knowledge graphs (KGs) to ground reasoning in structured evidence. However, most LLM-based KGQA methods rely on traversing existing graph edges and become unreliable when reasoning paths are broken by missing facts. Alternatives [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T14:08:06Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Ola El Khatib</name>
+    </author>
+    <author>
+      <name>Djellel Difallah</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.32351v1</id>
+    <title>From Trajectories to Grounded Preferences: Process Preference Synthesis via Interaction Element Graphs for Web PRMs</title>
+    <updated>2026-09-26T08:14:50Z</updated>
+    <link href="https://arxiv.org/abs/2609.32351v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.32351v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Comparative Process Reward Models (PRMs) provide critical step-level guidance for autonomous web agents by evaluating state-conditioned preferences between candidate actions. However, existing preference training data synthesized via multi-policy sampling suffers from a severe scarcity of Grounded Minimal Contrastive Pairs (GMCPs)-where [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-26T08:14:50Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Yangzhe Peng</name>
+    </author>
+    <author>
+      <name>Xiaoyang Wang</name>
+    </author>
+    <author>
+      <name>Yiyang Zhao</name>
+    </author>
+    <author>
+      <name>Lijun Wu</name>
+    </author>
+    <author>
+      <name>Kun He</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.37616v1</id>
+    <title>Authority Bias in Language Models: Source Deference and User Agreement Are Not Interchangeable</title>
+    <updated>2026-09-29T13:58:04Z</updated>
+    <link href="https://arxiv.org/abs/2609.37616v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.37616v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Language models tend to agree with whatever a user asserts, and post-training increasingly targets this sycophancy so that models evaluate claims on their merits rather than deferring to the user. Yet the same models are far more compliant when a [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T13:58:04Z</published>
+    <arxiv:comment>Accepted at NeurIPS 2026 (Main Conference, Poster). 33 pages, 8 figures. Project page: https://authority-bias.vercel.app/ . Code: https://github.com/Lossfunk/authority-bias</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Abhinav Rajeev Kumar</name>
+      <arxiv:affiliation>Lossfunk</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Paras Chopra</name>
+      <arxiv:affiliation>Lossfunk</arxiv:affiliation>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.11556v1</id>
+    <title>SoK: Are LLMs Reliable at Source Code Recovery? A Taxonomy and Empirical Evaluation</title>
+    <updated>2026-10-08T09:20:22Z</updated>
+    <link href="https://arxiv.org/abs/2610.11556v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.11556v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Effective source recovery is critical to security applications such as malware analysis, vulnerability assessment, and legacy maintenance. Large Language Models (LLMs) are reshaping this field, shifting the paradigm away from rule-based heuristics to probabilistic and high fidelity semantic recovery of [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T09:20:22Z</published>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Varun Kohli</name>
+    </author>
+    <author>
+      <name>Lee Bing Cheng</name>
+    </author>
+    <author>
+      <name>Nur Hazim Ghazali</name>
+    </author>
+    <author>
+      <name>Gao Yuze</name>
+    </author>
+    <author>
+      <name>Daryl Poon</name>
+    </author>
+    <author>
+      <name>Dinil Mon Divakaran</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.12410v1</id>
+    <title>Predicting Alignment Generalization with Value Representations</title>
+    <updated>2026-10-08T17:47:26Z</updated>
+    <link href="https://arxiv.org/abs/2610.12410v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.12410v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>LLM developers post-train their models to exhibit prosocial values and behavioral traits, which are enumerated in an alignment target. However, while recent post-training developments have yielded models that score highly on alignment evaluations, training models on sets of narrow behaviors [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T17:47:26Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Andy Liu</name>
+    </author>
+    <author>
+      <name>Mehar Bhatia</name>
+    </author>
+    <author>
+      <name>Karolina Stanczak</name>
+    </author>
+    <author>
+      <name>Mona Diab</name>
+    </author>
+    <author>
+      <name>Vered Shwartz</name>
+    </author>
+    <author>
+      <name>Daniel Fried</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.11732v2</id>
+    <title>MemTrial: Learning When to Trust Memory in LLM Portfolio Agents</title>
+    <updated>2026-10-11T00:33:00Z</updated>
+    <link href="https://arxiv.org/abs/2610.11732v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.11732v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language model (LLM) agents for portfolio management learn from experience: they credit each experience in their memory with the outcome of the decisions that used it. In financial markets, however, this outcome mostly reflects the market move shared by [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T11:27:49Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Guanghao Wu</name>
+    </author>
+    <author>
+      <name>Zhuo Cai</name>
+    </author>
+    <author>
+      <name>Shoujin Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.15732v1</id>
+    <title>NepPlural: A Human-Anchored Benchmark for Persona Annotation in Nepali Migration Discourse</title>
+    <updated>2026-10-11T16:12:20Z</updated>
+    <link href="https://arxiv.org/abs/2610.15732v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.15732v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Pluralistic alignment asks that language models faithfully represent a society's diverse, competing values rather than collapse them into one dominant viewpoint, yet flagship pluralistic-alignment datasets remain heavily skewed toward Western respondents. We introduce NepPlural, a human-anchored benchmark for modelling competing [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-11T16:12:20Z</published>
+    <arxiv:comment>Data and code: https://github.com/iriis-research/NepPlural</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Jinu Nyachhyon</name>
+    </author>
+    <author>
+      <name>Anish Khatiwada</name>
+    </author>
+    <author>
+      <name>Bimal Timilsina</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.32172v1</id>
+    <title>Noisy Test-Time Reinforcement Learning for Code LLMs</title>
+    <updated>2026-09-26T02:50:47Z</updated>
+    <link href="https://arxiv.org/abs/2609.32172v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.32172v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) have demonstrated remarkable performance across various code-related tasks. However, unlike carefully curated datasets that are typically high-quality and error-free, real-world user instructions are often vague and error-prone, posing significant challenges to the robustness of code LLMs. [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-26T02:50:47Z</published>
+    <arxiv:comment>This paper has been accepted by EMNLP 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Xikai Yang</name>
+    </author>
+    <author>
+      <name>Hieu Trung Nguyen</name>
+    </author>
+    <author>
+      <name>Dunyuan Xu</name>
+    </author>
+    <author>
+      <name>Yuzhi Zhao</name>
+    </author>
+    <author>
+      <name>Jinpeng Li</name>
+    </author>
+    <author>
+      <name>Wenao Ma</name>
+    </author>
+    <author>
+      <name>Pheng-Ann Heng</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.32567v1</id>
+    <title>Attribution Gaps in Zero-Training LLM+OVOD Pipelines: A Fine-Grained Analysis of the CAAP--SNAP Discrepancy</title>
+    <updated>2026-09-26T12:42:16Z</updated>
+    <link href="https://arxiv.org/abs/2609.32567v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.32567v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>LAOD and similar zero-training LLM+open-vocabulary-detector (OVOD) pipelines score two things separately: class-agnostic localization accuracy (CAAP) and semantic naming accuracy (SNAP). The two consistently diverge, and nobody has asked why. This paper asks why, on the full 5,000-image COCO-Val split (27,273 [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-26T12:42:16Z</published>
+    <arxiv:comment>7 pages, 4 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Yu-Feng Yen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.32643v1</id>
+    <title>Business Compromise Detection with Agentic AI and LLM-driven Knowledge Discovery</title>
+    <updated>2026-09-26T14:05:25Z</updated>
+    <link href="https://arxiv.org/abs/2609.32643v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.32643v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Detecting compromised business ad accounts is a challenge in digital advertising, as attackers exploit hijacked accounts to launch fraudulent campaigns. Large Language Model (LLM) agents show promise for integrity enforcement, but hallucinated mistakes on hard cases create business friction. In [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-26T14:05:25Z</published>
+    <arxiv:comment>Accepted at EMNLP 2026. 13 pages, 2 figures, 10 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Diego Palma</name>
+    </author>
+    <author>
+      <name>Kyu Bin Kim</name>
+    </author>
+    <author>
+      <name>Zhen Han</name>
+    </author>
+    <author>
+      <name>Allbright Dsouza</name>
+    </author>
+    <author>
+      <name>Zhiyuan Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.32616v1</id>
+    <title>"You're Right, Let Me Fix It": How LLM Agents Damage Correct Work When Falsely Accused</title>
+    <updated>2026-09-26T13:38:31Z</updated>
+    <link href="https://arxiv.org/abs/2609.32616v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.32616v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>LLM agents increasingly keep working after a task succeeds as they resume after compaction or take over handoffs. Their finished work keeps receiving follow-up input that sometimes falsely accuses it for later failures. We call an agent's acceptance of such [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-26T13:38:31Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Xutao Mao</name>
+    </author>
+    <author>
+      <name>Rui Qian</name>
+    </author>
+    <author>
+      <name>Longxiang Wang</name>
+    </author>
+    <author>
+      <name>Xinjian Yi</name>
+    </author>
+    <author>
+      <name>Mingxuan Li</name>
+    </author>
+    <author>
+      <name>Linghan Chen</name>
+    </author>
+    <author>
+      <name>Yudong Gao</name>
+    </author>
+    <author>
+      <name>Xiang Zheng</name>
+    </author>
+    <author>
+      <name>Cong Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.35544v1</id>
+    <title>Less Sycophancy, Stronger Refusal? Lessons for AI Safety from Mechanistic Interpretability</title>
+    <updated>2026-09-28T16:22:31Z</updated>
+    <link href="https://arxiv.org/abs/2609.35544v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.35544v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reliable refusal of harmful requests is essential to the safe deployment of language models. Because excessive eagerness to please users may undermine existing refusal capabilities, reducing sycophancy offers a potential route to stronger refusal beyond the harmful scenarios covered by [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-28T16:22:31Z</published>
+    <arxiv:comment>20 pages</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Xu Wang</name>
+    </author>
+    <author>
+      <name>Difan Zou</name>
+    </author>
+    <author>
+      <name>Xuansheng Wu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38574v1</id>
+    <title>Towards Model as a Library: Offline, Community-Sourced AI for Low-Resource African Languages</title>
+    <updated>2026-09-29T21:31:15Z</updated>
+    <link href="https://arxiv.org/abs/2609.38574v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38574v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models are frequently proposed as a route to AI-powered services for African communities, but they are least reliable exactly where the need is greatest: all African languages remain low-resource by any standard measure, and models trained on scraped, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.HC" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T21:31:15Z</published>
+    <arxiv:comment>5 pages, GlobalSouthAI @ NeurIPS 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Fendji K. E. Jean Louis</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39112v1</id>
+    <title>CamAgent: An LLM-Agent Framework for Multi-Species Camera-Trap Workflows</title>
+    <updated>2026-09-30T06:49:27Z</updated>
+    <link href="https://arxiv.org/abs/2609.39112v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39112v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Camera traps accumulated vast, multidimensional data for wildlife monitoring, yet translating raw media archives into meaningful ecological insights remains highly fragmented. Current research workflows require laboriously stitching together disparate analysis tools and scripts, creating steep programming hurdles and complicating end-to-end [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T06:49:27Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Yutong Deng</name>
+    </author>
+    <author>
+      <name>Qi Song</name>
+    </author>
+    <author>
+      <name>Xi Guo</name>
+    </author>
+    <author>
+      <name>Tianming Wang</name>
+    </author>
+    <author>
+      <name>Lei Bao</name>
+    </author>
+    <author>
+      <name>Jianping Ge</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39071v1</id>
+    <title>LexReward: A Taxonomy-Driven Reward Framework for Legal Language Models</title>
+    <updated>2026-09-30T06:09:09Z</updated>
+    <link href="https://arxiv.org/abs/2609.39071v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39071v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Legal language models require reward signals that capture not only answer correctness but also the multidimensional quality of legal responses. Existing reward methods, however, often rely on coarse-grained holistic judgments, providing limited domain specificity and interpretability. We introduce LexReward, a [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T06:09:09Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Yida Cai</name>
+    </author>
+    <author>
+      <name>Xin Dai</name>
+    </author>
+    <author>
+      <name>Bingxiang He</name>
+    </author>
+    <author>
+      <name>Huiyuan Xie</name>
+    </author>
+    <author>
+      <name>Yuxiao Ye</name>
+    </author>
+    <author>
+      <name>Zhenghao Liu</name>
+    </author>
+    <author>
+      <name>Yang Bai</name>
+    </author>
+    <author>
+      <name>Zhiyuan Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.06236v1</id>
+    <title>DP-ES: Differentially Private Evolution Strategies for Prompt Optimization</title>
+    <updated>2026-10-05T12:38:20Z</updated>
+    <link href="https://arxiv.org/abs/2610.06236v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.06236v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Token-level differentially private (DP) prompt optimization methods such as DP-OPT can become unstable under tight privacy budgets: on GSM8K, DP-OPT obtains $49.5\pm28.5\%$ across 30 runs, and a logged search trajectory reveals prompt-template drift and noise-sensitive irreversible choices. We diagnose these [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-05T12:38:20Z</published>
+    <arxiv:comment>Accepted at EMNLP 2026 (Main Conference). Code: https://github.com/StephCpa/dp-es</arxiv:comment>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Ziniu Liu</name>
+    </author>
+    <author>
+      <name>Aiping Li</name>
+    </author>
+    <author>
+      <name>Yue Han</name>
+    </author>
+    <author>
+      <name>Han Yu</name>
+    </author>
+    <author>
+      <name>Junjian Zhang</name>
+    </author>
+    <author>
+      <name>Dong Zhu</name>
+    </author>
+    <author>
+      <name>Changjian Li</name>
+    </author>
+    <author>
+      <name>Shiqiang Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.31078v1</id>
+    <title>OmouAI: Argumentative Human-AI Policy Deliberation with Simulated Personas</title>
+    <updated>2026-09-25T10:17:51Z</updated>
+    <link href="https://arxiv.org/abs/2609.31078v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.31078v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Debates amongst agents driven by large language models (LLMs) have demonstrated vast potential in various applications, but when these interactions include humans and take place in high-stakes environments, e.g., in public policy deliberations, they are beset with issues such as [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-25T10:17:51Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Stylianos Loukas Vasileiou</name>
+    </author>
+    <author>
+      <name>Antonio Rago</name>
+    </author>
+    <author>
+      <name>William Yeoh</name>
+    </author>
+    <author>
+      <name>Georgina Curto</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.32049v1</id>
+    <title>EngramRAG: Dynamic Usage-Weighted Topology and Synaptic Consolidation for Multi-Hop Agentic Memory</title>
+    <updated>2026-09-25T22:28:53Z</updated>
+    <link href="https://arxiv.org/abs/2609.32049v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.32049v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>As autonomous LLM agents are deployed across multi-session environments, conventional memory architectures suffer from Associative Blindness (inability to traverse multi-hop relational dependencies), Scaffolding Amnesia (temporal decay evicting core persona invariants), and Static Topology Stagnation (immutable graphs ignoring usage dynamics). Grounded [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.MA" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-25T22:28:53Z</published>
+    <arxiv:comment>8 pages, 6 figures, 4 tables. Code and reproduction suite: https://github.com/bpoti001/epigraph</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Bhavyateja Potineni</name>
+    </author>
+    <author>
+      <name>Lohit Giri</name>
+    </author>
+    <author>
+      <name>Anu Jain</name>
+    </author>
+    <author>
+      <name>Vadim Kutsyy</name>
+    </author>
+    <author>
+      <name>Rajasekhar Pentakota</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02460v1</id>
+    <title>CUEing User Simulators: Calibrated User Embeddings for Multi-Turn Benchmarking</title>
+    <updated>2026-10-01T20:34:16Z</updated>
+    <link href="https://arxiv.org/abs/2610.02460v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02460v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent benchmarks rely on user simulators to evaluate AI agents in multi-turn interaction. While existing simulation techniques demonstrate surface fidelity to human style and behavior, ecologically valid interactive benchmarking also requires alignment in when and how agents fail across simulated [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T20:34:16Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Anjali Kantharuban</name>
+    </author>
+    <author>
+      <name>Jonas Mueller</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.32964v2</id>
+    <title>The Commit-Abstain Circuit: Why Language Models Hallucinate Instead of Abstaining</title>
+    <updated>2026-09-29T05:10:23Z</updated>
+    <link href="https://arxiv.org/abs/2609.32964v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.32964v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Language models (LMs) often hallucinate by committing to confident answers rather than abstaining, even when they do not have enough information to answer reliably. A large body of existing work mitigates hallucination through detection or abstention mechanisms, but leaves open [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-26T21:53:53Z</published>
+    <arxiv:comment>Accepted to NeuRIPS 2026 Main Conference</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Vy Nguyen</name>
+    </author>
+    <author>
+      <name>Ziqi Xu</name>
+    </author>
+    <author>
+      <name>Jeffrey Chan</name>
+    </author>
+    <author>
+      <name>Estrid He</name>
+    </author>
+    <author>
+      <name>Feng Xia</name>
+    </author>
+    <author>
+      <name>Renqiang Luo</name>
+    </author>
+    <author>
+      <name>Erik Cambria</name>
+    </author>
+    <author>
+      <name>Xiuzhen Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.36469v1</id>
+    <title>From Automated Simulation to Autonomous Discovery: A Hierarchical Framework for Agentic Computational Materials Science</title>
+    <updated>2026-09-29T01:28:03Z</updated>
+    <link href="https://arxiv.org/abs/2609.36469v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.36469v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The convergence of large language models, materials-specific foundation models, and agentic artificial intelligence is reshaping the paradigm of computational materials discovery. While high-throughput computation, automated workflows, and data-driven modeling have greatly expanded the scale of materials exploration, the core scientific [cut to 40 words for the workshop copy]</summary>
+    <category term="cond-mat.mtrl-sci" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T01:28:03Z</published>
+    <arxiv:primary_category term="cond-mat.mtrl-sci"/>
+    <author>
+      <name>Linggang Zhu</name>
+    </author>
+    <author>
+      <name>Jian Zhou</name>
+    </author>
+    <author>
+      <name>Zhimei Sun</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.33397v1</id>
+    <title>CoViST: Visual Token Compression via Composable States</title>
+    <updated>2026-09-27T09:22:14Z</updated>
+    <link href="https://arxiv.org/abs/2609.33397v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.33397v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Visual token compression lowers the inference cost of vision--language models by representing images with fewer tokens. However, most existing methods compress visual tokens to a reduced set, leaving the amount of visual evidence represented by each token and its original [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-27T09:22:14Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Qi Zhang</name>
+    </author>
+    <author>
+      <name>Xiandong Meng</name>
+    </author>
+    <author>
+      <name>Ronggang Wang</name>
+    </author>
+    <author>
+      <name>Siwei Ma</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.01263v1</id>
+    <title>Autonomous OSS Threat Detection via Taxonomy-Aligned LLMs</title>
+    <updated>2026-10-01T07:54:44Z</updated>
+    <link href="https://arxiv.org/abs/2610.01263v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.01263v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Open source software (OSS) ecosystems face growing threats from sophisticated supply chain attacks including typosquatting, dependency confusion, Trojan Source obfuscation, malicious build injection, and CI/CD pipeline poisoning. Existing detection approaches rely on signature-based tools and rule-based systems that struggle to [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T07:54:44Z</published>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Md. Robiul Islam Niloy</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.00701v1</id>
+    <title>From Images to Tasks: Characterizing Multimodal LLM Interactions in the Wild</title>
+    <updated>2026-09-30T20:46:31Z</updated>
+    <link href="https://arxiv.org/abs/2610.00701v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.00701v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multimodal large language models (LLMs) increasingly integrate vision and text, yet how people use them in natural settings remains underexplored. We seek to answer the question: when users upload images, what tasks are they trying to accomplish? Analyzing over 40,000 [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.HC" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T20:46:31Z</published>
+    <arxiv:primary_category term="cs.HC"/>
+    <author>
+      <name>Jinyi Ye</name>
+    </author>
+    <author>
+      <name>Scott Counts</name>
+    </author>
+    <author>
+      <name>Gaurav Verma</name>
+    </author>
+    <author>
+      <name>Kate Lytvynets</name>
+    </author>
+    <author>
+      <name>Weiwei Yang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.09588v1</id>
+    <title>Adaptive Code Generation for Controlling Robots</title>
+    <updated>2026-10-07T07:33:16Z</updated>
+    <link href="https://arxiv.org/abs/2610.09588v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.09588v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Deploying robots as Complex Adaptive Systems (CAS) in unknown and dynamic environments necessitates a transition from rigid command libraries toward intention-based autonomy, as natural language represents the only medium capable of articulating complex goals beyond the capacity of finite instruction [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-07T07:33:16Z</published>
+    <arxiv:comment>International Symposium on Leveraging Applications of Formal Methods, Verification, and Validation 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Justus Flerlage</name>
+    </author>
+    <author>
+      <name>Thorsten Wittkopp</name>
+    </author>
+    <author>
+      <name>Alexander Acker</name>
+    </author>
+    <author>
+      <name>Odej Kao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.08840v1</id>
+    <title>Beyond the Sycophancy Score: How Task, Model, and Pressure Shape LLM Yielding</title>
+    <updated>2026-09-30T05:27:34Z</updated>
+    <link href="https://arxiv.org/abs/2610.08840v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.08840v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) often abandon a correct answer, or endorse a user's position, once the user pushes back. This behavior, called sycophancy, is usually reported as a single rate per model, which says little about when it happens or [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T05:27:34Z</published>
+    <arxiv:comment>Preprint. 27 pages</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Guang Yang</name>
+    </author>
+    <author>
+      <name>Homa Hosseinmardi</name>
+    </author>
+    <author>
+      <name>Fengchen Liu</name>
+    </author>
+    <author>
+      <name>Amir Ghasemian</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.13504v1</id>
+    <title>Beyond Temporal Proximity: Explanatory World Models for Credit Assignment in Reinforcement Learning</title>
+    <updated>2026-10-09T12:30:14Z</updated>
+    <link href="https://arxiv.org/abs/2610.13504v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.13504v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Generative Recommenders increasingly use Reinforcement Learning (RL) to optimize outcomes that may appear hundreds or thousands of interactions after a decision. Standard RL propagates reward according to temporal proximity rather than explicit relevance, attenuating the signal assigned to distant but [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-09T12:30:14Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Oriol Corcoll</name>
+    </author>
+    <author>
+      <name>Qiyao Wei</name>
+    </author>
+    <author>
+      <name>Ciarán Mark Gilligan-Lee</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.13627v1</id>
+    <title>AMLworld-Compact: Importance-Weighted Downsampling for Cost-Effective LLM Evaluation and Error Diagnosis</title>
+    <updated>2026-10-09T14:09:32Z</updated>
+    <link href="https://arxiv.org/abs/2610.13627v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.13627v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Evaluating large language models (LLMs) on AMLworld's smallest test splits is costly because each of over a million targets requires a separate graph prompt. Sampling reduces this cost, but small balanced subsets change unweighted precision and F1. We introduce AMLworld-Compact, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-09T14:09:32Z</published>
+    <arxiv:comment>28 pages, 5 figures, 27 tables. Under review</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Natapong Nitarach</name>
+    </author>
+    <author>
+      <name>Phume Ngampornsukswadi</name>
+    </author>
+    <author>
+      <name>Pittawat Taveekitworachai</name>
+    </author>
+    <author>
+      <name>Surapon Nonesung</name>
+    </author>
+    <author>
+      <name>Warit Sirichotedumrong</name>
+    </author>
+    <author>
+      <name>Kunat Pipatanakul</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.13170v1</id>
+    <title>Understanding Verification Vulnerabilities in Cross-chain Bridges: An Empirical Study</title>
+    <updated>2026-10-09T07:58:02Z</updated>
+    <link href="https://arxiv.org/abs/2610.13170v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.13170v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>With the rapid development of blockchain technology, numerous heterogeneous blockchains have emerged, each featuring distinct architectures, consensus mechanisms, and application ecosystems. Cross-chain bridges have consequently become a critical infrastructure component, typically relying on smart contracts to facilitate message passing and [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-09T07:58:02Z</published>
+    <arxiv:comment>22 pages, 12 figures, 10 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Yuying Wang</name>
+      <arxiv:affiliation>Institute of Computing Technology, Chinese Academy of Sciences, China, University of Chinese Academy of Sciences, China</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Yi Guo</name>
+      <arxiv:affiliation>Institute of Computing Technology, Chinese Academy of Sciences, China</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Jiachi Chen</name>
+      <arxiv:affiliation>The State Key Laboratory of Blockchain and Data Security, Zhejiang University, Hangzhou High-Tech Zone</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Hanwen Zhang</name>
+      <arxiv:affiliation>Institute of Computing Technology, Chinese Academy of Sciences, China, University of Chinese Academy of Sciences, China</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Yi Sun</name>
+      <arxiv:affiliation>Institute of Computing Technology, Chinese Academy of Sciences, China, University of Chinese Academy of Sciences, China</arxiv:affiliation>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.15836v1</id>
+    <title>Latent Taxonomies: How Property Induction Develops in Language Model Pre-training</title>
+    <updated>2026-10-11T18:38:12Z</updated>
+    <link href="https://arxiv.org/abs/2610.15836v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.15836v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>When told that robins have sesamoid bones, people are far more prone to extend the property to sparrows than to whales. This behavior, called category-based property induction, is well documented in humans, but whether and how it develops in language [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-11T18:38:12Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Jan Sobotka</name>
+    </author>
+    <author>
+      <name>Ekaterina Goliakova</name>
+    </author>
+    <author>
+      <name>Marcin Detyniecki</name>
+    </author>
+    <author>
+      <name>Antoine Bosselut</name>
+    </author>
+    <author>
+      <name>Xavier Renard</name>
+    </author>
+  </entry>
+</feed>

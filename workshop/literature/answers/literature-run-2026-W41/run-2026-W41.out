@@ -1,0 +1,35 @@
+--- R/02_normalise.R (1.4 s, exit 0)
+bioRxiv: 1331 records in the fetched categories; 5 matched a topic's terms (5 topic assignments); 1326 set aside
+outside the window and dropped: 0
+1357 records read; 31 kept (1326 bioRxiv records matched no topic); 25 after the DOI merge; 25 after the arXiv-identifier merge; 25 after the title merge; wrote data/normalised/2026-W41.csv
+--- R/03_check.R (0.4 s, exit 0)
+ok       10.1002/advs.77591  Crossref title matches (1.00)
+ok       10.1016/j.plaphy.2026.111810  Crossref title matches (1.00)
+ok       10.64898/2026.09.27.754832  Crossref title matches (1.00)
+ok       10.1016/j.ejsobi.2026.103882  Crossref title matches (1.00)
+ok       10.1007/s11802-027-6632-5  Crossref title matches (1.00)
+ok       10.64898/2026.09.29.755473  Crossref title matches (0.97)
+ok       10.1016/j.micres.2026.128601  Crossref title matches (1.00)
+ok       10.64898/2026.09.28.752058  Crossref title matches (1.00)
+ok       10.1186/s40793-026-00966-9  Crossref title matches (1.00)
+ok       10.64898/2026.10.06.756956  Crossref title matches (1.00)
+ok       10.64898/2026.10.06.756941  Crossref title matches (1.00)
+ok       10.21203/rs.3.rs-7323824/v1  Crossref title matches (1.00)
+ok       10.1098/rspb.2026.1207  Crossref title matches (1.00)
+ok       10.1016/j.jenvman.2026.131106  Crossref title matches (1.00)
+ok       10.11646/zootaxa.5884.3.6  Crossref title matches (1.00)
+ok       10.1093/forestry/cpag081  Crossref title matches (1.00)
+ok       10.1016/j.jes.2026.01.025  Crossref title matches (1.00)
+ok       10.1016/j.chemosphere.2026.145098  Crossref title matches (1.00)
+ok       10.11646/zootaxa.5886.1.5  Crossref title matches (1.00)
+ok       10.1002/anie.2037917  Crossref title matches (1.00)
+ok       10.1016/j.ecss.2026.110304  Crossref title matches (1.00)
+FAIL     -  no DOI and no arXiv identifier
+ok       10.3897/bdj.14.e207059  Crossref title matches (1.00)
+ok       10.1016/j.biocon.2026.112133  Crossref title matches (1.00)
+24 DOIs and 0 arXiv identifiers checked from the cached answers; 23 verified, 2 not
+wrote data/normalised/2026-W41-checked.csv
+--- R/04_write.R (0.4 s, exit 0)
+25 items in; 23 new; 0 now published; 0 updated preprints; 0 seen before; 2 not verified; 23 bibliography entries written to bib/2026-W41.bib (23 appended to bib/all.bib)
+
+wrote provenance/2026-W41.log.md

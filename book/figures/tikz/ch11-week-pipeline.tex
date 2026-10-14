@@ -1,0 +1,23 @@
+% One week through the pipeline: nothing reaches a .bib without resolving.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=6pt and 16pt, src/.style={box, font=\footnotesize, minimum width=64pt, inner ysep=3pt}]
+  \node[src] (s1) {Europe PMC};
+  \node[src, below=of s1] (s2) {OpenAlex};
+  \node[src, below=of s2] (s3) {arXiv};
+  \node[src, below=of s3] (s4) {bioRxiv};
+  \node[src, below=of s4] (s5) {Biodiversity PMC};
+  \node[grey, right=of s3, font=\footnotesize, align=center] (raw) {\texttt{data/raw/}\\as received};
+  \foreach \s in {s1,s2,s3,s4,s5} \draw[->] (\s.east) -- (raw.west);
+  \node[box, right=of raw, text width=46pt, align=center, font=\footnotesize] (norm) {merge by DOI, arXiv id, title};
+  \node[decision, right=of norm, font=\footnotesize] (q) {resolves,\\title\\matches?};
+  \node[box, above right=2pt and 16pt of q, font=\footnotesize, align=left] (ok) {review\\bibliography\\\texttt{seen.csv}};
+  \node[badbox, below right=2pt and 16pt of q, font=\footnotesize, align=center] (bad) {listed as\\not verified;\\no entry};
+  \draw[->] (raw) -- (norm);
+  \draw[->] (norm) -- (q);
+  \draw[->] (q) |- node[tag, pos=0.25, left] {yes} (ok);
+  \draw[->, bad] (q) |- node[tag, pos=0.25, left, text=accent] {no} (bad);
+  \node[note, below=10pt of s5.south west, anchor=north west, text width=330pt, align=left]
+    {the log keeps every query, every raw file's checksum, every count and every failure, so a week can be rerun and compared};
+\end{tikzpicture}
+\end{document}

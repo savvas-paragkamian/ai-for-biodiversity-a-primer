@@ -131,7 +131,7 @@ Minimal. That is the deliberate house style; don't improve it.
   There are now 12. If you add one, remove one.
 - Tables only where a table beats a paragraph. Currently 6. Don't add a table
   that restates the prose next to it.
-- Figures: 41 diagrams, two or three per chapter (none in the preface or the
+- Figures: 44 diagrams, two or three per chapter (none in the preface or the
   appendices), drawn in TikZ under `book/figures/tikz/` and included as 300 dpi
   PNGs through `\fig{name}`. `scripts/build_figures.sh` builds the PDF, PNG and
   SVG for each; `book/figures/README.md` has the style rules and the index.
@@ -281,8 +281,11 @@ Settled by the author. Don't reopen them in reviews or suggestions.
 Chapter numbers changed on 11 October 2026, when two chapters were added:
 "A First Agent Session" (`09b-first-agent-session.tex`, Chapter 10) and
 "Testing a Model on Your Own Task" (`11b-testing.tex`, Chapter 13). Former
-Chapters 10–14 are now 11, 12, 14, 15 and 16. Name chapters by file in this
-file; completed rows below keep the numbers in use when they were written.
+Chapters 10–14 are now 11, 12, 14, 15 and 16. They changed again on
+14 October 2026, when "A Weekly Literature Review"
+(`09c-weekly-literature.tex`) became Chapter 11 and the former Chapters 11–16
+became 12–17. Name chapters by file in this file; completed rows below keep
+the numbers in use when they were written.
 
 Pick from here. Items marked **author** need the author's decision or material
 first: propose, don't implement.
@@ -309,6 +312,7 @@ first: propose, don't implement.
 | Wood-Charlson et al. (2026), Communications Biology perspective on FAIR + COPE, doi:10.1038/s42003-026-10694-y (in `../literature/` since 14 October) | Completed 14 October 2026: one paragraph in the Standards section of `05-ai-ready-data.tex`, after I-ADOPT and DataHarmonizer; COPE added to the glossary | Agent |
 | Dearborn, "Who Will Steward Humanity's Public Data?" (talk, 10 September 2026; slides and transcript in `../literature/`) | Completed 14 October 2026: added to the Library Innovation Lab entry in Appendix C, linked to the blog post of 24 September that carries the transcript and recording (title from the page `<title>`); one pointer sentence in the Infrastructure section of `05-ai-ready-data.tex`. Not a bibliography entry | Agent |
 | Figures for the book and the workshop slides | Completed 14 October 2026: 41 TikZ diagrams in `book/figures/`, two or three per chapter, built to PDF, PNG and SVG by `scripts/build_figures.sh`; each captioned, labelled `fig:*` and referenced in its chapter. Style and index in `book/figures/README.md`. The author decides whether any should go, and whether the book should include the PDFs instead of the PNGs (one line in the preamble) | Agent; review **author** |
+| A weekly literature review: Chapter 11 (`09c-weekly-literature.tex`, `ch:weeklyliterature`) and the `weekly-literature` repository | Completed 14 October 2026: chapter with seven prompts and three figures (`ch11-two-layers`, `ch11-week-pipeline`, `ch11-citation-check`), glossary "Skill", Appendix C entry, dated versions section in Appendix D, `workshop/literature/` with the fixture week and a frozen live week. The repository lives at `~/projects/weekly-literature` (outside Dropbox; `git init` done, nothing committed, not on GitHub). No new bibliography entries. The former ch11–ch16 figure files were renamed to ch12–ch17 by `scripts/renumber_figures.sh` on the author's instruction the same day. **Author decides:** `gh repo create savvas-paragkamian/weekly-literature --public`, first commit and push, then check the Appendix C name against the GitHub API; add the `NOTES.md` entry proposed in the agent's report; licence (MIT code, CC BY 4.0 reviews suggested); a key point ("a reference enters a bibliography through a script that resolved it, never through a model") only if one of the twelve goes; commit `workshop/`. The skill's live run (needs the Consensus login) was not performed | Agent; decisions **author** |
 | New files in `../literature/` | Check whenever you start: anything not in `references.bib` is a candidate. Read it in full before placing it | Agent |
 
 When you finish an item, update this table and `book/README.md` (Open issues)

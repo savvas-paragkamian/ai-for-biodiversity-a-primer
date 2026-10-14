@@ -1,0 +1,22 @@
+% What a Consensus result must pass before the assistant may cite it.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=12pt and 24pt]
+  \node[box] (res) {a paper returned by Consensus};
+  \node[decision, below=of res, font=\footnotesize] (inbib) {already in\\the week's bib?};
+  \node[rounded, right=of inbib] (cite) {cite its key};
+  \node[box, below=of inbib, font=\footnotesize\ttfamily, align=center] (ver) {Rscript R/skill\_verify.R\\<doi> "<title>"};
+  \node[decision, below=of ver, font=\footnotesize] (ok) {Crossref: resolves,\\title matches?};
+  \node[box, right=of ok, text width=84pt, align=center, font=\footnotesize] (entry) {entry written by the script from Crossref's record};
+  \node[badbox, below=of ok, font=\footnotesize, align=center] (no) {not used: unverified,\\logged with its URL};
+  \draw[->] (res) -- (inbib);
+  \draw[->] (inbib) -- node[tag, above] {yes} (cite);
+  \draw[->] (inbib) -- node[tag, right] {no} (ver);
+  \draw[->] (ver) -- (ok);
+  \draw[->] (ok) -- node[tag, above] {yes} (entry);
+  \draw[->, bad] (ok) -- node[tag, right, text=accent] {no} (no);
+  \draw[->] (entry) -- (cite);
+  \node[note, right=10pt of no.east, anchor=west, text width=120pt, align=left]
+    {the model never writes bibliography text; every search is logged with its URLs as returned};
+\end{tikzpicture}
+\end{document}

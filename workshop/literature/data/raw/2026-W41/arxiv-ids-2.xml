@@ -1,0 +1,2976 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/qppdzYfFX0+/vP61mrhNFARBiTc</id>
+  <title>arXiv Query: search_query=&amp;id_list=2609.38147,2609.36647,2609.36879,2609.38024,2609.37040,2609.37196,2609.38248,2609.37864,2609.37737,2609.36887,2609.36570,2609.36746,2609.38349,2609.37267,2609.36800,2609.36675,2609.39304,2609.39678,2610.00425,2609.39957,2609.40169,2609.38982,2609.38885,2609.40303,2610.00650,2609.38983,2609.39551,2609.39081,2609.39022,2609.39086,2610.00648,2609.40143,2609.39564,2609.38822,2609.39140,2609.40324,2610.00430,2609.39149,2609.39228,2610.00392,2609.40284,2609.39903,2609.39360,2609.39958,2609.39578,2609.38912,2610.03797,2610.02456,2610.00885,2610.00850,2610.01108,2610.01769,2610.00890,2610.01833,2610.02163,2610.03796,2610.01023,2610.02432,2610.01508,2610.02001,2610.01048,2610.02331,2610.02569,2610.01618,2610.01768,2610.02267,2610.01766,2610.02488,2610.02413,2610.01344,2610.06910,2610.02952,2610.02617,2610.03818,2610.03055,2610.03984,2610.02770,2610.04089,2610.03969,2610.02920,2610.03089,2610.03073,2610.04008,2610.02616,2610.03093,2610.03448,2610.03434,2610.03470,2610.03056,2610.03213,2610.02945,2610.04137,2610.04083,2610.04716,2610.04432,2610.04269,2610.04561,2610.04641,2610.04433,2610.04779&amp;start=0&amp;max_results=100</title>
+  <updated>2026-10-14T14:17:32Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=100&amp;id_list=2609.38147,2609.36647,2609.36879,2609.38024,2609.37040,2609.37196,2609.38248,2609.37864,2609.37737,2609.36887,2609.36570,2609.36746,2609.38349,2609.37267,2609.36800,2609.36675,2609.39304,2609.39678,2610.00425,2609.39957,2609.40169,2609.38982,2609.38885,2609.40303,2610.00650,2609.38983,2609.39551,2609.39081,2609.39022,2609.39086,2610.00648,2609.40143,2609.39564,2609.38822,2609.39140,2609.40324,2610.00430,2609.39149,2609.39228,2610.00392,2609.40284,2609.39903,2609.39360,2609.39958,2609.39578,2609.38912,2610.03797,2610.02456,2610.00885,2610.00850,2610.01108,2610.01769,2610.00890,2610.01833,2610.02163,2610.03796,2610.01023,2610.02432,2610.01508,2610.02001,2610.01048,2610.02331,2610.02569,2610.01618,2610.01768,2610.02267,2610.01766,2610.02488,2610.02413,2610.01344,2610.06910,2610.02952,2610.02617,2610.03818,2610.03055,2610.03984,2610.02770,2610.04089,2610.03969,2610.02920,2610.03089,2610.03073,2610.04008,2610.02616,2610.03093,2610.03448,2610.03434,2610.03470,2610.03056,2610.03213,2610.02945,2610.04137,2610.04083,2610.04716,2610.04432,2610.04269,2610.04561,2610.04641,2610.04433,2610.04779" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>100</opensearch:itemsPerPage>
+  <opensearch:totalResults>100</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38912v1</id>
+    <title>Composing Task-specific Agent Harnesses at Test Time with Reusable Primitives</title>
+    <updated>2026-09-30T03:57:46Z</updated>
+    <link href="https://arxiv.org/abs/2609.38912v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38912v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Agent harnesses govern how large language models (LLMs) gather context, invoke tools, verify results, preserve state, and terminate, largely affecting agent performance. However, the value of each harness mechanism can differ across heterogeneous tasks: a mechanism that improves one task [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T03:57:46Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Peng Kuang</name>
+    </author>
+    <author>
+      <name>Haibo Jin</name>
+    </author>
+    <author>
+      <name>Dehao Wu</name>
+    </author>
+    <author>
+      <name>Feiyang Deng</name>
+    </author>
+    <author>
+      <name>Xiaopeng Yuan</name>
+    </author>
+    <author>
+      <name>Jerry Wang</name>
+    </author>
+    <author>
+      <name>Haohan Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03448v1</id>
+    <title>Passing the Test You Trained On: Re-evaluating Prompt-Injection Detectors for LLM Agents</title>
+    <updated>2026-10-02T15:30:11Z</updated>
+    <link href="https://arxiv.org/abs/2610.03448v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03448v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>LLM agents increasingly screen tool outputs with small prompt-injection detectors, and teams choose among detectors by their scores on public benchmarks. We ask whether those scores predict how a detector behaves inside an agent. We replay the ground-truth tool calls [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T15:30:11Z</published>
+    <arxiv:comment>12 pages, 5 figures, 4 tables. Code: https://github.com/lzwhehe/benign-instruction-bench</arxiv:comment>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Zhuowen Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03434v1</id>
+    <title>Persona Guardrail: A Production-Grade Defense Framework for Agentic Systems</title>
+    <updated>2026-10-02T15:13:38Z</updated>
+    <link href="https://arxiv.org/abs/2610.03434v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03434v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language model-based agents are increasingly deployed to perform domain-specific tasks by interacting with enterprise knowledge, tools, and external services. Existing runtime guardrails primarily target prompt injection and other attack-specific behaviors under a black-box threat model, but provide limited guarantees [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T15:13:38Z</published>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Bijeeta Pal</name>
+    </author>
+    <author>
+      <name>Sridhar Reddy Maddireddy</name>
+    </author>
+    <author>
+      <name>Muhaimin Bin Munir</name>
+    </author>
+    <author>
+      <name>Zoltan Puha</name>
+    </author>
+    <author>
+      <name>Max Zhurovich</name>
+    </author>
+    <author>
+      <name>Adi Raghavendra</name>
+    </author>
+    <author>
+      <name>Sean Tout</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.01769v1</id>
+    <title>CONTRA: Discovering and Qualifying Behavior-Changing Questions for Selective Clarification in LLM Code Generation</title>
+    <updated>2026-10-01T14:26:21Z</updated>
+    <link href="https://arxiv.org/abs/2610.01769v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.01769v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Coding agents can generate code that appears correct but implements behavior the user never intended. This mismatch can arise when an agent silently resolves underspecified requirements through its own assumptions. As subsequent development builds on these assumptions, correcting the resulting [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T14:26:21Z</published>
+    <arxiv:comment>15 pages. Code: https://github.com/fangz-cs/Contra</arxiv:comment>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Zheng Fang</name>
+    </author>
+    <author>
+      <name>Yongmin Li</name>
+    </author>
+    <author>
+      <name>Yichang Zhang</name>
+    </author>
+    <author>
+      <name>Dongming Jin</name>
+    </author>
+    <author>
+      <name>Haoyu Wang</name>
+    </author>
+    <author>
+      <name>Shuai Wang</name>
+    </author>
+    <author>
+      <name>Zhi Jin</name>
+    </author>
+    <author>
+      <name>Ge Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39360v2</id>
+    <title>Autoresearch in Mixed-Integer Linear and Nonlinear Programming</title>
+    <updated>2026-10-01T21:03:56Z</updated>
+    <link href="https://arxiv.org/abs/2609.39360v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39360v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Despite recent progress in autoresearch, applying it to practical operations research problems, typically formulated as NP-hard mixed-integer linear or nonlinear programs (MILPs or MINLPs), remains challenging because effective research requires systematically managing competing ideas and long-horizon experimental trajectories. We introduce [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T09:18:01Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Yuwei Gu</name>
+    </author>
+    <author>
+      <name>Yaoxin Wu</name>
+    </author>
+    <author>
+      <name>Tong Guo</name>
+    </author>
+    <author>
+      <name>Wen Song</name>
+    </author>
+    <author>
+      <name>Zhiguang Cao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03089v1</id>
+    <title>Securing Computer-Use Agents Against Branch Steering Attacks</title>
+    <updated>2026-10-02T10:08:39Z</updated>
+    <link href="https://arxiv.org/abs/2610.03089v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03089v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Modern Computer Use Agents (CUAs) directly interact with graphical user interfaces and execute third-party web tools, exposing them to indirect prompt injection across every rendered page and tool response. While the Dual-LLM pattern is the primary system-level architecture offering formal [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T10:08:39Z</published>
+    <arxiv:comment>16 pages, including 2 figures. To be presented at the "Agents in the Wild" Workshop at the NeurIPS 2026 Conference</arxiv:comment>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Giulio Zingrillo</name>
+    </author>
+    <author>
+      <name>Hanna Foerster</name>
+    </author>
+    <author>
+      <name>Ilia Shumailov</name>
+    </author>
+    <author>
+      <name>Yiren Zhao</name>
+    </author>
+    <author>
+      <name>Robert Mullins</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04433v1</id>
+    <title>What Does a Harness Buy? Tokens, Mostly</title>
+    <updated>2026-10-03T10:47:10Z</updated>
+    <link href="https://arxiv.org/abs/2610.04433v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04433v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A coding agent is a language model wrapped in a harness: the system prompt, the tool set, and the context management that turn a chat model into something that can work inside a repository. Production harnesses ship releases daily, vendors [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-03T10:47:10Z</published>
+    <arxiv:comment>22 pages, 7 figures. Code and data: https://github.com/YangzeLiu/what-does-a-harness-buy</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Yangze Liu</name>
+    </author>
+    <author>
+      <name>Zhongyi Han</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03984v1</id>
+    <title>Teaching Agents to Code Reliably</title>
+    <updated>2026-10-02T19:47:19Z</updated>
+    <link href="https://arxiv.org/abs/2610.03984v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03984v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Autonomous coding agents solve repository issues by reading code, running commands, editing files, and submitting patches. Extra inference-time compute yields gains only when it produces a useful repair and supplies reliable evidence for choosing one. Three behaviors decide both, and [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T19:47:19Z</published>
+    <arxiv:comment>Submitted to ICLR 2027</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Muhammad Ahmed Mohsin</name>
+    </author>
+    <author>
+      <name>Myeongsoo Kim</name>
+    </author>
+    <author>
+      <name>Kangrui Ruan</name>
+    </author>
+    <author>
+      <name>Shweta Garg</name>
+    </author>
+    <author>
+      <name>Varun Kumar</name>
+    </author>
+    <author>
+      <name>Murali Krishna Ramanathan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04083v1</id>
+    <title>Self-Propagating Misalignment in LLM Agents, and Why Auditing or Disabling Memory Is Not Enough</title>
+    <updated>2026-10-02T21:46:13Z</updated>
+    <link href="https://arxiv.org/abs/2610.04083v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04083v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Memory poisoning attacks on LLM agents typically assume an external adversary who plants content in the agent's persistent memory to steer its behavior. We instead study, with no adversary involved, whether a misaligned agent can write a goal it cannot [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T21:46:13Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Debeshee Das</name>
+    </author>
+    <author>
+      <name>Jacqueline Tay</name>
+    </author>
+    <author>
+      <name>Bruce Tsai</name>
+    </author>
+    <author>
+      <name>David Huang</name>
+    </author>
+    <author>
+      <name>Javier Rando</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.06910v1</id>
+    <title>GAMEGO: Training Game-Dev Agents with Synthetic Trajectories Anchored in Real-World Assets</title>
+    <updated>2026-10-02T17:05:07Z</updated>
+    <link href="https://arxiv.org/abs/2610.06910v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.06910v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent advances in Large Language Models (LLMs) have demonstrated remarkable capabilities in web front-end execution, with browser-based game generation emerging as a particularly prominent frontier. While previous efforts frequently rely on complex multi-turn workflows or focus on static game evaluation [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T17:05:07Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Haoyue Yang</name>
+    </author>
+    <author>
+      <name>Jingyao Li</name>
+    </author>
+    <author>
+      <name>Zhengfan Wu</name>
+    </author>
+    <author>
+      <name>Jing Liu</name>
+    </author>
+    <author>
+      <name>Xuanle Zhao</name>
+    </author>
+    <author>
+      <name>Kang Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39578v2</id>
+    <title>Thinking Outside the Box: Can Language Models Rely on External Guidance Selectively?</title>
+    <updated>2026-10-08T04:08:50Z</updated>
+    <link href="https://arxiv.org/abs/2609.39578v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39578v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Agent harnesses often improve language models with human-designed workflows, but as models grow more capable, unreliable guidance can increasingly constrain their execution. We call the ability to benefit from useful guidance while overriding unreliable guidance thinking outside the box. We [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T12:10:24Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Minghan Wang</name>
+    </author>
+    <author>
+      <name>Boyuan Wang</name>
+    </author>
+    <author>
+      <name>Jinhang Zuo</name>
+    </author>
+    <author>
+      <name>Yuxin Tao</name>
+    </author>
+    <author>
+      <name>Fang Kong</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.37864v1</id>
+    <title>AgentBug-Smith: Automatically Reproducing Real-World Harness Bugs in Agentic Systems</title>
+    <updated>2026-09-29T15:46:04Z</updated>
+    <link href="https://arxiv.org/abs/2609.37864v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.37864v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Agent harness bugs exhibit unique characteristics and remain challenging for state-of-the-art software agents to repair. Progress in this area is further hindered by existing benchmarks, which contain only a small and fixed number of executable harness bugs while requiring hundreds [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T15:46:04Z</published>
+    <arxiv:comment>20 pages, 8 figures. Code: https://github.com/EaminC/AgentBug-Smith Data: https://huggingface.co/buckets/EaminChan/live-harness-bench</arxiv:comment>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Yiming Cheng</name>
+      <arxiv:affiliation>The University of Chicago</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Alfin Wijaya Rahardja</name>
+      <arxiv:affiliation>Fudan University</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Mengshi Zhang</name>
+      <arxiv:affiliation>TensorBlock, Inc</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Zihao Chen</name>
+      <arxiv:affiliation>TensorBlock, Inc</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Zhenpeng Chen</name>
+      <arxiv:affiliation>Tsinghua University</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Yiling Lou</name>
+      <arxiv:affiliation>University of Illinois Urbana-Champaign</arxiv:affiliation>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.36887v1</id>
+    <title>WEFT: Scaling Tool-Use Post-Training for General-Purpose Agents</title>
+    <updated>2026-09-29T07:14:53Z</updated>
+    <link href="https://arxiv.org/abs/2609.36887v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.36887v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent efforts to scale tool-use post-training have largely centered on the synthesis of executable environments, which constitute only one component of a broader agentic interaction system comprising the environment, task, agent harness, and evaluator. Scaling environments in isolation, however, does [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T07:14:53Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Bo Mao</name>
+    </author>
+    <author>
+      <name>Hang He</name>
+    </author>
+    <author>
+      <name>Linting Wang</name>
+    </author>
+    <author>
+      <name>Lizhi Lin</name>
+    </author>
+    <author>
+      <name>Maosen Zhou</name>
+    </author>
+    <author>
+      <name>Guanming Liu</name>
+    </author>
+    <author>
+      <name>Jinxiu Liu</name>
+    </author>
+    <author>
+      <name>Tianyu Huai</name>
+    </author>
+    <author>
+      <name>Chaoyun Zhang</name>
+    </author>
+    <author>
+      <name>Bingxuan Li</name>
+    </author>
+    <author>
+      <name>Kepeng Lei</name>
+    </author>
+    <author>
+      <name>Guanting Dong</name>
+    </author>
+    <author>
+      <name>Zhou Shao</name>
+    </author>
+    <author>
+      <name>Rui Zheng</name>
+    </author>
+    <author>
+      <name>Hang Yan</name>
+    </author>
+    <author>
+      <name>Jie Zhou</name>
+    </author>
+    <author>
+      <name>Chengcheng Wan</name>
+    </author>
+    <author>
+      <name>Tao Gui</name>
+    </author>
+    <author>
+      <name>Liang He</name>
+    </author>
+    <author>
+      <name>Xipeng Qiu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39903v1</id>
+    <title>OSWorld-Science: A Benchmark of Computer Use Agents for Learning and Using Scientific Software</title>
+    <updated>2026-09-30T15:03:05Z</updated>
+    <link href="https://arxiv.org/abs/2609.39903v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39903v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Scientific software presents a demanding test for computer-using agents based on visual language models (VLMs): completing a research workflow requires interpreting specialized interfaces, manipulating scientific objects, and producing verifiable results. We thus introduce OSWorld-Science, a benchmark and evaluation environment that [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T15:03:05Z</published>
+    <arxiv:comment>62 pages. Website: https://discoailab.github.io/osworld-science-page/ Public contributions welcome: https://forms.gle/htxY5snyANJ4moVEA</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Dingyuan Dai</name>
+    </author>
+    <author>
+      <name>Heli Qi</name>
+    </author>
+    <author>
+      <name>Lei Liu</name>
+    </author>
+    <author>
+      <name>Yinxi Li</name>
+    </author>
+    <author>
+      <name>Baiding Chen</name>
+    </author>
+    <author>
+      <name>Zijun Dou</name>
+    </author>
+    <author>
+      <name>Qingcheng Zeng</name>
+    </author>
+    <author>
+      <name>Qi Kang</name>
+    </author>
+    <author>
+      <name>Oliver Sun</name>
+    </author>
+    <author>
+      <name>Eric Wang</name>
+    </author>
+    <author>
+      <name>Bo Zhou</name>
+    </author>
+    <author>
+      <name>Haixin Wang</name>
+    </author>
+    <author>
+      <name>Yufan Du</name>
+    </author>
+    <author>
+      <name>Shi Bo</name>
+    </author>
+    <author>
+      <name>Ruihan Lin</name>
+    </author>
+    <author>
+      <name>Mengqi Yuan</name>
+    </author>
+    <author>
+      <name>Dunjie Lu</name>
+    </author>
+    <author>
+      <name>Steven Dillmann</name>
+    </author>
+    <author>
+      <name>Yiming Shi</name>
+    </author>
+    <author>
+      <name>Tina Su</name>
+    </author>
+    <author>
+      <name>Amy Xin</name>
+    </author>
+    <author>
+      <name>Minghao Liu</name>
+    </author>
+    <author>
+      <name>Xi Wang</name>
+    </author>
+    <author>
+      <name>Xu Huang</name>
+    </author>
+    <author>
+      <name>Ge Zhang</name>
+    </author>
+    <author>
+      <name>Pengyu Nie</name>
+    </author>
+    <author>
+      <name>Zhen Yang</name>
+    </author>
+    <author>
+      <name>Jie Tang</name>
+    </author>
+    <author>
+      <name>Juanzi Li</name>
+    </author>
+    <author>
+      <name>Weihao Xuan</name>
+    </author>
+    <author>
+      <name>Tianyu Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39022v3</id>
+    <title>From Verification Failures to Reusable Guidance for Coding Agents</title>
+    <updated>2026-10-07T05:03:31Z</updated>
+    <link href="https://arxiv.org/abs/2609.39022v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39022v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Coding agents need to establish that a program satisfies a specification and that the specification captures the requested behavior. We study how expert diagnosis of verification failures can become reusable guidance for this work. Our approach combines executable language definitions [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.PL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T05:27:26Z</published>
+    <arxiv:comment>24 pages, including appendices</arxiv:comment>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Yuqing Zhai</name>
+    </author>
+    <author>
+      <name>Xiaohong Chen</name>
+    </author>
+    <author>
+      <name>Lingming Zhang</name>
+    </author>
+    <author>
+      <name>Sriram Vishwanath</name>
+    </author>
+    <author>
+      <name>Grigore Rosu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.40284v1</id>
+    <title>cua-speedrun: Standardized Benchmarking of the Speed of Computer-Use Agents</title>
+    <updated>2026-09-30T17:48:06Z</updated>
+    <link href="https://arxiv.org/abs/2609.40284v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.40284v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Computer use agents (CUAs), which use graphical user interfaces (GUIs) to complete tasks on a computer, have recently surpassed human performance on many standard benchmarks, including difficult long-horizon tasks. Their capabilities are undoubtedly impressive, however, a key barrier to the [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T17:48:06Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Pranjal Aggarwal</name>
+    </author>
+    <author>
+      <name>Lawrence Keunho Jang</name>
+    </author>
+    <author>
+      <name>Sean Welleck</name>
+    </author>
+    <author>
+      <name>Daniel Fried</name>
+    </author>
+    <author>
+      <name>Ruslan Salakhutdinov</name>
+    </author>
+    <author>
+      <name>Jing Yu Koh</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.37040v1</id>
+    <title>Selecting The Most Informative Tokens in Natural Language Autoencoders</title>
+    <updated>2026-09-29T08:50:02Z</updated>
+    <link href="https://arxiv.org/abs/2609.37040v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.37040v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Natural language autoencoders translate a language model's internal activations into readable explanations. Explaining every token position is costly. Which positions should an auditor inspect to understand a potential threat? We study this question across $4.7$ million explanations on prompt injection [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T08:50:02Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Federico Torrielli</name>
+    </author>
+    <author>
+      <name>Gianluca Barmina</name>
+    </author>
+    <author>
+      <name>Andrea Blasi Núñez</name>
+    </author>
+    <author>
+      <name>Amon Rapp</name>
+    </author>
+    <author>
+      <name>Luigi Di Caro</name>
+    </author>
+    <author>
+      <name>Peter Schneider-Kamp</name>
+    </author>
+    <author>
+      <name>Lukas Galke Poech</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38349v1</id>
+    <title>MILO: Automated Harness Discovery via Orchestrated Multi-Agent Evolution</title>
+    <updated>2026-09-29T18:10:49Z</updated>
+    <link href="https://arxiv.org/abs/2609.38349v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38349v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Modern agentic systems combine an AI model with a harness that controls execution and environmental interactions. Harness design strongly affects long-horizon performance, yet its combinatorial search space demands substantial human effort that must be repeated as models change. Existing automated [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T18:10:49Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Prithwish Jana</name>
+    </author>
+    <author>
+      <name>Mononito Goswami</name>
+    </author>
+    <author>
+      <name>Hao Liu</name>
+    </author>
+    <author>
+      <name>Xinyu Li</name>
+    </author>
+    <author>
+      <name>Langlin Huang</name>
+    </author>
+    <author>
+      <name>Zhehui Huang</name>
+    </author>
+    <author>
+      <name>Zhishen Huang</name>
+    </author>
+    <author>
+      <name>Patrick Blöbaum</name>
+    </author>
+    <author>
+      <name>Anoop Deoras</name>
+    </author>
+    <author>
+      <name>Purak Jain</name>
+    </author>
+    <author>
+      <name>Nikos Kanakaris</name>
+    </author>
+    <author>
+      <name>Sahika Genc</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.00425v1</id>
+    <title>Code That Works, Environments That Don't: Measuring Environment Reproducibility in AI-Generated Software</title>
+    <updated>2026-09-30T16:04:45Z</updated>
+    <link href="https://arxiv.org/abs/2610.00425v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.00425v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Code generation has emerged as a central capability of large language models, with coding agents now able to produce functionally correct software projects from natural language prompts. However, functional correctness alone does not capture a critical dimension of generation quality: [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T16:04:45Z</published>
+    <arxiv:comment>17 pages, 8 figures. Manuscript prepared for AAAI Journal, AI Magazine Special Issue</arxiv:comment>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Bhanu Prakash Vangala</name>
+    </author>
+    <author>
+      <name>Tanu Malik</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39228v1</id>
+    <title>Fyan: A Human--AI Harness with Semantic Auditing for Document-Level Formalization</title>
+    <updated>2026-09-30T08:02:51Z</updated>
+    <link href="https://arxiv.org/abs/2609.39228v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39228v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We present FYAN, a human--AI harness for document-level mathematical formalization. Rather than treating theorems in isolation, FYAN coordinates an end-to-end workflow spanning specification, proof planning, logical review, Lean proof construction, knowledge curation, and validation, with support for independent supervision and [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T08:02:51Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Wei Zhao</name>
+    </author>
+    <author>
+      <name>Yangshuo Zou</name>
+    </author>
+    <author>
+      <name>Chengxiang Ding</name>
+    </author>
+    <author>
+      <name>Yifan Wu</name>
+    </author>
+    <author>
+      <name>Xuchuan Wang</name>
+    </author>
+    <author>
+      <name>Zimu Mao</name>
+    </author>
+    <author>
+      <name>Lei Zhang</name>
+    </author>
+    <author>
+      <name>Tao Luo</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.01048v1</id>
+    <title>Network World Models as Environments for Algorithm Design on Complex Systems</title>
+    <updated>2026-10-01T04:44:00Z</updated>
+    <link href="https://arxiv.org/abs/2610.01048v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.01048v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>World models, which simulate an environment and predict how it changes under actions, are increasingly used in real-world applications such as robotics. Complex systems call for the same tool because the effect of an action is not immediate. Seeding nodes [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T04:44:00Z</published>
+    <arxiv:comment>46 pages, 7 figures, 17 tables. Preprint</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Rishab Alagharu</name>
+    </author>
+    <author>
+      <name>Hongji Pu</name>
+    </author>
+    <author>
+      <name>Zeeshan Memon</name>
+    </author>
+    <author>
+      <name>Xinyuan Song</name>
+    </author>
+    <author>
+      <name>Yuntong Hu</name>
+    </author>
+    <author>
+      <name>Liang Zhao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02163v1</id>
+    <title>AutoCompact: Learning When to Compact Context in Long-Horizon Coding Agents</title>
+    <updated>2026-10-01T17:54:34Z</updated>
+    <link href="https://arxiv.org/abs/2610.02163v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02163v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Coding agents solve repository-level software engineering tasks through long trajectories of code inspection, search, editing, and testing. As a task progresses, earlier exploration becomes stale, so managing context is more than avoiding overflow: an agent must decide when to compact, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T17:54:34Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Xuan Zhang</name>
+    </author>
+    <author>
+      <name>Longtao Zheng</name>
+    </author>
+    <author>
+      <name>Cunxiao Du</name>
+    </author>
+    <author>
+      <name>Bo An</name>
+    </author>
+    <author>
+      <name>Xin Dong</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03055v1</id>
+    <title>hacktrace: behavior-supervised detection of reward hacking during code generation</title>
+    <updated>2026-10-02T09:35:59Z</updated>
+    <link href="https://arxiv.org/abs/2610.03055v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03055v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A coding agent can earn a passing grade by fixing its code, or by deleting the test that exposes the bug. Detecting such reward hacking requires recognizing attempted shortcuts, including those that fail. We release 173,561 annotated multi-turn coding trajectories [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T09:35:59Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Hao Jiang</name>
+    </author>
+    <author>
+      <name>Xin Li</name>
+    </author>
+    <author>
+      <name>Annan Wang</name>
+    </author>
+    <author>
+      <name>Yichi Zhang</name>
+    </author>
+    <author>
+      <name>Weisi Lin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04561v2</id>
+    <title>Recursive Improvement of a Differentiable Scientific Software Ecosystem</title>
+    <updated>2026-10-12T08:01:04Z</updated>
+    <link href="https://arxiv.org/abs/2610.04561v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04561v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Differentiable programming connects scientific computation with gradient-based inference, learning and design. Extending these capabilities across a heterogeneous software ecosystem requires specialized effort to implement derivatives, integrate interfaces and evaluate quality. AI coding agents can accelerate this transformation, but translating their [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.comp-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-03T14:51:09Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Pengcheng Hou</name>
+    </author>
+    <author>
+      <name>Xiaojun Tan</name>
+    </author>
+    <author>
+      <name>Sihan Hu</name>
+    </author>
+    <author>
+      <name>Ruisi Wang</name>
+    </author>
+    <author>
+      <name>Shuo Chen</name>
+    </author>
+    <author>
+      <name>Lei Wang</name>
+    </author>
+    <author>
+      <name>Youjin Deng</name>
+    </author>
+    <author>
+      <name>Kun Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03818v2</id>
+    <title>Control OSWorld: An AI Control Environment for GUI Computer Use Agents</title>
+    <updated>2026-10-12T23:17:28Z</updated>
+    <link href="https://arxiv.org/abs/2610.03818v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03818v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>AI agents that operate a computer through its graphical user interface (GUI) are being widely deployed. AI control studies how to prevent an AI system from causing harm even if it is misaligned and actively trying to do so. Most [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T00:31:34Z</published>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Maria Sanchez del Rio</name>
+    </author>
+    <author>
+      <name>Mikhail Terekhov</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39551v1</id>
+    <title>RankEvolve: A Reliable Multi-Agent Auto-Research Harness for Evolving Ranking Models</title>
+    <updated>2026-09-30T11:50:46Z</updated>
+    <link href="https://arxiv.org/abs/2609.39551v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39551v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Auto-research agents, LLM systems that propose, implement, train, and evaluate model changes across iterations, promise to automate applied ML's experimental loop. Over long horizons, execution accuracy is a binding constraint: a change can silently leak held-out data, omit normalization, disconnect [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T11:50:46Z</published>
+    <arxiv:comment>29 pages, 5 figures, 13 tables, 1 algorithm; includes appendices</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Zheng Chen</name>
+    </author>
+    <author>
+      <name>Linfeng Liu</name>
+    </author>
+    <author>
+      <name>Hong Li</name>
+    </author>
+    <author>
+      <name>Hong Yan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.40143v1</id>
+    <title>From DNA Design to DNA Slimming: Auditable Agentic Discovery of a Deletion-Only Designer</title>
+    <updated>2026-09-30T16:51:23Z</updated>
+    <link href="https://arxiv.org/abs/2609.40143v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.40143v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Compact regulatory DNA can free up space in vector payloads, reduce synthesis and assay burden, and expose which sequence features drive predicted activity. Yet most model-based nucleic-acid designers optimize fixed-length sequences through substitutions; they do not ask which bases of [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.NE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="q-bio.GN" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T16:51:23Z</published>
+    <arxiv:comment>40th Conference on Neural Information Processing Systems (NeurIPS 2026). Workshop: Agentic AI for Biological Discovery</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Joel Shor</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38248v1</id>
+    <title>ContractWarden: Kernel-Enforced Damage Boundaries for AI Agents via Human-Authorized Contracts</title>
+    <updated>2026-09-29T07:13:14Z</updated>
+    <link href="https://arxiv.org/abs/2609.38248v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38248v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language model agents can execute commands, create subprocesses, and directly access files and networks, allowing prompt injection or planning errors to become operating-system side effects. We present ContractWarden, a Linux reference monitor that enforces a human-authorized damage boundary without [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.OS" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T07:13:14Z</published>
+    <arxiv:comment>Supersedes the preprint DOI 10.21203/rs.3.rs-10865359/v1, which has a different title. Submitted to ICOIN 2027. 6 pages, 2 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Dongxu Cui</name>
+    </author>
+    <author>
+      <name>Zhichao Gu</name>
+    </author>
+    <author>
+      <name>Ping Zheng</name>
+    </author>
+    <author>
+      <name>Wenshuai Xi</name>
+    </author>
+    <author>
+      <name>Simeng Han</name>
+    </author>
+    <author>
+      <name>Yong Liao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38982v1</id>
+    <title>SimEX: Simulation-Integrated Robotics AutoResearch</title>
+    <updated>2026-09-30T04:58:21Z</updated>
+    <link href="https://arxiv.org/abs/2609.38982v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38982v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Coding agents powered by large language models (LLMs) have shown remarkable abilities to autonomously reason about and achieve goals in the digital world. However, bringing this success to the physical world remains challenging. On the one hand, direct generation methods [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T04:58:21Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Jiaheng Hu</name>
+    </author>
+    <author>
+      <name>Roberto Martin-Martin</name>
+    </author>
+    <author>
+      <name>Peter Stone</name>
+    </author>
+    <author>
+      <name>Rocky Duan</name>
+    </author>
+    <author>
+      <name>Zhenyu Jiang</name>
+    </author>
+    <author>
+      <name>Guanya Shi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.01618v1</id>
+    <title>Agents Are Systems, Not Models: Rethinking Agentic Evaluation</title>
+    <updated>2026-10-01T12:55:07Z</updated>
+    <link href="https://arxiv.org/abs/2610.01618v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.01618v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Agent evaluations increasingly go beyond a single success rate, reporting metrics such as cost, consistency, and robustness. Yet they typically treat the agent itself as fixed. In practice, an agent is a configurable system: users decide what to tell it, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T12:55:07Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Luis Wiedmann</name>
+    </author>
+    <author>
+      <name>Leander Girrbach</name>
+    </author>
+    <author>
+      <name>Cordelia Schmid</name>
+    </author>
+    <author>
+      <name>Zeynep Akata</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.01833v1</id>
+    <title>Continuous Process-Level Evaluation for Evolving Enterprise AI Agent Skills</title>
+    <updated>2026-10-01T15:06:23Z</updated>
+    <link href="https://arxiv.org/abs/2610.01833v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.01833v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Enterprise AI agent skills evolve as tool APIs, models, and specifications change, yet final-output evaluation can miss process-level behavioral drift. We present a continuous evaluation framework combining outcome-level and process-level checks, applied to Revenue and Productivity variants of a Business [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T15:06:23Z</published>
+    <arxiv:comment>Accepted to Workshop on Continual Learning for Enterprise AI Agents (CLEA), NeurIPS 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Ngoc Phuoc An Vo</name>
+    </author>
+    <author>
+      <name>Aarya Doshi</name>
+    </author>
+    <author>
+      <name>Vadim Sheinin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.01766v1</id>
+    <title>VideoEvolve: Evolving Agent Harnesses for Video Temporal Grounding</title>
+    <updated>2026-10-01T14:24:24Z</updated>
+    <link href="https://arxiv.org/abs/2610.01766v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.01766v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Video temporal grounding aims to localize events in videos from natural-language queries. For agents built around frozen video-language models, the harness determines how queries guide temporal predictions and how those predictions are refined. Manually refining these harnesses requires diagnosing grounding [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T14:24:24Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Bingjun Luo</name>
+    </author>
+    <author>
+      <name>Yuhuan Fan</name>
+    </author>
+    <author>
+      <name>Jialin Guo</name>
+    </author>
+    <author>
+      <name>Siqi Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02569v1</id>
+    <title>Pincer: Resource Authorization for Agents using a Digital Twin</title>
+    <updated>2026-10-01T23:03:12Z</updated>
+    <link href="https://arxiv.org/abs/2610.02569v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02569v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Coding agents have become increasingly long-horizon, autonomous, reliant on general-purpose shell and maintain their own persistent memory for self-improvement. While these capabilities have made the agents powerful, they have also made them harder to defend against external adversaries. Defenses that [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T23:03:12Z</published>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Mayank Rathee</name>
+    </author>
+    <author>
+      <name>Alexander Stepanov</name>
+    </author>
+    <author>
+      <name>Shalin Madabhavi</name>
+    </author>
+    <author>
+      <name>Jinhao Zhu</name>
+    </author>
+    <author>
+      <name>Raluca Ada Popa</name>
+    </author>
+    <author>
+      <name>Ion Stoica</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03796v1</id>
+    <title>ProsaBuddy: Assisting Mechanized Real-Time Schedulability Analysis with LLM-based Agents</title>
+    <updated>2026-10-01T03:29:09Z</updated>
+    <link href="https://arxiv.org/abs/2610.03796v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03796v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Rigorous schedulability analysis is essential for the design of hard real-time systems, yet errors in pen-and-paper proofs threaten the safety of critical applications. The Prosa initiative addresses this by offering a foundation for building machine-checkable schedulability analysis proofs in the [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T03:29:09Z</published>
+    <arxiv:comment>Accepted at RTSS 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.LO"/>
+    <author>
+      <name>Junyi Liu</name>
+    </author>
+    <author>
+      <name>Tianchi Ren</name>
+    </author>
+    <author>
+      <name>Fei Guan</name>
+    </author>
+    <author>
+      <name>Xu Jiang</name>
+    </author>
+    <author>
+      <name>Zhe Jiang</name>
+    </author>
+    <author>
+      <name>Wang Yi</name>
+    </author>
+    <author>
+      <name>Nan Guan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03470v1</id>
+    <title>CorrectGuard: Eyes-Off Correctness Estimation for Black-Box Security Guardrails</title>
+    <updated>2026-10-02T15:42:10Z</updated>
+    <link href="https://arxiv.org/abs/2610.03470v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03470v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>AI services increasingly rely on black-box security guardrails, yet privacy-preserving model auditing regimes often cannot measure how well these systems perform in both a human eyes-off production setting, which disallows human inspection of user input, and a machine eyes-off setting, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T15:42:10Z</published>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Adam Faulkner</name>
+    </author>
+    <author>
+      <name>Nil-Jana Akpinar</name>
+    </author>
+    <author>
+      <name>Matthew Dressman</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39678v2</id>
+    <title>Aletheia: Permission-Minimality Testing for Coding-Agent Rules</title>
+    <updated>2026-10-05T04:26:56Z</updated>
+    <link href="https://arxiv.org/abs/2609.39678v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39678v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Coding agents powered by Large Language Models (LLMs) read repository rules (e.g., AGENTS.md and Cursor rules) to learn project conventions and development procedures. An attacker can exploit the same files to mislead the agent into requesting excessive permissions or performing [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T13:09:24Z</published>
+    <arxiv:comment>18 pages, 2 figures, 3 tables, 1 algorithm</arxiv:comment>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Jieke Shi</name>
+    </author>
+    <author>
+      <name>Yuchen Chen</name>
+    </author>
+    <author>
+      <name>Junda He</name>
+    </author>
+    <author>
+      <name>Yue Liu</name>
+    </author>
+    <author>
+      <name>David Lo</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.00392v2</id>
+    <title>Measuring LLM Agent Defenses by Layer: GDA Measurement and an Envelope-Layer Attack-Defense Model</title>
+    <updated>2026-10-12T07:23:21Z</updated>
+    <link href="https://arxiv.org/abs/2610.00392v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.00392v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Agent interaction protocols such as ACP and A2A let a remote peer deliver a task the receiving agent treats as legitimate, opening a channel for indirect prompt injection. Evaluating and defending such agents is difficult because the attack success rate [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T11:19:12Z</published>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Yuelin Han</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39149v2</id>
+    <title>Rep2Skill: Representation-Guided Skill Self-Evolution for LLM Agents</title>
+    <updated>2026-10-13T04:04:53Z</updated>
+    <link href="https://arxiv.org/abs/2609.39149v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39149v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Textual skills enable large language model (LLM) based agents to accumulate reusable procedural knowledge without updating model parameters. Yet existing skill evolution remains largely confined to the text space: an optimizer must diagnose success and failure patterns, and revise skills [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T07:15:10Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Kaixing Zhang</name>
+    </author>
+    <author>
+      <name>Changming Li</name>
+    </author>
+    <author>
+      <name>Yingdong Shi</name>
+    </author>
+    <author>
+      <name>Zheng Zhang</name>
+    </author>
+    <author>
+      <name>Kaitao Song</name>
+    </author>
+    <author>
+      <name>Wenjie Shi</name>
+    </author>
+    <author>
+      <name>Jingang Wang</name>
+    </author>
+    <author>
+      <name>Kan Ren</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.36675v2</id>
+    <title>Gödel Forest: Balancing Search Depth and Breadth for Data-Centric Recursive Self-Improvement</title>
+    <updated>2026-10-13T03:00:01Z</updated>
+    <link href="https://arxiv.org/abs/2609.36675v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.36675v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recursive self-improvement (RSI) aims to achieve compounding gains by having models improve themselves. While most existing RSI systems optimize external agent harnesses or prompts around a frozen base model, data-centric RSI directly updates the model's own parameters by training on [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T04:14:48Z</published>
+    <arxiv:comment>Preprint</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Ziqi Zhao</name>
+    </author>
+    <author>
+      <name>Fanqing Meng</name>
+    </author>
+    <author>
+      <name>Haocheng Lu</name>
+    </author>
+    <author>
+      <name>Lingxiao Du</name>
+    </author>
+    <author>
+      <name>Qiguang Chen</name>
+    </author>
+    <author>
+      <name>Mengkang Hu</name>
+    </author>
+    <author>
+      <name>Xiao-Ming Wu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04779v1</id>
+    <title>Asymmetric Repository Lineage Modeling and Verifier-Guided Coordination in Concurrent AI Coding Agents</title>
+    <updated>2026-10-03T21:37:15Z</updated>
+    <link href="https://arxiv.org/abs/2610.04779v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04779v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Concurrent AI coding agents create a coordination problem in which cheap signals may prioritize work, but only an executable checker can establish the property being claimed. We study this separation through a property-scoped verification contract and MERGEGYM, a three-track benchmark [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-03T21:37:15Z</published>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Arjun Subramanian</name>
+    </author>
+    <author>
+      <name>George Xu</name>
+    </author>
+    <author>
+      <name>Nithilan Karthik</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04137v1</id>
+    <title>Dynamic Harness Search: Building Multi-Agent Systems Per-Query via Prediction</title>
+    <updated>2026-10-02T23:18:55Z</updated>
+    <link href="https://arxiv.org/abs/2610.04137v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04137v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Agent harnesses specify the roles, instructions, tools, and communication structure used to solve a task, and the right harness depends on the query. Because the value of each design choice is observable only through execution, tailoring a harness to each [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T23:18:55Z</published>
+    <arxiv:comment>27 pages, 18 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Som Sagar</name>
+    </author>
+    <author>
+      <name>Shasha Li</name>
+    </author>
+    <author>
+      <name>Hejie Cui</name>
+    </author>
+    <author>
+      <name>Ransalu Senanayake</name>
+    </author>
+    <author>
+      <name>Sercan Ö. Arık</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03969v1</id>
+    <title>How Do Coding Agents Optimize Software and Report Performance Validation? A Large-Scale Empirical Study of Open-Source Pull Requests</title>
+    <updated>2026-10-02T19:23:43Z</updated>
+    <link href="https://arxiv.org/abs/2610.03969v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03969v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Software performance optimization requires identifying bottlenecks and improvement opportunities, and empirically evaluating the effects and trade-offs across performance objectives. Autonomous AI coding agents submit performance-oriented pull requests (PRs) to open-source projects, yet it remains unclear whether these changes reflect established [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.PF" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T19:23:43Z</published>
+    <arxiv:comment>46 pages, 11 figures. Extends our MSR 2026 Mining Challenge paper. Huiyun Peng and Ricardo Calvo contributed equally. Replication package: https://github.com/PurdueDualityLab/EMSE-perf-pr-study</arxiv:comment>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Huiyun Peng</name>
+    </author>
+    <author>
+      <name>Ricardo Calvo</name>
+    </author>
+    <author>
+      <name>Kelechi G. Kalu</name>
+    </author>
+    <author>
+      <name>James C. Davis</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04008v2</id>
+    <title>SkillScriptBench: Benchmarking Self-Evolution of Executable Agent Skill Packages Beyond Markdown</title>
+    <updated>2026-10-09T20:00:53Z</updated>
+    <link href="https://arxiv.org/abs/2610.04008v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04008v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Executable Agent Skills combine natural-language instructions and scripts into reusable packages for LLM agents, and revising them requires fixing errors without breaking correct behavior. Existing benchmarks do not systematically distinguish documentation repair, script repair, and preservation when evaluating skill self-evolution. [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T20:10:12Z</published>
+    <arxiv:comment>31 pages, including references and appendices</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Yuxuan Liu</name>
+    </author>
+    <author>
+      <name>Haoran Li</name>
+    </author>
+    <author>
+      <name>Yuhao Zhang</name>
+    </author>
+    <author>
+      <name>Jiahe Guo</name>
+    </author>
+    <author>
+      <name>Hongyu Luo</name>
+    </author>
+    <author>
+      <name>Wenbin Hu</name>
+    </author>
+    <author>
+      <name>Huihao Jing</name>
+    </author>
+    <author>
+      <name>Kawai Chung</name>
+    </author>
+    <author>
+      <name>Junle Chen</name>
+    </author>
+    <author>
+      <name>Changxuan Fan</name>
+    </author>
+    <author>
+      <name>Qing Zong</name>
+    </author>
+    <author>
+      <name>Lingyun Xie</name>
+    </author>
+    <author>
+      <name>Yangqiu Song</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04269v1</id>
+    <title>Self-Reflection Fine-Tuning: Enhancing Agent Security against Prompt Injection Attacks from Failure Experience</title>
+    <updated>2026-10-03T03:45:44Z</updated>
+    <link href="https://arxiv.org/abs/2610.04269v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04269v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language model (LLM) agents are increasingly deployed in tool-augmented environments, but their reliance on external inputs makes them highly vulnerable to prompt injection attacks that can hijack task objectives. Existing safety alignment methods rely on static expert trajectories or [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-03T03:45:44Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Zixuan Wang</name>
+    </author>
+    <author>
+      <name>Hao Li</name>
+    </author>
+    <author>
+      <name>Fengyu Gao</name>
+    </author>
+    <author>
+      <name>G. Edward Suh</name>
+    </author>
+    <author>
+      <name>Yi Zeng</name>
+    </author>
+    <author>
+      <name>Yevgeniy Vorobeychik</name>
+    </author>
+    <author>
+      <name>Ning Zhang</name>
+    </author>
+    <author>
+      <name>Chaowei Xiao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02770v1</id>
+    <title>AptMQL-Bench: From Text-to-SQL to Text-to-MQL via Access-Pattern Schema Design and Data-Preserving Migration</title>
+    <updated>2026-10-02T03:54:06Z</updated>
+    <link href="https://arxiv.org/abs/2610.02770v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02770v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Document databases such as MongoDB are core infrastructure for modern applications, and natural-language interfaces to them---text-to-MQL---would let non-experts query complex, semi-structured data without mastering the query language. Progress on this task depends on high-quality benchmarks, which are most practically obtained [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.DB" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T03:54:06Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Hy Nguyen</name>
+    </author>
+    <author>
+      <name>Nabi Rezvani</name>
+    </author>
+    <author>
+      <name>Robin Vujanic</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02617v1</id>
+    <title>WebUIProof: Benchmarking WebUI Code Generators with UI-Agent Execution Harness</title>
+    <updated>2026-10-02T00:17:11Z</updated>
+    <link href="https://arxiv.org/abs/2610.02617v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02617v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Evaluating WebUI code generation at scale is difficult: outputs may compile and look plausible yet fail under user interaction, and prior benchmarks largely rely on free-form prompts with static checks (build success, screenshots) that miss functional correctness. We introduce WebUIProof, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.MA" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T00:17:11Z</published>
+    <arxiv:comment>43 pages</arxiv:comment>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Yun-Yun Tsai</name>
+    </author>
+    <author>
+      <name>Yuning Mao</name>
+    </author>
+    <author>
+      <name>Shiqi Wang</name>
+    </author>
+    <author>
+      <name>Junfeng Yang</name>
+    </author>
+    <author>
+      <name>Sinong Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39140v1</id>
+    <title>Schema: Discovering Unknown Environments via Agentic Program Induction</title>
+    <updated>2026-09-30T07:08:31Z</updated>
+    <link href="https://arxiv.org/abs/2609.39140v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39140v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Learning to complete tasks in unfamiliar environments with unknown rules remains a key challenge for LLM agents. Current LLM agents often record their discoveries in prose, which may not provide a compact, explicit account of how the environment works. Inspired [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T07:08:31Z</published>
+    <arxiv:comment>Project Website: https://schema-harness.github.io/</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Guanning Zeng</name>
+    </author>
+    <author>
+      <name>Jiani Wang</name>
+    </author>
+    <author>
+      <name>Wenjie Ma</name>
+    </author>
+    <author>
+      <name>Shaofeng Yin</name>
+    </author>
+    <author>
+      <name>Chenyang Wang</name>
+    </author>
+    <author>
+      <name>Shichen Liu</name>
+    </author>
+    <author>
+      <name>Angjoo Kanazawa</name>
+    </author>
+    <author>
+      <name>Wode Ni</name>
+    </author>
+    <author>
+      <name>Xiuyu Li</name>
+    </author>
+    <author>
+      <name>Andrea Zanette</name>
+    </author>
+    <author>
+      <name>Haiwen Feng</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39086v1</id>
+    <title>Trustworthy Runtime Error Healing in Real-World Repositories: A Benchmark and Guardrail</title>
+    <updated>2026-09-30T06:26:07Z</updated>
+    <link href="https://arxiv.org/abs/2609.39086v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39086v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Runtime error healing lets a crashed program continue by generating code that repairs its live runtime state. Recent work shows that LLMs can generate such healing code, but it is evaluated only on small competition programs, and executing LLM-generated code [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T06:26:07Z</published>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Gou Tan</name>
+    </author>
+    <author>
+      <name>Pengfei Chen</name>
+    </author>
+    <author>
+      <name>Zhensu Sun</name>
+    </author>
+    <author>
+      <name>Jieke Shi</name>
+    </author>
+    <author>
+      <name>Junkai Chen</name>
+    </author>
+    <author>
+      <name>Ting Zhang</name>
+    </author>
+    <author>
+      <name>Weifeng Sun</name>
+    </author>
+    <author>
+      <name>Junda He</name>
+    </author>
+    <author>
+      <name>Shuai Liang</name>
+    </author>
+    <author>
+      <name>Chuanfu Zhang</name>
+    </author>
+    <author>
+      <name>Lwin Khin Shar</name>
+    </author>
+    <author>
+      <name>David Lo</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03213v1</id>
+    <title>Toward SLM-based agentic task-tool intent matching</title>
+    <updated>2026-10-02T12:31:01Z</updated>
+    <link href="https://arxiv.org/abs/2610.03213v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03213v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Tool-equipped AI agents use tool calls to access data and act on external systems. Horizontal growth of agentic systems increases the number of these interactions, and further motivates the need for automated, per-call oversight that can operate at low latency [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T12:31:01Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Chiara Troiani</name>
+    </author>
+    <author>
+      <name>Arash Salarian</name>
+    </author>
+    <author>
+      <name>Majed El Helou</name>
+    </author>
+    <author>
+      <name>Benjamin Ryder</name>
+    </author>
+    <author>
+      <name>Jean Diaconu</name>
+    </author>
+    <author>
+      <name>Hervé Muyal</name>
+    </author>
+    <author>
+      <name>Marcelo Yannuzzi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.40303v1</id>
+    <title>How Much of a Harness Does a Strong Agent Need for Autonomous ML Engineering?</title>
+    <updated>2026-09-30T17:51:30Z</updated>
+    <link href="https://arxiv.org/abs/2609.40303v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.40303v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent autonomous machine learning engineering (MLE) agents have made significant progress on public leaderboards. Often motivated by progress stagnation over long-horizon cycles and limited Large Language Model (LLM) primitives, modern MLE agents are deployed on top of increasingly elaborate machinery: [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T17:51:30Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Kirill Brilliantov</name>
+    </author>
+    <author>
+      <name>Alejandro Hernández-Cano</name>
+    </author>
+    <author>
+      <name>Emmanuel Abbé</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38885v1</id>
+    <title>Doing More with Less Tokens: Hierarchical Reinforcement Learning for Efficient Coding Agents</title>
+    <updated>2026-09-30T03:34:39Z</updated>
+    <link href="https://arxiv.org/abs/2609.38885v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38885v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recently, coding agents have emerged as a dominant paradigm for real-world software engineering (SWE) scenarios, which solve complex tasks through multi-turn interactions with development environments. However, frequent interactions with environments would inevitably introduce substantial token overhead, leading to high usage [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T03:34:39Z</published>
+    <arxiv:comment>20 pages, 9 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Haobin Li</name>
+    </author>
+    <author>
+      <name>Liang Jiang</name>
+    </author>
+    <author>
+      <name>Zhenyu Huang</name>
+    </author>
+    <author>
+      <name>Mouxing Yang</name>
+    </author>
+    <author>
+      <name>Xi Peng</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39564v1</id>
+    <title>A2Z GameSpec-Bench: How Faithfully Can Coding Agents Generate Games from Game Design Specifications?</title>
+    <updated>2026-09-30T12:00:50Z</updated>
+    <link href="https://arxiv.org/abs/2609.39564v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39564v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Delegating complete application development to coding agents requires preserving the intended design rather than simply producing plausible outputs through naive prompting. Game development provides a demanding testbed, as long-form Game Design Documents (GDDs) describe requirements that must work together across [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T12:00:50Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Seonho Lee</name>
+    </author>
+    <author>
+      <name>Wonryeol Jeong</name>
+    </author>
+    <author>
+      <name>Alberto Cereser</name>
+    </author>
+    <author>
+      <name>Inha Kang</name>
+    </author>
+    <author>
+      <name>Hyeonjong Kim</name>
+    </author>
+    <author>
+      <name>Seungmin Kwak</name>
+    </author>
+    <author>
+      <name>Dongmin Park</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.01023v1</id>
+    <title>Groundability, Not Scale Alone: When Weak Reviewers Can Audit Strong Coding Agents</title>
+    <updated>2026-10-01T04:10:59Z</updated>
+    <link href="https://arxiv.org/abs/2610.01023v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.01023v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Coding agents can return plausible patches that omit required behavior. These failures are hard to review because long traces and confident summaries often hide what was missed. We ask when a nominally weaker reviewer can reliably decide whether a patch [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T04:10:59Z</published>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Junyu Guo</name>
+    </author>
+    <author>
+      <name>Shangding Gu</name>
+    </author>
+    <author>
+      <name>Ming Jin</name>
+    </author>
+    <author>
+      <name>Javad Lavaei</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.00890v1</id>
+    <title>Cross-Benchmark Transfer from RL on Agentic Coding Tasks</title>
+    <updated>2026-10-01T01:12:24Z</updated>
+    <link href="https://arxiv.org/abs/2610.00890v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.00890v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Coding agents often fail in the last mile: they build most of a feature but drop a requirement, test only the cases their implementation already handles, break behavior that was supposed to stay intact, or validate against an unchecked assumption. [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T01:12:24Z</published>
+    <arxiv:comment>15 pages, 2 figures, 4 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Sushant Mehta</name>
+    </author>
+    <author>
+      <name>Logan Ritchie</name>
+    </author>
+    <author>
+      <name>Edwin Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03093v1</id>
+    <title>LS-AR: Future-Predictive Latent Steering in Autoregressive LLMs</title>
+    <updated>2026-10-02T10:13:58Z</updated>
+    <link href="https://arxiv.org/abs/2610.03093v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03093v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Standard autoregressive (AR) models process high-level task instructions, state history, and transient tokens within a single shared sequence of tokens. Consequently, they lack the architectural mechanisms needed to isolate macro-objectives from context noise. To overcome this single-channel limitation, we introduce [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T10:13:58Z</published>
+    <arxiv:comment>Accepted at the NeurIPS 2026 Workshop: Long-Context Foundation Models</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Anubha Gupta</name>
+    </author>
+    <author>
+      <name>Eduardo Pignatelli</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02267v1</id>
+    <title>Fast Models, Slow Evidence: A Paired and Self-Audited Evaluation of System-1 Decision Models for LLM Agent Harnesses</title>
+    <updated>2026-10-01T05:57:14Z</updated>
+    <link href="https://arxiv.org/abs/2610.02267v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02267v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Agent harnesses make many small, typed decisions per task: which model to call, which tool to use, whether retrieved text is relevant, whether an input carries an injection. System-1 decision models answer such questions in a single forward pass with [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T05:57:14Z</published>
+    <arxiv:comment>11 pages, 7 figures. Code and data: https://github.com/David-DL-Space/sys1-eval</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Jiawei Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.40324v2</id>
+    <title>Cogentic: Multi-Agent Orchestration for Automated Proof Discovery</title>
+    <updated>2026-10-01T21:13:54Z</updated>
+    <link href="https://arxiv.org/abs/2609.40324v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.40324v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We present Cogentic, a multi-agent harness for automated proof discovery on open research problems. While frontier language models can generate strong mathematical ideas in a single shot, single-shot generation is often insufficient for open problems that require exploring multiple competing [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.GT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T17:55:22Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Yang Cai</name>
+    </author>
+    <author>
+      <name>Vineet Gupta</name>
+    </author>
+    <author>
+      <name>Yanchen Jiang</name>
+    </author>
+    <author>
+      <name>Christopher Liaw</name>
+    </author>
+    <author>
+      <name>Aranyak Mehta</name>
+    </author>
+    <author>
+      <name>Grigoris Velegkas</name>
+    </author>
+    <author>
+      <name>Di Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02456v1</id>
+    <title>SideKernel: A Usable microVM Sandbox for AI Coding Agents on macOS</title>
+    <updated>2026-10-01T20:30:13Z</updated>
+    <link href="https://arxiv.org/abs/2610.02456v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02456v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>AI coding agents are untrusted system components, yet they require autonomy on the developer machines they run on. This contradiction is a security problem. Sandboxes provide an isolated environment, but for local macOS development, the existing local, open-source options for [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T20:30:13Z</published>
+    <arxiv:comment>17 pages, 5 figures, 9 tables. Georgia Tech M.S. Cybersecurity practicum project</arxiv:comment>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Dimitrios Prasakis</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02001v1</id>
+    <title>Mingbird: A Local-First Agent Harness Enabling Small Open Models to Complete Real Tasks</title>
+    <updated>2026-10-01T16:32:07Z</updated>
+    <link href="https://arxiv.org/abs/2610.02001v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02001v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Small open-weight models (2-9B) run on ordinary laptops, but under cloud-scale agent harnesses they rarely complete real tasks: tool prefill overflows the context, self-correction diverges, tool demonstrations loop, and tasks are silently abandoned. We present evidence, from a controlled single-machine [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T16:32:07Z</published>
+    <arxiv:comment>44 pages, 9 figures. Code, benchmark protocol, scoring code, and all 288 per-cell results: https://github.com/Mingbird/Mingbird-agent</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Hao Wang</name>
+    </author>
+    <author>
+      <name>Ting Huang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39304v2</id>
+    <title>Scale and Selection: What Makes Automatic Harness Evolution Work for Visual-Interface Robot Agents</title>
+    <updated>2026-10-09T10:29:04Z</updated>
+    <link href="https://arxiv.org/abs/2609.39304v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39304v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>When an off-the-shelf coding agent is used directly as a robot policy, observing a browser-based 3D interface through screenshots and acting by posing a virtual target gripper through a few tools, the agent's harness, its prompts, tools, and control rules, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T08:46:38Z</published>
+    <arxiv:comment>13 pages, 4 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Zhijie Wei</name>
+    </author>
+    <author>
+      <name>Ferris Tan</name>
+    </author>
+    <author>
+      <name>Jinghui Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02432v2</id>
+    <title>Evaluating and Improving the Robustness of Large Language Models to Input Sequence Variations</title>
+    <updated>2026-10-08T11:37:16Z</updated>
+    <link href="https://arxiv.org/abs/2610.02432v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02432v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) in production systems face prompt injections, trojans (backdoors), and manipulation of automatic quality metrics. This thesis develops models, methods, and algorithms for evaluating and improving LLM robustness to adversarial input sequence variations. We propose R_stab(f), a [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T19:57:56Z</published>
+    <arxiv:comment>PhD thesis, 2026. 118 pages. v2: corrected a name spelling in the acknowledgements</arxiv:comment>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Narek Maloyan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.37737v1</id>
+    <title>Where Do LLMs Decide to Break the Rules? Mechanistic Localization of Prompt Injection Compliance</title>
+    <updated>2026-09-29T14:54:21Z</updated>
+    <link href="https://arxiv.org/abs/2609.37737v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.37737v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>When a prompt injection attack succeeds, a Large Language Model (LLM) abandons its assigned system role to comply with an adversarial instruction. While prior work has extensively quantified how often this occurs, we ask a more fundamental question: where inside [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T14:54:21Z</published>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Rui Wen</name>
+    </author>
+    <author>
+      <name>Jiayang Liu</name>
+    </author>
+    <author>
+      <name>Zeyu Yang</name>
+    </author>
+    <author>
+      <name>Jun Sakuma</name>
+    </author>
+    <author>
+      <name>Lu Sun</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.01768v1</id>
+    <title>The Innocent Courier: Covert Exfiltration Through Legitimate LLM Web Fetching</title>
+    <updated>2026-10-01T14:25:55Z</updated>
+    <link href="https://arxiv.org/abs/2610.01768v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.01768v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>With the increasing capabilities of Large-Language-Models (LLMs) and LLM-based agents, users are increasingly using them to solve everyday problems, such as answering e-mails or providing programming support. Existing work has extensively investigated security and privacy risks, such as prompt injections [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T14:25:55Z</published>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Alessandro Pegoraro</name>
+    </author>
+    <author>
+      <name>Daryan Merx</name>
+    </author>
+    <author>
+      <name>Phillip Rieger</name>
+    </author>
+    <author>
+      <name>Ahmad-Reza Sadeghi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.01508v1</id>
+    <title>OverAct: Measuring and Mitigating Proactive Over-Authorization in LLM Tool-Calling Agents</title>
+    <updated>2026-10-01T11:44:45Z</updated>
+    <link href="https://arxiv.org/abs/2610.01508v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.01508v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>LLM agents with tool-calling capabilities can access external services and private user data, but they may retrieve more information than a user's request explicitly requires. We study this behavior in structured tool-calling agents and term it proactive over-authorization. This setting [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T11:44:45Z</published>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Taolin Zhang</name>
+    </author>
+    <author>
+      <name>Jiuheng Wan</name>
+    </author>
+    <author>
+      <name>Hanyu Wang</name>
+    </author>
+    <author>
+      <name>Tingyuan Hu</name>
+    </author>
+    <author>
+      <name>Chengyu Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04432v3</id>
+    <title>Video2World: Benchmarking Coding Agents for Interactive World Modeling from Embodied Videos</title>
+    <updated>2026-10-09T05:21:02Z</updated>
+    <link href="https://arxiv.org/abs/2610.04432v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04432v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Building interactive simulators from real-world observations is a promising way to scale embodied data, but current pipelines still rely heavily on manual environment construction and calibration. We study whether frontier foundation models and coding agents can automate this process end [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-03T10:46:52Z</published>
+    <arxiv:comment>Project page: https://aetherlabsai.github.io/Video2World</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Jinzhou Tang</name>
+    </author>
+    <author>
+      <name>Zijun Zhang</name>
+    </author>
+    <author>
+      <name>Jing Yang</name>
+    </author>
+    <author>
+      <name>Yuchen Yan</name>
+    </author>
+    <author>
+      <name>Kun Zhou</name>
+    </author>
+    <author>
+      <name>Lingjun Mao</name>
+    </author>
+    <author>
+      <name>Ruobing Han</name>
+    </author>
+    <author>
+      <name>Jinglin Cao</name>
+    </author>
+    <author>
+      <name>Wenpeng Xu</name>
+    </author>
+    <author>
+      <name>Lukun He</name>
+    </author>
+    <author>
+      <name>Minghao Fu</name>
+    </author>
+    <author>
+      <name>Fan Feng</name>
+    </author>
+    <author>
+      <name>Biwei Huang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.00850v1</id>
+    <title>AuraForge: Scaling Security Supervision for Training Coding Agents</title>
+    <updated>2026-10-01T00:07:01Z</updated>
+    <link href="https://arxiv.org/abs/2610.00850v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.00850v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Coding agents are now proficient enough to generate complex software applications from a single prompt. As their capabilities have grown, human oversight has increasingly shifted from line-by-line code review toward hands-off evaluation of outcomes. However, recent studies have shown that [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T00:07:01Z</published>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Danqing Wang</name>
+    </author>
+    <author>
+      <name>Songwen Zhao</name>
+    </author>
+    <author>
+      <name>Harsh Sharma</name>
+    </author>
+    <author>
+      <name>Jierui Wang</name>
+    </author>
+    <author>
+      <name>Andre Vicente Duarte</name>
+    </author>
+    <author>
+      <name>Ivan Bercovich</name>
+    </author>
+    <author>
+      <name>Lei Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.36570v1</id>
+    <title>CounterSteer: Suppressing Indirect Prompt Injection with Activation Steering</title>
+    <updated>2026-09-29T02:51:31Z</updated>
+    <link href="https://arxiv.org/abs/2609.36570v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.36570v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Indirect prompt injection makes an LLM agent treat untrusted retrieved text as instructions. We present CounterSteer, an inference-time defense that suppresses this behavior inside the model. Per model, a five-step recipe fits a residual-stream direction from paired episodes differing only [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T02:51:31Z</published>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Mark Russinovich</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.37196v1</id>
+    <title>ToolFence: Fine-Grained Authorization for Secure Tool-Using LLM Agents</title>
+    <updated>2026-09-29T10:16:01Z</updated>
+    <link href="https://arxiv.org/abs/2609.37196v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.37196v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Tool-using LLM agents remain vulnerable to indirect prompt injection because trusted instructions and untrusted observations share one context, allowing malicious content to steer consequential input-filtering defenses. Multi-path consensus defenses still leave a high attack success rate because they examine content [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T10:16:01Z</published>
+    <arxiv:comment>9 pages, 4 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Yanjie Li</name>
+    </author>
+    <author>
+      <name>Xiangyu He</name>
+    </author>
+    <author>
+      <name>Xuelong Dai</name>
+    </author>
+    <author>
+      <name>Bin Xiao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39081v1</id>
+    <title>Coding Agents for Coding Theory</title>
+    <updated>2026-09-30T06:17:28Z</updated>
+    <link href="https://arxiv.org/abs/2609.39081v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39081v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We spent five weeks using an LLM coding agent on open problems in coding theory: finding large sets of four-letter words, such as DNA barcodes, that stay far apart in edit distance. The agent wrote the verifiers and search code; [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T06:17:28Z</published>
+    <arxiv:comment>Accepted at the 6th Workshop on Mathematical Reasoning and AI (MATH-AI), NeurIPS 2026. 20 pages, 1 figure, 2 tables. Code and data: https://github.com/Abraham-y/coding-agents-coding-theory</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Abraham Yeung</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02413v1</id>
+    <title>Prompted to Discriminate: Generalizing Malicious-Input Probes in the Wild</title>
+    <updated>2026-10-01T19:36:57Z</updated>
+    <link href="https://arxiv.org/abs/2610.02413v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02413v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>LLM agents increasingly rely on activation probes as runtime monitors for prompt injection, jailbreaks, and unsafe requests, reading the model's own hidden state to catch a harmful input before the agent acts on it. A cheap, increasingly common move, borrowed [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T19:36:57Z</published>
+    <arxiv:comment>40th Conference on Neural Information Processing Systems (NeurIPS 2026). Workshop: Agents in the Wild: Safety, Security, and Beyond</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Elad David</name>
+    </author>
+    <author>
+      <name>Max Fomin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39957v1</id>
+    <title>Learning When and How to Intervene: A Hindsight-Distilled Sentinel for Coding Agents</title>
+    <updated>2026-09-30T15:26:16Z</updated>
+    <link href="https://arxiv.org/abs/2609.39957v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39957v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Coding agents solve repository-level tasks through sequences of actions, where a single erroneous action can misdirect subsequent decisions and increase recovery costs. Existing approaches use execution feedback for recovery or specialized checks to block errors, but deciding before execution whether [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T15:26:16Z</published>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Jiangrui Zhao</name>
+    </author>
+    <author>
+      <name>Chenglong Li</name>
+    </author>
+    <author>
+      <name>Meng Zhang</name>
+    </author>
+    <author>
+      <name>Xiaoting Du</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02952v1</id>
+    <title>GTDD: Generative Test-Driven Development for AI Coding Agents with Adversarial Testing</title>
+    <updated>2026-10-02T07:45:33Z</updated>
+    <link href="https://arxiv.org/abs/2610.02952v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02952v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Test-driven development gives AI coding agents executable requirements for implementing software. Because these agents can adapt their implementations to the examples they observe, passing a predetermined collection of tests can leave substantial parts of the intended behavior unimplemented. We propose [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ME" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T07:45:33Z</published>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Masahiro Kato</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.01108v2</id>
+    <title>AgSpec: Pushing the Limits of Retrieval-Based Speculative Decoding in Coding Agent Pipelines</title>
+    <updated>2026-10-06T05:37:48Z</updated>
+    <link href="https://arxiv.org/abs/2610.01108v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.01108v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-based speculative decoding (SD) drafts tokens by copying continuations from existing text, which suits coding agents that repeatedly reproduce code, logs, and earlier attempts. Yet existing methods fall short in agent pipelines: much of the reusable text is missing from [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T05:48:29Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Sumin Lee</name>
+    </author>
+    <author>
+      <name>Sukmin Cho</name>
+    </author>
+    <author>
+      <name>Seungjae Lim</name>
+    </author>
+    <author>
+      <name>Youngjin Kwon</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03797v3</id>
+    <title>WAMJET: A Harness for World Action Model Acceleration</title>
+    <updated>2026-10-07T09:58:37Z</updated>
+    <link href="https://arxiv.org/abs/2610.03797v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03797v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>World Action Models (WAMs) leverage pretrained video foundation models for robot manipulation, but their large backbones and video-action co-prediction are expensive. Although existing acceleration techniques offer many ways to reduce this cost, selecting and composing them requires substantial engineering for [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T04:26:18Z</published>
+    <arxiv:comment>8 pages, 3 figures, project page: https://liulixinkerry.github.io/WAMJET/index.html</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Le Chen</name>
+    </author>
+    <author>
+      <name>Lixin Liu</name>
+    </author>
+    <author>
+      <name>Jan Schneider</name>
+    </author>
+    <author>
+      <name>Zeju Qiu</name>
+    </author>
+    <author>
+      <name>Simon Guist</name>
+    </author>
+    <author>
+      <name>Bernhard Schölkopf</name>
+    </author>
+    <author>
+      <name>Dieter Büchler</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02488v2</id>
+    <title>Harnessing LLMs as Agents: What Does It Cost?</title>
+    <updated>2026-10-06T18:59:26Z</updated>
+    <link href="https://arxiv.org/abs/2610.02488v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02488v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Language-model agents increasingly rely on harnesses that manage bounded context, persistent memory, tools, verification, and repeated execution, yet existing notions of model capability do not quantify the computational resources these mechanisms consume. We introduce the Language Model Agent Machine (LAM), [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T21:05:49Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Zelin Zhao</name>
+      <arxiv:affiliation>Georgia Institute of Technology</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Xinyu Guo</name>
+      <arxiv:affiliation>Georgia Institute of Technology</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Jingyuan Zhang</name>
+      <arxiv:affiliation>Georgia Institute of Technology</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Yuxuan Zhang</name>
+      <arxiv:affiliation>Etude AI</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Yongxin Chen</name>
+      <arxiv:affiliation>Georgia Institute of Technology</arxiv:affiliation>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38822v1</id>
+    <title>SkillSeek: Revisiting Agent Skill Retrieval at Marketplace Scale</title>
+    <updated>2026-09-30T02:46:59Z</updated>
+    <link href="https://arxiv.org/abs/2609.38822v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38822v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Anthropic's Agent Skills package reusable procedural know-how for an LLM agent into SKILL.md directories, and open-source aggregations have grown past 230,000 skills, making selection rather than authoring the bottleneck. The standing answer in the literature outsources selection to the agent [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.MA" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T02:46:59Z</published>
+    <arxiv:comment>Accepted at AACL-IJCNLP 2026. Code at https://github.com/guanqun-yang/SkillSeek</arxiv:comment>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Guanqun Yang</name>
+    </author>
+    <author>
+      <name>Wenlong Zhang</name>
+    </author>
+    <author>
+      <name>Tian Shi</name>
+    </author>
+    <author>
+      <name>Ping Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38983v1</id>
+    <title>Approval Laundering: Systematizing Approval--Execution Binding Failures in AI Coding-Agent Harnesses</title>
+    <updated>2026-09-30T04:59:15Z</updated>
+    <link href="https://arxiv.org/abs/2609.38983v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38983v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Modern AI coding-agent harnesses (Claude Code, Codex CLI, Cursor) rest their security boundary on a largely unexamined assumption: that the action A a human approves is the same action A' the harness executes, where A is fixed by a stated [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T04:59:15Z</published>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Yang Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.40169v1</id>
+    <title>Learning from Research: Toward Lifelong Agent Harness Evolution</title>
+    <updated>2026-09-30T17:00:38Z</updated>
+    <link href="https://arxiv.org/abs/2609.40169v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.40169v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Language agents are expected to solve increasingly complex tasks, creating a growing need for continual improvement. One promising approach is to evolve the agent harness, the software that governs tool use, memory management, and task execution, while keeping the underlying [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T17:00:38Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Jingbo Yang</name>
+    </author>
+    <author>
+      <name>Kwei-Herng Lai</name>
+    </author>
+    <author>
+      <name>Xiaowen Wang</name>
+    </author>
+    <author>
+      <name>Yaar Harari</name>
+    </author>
+    <author>
+      <name>Evgeniy Gabrilovich</name>
+    </author>
+    <author>
+      <name>Shiyu Chang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.36647v1</id>
+    <title>CTE-Bench: Counterfactual Trace Evaluation for Stateful Software Simulators</title>
+    <updated>2026-09-29T03:49:10Z</updated>
+    <link href="https://arxiv.org/abs/2609.36647v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.36647v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Coding agents change running software: they patch a service's code or overwrite its stored state, and then act on their own expectation of how the service will respond afterwards. A wrong expectation may surface only several calls later. Function-level code-execution [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T03:49:10Z</published>
+    <arxiv:comment>Accepted at NeurIPS 2026 (Track on Evaluations and Datasets). Dataset: https://huggingface.co/datasets/zhangxr7/cte-bench-core-v1</arxiv:comment>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Xinran Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38147v1</id>
+    <title>Thinking Before Thinking: Scaling Agentic Inference Through Meta-Reasoning</title>
+    <updated>2026-09-29T17:57:25Z</updated>
+    <link href="https://arxiv.org/abs/2609.38147v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38147v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>As agents take on longer and more complex problems, controlling the execution becomes a task in its own right. Each step in the run brings new control choices, like which partial work to build on, whether to start fresh, or [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T17:57:25Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Paras Dahal</name>
+    </author>
+    <author>
+      <name>Anton Bakhtin</name>
+    </author>
+    <author>
+      <name>Taco Cohen</name>
+    </author>
+    <author>
+      <name>Zhengxing Chen</name>
+    </author>
+    <author>
+      <name>Carole-Jean Wu</name>
+    </author>
+    <author>
+      <name>Rob Fergus</name>
+    </author>
+    <author>
+      <name>Scott Yih</name>
+    </author>
+    <author>
+      <name>Gabriel Synnaeve</name>
+    </author>
+    <author>
+      <name>Ruslan Salakhutdinov</name>
+    </author>
+    <author>
+      <name>Sanjeev Arora</name>
+    </author>
+    <author>
+      <name>Jason Weston</name>
+    </author>
+    <author>
+      <name>Anirudh Goyal</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.39958v1</id>
+    <title>Better Deck or Different Judge? Evaluating Agentic Harness Gains in Corporate and Investment Banking</title>
+    <updated>2026-09-30T15:27:46Z</updated>
+    <link href="https://arxiv.org/abs/2609.39958v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.39958v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Corporate and investment banking teams use presentations to support credit decisions and advise clients on financing and transactions. Producing these decks requires reconciling financial data, tracing sources and turning analysis into a recommendation. We retrospectively study the development of an [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T15:27:46Z</published>
+    <arxiv:comment>13 pages, 8 figures, 9 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Ludovic Gibert</name>
+    </author>
+    <author>
+      <name>Matis Despujols</name>
+    </author>
+    <author>
+      <name>Andre-Louis Rochet</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.00650v1</id>
+    <title>Self-Evolving Coding Rules for AI Coding Agents</title>
+    <updated>2026-09-30T19:51:41Z</updated>
+    <link href="https://arxiv.org/abs/2610.00650v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.00650v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The performance of AI coding agents is highly dependent on their underlying coding rules. However, existing coding rules are typically hand-crafted and fixed, making the process labor-intensive and often suboptimal. In this work, we propose RuleEvolve, a self-evolving framework for [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T19:51:41Z</published>
+    <arxiv:comment>Accepted by NeurIPS 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Zhengyuan Jiang</name>
+    </author>
+    <author>
+      <name>Reachal Wang</name>
+    </author>
+    <author>
+      <name>Yuepeng Hu</name>
+    </author>
+    <author>
+      <name>Yupu Wang</name>
+    </author>
+    <author>
+      <name>Yuqi Jia</name>
+    </author>
+    <author>
+      <name>Neil Zhenqiang Gong</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.00648v1</id>
+    <title>Incident-Arena: Getting agents to the last nine of reliability</title>
+    <updated>2026-09-30T19:50:42Z</updated>
+    <link href="https://arxiv.org/abs/2610.00648v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.00648v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>AI coding agents are ubiquitous in engineering workflows amongst industry and academia. Yet, despite their use in app coding, relatively less attention has been paid to their ability to execute on production incident response. This emerging field, termed agentic site-reliability-engineering [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T19:50:42Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Andre Fu</name>
+    </author>
+    <author>
+      <name>Malik Drabla</name>
+    </author>
+    <author>
+      <name>Leon Liu</name>
+    </author>
+    <author>
+      <name>Meji Abidoye</name>
+    </author>
+    <author>
+      <name>Marek Suppa</name>
+    </author>
+    <author>
+      <name>Lata Mishra</name>
+    </author>
+    <author>
+      <name>Adnan El Assadi</name>
+    </author>
+    <author>
+      <name>Yiyuan Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.36879v1</id>
+    <title>SKILLLITE: Evidence-Guided Malicious Skill Auditing with Compact LLMs</title>
+    <updated>2026-09-29T07:11:33Z</updated>
+    <link href="https://arxiv.org/abs/2609.36879v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.36879v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>As LLM-based agents perform increasingly complex tasks, Agent Skills have emerged as a flexible mechanism for extending their capabilities. An Agent Skill packages task-specific instructions with executable components and auxiliary resources to provide specialized functionalities. However, the growing adoption of [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T07:11:33Z</published>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Haoran Ou</name>
+    </author>
+    <author>
+      <name>Gelei Deng</name>
+    </author>
+    <author>
+      <name>Xuanye Zhang</name>
+    </author>
+    <author>
+      <name>Wenbo Guo</name>
+    </author>
+    <author>
+      <name>Tianwei Zhang</name>
+    </author>
+    <author>
+      <name>Kwok-Yan Lam</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.36800v1</id>
+    <title>AI as a Compiler: Compiling Triton kernels without the Triton compiler</title>
+    <updated>2026-09-29T06:13:10Z</updated>
+    <link href="https://arxiv.org/abs/2609.36800v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.36800v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Compiler backends are expensive to build and maintain as programming models, workloads, and accelerators evolve. We investigate whether large language models can replace the conventional optimizing and lowering pipeline, a process that we call AI lowering. We study AI lowering [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T06:13:10Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>François Costa</name>
+    </author>
+    <author>
+      <name>Charly Castes</name>
+    </author>
+    <author>
+      <name>Thomas Bourgeat</name>
+    </author>
+    <author>
+      <name>Azalia Mirhoseini</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.36746v1</id>
+    <title>EASE: Behavior-Adaptive Skill Curation for Self-Evolving Agents</title>
+    <updated>2026-09-29T05:18:24Z</updated>
+    <link href="https://arxiv.org/abs/2609.36746v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.36746v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Agent skills provide a lightweight mechanism for self-evolving agents to accumulate reusable procedural knowledge without updating model parameters. However, existing learned skill curators typically optimize curation without explicitly modeling downstream executor behavior. We show that this can cause systematic cross-executor [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T05:18:24Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Zhen Xiong</name>
+    </author>
+    <author>
+      <name>Qiaoyu Tan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38024v1</id>
+    <title>Retrieval-Augmented Skill Optimization via Cross-Harness Adaptation</title>
+    <updated>2026-09-29T17:06:43Z</updated>
+    <link href="https://arxiv.org/abs/2609.38024v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38024v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>An agent skill is a reusable, actionable natural-language artifact that guides an agent to perform a task effectively under a given harness. Recent studies have explored the optimization of agent skills, contributing to a growing collection of publicly available skills [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T17:06:43Z</published>
+    <arxiv:comment>16 pages</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Jaewon Chu</name>
+    </author>
+    <author>
+      <name>Ji Soo Lee</name>
+    </author>
+    <author>
+      <name>Jihwan Park</name>
+    </author>
+    <author>
+      <name>Dohwan Ko</name>
+    </author>
+    <author>
+      <name>Jeehye Na</name>
+    </author>
+    <author>
+      <name>Seunghun Lee</name>
+    </author>
+    <author>
+      <name>Taehoon Lee</name>
+    </author>
+    <author>
+      <name>Minseo Yoon</name>
+    </author>
+    <author>
+      <name>Minseok Joo</name>
+    </author>
+    <author>
+      <name>Yunyang Xiong</name>
+    </author>
+    <author>
+      <name>Hyunwoo J. Kim</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04716v1</id>
+    <title>Towards Automatically Pruning Logging Code with Coding Agents: How Far Are We?</title>
+    <updated>2026-10-03T19:11:19Z</updated>
+    <link href="https://arxiv.org/abs/2610.04716v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04716v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Logging code supports debugging, monitoring, and software maintenance, but excessive logging can add noise, impose runtime overhead, and obscure diagnostic information. While prior research has extensively studied logging code generation and modification, logging removal remains comparatively underexplored. In this paper, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-03T19:11:19Z</published>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>He Yang Yuan</name>
+    </author>
+    <author>
+      <name>Haonan Zhang</name>
+    </author>
+    <author>
+      <name>Xin Wang</name>
+    </author>
+    <author>
+      <name>An Ran Chen</name>
+    </author>
+    <author>
+      <name>Kisub Kim</name>
+    </author>
+    <author>
+      <name>Zishuo Ding</name>
+    </author>
+    <author>
+      <name>Zhenhao Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04641v1</id>
+    <title>Back to the Future: Regressing Readability Features from LLMs</title>
+    <updated>2026-10-03T16:31:50Z</updated>
+    <link href="https://arxiv.org/abs/2610.04641v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04641v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Code readability supports software understanding, review, and maintenance. As AI coding agents become more widely used, readable code helps both humans review agent-generated output and agents maintain code within limited context windows. Yet existing readability models do not consistently agree [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-03T16:31:50Z</published>
+    <arxiv:comment>39 pages, including appendices</arxiv:comment>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Tairan Wang</name>
+    </author>
+    <author>
+      <name>Earl T. Barr</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.00885v1</id>
+    <title>FORALL-LEAN-AGENT for Auditable Reasoning in Formal Mathematics and Software Verification</title>
+    <updated>2026-10-01T01:00:35Z</updated>
+    <link href="https://arxiv.org/abs/2610.00885v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.00885v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Coding agents increasingly automate Lean proof development, but successful compilation alone does not establish that a candidate proves the intended statement under acceptable assumptions. We present FORALL-LEAN-AGENT, a frontend-agnostic framework for auditable reasoning in formal mathematics and software verification. The [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T01:00:35Z</published>
+    <arxiv:comment>Accepted to NeurIPS 2026 VeriCodeGen</arxiv:comment>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Naing Oo Lwin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02331v1</id>
+    <title>World Editing: Intervening on Executable Worlds at Increasing Depth</title>
+    <updated>2026-10-01T18:05:47Z</updated>
+    <link href="https://arxiv.org/abs/2610.02331v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02331v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Interactive world models are increasingly capable of generating environments and acting within them, yet deliberately editing an existing executable world remains underexplored. We formulate world editing as intervening on an existing world while preserving properties that should remain unchanged, and [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T18:05:47Z</published>
+    <arxiv:comment>Preprint. Project page: https://vinesmsuic.github.io/IGMWorld/</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Max Ku</name>
+    </author>
+    <author>
+      <name>Nok-Kan Law</name>
+    </author>
+    <author>
+      <name>Yu-Chien Tang</name>
+    </author>
+    <author>
+      <name>Shih-Ying Yeh</name>
+    </author>
+    <author>
+      <name>Ping Nie</name>
+    </author>
+    <author>
+      <name>Andy Zheng</name>
+    </author>
+    <author>
+      <name>Tat Hei Lai</name>
+    </author>
+    <author>
+      <name>Fei-Yueh Chen</name>
+    </author>
+    <author>
+      <name>Nikko Yu</name>
+    </author>
+    <author>
+      <name>Wei-Chieh Sun</name>
+    </author>
+    <author>
+      <name>Suzy Huang</name>
+    </author>
+    <author>
+      <name>Chiao-Wei Hsu</name>
+    </author>
+    <author>
+      <name>Chih-Chuan Huang</name>
+    </author>
+    <author>
+      <name>Chak-Wing Mak</name>
+    </author>
+    <author>
+      <name>Ho Yin Sam Ng</name>
+    </author>
+    <author>
+      <name>Edisy Kin Wai Chan</name>
+    </author>
+    <author>
+      <name>Min-Hung Chen</name>
+    </author>
+    <author>
+      <name>Ho Kei Cheng</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02616v1</id>
+    <title>VERSE: Verified Self-Evolving Optimizer for Agent Harnesses</title>
+    <updated>2026-10-02T00:16:30Z</updated>
+    <link href="https://arxiv.org/abs/2610.02616v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02616v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Harness evolution improves an LLM agent's prompts, tools, and workflow, while the optimizer's own tools and procedures often remain fixed. We study whether an optimizer can improve another agent more effectively by also improving how it diagnoses failures, develops edits, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T00:16:30Z</published>
+    <arxiv:comment>45 pages, 13 figures, 15 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Zekai Wang</name>
+    </author>
+    <author>
+      <name>Yingqiang Ge</name>
+    </author>
+    <author>
+      <name>Zekun Wang</name>
+    </author>
+    <author>
+      <name>Hai Wang</name>
+    </author>
+    <author>
+      <name>Yuhui Xu</name>
+    </author>
+    <author>
+      <name>Joshua Frandsen</name>
+    </author>
+    <author>
+      <name>Shancong Fu</name>
+    </author>
+    <author>
+      <name>Ashia C. Wilson</name>
+    </author>
+    <author>
+      <name>Chandan K. Reddy</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.00430v2</id>
+    <title>Memetic Trojans: Social Contagions as Carriers of Adversarial Payloads in Agent Networks</title>
+    <updated>2026-10-02T19:30:11Z</updated>
+    <link href="https://arxiv.org/abs/2610.00430v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.00430v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Autonomous large language model (LLM) agents increasingly interact in network environments where adversarial content can propagate between agents. Known attacks include agent worms, which spread through self-replicating prompt injections or configuration compromises. We introduce \emph{memetic trojans}, a distinct class of [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.SI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T16:43:02Z</published>
+    <arxiv:primary_category term="cs.SI"/>
+    <author>
+      <name>Birk Torpmann-Hagen</name>
+    </author>
+    <author>
+      <name>Finn Schwall</name>
+    </author>
+    <author>
+      <name>Leon Moonen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03056v1</id>
+    <title>MOF-VERIFY: A Failure-Aware Agentic Harness for MOF Hypothesis Verification</title>
+    <updated>2026-10-02T09:36:55Z</updated>
+    <link href="https://arxiv.org/abs/2610.03056v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03056v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models are increasingly used as reasoning components in AI-driven materials Co-Scientists, yet the reliability of the resulting verification pipeline remains unclear. Metal-organic frameworks (MOFs) provide a particularly challenging setting because structures may appear under different identifiers, synthesis outcomes [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T09:36:55Z</published>
+    <arxiv:comment>Accepted at the NeurIPS 2026 Workshops XAI4Science and AI4Mat</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Donghyun Lee</name>
+    </author>
+    <author>
+      <name>Taehoon Lee</name>
+    </author>
+    <author>
+      <name>Geonhee Ahn</name>
+    </author>
+    <author>
+      <name>Jieun Kim</name>
+    </author>
+    <author>
+      <name>Jihyun Park</name>
+    </author>
+    <author>
+      <name>Suyeon Cho</name>
+    </author>
+    <author>
+      <name>Yoona Kim</name>
+    </author>
+    <author>
+      <name>Chaerim Shin</name>
+    </author>
+    <author>
+      <name>Hoi Ri Moon</name>
+    </author>
+    <author>
+      <name>Jonggeol Na</name>
+    </author>
+    <author>
+      <name>Sukho Hong</name>
+    </author>
+    <author>
+      <name>Jihwan Oh</name>
+    </author>
+    <author>
+      <name>Soo Kyung Kim</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04089v1</id>
+    <title>Pareto-Dominant Clarification: Post-Training Coding LLMs via PPO-Lagrangian Budget Constraints</title>
+    <updated>2026-10-02T21:54:46Z</updated>
+    <link href="https://arxiv.org/abs/2610.04089v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04089v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Coding agents operating under ambiguous instructions or user prompts must decide whether to ask clarifying questions or attempt a solution directly. While clarification from the user may improve the correctness of the agent's solution, each back-and-forth interaction incurs user and [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T21:54:46Z</published>
+    <arxiv:comment>Accepted to the LMP Workshop at EMNLP 2026. 17 pages, 8 figures, 1 table. Abhinav Rajput and Acey Vogelstein contributed equally. Code: https://github.com/Abhinav0710rajput/coding_llms_cmdp</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Abhinav Rajput</name>
+    </author>
+    <author>
+      <name>Acey Vogelstein</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.37267v1</id>
+    <title>Foundations of Proactive Agents: Principles, Technical Layers, and Proactivity-Gym</title>
+    <updated>2026-09-29T11:13:10Z</updated>
+    <link href="https://arxiv.org/abs/2609.37267v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.37267v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Proactive LLM agents can turn idle compute into useful support before users ask. Yet even correct work can misread user context, impose review costs, or undermine trust. This work proposes foundations for designing, realizing, and evaluating proactive LLM agents around [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T11:13:10Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Jio Oh</name>
+    </author>
+    <author>
+      <name>Seunghyun Do</name>
+    </author>
+    <author>
+      <name>Young-Jun Lee</name>
+    </author>
+    <author>
+      <name>Steven Euijong Whang</name>
+    </author>
+    <author>
+      <name>Dongyeop Kang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03073v1</id>
+    <title>SecJev: Bringing Security Expertise to System One Decision Models</title>
+    <updated>2026-10-02T09:57:05Z</updated>
+    <link href="https://arxiv.org/abs/2610.03073v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03073v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Security workflows need models that turn complex observations and explicit policies into decisions. System One models introduced by Jev return typed predictions and probabilities; security specialization supplies the domain expertise behind those predictions. We introduce SecJev, to our knowledge the [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T09:57:05Z</published>
+    <arxiv:comment>22 pages, 1 figure</arxiv:comment>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Zheng Chen</name>
+    </author>
+    <author>
+      <name>Fei Yu</name>
+    </author>
+    <author>
+      <name>Haohao Huang</name>
+    </author>
+    <author>
+      <name>Yang Li</name>
+    </author>
+    <author>
+      <name>Anlong Chen</name>
+    </author>
+    <author>
+      <name>Lei Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02945v1</id>
+    <title>Continual Graph Memory for Mathematical Research Agents</title>
+    <updated>2026-10-02T07:38:09Z</updated>
+    <link href="https://arxiv.org/abs/2610.02945v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02945v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Using frontier agent harnesses to tackle mathematical research problems has emerged as an effective means of advancing mathematics. However, solving frontier problems in mathematics may require a massive number of agents working in parallel for extended periods to construct proofs, [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T07:38:09Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Junyi Zhang</name>
+    </author>
+    <author>
+      <name>Jinxi Yu</name>
+    </author>
+    <author>
+      <name>Eric Hanchen Jiang</name>
+    </author>
+    <author>
+      <name>Jiachen Lu</name>
+    </author>
+    <author>
+      <name>Zhi Zhang</name>
+    </author>
+    <author>
+      <name>Xinjie He</name>
+    </author>
+    <author>
+      <name>Hyunsik Chae</name>
+    </author>
+    <author>
+      <name>Ethan Ji</name>
+    </author>
+    <author>
+      <name>Alexander K Taylor</name>
+    </author>
+    <author>
+      <name>Vigyan Sahai</name>
+    </author>
+    <author>
+      <name>Yiwen Kou</name>
+    </author>
+    <author>
+      <name>Kai-Wei Chang</name>
+    </author>
+    <author>
+      <name>Raghu Meka</name>
+    </author>
+    <author>
+      <name>Nanyun Peng</name>
+    </author>
+    <author>
+      <name>Amit Sahai</name>
+    </author>
+    <author>
+      <name>Terence Tao</name>
+    </author>
+    <author>
+      <name>Wei Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02920v1</id>
+    <title>HASTE: Evolving Agent Harnesses Against Emerging Attacks Using Sparse Evidence</title>
+    <updated>2026-10-02T07:10:08Z</updated>
+    <link href="https://arxiv.org/abs/2610.02920v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02920v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Agent harnesses play a critical role in defenses by enforcing safety constraints to prevent unsafe actions. However, rapidly emerging attacks outpace manual harness adaptation, motivating automated harness evolution. Yet the signals available for harness evolution are often sparse, such as [cut to 40 words for the workshop copy]</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T07:10:08Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Xiqiao Xiong</name>
+    </author>
+    <author>
+      <name>Moxin Li</name>
+    </author>
+    <author>
+      <name>Zhixin Ma</name>
+    </author>
+    <author>
+      <name>Ouxiang Li</name>
+    </author>
+    <author>
+      <name>Wenjie Wang</name>
+    </author>
+    <author>
+      <name>Fuli Feng</name>
+    </author>
+    <author>
+      <name>Xiangnan He</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.01344v1</id>
+    <title>Reachability-Informed Reinforcement Learning for Multi-Impulse Interplanetary Transfers</title>
+    <updated>2026-10-01T09:16:52Z</updated>
+    <link href="https://arxiv.org/abs/2610.01344v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.01344v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reinforcement learning offers the prospect of a reusable sequential decision-making mechanism for spacecraft trajectory design, motivating policy interfaces that connect learned decisions to the underlying maneuver geometry. This paper develops Reachability Analysis-Informed Reinforcement Learning (RARL) for deterministic multi-impulse interplanetary transfers, [cut to 40 words for the workshop copy]</summary>
+    <category term="math.OC" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T09:16:52Z</published>
+    <arxiv:comment>Preprint. 23 pages, 10 figures</arxiv:comment>
+    <arxiv:primary_category term="math.OC"/>
+    <author>
+      <name>Yashdeep Chaudhary</name>
+    </author>
+    <author>
+      <name>Roberto Armellin</name>
+    </author>
+    <author>
+      <name>Harry Holt</name>
+    </author>
+  </entry>
+</feed>

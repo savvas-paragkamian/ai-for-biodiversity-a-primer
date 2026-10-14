@@ -63,6 +63,28 @@ hardware, which was not itself tested. The hosted track was described from Claud
 Code's documentation for version 2.1.296 and was not run: reading
 \code{AGENTS.md} without a \code{CLAUDE.md} needs version 2.1.277 or later.
 
+\section{Versions used for the weekly literature review, October 2026}
+
+The scripts of \Cref{ch:weeklyliterature} were written and run on
+14 October 2026 on the same machine, with R 4.5.1, \code{httr2} 1.3.0,
+\code{jsonlite} 2.0.0, \code{yaml} 2.3.12 and \code{xml2} 1.6.0 pinned by
+\code{renv} 1.3.1, and Biber to check the bibliography files. The assistant
+was written for Claude Code 2.1.299 and reaches Consensus through its hosted
+MCP server, which needs a Consensus subscription; Consensus has no public
+API. The GitHub Actions workflow runs on \code{ubuntu-latest} with the
+\code{r-lib/actions} \code{setup-r} and \code{setup-renv} actions, version 2.
+The sources were Europe PMC's REST service, OpenAlex, the arXiv API,
+bioRxiv's details API and Biodiversity PMC's search API, as they answered on
+14 October 2026, with Crossref and DataCite resolving the identifiers. The
+live week was ISO week 2026-W41, 5 to 11 October, with ten overlap days: 51
+queries, 2,482 items reported, 1,106 distinct after merging, 1,071 verified.
+On that day a request to OpenAlex without a key drew on a free budget of
+1,000 credits a day for all machines behind one IP address, at 10 credits a
+request, reset at midnight UTC; Biodiversity PMC's full-text collection
+ran about two months behind its MEDLINE collection. The counts, the queries
+and the versions of that run are in the repository's provenance log for the
+week.
+
 \section{Subscription limits}
 
 Consumer subscription tiers ration use by a rolling five-hour window, on the

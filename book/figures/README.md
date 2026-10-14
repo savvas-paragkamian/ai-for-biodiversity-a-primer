@@ -1,6 +1,6 @@
 # Figures
 
-Forty-one diagrams, two or three per chapter, drawn in TikZ and built into
+Forty-four diagrams, two or three per chapter, drawn in TikZ and built into
 three formats from one source. They are meant to be reused in the workshop
 slides as well as in the book.
 
@@ -95,22 +95,31 @@ small capitals for panel titles, no decoration.
 | ch09-variation | 9 | fig:variation | Five sources of variation in a model call and the remedy for each |
 | ch10-session-flow | 10 | fig:session | The first agent session as a flowchart with its checks |
 | ch10-three-layers | 10 | fig:threelayers | Rules file, harness configuration and file permissions around the raw data |
-| ch11-where-data-goes | 11 | fig:datagoes | Which ways of using a model send the data out of the institution |
-| ch11-architecture | 11 | fig:architecture | Interface, proxy, routing, runtime, retrieval and archive |
-| ch11-kybele | 11 | fig:kybele | KYBELE's clients, orchestrator, literature service and model, as designed |
-| ch12-memory-bandwidth | 12 | fig:memory | Every weight is read once per token; the model must fit first |
-| ch12-unified-memory | 12 | fig:unified | A separate graphics card against a shared memory pool |
-| ch12-size-guide | 12 | fig:sizes | Model sizes on a logarithmic scale and the tasks each range serves |
-| ch13-procedure | 13 | fig:procedure | The six-step testing procedure |
-| ch13-scoring-grid | 13 | fig:scoring | Correct, wrong, missed and invented values in a 2 by 2 grid |
-| ch14-injection | 14 | fig:injection | Instructions and data as one stream of tokens |
-| ch14-fences | 14 | fig:fences | Five layers around an agent, each with its limit |
-| ch14-shared-layer | 14 | fig:sharedlayer | Both refusals live in the instruction-tuning layer that injection subverts |
-| ch15-workflow-checks | 15 | fig:workflow | Five stages of the research workflow, the use and the limit at each |
-| ch15-resolve | 15 | fig:resolve | Resolving every reference before it enters a manuscript |
-| ch16-routine | 16 | fig:routine | Weekly, monthly, quarterly and yearly slots adding up to forty hours |
-| ch16-small-project | 16 | fig:smallproject | Retrieval over your own reprints and the three lessons it teaches |
+| ch11-two-layers | 11 | fig:twolayers | Scripts on a clock above, the assistant skill below, and the verifier as the only way into the bibliography |
+| ch11-week-pipeline | 11 | fig:weekpipeline | Five sources to raw files, one merged table, and the check that keeps unresolved items out of the bibliography |
+| ch11-citation-check | 11 | fig:citationcheck | What a Consensus result must pass before the assistant may cite it |
+| ch12-where-data-goes | 12 | fig:datagoes | Which ways of using a model send the data out of the institution |
+| ch12-architecture | 12 | fig:architecture | Interface, proxy, routing, runtime, retrieval and archive |
+| ch12-kybele | 12 | fig:kybele | KYBELE's clients, orchestrator, literature service and model, as designed |
+| ch13-memory-bandwidth | 13 | fig:memory | Every weight is read once per token; the model must fit first |
+| ch13-unified-memory | 13 | fig:unified | A separate graphics card against a shared memory pool |
+| ch13-size-guide | 13 | fig:sizes | Model sizes on a logarithmic scale and the tasks each range serves |
+| ch14-procedure | 14 | fig:procedure | The six-step testing procedure |
+| ch14-scoring-grid | 14 | fig:scoring | Correct, wrong, missed and invented values in a 2 by 2 grid |
+| ch15-injection | 15 | fig:injection | Instructions and data as one stream of tokens |
+| ch15-fences | 15 | fig:fences | Five layers around an agent, each with its limit |
+| ch15-shared-layer | 15 | fig:sharedlayer | Both refusals live in the instruction-tuning layer that injection subverts |
+| ch16-workflow-checks | 16 | fig:workflow | Five stages of the research workflow, the use and the limit at each |
+| ch16-resolve | 16 | fig:resolve | Resolving every reference before it enters a manuscript |
+| ch17-routine | 17 | fig:routine | Weekly, monthly, quarterly and yearly slots adding up to forty hours |
+| ch17-small-project | 17 | fig:smallproject | Retrieval over your own reprints and the three lessons it teaches |
 
 Chapter numbers are those of the built book (Chapter 10 is
-`09b-first-agent-session.tex`, Chapter 13 is `11b-testing.tex`); the file
-prefix `chNN` follows the same numbering.
+`09b-first-agent-session.tex`, Chapter 11 is `09c-weekly-literature.tex`,
+Chapter 14 is `11b-testing.tex`); the file prefix `chNN` follows the same
+numbering. The three `ch11-*` figures of the weekly literature review were
+added on 14 October 2026, which moved the former Chapters 11–16 to 12–17;
+their figure files were renamed to `ch12-*`–`ch17-*` the same day by
+`scripts/renumber_figures.sh`, run on the author's instruction (the script
+renames with `git mv`, updates the `\fig{}` calls and this index, and
+rebuilds; a second run finds nothing to rename). Agents do not rename files.

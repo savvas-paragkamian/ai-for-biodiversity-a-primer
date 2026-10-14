@@ -43,9 +43,9 @@ About 22,600 words, 94 pages.
 | Preface | Audience, the three arguments, how the book was written |
 | I. The Landscape | 1 Chatbots, Models and Agents · 2 Why Now? · 3 Powers and Limitations · 4 Applications in Biology and Ecology |
 | II. Data | 5 AI-Ready Data · 6 Organising and Protecting Your Data |
-| III. Working with Agents | 7 The Agentic Coding Workflow · 8 The Software Stack · 9 Reproducibility When the Tool Varies · 10 A First Agent Session (hands-on, in R, with `../workshop/session`) |
-| IV. Local-First | 11 The Local-First Approach (with the KYBELE example) · 12 Hardware for Local Inference · 13 Testing a Model on Your Own Task (with an R exercise, `../workshop/testing`) |
-| V. Risk, Integrity and Keeping Up | 14 Security, Biorisk and Governance (ending in the wider frame: noosphere, evolvable AI, consciousness) · 15 Changes Across the Scientific Workflow · 16 How to Keep Up |
+| III. Working with Agents | 7 The Agentic Coding Workflow · 8 The Software Stack · 9 Reproducibility When the Tool Varies · 10 A First Agent Session (hands-on, in R, with `../workshop/session`) · 11 A Weekly Literature Review (hands-on, in R, with `../workshop/literature`) |
+| IV. Local-First | 12 The Local-First Approach (with the KYBELE example) · 13 Hardware for Local Inference · 14 Testing a Model on Your Own Task (with an R exercise, `../workshop/testing`) |
+| V. Risk, Integrity and Keeping Up | 15 Security, Biorisk and Governance (ending in the wider frame: noosphere, evolvable AI, consciousness) · 16 Changes Across the Scientific Workflow · 17 How to Keep Up |
 | Appendices | A Glossary · B Checklists · C Tutorials (videos, newsletters, blogs, awesome lists, tool repositories) · D State of Play, September 2026 (prices, model versions, harnesses, usage limits) |
 
 If you read one chapter, read Chapter 3.
@@ -82,14 +82,14 @@ instead, change `\DeclareGraphicsExtensions{.png}` in `preamble.tex` to
 main.tex          parts and chapter includes
 preamble.tex      packages, formatting, biblatex setup
 references.bib    179 entries, grouped by theme
-figures/          41 diagrams: style.tex, tikz/ sources, pdf/ png/ svg/ outputs,
+figures/          44 diagrams: style.tex, tikz/ sources, pdf/ png/ svg/ outputs,
                   README.md with the style rules and an index
 chapters/
   00-preface
   01-landscape  02-why-now  03-powers-and-limits  04-applications
   05-ai-ready-data  06-organisation-and-backup
   07-agentic-workflow  08-software-stack  09-reproducibility
-  09b-first-agent-session
+  09b-first-agent-session  09c-weekly-literature
   10-local-first  11-hardware  11b-testing
   12-security-and-biorisk  13-scientific-workflow  14-keeping-up
   A1-glossary  A2-checklists  A3-tutorials  A4-state-of-play
@@ -210,6 +210,19 @@ for the task-only diff, checks and remaining link limitations.
   audit: the Financial Times returned access errors, and the saved Anna's
   Archive address failed certificate validation. Neither was replaced with
   a guessed address.
+- Chapter 11, "A Weekly Literature Review" (`09c-weekly-literature.tex`), was
+  added on 14 October 2026 as the second hands-on chapter: R scripts that
+  fetch five sources by ISO week, merge, resolve every identifier and write
+  Markdown, BibTeX and a provenance log, run by GitHub Actions; and a Claude
+  Code skill in KYBELE's shape for notes that a model writes under a label.
+  Seven prompts, three figures, a fixture week and one live week
+  (`../workshop/literature`). The former Chapters 11–16 are now 12–17; chapter
+  numbers in the bullets above are those in use when they were written. The
+  figure files of those chapters were renamed to match
+  (`scripts/renumber_figures.sh`, run on the author's instruction). The
+  repository the chapter describes is
+  built but not yet on GitHub, and the skill's live run was not performed.
+  Not yet reviewed by the author.
 
 ## Conventions
 
