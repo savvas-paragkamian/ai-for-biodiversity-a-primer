@@ -75,7 +75,7 @@ By hand, if you prefer: `pdflatex` -> `biber main` -> `pdflatex` -> `pdflatex`.
 ```
 main.tex          parts and chapter includes
 preamble.tex      packages, formatting, biblatex setup
-references.bib    177 entries, grouped by theme
+references.bib    179 entries, grouped by theme
 chapters/
   00-preface
   01-landscape  02-why-now  03-powers-and-limits  04-applications
@@ -92,7 +92,7 @@ chapters/
 Assembled from the `.bib`, `.ris` and `.bibtex` files in `../../literature/`,
 plus entries taken from the PDFs there.
 
-Verified on 10 October 2026: all 84 DOIs resolve through Crossref and all 52 arXiv IDs through the
+Verified on 14 October 2026: all 86 DOIs resolve through Crossref and all 52 arXiv IDs through the
 arXiv API, titles matching in every case. The remaining 41 entries are reports,
 books, blog posts and web pages with no such identifier, previously checked by hand. Every
 entry is cited at least once.
@@ -181,6 +181,19 @@ for the task-only diff, checks and remaining link limitations.
   locally with Ollama on an Apple M1 Max laptop, and the chapters report what
   happened, failures included. The hosted track of Chapter 10 was not run.
   Learning outcomes, an index, figures and further sources remain proposals.
+- Torresani et al. (2026), a BioScience viewpoint on opening ecological data,
+  was added on 14 October 2026. Chapter 5 cites it where it makes the same
+  points as the chapter: AI-ready data may return no credit to its curators,
+  and closed training data make under-represented regions and taxa hard to see.
+- Wood-Charlson et al. (2026), a Communications Biology perspective on
+  FAIR + COPE, was added the same day: one paragraph in Chapter 5's Standards
+  section on why FAIR data still needs harmonising and updating before it can
+  be modelled, with COPE defined in the glossary.
+- Jacqueline J. Dearborn's talk "Who Will Steward Humanity's Public Data?"
+  (Library Innovation Lab, 10 September 2026) is in Appendix C under the Lab's
+  blog, linked to the post that carries the transcript and recording, with a
+  pointer from Chapter 5's Infrastructure section. Talks are web material,
+  not bibliography entries.
 - Two existing bibliography links could not be verified in the October 10
   audit: the Financial Times returned access errors, and the saved Anna's
   Archive address failed certificate validation. Neither was replaced with

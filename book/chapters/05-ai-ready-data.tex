@@ -15,7 +15,10 @@ biodiversity informatics was doing long before the term existed. The FAIR
 principles already asked, in 2016, for data that machines as well as people could
 find and reuse \parencite{wilkinson2016fair}. What the term
 adds is a consumer --- often a company that will ingest the corpus, build a
-model, and return neither the weights nor credit to the curators. This is not an
+model, and return neither the weights nor credit to the curators.
+\textcite{torresani2026opening} describe the same risk: shared data and code can
+end up in proprietary models that return no access, attribution or credit to
+the people who produced them. This is not an
 argument against openness, which has served ecology well. It is an argument for
 reading the terms.
 
@@ -50,6 +53,22 @@ thing \parencite{magagna2021iadopt}, and DataHarmonizer validates messy
 contextual metadata against a specification
 \parencite{gill2023dataharmonizer}. This work makes it possible to combine data
 collected by different people for different purposes.
+
+A dataset can meet the FAIR principles and still not combine with another.
+\textcite{woodcharlson2026cope} argue that FAIR data still needs harmonising
+before it can feed a model: units converted, methods recorded, and labels mapped
+to the current ontology and database versions. They call this process COPE,
+for ``Comparable, Organized, Predictive, Engaged'', and observe that today it
+is mostly manual, done for one question at a time, and seldom reproducible.
+FAIR datasets are also rarely updated once released, so stale annotations and
+wrong relationships persist, and systems that harvest data at scale spread
+them further. Their example is a study that predicted bacterial traits from
+BacDive, a highly standardised strain database. Even there, contradictory
+literature left 7.1 per cent of strains with more than one oxygen requirement,
+and the labels had to be reorganised before a model could use them. My reading for
+biodiversity data is that a standard applied once is a starting point. Keeping
+records comparable is continuing work, and the people who report errors back
+to the database are part of it.
 
 The microbiome comparison by \textcite{venetsianou2026relatedness} shows why
 descriptions need as much care as the data files. Generic descriptions and
@@ -91,7 +110,11 @@ mediated by GBIF, and found that legacies of colonial science remain. Credit
 flows back less reliably: across 43,802 GBIF datasets, best practice for
 citing them was not yet common \parencite{khan2021gbifcitation}.
 The survival of these resources is a policy achievement, not a market outcome,
-and it is not guaranteed. TDWG governs
+and it is not guaranteed. Jacqueline J. Dearborn's talk on who will steward
+public data, listed in \Cref{app:tutorials}, makes the point from inside the
+Biodiversity Heritage Library and other infrastructures. The people who
+maintain and interpret a resource are part of it, and grants favour building
+over keeping. TDWG governs
 Darwin Core, ELIXIR coordinates European life-science data and names the Core
 Data Resources the community commits to sustaining, and the LF AI \& Data
 Foundation hosts much open model tooling. Open standards outlive the
@@ -111,7 +134,9 @@ mean you can see what it was trained on or rebuild it. \textbf{Open source},
 properly, would include the training data, code and pipeline as well. Almost
 every model sold as open is only open-weight. \textcite{hai2026openweight} argue
 this is not enough for science: without the training data you cannot check
-whether your test set was in it, audit bias, or reproduce the result. Licences
+whether your test set was in it, audit bias, or reproduce the result. For
+ecology, \textcite{torresani2026opening} add that closed training data make it
+hard to see which regions, taxa and languages are under-represented. Licences
 vary too; Apache-2.0 and MIT are genuinely open, while several ``open'' model
 licences restrict use.
 

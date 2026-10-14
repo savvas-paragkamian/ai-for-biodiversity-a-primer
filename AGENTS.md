@@ -56,8 +56,8 @@ Before any reference goes in:
 
 Verification is scripted, not sampled. Run `python3 scripts/verify_bib.py`
 over the whole file after any change to the bibliography — it takes a few
-minutes and there is no acceptable reason to skip it. There are 177 entries:
-all 84 DOIs and all 52 arXiv IDs currently pass, and 41 entries have neither and
+minutes and there is no acceptable reason to skip it. There are 179 entries:
+all 86 DOIs and all 52 arXiv IDs currently pass, and 41 entries have neither and
 were checked by hand. Grant DOIs (CORDIS, `10.3030/...`) carry their title in
 Crossref's `project` field; the script handles that. Each script in `scripts/`
 has a `--self-test` that plants errors; run it after changing a script.
@@ -286,6 +286,9 @@ first: propose, don't implement.
 | Literature gap review (Consensus Pro, 10 October 2026) | Completed: 43 open-access sources downloaded into `../literature/`, checked and cited across Chs. 2–5 and 7–14 (attribution fixes, data-ethics sources, ecological evidence, both sides where sources disagree). Ananiadou and Thessen now cited; Greek podcast example sourced (Paraskevopoulos et al.). See `LITERATURE_GAPS_2026-10-10.md`. Eight more added from PDFs the author supplied (Fox, Uryu, Khan, Hughes, Berger-Tal, Laignelot, Jennings, Tulloch). Still needed: Cui et al. 2026, *Management Science* (closed access), to pair with the METR trial in Ch. 7 | Agent; Cui PDF: **author** |
 | Book review of 10 October 2026 (`BOOK_REVIEW_2026-10-10.md`): positioning against comparable work, writing, textbook use | Answered 11 October 2026 and done: testing chapter (`11b-testing.tex`, `ch:testing`, with an R exercise); hands-on harness tutorial modelled on CME 295 (`09b-first-agent-session.tex`, `ch:firstsession`); consciousness exchange moved to the wider frame; CC BY 4.0 on the title page; one-figure rule added to Prose. Workshop companion in R started in `workshop/` (session and testing, both tested locally; the hosted track was not run). Not yet done: applying the one-figure rule to Chs. 4, 11 and 14; labs on a retrieval assistant and on reproducibility. Still proposed, unanswered: learning outcomes, index and version; figures; trimming Chapter 4's catalogue; sources on the EU AI Act, the Cali Fund, DOME/TRIPOD-LLM, ARETE and Cooper et al. 2024 | Agent; open items **author** |
 | Workshop housekeeping | Agents don't delete. The author may remove `workshop/testing/key/RULES.md` (a duplicate of `workshop/testing/RULES.md`) and `workshop/testing/results/` (test outputs, kept in `workshop/answers/testing-run-2026-10-11/`), so that learners start with an empty results folder | **author** |
+| Torresani et al. (2026), BioScience viewpoint on opening ecological data, doi:10.1093/biosci/biag147 (in `../literature/` since 14 October) | Completed 14 October 2026: cited twice in `05-ai-ready-data.tex`, beside the point that AI-ready data may return no credit to curators, and after Stanford HAI on closed training data making bias hard to audit | Agent |
+| Wood-Charlson et al. (2026), Communications Biology perspective on FAIR + COPE, doi:10.1038/s42003-026-10694-y (in `../literature/` since 14 October) | Completed 14 October 2026: one paragraph in the Standards section of `05-ai-ready-data.tex`, after I-ADOPT and DataHarmonizer; COPE added to the glossary | Agent |
+| Dearborn, "Who Will Steward Humanity's Public Data?" (talk, 10 September 2026; slides and transcript in `../literature/`) | Completed 14 October 2026: added to the Library Innovation Lab entry in Appendix C, linked to the blog post of 24 September that carries the transcript and recording (title from the page `<title>`); one pointer sentence in the Infrastructure section of `05-ai-ready-data.tex`. Not a bibliography entry | Agent |
 | New files in `../literature/` | Check whenever you start: anything not in `references.bib` is a candidate. Read it in full before placing it | Agent |
 
 When you finish an item, update this table and `book/README.md` (Open issues)
