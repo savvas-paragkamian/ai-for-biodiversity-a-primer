@@ -24,12 +24,21 @@ Prompt injection remains a central unsolved problem. A model does not reliably t
 data: any text it reads --- a file, a web page, a code comment, a CSV cell ---
 can contain words it treats as a command. This follows from the design, since
 instructions and data arrive as tokens in the same context
-\parencite{greshake2023injection}. Mitigations reduce the rate; none removes it.
+\parencite{greshake2023injection} (\Cref{fig:injection}). Mitigations reduce the rate; none removes it.
 Eight defences were all bypassed more than half the time by attacks adapted to
 them \parencite{zhan2025adaptive}. Watch for instructions hidden in a downloaded
 dataset's metadata, invisible text in a PDF, a dependency's documentation, a web
 page fetched during a literature search, and an MCP server's description of its
 own tools.
+
+\begin{figure}[htbp]
+\centering
+\fig{ch14-injection}
+\caption{Prompt injection. Rules, your request, a data file and a tool result
+reach the model as one stream of tokens; nothing marks which were
+instructions, so a sentence in a CSV cell can be obeyed.}
+\label{fig:injection}
+\end{figure}
 
 \begin{keypoint}
 Treat everything an agent reads as untrusted, including your own data files if
@@ -38,7 +47,7 @@ they came from elsewhere, and including what tools say about themselves.
 
 \section{Fencing an agent in}
 
-Use layers, each with honest limits. \textbf{Permission prompts} work until
+Use layers, each with honest limits (\Cref{fig:fences}). \textbf{Permission prompts} work until
 fatigue sets in after the fiftieth; allow safe read-only commands so that the
 prompts you see mean something. \textbf{Restrict the directory} the agent can
 reach --- free, and the most valuable habit here. \textbf{Containers} (Podman,
@@ -51,6 +60,14 @@ that cannot reach the network cannot leak data or fetch a malicious payload.
 and find the field fragmented. Meanwhile attackers use AI too: phishing is
 harder to spot by its writing, and scouting a target is cheaper
 \parencite{qasemi2026cyberattacks}.
+
+\begin{figure}[htbp]
+\centering
+\fig{ch14-fences}
+\caption{Fencing an agent in. Each layer has an honest limit: prompts tire, a
+container shares the host's kernel, and only a cut network cannot leak.}
+\label{fig:fences}
+\end{figure}
 
 Red Hat's account of secure agent onboarding, listed in \Cref{app:tutorials},
 describes one implementation of these boundaries using OpenShell. The runtime
@@ -135,7 +152,7 @@ A model's refusal to help with pathogen engineering is installed in the same
 layer, by the same method, as its refusal to write malware. Prompt injection
 defeats both, because it subverts instruction-following in general. So
 \emph{weak prompt-injection defences open a biosecurity gap}: separating
-instructions from data would strengthen both at once. \textcite{holko2026relationalbiosecurity}
+instructions from data would strengthen both at once (\Cref{fig:sharedlayer}). \textcite{holko2026relationalbiosecurity}
 draws the wider conclusion: biosecurity rules control known agents and
 materials, but in AI-enabled biology the risk lies in how data, models and
 tools combine. \textcite{barkan2026restricting} find that restricting agents'
@@ -143,6 +160,15 @@ use of biological design tools is more feasible at the tool level than at the
 model level. For ecologists this explains why some models refuse harmless-looking
 biological questions, why open-weight releases are contested, and why sequence
 data governance is tightening.
+
+\begin{figure}[htbp]
+\centering
+\fig{ch14-shared-layer}
+\caption{One layer, two refusals. The refusal to write malware and the refusal
+to help with a pathogen are installed by the same method in the same layer, so
+whatever subverts instruction-following defeats both.}
+\label{fig:sharedlayer}
+\end{figure}
 
 \section{Governance}
 

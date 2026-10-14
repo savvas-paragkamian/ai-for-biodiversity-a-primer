@@ -18,7 +18,16 @@ precision. Each parameter takes 2 bytes at full precision (FP16), 1 byte at
 8-bit, and about 0.5--0.7 bytes at 4-bit (Q4). A 7-billion-parameter (7B) model
 therefore needs about 14\,GB, 7\,GB or 4--5\,GB. Add 20--30\% for the context
 (the \term{KV cache}) and overheads. A 32\,GB machine comfortably runs a Q4 12B
-model with a 32K context; a 70B model wants 48\,GB or more.
+model with a 32K context; a 70B model wants 48\,GB or more (\Cref{fig:memory}).
+
+\begin{figure}[htbp]
+\centering
+\fig{ch12-memory-bandwidth}
+\caption{Memory, not compute. Every weight is read once per token, so the model
+must fit in memory first and speed follows from bandwidth; a 7B model needs
+14, 7 or 4--5\,GB depending on precision.}
+\label{fig:memory}
+\end{figure}
 
 \begin{keypoint}
 Capacity first: does the model fit? Bandwidth second: how fast can it be read?
@@ -37,7 +46,16 @@ card has far more bandwidth (1--3\,TB/s against 200--800\,GB/s) and is the only
 sensible choice for training, but it holds only 8--48\,GB and draws 300--700\,W.
 A shared-memory machine holds 16--512\,GB and draws 30--120\,W. If the model fits
 on the card, the card is faster. The shared-memory advantage is that large models
-fit at all.
+fit at all (\Cref{fig:unified}).
+
+\begin{figure}[htbp]
+\centering
+\fig{ch12-unified-memory}
+\caption{A separate graphics card against unified memory. The card has more
+bandwidth but holds 8--48\,GB; a shared pool is slower per byte but holds
+16--512\,GB, so large models fit at all.}
+\label{fig:unified}
+\end{figure}
 
 \section{Machines, and what they run}
 
@@ -50,7 +68,15 @@ often beats a large general one \parencite{chen2025bionlp}. Summarising and extr
 Scoped coding needs 12--32B with at least a 32K context, while agent work
 across several files needs 30--70B. Below that, expect frustration.
 Embedding models are under 1B and run
-on an ordinary processor; Whisper for transcription is 1.5B.
+on an ordinary processor; Whisper for transcription is 1.5B (\Cref{fig:sizes}).
+
+\begin{figure}[htbp]
+\centering
+\fig{ch12-size-guide}
+\caption{A size guide. Parameters on a logarithmic scale, with the tasks each
+range serves; names change, but the ranges last longer.}
+\label{fig:sizes}
+\end{figure}
 
 \section{Quantisation}
 

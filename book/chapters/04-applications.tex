@@ -165,8 +165,17 @@ not a guarantee that studies answer the same research question.
 
 \textbf{Curation.} AI-assisted curation of biological knowledgebases works with
 a person in the loop \parencite{pombase2026curation}: the model suggests, the
-curator decides. An error in a knowledgebase spreads into every analysis that
+curator decides (\Cref{fig:curation}). An error in a knowledgebase spreads into every analysis that
 uses it. This makes the curator's judgement essential throughout the process.
+
+\begin{figure}[htbp]
+\centering
+\fig{ch04-curation-loop}
+\caption{Curation with a person in the loop. The model proposes and the curator
+decides; only then does a record enter the knowledgebase, and an error that
+gets in reaches every analysis that uses it.}
+\label{fig:curation}
+\end{figure}
 
 \textbf{Queries.} Writing SPARQL queries against life-science knowledge graphs
 is a specialist skill; language models can now generate them from plain
@@ -177,7 +186,7 @@ and a wrong query usually fails loudly.
 \section{Where the claims outrun the evidence}
 
 Retrieving facts from a supplied description is different from asking a model
-to supply ecological knowledge unaided. \textcite{dorm2026ecologicalknowledge}
+to supply ecological knowledge unaided (\Cref{fig:twoways}). \textcite{dorm2026ecologicalknowledge}
 tested two models without external retrieval across species distributions,
 threats and traits. Country-level occurrence answers were often correct, but
 range maps reached mean \term{F1 scores}, combining precision and recall, of
@@ -193,17 +202,36 @@ cent of the time, and they did worse on invertebrates than on vertebrates
 \parencite{uryu2026redlist}. These findings concern the tested models and conditions;
 \Cref{ch:testing} explains how to build a comparison for your own application.
 
+\begin{figure}[htbp]
+\centering
+\fig{ch04-two-ways-to-ask}
+\caption{Two ways to ask a model. Reading from a supplied text gives an answer
+that can be checked against its source; recalling from the weights gives one
+that cannot, and absent values tend to be invented.}
+\label{fig:twoways}
+\end{figure}
+
 For \textcite{mishra2026notready}, ecology is not ready. This is the most
 important dissent in this literature. Ecological data is patchy,
 biased in space and time, sparse for the taxa that matter most, and produced by
 causal processes. Across 742 million records, only 6.74 per cent of the globe had
 been sampled for animals, and citizen science added to the biases rather than
 correcting them \parencite{hughes2021sampling}. A model that predicts species occurrence from environmental
-variables learns where people looked as readily as where species live. Used for
+variables learns where people looked as readily as where species live
+(\Cref{fig:samplingbias}). Used for
 conservation decisions, it turns that bias into policy with a look of
 precision. Point predictions hide uncertainty that decisions need, and a model
 that cannot be interpreted cannot be told apart from one that fits for the wrong
 reason.
+
+\begin{figure}[htbp]
+\centering
+\fig{ch04-sampling-bias}
+\caption{Sampling bias becomes prediction. Grey cells are where records were
+collected and dots are where the species lives. A model trained on the records
+reproduces the sampling pattern, and a decision made on it inherits the bias.}
+\label{fig:samplingbias}
+\end{figure}
 
 \begin{keypoint}
 Before applying a model to an ecological question, ask what would have to be

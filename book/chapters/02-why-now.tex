@@ -24,11 +24,21 @@ different positions in a sequence. During training, many positions can be
 processed in parallel, making better use of GPUs than processing them one
 after another. When predicting the next token, the model is prevented from
 looking ahead at the answer. Generating new text still proceeds token by
-token in this design. The original experiments concerned translation and
+token in this design (\Cref{fig:parallel}). The original experiments concerned translation and
 sentence structure; they did not establish ecological expertise
 \parencite{vaswani2017attention}. The design continues to develop:
 \textcite{kimi2026attnres}, for instance, change how information from earlier
 layers is combined.
+
+\begin{figure}[htbp]
+\centering
+\fig{ch02-parallel-sequential}
+\caption{Training and generation in a transformer. During training every
+position predicts its next token at once, without seeing the tokens after it;
+when generating, the model re-reads the whole sequence and adds one token at a
+time.}
+\label{fig:parallel}
+\end{figure}
 
 \textbf{Data.} Pretraining consumed the accessible text of the internet. For
 ecology the equivalent resource is domain data --- curated, standardised, with
@@ -50,9 +60,18 @@ people trust the EU than the US or China to regulate AI.
 
 Open and closed models are racing too. The best closed model led the best
 open-weight one by 15 per cent in 2023, by under 1 per cent in 2024 and by 3.4
-per cent in March 2026 \parencite{aiindex2026}. Open weights are close enough
+per cent in March 2026 \parencite{aiindex2026} (\Cref{fig:gap}). Open weights are close enough
 to the frontier that running them yourself is a real option, which is the
 subject of Part~IV.
+
+\begin{figure}[htbp]
+\centering
+\fig{ch02-open-closed-gap}
+\caption{The lead of the best closed model over the best open-weight one on a
+public leaderboard, in per cent, from 2023 to March 2026
+\parencite{aiindex2026}.}
+\label{fig:gap}
+\end{figure}
 
 The money is also reaching biology directly. In a commentary,
 \textcite{palermo2026acquirers} examines Anthropic's acquisition of Coefficient

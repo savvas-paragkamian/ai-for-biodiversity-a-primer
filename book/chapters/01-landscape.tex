@@ -36,7 +36,17 @@ AT\&T was not allowed to sell it, so the source code went out on tape for the
 cost of materials. Users changed it, shared their changes, and it spread to
 thousands of machines.
 
-In the author's view the pattern is repeating. Frontier AI is an information
+\begin{figure}[htbp]
+\centering
+\fig{ch01-two-lineages}
+\caption{Two lineages. The information utility of the 1960s was one central
+machine rented by the hour; Unix was small tools joined by pipes. Frontier
+models rented by the call and open-weight models on your own hardware follow
+the same two patterns.}
+\label{fig:lineages}
+\end{figure}
+
+In the author's view the pattern is repeating (\Cref{fig:lineages}). Frontier AI is an information
 utility: a few very large central systems, rented by the call, justified by the
 belief that bigger is better. Open-weight models on your own hardware are the
 Unix branch: smaller, inspectable, changeable, and yours. This book leans
@@ -94,12 +104,22 @@ processes behind such capabilities matter for experience is disputed;
 
 \section{The chatbot}
 
-A chatbot is a model plus a conversation buffer plus a web page. The buffer
+A chatbot is a model plus a conversation buffer plus a web page
+(\Cref{fig:modelchatbotagent}). The buffer
 re-sends the whole history on every turn, which is why long conversations get
 slow and expensive, forget their beginning, and are often fixed by starting
 again. Chatbots are good for drafting, explaining, translating and brainstorming.
 They are bad at verified fact, current information, and anything that requires
 acting in the world.
+
+\begin{figure}[htbp]
+\centering
+\fig{ch01-model-chatbot-agent}
+\caption{The same model with more machinery around it. A chatbot adds a
+conversation buffer and a web page; an agent adds tools, a loop, and a harness
+that decides what the model sees and what it may do.}
+\label{fig:modelchatbotagent}
+\end{figure}
 
 \section{The agent and the harness}
 
@@ -123,7 +143,16 @@ while not done:
         done = True
 \end{lstlisting}
 
-The \code{run\_tool} line is where a text generator becomes something that can
+\begin{figure}[htbp]
+\centering
+\fig{ch01-agent-loop}
+\caption{The agent loop, as a flowchart. The model is called, a requested tool
+is run and its result appended to the context, and the loop continues until
+the model stops asking for tools.}
+\label{fig:agentloop}
+\end{figure}
+
+The \code{run\_tool} line (\Cref{fig:agentloop}) is where a text generator becomes something that can
 delete your files, and where the security risk lives (\Cref{ch:security}). Two
 harnesses running the same model can behave quite differently. They differ in
 what they put into the context, how well their tools report errors, what they

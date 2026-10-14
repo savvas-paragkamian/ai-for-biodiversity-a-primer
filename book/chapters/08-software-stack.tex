@@ -27,7 +27,16 @@ explore and cannot be scripted. A text interface in the terminal (TUI) works
 over a remote connection. A command line (CLI) can be scripted and logged. An
 API does anything, if you write the code. For reproducibility the command line
 wins: a command is a record of what you did, a series of clicks is not.
-That is also why agent harnesses live in the terminal.
+That is also why agent harnesses live in the terminal (\Cref{fig:layers}).
+
+\begin{figure}[htbp]
+\centering
+\fig{ch08-layers}
+\caption{The layers an analysis depends on, and the four ways to talk to a
+system. The command line can be scripted and logged, which is why harnesses
+live there.}
+\label{fig:layers}
+\end{figure}
 
 \section{Ten rules for code that lasts}
 
@@ -72,13 +81,22 @@ ollama run gemma4:12b
 ollama ps                          # CONTEXT must read 32768
 \end{lstlisting}
 
-Two settings cause most local-agent failures. The harness must be told that
+Two settings cause most local-agent failures (\Cref{fig:localtooling}). The harness must be told that
 the model supports tools (in OpenCode, \code{"tool\_call": true} in the model's
 entry). The context must
 also be enlarged; otherwise, information is cut from the loop and the agent
 appears unable to follow the task. A 12B
 local model is useful for small edits and explanation, and well behind frontier
 models on work spanning many files.
+
+\begin{figure}[htbp]
+\centering
+\fig{ch08-local-tooling}
+\caption{Local model tooling. Clients speak one OpenAI-compatible API, runtimes
+serve the model, and llama.cpp sits underneath much of it. The context length
+and the tool-calling flag cause most local-agent failures.}
+\label{fig:localtooling}
+\end{figure}
 
 \section{Speech to text}
 
@@ -95,5 +113,14 @@ detection had missed. Removing those segments, the detected silences and passage
 mixing Greek with English reduced the corpus by about 20 per cent. Such phantom
 phrases recur often enough to be listed and filtered after transcription
 \parencite{baranski2025whisper}. Filter silence first, remove the known phrases,
-and never treat an automatic transcript as ground truth --- least of all an
+and never treat an automatic transcript as ground truth (\Cref{fig:speech}) --- least of all an
 interview, where an invented sentence is attributed to a real person.
+
+\begin{figure}[htbp]
+\centering
+\fig{ch08-speech}
+\caption{Speech to text, with the checks around it. Whisper invents text over
+silence and music, so filter before transcribing and remove the known phantom
+phrases afterwards.}
+\label{fig:speech}
+\end{figure}

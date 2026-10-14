@@ -70,12 +70,20 @@ latexmk -C                   # clean, including the PDF
 
 By hand, if you prefer: `pdflatex` -> `biber main` -> `pdflatex` -> `pdflatex`.
 
+The figures are included as PNGs from `figures/png/` and are rebuilt only when
+a TikZ source changes: `scripts/build_figures.sh` from the repository root
+(needs `pdflatex`, `pdftoppm`, `pdftocairo`). To include the vector PDFs
+instead, change `\DeclareGraphicsExtensions{.png}` in `preamble.tex` to
+`.pdf` and `\graphicspath` to `figures/pdf/`.
+
 ## Layout
 
 ```
 main.tex          parts and chapter includes
 preamble.tex      packages, formatting, biblatex setup
 references.bib    179 entries, grouped by theme
+figures/          41 diagrams: style.tex, tikz/ sources, pdf/ png/ svg/ outputs,
+                  README.md with the style rules and an index
 chapters/
   00-preface
   01-landscape  02-why-now  03-powers-and-limits  04-applications
@@ -194,6 +202,10 @@ for the task-only diff, checks and remaining link limitations.
   blog, linked to the post that carries the transcript and recording, with a
   pointer from Chapter 5's Infrastructure section. Talks are web material,
   not bibliography entries.
+- Figures were added on 14 October 2026: 41 TikZ diagrams, two or three per
+  chapter, each captioned and referenced in the prose, with SVG versions for
+  the workshop slides. See `figures/README.md`. Not yet reviewed by the
+  author.
 - Two existing bibliography links could not be verified in the October 10
   audit: the Financial Times returned access errors, and the saved Anna's
   Archive address failed certificate validation. Neither was replaced with

@@ -108,7 +108,7 @@ Self-hosted open weights & Control, privacy, offline & Capability gap, hardware,
 
 \term{Model as a Service} is the middle path: firms including Red Hat and Ollama
 offer supported deployment of open-weight models, and \textcite{redhat2026hybrid}
-argue for placing each workload where its needs put it. In my view, this is a
+argue for placing each workload where its needs put it (\Cref{fig:datagoes}). In my view, this is a
 useful approach for most institutions. A group policy can make these choices
 explicit:
 
@@ -124,6 +124,15 @@ explicit:
     sent and whether your licences and policy allow it.
 \end{itemize}
 
+\begin{figure}[htbp]
+\centering
+\fig{ch11-where-data-goes}
+\caption{Where the data goes. Hosted chat, an API and managed open weights all
+send the data out of the institution; self-hosted open weights keep it
+inside.}
+\label{fig:datagoes}
+\end{figure}
+
 \section{A reference architecture}
 
 Red Hat's strategy ebook by \textcite{ferris2025adaptable} makes a useful
@@ -136,7 +145,8 @@ time and computing budget? Portability matters when a model changes, but so
 does having someone able to maintain and evaluate its replacement.
 
 The architecture follows the same principle: keep the parts that must last
-simple, and allow the others to be replaced. Each layer has a specific role.
+simple, and allow the others to be replaced. Each layer has a specific role
+(\Cref{fig:architecture}).
 
 \begin{description}
   \item[Interface] Open WebUI or LibreChat in a browser, with the model
@@ -159,13 +169,22 @@ every exchange to a dated Markdown file gives you the provenance record
 a network connection; \textcite{confidence2026localstack} walk through the
 practical setup.
 
+\begin{figure}[htbp]
+\centering
+\fig{ch11-architecture}
+\caption{A reference architecture for a group. The interface talks, the models
+think and plain text remembers; a small proxy writes every exchange to the
+archive.}
+\label{fig:architecture}
+\end{figure}
+
 \section{A worked example: KYBELE}
 
 KYBELE, a project the author works on, is a literature assistant for Collembola
 (springtails) built on the SIB Literature Services (SIBiLS). SIBiLS also reuses
 the taxonomic treatments that Plazi extracts from the literature
 \parencite{agosti2022treatments}. KYBELE adds two layers
-to the architecture above: an \term{orchestrator} between interface and model
+to the architecture above (\Cref{fig:kybele}): an \term{orchestrator} between interface and model
 that holds all the domain rules, and a reverse proxy (Caddy) handling encryption
 and rate limits. A public website, Open WebUI for users signing in through
 ELIXIR, and an agent skill for tools such as Claude Code all call the same
@@ -187,6 +206,15 @@ specialised part. The expertise sits elsewhere:
   \item \textbf{Citation check.} A citation that does not match a retrieved item
     is dropped or flagged.
 \end{enumerate}
+
+\begin{figure}[htbp]
+\centering
+\fig{ch11-kybele}
+\caption{KYBELE as designed. Every client reaches one orchestrator that holds
+the domain rules; the model, never exposed to the internet, is the least
+specialised part.}
+\label{fig:kybele}
+\end{figure}
 
 React-to-Me \parencite{mohammadi2025reacttome} has tested the same design on the
 expert-curated Reactome pathway database. It combines keyword and vector search

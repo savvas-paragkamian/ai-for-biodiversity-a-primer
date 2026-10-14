@@ -32,7 +32,7 @@ Provenance & Documented origin and processing history & Metadata, logs & Executi
 \textbf{Sampling is random.} The same input can give different outputs. Setting
 the temperature to zero and fixing a seed gives approximate, not exact,
 repeatability \parencite{ouyang2024nondeterminism,coqueret2026randomness}.
-Record the settings.
+Record the settings (\Cref{fig:variation}).
 
 \textbf{The model changes underneath you.} A hosted model with a fixed name is
 not a fixed thing; providers update it without notice. A local model file with a
@@ -41,7 +41,17 @@ research.
 
 \textbf{A generated claim has no provenance.} Keep the model out of the chain of
 inference. Use it to write code or a query, which you read and run; the code is
-the artefact you keep. Do not let it produce a number that goes into a result.
+the artefact you keep. Do not let it produce a number that goes into a result
+(\Cref{fig:chain}).
+
+\begin{figure}[htbp]
+\centering
+\fig{ch09-chain-of-inference}
+\caption{Keep the model out of the chain of inference. Generated code is read,
+run and committed, so the result can be reproduced; a generated number has no
+provenance.}
+\label{fig:chain}
+\end{figure}
 
 \textbf{Agents take different paths}, and may report a task done when it is not
 \parencite{shapira2026agentsofchaos}. The deliverable is the reviewed, committed
@@ -50,6 +60,14 @@ code, not the session.
 \textbf{Context is hidden state.} The same prompt late in a conversation behaves
 differently. For anything that matters, use a fresh session with a
 self-contained prompt, and save it.
+
+\begin{figure}[htbp]
+\centering
+\fig{ch09-variation}
+\caption{Five sources of variation in a model call, and what to record or
+change for each.}
+\label{fig:variation}
+\end{figure}
 
 \begin{keypoint}
 Generated code is reproducible; generated answers are not. Move every

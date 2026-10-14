@@ -7,7 +7,16 @@ make its work reproducible. This chapter puts those practices together in one
 session. You will give an agent a small, messy occurrence table, ask it for two
 scripts, and check what comes back. The data are invented, so mistakes cost
 nothing, and the expected results are printed here so that you can tell a
-correct answer from a confident one.
+correct answer from a confident one (\Cref{fig:session}).
+
+\begin{figure}[htbp]
+\centering
+\fig{ch10-session-flow}
+\caption{The session, step by step. Checks sit between the agent's claims and
+your acceptance: expected counts, \code{git status}, and the column count that
+reveals an instruction obeyed from inside the data.}
+\label{fig:session}
+\end{figure}
 
 By the end you should be able to set up a project that an agent can work in
 safely, and to state its rules in a file and enforce them in configuration.
@@ -103,7 +112,17 @@ the operating system then refuses the write, whoever asks for it. The session
 therefore has three layers of protection, each with a different weakness. The
 model may ignore a rule, the configuration covers only the harness's tools,
 and a determined process could change the file permissions back.
-Together they put least privilege into practice.
+Together they put least privilege into practice (\Cref{fig:threelayers}).
+
+\begin{figure}[htbp]
+\centering
+\fig{ch10-three-layers}
+\caption{Three layers around the raw data. The rules file is advice, the
+harness configuration binds only the harness's own tools, and the file
+permissions are enforced by the operating system; each has a weakness the
+others cover.}
+\label{fig:threelayers}
+\end{figure}
 
 \section{Step 3: a description, with no changes}
 

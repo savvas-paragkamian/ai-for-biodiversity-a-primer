@@ -31,7 +31,16 @@ Asked something it cannot answer, a model usually produces a fluent, specific
 and wrong answer --- a \term{hallucination}. \textcite{kalai2025hallucinate}
 show why it persists: tests score accuracy, and a model that guesses scores
 better than one that says ``I don't know''. We have trained good test-takers,
-and a good test-taker never leaves a blank.
+and a good test-taker never leaves a blank (\Cref{fig:guessing}).
+
+\begin{figure}[htbp]
+\centering
+\fig{ch03-guessing-wins}
+\caption{Why guessing wins. A test that scores accuracy alone gives nothing
+for ``I don't know'' and something for a guess, so training keeps the
+guessing.}
+\label{fig:guessing}
+\end{figure}
 
 The failure that matters most for research is invented references.
 \textcite{zhao2026citations} checked 111 million references in 2.5 million
@@ -67,7 +76,15 @@ rated above a true one.
 It does most damage late in an analysis, alone, with a result you want to be
 true. Counter it by asking for the argument against, presenting your idea as
 someone else's, asking again in a fresh session, and never using a chatbot as
-your only reader.
+your only reader (\Cref{fig:spiral}).
+
+\begin{figure}[htbp]
+\centering
+\fig{ch03-sycophancy-loop}
+\caption{The delusional spiral, and where to break it. Each turn of agreement
+raises the user's confidence; the four remedies each cut one arrow.}
+\label{fig:spiral}
+\end{figure}
 
 \section{Dependence}
 
@@ -109,7 +126,17 @@ four characters or three-quarters of a word, so 100 tokens is about 75 words. A
 This has two consequences. The whole window is re-sent on every turn, so cost
 and delay grow with it. Models also attend less reliably to material in the middle of a
 long context than at either end \parencite{liu2023lostmiddle}. Start a fresh session when the task changes; a
-short, relevant context beats a long one with the answer buried in it.
+short, relevant context beats a long one with the answer buried in it
+(\Cref{fig:context}).
+
+\begin{figure}[htbp]
+\centering
+\fig{ch03-context-window}
+\caption{The context window over three turns. Everything is re-sent each turn,
+so the window grows; material in the middle is used less reliably than
+material at either end \parencite{liu2023lostmiddle}.}
+\label{fig:context}
+\end{figure}
 
 \section{Detecting AI-written text}
 

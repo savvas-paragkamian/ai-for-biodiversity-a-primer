@@ -55,7 +55,17 @@ sha256sum -c data/raw/CHECKSUMS.sha256      # verify later
 \end{lstlisting}
 
 An agent asked to clean a dataset will happily clean it in place. Read-only
-permissions turn that into a visible error instead of a silent loss.
+permissions turn that into a visible error instead of a silent loss
+(\Cref{fig:rawreadonly}).
+
+\begin{figure}[htbp]
+\centering
+\fig{ch06-raw-readonly}
+\caption{Raw data is read-only. Everything downstream is derived by script, and
+an agent's attempt to clean the raw files in place is refused by the operating
+system.}
+\label{fig:rawreadonly}
+\end{figure}
 
 \section{Backup: 3-2-1}
 
@@ -66,10 +76,20 @@ a NAS, and a copy in another building or institutional storage.
 \textbf{RAID is not a backup.} A RAID array survives a failed disk. It does not
 survive accidental deletion, ransomware, file-system corruption, theft, or an
 agent running \code{rm -rf} on the wrong path; every one of those reaches every
-disk at once. A NAS with RAID is a good second copy, not the second and third.
+disk at once. A NAS with RAID is a good second copy, not the second and third
+(\Cref{fig:backup}).
 Check that you can restore the data as well. Every quarter, restore a random
 file from each copy and compare it with the original. This checks that the
 backup will be useful when you need it.
+
+\begin{figure}[htbp]
+\centering
+\fig{ch06-backup}
+\caption{Three copies, two kinds of storage, one off-site, and a restore test
+every quarter. A RAID array survives a failed disk; deletion, ransomware and an
+agent's \code{rm -rf} reach every disk at once.}
+\label{fig:backup}
+\end{figure}
 
 \section{Version control}
 

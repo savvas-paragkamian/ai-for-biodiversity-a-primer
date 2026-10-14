@@ -13,14 +13,32 @@ with knowing how to recover when something goes wrong.
 throwaway plot; not for anything entering a manuscript, a database or someone
 else's pipeline. \term{Chat-oriented programming} (CHOP) is the useful
 alternative: you describe what you want, the system proposes code, you run and
-check it, and you refine. The difference is whether checking is in the loop. You
+check it, and you refine. The difference is whether checking is in the loop
+(\Cref{fig:chop}). You
 are accountable for what you publish, whatever wrote it.
+
+\begin{figure}[htbp]
+\centering
+\fig{ch07-chop}
+\caption{Chat-oriented programming keeps the check in the loop; vibe coding
+takes the proposed code straight to acceptance.}
+\label{fig:chop}
+\end{figure}
 
 A chatbot sees only what you paste --- usually the last five lines of an error,
 which is rarely where the problem is. A harness works in your project: it reads
 the files, runs the code, sees the full error and tries again. That feedback
 loop is where its power comes from, and why its mistakes can modify or delete
-files (\Cref{ch:landscape}).
+files (\Cref{ch:landscape}; \Cref{fig:harnessloop}).
+
+\begin{figure}[htbp]
+\centering
+\fig{ch07-chatbot-vs-harness}
+\caption{Where the loop runs. With a chatbot it runs through you, on the lines
+you paste; a harness runs it inside the project, reading files, running code
+and seeing the whole error.}
+\label{fig:harnessloop}
+\end{figure}
 
 \section{The project speaks through files}
 
@@ -123,9 +141,19 @@ meaning.
 Task size is the best predictor of success; agents degrade as scope grows
 \parencite{guo2026promptbio}. ``Write a function that reads this CSV and returns
 these columns'' works. ``Build the analysis pipeline'' is a series of the first
-kind, and running it as a series gives you a review point between each step. For
+kind, and running it as a series gives you a review point between each step
+(\Cref{fig:tasksize}). For
 the design of the harness itself, see \textcite{liu2026claudecode} and
 \textcite{piskala2026files}.
+
+\begin{figure}[htbp]
+\centering
+\fig{ch07-task-size}
+\caption{One task or a series. A large task returns more code than can be
+reviewed; the same work as small tasks gives a commit, a diff and a row count
+between each step.}
+\label{fig:tasksize}
+\end{figure}
 
 Whether all this saves time is less settled than it feels. In a randomised
 trial with 16 experienced open-source developers, tasks took 19 per cent longer

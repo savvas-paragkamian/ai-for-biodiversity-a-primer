@@ -46,7 +46,8 @@ proteomes \parencite{blum2026interproscan}.
 The ecological examples in \Cref{ch:applications} suggest a procedure of their
 own. The following is my proposal for comparing extraction, classification and
 study-retrieval workflows, drawing on their different successes and failures
-\parencite{gougherty2024extraction,domazetoski2025traits,dorm2026ecologicalknowledge,munch2026phenotypes,venetsianou2026relatedness}.
+\parencite{gougherty2024extraction,domazetoski2025traits,dorm2026ecologicalknowledge,munch2026phenotypes,venetsianou2026relatedness}
+(\Cref{fig:procedure}).
 
 \begin{enumerate}
   \item \textbf{Fix the task and the reference answers.} Specify the fields,
@@ -86,6 +87,14 @@ study-retrieval workflows, drawing on their different successes and failures
     Judge a replacement by verified output per unit of work and by unacceptable
     errors, with the acceptance criteria fixed before comparing models.
 \end{enumerate}
+
+\begin{figure}[htbp]
+\centering
+\fig{ch13-procedure}
+\caption{The procedure in six steps, from fixing the task and its reference
+answers to measuring variation and the whole cost.}
+\label{fig:procedure}
+\end{figure}
 
 In the microbiome relatedness study, the authors also tested the similarity
 measures themselves by reducing sequencing depth and asking whether profiles
@@ -152,7 +161,16 @@ Rscript R/03_score.R
 in \code{results/} with the key, field by field. It separates wrong values,
 missed values and invented values, where the key is empty but the output is
 not, and then prints each disagreement so that it can be read, not only
-counted.
+counted (\Cref{fig:scoring}).
+
+\begin{figure}[htbp]
+\centering
+\fig{ch13-scoring-grid}
+\caption{Scoring against the key. Wrong, missed and invented values are
+different failures; an invented value, where the key is empty and the output
+is not, is the one that corrupts a database most quietly.}
+\label{fig:scoring}
+\end{figure}
 
 When the exercise was tested for this book, the baseline got 46 of the 50
 cells right. Its four errors were the cases that need reading rather than
