@@ -1,0 +1,23 @@
+% KYBELE: the expertise sits in the orchestrator, not in the model.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=14pt and 12pt, part/.style={box, text width=100pt, align=center, font=\footnotesize}]
+  \node[part] (web) {public website};
+  \node[part, right=of web] (ui) {Open WebUI\\signed in through ELIXIR};
+  \node[part, right=of ui] (skill) {an agent skill\\e.g.\ Claude Code};
+  \node[box, below=of ui, text width=216pt, align=center, font=\footnotesize] (caddy) {Caddy: encryption, rate limits};
+  \node[grey, below=of caddy, text width=216pt, align=left, font=\footnotesize] (orch)
+    {\centering orchestrator: the domain rules, written once\\[2pt]
+     1. vocabulary: questions expanded with curated Collembola terms, by lookup\\
+     2. scope: results filtered to Collembola items, in code, not in a prompt\\
+     3. saying no when the curated evidence does not cover the question\\
+     4. a citation that matches no retrieved item is dropped or flagged};
+  \node[part, below=16pt of orch.south, anchor=north, xshift=-72pt] (sibils) {SIBiLS\\literature, with Plazi treatments};
+  \node[part, below=16pt of orch.south, anchor=north, xshift=72pt] (model) {model: Qwen3-4B on vLLM\\16\,GB GPU, never on the internet};
+  \foreach \c in {web,ui,skill} \draw[->] (\c) -- (\c |- caddy.north);
+  \draw[->] (caddy) -- (orch);
+  \draw[<->] (orch.south -| sibils.north) -- (sibils.north);
+  \draw[<->] (orch.south -| model.north) -- (model.north);
+  \node[note] at ($(sibils.south)!0.5!(model.south)+(0,-12pt)$) {the model is the least specialised part; it can be replaced if the test suite still passes};
+\end{tikzpicture}
+\end{document}

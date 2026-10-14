@@ -1,0 +1,19 @@
+% The agent loop: the pseudocode of Chapter 1 as a flowchart.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=12pt and 36pt]
+  \node[rounded] (start) {start};
+  \node[box, code, below=of start] (model) {response = model(context)};
+  \node[decision, below=of model] (q) {wants a\\tool?};
+  \node[box, code, right=of q] (run) {result = run\_tool(tool, args)};
+  \node[box, code, below=of run] (ctx) {context += result};
+  \node[rounded, left=of q] (done) {done};
+  \node[note, above=3pt of run] {permissions are checked here};
+  \draw[->] (start) -- (model);
+  \draw[->] (model) -- (q);
+  \draw[->] (q) -- node[tag, above] {yes} (run);
+  \draw[->] (run) -- (ctx);
+  \draw[->] (ctx.east) -| ([xshift=24pt]run.east) |- (model.east);
+  \draw[->] (q) -- node[tag, above] {no} (done);
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,20 @@
+% 3-2-1 backup, and why RAID is not one.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=10pt and 22pt]
+  \node[title, anchor=west] (t1) at (0,0) {Three copies, two kinds of storage, one off-site};
+  \node[box, below=6pt of t1.west, anchor=north west] (w) {working copy\\ \footnotesize your laptop};
+  \node[box, right=of w] (n) {second copy\\ \footnotesize a separate device, e.g.\ a NAS};
+  \node[box, right=of n] (o) {third copy\\ \footnotesize another building or institutional storage};
+  \draw[->] (w) -- (n);
+  \draw[->] (n) -- (o);
+  \draw[back] (o.south) -- ++(0,-12pt) -| node[note, pos=0.25, below] {every quarter: restore a random file and compare it} (w.south);
+
+  \node[title, anchor=west] (t2) at (0,-90pt) {RAID is not a backup};
+  \node[box, below=6pt of t2.west, anchor=north west, inner sep=6pt] (raid) {%
+    \tikz[baseline]{\foreach \i in {0,1,2} \draw (\i*22pt,0) rectangle ++(16pt,24pt);}\\
+    \footnotesize survives one failed disk};
+  \node[badbox, right=110pt of raid, align=left] (bad) {deletion, ransomware, corruption,\\an agent running \texttt{rm -rf}};
+  \draw[->, bad] (bad) -- node[note, above, text=accent] {reaches every disk at once} (raid);
+\end{tikzpicture}
+\end{document}

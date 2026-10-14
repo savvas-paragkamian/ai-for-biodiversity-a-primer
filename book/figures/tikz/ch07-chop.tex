@@ -1,0 +1,17 @@
+% Chat-oriented programming keeps the check in the loop; vibe coding skips it.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=10pt and 22pt]
+  \node[box] (d) {you describe\\the result};
+  \node[grey, right=of d] (p) {the system\\proposes code};
+  \node[box, right=of p] (r) {you run it\\and check};
+  \node[box, right=of r] (f) {you refine};
+  \node[box, right=of f] (a) {accept};
+  \draw[->] (d) -- (p);
+  \draw[->] (p) -- (r);
+  \draw[->] (r) -- (f);
+  \draw[->] (f) -- (a);
+  \draw[->] (f.north) -- ++(0,14pt) -| node[tag, pos=0.25, above] {not yet right} (p.north);
+  \draw[->, bad] (p.south) -- ++(0,-18pt) -| node[note, pos=0.25, below, text=accent] {vibe coding: accepted without reading} (a.south);
+\end{tikzpicture}
+\end{document}

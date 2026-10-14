@@ -1,0 +1,21 @@
+% Curation with a person in the loop: the model suggests, the curator decides.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=10pt and 26pt]
+  \node[grey] (m) {model suggests};
+  \node[box, right=of m] (c) {curator decides};
+  \node[box, right=of c] (kb) {knowledgebase};
+  \node[box, above right=4pt and 26pt of kb] (a1) {analysis};
+  \node[box, right=of kb] (a2) {analysis};
+  \node[box, below right=4pt and 26pt of kb] (a3) {analysis};
+  \draw[->] (m) -- (c);
+  \draw[->] (c) -- (kb);
+  \draw[->] (kb) -- (a1);
+  \draw[->] (kb) -- (a2);
+  \draw[->] (kb) -- (a3);
+  \draw[back, bad] (m.south) to[bend right=28] node[note, below, text=accent] {never directly} (kb.south);
+  \node[note, below=42pt of c, text width=300pt]
+    {an error that enters the knowledgebase reaches every analysis that uses it,
+     so the curator's judgement is the step that cannot be skipped};
+\end{tikzpicture}
+\end{document}

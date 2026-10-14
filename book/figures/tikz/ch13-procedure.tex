@@ -1,0 +1,16 @@
+% A procedure for testing a model on an ecological task.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=22pt and 16pt,
+                    stage/.style={box, text width=112pt, align=center, font=\footnotesize}]
+  \node[stage] (s1) {\small 1. fix the task and the reference answers\\ \itshape experts annotate; keep a test set aside};
+  \node[stage, right=of s1] (s2) {\small 2. compare like with like\\ \itshape a keyword baseline, the domain method; unaided, with a passage, with retrieval};
+  \node[stage, right=of s2] (s3) {\small 3. score the errors that matter\\ \itshape precision and recall per field; invented values; balanced accuracy; failures counted};
+  \node[stage, below=of s1] (s4) {\small 4. uncertainty and unfamiliar cases\\ \itshape absent fields, rare taxa, invented names; coverage beside accuracy};
+  \node[stage, right=of s4] (s5) {\small 5. retrieval and evidence separately\\ \itshape were the relevant papers found; is each claim supported by its passage};
+  \node[stage, right=of s5] (s6) {\small 6. variation and the whole cost\\ \itshape repeat runs; by taxon; time, tokens, hardware, correction; criteria fixed in advance};
+  \draw[->] (s1) -- (s2); \draw[->] (s2) -- (s3);
+  \draw[->] (s3.south) -- ++(0,-8pt) -| (s4.north);
+  \draw[->] (s4) -- (s5); \draw[->] (s5) -- (s6);
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,22 @@
+% Keep the model out of the chain of inference: generated code, not generated answers.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=10pt and 18pt]
+  \node[title, anchor=west] (t1) at (0,0) {Keep: the model writes code};
+  \node[box, below=6pt of t1.west, anchor=north west] (q1) {a question\\about the data};
+  \node[grey, right=of q1] (m1) {model};
+  \node[box, right=of m1] (code) {a script\\or a query};
+  \node[box, right=of code] (run) {you read it,\\run it, commit it};
+  \node[box, right=of run] (r1) {result};
+  \draw[->] (q1) -- (m1); \draw[->] (m1) -- (code); \draw[->] (code) -- (run); \draw[->] (run) -- (r1);
+  \node[note, below=4pt of run] {the code is the artefact you keep: anyone can rerun it};
+
+  \node[title, anchor=west] (t2) at (0,-84pt) {Avoid: the model produces the answer};
+  \node[box, below=6pt of t2.west, anchor=north west] (q2) {a question\\about the data};
+  \node[grey, right=of q2] (m2) {model};
+  \node[badbox, right=of m2] (num) {a number\\or a claim};
+  \node[box, right=of num] (r2) {result};
+  \draw[->] (q2) -- (m2); \draw[->] (m2) -- (num); \draw[->] (num) -- (r2);
+  \node[note, below=4pt of num, text=accent, text width=180pt] {no provenance, and no way to reproduce it: sampling is random and a hosted model changes without notice};
+\end{tikzpicture}
+\end{document}

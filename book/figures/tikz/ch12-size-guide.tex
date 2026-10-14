@@ -1,0 +1,24 @@
+% Which model size for which task (parameters, logarithmic scale).
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[x=56pt]
+  % axis: position = log2(parameters in billions)
+  \draw[->] (-0.9,0) -- (6.7,0);
+  \foreach \p/\l in {0/1B,1/2B,2/4B,2.81/7B,3.81/14B,4.91/30B,6.13/70B}
+    \draw (\p,-2pt) -- (\p,2pt) node[tag, below=4pt] {\l};
+  \node[tag, anchor=east] at (6.7,10pt) {parameters};
+  % brackets
+  \foreach \a/\b/\y/\l in {
+      0/2.81/16/classification,
+      2.81/3.81/32/summarising and extraction,
+      3.58/5.0/48/scoped coding (a 32K context at least),
+      4.91/6.13/64/agent work across several files}
+    { \draw (\a,\y pt) -- (\b,\y pt);
+      \draw (\a,\y pt-2pt) -- (\a,\y pt+2pt);
+      \draw (\b,\y pt-2pt) -- (\b,\y pt+2pt);
+      \node[tag, above=1pt] at ({(\a+\b)/2},\y pt) {\l}; }
+  % marks below
+  \fill (-0.7,0) circle (1.4pt) node[tag, below=14pt, anchor=north west, xshift=-4pt] {embeddings, under 1B};
+  \fill (0.58,0) circle (1.4pt) node[tag, below=26pt, anchor=north west, xshift=-4pt] {Whisper, 1.5B};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,22 @@
+% Fencing an agent in: layers, each with an honest limit.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[w/.style={note, text width=280pt}]
+  \node[grey] (agent) at (0,0) {the agent, with your permissions};
+  \node[group, solid, fit=(agent), inner xsep=70pt, inner ysep=8pt] (dir) {};
+  \node[tag, anchor=south west] at (dir.north west) {the project directory only};
+  \node[w, below=2pt of dir] (n1) {free, and the most valuable habit; the agent can still reach anything inside it};
+  \node[group, solid, fit=(dir) (n1), inner xsep=10pt, inner ysep=14pt] (prompts) {};
+  \node[tag, anchor=south west] at (prompts.north west) {permission prompts};
+  \node[w, below=2pt of prompts] (n2) {work until fatigue sets in after the fiftieth; allow safe read-only commands so the rest mean something};
+  \node[group, solid, fit=(prompts) (n2), inner xsep=10pt, inner ysep=14pt] (cont) {};
+  \node[tag, anchor=south west] at (cont.north west) {a container};
+  \node[w, below=2pt of cont] (n3) {adequate against a misread instruction; shares the host's kernel, so no boundary against a determined attacker};
+  \node[group, solid, fit=(cont) (n3), inner xsep=10pt, inner ysep=14pt] (vm) {};
+  \node[tag, anchor=south west] at (vm.north west) {a microVM};
+  \node[w, below=2pt of vm] (n4) {its own kernel; the right choice for agents running unattended};
+  \node[group, solid, fit=(vm) (n4), inner xsep=10pt, inner ysep=14pt] (net) {};
+  \node[tag, anchor=south west] at (net.north west) {no network};
+  \node[w, below=2pt of net] (n5) {when the task is local: nothing to leak to, nothing to fetch};
+\end{tikzpicture}
+\end{document}

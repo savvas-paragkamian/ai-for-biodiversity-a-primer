@@ -1,0 +1,24 @@
+% A separate graphics card against a shared memory pool.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=8pt and 20pt, chip/.style={box, minimum width=52pt}]
+  % conventional
+  \node[title] at (100pt,70pt) {A conventional PC};
+  \node[chip] (cpu) at (30pt,40pt) {CPU};
+  \node[grey, below=of cpu, text width=60pt, align=center, font=\footnotesize] (ram) {system\\memory};
+  \node[chip] (gpu) at (170pt,40pt) {GPU};
+  \node[grey, below=of gpu, text width=60pt, align=center, font=\footnotesize] (vram) {its own memory\\8--48\,GB\\1--3\,TB/s};
+  \draw (cpu) -- (ram); \draw (gpu) -- (vram);
+  \draw[->] (ram) -- node[tag, above] {copied first} (vram);
+  \node[note, anchor=north west, text width=180pt, align=left] at ([yshift=-8pt]ram.west |- vram.south)
+    {fast while the model fits on the card; \mbox{300--700\,W}; the only sensible choice for training};
+  % unified
+  \node[title] at (350pt,70pt) {Unified memory};
+  \node[chip] (cpu2) at (300pt,40pt) {CPU};
+  \node[chip] (gpu2) at (400pt,40pt) {GPU};
+  \node[grey, text width=140pt, align=center, font=\footnotesize] (pool) at (350pt,-4pt) {one shared pool\\16--512\,GB\\200--800\,GB/s};
+  \draw (cpu2) -- (cpu2 |- pool.north); \draw (gpu2) -- (gpu2 |- pool.north);
+  \node[note, below=8pt of pool.south west, anchor=north west, text width=156pt, align=left]
+    {slower per byte, but large models fit at all; 30--120\,W: Apple Silicon, Ryzen AI Max, Snapdragon X};
+\end{tikzpicture}
+\end{document}

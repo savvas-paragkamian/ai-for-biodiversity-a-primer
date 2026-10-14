@@ -1,0 +1,13 @@
+% A routine for keeping up: about forty hours a year.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=10pt and 12pt, slot/.style={box, text width=82pt, align=center}]
+  \node[slot] (w) {weekly, 30 minutes\\ \footnotesize skim one aggregator; note things to look up};
+  \node[slot, right=of w] (m) {monthly, 2 hours\\ \footnotesize try one thing on a real task of your own};
+  \node[slot, right=of m] (q) {quarterly, half a day\\ \footnotesize review tools, update pinned versions, test a backup restore};
+  \node[slot, right=of q] (y) {yearly, a day\\ \footnotesize the AI Index; the group's data and disclosure policy; hardware};
+  \draw[->] (w) -- (m); \draw[->] (m) -- (q); \draw[->] (q) -- (y);
+  \node[note, below=8pt of current bounding box.south]
+    {about forty hours a year; more starts competing with doing ecology};
+\end{tikzpicture}
+\end{document}

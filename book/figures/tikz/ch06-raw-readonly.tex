@@ -1,0 +1,16 @@
+% Raw data is read-only; everything else is derived by script.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=10pt and 22pt]
+  \node[grey, code] (raw) {data/raw/\\ \footnotesize\rmfamily read-only, checksummed};
+  \node[box, code, right=of raw] (scripts) {scripts/\\ \footnotesize\rmfamily run in order};
+  \node[box, code, right=of scripts] (proc) {data/processed/\\ \footnotesize\rmfamily regenerable};
+  \node[box, code, right=of proc] (res) {results/};
+  \draw[->] (raw) -- (scripts);
+  \draw[->] (scripts) -- (proc);
+  \draw[->] (proc) -- (res);
+  \node[box, below=28pt of scripts] (agent) {an agent asked to ``clean the data''};
+  \draw[->] (agent) -- node[tag, right] {writes a script} (scripts);
+  \draw[->, bad] (agent.west) -| node[note, pos=0.75, left, text=accent, align=right] {write refused\\by the operating system} (raw.south);
+\end{tikzpicture}
+\end{document}

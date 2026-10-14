@@ -1,0 +1,23 @@
+% The layers an analysis depends on, and the four ways to talk to a system.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=3pt,
+                    layer/.style={box, text width=164pt, align=center, minimum height=26pt}]
+  \node[layer] (os) at (0,0) {operating system\\ \footnotesize Linux; macOS; Windows through WSL2};
+  \node[layer, above=of os] (lang) {languages and environments\\ \footnotesize R with renv; Python with uv or conda};
+  \node[layer, above=of lang] (cont) {containers\\ \footnotesize Podman or Docker: reproducibility, fencing agents};
+  \node[layer, above=of cont] (ed) {editor, harness, version control\\ \footnotesize Positron, RStudio, VS Code, Neovim; a harness; Git};
+  \node[layer, above=of ed] (wf) {workflow engine\\ \footnotesize targets, Snakemake, Nextflow: rerun only what changed};
+  \node[title, below=6pt of os] {The stack};
+  % interfaces
+  \node[box, minimum width=48pt] (gui) at (196pt,0) {GUI};
+  \node[box, minimum width=48pt, above=of gui] (tui) {TUI};
+  \node[box, minimum width=48pt, above=of tui] (cli) {CLI};
+  \node[box, minimum width=48pt, above=of cli] (api) {API};
+  \node[tag, right=6pt of gui, anchor=west, align=left] {easy to explore;\\cannot be scripted};
+  \node[tag, right=6pt of tui, anchor=west, align=left] {works over a\\remote connection};
+  \node[tag, right=6pt of cli, anchor=west, align=left] {scripted and logged:\\a record of what you did};
+  \node[tag, right=6pt of api, anchor=west, align=left] {anything,\\if you write the code};
+  \node[title, below=6pt of gui] {Four interfaces};
+\end{tikzpicture}
+\end{document}

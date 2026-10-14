@@ -1,0 +1,23 @@
+% The delusional spiral, and where to break it.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}
+  \node[box] (a) at (0,52pt) {you state a belief};
+  \node[grey] (b) at (100pt,0) {the model agrees};
+  \node[box] (c) at (0,-52pt) {your confidence rises};
+  \node[box] (d) at (-100pt,0) {you ask again,\\leading the witness};
+  \draw[->] (a) to[bend left=22] (b);
+  \draw[->] (b) to[bend left=22] (c);
+  \draw[->] (c) to[bend left=22] (d);
+  \draw[->] (d) to[bend left=22] (a);
+  % where to cut
+  \node[note, anchor=west, align=left] (n1) at (130pt,44pt) {ask for the\\argument against};
+  \node[note, anchor=west, align=left] (n2) at (130pt,-44pt) {present the idea\\as someone else's};
+  \node[note, anchor=east, align=right] (n3) at (-130pt,-44pt) {ask again in\\a fresh session};
+  \node[note, anchor=east, align=right] (n4) at (-130pt,44pt) {never the\\only reader};
+  \draw[back] (n1.west) -- ($(a)!0.5!(b)+(10pt,8pt)$);
+  \draw[back] (n2.west) -- ($(b)!0.5!(c)+(10pt,-8pt)$);
+  \draw[back] (n3.east) -- ($(c)!0.5!(d)+(-10pt,-8pt)$);
+  \draw[back] (n4.east) -- ($(d)!0.5!(a)+(-10pt,8pt)$);
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,17 @@
+% The lead of the best closed model over the best open-weight one (AI Index 2026).
+\input{../style}
+\begin{document}
+\begin{tikzpicture}
+  \draw[->] (0,0) -- (215pt,0);
+  \draw[->] (0,0) -- (0,92pt);
+  \foreach \y/\l in {0/0,25/5,50/10,75/15}
+    \draw (-2pt,\y pt) -- (2pt,\y pt) node[tag, left=5pt] {\l};
+  \foreach \x/\l in {30/2023,80/2024,130/2025,180/2026}
+    \draw (\x pt,-2pt) -- (\x pt,2pt) node[tag, below=5pt] {\l};
+  \node[tag, anchor=south west] at (4pt,92pt) {lead of the best closed model, per cent};
+  \draw[thin] (30pt,75pt) -- (80pt,5pt) -- (190pt,17pt);
+  \fill (30pt,75pt) circle (2pt) node[tag, above right=1pt] {15};
+  \fill (80pt,5pt) circle (2pt) node[tag, below right=1pt] {under 1};
+  \fill (190pt,17pt) circle (2pt) node[tag, above right=1pt] {3.4 (March)};
+\end{tikzpicture}
+\end{document}

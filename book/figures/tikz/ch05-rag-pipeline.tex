@@ -1,0 +1,24 @@
+% Retrieval-augmented generation, and where it fails.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=34pt and 26pt,
+                    stage/.style={box, text width=96pt, align=center}]
+  \node[stage] (convert) {convert\\ \footnotesize PDF to text};
+  \node[stage, right=of convert] (chunk) {chunk\\ \footnotesize by document structure};
+  \node[stage, right=of chunk] (embed) {embed\\ \footnotesize each chunk as a vector};
+  \node[stage, below=of convert] (index) {index\\ \footnotesize e.g.\ PostgreSQL, pgvector};
+  \node[stage, right=of index] (retrieve) {retrieve, rerank\\ \footnotesize keyword and vector search};
+  \node[stage, right=of retrieve] (generate) {generate\\ \footnotesize an answer citing the passages};
+  \draw[->] (convert) -- (chunk);
+  \draw[->] (chunk) -- (embed);
+  \draw[->] (embed.south) -- ++(0,-12pt) -| (index.north);
+  \draw[->] (index) -- (retrieve);
+  \draw[->] (retrieve) -- (generate);
+  \node[note, below=4pt of retrieve, text width=104pt, text=accent]
+    {fails when the answer is not in the corpus, is ranked too low, or is cut from the context};
+  \node[note, below=4pt of generate, text width=104pt, text=accent]
+    {fails when the model misses it, uses the wrong format, is too general or too narrow, or stops short};
+  \node[note, below=4pt of index, text width=104pt]
+    {log what was retrieved separately from what was generated, or you cannot tell which half broke};
+\end{tikzpicture}
+\end{document}

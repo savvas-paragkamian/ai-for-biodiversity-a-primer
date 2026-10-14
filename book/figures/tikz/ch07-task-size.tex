@@ -1,0 +1,22 @@
+% One big task, or a series of small ones with a review point between each.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=10pt and 10pt,
+                    rev/.style={grey, font=\footnotesize, inner xsep=4pt, minimum height=18pt},
+                    small/.style={box, text width=64pt, font=\footnotesize}]
+  \node[box, text width=200pt] (big) {``build the analysis pipeline''};
+  \node[badbox, right=of big, align=left] (out) {400 lines at once:\\too big to review};
+  \draw[->] (big) -- (out);
+
+  \node[small, below=26pt of big.south west, anchor=north west] (s1) {read the CSV,\\return these columns};
+  \node[rev, right=of s1] (r1) {review};
+  \node[small, right=of r1] (s2) {join to the stations;\\count rows before and after};
+  \node[rev, right=of s2] (r2) {review};
+  \node[small, right=of r2] (s3) {summarise\\by station};
+  \node[rev, right=of s3] (r3) {review};
+  \draw[->] (s1) -- (r1); \draw[->] (r1) -- (s2);
+  \draw[->] (s2) -- (r2); \draw[->] (r2) -- (s3);
+  \draw[->] (s3) -- (r3);
+  \node[note, below=6pt of s2.south, anchor=north] {at each review: commit, read the whole diff, check the counts};
+\end{tikzpicture}
+\end{document}

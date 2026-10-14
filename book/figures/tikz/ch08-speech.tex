@@ -1,0 +1,18 @@
+% Speech to text: filter before and after, and never treat the transcript as ground truth.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=10pt and 9pt]
+  \node[box] (audio) {audio};
+  \node[box, right=of audio] (vad) {voice detection\\ \footnotesize drop silence, music};
+  \node[grey, right=of vad] (whisper) {Whisper\\ \footnotesize whisper.cpp, local};
+  \node[box, right=of whisper] (filter) {filter\\ \footnotesize known phantom phrases};
+  \node[box, right=of filter] (text) {transcript\\ \footnotesize not ground truth};
+  \draw[->] (audio) -- (vad);
+  \draw[->] (vad) -- (whisper);
+  \draw[->] (whisper) -- (filter);
+  \draw[->] (filter) -- (text);
+  \node[note, below=8pt of whisper, text width=220pt, text=accent]
+    {over silence, music or noise Whisper invents text that was never spoken,
+     such as a subtitle credit};
+\end{tikzpicture}
+\end{document}

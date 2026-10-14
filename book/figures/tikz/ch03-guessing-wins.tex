@@ -1,0 +1,18 @@
+% Why hallucination persists: a test that scores accuracy rewards guessing.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=10pt and 20pt]
+  \node[box] (q) {a question the model\\cannot answer};
+  \node[decision, right=of q] (d) {answer?};
+  \node[box, above right=8pt and 20pt of d] (idk) {``I don't know''};
+  \node[grey, below right=8pt and 20pt of d] (guess) {a fluent, specific guess};
+  \node[tag, right=12pt of idk, align=left, anchor=west] {scores 0, always};
+  \node[tag, right=12pt of guess, align=left, anchor=west] {scores 1 when the guess is right,\\0 otherwise: never less};
+  \draw[->] (q) -- (d);
+  \draw[->] (d) |- (idk);
+  \draw[->] (d) |- (guess);
+  \node[note, below=14pt of q.south west, anchor=north west, text width=400pt, align=left]
+    {tests score accuracy and nothing else, so the guessing strategy scores higher;
+     training keeps whatever scores higher};
+\end{tikzpicture}
+\end{document}

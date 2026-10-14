@@ -1,0 +1,19 @@
+% Resolve every reference before it enters a manuscript.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=12pt and 14pt]
+  \node[box] (ref) {a reference};
+  \node[decision, right=of ref] (id) {DOI or\\arXiv ID?};
+  \node[box, right=of id, text width=78pt, align=center] (res) {resolve it\\ \footnotesize Crossref, arXiv, OpenAlex};
+  \node[decision, right=of res] (match) {title\\matches?};
+  \node[rounded, right=of match] (keep) {keep};
+  \node[box, below=of res] (hand) {check by hand: open the document};
+  \draw[->] (ref) -- (id);
+  \draw[->] (id) -- node[tag, above] {yes} (res);
+  \draw[->] (res) -- (match);
+  \draw[->] (match) -- node[tag, above] {yes} (keep);
+  \draw[->] (id) |- node[tag, pos=0.25, left] {no} (hand);
+  \draw[->, bad] (match) |- node[tag, pos=0.25, right, text=accent, align=left] {no: it may\\not exist} (hand);
+  \node[note, below=8pt of hand] {every one, not a sample; it takes minutes by script};
+\end{tikzpicture}
+\end{document}

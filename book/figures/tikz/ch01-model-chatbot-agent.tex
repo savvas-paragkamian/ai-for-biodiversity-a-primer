@@ -1,0 +1,21 @@
+% Model, chatbot, agent: the same function with more machinery around it.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[col/.style={text width=98pt, align=center}, node distance=4pt]
+  % Model
+  \node[grey, col] (m1) at (0,0) {model\\ \footnotesize tokens in, next-token probabilities out};
+  \node[title, below=8pt of m1] {Model};
+  % Chatbot
+  \node[grey, col] (m2) at (128pt,0) {model};
+  \node[box, col, above=of m2] (b2) {conversation buffer\\ \footnotesize the whole history, re-sent every turn};
+  \node[box, col, above=of b2] (w2) {web page};
+  \node[title, below=8pt of m2] {Chatbot};
+  % Agent
+  \node[grey, col] (m3) at (256pt,0) {model};
+  \node[box, col, above=of m3] (t3) {tools\\ \footnotesize one to look at the world,\\ \footnotesize one to change it};
+  \node[box, col, above=of t3] (h3) {harness\\ \footnotesize runs the loop; decides what the model sees; permissions, memory};
+  \node[title, below=8pt of m3] {Agent};
+  \node[box, dashed, right=12pt of t3, text width=42pt, align=center, font=\footnotesize] (world) {files, shell, databases};
+  \draw[<->] (t3) -- (world);
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,18 @@
+% Ecology's data commons, and the arrow that is not guaranteed.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=10pt and 16pt]
+  \node[box] (p) {people curate\\for decades};
+  \node[box, right=of p] (db) {open databases\\GBIF, BOLD, BHL};
+  \node[grey, right=of db] (corpus) {``AI-ready''\\corpus};
+  \node[grey, right=of corpus] (model) {model};
+  \node[box, right=of model] (prod) {products,\\revenue};
+  \draw[->] (p) -- (db);
+  \draw[->] (db) -- (corpus);
+  \draw[->] (corpus) -- (model);
+  \draw[->] (model) -- (prod);
+  \draw[back, bad] (prod.south) -- ++(0,-18pt) -| (p.south);
+  \node[note, text=accent] at ($(p.south)!0.5!(prod.south)+(0,-26pt)$)
+    {weights, credit, terms: what comes back is not guaranteed};
+\end{tikzpicture}
+\end{document}

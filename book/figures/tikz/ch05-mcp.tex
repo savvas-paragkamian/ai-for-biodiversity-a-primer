@@ -1,0 +1,27 @@
+% The Model Context Protocol: wrap a resource once, not once per client.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[small/.style={box, minimum height=18pt, inner ysep=3pt, font=\footnotesize}]
+  % Left: one adapter per pair
+  \node[title] at (60pt,56pt) {Without a standard};
+  \foreach \i/\n in {1/Claude Code,2/OpenCode,3/Open WebUI}
+    \node[small, anchor=east] (c\i) at (40pt,{(2-\i)*28pt}) {\n};
+  \foreach \i/\n in {1/InterPro,2/GBIF,3/your database}
+    \node[small, anchor=west] (r\i) at (96pt,{(2-\i)*28pt}) {\n};
+  \foreach \i in {1,2,3} \foreach \j in {1,2,3} \draw[thin, black] (c\i.east) -- (r\j.west);
+  \node[note] at (68pt,-46pt) {nine adapters, one per pair};
+  % Right: one wrapper per resource
+  \node[title] at (300pt,56pt) {With MCP};
+  \foreach \i/\n in {1/Claude Code,2/OpenCode,3/Open WebUI}
+    \node[small, anchor=east] (d\i) at (238pt,{(2-\i)*28pt}) {\n};
+  \foreach \i/\n in {1/InterPro,2/GBIF,3/your database}
+    \node[small, anchor=west] (s\i) at (302pt,{(2-\i)*28pt}) {\n};
+  \foreach \i in {1,2,3} \node[small, fill=lightgrey, anchor=west, minimum width=0pt, inner xsep=3pt]
+    (w\i) at (s\i.east) {server};
+  \draw (270pt,-36pt) -- (270pt,36pt);
+  \foreach \i in {1,2,3} \draw[thin, black] (d\i.east) -- (270pt,{(2-\i)*28pt});
+  \foreach \i in {1,2,3} \draw[thin, black] (270pt,{(2-\i)*28pt}) -- (s\i.west);
+  \node[tag] at (270pt,44pt) {one protocol};
+  \node[note] at (300pt,-46pt) {each resource wrapped once; any client can call it};
+\end{tikzpicture}
+\end{document}

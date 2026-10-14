@@ -1,0 +1,28 @@
+% Two lineages of computing: the information utility and Unix.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}
+  % Left: one central plant, many terminals
+  \node[title] (lt) at (0,0) {The information utility};
+  \node[grey, minimum width=136pt, below=8pt of lt] (plant) {one large central machine};
+  \foreach \i/\x in {1/-56,2/-28,3/0,4/28,5/56}
+    \node[box, minimum width=16pt, minimum height=13pt, inner sep=1pt] (t\i)
+      at ($(plant.south)+(\x pt,-30pt)$) {};
+  \foreach \i in {1,...,5} \draw (plant.south) -- (t\i.north);
+  \node[tag, below=3pt of t3] (term) {many terminals};
+  \node[note, below=4pt of term, text width=196pt]
+    {time-sharing, 1961: bigger is cheaper per unit of work\\
+     frontier models, now: rented by the call};
+  % Right: small tools joined by pipes
+  \node[box, code] (u1) at (190pt,-30pt) {grep};
+  \node[box, code, right=of u1] (u2) {sort};
+  \node[box, code, right=of u2] (u3) {uniq -c};
+  \node[title, above=10pt of u2] {Unix};
+  \draw[->] (u1) -- node[tag, above] {\textbar} (u2);
+  \draw[->] (u2) -- node[tag, above] {\textbar} (u3);
+  \node[tag, below=6pt of u2] (pipes) {small tools, each doing one job,\\joined by pipes carrying plain text};
+  \node[note, below=4pt of pipes, text width=176pt]
+    {Unix, 1969: source on tape, changed and shared by its users\\
+     open-weight models, now: on your own hardware};
+\end{tikzpicture}
+\end{document}

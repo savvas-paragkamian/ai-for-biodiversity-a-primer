@@ -1,0 +1,13 @@
+% Five sources of variation in a model call, and what to do about each.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[src/.style={box, text width=118pt, align=center, font=\footnotesize}]
+  \node[grey] (out) at (0,0) {the output of\\one model call};
+  \node[src] (a) at (0,70pt) {sampling is random\\ \itshape set temperature to zero and a seed; record them};
+  \node[src] (b) at (150pt,28pt) {the hosted model changes underneath you\\ \itshape a local model file with a known checksum};
+  \node[src] (c) at (150pt,-44pt) {context is hidden state\\ \itshape a fresh session and a self-contained prompt, saved};
+  \node[src] (d) at (-150pt,-44pt) {agents take different paths\\ \itshape the deliverable is the reviewed, committed code};
+  \node[src] (e) at (-150pt,28pt) {hardware and software differ\\ \itshape record them; a container pins most of it};
+  \foreach \n in {a,b,c,d,e} \draw[->] (\n) -- (out);
+\end{tikzpicture}
+\end{document}

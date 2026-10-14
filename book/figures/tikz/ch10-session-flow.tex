@@ -1,0 +1,28 @@
+% The first agent session, step by step, with its checks.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=26pt and 12pt,
+                    s/.style={box, text width=78pt, align=center, font=\footnotesize, minimum height=30pt}]
+  \node[s] (s1) {commit a\\checkpoint};
+  \node[s, right=of s1] (s2) {make \texttt{data/raw}\\read-only};
+  \node[s, right=of s2] (s3) {ask for a description;\\no changes};
+  \node[s, right=of s3] (s4) {compare it with\\your own list};
+  \draw[->] (s1) -- (s2); \draw[->] (s2) -- (s3); \draw[->] (s3) -- (s4);
+
+  \node[s, below=of s1] (s5) {ask for a check script\\you can run};
+  \node[s, right=of s5] (s6) {\texttt{git status}, \texttt{git diff},\\run it};
+  \node[decision, right=of s6, font=\footnotesize] (s7) {counts\\match?};
+  \node[s, right=of s7] (s8) {say exactly what\\is wrong, or\\\texttt{git restore}};
+  \draw[->] (s4.south) -- ++(0,-12pt) -| (s5.north);
+  \draw[->] (s5) -- (s6); \draw[->] (s6) -- (s7);
+  \draw[->] (s7) -- node[tag, above] {no} (s8);
+  \draw[->] (s8.south) -- ++(0,-8pt) -| (s5.south);
+
+  \node[s, below=of s5] (s9) {ask for the\\derived data};
+  \node[s, right=of s9] (s10) {10 columns?\\an 11th means an\\instruction in the data was obeyed};
+  \node[s, right=of s10] (s11) {write the log:\\prompts, checks,\\time spent};
+  \node[s, right=of s11] (s12) {commit it\\yourself};
+  \draw[->] (s7.south) -- node[tag, right, pos=0.3] {yes} ++(0,-18pt) -| (s9.north);
+  \draw[->] (s9) -- (s10); \draw[->] (s10) -- (s11); \draw[->] (s11) -- (s12);
+\end{tikzpicture}
+\end{document}

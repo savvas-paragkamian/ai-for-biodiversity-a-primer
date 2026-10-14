@@ -1,0 +1,34 @@
+% The context window grows with every turn and is re-sent whole.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[seg/.style={box, minimum height=16pt, inner sep=3pt,
+                                font=\footnotesize, anchor=west, outer sep=0pt},
+                    rules/.style={fill=lightgrey},
+                    node distance=0pt and 0pt]
+  \node[tag, anchor=east] at (-6pt,0) {turn 1};
+  \node[seg, rules, minimum width=34pt] (a1) at (0,0) {rules};
+  \node[seg, minimum width=52pt, right=of a1] (a2) {question 1};
+
+  \node[tag, anchor=east] at (-6pt,-26pt) {turn 2};
+  \node[seg, rules, minimum width=34pt] (b1) at (0,-26pt) {rules};
+  \node[seg, minimum width=52pt, right=of b1] (b2) {question 1};
+  \node[seg, minimum width=44pt, right=of b2] (b3) {answer 1};
+  \node[seg, minimum width=66pt, right=of b3] (b4) {file contents};
+  \node[seg, minimum width=52pt, right=of b4] (b5) {question 2};
+
+  \node[tag, anchor=east] at (-6pt,-52pt) {turn 3};
+  \node[seg, rules, minimum width=34pt] (c1) at (0,-52pt) {rules};
+  \node[seg, minimum width=52pt, right=of c1] (c2) {question 1};
+  \node[seg, minimum width=44pt, right=of c2] (c3) {answer 1};
+  \node[seg, minimum width=66pt, right=of c3] (c4) {file contents};
+  \node[seg, minimum width=52pt, right=of c4] (c5) {question 2};
+  \node[seg, minimum width=50pt, right=of c5] (c6) {tool result};
+  \node[seg, minimum width=44pt, right=of c6] (c7) {answer 2};
+  \node[seg, minimum width=52pt, right=of c7] (c8) {question 3};
+
+  \node[group, fit=(c3) (c6), inner sep=3pt] (mid) {};
+  \node[note, below=4pt of mid] {the middle: attended to less reliably};
+  \node[note, anchor=west] at (0pt,-88pt)
+    {everything in the window is sent again on every turn, so cost and delay grow with it};
+\end{tikzpicture}
+\end{document}

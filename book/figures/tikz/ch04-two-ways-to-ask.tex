@@ -1,0 +1,21 @@
+% Reading from a supplied text and recalling from the weights are different tasks.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=10pt and 20pt]
+  \node[title, anchor=west] (t1) at (0,0) {Reading: facts from a text you supply};
+  \node[box, below=6pt of t1.west, anchor=north west] (src) {a disease report or\\a species description};
+  \node[grey, right=of src] (m1) {model};
+  \node[box, right=of m1] (tab) {a table: pathogen,\\host, country};
+  \node[note, right=of tab, align=left, anchor=west] {checkable\\against the source};
+  \draw[->] (src) -- (m1);
+  \draw[->] (m1) -- (tab);
+
+  \node[title, anchor=west] (t2) at (0,-72pt) {Recall: facts from the model's weights};
+  \node[box, below=6pt of t2.west, anchor=north west] (q) {``where does this\\species occur?''};
+  \node[grey, right=of q] (m2) {model};
+  \node[box, right=of m2] (ans) {an answer: a range,\\a threat status};
+  \node[note, right=of ans, align=left, anchor=west] {no source to check;\\absent values get invented};
+  \draw[->] (q) -- (m2);
+  \draw[->] (m2) -- (ans);
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,20 @@
+% A reference architecture: the interface talks, the models think, plain text remembers.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=12pt and 20pt, part/.style={box, text width=110pt, align=center}]
+  \node[part] (ui) {interface\\ \footnotesize Open WebUI or LibreChat; the model switchable per conversation};
+  \node[box, below=of ui, font=\footnotesize] (proxy) {a small proxy};
+  \node[part, below=of proxy] (route) {routing\\ \footnotesize an OpenAI-compatible API; local or hosted per request};
+  \node[part, below=of route] (rt) {runtime\\ \footnotesize Ollama for one user, vLLM for a group};
+  \node[part, right=of route] (ret) {retrieval\\ \footnotesize PostgreSQL with pgvector and PostGIS; bge-m3, bge-reranker};
+  \node[part, dashed, right=of rt] (hosted) {a hosted model\\ \footnotesize when the capability gap matters};
+  \node[part, left=of route] (arch) {archive\\ \footnotesize plain Markdown, append-only, backed up 3-2-1: the proxy writes every exchange here, dated};
+  \draw[<->] (ui) -- (proxy);
+  \draw[<->] (proxy) -- (route);
+  \draw[<->] (route) -- (rt);
+  \draw[<->] (route) -- (ret);
+  \draw[->, dashed] (route.east) -- ++(10pt,0) |- (hosted.west);
+  \draw[->] (proxy.west) -| (arch.north);
+  \node[note, below=10pt of rt, text width=250pt] {the interface stores nothing for long; the archive is the memory and the provenance record};
+\end{tikzpicture}
+\end{document}

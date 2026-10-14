@@ -1,0 +1,15 @@
+% A small project teaches what no blog post transfers: retrieval over your own reprints.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=10pt and 12pt, st/.style={box, text width=54pt, align=center}]
+  \node[st] (pdf) {your reprints\\ \footnotesize PDFs};
+  \node[st, right=of pdf] (txt) {extract\\the text};
+  \node[st, right=of txt] (chunk) {chunk\\and index};
+  \node[st, right=of chunk] (ask) {ask};
+  \node[st, right=of ask] (ans) {an answer\\with citations};
+  \draw[->] (pdf) -- (txt); \draw[->] (txt) -- (chunk); \draw[->] (chunk) -- (ask); \draw[->] (ask) -- (ans);
+  \node[note, below=6pt of txt, text width=70pt] {the hard part};
+  \node[note, below=6pt of chunk, text width=76pt] {matters more than the model};
+  \node[note, below=6pt of ans, text width=80pt, text=accent] {confidently wrong in ways you can now recognise};
+\end{tikzpicture}
+\end{document}

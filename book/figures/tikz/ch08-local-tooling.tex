@@ -1,0 +1,29 @@
+% Local model tooling: engine, runtimes and the clients that talk to them.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=14pt and 10pt,
+                    cell/.style={box, text width=96pt, align=center, font=\footnotesize}]
+  % clients
+  \node[cell] (harness) at (0,0) {a harness\\OpenCode, Claude Code};
+  \node[cell, right=of harness] (webui) {Open WebUI\\a chat window};
+  \node[cell, right=of webui] (script) {your scripts\\ellmer in R};
+  \node[tag, left=6pt of harness, anchor=east] {clients};
+  % API line
+  \node[grey, below=of webui, text width=320pt, align=center, minimum height=18pt, inner ysep=3pt, font=\footnotesize]
+    (api) {an OpenAI-compatible API, e.g.\ \texttt{localhost:11434}};
+  % runtimes
+  \node[cell, below=of api, xshift=-114pt] (ollama) {Ollama\\one user; the usual start};
+  \node[cell, right=of ollama] (vllm) {vLLM\\many users at once};
+  \node[cell, right=of vllm] (lms) {LM Studio\\point and click};
+  \node[tag, left=6pt of ollama, anchor=east] {runtimes};
+  % engine
+  \node[box, below=of vllm, text width=320pt, align=center, font=\footnotesize] (engine) {llama.cpp: the engine underneath much of this; finer control};
+  \node[tag, left=6pt of engine, anchor=east] {engine};
+  \foreach \c in {harness,webui,script} \draw[->] (\c) -- (\c |- api.north);
+  \foreach \r in {ollama,vllm,lms} \draw (\r |- api.south) -- (\r);
+  \foreach \r in {ollama,lms} \draw (\r) -- (\r |- engine.north);
+  \node[note, below=6pt of engine, text width=330pt, text=accent]
+    {two settings cause most local-agent failures: the context length (the 4K default breaks agent loops)
+     and whether the harness is told the model supports tools};
+\end{tikzpicture}
+\end{document}

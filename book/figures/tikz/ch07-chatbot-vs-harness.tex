@@ -1,0 +1,25 @@
+% A chatbot sees what you paste; a harness works in your project.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=14pt and 30pt]
+  % Chatbot
+  \node[title] (t1) at (80pt,66pt) {Chatbot};
+  \node[box] (you1) at (0,20pt) {you};
+  \node[grey, right=50pt of you1] (bot) {chatbot};
+  \draw[->] (you1.north east) to[bend left=20] node[tag, above] {the last five lines of the error} (bot.north west);
+  \draw[->] (bot.south west) to[bend left=20] node[tag, below] {a suggestion} (you1.south east);
+  \node[note, below=50pt of you1.south west, anchor=north west, text width=170pt, align=left]
+    {you edit, run, read the error, paste again: the loop runs through you, and the chatbot sees only what you paste};
+  % Harness
+  \node[title] (t2) at (300pt,66pt) {Harness};
+  \node[box] (you2) at (218pt,20pt) {you};
+  \node[grey, right=50pt of you2] (h) {harness};
+  \node[box, dashed, below=24pt of h, align=center, font=\footnotesize] (proj) {your project:\\files, code, errors};
+  \draw[->] (you2.north east) to[bend left=20] node[tag, above] {a task} (h.north west);
+  \draw[->] (h.south west) to[bend left=20] node[tag, below] {a diff to review} (you2.south east);
+  \draw[<->] (h) -- node[tag, right, align=left] {reads files, runs code,\\sees the full error} (proj);
+  \draw[->] (h.north) ++(-6pt,0) to[out=90,in=90,looseness=4] node[tag, above] {tries again} ([xshift=6pt]h.north);
+  \node[note, below=50pt of you2.south west, anchor=north west, text width=190pt, align=left]
+    {the loop runs inside the project: its power, and the reason its mistakes can change or delete files};
+\end{tikzpicture}
+\end{document}

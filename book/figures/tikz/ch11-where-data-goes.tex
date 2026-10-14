@@ -1,0 +1,15 @@
+% Four ways to use a model, and whether the data leaves the institution.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[node distance=12pt and 30pt, way/.style={box, text width=108pt, align=center}]
+  \node[grey] (data) at (0,0) {your data\\ \footnotesize unpublished records, localities, drafts};
+  \node[way, below=24pt of data] (self) {self-hosted open weights\\ \footnotesize Ollama, vLLM on your hardware};
+  \node[group, fit=(data) (self), inner sep=12pt, label={[tag]above:your institution}] (inst) {};
+  \draw[->] (data) -- node[tag, right] {nothing leaves} (self);
+  \node[way] (chat) at (220pt,40pt) {hosted chat\\ \footnotesize no setup, best capability};
+  \node[way, below=of chat] (api) {API\\ \footnotesize programmable, paid per token};
+  \node[way, below=of api] (maas) {managed open weights\\ \footnotesize open models, a vendor's machines};
+  \foreach \w in {chat,api,maas} \draw[->] (data.east) -- (\w.west);
+  \node[note, below=10pt of maas, text width=150pt] {the data leaves; versions, offline use and control go with it};
+\end{tikzpicture}
+\end{document}

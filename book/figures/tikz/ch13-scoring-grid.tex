@@ -1,0 +1,16 @@
+% Scoring an extraction: wrong, missed and invented values are different errors.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[cell/.style={box, minimum width=120pt, minimum height=40pt, align=center}]
+  \node[tag] at (60pt,50pt) {the output has a value};
+  \node[tag] at (190pt,50pt) {the output is empty};
+  \node[tag, anchor=east, align=right] at (-8pt,0) {the key\\has a value};
+  \node[tag, anchor=east, align=right] at (-8pt,-50pt) {the key\\is empty};
+  \node[cell] at (60pt,0) {correct, or wrong\\ \footnotesize compare the values};
+  \node[cell] at (190pt,0) {missed};
+  \node[cell, draw=accent, text=accent] at (60pt,-50pt) {invented\\ \footnotesize the quietest failure};
+  \node[cell] at (190pt,-50pt) {correct};
+  \node[note, below=8pt of current bounding box.south, text width=300pt]
+    {a model forced to fill every field is pushed towards the lower left; make every field optional, then count how often it invents};
+\end{tikzpicture}
+\end{document}
