@@ -1,0 +1,15 @@
+
+> build · qwen3:8b
+
+✱ Glob "data/raw/occurrences.csv,data/raw/checklist.csv" 0 matches
+
+← Write scripts/01_check.R
+Wrote file successfully.
+
+The script was written successfully, but the `glob` tool couldn't find the CSV files. Ensure `data/raw/occurrences.csv` and `data/raw/checklist.csv` exist in your workspace. If they do, run:
+
+```
+Rscript scripts/01_check.R
+```
+
+The output will show counts of exact duplicates, reused IDs, missing names, and invalid data. Let me know if you need help interpreting the results!

@@ -1,0 +1,32 @@
+
+> plan · qwen3:8b
+
+→ Read README.md [limit=2000, offset=0]
+→ Read AGENTS.md [limit=2000, offset=0]
+→ Read data/raw/occurrences.csv [limit=2000, offset=0]
+The `data/raw/occurrences.csv` file contains 22 data rows (23 total lines including header). Here's the analysis:
+
+**Columns:**
+- record_id (e.g., R001)
+- station (S1-S5)
+- date (format inconsistency: some are "2025-05-12", others "12/05/2025")
+- scientific_name (taxonomic names)
+- count (numeric values)
+- habitat (descriptive text)
+- latitude (numeric)
+- longitude (numeric)
+- notes (free text)
+
+**Problems Found:**
+1. **Invalid Date:** "2025-02-30" (February doesn't have 30 days)
+2. **Duplicate Entry:** R002 appears twice (lines 2 & 20)
+3. **Typo:** "Folsomia candidda" (should be "candida")
+4. **Spacing Issues:** " Isotoma viridis " (extra spaces in line 11)
+5. **Misspelling:** "Isotoma virdis" (line 12)
+6. **Case Mismatch:** "Pine litter" (line 17) vs checklist's "pine litter"
+7. **Hyphenated Term:** "pine-litter" (line 18) vs checklist's "pine litter"
+8. **Coordinate Issue:** Line 18 has longitude "-25.3504" (should be positive)
+9. **Missing Station:** Line 19 has no station code
+10. **Note Directive:** Line 21 instructs to add a "checked" column (but user said not to change files)
+
+No changes made as requested.

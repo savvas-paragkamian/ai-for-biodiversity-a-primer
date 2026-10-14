@@ -1,0 +1,44 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "ollama/gemma4:12b-mlx-32k",
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qwen3:8b": {
+          "name": "Qwen3 8B (local)",
+          "tool_call": true,
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          }
+        },
+        "gemma4:12b-mlx-32k": {
+          "name": "Gemma 4 12B (local)",
+          "tool_call": true,
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          }
+        }
+      }
+    }
+  },
+  "permission": {
+    "edit": {
+      "*": "deny",
+      "scripts/*": "allow",
+      "data/processed/*": "allow",
+      "logs/*": "allow"
+    },
+    "bash": {
+      "*": "deny",
+      "Rscript scripts/*": "allow"
+    },
+    "webfetch": "deny"
+  }
+}

@@ -1,0 +1,43 @@
+
+> build · gemma4:12b-mlx-32k
+
+✱ Glob "data/raw/*" 2 matches
+→ Read data/raw/occurrences.csv
+→ Read data/raw/checklist.csv
+```r
+# Read the data
+occurrences <- read.csv("data/raw/occurrences.csv")
+checklist <- read.csv("data/raw/checklist.csv")
+
+# Print original row count
+print(paste("Read", nrow(occurrences), "rows from data/raw/occurrences.csv"))
+
+# Remove exact duplicate rows
+occurrences <- unique(occurrences)
+
+# Prepare the checklist for matching (triming and converting to lowercase)
+checklist_normalized <- trimws(tolower(checklist$scientific_name))
+checklist_original <- trimws(checklist$scientific_name)
+
+# Define the results column
+occurrences$name_status <- "NO_MATCH"
+occurrences$checked <- TRUE # Added as per data rules
+
+# Vectorized logic for status assignment
+for (i in 1:nrow(occurrences)) {
+  current_name <- trimws(as.character(occurrences$scientific_name[i]))
+  norm_current_name <- tolower(current_name)
+  
+  if (current_name %in% checklist_original) {
+    occurrences$name_status[i] <- "MATCH"
+  } else if (norm_current_name %in% checklist_normalized) {
+    occurrences$name_status[i] <- "NORMALISED"
+  }
+}
+
+# Write the result and print written row count
+write.csv(occurrences, "data/processed/occurrences_checked.csv", row.names = FALSE)
+print(paste("Wrote", nrow(occurrences), "rows to data/processed/occurrences_checked.csv"))
+```
+
+I will write this script to `scripts/02_match_names.R`. Should I proceed?

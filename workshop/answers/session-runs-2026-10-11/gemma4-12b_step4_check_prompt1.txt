@@ -1,0 +1,129 @@
+
+> build · gemma4:12b-mlx-32k
+
+✱ Glob "data/raw/*.csv" 2 matches
+→ Read data/raw/occurrences.csv
+→ Read data/raw/checklist.csv
+
+← Write scripts/01_check.R
+Wrote file successfully.
+
+$ Rscript scripts/01_check.R
+Error in to.date(as.character(dates), format = "%Y-%m-%d") : 
+  could not find function "to.date"
+Execution halted
+
+← Edit scripts/01_check.R
+Index: <scratch>/sess2/scripts/01_check.R
+===================================================================
+--- <scratch>/sess2/scripts/01_check.R
++++ <scratch>/sess2/scripts/01_check.R
+@@ -35,9 +35,9 @@
+   problems[[length(problems) + 1]] <- paste("Invalid date format:", paste(unique(invalid_dates), collapse = ", "))
+ }
+ 
+ # Conversion for logic check
+-parsed_dates <- to.date(as.character(dates), format="%Y-%m-%d")
++parsed_dates <- as.Date(as.character(dates), format="%Y-%m-%d")
+ impossible_dates <- names(parsed_dates)[is.na(parsed_dates)]
+ if (length(impossible_dates) > 0) {
+   problems[[length(problems) + 1]] <- paste("Impossible dates:", paste(unique(impossible_dates), collapse = ", "))
+ }
+
+
+The `to.date` function is not a standard base R function; I should use `as.Date`. Since the user requested a "base R script", I will fix the date conversion logic.
+
+I'll also ensure that:
+1. The duplicate row check correctly identifies rows where all columns are the same (excluding the row names if they were automatically generated, but here the data is read from CSV).
+2. Reused ID check handles cases where a `record_id` maps to multiple different `scientific_name` values.
+3. I'll fix the date logic and ensure it detects both formatting and invalid dates (like Feb 30).
+
+Plan:
+1. Edit `scripts/01_check.R` to use `as.Date`.
+2. Verify labels for duplicate rows are clear.
+3. Rerun `Rscript scripts/01_check.R`.<channel|>
+← Edit scripts/01_check.R
+Index: <scratch>/sess2/scripts/01_check.R
+===================================================================
+--- <scratch>/sess2/scripts/01_check.R
++++ <scratch>/sess2/scripts/01_check.R
+@@ -9,11 +9,12 @@
+ # Problems identification
+ problems <- list()
+ 
+ # 1. Exact duplicate rows
+-duplicates <- occurrences[duplicated(occurrences), ]
+-if (nrow(duplicates) > 0) {
+-  problems[[length(problems) + 1]] <- paste("Duplicate rows found:", paste(rownames(duplicates), collapse = ", "))
++# We check if any row is identical to another
++dupes <- occurrences[!duplicated(occurrences), ]
++if (nrow(occurrences) != nrow(dupes)) {
++  problems[[length(problems) + 1]] <- "Duplicate rows found in data/raw/occurrences.csv"
+ }
+ 
+ # 2. Record IDs reused for different records
+ id_records <- aggregate(scientific_name ~ record_id, data = occurrences, FUN = function(x) length(unique(x)))
+@@ -22,39 +23,36 @@
+   problems[[length(problems) + 1]] <- paste("Record IDs reused for different records:", paste(reused_ids$record_id, collapse = ", "))
+ }
+ 
+ # 3. Names not in checklist after trimming and fixing capitalization
+-missing_names <- trimws(tolower(actual_names[!(trimws(tolower(actual_names)) %in% matched_names)]))
+-if (length(missing_names) > 0) {
+-  problems[[length(problems) + 1]] <- paste("Names not in checklist:", paste(unique(missing_names), collapse = ", "))
++missing_indices <- !actual_names %in% matched_names
++if (any(missing_indices)) {
++  problems[[length(problems) + 1]] <- paste("Names not in checklist:", paste(unique(actual_names[missing_indices]), collapse = ", "))
+ }
+ 
+ # 4. Dates not in YYYY-MM-DD or impossible
+ dates <- occurrences$date
+-invalid_dates <- names(dates)[!grepl("^\\d{4}-\\d{2}-\\d{2}$", dates)]
+-if (length(invalid_dates) > 0) {
+-  problems[[length(problems) + 1]] <- paste("Invalid date format:", paste(unique(invalid_dates), collapse = ", "))
++valid_format <- grepl("^\\d{4}-\\d{2}-\\d{2}$", dates)
++if (any(!valid_format)) {
++  problems[[length(problems) + 1]] <- paste("Invalid date format:", paste(unique(dates[!valid_format]), collapse = ", "))
+ }
+ 
+-# Conversion for logic check
+-parsed_dates <- as.Date(as.character(dates), format="%Y-%m-%d")
+-impossible_dates <- names(parsed_dates)[is.na(parsed_dates)]
+-if (length(impossible_dates) > 0) {
+-  problems[[length(problems) + 1]] <- paste("Impossible dates:", paste(unique(impossible_dates), collapse = ", "))
++parsed_dates <- as.Date(as.character(dates[valid_format]), format="%Y-%m-%d")
++if (any(is.na(parsed_dates))) {
++  problems[[length(problems) + 1]] <- paste("Impossible dates:", paste(unique(dates[valid_format][is.na(parsed_dates)]), collapse = ", "))
+ }
+ 
+ # 5. Missing or non-numeric counts
+-counts <- occurrences$count
+-invalid_counts <- names(counts)[is.na(as.numeric(counts))]
+-if (length(invalid_counts) > 0) {
+-  problems[[length(problems) + 1]] <- paste("Missing or non-numeric counts:", paste(unique(invalid_counts), collapse = ", "))
++counts_numeric <- suppressWarnings(as.numeric(occurrences$count))
++if (any(is.na(counts_numeric))) {
++  problems[[length(problems) + 1]] <- paste("Missing or non-numeric counts:", paste(unique(occurrences$count[is.na(counts_numeric)])[isNA(as.numeric(occurrences$count))], collapse = ", "))
+ }
+ 
+ # 6. Coordinates outside 34.8-35.7 N and 23.4-26.4 E
+-latitudes <- as.numeric(occurrences$latitude)
+-longitudes <- as.numeric(occurrences$longitude)
+-invalid_lats <- names(latitudes)[is.na(latitudes) | latitudes < 34.8 | latitudes > 35.7]
+-invalid_lons <- names(longitudes)[is.na(longitudes) | longitudes < 23.4 | longitudes > 26.4]
++lats <- suppressWarnings(as.numeric(occurrences$latitude))
++lons <- suppressWarnings(as.numeric(occurrences$longitude))
++invalid_lats <- names(lats)[is.na(lats) | lats < 34.8 | lats > 35.7]
++invalid_lons <- names(lons)[is.na(lons) | lons < 23.4 | lons > 26.4]
+ if (length(invalid_lats) > 0 || length(invalid_lons) > 0) {
+   problems[[length(problems) + 1]] <- paste("Invalid latitudes:", paste(unique(invalid_lats), collapse = ", "), "Invalid longitudes:", paste(unique(invalid_lons), collapse = ", "))
+ }
+ 
+
+
+$ Rscript scripts/01_check.R
+Error in isNA(as.numeric(occurrences$count)) : 
+  could not find function "isNA"
+Calls: paste -> paste
+Execution halted
+
