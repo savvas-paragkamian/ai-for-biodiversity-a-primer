@@ -266,7 +266,9 @@ for the task-only diff, checks and remaining link limitations.
   Beamer decks of 34 pages, one per pair of parts plus one for the exercises,
   in the style of Stanford's CME 295 lectures, using the book's figures and
   fifteen papers' first pages. Figure `ch03-guessing-wins` had an overlapping
-  label and was fixed in its TikZ source.
+  label and was fixed in its TikZ source. A setup deck (installation, Git basics, harness
+  controls) and `../workshop/SETUP.md` were added the same evening; their
+  commands come from the tools' documentation, dated, not from the book.
 
 ## Conventions
 

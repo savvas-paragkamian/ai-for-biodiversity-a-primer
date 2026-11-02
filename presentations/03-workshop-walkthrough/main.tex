@@ -25,6 +25,22 @@
   \kp{An agent's summary is a claim about its work. Row counts, column counts and \code{git status} are evidence.}
 \end{frame}
 
+\begin{frame}{Before this session}
+  \begin{itemize}
+    \item Deck 0 and \code{workshop/SETUP.md} cover what this one assumes:
+      Git, Ollama with the workshop's model, and one harness installed and
+      checked.
+    \item The two-minute check: every tool prints its version;
+      \code{ollama ps} shows the model loaded with a context of 32K or more;
+      the harness starts inside the project folder and reads
+      \code{AGENTS.md}.
+    \item The ten Git commands and the harness controls (model, effort,
+      context, permissions, one-shot runs) are there too; this deck uses them
+      without explaining them again.
+  \end{itemize}
+  \source{presentations/00-setup; workshop/SETUP.md.}
+\end{frame}
+
 \begin{frame}{The companion folder, \code{workshop/}}
   \small
   \begin{itemize}

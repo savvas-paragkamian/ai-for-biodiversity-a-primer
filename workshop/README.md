@@ -38,6 +38,10 @@ R (base R is enough for the session), Git and a terminal. For the local
 track: Ollama and OpenCode. For the testing exercise: the `ellmer` package
 (`install.packages("ellmer")`) and a model pulled with Ollama.
 
+`SETUP.md` gives the installation commands for Git, Ollama, OpenCode, Claude
+Code and Codex, the ten Git commands the sessions use, the controls of each
+harness, and a two-minute check to run before a session.
+
 ## How the exercises were tested
 
 The test sessions and runs were carried out by an AI agent (Claude Code)

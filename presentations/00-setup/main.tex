@@ -1,0 +1,441 @@
+% Deck 0 of the workshop: setting up before the hands-on sessions.
+% Installation of Git, Ollama, OpenCode, Claude Code and Codex; Git in ten
+% commands; the controls of a harness. Commands were taken from the tools'
+% own documentation and from the installed tools on 2 November 2026; the
+% same text, for copying, is in workshop/SETUP.md.
+% Build: latexmk -pdf main.tex   (pdflatex + biber)
+\documentclass[11pt,aspectratio=169]{beamer}
+\input{../common/preamble}
+
+\title[AI for Biodiversity 0]{AI for Biodiversity: A Primer}
+\subtitle{0. Setting up: the tools, Git, and driving a harness}
+\author{Savvas Paragkamian}
+\institute{Hellenic Centre for Marine Research \\ KYBELE and ELIXIR-GR}
+\date{HCMR workshop, November 2026}
+\hypersetup{pdftitle={AI for Biodiversity: A Primer, deck 0},pdfauthor={Savvas Paragkamian}}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\begin{frame}{Goals of this session}
+  \begin{enumerate}
+    \item Install what the hands-on sessions need and check that each piece
+      answers: Git, Ollama with one model, and at least one harness.
+    \item Learn the ten Git commands that make an agent session safe: a
+      checkpoint before, a diff after, and a way back.
+    \item Learn the controls every harness has: which model, how much
+      reasoning, how full the context is, what it may touch, and how to run
+      it without a conversation.
+  \end{enumerate}
+  \kp{Commands and versions on these slides were checked on 2 November 2026
+  and will date; the reasoning behind them should not. The same commands,
+  for copying, are in \code{workshop/SETUP.md}.}
+\end{frame}
+
+\section{What you need}
+
+\begin{frame}{Three layers, and what sits in each}
+  \begin{itemize}
+    \item \textbf{The operating system and a terminal.} macOS and Linux as
+      they are. On Windows, the book's advice (Chapter 8) is a Linux
+      environment inside Windows (WSL); the harnesses also run natively.
+    \item \textbf{R}, for the exercises: base R is enough for the agent
+      session; the testing exercise needs the \code{ellmer} package.
+    \item \textbf{Git}, for the checkpoint habit.
+    \item \textbf{A runtime for local models:} Ollama, and one model pulled
+      into it (the local track).
+    \item \textbf{A harness:} OpenCode (open source, works with Ollama),
+      Claude Code (hosted; needs a paid Anthropic plan) or Codex (needs a
+      ChatGPT plan, or runs local models through Ollama).
+  \end{itemize}
+  \source{Chapter 8, The Software Stack; workshop/README.md, ``What you need''.}
+\end{frame}
+
+\begin{frame}{The versions this workshop was prepared with}
+  \begin{tabularx}{\textwidth}{lXl}
+    \toprule
+    \textbf{Tool} & \textbf{What it is} & \textbf{Version, 2 Nov 2026} \\
+    \midrule
+    Git & version control & 2.54 (Apple); 2.56.0 at git-scm.com \\
+    Ollama & runs open-weight models locally & 0.40.13 \\
+    OpenCode & open-source terminal harness (MIT) & 1.17.11 \\
+    Claude Code & Anthropic's terminal harness & 2.1.316 \\
+    Codex & OpenAI's terminal harness (Apache-2.0) & 0.162.1 \\
+    \bottomrule
+  \end{tabularx}
+  \medskip
+  Names and versions date within months; Appendix D of the book keeps the
+  dated details, and each tool prints its own with \code{--version}.
+  \source{Versions read from the installed tools on the author's machine; licences from Appendix D.}
+\end{frame}
+
+\section{Installing}
+
+\begin{frame}[fragile]{Git}
+  \begin{lstlisting}[style=shell]
+# macOS: Apple's command line tools, or Homebrew
+xcode-select --install
+brew install git
+# Debian and Ubuntu                    # Fedora
+sudo apt-get install git               sudo dnf install git
+# Windows: the Git for Windows installer from git-scm.com, or
+winget install --id Git.Git -e --source winget
+# then, in any terminal
+git --version
+git config --global user.name  "Your Name"
+git config --global user.email "you@example.org"
+  \end{lstlisting}
+  Git for Windows also gives the harnesses a Bash shell to run commands in.
+  \source{git-scm.com/install (read 2 November 2026); Claude Code setup notes on Git for Windows.}
+\end{frame}
+
+\begin{frame}[fragile]{Ollama, and a model}
+  \begin{lstlisting}[style=shell]
+# macOS and Linux (or the .dmg from ollama.com/download)
+curl -fsSL https://ollama.com/install.sh | sh
+# Windows (PowerShell), or OllamaSetup.exe from ollama.com/download
+irm https://ollama.com/install.ps1 | iex
+ollama --version
+ollama pull gemma4:12b      # the model workshop/session/opencode.json names
+ollama list                 # what is on disk
+ollama ps                   # what is loaded, and with which CONTEXT
+  \end{lstlisting}
+  \begin{itemize}
+    \item A 12B model at four bits needs about 8\,GB of memory; the context
+      adds more (Chapter 13). A laptop with 16\,GB runs it; 32\,GB runs it
+      comfortably.
+    \item \code{ollama run MODEL} starts a chat; \code{/bye} leaves it.
+  \end{itemize}
+  \source{ollama.com and the Ollama README (read 2 November 2026); workshop/README.md for the model tags used in the test runs.}
+\end{frame}
+
+\begin{frame}[fragile]{Ollama: the context, the setting that breaks agents}
+  \begin{lstlisting}[style=shell]
+# once, for the whole server (or the slider in the Ollama app's settings)
+OLLAMA_CONTEXT_LENGTH=32768 ollama serve
+# or per model, saved under a new name
+ollama run MODEL
+  /set parameter num_ctx 32768
+  /save MODEL-32k
+ollama ps                   # CONTEXT must show the new value
+  \end{lstlisting}
+  \begin{itemize}
+    \item Ollama's default context depends on the graphics memory: 4K below
+      24\,GiB. An agent re-sends the whole session every turn and needs tens
+      of thousands of tokens; at 4K it forgets the task and looks broken.
+    \item A larger context needs more memory. Start at 32K; the vendor
+      advises 64K for agents.
+  \end{itemize}
+  \source{Chapter 8; Appendix D; docs.ollama.com/context-length (read 2 November 2026).}
+\end{frame}
+
+\begin{frame}[fragile]{OpenCode}
+  \begin{lstlisting}[style=shell]
+curl -fsSL https://opencode.ai/install | bash     # macOS, Linux, WSL
+npm install -g opencode-ai                         # any system with Node
+brew install anomalyco/tap/opencode                # Homebrew, version 1
+scoop install opencode                             # Windows (or choco)
+opencode --version
+cd ~/survey && opencode                            # start in the project
+  \end{lstlisting}
+  \begin{itemize}
+    \item Hosted providers: type \code{/connect} in the TUI and paste a key;
+      it is stored under \code{\textasciitilde/.local/share/opencode/}.
+    \item Local models: a \code{provider} block in the project's
+      \code{opencode.json} points at Ollama (next slide). No account needed.
+    \item \code{opencode upgrade} updates it.
+  \end{itemize}
+  \source{opencode.ai/docs (read 2 November 2026). The workshop was tested with version 1.17.11.}
+\end{frame}
+
+\begin{frame}[fragile]{OpenCode and Ollama: the project's \code{opencode.json}}
+  \begin{lstlisting}
+{ "$schema": "https://opencode.ai/config.json",
+  "model": "ollama/gemma4:12b",
+  "provider": { "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": { "baseURL": "http://localhost:11434/v1" },
+      "models": { "gemma4:12b": {
+          "name": "Gemma 4 12B (local)",
+          "tool_call": true,
+          "limit": { "context": 32768, "output": 8192 } } } } },
+  "permission": { ... } }         # the rules, shown in deck 3
+  \end{lstlisting}
+  Two settings cause most local-agent failures: the harness must be told the
+  model supports tools (\code{tool\_call}), and the context must be enlarged
+  on both sides (Chapter 8).
+  \source{workshop/session/opencode.json, abridged; opencode.ai/docs/providers.}
+\end{frame}
+
+\begin{frame}[fragile]{Claude Code}
+  \begin{lstlisting}[style=shell]
+curl -fsSL https://claude.ai/install.sh | bash     # macOS, Linux, WSL
+brew install --cask claude-code                    # Homebrew
+irm https://claude.ai/install.ps1 | iex            # Windows PowerShell
+winget install Anthropic.ClaudeCode                # Windows
+claude --version
+claude doctor                   # checks the installation and settings
+cd ~/survey && claude           # first run opens the browser to log in
+  \end{lstlisting}
+  \begin{itemize}
+    \item Needs a Pro, Max, Team or Enterprise plan, or API access; the free
+      plan does not include it. Data goes to Anthropic: this is the hosted
+      track.
+    \item On Windows, the sandbox works only inside WSL~2.
+    \item Native installs update themselves; \code{claude update} forces it.
+  \end{itemize}
+  \source{code.claude.com/docs/en/setup (read 2 November 2026).}
+\end{frame}
+
+\begin{frame}[fragile]{Codex}
+  \begin{lstlisting}[style=shell]
+npm install -g @openai/codex                       # any system with Node
+brew install --cask codex                          # Homebrew
+curl -fsSL https://chatgpt.com/codex/install.sh | sh   # macOS, Linux
+codex --version
+cd ~/survey && codex            # first run: "Sign in with ChatGPT"
+codex --oss --local-provider ollama    # a local model through Ollama
+  \end{lstlisting}
+  \begin{itemize}
+    \item Sign in with a ChatGPT plan, or with an API key
+      (\code{codex login --with-api-key}).
+    \item The settings live in \code{\textasciitilde/.codex/config.toml};
+      \code{codex doctor} checks the installation.
+    \item Codex was not used in the book's test runs; its commands here were
+      read from its help and documentation.
+  \end{itemize}
+  \source{github.com/openai/codex and developers.openai.com/codex (read 2 November 2026); codex --help, version 0.162.1.}
+\end{frame}
+
+\section{Git in ten commands}
+
+\begin{frame}{Why Git, before any agent starts}
+  \begin{itemize}
+    \item Use Git for code, always; with agents it stops being optional
+      (Chapter 6).
+    \item \textbf{Commit before} an agent starts: the commit is the checkpoint.
+      Whatever happens next can be seen with \code{git diff} and undone with
+      \code{git restore} (Chapter 10).
+    \item \textbf{Read the diff after.} An agent's summary is a claim about
+      its work; the diff is the evidence.
+    \item Git protects only what is tracked and committed. Files an agent
+      creates or deletes before the next commit are not recovered.
+    \item An agent with a shell can itself run \code{git reset --hard},
+      \code{git clean} or \code{git push --force}. Deny those in the
+      harness configuration, as the workshop's settings do.
+  \end{itemize}
+  \source{Chapter 6, Version control; Chapter 10, Step 1.}
+\end{frame}
+
+\begin{frame}[fragile]{The ten commands}
+  \begin{lstlisting}[style=shell]
+git init                          # start tracking this folder
+git status                        # what changed, what is untracked
+git add -A                        # stage everything
+git commit -m "Before the agent session"   # the checkpoint
+git diff                          # what the agent changed, line by line
+git log --oneline                 # the history, one line per commit
+git restore scripts/01_check.R    # undo one file to the last commit
+git restore .                     # undo every tracked file
+git stash                         # park uncommitted changes, get them back with
+                                  #   git stash pop
+git remote add origin <url> && git push -u origin main   # a copy elsewhere
+  \end{lstlisting}
+  A \code{.gitignore} file lists what Git should not track: large data,
+  build products, secrets. Never commit a key or a token.
+  \source{Pro Git, chapter 2 (git-scm.com/book, free); Chapter 15 on credentials.}
+\end{frame}
+
+\begin{frame}[fragile]{Reading a diff after a session}
+  \begin{lstlisting}[style=shell]
+git status --short                # only scripts/, data/processed/, logs/ new?
+git status --short data/raw       # must print nothing
+git diff --stat                   # which files, how many lines
+git diff data/                    # the lines themselves
+git restore .                     # back to the checkpoint if it is beyond repair
+  \end{lstlisting}
+  \begin{itemize}
+    \item Look first at what should not have changed: the raw data, the rules
+      file, the configuration.
+    \item Then at what the agent added: a script you can read and rerun, or
+      an edit in place that you cannot?
+    \item Commit the parts you accept, with a message that says what the
+      agent did and what you checked.
+  \end{itemize}
+  \source{Chapter 10, Steps 4 to 6; Chapter 7, the six checks.}
+\end{frame}
+
+\section{Driving a harness}
+
+\begin{frame}{The same five controls, in every harness}
+  \small
+  \begin{tabularx}{\textwidth}{lXXX}
+    \toprule
+    & \textbf{Claude Code} & \textbf{OpenCode} & \textbf{Codex} \\
+    \midrule
+    Model & \code{/model} & \code{/models} & \code{/model} \\
+    Reasoning effort & \code{/effort}, or arrows in \code{/model} & \code{Ctrl+T} cycles the variant & in \code{/model} \\
+    Context and usage & \code{/context}, \code{/usage} & \code{Ctrl+X S}; \code{opencode stats} & \code{/status} \\
+    Permissions & \code{/permissions}; \code{Shift+Tab} cycles modes & \code{opencode.json}; \code{Tab} Plan/Build & \code{/permissions}; \code{-s}, \code{-a} \\
+    Non-interactive & \code{claude -p "..."} & \code{opencode run "..."} & \code{codex exec "..."} \\
+    Stop, compact & \code{Esc}; \code{/compact} & \code{Esc}; \code{/compact} & \code{/compact} \\
+    \bottomrule
+  \end{tabularx}
+  \medskip
+  Type \code{/} in any of them to see the list; names change between
+  versions, the controls do not.
+  \source{The tools' documentation and \code{--help}, read 2 November 2026.}
+\end{frame}
+
+\begin{frame}{Claude Code: the controls}
+  \begin{itemize}
+    \item \code{/model} switches the model and saves it as the default;
+      left and right arrows adjust the effort. \code{/effort low} to
+      \code{xhigh}, \code{max} or \code{auto} sets it directly;
+      \code{/fast} toggles fast mode.
+    \item \code{/context} shows what fills the window; \code{/usage}
+      (alias \code{/cost}) shows session cost, plan limits and activity;
+      \code{/compact} summarises to free space; \code{/clear} starts afresh.
+    \item \code{Shift+Tab} cycles the permission modes; \code{/permissions}
+      edits allow and deny rules; \code{/sandbox} toggles the sandbox where
+      supported \parencite{anthropic2025sandboxing}.
+    \item \code{Esc} interrupts; \code{/rewind} rolls code and conversation
+      back to a checkpoint; \code{/resume} reopens an earlier session.
+    \item \code{claude --permission-mode plan} starts read-only, as Chapter 10
+      does; \code{claude -p "prompt"} runs once and prints; \code{claude -c}
+      continues the last session.
+  \end{itemize}
+  \source{code.claude.com/docs/en/commands and /interactive-mode (read 2 November 2026).}
+\end{frame}
+
+\begin{frame}{OpenCode: the controls}
+  \begin{itemize}
+    \item \code{/models} picks the model; the list comes from the providers
+      in \code{opencode.json} and \code{/connect}.
+    \item \code{Tab} switches between the Plan agent, which proposes without
+      editing, and the Build agent, which edits (Chapter 10, Step 3).
+    \item \code{Ctrl+T} cycles the model's variant, the provider's reasoning
+      effort; \code{opencode run --variant high} sets it for one run.
+    \item \code{Ctrl+X} then \code{S} opens the status view; \code{opencode
+      stats} prints token use and cost per model and tool.
+    \item \code{/compact} summarises; \code{/undo} and \code{/redo} step
+      through the agent's changes; \code{Esc} interrupts.
+    \item \code{opencode run "prompt"} runs without the interface;
+      \code{-m ollama/gemma4:12b} picks a model, \code{--continue} the last
+      session.
+  \end{itemize}
+  \source{opencode.ai/docs/cli and /keybinds; opencode --help, version 1.17.11.}
+\end{frame}
+
+\begin{frame}{Codex: the controls}
+  \begin{itemize}
+    \item \code{/model} chooses the model and its reasoning effort;
+      \code{/status} shows the chat, how much context is used and the rate
+      limits; \code{/compact} summarises.
+    \item \code{/permissions} chooses between ``Ask for approval'',
+      ``Approve for me'', ``Full access'' and the rules in
+      \code{config.toml}. Start with ``Ask for approval''.
+    \item From the command line: \code{-s read-only}, \code{workspace-write}
+      or \code{danger-full-access} sets the sandbox; \code{-a on-request} or
+      \code{never} sets when it asks.
+    \item \code{/init} writes an \code{AGENTS.md} scaffold; \code{/review}
+      reviews uncommitted changes.
+    \item \code{codex exec "prompt"} runs once; \code{codex exec resume --last
+      "next prompt"} continues it; \code{codex resume} reopens a session.
+  \end{itemize}
+  \source{developers.openai.com/codex (CLI pages, read 2 November 2026); codex --help, version 0.162.1.}
+\end{frame}
+
+\begin{frame}{Tokens, context and usage: what to watch}
+  \begin{itemize}
+    \item A token is about four characters, three quarters of a word. A
+      200-line R script is one to two thousand tokens (Chapter 7).
+    \item An agent re-sends the whole session at every step: the rules file,
+      every file it read, every earlier turn. Prompts run to tens of
+      thousands of tokens (Chapter 13).
+    \item When the window fills, old context is cut and the agent forgets.
+      Watch \code{/context}, \code{/status} or the status view; compact or
+      start a new session at a natural break.
+    \item Hosted plans meter usage in windows; the harness shows where you
+      stand (\code{/usage}, \code{/status}). The figures of the day are in
+      Appendix D.
+    \item Local models have no meter. The cost is time: the wait before the
+      first token grows with the prompt (Chapter 13).
+  \end{itemize}
+  \source{Chapters 7 and 13; Appendix D.}
+\end{frame}
+
+\begin{frame}[fragile]{Running an agent without a conversation}
+  \begin{lstlisting}[style=shell]
+claude -p "Describe data/raw/occurrences.csv; change nothing." > logs/describe.md
+opencode run -m ollama/gemma4:12b "Describe data/raw/occurrences.csv" > logs/describe.md
+codex exec "Describe data/raw/occurrences.csv" -o logs/describe.md
+  \end{lstlisting}
+  \begin{itemize}
+    \item One prompt in, text out: the shape of a script step, and of the
+      weekly review's assistant layer (Chapter 11).
+    \item The permissions still apply. Keep the deny rules, and never use a
+      ``skip permissions'' flag outside a container with no network: least
+      privilege, the first of the Singapore Consensus principles for agents
+      \parencite{casper2026singapore}.
+    \item Save the output under \code{logs/} with the date, the model and the
+      prompt: that is the provenance record of Chapter 9.
+  \end{itemize}
+  \source{The three tools' help, 2 November 2026; Chapters 9, 11 and 15.}
+\end{frame}
+
+\begin{frame}{Fencing the agent in: where each control sits}
+  \fig[0.6\textheight]{ch15-fences}
+  \source{Figure from Chapter 15 of the book. Permission prompts, the rules
+  file, the harness configuration, the sandbox, a container, and a cut
+  network: each has an honest limit.}
+\end{frame}
+
+\section{Before the session}
+
+\begin{frame}[fragile]{A checklist that takes two minutes}
+  \begin{lstlisting}[style=shell]
+git --version && ollama --version && opencode --version   # or claude, codex
+ollama list                              # the workshop's model is there
+ollama ps                                # loaded, CONTEXT 32768 or more
+cp -R workshop/session ~/survey && cd ~/survey
+git init && git add -A && git commit -m "Before the agent session"
+chmod -R a-w data/raw
+opencode                                 # reads AGENTS.md and opencode.json
+  \end{lstlisting}
+  \begin{itemize}
+    \item If the harness cannot see the model: check \code{opencode.json}
+      names the tag \code{ollama list} shows, and that \code{tool\_call} is
+      set.
+    \item If the agent forgets the task: the context is too small on one side
+      or the other.
+    \item If a command is refused: that is the configuration working. Read
+      the rule before widening it.
+  \end{itemize}
+  \source{Chapter 10, Steps 1 to 3; Chapter 8, the two settings.}
+\end{frame}
+
+\begin{frame}{Takeaways}
+  \begin{itemize}
+    \item Install, then verify: every tool prints its version, Ollama lists
+      the model, the harness starts inside the project folder.
+    \item Commit before the agent starts; read the diff after; keep a way
+      back. Deny the Git commands that would remove it.
+    \item Enlarge the context on both sides, runtime and harness; it is the
+      setting that most often makes a local agent look broken.
+    \item Every harness has the same five controls: model, effort, context
+      and usage, permissions, and a one-shot mode. Learn them once.
+    \item A refused command is the configuration doing its job. Widen a rule
+      deliberately, not because the agent asked.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
+  \printbibliography[heading=none]
+\end{frame}
+
+\end{document}

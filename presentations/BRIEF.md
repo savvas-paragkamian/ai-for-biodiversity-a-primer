@@ -14,6 +14,11 @@ only your deck's folder under `presentations/`; you edit nothing else.
 
 Chapter numbers are those of the built book; the file names lag behind.
 
+Deck 0, `00-setup`, was written afterwards by the coordinator, not from the
+book alone: its installation commands and harness controls come from the
+tools' documentation and `--help`, dated on each slide, with the same text
+in `workshop/SETUP.md`. Revise it by rereading those sources, not from memory.
+
 ## Read first, in this order
 
 1. `AGENTS.md`, the sections **Never**, **Prose**, **Formatting** and
