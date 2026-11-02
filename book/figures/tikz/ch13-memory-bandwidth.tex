@@ -2,13 +2,13 @@
 \input{../style}
 \begin{document}
 \begin{tikzpicture}[node distance=10pt and 20pt]
-  \node[grey, text width=230pt, align=center] (mem) {memory\\ \footnotesize the model's weights: parameters $\times$ bytes per parameter, plus 20--30\% for the context and overheads};
+  \node[grey, text width=250pt, align=center] (mem) {memory\\ \footnotesize the model's weights: parameters $\times$ bytes per parameter, plus the KV cache, which grows with the context length};
   \node[box, below=30pt of mem] (cpu) {processor};
   \node[box, right=of cpu] (tok) {one token};
-  \node[box, left=of cpu, align=left, font=\footnotesize] (size) {a 7B model: 14\,GB at FP16,\\7\,GB at 8-bit, 4--5\,GB at Q4};
+  \node[box, left=of cpu, align=left, font=\footnotesize] (size) {a 7B model: 14\,GB at FP16 (half precision),\\7\,GB at 8-bit, 4--5\,GB at Q4};
   \draw[->] (mem) -- node[tag, right, align=left] {every weight is read\\once per token} (cpu);
   \draw[->] (cpu) -- (tok);
-  \node[note, below=10pt of cpu, text width=330pt]
-    {capacity first: does the model fit? bandwidth second: tokens per second is bandwidth over model size; compute third};
+  \node[note, below=10pt of cpu, text width=360pt]
+    {capacity first: do the model and its context fit? bandwidth sets the decode: tokens per second is bandwidth over bytes read per token; compute sets the prefill: how long a long prompt takes to read};
 \end{tikzpicture}
 \end{document}

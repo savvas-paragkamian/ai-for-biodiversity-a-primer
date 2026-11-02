@@ -5,6 +5,12 @@
 
 \begin{itemize}[label=$\square$]
   \item Data classified: what may go to a hosted service, what may not.
+  \item Sensitive localities kept off hosted services, and generalised before
+    they are shared or published.
+  \item Taxonomic backbone named, with its version or date; coordinate
+    reference system recorded.
+  \item Samples and sequences: permits and country of origin recorded; terms
+    checked to allow sharing, or sending to a service (\Cref{sec:abs}).
   \item \code{README.md} and \code{AGENTS.md} written.
   \item Git initialised; data and credentials excluded.
   \item \code{data/raw/} read-only and checksummed; environment pinned.
@@ -21,15 +27,30 @@
     inspected; row counts checked at every join; edge cases tried; run twice
     with identical output; result checked against domain sense.
   \item Prompt, model, version and settings logged; committed with a message.
+  \item For an analysis: plan written before the session; every model fitted
+    logged; result checked under other reasonable choices
+    (\Cref{sec:analysis}).
 \end{itemize}
 
 \section{Testing a model or assistant}
 
 \begin{itemize}[label=$\square$]
   \item Expert-written questions with expected answers and sources.
+  \item Answer key annotated twice, with the agreement reported; what counts as
+    good enough decided before the test.
+  \item Test items held out before any rule, prompt or baseline is tuned.
+  \item Unit of replication decided: the note or document, not the cell.
+  \item Enough items for the decision, with an interval reported beside each
+    score.
+  \item Two systems compared on the same items, with a paired test.
+  \item Repeated runs, with their spread; abstentions and malformed outputs
+    counted.
   \item Grounding: every claim supported by what was retrieved.
   \item Citations: each cited source says what it is cited for.
   \item Pushback: a correct answer survives a confident false challenge.
+  \item Memorisation controls: invented names or deepest-rank items; results
+    reported per field and per rank; reference versions recorded for the key
+    and the system.
   \item Cost per answer recorded; results compared with the previous version.
 \end{itemize}
 
@@ -39,6 +60,11 @@
   \item Every DOI resolves and its title matches; others checked by hand.
   \item Every cited paper opened, and the claim matches what it says.
   \item AI use disclosed specifically: model, version, date, purpose, checks.
+  \item Every field a model extracted or classified has a validation sample
+    and its error rates reported; machine-derived records flagged as such
+    before deposit (\Cref{sec:outputasdata}).
+  \item Accessions and dataset DOIs cited; reference database and taxonomy
+    versions recorded in the methods.
   \item Code and prompts archived with a DOI; data deposited.
   \item No confidential material sent to a hosted service.
   \item Every author can explain and support every claim.

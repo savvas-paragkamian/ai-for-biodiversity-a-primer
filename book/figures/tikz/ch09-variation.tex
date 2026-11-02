@@ -3,7 +3,7 @@
 \begin{document}
 \begin{tikzpicture}[src/.style={box, text width=118pt, align=center, font=\footnotesize}]
   \node[grey] (out) at (0,0) {the output of\\one model call};
-  \node[src] (a) at (0,70pt) {sampling is random\\ \itshape set temperature to zero and a seed; record them};
+  \node[src] (a) at (0,70pt) {sampling is random\\ \itshape record settings and outputs; rerun a sample};
   \node[src] (b) at (150pt,28pt) {the hosted model changes underneath you\\ \itshape a local model file with a known checksum};
   \node[src] (c) at (150pt,-44pt) {context is hidden state\\ \itshape a fresh session and a self-contained prompt, saved};
   \node[src] (d) at (-150pt,-44pt) {agents take different paths\\ \itshape the deliverable is the reviewed, committed code};

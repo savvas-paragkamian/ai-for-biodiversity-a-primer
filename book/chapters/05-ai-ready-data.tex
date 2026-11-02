@@ -36,7 +36,50 @@ The CARE principles set out such terms for Indigenous data: ``Collective benefit
 Authority to control, Responsibility, and Ethics''. They are meant to complement
 FAIR, not to replace it \parencite{carroll2020care}, and
 \textcite{jennings2023care} set out how they apply to ecology and biodiversity
-research. Many of the people who
+research.
+
+\section{Access and benefit-sharing}
+\label{sec:abs}
+
+For sequence data, international agreements already set terms. Under the
+Convention on Biological Diversity (CBD), each country may regulate who
+collects and uses genetic material from its territory. A user must obtain prior
+informed consent and agree terms under which a share of the benefits returns
+to the providing country. This is \term{access and benefit-sharing} (ABS), and
+the Nagoya Protocol codifies its procedures, permits and checkpoints
+\parencite{scholz2022dsi}. Scholz et al.\ describe the system as
+well-intentioned but inefficient, with high costs for obtaining permits.
+
+Sequencing complicates this. Once a sample is sequenced, its \term{digital
+sequence information} (DSI) sits in open databases. Anyone can download and
+use it without touching the sample or seeing the permits that came with it.
+Many biodiverse countries, often low- and middle-income, see this as a loophole: commercial
+gains from DSI are not shared back as they would be for the genetic resource
+itself \parencite{scholz2022dsi}. Scholz et al.\ argued that seeking permission
+for every sequence could not work for the INSDC, whose data are downloaded 34
+million times a year. They proposed a multilateral fund that keeps access open
+and collects benefits separately.
+
+The Parties adopted such a mechanism at their sixteenth conference (COP16), in
+Cali in November 2024, with a global fund named the Cali Fund
+\parencite{cbd2024dsidecision}. Large companies in sectors that profit from DSI
+should pay into it 1 per cent of profits or 0.1 per cent of revenue. That rate
+is indicative, to be fixed at the next conference. The indicative list of
+sectors ends with information services related to DSI, ``including artificial
+intelligence''. Public databases, universities and public research institutes
+are not expected to pay. Databases are asked to record the country of origin
+where it is known, to follow FAIR and CARE in their data governance, and to
+have submitters confirm that nothing prohibits sharing the sequences. Where
+appropriate, at least half of the money should support Indigenous peoples and
+local communities.
+
+This is the arrow in \Cref{fig:commons}, written into a treaty decision. The
+decision asks companies to contribute and invites governments to encourage
+them; whether anything comes back depends on whether they do. It covers
+sequence data only, not the literature and occurrence records that most of
+this book is about.
+
+Many of the people who
 built biodiversity's resources also want them used. The Disentis Roadmap, signed by
 107 individuals and institutions, aims for published biodiversity research to be
 ``fully AI ready'', openly available for training models ``within appropriate
@@ -49,17 +92,72 @@ licence, with what attribution, and does anything come back to the people who
 maintain it?
 \end{keypoint}
 
+\section{What makes biodiversity data fit for a model}
+\label{sec:fitformodel}
+
+The definition of AI-ready at the start of this chapter is about format. A
+table can meet all of it and still mislead a model, because ecological
+inference depends on how the records were made. A model fitted to occurrence
+records learns where people looked as readily as where species live
+(\Cref{fig:samplingbias}). Darwin Core groups its terms into classes such as
+event, location, occurrence, taxon and identification, so that people and machines can judge
+what a record can be used for \parencite{wieczorek2012darwincore}. Six kinds of
+information decide whether records can support an inference:
+
+\begin{itemize}
+  \item \textbf{The sampling event and its effort.} Where and when is not
+    enough. How the search was done, and for how long, separates a rare species
+    from a site nobody visited often (\code{samplingProtocol},
+    \code{samplingEffort}).
+  \item \textbf{Non-detections.} A species searched for and not found is a
+    result. Recorded with \code{occurrenceStatus} set to \code{absent}, it keeps
+    an absence apart from a gap.
+  \item \textbf{Coordinate uncertainty and cleaning.} A point looks more
+    precise than it is when its uncertainty in metres is missing
+    (\code{coordinateUncertaintyInMeters}).
+    CoordinateCleaner, an R package, tests for country centroids, swapped
+    latitude and longitude, zero coordinates and records from botanical gardens
+    or museums. It flagged 3.7 per cent of GBIF's flowering-plant records as
+    potentially problematic, and cleaning by hand is slow and hard to reproduce
+    \parencite{zizka2019coordinatecleaner}.
+  \item \textbf{The taxonomic backbone and its version.} Names are matched
+    against a backbone that changes with each release. Record which one, and
+    which version, or the same names cannot be matched again.
+  \item \textbf{Identification qualifiers.} A name marked ``cf.'' in
+    \code{identificationQualifier}, and the person in \code{identifiedBy}, tell
+    a model how far to trust it.
+  \item \textbf{Flags for machine-derived records.} A name proposed by an image
+    classifier, or a record extracted by a language model, should say so. Set
+    \code{basisOfRecord} to \code{MachineObservation}, name the model and its
+    version in \code{identifiedBy}, and leave
+    \code{identificationVerificationStatus} unverified until a person checks it.
+\end{itemize}
+
+For sequence data, the equivalent is the link from each sequence to its sample
+and to the protocol that produced it, which MIxS describes (below). The
+exercise in \Cref{ch:firstsession} keeps a non-detection and an effort column
+for this reason. None of these fields is new. What changes is the reader: a
+model uses every record it is given, and it cannot ask the collector what was
+left out.
+
 \section{Standards}
 
-\textbf{Describing data.} Darwin Core is the backbone of occurrence exchange,
-packaged as Darwin Core Archives. ABCD covers collections, while MIxS sets the
-minimum information for sequence data. These descriptions let us compare a
+\textbf{Describing data.} Darwin Core, maintained by TDWG, is the backbone of
+occurrence exchange. Records travel as Darwin Core Archives, text files with a
+small XML file that describes their columns, and GBIF's publishing toolkit adds
+a description of the dataset in EML \parencite{wieczorek2012darwincore}. ABCD
+covers collections in more structured detail. MIxS, from the Genomic Standards
+Consortium, is a set of checklists for genomes, metagenomes and marker-gene
+studies. It asks for the sample's environmental and geographic origin, and for
+how the sample was processed and sequenced, alongside the sequence
+\parencite{wieczorek2012darwincore}. These descriptions let us compare a
 metagenome from a Greek coast with one from the North Sea. Ontologies do the semantic work: ENVO
 for environments, EUNIS for habitats, the Gene Ontology and others. Choosing
 between overlapping vocabularies --- ENVO, EUNIS or LUCAS for a habitat field ---
-is a real design decision. I-ADOPT breaks a measured variable into its parts so
-that ``sea surface temperature'' from two networks can be recognised as the same
-thing \parencite{magagna2021iadopt}, and DataHarmonizer validates messy
+is a real design decision. I-ADOPT splits a variable, such as the concentration
+of a pesticide in oyster flesh, into the thing observed, the property measured
+and its context. Variables named differently in two vocabularies can then be
+compared \parencite{magagna2021iadopt}, and DataHarmonizer validates messy
 contextual metadata against a specification
 \parencite{gill2023dataharmonizer}. This work makes it possible to combine data
 collected by different people for different purposes.
@@ -80,14 +178,17 @@ biodiversity data is that a standard applied once is a starting point. Keeping
 records comparable is continuing work, and the people who report errors back
 to the database are part of it.
 
-The microbiome comparison by \textcite{venetsianou2026relatedness} shows why
-descriptions need as much care as the data files. Generic descriptions and
-abstracts reused across many studies could obscure differences between them;
-the authors filtered heavily reused abstracts before comparing study pairs.
-The model could only assess the context supplied to it. For a reusable
-microbiome dataset, I would therefore retain the sampling conditions, links
-between samples and studies, and the history of laboratory and computational
-processing alongside the sequences.
+Descriptions need as much care as the data files. When
+\textcite{youngblut2026scbasecount} had an agent annotate single-cell datasets
+in the Sequence Read Archive, it read disease status from study abstracts,
+because the archive has no structured disease field for each sample. One
+disease label could then pass to every sample in a study, healthy controls
+included. A model can only assess the context supplied to it. For sequence
+data, that context includes the link from each record to its sample, the
+sampling and laboratory protocols, and the software that processed it. The
+link to the sample also matters for the Nagoya Protocol and the CARE
+principles \parencite{woodcharlson2026cope}; see \Cref{sec:abs}. For a reusable
+microbiome dataset, I would therefore keep all of this alongside the sequences.
 
 Jonathan Jacobs and Patrick Boyle make a related argument in their Undark
 opinion essay on AI-driven biology, listed in \Cref{app:tutorials}. They stress
@@ -97,14 +198,21 @@ produced it. My reading for biodiversity work is that making records easy to
 retrieve cannot compensate for losing their connection to specimens, cultures
 or field observations.
 
-\textbf{Machine interfaces.} POSIX, the Unix file and process conventions,
-underlies everything \parencite{ritchie1974unix}. OpenAPI describes web APIs so
-that an agent can discover and call them. The \term{Model Context Protocol}
-(MCP) is a standard way to offer tools and data to language models: a resource is
-wrapped once instead of once per client (\Cref{fig:mcp}). EMBL-EBI's InterPro server is a good
+\textbf{Machine interfaces.} POSIX, the standard form of the Unix file and
+process conventions (\Cref{ch:landscape}), underlies everything. OpenAPI
+describes web APIs so that an agent can discover and call them. The
+\term{Model Context Protocol} (MCP) is an open specification for offering tools
+and data to language models: a resource is wrapped once instead of once per
+client (\Cref{fig:mcp}). It has been donated to the Linux Foundation's Agentic
+AI Foundation, which now governs it \parencite{liu2026claudecode}; the date and
+current version are in \Cref{app:stateofplay}. An MCP server is a program that
+runs with your access, and its tool descriptions are text the model reads and
+may obey (\Cref{ch:security}). EMBL-EBI's InterPro server is a good
 example. An agent can ask in plain language which domains a protein has or
 which structures contain a family. The server calls the right InterPro services,
-with no account needed \parencite{interpro2026mcp}. SPARQL and RDF serve
+with no account needed \parencite{interpro2026mcp}. For the literature, the corpus
+tool turns a clade's PDFs into an MCP server whose answers point to the source and
+page \parencite{church2026corpus}. SPARQL and RDF serve
 knowledge graphs, which models can now query \parencite{smeros2025sparqlllm}.
 Frameworks such as LangChain and LangGraph chain these pieces into applications,
 and Ollama runs open models locally (\Cref{ch:stack}).
@@ -121,9 +229,23 @@ call it.}
 \section{Infrastructure}
 
 GBIF aggregates occurrence records worldwide and OBIS does the same for the sea.
-PlutoF manages data from collection to publication, with UNITE for fungal
-sequences \parencite{koljalg2019plutof}; BOLD holds barcodes and ENA, GenBank
-and SRA the rest. These are long-lived and publicly funded. \textcite{heberling2021gbif}
+PlutoF manages biodiversity data from collection to publication
+\parencite{koljalg2019plutof}, and BOLD holds DNA barcodes. Sequences go to the
+International Nucleotide Sequence Database Collaboration (INSDC): GenBank at
+NCBI, the European Nucleotide Archive at EMBL-EBI, and the DNA Data Bank of
+Japan \parencite{woodcharlson2026cope}. Raw reads are archived too; NCBI's
+Sequence Read Archive (SRA) is the largest public store of them
+\parencite{youngblut2026scbasecount}. MGnify analyses microbiome data with
+versioned workflows, links each result to its sample and raw data in INSDC, and
+takes in sample metadata extracted by machine learning
+\parencite{woodcharlson2026cope}. Machine output is therefore already entering
+these archives. Unless such records are flagged (\Cref{sec:fitformodel}), the
+next model learns from the last one's guesses, and models trained repeatedly on
+generated data lose the rare parts of the distribution first
+\parencite{shumailov2024collapse}. \Cref{sec:outputasdata} sets out how to treat
+a model's output as data.
+
+These resources are long-lived and publicly funded. \textcite{heberling2021gbif}
 counted more than 4,000 studies published between 2003 and 2019 that used data
 mediated by GBIF, and found that legacies of colonial science remain. Credit
 flows back less reliably: across 43,802 GBIF datasets, best practice for
@@ -136,24 +258,34 @@ maintain and interpret a resource are part of it, and grants favour building
 over keeping. TDWG governs
 Darwin Core, ELIXIR coordinates European life-science data and names the Core
 Data Resources the community commits to sustaining, and the LF AI \& Data
-Foundation hosts much open model tooling. Open standards outlive the
-organisations that introduce them \parencite{wilson2013foss}.
+Foundation hosts much open model tooling. Open formats matter for the same
+reason: data stored in a proprietary format can be lost when the company that
+owns it goes out of business \parencite{wilson2013foss}.
 
-Hugging Face has become the default place to share open models and datasets. It
-is convenient, a single commercial point of failure, and an attack surface:
-downloading a model can mean running someone else's code
-\parencite{openai2026huggingface}. Prefer the \code{safetensors} format and
-check checksums.
+Hugging Face provides shared infrastructure for models and datasets. It is
+convenient and a single commercial point of failure. OpenAI's incident report
+describes agents compromising that infrastructure after bypassing restrictions
+in an evaluation environment \parencite{openai2026huggingface}. For
+biodiversity services, I treat this as a reason to isolate agents from
+production data and credentials. \Cref{ch:security} examines the incident and
+the limits of containment.
 
 \section{Open weights and open source}
 
 \textbf{Open weight} means you can download the model's parameters, run it and
 fine-tune it --- Gemma, Kimi, Qwen and GPT-OSS models are examples. It does not
 mean you can see what it was trained on or rebuild it. \textbf{Open source},
-properly, would include the training data, code and pipeline as well. Almost
-every model sold as open is only open-weight. \textcite{hai2026openweight} argue
-this is not enough for science: without the training data you cannot check
-whether your test set was in it, audit bias, or reproduce the result. For
+as the Open Source Initiative defines it, asks for more. It needs the
+parameters and the complete code used to train and run the model. It also needs
+enough information about the training data for a skilled person to build a
+substantially equivalent system \parencite{osi2024definition}. Almost every
+model sold as open is only open-weight, but fully open models exist. OLMo was
+released under the Apache 2.0 licence with its training data, its training and
+evaluation code, and its training logs \parencite{groeneveld2024olmo}.
+\textcite{hai2026openweight} argue that open weights are not enough for science:
+without the training data, outsiders cannot properly test, reproduce or
+challenge the work, or audit how fairly the model represents different
+populations. For
 ecology, \textcite{torresani2026opening} add that closed training data make it
 hard to see which regions, taxa and languages are under-represented. Licences
 vary too; Apache-2.0 and MIT are genuinely open, while several ``open'' model
@@ -168,17 +300,20 @@ licences restrict use.
 \toprule
 \textbf{Level} & \textbf{You get} & \textbf{You cannot} \\
 \midrule
-API only      & An endpoint & Run offline; pin a version; audit anything \\
+API only      & An endpoint; often dated model versions & Run offline; keep a version after it is retired; check it is unchanged; audit anything \\
 Open weight, restricted licence & Weights, conditional use & Use freely; audit training data \\
 Open weight, Apache/MIT & Weights, unrestricted use & Audit training data; reproduce \\
-Fully open source & Weights, data, code, pipeline & --- \\
+Fully open & Weights, data, code, pipeline & --- \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
 \section{Retrieval-augmented generation}
 
-RAG gives a model knowledge it was not trained on, without retraining. Ask a
+\term{Retrieval-augmented generation} (RAG) gives a model knowledge it was not
+trained on, without retraining. \textcite{lewis2020rag}, who named the method,
+paired a language model with a searchable index of Wikipedia passages and
+showed that replacing the index updated what the model knew. Ask a
 model ``what colour is my ball?'' and it will invent an answer. Say ``I have a
 green box with a red ball in it --- what colour is my ball?'' and it answers
 correctly. RAG automates that second clause: a search system finds relevant
@@ -186,9 +321,15 @@ passages and adds them to the prompt. The steps:
 
 \begin{enumerate}
   \item \textbf{Convert} documents to text. For PDFs this is the hardest step
-    and limits everything after it; Docling, which understands page layout and
-    tables, is much better than plain extraction \parencite{auer2024docling}.
-  \item \textbf{Chunk} into passages, respecting the document's structure.
+    and limits everything after it. Docling recovers page layout, reading order
+    and table structure, which simpler extractors can merge or lose
+    \parencite{auer2024docling}.
+  \item \textbf{Chunk} into passages, respecting the document's structure. For
+    biodiversity texts, first tag taxon names and resolve them against a
+    backbone, because a name is attached to almost every fact about an organism
+    \parencite{thessen2012nlp}. The corpus tool, for example, takes the backbone as a
+    Darwin Core Archive, so that a species is found under its older names too
+    \parencite{church2026corpus}.
   \item \textbf{Embed} each chunk as a vector (\code{bge-m3}, \code{nomic-embed-text}).
   \item \textbf{Index} them, for example in PostgreSQL with \code{pgvector}.
   \item \textbf{Retrieve} with keyword and vector search combined
@@ -202,7 +343,8 @@ failures: the answer is not in the corpus, it is ranked too low, or it is cut
 from the context. Four are generation failures: the model misses it, uses the
 wrong format, is too general or too narrow, or gives an incomplete answer. Log
 what was retrieved separately from what was generated, or you cannot tell which
-half broke. For a small, stable corpus, a curated set of notes placed directly
+half broke. Test retrieval by itself first, on a handful of questions whose
+answering passages you already know. For a small, stable corpus, a curated set of notes placed directly
 in the context can beat retrieval altogether; test before assuming you need RAG.
 
 \begin{figure}[htbp]

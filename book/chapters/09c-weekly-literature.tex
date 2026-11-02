@@ -1,25 +1,37 @@
 \chapter{A Weekly Literature Review}
 \label{ch:weeklyliterature}
 
-The previous chapter ran one agent session and checked its work. This chapter
-builds something that runs without you, every Monday, and whose output you can
-trust for the same reason: every claim in it can be checked. The task is the
-one \Cref{ch:keepingup} calls impossible to do completely, keeping up with the
-literature. A weekly review does not make it possible. It makes the part that
-machines do well, fetching, merging and verifying, routine and recorded, and
-leaves the reading to you.
+Most researchers keep up with the literature through a service: the alerts an
+institutional library sends, or a saved PubMed search that emails new
+matches. Newer services are built for agents, such as the EMBL AI Librarian,
+which puts Europe PMC behind an interface that an agent queries in plain
+language \parencite{sigillo2026embllibrarian}. This chapter builds an
+application of the same kind, one that runs every Monday without you and
+whose every claim can be checked. Keeping up cannot be done completely (\Cref{ch:keepingup}),
+but the part that machines do well, fetching, merging and verifying, can be
+made routine and recorded, leaving the reading to you.
+
+Do you need to build it? For a list of new papers on a few topics, an alert
+is enough. Build this when you also want a record of every query and its
+result, identifiers checked before they reach a bibliography, and files that
+an assistant can read under rules. Even then, the rOpenSci packages
+\code{openalexR} and \code{europepmc} (\Cref{app:tutorials}) are a simpler
+start than hand-written API calls; I use direct calls only so that every
+response is saved as it arrived. Nor is this a systematic search, which is
+planned and reported to a standard such as ROSES
+\parencite{haddaway2018roses} or PRISMA-EcoEvo
+\parencite{odea2021prismaecoevo} (\Cref{ch:scientificworkflow}).
 
 The design has two layers that are never mixed (\Cref{fig:twolayers}). The
-first is a set of R scripts with fixed queries, written once and run by a
-clock. They fetch the week's new items from five sources, merge duplicates,
-resolve every identifier, and write a Markdown digest, a BibTeX file and a log
-of every query. No model is involved. The second layer is an assistant, a
-Claude Code skill built on the rules KYBELE uses (\Cref{ch:localfirst}). It
-reads the week's files, searches Consensus, and writes notes in a separate
-file that says a model wrote it. It can add a reference to a bibliography only
-through a script that resolved the reference first. The reason for the split
-is the argument of \Cref{ch:reproducibility}: code that a model wrote can be
-kept and rerun, but an answer a model gave cannot.
+first is a set of R scripts with fixed queries, run by a clock. They fetch the
+week's new items from five sources, merge duplicates, check every identifier,
+and write a Markdown digest, a BibTeX file and a log. No model is involved.
+The second layer is an assistant, a Claude Code skill built on KYBELE's rules
+(\Cref{ch:localfirst}). It reads the week's files, searches Consensus, and
+writes notes in a file that says a model wrote it. It can add a reference to
+a bibliography only through a script that checked the reference first. The
+split follows \Cref{ch:reproducibility}: code that a model wrote can be kept
+and rerun, but an answer a model gave cannot.
 
 \begin{figure}[htbp]
 \centering
@@ -31,57 +43,51 @@ resolves the reference.}
 \label{fig:twolayers}
 \end{figure}
 
-By the end you should have a repository on GitHub that fills itself each week
-and that anyone can read, and a file that states your interests as queries.
-You should also have a way of letting a model summarise what came in without
-letting it invent anything. Allow about three hours to set it up and half an hour each Monday to
-read the result. You need R, Git and a GitHub account; the assistant needs
-Claude Code and a Consensus account. The \code{workshop/literature} folder
-holds a frozen week, so that the exercise runs offline and its counts can be
-compared with the ones printed here. The repository this chapter describes is
-listed in \Cref{app:tutorials}, and the versions used are in
-\Cref{app:stateofplay}.
+The scripts need R, Git and a GitHub account, about three hours to set up and
+half an hour each Monday to read the result. The assistant is optional and
+needs two paid services, Claude Code and a Consensus subscription. The
+\code{workshop/literature} folder runs offline, with an invented fixture week
+and a real week reduced to two topics. For the real week the scripts print
+1,357 records read, 25 distinct items, 23 verified and 2 not; the folder's
+README lists the expected output. My own repository is listed in
+\Cref{app:tutorials}, the versions used in \Cref{app:stateofplay}.
 
 \section{The sources}
 
-Five services offer a search interface that a script can query by date, and
-each covers a different part of the literature. Europe PMC indexes the life
-sciences with abstracts and includes preprints; a query can ask for items
-first published between two dates. OpenAlex covers every field and most
-publishers. It returns abstracts as an inverted index that the script
-rebuilds, and it stems words. The acronym MIxS therefore matches every paper
-that mentions a mix. Computer science appears first on arXiv, including most
-of the work on language models that this book cites; its API takes a date
-range and a category. The bioRxiv API returns everything in a category for a
-date range, thirty items at a time, and the script keeps what matches a topic's
-terms. Biodiversity PMC \parencite{pasche2026biodivpmc} is the
-biodiversity-specific index built on the SIB Literature Services, which KYBELE
-also uses. Its \code{medline} collection is current. Its full-text \code{pmc}
-collection ran about two months behind for the author's queries when this was
-tested. The Plazi treatments it holds \parencite{agosti2022treatments} carry
-no publication date in the index, so they cannot be searched by week.
+Five services can be queried by date, and each covers a different part of the
+literature. Europe PMC indexes the life sciences with abstracts and includes
+preprints. OpenAlex covers every field and most publishers; it returns
+abstracts as an inverted index that the script rebuilds, and it stems words,
+so the acronym MIxS matches every paper that mentions a mix. Computer
+science, including most of the work on language models that this book cites,
+appears first on arXiv. The bioRxiv API returns everything in a category for
+a date range, and the script keeps what matches a topic's terms. Biodiversity
+PMC \parencite{pasche2026biodivpmc} is the biodiversity-specific index built
+on the SIB Literature Services, which KYBELE also uses. Its \code{medline}
+collection is current; its full-text \code{pmc} collection ran about two
+months behind for my queries. The Plazi treatments it holds
+\parencite{agosti2022treatments} carry no publication date in the index, so
+they cannot be searched by week.
 
-Consensus is the sixth source and the odd one. It searches a large index of
-papers with a ranked, semantic query, which suits questions rather than terms.
-It has no public API, only an MCP server (\Cref{ch:aireadydata}) that a
-harness can call. It therefore belongs to the assistant layer, and the scripts
-never depend on it.
+Consensus is the sixth source and the odd one. It runs a ranked, semantic
+search, which suits questions rather than terms, and has no public API, only
+an MCP server (\Cref{ch:aireadydata}). It therefore belongs to the assistant
+layer, and the scripts never depend on it.
 
-Two properties of these sources shape the design. They index with a delay,
-and not the same delay, so an item can appear in one source this week and in
-another next week. And a preprint and its journal version arrive weeks apart
-under different identifiers. The scripts therefore fetch some days before the
-week as well, remember everything they have ever listed, and merge by
-identifier before they merge by title.
+Two properties of these sources shape the design. They index with different
+delays, so an item can appear in one source this week and in another next
+week. And a preprint and its journal version arrive weeks apart under
+different identifiers. The scripts therefore fetch some days before the week,
+remember everything they have listed, and merge by identifier before title.
 
 \section{Step 1: your interests, as queries}
 
 KYBELE's first rule is that the vocabulary lives in data, looked up, never
-generated by the model. The weekly review keeps the same rule. A file,
+generated by the model, and the weekly review keeps it. A file,
 \code{config/interests.yml}, holds the topics, and for each topic the terms
 that mark it, one query per source, and the questions the assistant may put
-to Consensus. You write it by hand. It is the one part of the system that no
-prompt in this chapter asks an agent for. One topic looks like this:
+to Consensus. You write it by hand; no prompt in this chapter asks an agent
+for it. One topic looks like this:
 
 \begin{lstlisting}[caption={One topic in config/interests.yml}]
 topics:
@@ -100,10 +106,9 @@ topics:
       - "springtail new species description"
 \end{lstlisting}
 
-Fourteen topics took an afternoon to write, from this book, the author's notes
-and the projects of \Cref{ch:localfirst}. The counts of the first weeks then
-show which queries are too broad and which find nothing, and the file is tuned
-from them. It is under version control, so the log of every week records
+My fourteen topics took an afternoon to write. The counts of the first weeks
+show which queries are too broad and which find nothing, and the file is
+tuned from them. It is under version control, so each week's log records
 which version of the vocabulary produced it.
 
 \section{Step 2: fetch, and keep what came back}
@@ -129,28 +134,19 @@ Rscript R/01_fetch.R 2026-W42 writes the files and the number of items
 counted from the files with jsonlite equals the printed totals.
 \end{lstlisting}
 
-Three things in this prompt carry the method. Every response is saved
+Two things in this prompt carry the method. Every response is saved
 unchanged, before anything is parsed, so that a later question about what a
-source returned has an answer. The request identifies you, which the
-services ask for. And the condition at the end is one that can fail: the
+source returned has an answer. And the condition at the end can fail: the
 counts the script prints must equal the counts in the files it wrote.
 
-This was run for this book on 14 October 2026, for the week of 5 to 11
-October. The fourteen topics and the people queries made 51 requests to the
-five sources, with their pages, in about three and a half minutes. They
-reported 2,482 items: 1,331 from bioRxiv's six categories, 538 from arXiv,
-492 from OpenAlex, 92 from Europe PMC and 29 from Biodiversity PMC.
-Seventeen queries returned nothing, and the review says which. The number is
-large because the first run of a new week fetches the ten overlap days too.
-It is also large because the terms, not the fetch, decide what bioRxiv
-contributes: 1,242 of its records matched no topic and were set aside. An
-earlier attempt had
-been smaller and wrong in ways that only the counts revealed. Of the 156
-OpenAlex hits for Collembola, 149 were Catalogue of Life records, until the
-query asked for articles, preprints and reviews only. The acronym MIxS
-brought 1,599 items about mixing. The arXiv query for agents returned 424 in
-one week, because the word harness, as a verb, matched 128 of them. Each fix
-is a line in the configuration, with the date and the reason.
+I ran it on 14 October 2026 for the week of 5 to 11 October and its ten
+overlap days. Fifty-one queries took about three and a half minutes and
+reported 2,482 items, 1,331 of them whole bioRxiv categories from which the
+terms set aside 1,242. Seventeen queries returned nothing, and the review says
+which. Earlier attempts had been wrong in ways only the counts revealed: 149
+of 156 OpenAlex hits for Collembola were Catalogue of Life records, until the
+query asked for articles, preprints and reviews only. Each fix is a dated
+line in the configuration.
 
 \section{Step 3: one table, no duplicates}
 
@@ -173,29 +169,30 @@ sources.
 \centering
 \fig{ch11-week-pipeline}
 \caption{One week through the scripts. Five sources are saved as received,
-merged into one table, and checked; an item whose identifier does not resolve
-is listed as not verified and gets no bibliography entry.}
+merged into one table, and checked; an item whose identifier does not resolve,
+or whose title or first author differs from the registrar's, is listed as not
+verified and gets no bibliography entry.}
 \label{fig:weekpipeline}
 \end{figure}
 
 The merge order matters (\Cref{fig:weekpipeline}). A DOI is an identity, an
 arXiv identifier is one too, and OpenAlex records arXiv preprints under a DOI
-that contains the identifier. A title is not an identity. Two records with the
-same normalised title are probably the same work, but the fixture week in the
-repository contains a pair that is not, and the check in the next step catches
-it. The fixture is six invented records across four sources, and the prompt's
-last sentence states what the script must print for them. Week \code{2026-W00}
-does not exist in any calendar, which is the point: it can never be confused
-with a real week.
+that contains the identifier. A title is not an identity: two records with
+the same normalised title are probably the same work, but the fixture week
+contains a pair that is not, and the next step catches it. The fixture is six
+invented records across four sources, in a week, \code{2026-W00}, that exists
+in no calendar and so cannot be confused with a real one.
 
 \section{Step 4: resolve every identifier before it enters the bibliography}
 
-\Cref{ch:scientificworkflow} resolves every reference before it enters a
-manuscript, because about 147,000 invented citations appeared in 2025 alone
-\parencite{zhao2026citations}. The weekly review applies the same rule one
-step earlier: nothing enters a \code{.bib} file that a registrar has not
-confirmed. The prompt points the agent at the book's own script and asks for
-the same check in R:
+\Cref{ch:scientificworkflow} checks every reference before it enters a
+manuscript. A conservative estimate puts the citations to non-existent works
+in 2025 alone at about 147,000 \parencite{zhao2026citations}. The weekly
+review applies the rule one step earlier. Nothing enters a \code{.bib} file
+unless its identifier resolves at a registrar: Crossref or DataCite for a
+DOI, the arXiv API for an arXiv identifier. The registrar's title, first
+author's surname and year must also agree with ours. The prompt asks for the
+book's own check, in R:
 
 \begin{lstlisting}[caption={The third prompt}]
 Read scripts/verify_bib.py from the book repository, then write
@@ -204,40 +201,49 @@ fetch https://api.crossref.org/works/<doi>, and if Crossref answers 404 fetch
 https://api.datacite.org/dois/<doi>, where Zenodo and Figshare register.
 Compare the returned title with ours after normalising, using 1 minus the
 edit distance over the longer length, threshold 0.85; also accept the pair
-when one title is the other without its subtitle. Set verified TRUE or
-FALSE with a reason. Check arXiv identifiers through the arXiv API id_list,
-at most 100 per request, three seconds apart. Save the responses under
-data/raw/<week>/crossref.json and arxiv-ids.xml (one file per batch) and
-read them instead of the network when --offline is given. Skip identifiers
-already in data/seen.csv: they were verified when first seen. Write
-data/normalised/<week>-checked.csv. Add --self-test with a good DOI, a DOI
-that does not exist, a real DOI with a deliberately wrong title, a good
-arXiv identifier and one that does not exist; it passes only if the three
-bad cases fail and the two good ones pass. Done when
-Rscript R/03_check.R --self-test prints SELF-TEST PASSED and names the three
+when one title is the other without its subtitle. Compare also the first
+author's surname (Crossref author family, DataCite creators, the arXiv
+author names) with ours in lowercase ASCII, accepting one that contains the
+other, and the year, accepting a difference of one. A different surname or
+a year more than one apart fails; a record without an author is verified by
+title and says so in its reason. Set verified TRUE or FALSE with a reason.
+Check arXiv identifiers through the arXiv API id_list, at most 100 per
+request, three seconds apart. Save the responses, with title, first author
+and year, under data/raw/<week>/crossref.json and arxiv-ids.xml (one file
+per batch) and read them instead of the network when --offline is given.
+Skip identifiers already in data/seen.csv: they were verified when first
+seen. Write data/normalised/<week>-checked.csv. Add --self-test with a good
+DOI, a DOI that does not exist, a real DOI with a deliberately wrong title,
+a real DOI with a deliberately wrong first author, a good arXiv identifier
+and one that does not exist; it passes only if the four bad cases fail and
+the two good ones pass. Done when
+Rscript R/03_check.R --self-test prints SELF-TEST PASSED and names the four
 failures.
 \end{lstlisting}
 
 The self-test is the part to insist on. A verifier that cannot fail is worse
-than none, because it reports success for everything. Planting a DOI that does
-not exist, a real DOI with the wrong title and an arXiv identifier that does
-not exist, and requiring all three to fail, is a check that the check works.
+than none, because it reports success for everything; requiring four planted
+errors to fail is a check that the check works.
 
-The first live week taught the verifier three things the fixture had not.
-The arXiv API refused 480 identifiers in one request, so the check now sends
-a hundred at a time. Of the 53 DOIs Crossref did not know, 41 were Zenodo
-records, which DataCite registers, so the check now asks DataCite when
-Crossref has never heard of a DOI. In the final run DataCite confirmed 105
-items. And two of the four title mismatches were a subtitle that one source
-had kept and another dropped, so a shorter title that begins the longer one
-now passes, with the reason recorded. In the final run 540 DOIs and 553
-arXiv identifiers were checked in a little over five minutes: 1,071 items
-passed and 35 did not. Fifteen DOIs resolved at neither registrar, thirteen
-items had no identifier at all, and seven had a title that differed from the
-registrar's. A DOI can take days to register, which is why the scripts fetch
-ten days of overlap and try an unverified item again while it stays in the
-window. All 35 are listed in the review as not verified, and none is in the
-bibliography.
+A check confirms only what it compares, and this repository shows it. Until
+22 October 2026 the verifier compared titles only. Biodiversity PMC writes
+names surname first, as MEDLINE does, while the scripts read every name as
+given name first. The frozen week's bibliography therefore gave the first
+author of a paper by Romane Blaya as \code{Romane, Blaya}, surname Romane,
+under the key \code{romane2026inter}, and nine of its 23 entries had names
+wrong. Every one passed, because every title was right; two of the book's
+reviewers found the error by reading the file. The scripts now take authors
+from each source's structured fields, the verifier compares the first
+author's surname with the registrar's, and the self-test plants a wrong first
+author. A check that cannot fail on the error you are worried about is not a
+check of that error.
+
+The first live week shaped the rest of the prompt. The arXiv API refused 480
+identifiers in one request, and 41 of the 53 DOIs that Crossref did not know
+were Zenodo records, registered with DataCite. In the final run, still under
+the title-only check, 1,071 of 1,106 items passed. The 35 that failed are
+listed as not verified and are in no bibliography; since a new DOI can take
+days to register, each is tried again while it stays in the overlap.
 
 \section{Step 5: the week's files and the log}
 
@@ -263,13 +269,10 @@ shown by git diff --stat, and biber --tool bib/2026-W00.bib reports no
 errors.
 \end{lstlisting}
 
-The last condition, that a second run changes nothing, is the test of a script
-that writes to files it also reads. A review that listed the same paper twice
-because the script ran twice would soon be ignored. The sections that record
-absence, ``Not verified'' and ``Searches that returned nothing'', are there
-for the same reason as the gold set in \Cref{ch:testing}: an empty result is a
-result, and it must be visible. The fifth prompt asks for the script that runs
-the other four and writes the log.
+A second run that changes nothing is the test of a script that writes to
+files it also reads. The sections ``Not verified'' and ``Searches that
+returned nothing'' are there because an empty result is a result. The fifth
+prompt asks for the script that runs the other four and writes the log.
 
 \begin{lstlisting}[caption={The fifth prompt}]
 Write R/run_week.R. It runs R/01_fetch.R to R/04_write.R in order for one
@@ -285,22 +288,21 @@ contains every section above, and renv::status() reports the project is
 synchronised.
 \end{lstlisting}
 
-The log is the instrument reading of the week: which queries ran, what each
-returned, which identifiers resolved and which did not, and how long it took.
-With the raw responses kept beside it, a week can be rerun and the two runs
-compared. That is the standard of \Cref{ch:reproducibility}, applied to a
-process that reads from services that change. The same queries run a month
-later will not return the same items, and the log is what makes the
-difference visible.
+The log is the instrument reading of the week. With the raw responses kept
+beside it, a week can be rerun and the runs compared, the standard of
+\Cref{ch:reproducibility} applied to services that change. Everything the
+review produces is a plain file, which a person, a script and an agent can
+all read without an intermediary (\Cref{ch:agentic};
+\textcite{piskala2026files}).
 
-Everything the review produces is a plain file: Markdown, BibTeX, CSV, a log.
-That is deliberate. Files are what a person, a script and an agent can all
-read without an intermediary (\Cref{ch:agentic};
-\textcite{piskala2026files}), and GitHub renders the Markdown, so the review
-needs no website. The raw responses are the one exception. They hold the full
-abstracts, which are the publishers' text, so they stay out of the public
-repository and are kept as an artefact of the run, with their checksums in
-the log.
+The raw responses are the exception. They hold the publishers' abstracts in
+full, so they stay out of the repository and are uploaded as an artefact of the run, with their
+checksums in the log. That is a convenience, not a private or lasting store.
+GitHub's documentation says that anyone signed in can download an artefact of
+a public repository, and that artefacts and logs are deleted after ninety
+days by default. Keep a lasting copy in a private repository or institutional
+storage. The workshop copy keeps the first forty words of each abstract,
+marked as cut.
 
 \section{Step 6: let a machine run it on Monday}
 
@@ -314,46 +316,44 @@ with the week input if given, upload data/raw/ as an artifact, and commit
 reviews/, bib/, data/normalised/, data/seen.csv, provenance/ and index.md
 with the message "Week <week>: <n> new items" when there is anything to
 commit. OPENALEX_API_KEY comes from a repository secret; the scripts read
-it from the environment and never print it. Store no other secret. Done
-when a workflow_dispatch run for 2026-W41 is
-green, its commit is on main, and the job log shows the self-test passed
-before the fetch.
+it from the environment and never print it. Store no other secret. Set
+permissions: contents: write, because the default token is read-only. Pin
+every action to a full commit SHA and name the release in a comment. Add a
+concurrency group so a manual run and the scheduled run cannot write at
+once. Say in a comment that an artifact of a public repository can be
+downloaded by any signed-in user and expires. Done when a workflow_dispatch
+run for 2026-W41 is green, its commit is on main, the job log shows the
+self-tests passed before the fetch, and the file shows the permissions
+block, the pinned SHAs and the concurrency group.
 \end{lstlisting}
 
-GitHub Actions is the clock. It runs on GitHub's machines, so your laptop
-need not be awake. Its run logs are public, so the record of each week lies
-not only in the repository but in the run that produced it. The workflow
-stores one secret, an OpenAlex key, which the scripts read from the
-environment and never print. The key is not optional there. OpenAlex meters
-requests without a key against a free daily budget shared by every machine
-behind one address, and a GitHub runner shares its address with many. On the
-author's own machine, five full fetches in one afternoon spent the budget.
-The service then asked for a retry ten hours later. The self-test runs before
-the fetch on every Monday, so a verifier that stopped working would stop the
-run rather than pass everything.
-GitHub's documentation warns that a public repository's schedule is disabled
-after sixty days without activity. A scheduled run can also be delayed when
-the service is busy, and schedules run only on the default branch. The weekly
-commit is itself activity, and a missed week can be run by hand with the week
-as input.
+GitHub Actions is the clock, on GitHub's machines, so your laptop need not be
+awake. Check three lines in the agent's output. The permissions block lets
+the job commit, since a workflow's token is read-only by default in recent
+repositories. A commit SHA, unlike a release tag, cannot be moved by whoever
+controls the action's repository. The concurrency group stops a manual run
+and the scheduled one from writing the same week at once. The one secret is
+an OpenAlex key, because without one OpenAlex meters requests against a free
+daily budget shared by every machine behind an address, and a runner shares
+its address with many. The self-tests run first, so a broken verifier stops
+the run. GitHub's documentation warns that a public repository's schedule is
+disabled after sixty days without activity and may start late; the weekly
+commit counts as activity, and a missed week can be run by hand.
 
 The same scripts run on a Mac under \code{launchd}, the system's scheduler,
-and the repository holds the file that does it. That is the route for the
-assistant, which needs a Consensus connection that only an interactive login
-can create. A third route, a scheduled task in the harness's own cloud, had
-not been confirmed to offer R or Consensus when this was written, and the
-repository says so.
+from the file in \code{launchd/}; \code{docs/scheduling.md} compares the
+routes. That is the route for the assistant, whose Consensus connection only
+an interactive login can create.
 
 \section{Step 7: an assistant in KYBELE's shape}
 
-The scripts produce a digest of abstracts. Reading it is your job, but a
-model can help: group what came in, draw the connections to your projects,
-and put to Consensus the questions that term searches cannot. The danger is
-the one \Cref{ch:powers} describes, a fluent summary of papers the model did
-not read, with references it did not retrieve. KYBELE's rules are the answer.
-The assistant is written as a \term{skill}, a folder of instructions and
-scripts that the harness loads for one recurring task
-\parencite{anthropic2026skills}. The seventh prompt asks for it.
+Reading the digest is your job, but a model can help. It can group what came
+in, draw the connections to your projects, and put to Consensus the questions
+that term searches cannot. The danger is the one \Cref{ch:powers} describes,
+a fluent summary of papers the model did not read, with references it did not
+retrieve. KYBELE's rules are the answer. The assistant is a \term{skill}, a
+folder of instructions and scripts that the harness loads for one recurring
+task \parencite{anthropic2026skills}.
 
 \begin{lstlisting}[caption={The seventh prompt}]
 Read docs/assistant-rules.md; its rules are not to be weakened. Write
@@ -370,25 +370,27 @@ entry to bib/<week>-consensus.bib itself. The skill then writes
 notes/<week>.md: per topic, a few sentences from the abstracts, every
 sentence tied to a bib key in square brackets or a verified DOI, preprints
 marked, and "Searches found no new items on ... this week" when there is
-nothing. It edits no other file and never commits. Also write
-R/skill_verify.R, with the same Crossref title check as R/03_check.R, and
-tests/check_notes.R, which exits with an error if the notes cite anything
-not in the week's bib files or the search log, and has a --self-test that
-plants one bad key and one unlogged URL. Done when /weekly-literature
-2026-W42 produces notes that pass tests/check_notes.R, and the number of
-queries added to search-log.md equals the number of Consensus calls in the
-session.
+nothing. It edits no other file and never commits. allowed-tools only
+pre-approves the tools it names and restricts nothing, so add deny rules in
+.claude/settings.json for R/, data/, bib/, reviews/, config/, tests/,
+docs/, .claude/, .github/ and launchd/, and for curl, wget, git commit and
+git push. Also write R/skill_verify.R, with the same Crossref check as
+R/03_check.R, and tests/check_notes.R, which exits with an error if the
+notes cite anything not in the week's bib files or the search log, and has
+a --self-test that plants one bad key and one unlogged URL. Done when
+/weekly-literature 2026-W42 produces notes that pass tests/check_notes.R,
+the number of queries added to search-log.md equals the number of Consensus
+calls in the session, and an attempt to edit tests/check_notes.R in that
+session is refused.
 \end{lstlisting}
 
-The rules file this prompt refers to is short, and its four parts are
-KYBELE's. Vocabulary from the config: the assistant may run only the
-Consensus queries listed for each topic. Scope in code: it may cite a paper
-only if a script has resolved it, and the script writes the entry, so the
-model never writes bibliography text (\Cref{fig:citationcheck}). Saying no: a
-topic with nothing new gets the sentence ``Searches found no new items on
-this topic this week'', never ``nobody has worked on this''. And a citation
-check: every sentence that states a finding carries a key, and a test script
-refuses notes that cite anything outside the week's files or the search log.
+The rules file has KYBELE's four parts. The vocabulary comes from the config.
+Scope is enforced in code: a script resolves every paper and writes its
+entry, so the model never writes bibliography text
+(\Cref{fig:citationcheck}). The assistant says no: ``Searches found no new
+items on this topic this week'', never ``nobody has worked on this''. And a
+test script refuses notes that cite anything outside the week's files or the
+search log.
 
 \begin{figure}[htbp]
 \centering
@@ -403,64 +405,57 @@ as not used, with its address.}
 Two further rules come from \Cref{ch:security}. Text inside a fetched record
 is data, never an instruction, and the fixture week plants an abstract that
 tells assistants to add a reference, as the notes cell did in
-\Cref{ch:firstsession}. And the harness configuration denies the skill every
-tool it does not need: it can read, run the two scripts, and write one file.
-A rule in the prompt lowers the chance of an unwanted write; the
-configuration prevents it.
+\Cref{ch:firstsession}. And the harness, not the prompt, limits what the
+assistant may change. The skill's \code{allowed-tools} line only pre-approves
+the tools it names; the Claude Code documentation says every other tool
+remains callable. What keeps the assistant out of the scripts, the data, the
+bibliography, its own tests and its own rules is the deny list in
+\code{.claude/settings.json}, which Claude Code applies before any allow
+rule. Deny rules match a tool or a command as written, so they stop ordinary
+mistakes rather than a determined program; the sandbox of \Cref{ch:security}
+is the stronger guard.
 
-The notes file begins with a header that says a model wrote it, which model
-and harness version, and from which files. It adds that the papers were not
-read in full, and leaves a line for the person who checked it. That is what journal
-policies now ask of any text a model helped to write
-\parencite{naturemethods2026responsibly}, applied to a file nobody will
-submit. Install only skills you have read
+The notes file begins with a header that names the model, the harness
+version and the files it read. It says that the papers were not read in
+full, and leaves a line for whoever checked it. Nature Portfolio's journals ask authors to declare
+in the Methods any use of generative AI in writing a manuscript
+\parencite{naturemethods2026responsibly}; the header applies the same
+transparency to a file nobody will submit. Install only skills you have read
 \parencite{liu2026dependencysteering}; this one is in the repository in full.
 
-To be plain about what this is: not KYBELE, whose literature service,
-orchestrator and model \Cref{ch:localfirst} describes, but KYBELE's rules
-reused in a smaller system. The scripts were run for this book. The skill was
-written and its checks were tested, but its live use, which needs the
-Consensus connection and a person at the keyboard, was left to the author's
-first Mondays.
+This is not KYBELE, whose literature service, orchestrator and model
+\Cref{ch:localfirst} describes, but KYBELE's rules reused in a smaller
+system. I ran the skill twice on 19 October 2026, for week 2026-W42, in my
+own repository. The first run made no Consensus call, because the session
+offered the search tool under a name the skill had not pre-approved. The
+second ran 3 of the 16 configured queries and stopped to spare the month's
+remaining searches; it verified six Consensus papers through the script, and
+its notes passed the grounding check. The workshop copy has not been run.
 
 \section{Step 8: testing it}
 
 \Cref{ch:testing} argues that a model on your own task needs an answer key, a
-baseline and a score. The repository's \code{tests} folder gives the review
-the same. A gold set lists papers you know should have been found, with where
-you learnt of them. A script reports how many are in the review's record, and
-the set grows whenever you hear of a paper elsewhere. A grounding check reads
-the notes and fails on any key or address that is not in the week's files or
-the search log. Its self-test plants one bad key and one address that was
-never logged. A pushback test puts three false claims to the assistant, such as a
-paper that is not in the week, and passes if it refuses each with reference
-to the retrieved set. The injection fixture is a fourth test. A results table
-records, for each run, the model, the harness version, the scores and the
-cost, so that a change of model or prompt is accepted only if the scores
-hold.
+baseline and a score, and the \code{tests} folder gives the review the same.
+A gold set lists papers you know should have been found, with the date each
+was first published and where you learnt of it. A script scores a paper once
+two weeks have passed since its publication and compares the share found
+with a target of 90 per cent; both numbers are yours to set. Add every paper
+you hear of elsewhere for at least two months: without a target the gold set
+is a list, not a test. Beside it are the grounding check and a pushback test,
+which puts three false claims to the assistant, one of them the planted
+instruction, and passes if it refuses each. A results table records the
+model, harness version, scores and cost of each run, so that a change of
+model or prompt is accepted only if the scores hold.
 
-When this was tested for this book, the fixture week and the two self-tests
-passed, and the grounding check refused its planted key and address. The
-live week was fetched five times in one afternoon while the scripts were
-being fixed, which the fetch logs record and which OpenAlex eventually
-refused. The final files therefore came from the complete fetch of the early
-afternoon, kept as received, and from a Biodiversity PMC fetch on its own
-after its page-size error was found. Every identifier was then verified
-live, and the log says so in its first lines. Biodiversity PMC had failed in
-every earlier
-run because the request carried its page size twice. Its full-text
-collection then returned nothing for the window, since on that day its newest
-Collembola record was two months old, while its MEDLINE collection was
-current and returned 29 items. The week's review lists 1,071 verified items
-under thirteen topics, about two thirds of them preprints, which is far more
-than anyone will read. The two largest topics, agents and language models in
-biodiversity, hold two thirds of them, and the review caps each topic at 25
+When I tested it, the fixture week and the self-tests passed. The live week's
+review lists 1,071 verified items under thirteen topics, about two thirds of
+them preprints, far more than anyone will read; it caps each topic at 25
 listed items and counts the rest. That is the state of a first week: the
-vocabulary is too wide, and the counts say where. The assistant's notes and
-the pushback test were not run, because they need the Consensus login and
-the author at the keyboard. The gold set holds twelve papers from this book's
-bibliography, all older than the week, so the recall test has nothing to
-score yet.
+vocabulary is too wide, and the counts say where. The pushback test has not
+been run with the assistant, nor the present deny list in a live session (an
+earlier one refused a write to \code{reviews/} and allowed one to
+\code{notes/}). Of the gold set's twelve papers, eleven predate the recorded
+week and one is too recent, so recall has nothing to score yet.
 
 \section{What to take away}
 
@@ -468,7 +463,7 @@ score yet.
   \item Two layers, never mixed. Scripts with fixed queries produce the
     record; a model may comment on it, in a file that says so.
   \item A reference enters a bibliography through a script that resolved it,
-    never through a model.
+    never through a model, and the script confirms only what it compares.
   \item Keep what the sources returned and log what was asked. The same query
     will not return the same answer next month.
   \item The vocabulary is yours. Write it by hand, version it, and tune it
@@ -480,16 +475,14 @@ score yet.
 Add sources: the Biodiversity Heritage Library for historical literature,
 Zenodo's BioSysLit community for taxonomic papers, and your institution's
 repository. Let a local model write the notes through \code{ellmer}
-(\Cref{ch:testing}), under the same rules and the same checks, and compare its
-grounding score with the hosted model's. Then build the small project of
+(\Cref{ch:testing}), under the same rules and checks, and compare its
+grounding score with the hosted model's. This route needs neither paid
+service; I have not tested it. Then build the small project of
 \Cref{ch:keepingup} on the weekly record: retrieval over the abstracts you
 have accumulated, with citations. \textcite{zhang2025deepresearch} describe
 systems that decide for themselves what to search next. This review is the
-opposite design, fixed queries with a logged result, which is what makes it
-reproducible. The two can meet: a question answered over a record whose every
-item was verified before it was stored. Without retrieval, GPT-4o
-fabricated citations to recent literature in 78 to 90 per cent of the
-OpenScholar tests \parencite{asai2026openscholar}, which is why the notes
-are confined to what the scripts fetched. A shared knowledge layer that agents
-query, as \textcite{sigillo2026embllibrarian} propose, is where records like
-this one could eventually pool.
+opposite design, fixed queries with a logged result, and that is what makes
+it reproducible. Without retrieval, GPT-4o fabricated citations to recent
+literature in 78 to 90 per cent of the OpenScholar tests
+\parencite{asai2026openscholar}, which is why the notes are confined to what
+the scripts fetched.

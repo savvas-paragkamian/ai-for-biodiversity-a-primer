@@ -1,7 +1,19 @@
 \chapter{Glossary}
 \label{app:glossary}
 
+The terms the book uses, from language models and agents, from biodiversity
+data and from the statistics of testing a model. Protein and genomic language
+models, and the vocabulary of sequence-based biodiversity work, are outside
+the book's scope and are not defined here.
+
 \begin{description}[itemsep=0.2em]
+
+\item[Access and benefit-sharing (ABS)] The terms under the Convention on
+  Biological Diversity on which a user of genetic resources obtains the
+  providing country's consent and shares the benefits
+  \parencite{scholz2022dsi} (\Cref{sec:abs}).
+
+\item[Active parameters] See \emph{Mixture-of-experts}.
 
 \item[Agent] A language model given tools and a loop, so it can act as well as
   write.
@@ -22,13 +34,30 @@
 \item[Balanced accuracy] The mean recall across classes, giving common and
   rare classes equal weight (\Cref{ch:applications}).
 
+\item[Baseline] A simple method, such as keyword rules, run on the same items
+  as the model, so that the model's score has something to be compared with
+  (\Cref{ch:testing}).
+
+\item[Benchmark contamination] A test item that was in a model's training
+  data, so that a score measures memory rather than skill. Public reference
+  databases and well-known papers are the usual route in. Invented items,
+  which cannot have been memorised, are one control (\Cref{ch:testing}).
+
 \item[CHOP (Chat-Oriented Programming)] Writing code in dialogue with a model,
   checking each step. Unlike vibe coding, checking is in the loop.
 
 \item[Chunking] Splitting documents into passages for retrieval.
 
+\item[Confidence interval] The range of scores consistent with the items
+  tested. With ten items the range is wide, so report it beside the score
+  (\Cref{ch:testing}).
+
 \item[Context window] Everything a model can see in one call, measured in
   tokens. Material in the middle of long contexts is used less reliably.
+
+\item[Coordinate reference system (CRS)] The datum and projection that give
+  coordinates their meaning. Record it with every set of coordinates; the same
+  numbers mean different places under different systems.
 
 \item[COPE] Comparable, Organized, Predictive, Engaged: the work of harmonising
   and updating FAIR data so that it can be modelled
@@ -37,18 +66,41 @@
 \item[Coverage] The proportion of test cases for which a system supplies an
   answer. Report it alongside accuracy when a system can abstain.
 
+\item[Darwin Core] The standard vocabulary for sharing biodiversity records,
+  maintained by Biodiversity Information Standards (TDWG). Its terms carry the
+  fields, such as occurrence status and sampling effort, that make a record
+  fit for analysis \parencite{wieczorek2012darwincore} (\Cref{sec:fitformodel}).
+
+\item[Decode] See \emph{Prefill and decode}.
+
 \item[Deep research] A search process that breaks a question into parts,
   reads the retrieved material and decides what to search next before
   bringing the results together.
 
+\item[Dense model] A model in which every parameter is used for every token.
+  Compare \emph{Mixture-of-experts}.
+
 \item[Deskilling] Losing a skill by handing it to a tool, and with it the
   ability to check the tool \parencite{mammides2026llmecology}.
 
+\item[Digital sequence information (DSI)] Sequence data derived from genetic
+  resources, mostly held in open databases. Since 2024 its commercial use
+  falls under a multilateral benefit-sharing mechanism, the Cali Fund
+  \parencite{cbd2024dsidecision} (\Cref{sec:abs}).
+
 \item[Embedding] A vector representing a text, such that similar texts lie close
-  together. The basis of vector search.
+  together. The basis of vector search. A text embedding model is a small,
+  separate model that produces them; it is not the chat model.
+
+\item[ENVO] The Environment Ontology: controlled terms for describing
+  environments, used in habitat and sample fields (\Cref{ch:aireadydata}).
 
 \item[FAIR] Findable, Accessible, Interoperable, Reusable: data principles
   biodiversity informatics followed long before ``AI-ready''.
+
+\item[False zero] A zero or an absence written where nothing was counted: a
+  lost sample, an unsearched site or an empty field read as a count. It enters
+  an analysis as a true absence (\Cref{ch:testing}).
 
 \item[F1 score] The harmonic mean of precision and recall:
   twice their product divided by their sum. Report the averaging method when
@@ -57,20 +109,51 @@
 \item[Fine-tuning] Further training of a model on domain data. Unlike RAG, it
   changes the weights.
 
+\item[GBIF] The Global Biodiversity Information Facility: the aggregator of
+  occurrence records published in Darwin Core, with the taxonomic backbone
+  they are matched against.
+
+\item[Gold set] A small set of reference items with known answers, used to
+  measure what a search or a pipeline recovers (\Cref{ch:weeklyliterature}).
+
+\item[Held-out set] Test items set aside before any rule, prompt or baseline
+  is tuned, and used only to measure. The items used while tuning are the
+  development set (\Cref{ch:testing}).
+
 \item[Hallucination] Fluent, specific and false output. It persists because
   training rewards guessing over abstaining \parencite{kalai2025hallucinate}.
 
-\item[Inference] Running a trained model to produce an output, including
-  when you run a model locally.
+\item[I-ADOPT] A framework that breaks a measured variable into its parts,
+  such as the property, the object and the unit, so that variables from
+  different sources can be compared (\Cref{ch:aireadydata}).
 
-\item[Instruction tuning] Training after pretraining that teaches a model to
-  follow instructions and decline some requests. The source of sycophancy.
+\item[Inference] Two meanings. In statistics, drawing conclusions about a
+  population from a sample. In machine learning, running a trained model to
+  produce an output, including when you run a model locally. The book uses
+  both: \Cref{ch:reproducibility} means the first in ``chain of inference'',
+  and \Cref{ch:hardware} the second.
+
+\item[Instruction tuning] The second training stage: fitting a pretrained
+  model to example requests and answers, so that it follows instructions and
+  declines some requests. See \emph{Training stages}.
 
 \item[Jagged intelligence] Capability that is uneven and unpredictable, strong on
   hard tasks and failing on easy ones \parencite{mitchell2026jagged}.
 
-\item[KV cache] Memory holding the context during generation; grows with context
-  length. Budget for it when buying hardware.
+\item[Jailbreaking] A user talking a model out of its safety training, so that
+  it does what it was trained to refuse. Not the same as prompt injection,
+  where content the model reads hijacks an application (\Cref{ch:security}).
+
+\item[KV cache] Memory holding the keys and values computed for every token in
+  the context, so that each new token does not recompute them. Its size per
+  token is twice the product of the number of layers, the key-value heads,
+  the head dimension and the bytes per value. It grows linearly with context
+  and takes a large share of memory at long contexts (\Cref{ch:hardware}).
+
+\item[Lethal trifecta] An agent that has private data, reads untrusted content
+  and can send data out can be tricked into leaking the data. The safe course
+  is never to combine all three \parencite{willison2025trifecta}
+  (\Cref{ch:security}).
 
 \item[Least privilege] Giving an agent only the permissions its current task
   needs, with explicit approval for anything more (\Cref{ch:security}).
@@ -90,8 +173,36 @@
 \item[MCP (Model Context Protocol)] A standard way to offer tools and data to
   models. Tool descriptions are untrusted input.
 
-\item[Multi-token prediction] A cheap guess of several tokens ahead, checked by
-  the model in one pass. Speeds up local inference.
+\item[Memorisation] See \emph{Benchmark contamination}.
+
+\item[MIxS] Minimum Information about any (x) Sequence: the Genomic Standards
+  Consortium's checklists for describing the sample and context a sequence
+  came from (\Cref{ch:aireadydata}).
+
+\item[Mixture-of-experts (MoE)] A model whose layers hold several blocks of
+  parameters, of which a router uses a few for each token. The total
+  parameters set the memory a model needs; the active parameters set the
+  compute per token, and so the speed. A tag such as 30B-A3B gives both
+  (\Cref{ch:hardware}).
+
+\item[Multi-token prediction] A feature built into some models: a cheaper
+  mechanism inside the model guesses several tokens ahead. Runtimes use the
+  guesses for speculative decoding, in which the full model checks them and
+  keeps those that hold \parencite{willison2026qwen38}.
+
+\item[Nagoya Protocol] The protocol to the Convention on Biological Diversity
+  that sets out the procedures, permits and checkpoints for access and
+  benefit-sharing \parencite{scholz2022dsi}.
+
+\item[Non-detection] A record that a species was searched for and not found,
+  with the effort spent. Without it, absence cannot be told from no search.
+
+\item[OBIS] The Ocean Biodiversity Information System: the marine counterpart
+  of GBIF.
+
+\item[Occurrence record] One observation or specimen of a taxon at a place and
+  time, the unit GBIF and OBIS share. Fit for analysis only with its method,
+  effort and uncertainty.
 
 \item[Open weight] Downloadable parameters. Not open source, which would also
   need the training data and code \parencite{hai2026openweight}.
@@ -99,15 +210,37 @@
 \item[Orchestrator] The service between interface and model holding an
   application's rules: query expansion, retrieval, filters, citation checks.
 
+\item[Parameter] One of the numbers a model learned in training. ``8B'' means
+  eight billion of them; at 16 bits each, that is 16 GB of memory before
+  quantisation.
+
 \item[Phenomenal consciousness] Subjective experience, distinct from task
   performance or access to information for reasoning
   \parencite{chandaria2026consciousness}.
 
+\item[Plazi treatment] The part of a taxonomic publication that describes one
+  taxon, extracted and made citable on its own by Plazi
+  (\Cref{ch:localfirst}).
+
 \item[Precision] The fraction of positive predictions that are correct.
   In extraction, the fraction of extracted items matching the reference.
 
-\item[Pretraining] Fitting a model to predict the next token over a large
-  body of text.
+\item[Preference tuning] The third training stage: adjusting a model towards
+  the answers people rate highly, often by reinforcement learning. The usual
+  explanation of sycophancy. See \emph{Training stages}.
+
+\item[Prefill and decode] The two phases of a model call. Prefill, or prompt
+  processing, handles the whole prompt at once and is limited by compute;
+  decode, or token generation, produces the answer one token at a time and
+  is limited by memory bandwidth. Agent sessions with long prompts spend
+  much of their time in prefill (\Cref{ch:hardware}).
+
+\item[Pretraining] The first training stage: fitting a model to predict the
+  next token over a large body of text.
+
+\item[Prompt caching] Reusing the work done on a prompt prefix that repeats
+  across calls, such as the rules file and the earlier turns of a session,
+  instead of paying for it again.
 
 \item[Prompt injection] Instructions hidden in content a model reads, which it
   then follows. Unsolved, because instructions and data share one channel.
@@ -116,23 +249,56 @@
   Missing from generated output unless you log it.
 
 \item[Quantisation] Storing weights at lower precision to save memory; Q4 uses
-  about a quarter of the memory of FP16.
+  about a quarter of the memory of FP16. A tag such as \code{Q4\_K\_M} names
+  the scheme: four bits on average, with a suffix for the variant, and
+  variants differ in which layers keep more precision.
 
 \item[RAG (Retrieval-Augmented Generation)] Supplying retrieved documents in the
   prompt. Reduces but does not remove hallucination
   \parencite{kurniawan2024ragfailures}.
 
+\item[Reasoning effort] How long a model may reason privately before answering.
+  Start low.
+
+\item[Reasoning model] A model trained to write out intermediate steps before
+  its answer, usually by reinforcement learning on tasks with checkable
+  results. It spends more tokens per answer; the reasoning effort setting
+  limits how many.
+
 \item[Recall] The fraction of reference positives recovered by the system.
   For a literature search, the fraction of relevant reference papers retrieved.
 
-\item[Reasoning effort] How long a model may reason privately before answering.
-  Start low.
+\item[Reference-database version] The release of a taxonomic backbone or
+  sequence database used in a step, such as the date of a GBIF backbone.
+  Matches and scores change between releases, so record it with the result
+  (\Cref{ch:testing}).
+
+\item[Reinforcement learning on verifiable tasks] Training in which a model is
+  rewarded when its answer can be checked by a program or a test, such as
+  code that passes its tests. The method behind reasoning models
+  (\Cref{ch:landscape}).
 
 \item[Reranking] Re-scoring retrieved passages with a more careful model. Cheap
   and effective.
 
 \item[RO-Crate] A standard bundle of research files and the metadata that
   describes them, including how they were produced.
+
+\item[Sampling effort] How much searching produced a record: traps, hours,
+  area, visits. Counts and absences mean little without it.
+
+\item[Sandbox] An enclosure that the operating system or the harness puts
+  around a process, limiting which files and network addresses it can reach.
+  The enforcement layer that does not depend on the model following rules
+  \parencite{anthropic2025sandboxing} (\Cref{ch:security}).
+
+\item[Scaling laws] Regularities by which a model's error falls as a power law
+  as its size, training data and compute grow. How best to divide a budget
+  between size and data is disputed
+  \parencite{kaplan2020scaling,hoffmann2022chinchilla} (\Cref{ch:whynow}).
+
+\item[Seed] A number that fixes a random choice so that it can be repeated.
+  It makes repeated runs closer, not identical (\Cref{ch:reproducibility}).
 
 \item[Skill] A folder of instructions, and sometimes scripts, that an agent
   harness loads when a task matches its description or when a person invokes
@@ -145,23 +311,53 @@
 \item[Slopsquatting] Registering package names that models invent, so generated
   install commands fetch an attacker's code.
 
-\item[Sycophancy] Excessive agreement with the user. It increases dependence
-  \parencite{cheng2026sycophancy} and can lead even rational users to false
-  beliefs \parencite{chandra2026spiraling}.
+\item[Speculative decoding] A faster way to generate: something cheaper than
+  the full model (a small draft model, or the model's own multi-token
+  prediction) proposes several tokens, and the full model checks them in one
+  pass. The output is the full model's.
+
+\item[Sycophancy] Excessive agreement with the user, usually linked to
+  preference tuning, which rewards answers people rate highly
+  \parencite{sharma2024sycophancy}. People trust a sycophantic model more and
+  are more willing to return to it \parencite{cheng2026sycophancy}, and it can
+  lead even rational users to false beliefs \parencite{chandra2026spiraling}.
+
+\item[Taxonomic backbone] The reference list of names a database matches
+  records against, such as the GBIF backbone, Catalogue of Life or WoRMS. It
+  changes with each release; record which one and when.
+
+\item[Temperature] A setting that controls how far a model's choice of the
+  next token departs from the most probable one. Zero takes the most probable
+  token each time (\Cref{ch:reproducibility}).
 
 \item[Time-sharing] One computer divided among many users at terminals; the
   1960s answer to costly machines (\Cref{ch:landscape}).
 
-\item[Token] A chunk of text, about four characters or three-quarters of an
-  English word. The unit of context and of billing.
+\item[Token] A chunk of text, about four characters or three-quarters of a
+  word in English prose. The unit of context and of billing. Scientific
+  names, code and text in other languages split into more tokens per word.
+
+\item[Training stages] Pretraining on a large body of text; instruction tuning
+  on example requests and answers; preference tuning towards the answers
+  people rate highly. Reasoning models add reinforcement learning on
+  verifiable tasks \parencite{ouyang2022instructgpt,guo2025deepseekr1}
+  (\Cref{ch:landscape}).
 
 \item[Transformer] The architecture behind current language models (2017),
   using attention to process many positions in parallel during training.
   Its original decoder generates output one token at a time
   \parencite{vaswani2017attention}.
 
+\item[Unit of replication] The thing that varies independently in a test,
+  such as one field note; the cells of one note are not independent of each
+  other. Intervals are computed over these units (\Cref{ch:testing}).
+
 \item[Unified memory] Processor and graphics sharing one memory pool, so large
   models fit on ordinary machines.
+
+\item[Validation sample] A random or stratified set of records that people
+  check against the sources, to measure how often a model's output is wrong
+  in each field (\Cref{sec:outputasdata}).
 
 \item[Vibe coding] Accepting generated code without reading it. Fine for
   throwaway work only.

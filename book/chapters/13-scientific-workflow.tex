@@ -18,12 +18,33 @@ the limit that goes with it.}
 
 This stage has changed most. \textcite{zhang2025deepresearch} trace the path from
 keyword search through RAG to \term{deep research}: systems that break a question
-into parts, search, read what they find, and decide what to search next. For a
-many-sided question --- thermal tolerance in Mediterranean seagrass, including
-grey literature and non-English sources --- this beats manual search on both
-coverage and time. In conservation, where systematic reviews are slow and
-expensive, \textcite{bergertal2024evidence} conclude that judicious use of AI
-could speed evidence synthesis up.
+into parts, search, read what they find, and decide what to search next. They
+argue, from benchmark results, that such systems outperform earlier approaches.
+For a many-sided question --- thermal tolerance in Mediterranean seagrass,
+including grey literature and non-English sources --- deep research is a fast
+way to find search terms, sources and candidate papers. In conservation, where
+systematic reviews are slow and expensive, \textcite{bergertal2024evidence}
+conclude that judicious use of AI could speed evidence synthesis up. They also
+list its problems at the search stage: results may be wrong, may change when the
+algorithm changes, and may not be repeatable.
+
+That last problem separates two kinds of search. A \term{scoping search}
+explores a topic and tries out search terms. A systematic review or map then
+needs a final search that someone else can repeat. ROSES, the reporting
+standard for environmental systematic reviews and maps, asks for the databases
+searched, the subscriptions used and the search options
+\parencite{haddaway2018roses}. PRISMA-EcoEvo asks for the exact search string
+used in each database and the dates covered \parencite{odea2021prismaecoevo}.
+Deep research belongs to the scoping stage. In a systematic search it can at
+most add candidates to a documented search, because its own results cannot be
+repeated \parencite{bergertal2024evidence}. PRISMA-EcoEvo also gives a test
+for any candidate search: check that it finds a known set of relevant studies
+\parencite{odea2021prismaecoevo}. Hold a deep-research tool to the same test.
+
+For many readers the first search is for data rather than papers: occurrence
+records in GBIF or OBIS, barcodes in BOLD, studies in MGnify
+(\Cref{ch:aireadydata}). The same rule applies there: record the query and the
+date, so that the search can be repeated.
 
 \begin{table}[htbp]
 \centering
@@ -40,31 +61,48 @@ Google Scholar & Broadest coverage including grey literature; no usable API \\
 Biodiversity Heritage Library & Historical taxonomic literature; irreplaceable \\
 Biodiversity PMC & Biodiversity-specific full text \parencite{pasche2026biodivpmc} \\
 Web of Science, Scopus & Curated, subscription; citation analysis \\
+Zoological Record, CAB Abstracts, ASFA & Subject indexes for zoology and taxonomy, applied life sciences, and aquatic sciences and fisheries; subscription \\
+Plazi TreatmentBank & Taxonomic treatments extracted from publications, as open data \parencite{agosti2022treatments} \\
 Zenodo / BioSysLit & Preprints, datasets, community collections \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-Resolve every reference. About 147,000 invented citations appeared in 2025
-alone \parencite{zhao2026citations}, each with real authors and a plausible
-title. A short script catches them:
+Resolve every reference. A conservative estimate puts the invented citations
+in four large collections of preprints and papers at about 147,000 in 2025
+alone \parencite{zhao2026citations}. Many credit real, already prominent
+scholars, which makes them look plausible. A short script catches references
+that do not exist:
 
 \begin{lstlisting}[style=shell,caption={Resolve every DOI before it enters a manuscript}]
-grep -oP 'doi\s*=\s*\{\K[^}]+' references.bib | while read -r doi; do
-    code=$(curl -s -o /dev/null -w "%{http_code}" "https://doi.org/$doi")
-    [ "$code" = "200" ] || [ "$code" = "302" ] || echo "UNRESOLVED: $doi"
+perl -ne 'print "$1\n" if /^\s*doi\s*=\s*[{"]\s*([^}"]+?)\s*[}"]/i' \
+    references.bib |
+while IFS= read -r doi; do
+    # Percent-encode characters such as # ; < > that are unsafe in a URL
+    enc=$(printf '%s' "$doi" |
+        perl -pe 's/([^A-Za-z0-9\/._~()-])/sprintf("%%%02X", ord $1)/ge')
+    code=$(curl -s -o /dev/null -w '%{http_code}' "https://doi.org/$enc")
+    # doi.org answers a registered DOI with a redirect, code 302
+    [ "$code" = 302 ] || echo "UNRESOLVED ($code): $doi"
 done
 \end{lstlisting}
 
-Resolving is not enough on its own: the returned title must match, and entries
-without a DOI need checking by hand. This book's bibliography was checked that
-way (\Cref{fig:resolve}).
+The script reads \code{doi = \{...\}} and \code{doi = "..."} fields, one to a
+line, as reference managers write them. It needs only \code{perl} and
+\code{curl}. I tested it on macOS with the versions the system provides, not
+on Linux or Windows. Resolving is not enough on its own. The returned title and authors must match the entry,
+and entries without a DOI need checking by hand. The script that checked this
+book's bibliography compares the title, first author and year
+(\Cref{fig:resolve}). Even a perfect match does not show that the source says
+what the sentence citing it claims. Only reading the source beside the
+sentence shows that.
 
 \begin{figure}[htbp]
 \centering
 \fig{ch16-resolve}
 \caption{Resolve every reference. An identifier that resolves to a matching
-title is kept; anything else is opened and checked by hand.}
+title and author passes the script, and the source is then read against the
+sentence that cites it. Anything else is opened and checked by hand.}
 \label{fig:resolve}
 \end{figure}
 
@@ -80,44 +118,65 @@ questions about the paper; asked from memory, it invents details. What it cannot
 do is judge whether the paper is any good --- whether the sample is adequate, the
 controls appropriate, the conclusion supported. A systematic review of 63
 studies found that models agreed with human screeners about nine times in ten,
-but their median accuracy in assessing risk of bias was 0.62
-\parencite{laignelot2026systematicreviews}. A confident summary of a bad
-paper reads exactly like one of a good paper. For analysis, use models to write
-code, not to produce results (\Cref{ch:agentic,ch:reproducibility}).
+but their median accuracy in assessing risk of bias was 0.62. That figure rests
+on only six assessments \parencite{laignelot2026systematicreviews}. A confident
+summary of a bad paper reads exactly like one of a good paper. For analysis,
+use models to write code, not to produce results
+(\Cref{ch:agentic,ch:reproducibility}). Fix the analysis plan before the agent
+starts and choose the statistical model yourself; \Cref{sec:analysis} sets out
+how to work with an agent at this stage.
 
 \section{Writing}
 
 These tools help with structure, first drafts and proofreading, and the authors
 remain responsible for the content \parencite{salvagno2023scientificwriting,
 granjeiro2025futurewriting}. The deeper issue is voice.
-\textcite{alhosni2025preservingvoice} reviews evidence that generative tools make
-academic prose more uniform, blurring what the author wrote.
-\textcite{singh2025authorialvoice} describe a tool built to develop an author's
-own voice rather than replace it. This distinction matters in practice.
-When a tool helps us develop our own draft, writing remains part of the
-thinking process. Delegating the draft can remove that opportunity to learn.
+\textcite{alhosni2025preservingvoice} reviews evidence, mostly from students
+writing in a second language, that AI-generated academic text is polished but
+lacks the distinct markers of an individual writer. Relying on it may wear away
+the author's own voice. \textcite{singh2025authorialvoice} describe a tool built
+to develop an author's own voice rather than replace it. This distinction
+matters in practice. When a tool helps us develop our own draft, writing remains
+part of the thinking process. Delegating the draft can remove that opportunity
+to learn. \textcite{blekhman2026purpose} makes a related point about the whole
+field. A plausible paper can now be produced without doing any research, so a
+paper no longer shows that anyone learned something, built a resource or trained
+a student.
 
-Journal policy has converged \parencite{naturemethods2026responsibly}.
-AI cannot be an author, because authorship requires accountability. Authors
-must disclose its use specifically and remain responsible for the content.
-Uploading a manuscript under review to a hosted service breaches confidentiality. That
-last point is often missed. A corpus-level analysis estimated that 6.5 to 16.9
+Nature Portfolio's policy, as \textcite{naturemethods2026responsibly} describe
+it, shows what a journal can ask. AI cannot be an author, because it cannot take
+accountability for a manuscript. Authors who use it to help write must declare
+this in the Methods section and check the generated text. Disclosure should not
+end with the manuscript. Records that a model helped to produce and that you
+deposit in GBIF, OBIS or a sequence archive should say so too, because they
+become other people's evidence (\Cref{sec:outputasdata}). Reviewers may not
+upload a manuscript under review into a generative AI tool: it is unfair to the
+authors and can breach the confidentiality of review. That last point is often
+missed. A corpus-level analysis estimated that 6.5 to 16.9
 per cent of the text in peer reviews for four AI conferences in 2023 and 2024
 was substantially modified by a model \parencite{liang2024peerreview}. Claims
 based on detectors applied to single reviews need more caution, because the
 detectors also flag reviews that a model has only polished
-\parencite{saha2026peerreview}. If you want help with a review, use a local model or
-none --- one of the clearest cases for local-first in this book.
+\parencite{saha2026peerreview}. If you want help with a review, read the
+journal's policy and ask the editor first. Nature Portfolio's rule makes no
+exception for tools that run on your own machine. Where a journal does allow
+help, a local model at least keeps the manuscript on your computer
+(\Cref{ch:localfirst}).
 
 \section{Review, assessment and detection}
 
 Automated checks --- resolving references, checking reported statistics,
 spotting duplicated figures --- are legitimate and need no generative model.
-Automated review \emph{judgement} is not: a model produces text shaped like a
-review without the judgement. Assessments such as IPBES require every statement
-to trace to a source and carry a calibrated confidence
-\parencite{krug2026ipbes}; generative summaries break the first and invent the
-second. Use models there to find literature, extract data into a consistent
-schema, translate and flag inconsistencies --- not to write the assessment. And
+Automated review \emph{judgement} is different. In the systematic review cited
+above, models did least well at assessing risk of bias, the task that most
+needs judgement, though the evidence for that task is thin
+\parencite{laignelot2026systematicreviews}. In my view a model's review is
+text shaped like a review, without the judgement behind it. IPBES assessments
+rest on transparent evidence syntheses, and \textcite{krug2026ipbes} name
+transparency, traceability, expert oversight and documentation that allows
+independent verification as the requirements for any AI used in them. A
+generative summary that cannot show where each statement came from fails the
+traceability test. Use models there to find literature, extract data into a
+consistent schema, translate and flag inconsistencies --- not to write the assessment. And
 do not use AI-text detectors to judge people (\Cref{ch:powers}): make
 disclosure easy and normal instead.

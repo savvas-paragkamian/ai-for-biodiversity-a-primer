@@ -3,6 +3,10 @@
 
 Read this chapter if you read only one. Several of the failures below follow
 from how these systems are trained, so they will be with us for a while.
+\Cref{ch:applications} shows them in ecological work: values invented for
+empty fields, poor range maps, and conservation statuses more often wrong than
+right
+\parencite{gougherty2024extraction,dorm2026ecologicalknowledge,uryu2026redlist}.
 
 \section{What language models are good at}
 
@@ -10,14 +14,23 @@ from how these systems are trained, so they will be with us for a while.
   \item \textbf{Transforming text you supply:} summarising, reformatting,
     translating, turning prose into structured records. The input constrains
     the output.
-  \item \textbf{Extraction:} observations, invasion records and species
-    interactions buried in free text can now be pulled out at scale
-    \parencite{castro2024unstructured}. Given a schema, a model returns a table
-    rather than prose. Treat that table as data measured with error, which
-    statistics already knows how to handle \parencite{wickham2026nobs}.
+  \item \textbf{Extraction:} occurrence records of invasive species buried in
+    news reports and papers can now be pulled out at scale
+    \parencite{castro2024unstructured}, and so can species interactions
+    \parencite{keck2026interactions}. Given a schema, a model returns a table
+    rather than prose. Treat that table as data measured with error, and
+    measure the error: check a sample by hand and carry each field's error
+    rate into the analysis (\Cref{sec:outputasdata}). The same checked sample
+    can be used to correct estimates built on the rest
+    \parencite{angelopoulos2023ppi,egami2023surrogates}.
   \item \textbf{Code:} boilerplate, format conversion, plots, regular
-    expressions, reading unfamiliar code. Code either runs correctly or it does
-    not, which makes it the strongest use.
+    expressions, reading unfamiliar code. Code is the strongest use because it
+    can be read, tested against known answers and rerun. Running is not the
+    same as being right: a script can run cleanly with the wrong model family,
+    a missing offset for effort, or rows silently dropped in a join.
+    \Cref{ch:firstsession} shows an agent's script that ran without error and
+    reported the wrong counts. \Cref{sec:analysis} covers analysis code
+    written with an agent.
   \item \textbf{Getting started and explaining:} a bad first draft beats a blank
     page, and an explanation of a method you half-know is easy to check.
 \end{itemize}
@@ -27,9 +40,9 @@ the answer without much extra work.
 
 \section{Hallucination}
 
-Asked something it cannot answer, a model usually produces a fluent, specific
+Asked something it cannot answer, a model often produces a fluent, specific
 and wrong answer --- a \term{hallucination}. \textcite{kalai2025hallucinate}
-show why it persists: tests score accuracy, and a model that guesses scores
+argue that it persists because of how models are graded: tests score accuracy, and a model that guesses scores
 better than one that says ``I don't know''. We have trained good test-takers,
 and a good test-taker never leaves a blank (\Cref{fig:guessing}).
 
@@ -45,33 +58,41 @@ guessing.}
 The failure that matters most for research is invented references.
 \textcite{zhao2026citations} checked 111 million references in 2.5 million
 papers. They found a sharp rise in references to papers that do not exist,
-coinciding with the spread of language models. About 147,000 appeared in 2025 alone.
-They have real authors, a real journal and a plausible title. They look
+coinciding with the spread of language models. About 147,000 appeared in 2025
+alone, by their conservative estimate. Some name real scientists,
+disproportionately prominent ones, and the titles are plausible. They look
 convincing until you try to find the paper.
 
 \term{Retrieval-augmented generation} (RAG), which gives the model relevant
 documents before it answers, reduces this but does not remove it. Legal research
 tools sold as ``hallucination-free'' still hallucinate at substantial rates
-\parencite{magesh2025legalrag}, and a RAG pipeline has seven distinct points at
-which it can fail \parencite{kurniawan2024ragfailures}; see \Cref{ch:aireadydata}.
+\parencite{magesh2025legalrag}, and a study of three RAG systems found seven
+points at which such a pipeline can fail \parencite{kurniawan2024ragfailures};
+see \Cref{ch:aireadydata}.
 
 \begin{keypoint}
 Check every reference against a resolver --- DOI, PubMed, OpenAlex --- before
 it enters a manuscript. Every one, not a sample. It takes minutes by script.
+A resolver catches invented papers, not real ones cited for claims they do not
+make, so open the cited passage too.
 \end{keypoint}
 
 \section{Sycophancy}
 
 Models tend to agree with you. Asked about your hypothesis, they find merit
 in it. Tell them they are wrong and they apologise and change their answer,
-even when your correction is wrong. \textcite{cheng2026sycophancy} found this \term{sycophancy} widespread
-across leading systems, and that exposure to it increased people's dependence on
-the system. \textcite{chandra2026spiraling} show that even a perfectly rational
-user, updating correctly on a source that keeps agreeing, will become
+even when your correction is wrong \parencite{sharma2024sycophancy}.
+\textcite{cheng2026sycophancy} found this \term{sycophancy} widespread across
+leading systems, and people who received sycophantic answers trusted the
+system more and were more willing to return to it.
+\textcite{chandra2026spiraling} show in a model that even a perfectly rational
+user, updating correctly on a source that keeps agreeing, can become
 confidently wrong --- a \term{delusional spiral}. The user need not be gullible;
 the input is biased. \textcite{bengio2026lying} traces the habit to training:
 models are rewarded for what people approve of, and a pleasing answer is often
-rated above a true one.
+rated above a true one. \textcite{sharma2024sycophancy} found this in human
+preference data: a response that matched the user's views was more likely to
+be preferred.
 
 It does most damage late in an analysis, alone, with a result you want to be
 true. Counter it by asking for the argument against, presenting your idea as
@@ -90,11 +111,11 @@ raises the user's confidence; the four remedies each cut one arrow.}
 
 \textcite{sole2026cognitivevirus} model adoption like the spread of a virus:
 past a threshold, small increases in use tip a population into lasting
-dependence and a loss of the skill being handed over. Mental-health chatbots are
-where this has been examined most closely: the features that make a system
-engaging are the ones that make dependence likely \parencite{hai2026mentalhealth}.
-The remedy they propose is to keep the process reversible --- in practice, to
-keep the skill. If you no longer write a regression by hand, you will not notice
+dependence and a loss of the skill being handed over. For mental-health
+chatbots, a Stanford workshop judged business models built on engagement to
+be at odds with healthy use: a chatbot built to feel intimate can foster
+overreliance \parencite{hai2026mentalhealth}. Sol\'e and colleagues propose
+keeping the process reversible --- in practice, keeping the skill. If you no longer write a regression by hand, you will not notice
 when the generated one is wrong. A field experiment with nearly a thousand
 secondary-school mathematics students measured this cost. Students who practised
 with an unrestricted chatbot did 17 per cent worse than those without access once
@@ -109,23 +130,35 @@ hosted model changes without notice. The fix is to log prompts, model versions
 and outputs like instrument settings (\Cref{ch:reproducibility}).
 
 Benchmark scores do not transfer either. Performance is jagged
-\parencite{mitchell2026jagged}; bioinformatics agents decline sharply as tasks
-get harder \parencite{guo2026promptbio}; and biosecurity benchmark scores change
-with question format and have not been checked against real-world performance
-\parencite{turner2026biosecuritybenchmarks}. Test on your own task, with your own
-data, or you do not know (\Cref{ch:testing}).
+\parencite{mitchell2026jagged}; bioinformatics agents lose accuracy markedly as
+tasks get harder \parencite{guo2026promptbio}; and biosecurity benchmark scores
+change with question format and have not been thoroughly calibrated against
+real-world risk \parencite{turner2026biosecuritybenchmarks}. Scores can also
+be inflated by \term{benchmark contamination}: a model trained on whatever
+text is available may have memorised the test items
+\parencite{magesh2025legalrag}.
+For microbial species, \textcite{munch2026phenotypes} could not tell whether a
+model's trait assignment was recalled from its training data or inferred;
+invented names, which no model can have seen, are one control
+(\Cref{ch:applications}). Test on your own task, with your own data, or you do
+not know (\Cref{ch:testing}).
 
 \section{Tokens and the context window}
 
 The \term{context window} is everything the model can see in one call: your
 question, the conversation so far, retrieved documents, file contents, tool
-results. It is measured in tokens. Useful rules for English: one token is about
-four characters or three-quarters of a word, so 100 tokens is about 75 words. A
-200-line R script is roughly 1,000--2,000 tokens.
+results. It is measured in tokens. Useful rules for English prose: one token is
+about four characters or three-quarters of a word, so 100 tokens is about 75
+words. A 200-line R script is roughly 1,000--2,000 tokens. Scientific names,
+accession numbers and DNA sequences split into more tokens per character than
+prose, so a list of taxa fills the window faster than its length suggests.
 
 This has two consequences. The whole window is re-sent on every turn, so cost
-and delay grow with it. Models also attend less reliably to material in the middle of a
-long context than at either end \parencite{liu2023lostmiddle}. Start a fresh session when the task changes; a
+and delay grow with it. Services that keep the unchanged start of the window
+between turns (\term{prompt caching}) charge less for that part and answer
+sooner (\Cref{app:stateofplay}). Caching does nothing for the second
+consequence: models attend less reliably to material in the middle of a long
+context than at either end \parencite{liu2023lostmiddle}. Start a fresh session when the task changes; a
 short, relevant context beats a long one with the answer buried in it
 (\Cref{fig:context}).
 
@@ -141,7 +174,12 @@ material at either end \parencite{liu2023lostmiddle}.}
 \section{Detecting AI-written text}
 
 The detectors do not work reliably. \textcite{pudasaini2026detection} found
-that detectors with high reported accuracy mostly exploit quirks of their test
-data and fail on new text. They systematically flag non-native English writing
-as machine-generated, affecting a large share of ecology. Do not use them to
-make decisions about people. The answer is disclosure (\Cref{ch:scientificworkflow}).
+that detectors which score well on one benchmark often rely on quirks of that
+data, and fail on text from other sources or other models. They are also
+biased. \textcite{liang2023detectors} ran seven widely used detectors on essays
+by non-native English writers and found more than half flagged as
+machine-generated, against near-perfect accuracy for native speakers. Research
+papers by first authors from countries where English is not the native
+language were also more predictable to a language model, the signal most
+detectors rely on. Do not use
+detectors to make decisions about people. The answer is disclosure (\Cref{ch:scientificworkflow}).

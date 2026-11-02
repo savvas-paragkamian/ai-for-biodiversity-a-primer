@@ -30,6 +30,27 @@ sentence structure; they did not establish ecological expertise
 \textcite{kimi2026attnres}, for instance, change how information from earlier
 layers is combined.
 
+What the transformer made possible was growth, and growth turned out to be
+predictable. \textcite{kaplan2020scaling} found that a model's error in
+predicting text falls as a power law, the form of the species--area curve, as
+its size, training data and training compute increase. These regularities are
+called \term{scaling laws}. Kaplan and colleagues advised spending most of a
+larger budget on a larger model. \textcite{hoffmann2022chinchilla} disagreed:
+for the best model at a given cost, size and training data should grow in equal
+proportion. Their 70-billion-parameter model, trained with the same compute as
+one four times larger but on four times more text, outperformed it. Scaling
+therefore needs ever more text, a point the last section of this chapter
+returns to. \Cref{ch:landscape} describes how a pretrained model then becomes
+an assistant, and how reasoning models are trained.
+
+Another design lets a model grow without each token costing as much. In a
+\term{mixture-of-experts} model, each token goes to a few specialised blocks
+of parameters, the experts, rather than through the whole model. This adds
+capacity without a matching increase in computation
+\parencite{coqueret2026randomness,elsworth2025google}. Such a model needs
+memory for all its parameters, but each token uses only its \term{active
+parameters}, which set its speed (\Cref{ch:hardware}).
+
 \begin{figure}[htbp]
 \centering
 \fig{ch02-parallel-sequential}
@@ -48,28 +69,35 @@ of Part~II.
 
 \section{A race, and who is running it}
 
-The framing has moved from products to national industrial strategy
+The framing has moved from products to industrial policy: OpenAI, for one,
+proposes a new industrial policy agenda for AI
 \parencite{openai2026industrialpolicy}. The AI Index \parencite{aiindex2026}
 gives the scale. Private investment in AI worldwide came to \$344.7 billion in
 2025, more than double the year before, and the United States attracted about
 23 times more than the next country. The US produced 59 notable models in 2025,
-and China produced 35. China leads in publications and patents. The top Chinese model
-trailed the top American one by under 3 per cent on a public leaderboard in
-March 2026. Europe produces few frontier models, yet across 25 countries more
+and China produced 35. China leads in publications and patents. The leaderboard
+the AI Index uses, the Arena, rates models by users' blind votes between the
+answers of two models, with the Elo system borrowed from chess. In March 2026
+the top Chinese model trailed the top American one there by 39 rating points.
+European countries produce few notable models, yet across 25 countries more
 people trust the EU than the US or China to regulate AI.
 
-Open and closed models are racing too. The best closed model led the best
-open-weight one by 15 per cent in 2023, by under 1 per cent in 2024 and by 3.4
-per cent in March 2026 \parencite{aiindex2026} (\Cref{fig:gap}). Open weights are close enough
-to the frontier that running them yourself is a real option, which is the
-subject of Part~IV.
+Open and closed models are racing too. On the same leaderboard, the best closed
+model led the best open-weight one by 174 points in May 2023, by 7 points in
+August 2024 and by 49 points in March 2026 (\Cref{fig:gap}). The AI Index
+itself warns that users' preferences may not match correctness
+\parencite{aiindex2026}. A lead in rating is therefore not a measure of
+performance on your task (\Cref{ch:powers}). Still, open weights are close
+enough to the frontier that running them yourself is a real option, which is
+the subject of Part~IV.
 
 \begin{figure}[htbp]
 \centering
 \fig{ch02-open-closed-gap}
-\caption{The lead of the best closed model over the best open-weight one on a
-public leaderboard, in per cent, from 2023 to March 2026
-\parencite{aiindex2026}.}
+\caption{The lead of the best closed model over the best open-weight one on the
+Arena leaderboard, at the three dates the AI Index reports. The values are
+differences in Elo rating, computed from users' blind preferences between
+pairs of answers; they are not scores on any task \parencite{aiindex2026}.}
 \label{fig:gap}
 \end{figure}
 
@@ -88,55 +116,74 @@ data will mean for the people and institutions that curate them
 Two questions are being asked at once: whether the models work, and whether the
 money comes back. The capability is real and measured. The AI Index reports
 that frontier companies' revenue is growing at historically fast rates,
-but spending on compute is rising as fast. One cloud provider alone reported
+but spending on compute and infrastructure is at record levels too. One cloud
+provider alone reported
 over \$150 billion of capital spending in 2025
 \parencite{aiindex2026}. Whether that returns a profit is a question about
 business models, not about whether the models work.
 
-Two effects reach research budgets either way. Demand for memory from data
-centres has, in the author's experience of buying hardware, pushed up the price
-of RAM and storage for everyone. And infrastructure built on the assumption of
-cheap API access becomes fragile if prices change. Keeping some capability on
+Two effects reach research budgets either way. The first is the price of
+memory. \textcite{krakauer2026dram} describes the memory shortage of 2026 as
+data centres and laptops competing for the same silicon: the memory built for
+data centres uses three wafers for every one used in a consumer product. In my
+own buying of hardware, both RAM and storage have become dearer. Second,
+infrastructure built on the assumption of cheap API access becomes fragile if
+prices change. Keeping some capability on
 your own hardware is partly insurance against both.
 
 \subsection{Hype}
 
 Ewan Birney, director of EMBL's European Bioinformatics Institute, compares the
 moment to the genomics boom he worked in: real scientific change, bold companies
-and wild predictions \parencite{birney2026genomics}. He calls the prediction ``we
-will cure all human diseases in five years'' ``hubris'': many diseases are not even well defined, and proving that a cure
-works is slow, laborious
-work. His advice is to drop the fantastical claims and make discoveries. He
-points out that genomics dealt with its ethical problems (privacy, gene patents,
-the risk of eugenic thinking) through research, regulation and law. The same is
-possible here.
+and wild predictions \parencite{birney2026genomics}. He calls the promise,
+made by some AI leaders, to cure every human disease within five years
+``hubris''. Many
+diseases are not even well defined, and proving that a cure works is slow,
+laborious work. His advice is to drop the fantastical claims and make
+discoveries. He points out that genomics dealt with its ethical problems
+(privacy, gene patents, the risk of eugenic thinking) through research,
+regulation and law, and argues that AI can do the same. For biodiversity data,
+I think part of that work is access and benefit-sharing (\Cref{sec:abs}).
 
 Conservation has its own version of this. \textcite{sandbrook2024hype} argues
 that conservation AI has met too much techno-optimism and too little attention
 to its risks. These include use by bad actors, biased training data, harm to the
 sector's staff and skills, and a high demand for energy, land and water. Estimates
-of that demand per query differ widely. One study put an older model at half a
-litre of water for every 10 to 50 responses \parencite{li2023thirsty}. Google
-measured 0.26 millilitres for the median prompt to its own assistant
-\parencite{elsworth2025google}.
+of that demand per query differ widely, partly because they count different
+things. One study put an older model at half a litre of water for every 10 to
+50 responses, counting the water used to generate its electricity as well as
+the water used on site \parencite{li2023thirsty}. Google measured 0.26
+millilitres for the median prompt to its own assistant, counting only the water
+used to cool its data centres \parencite{elsworth2025google}.
 
 \section{Data, and who paid for it}
 
-When the open web ran out, the search for text moved to books. Court documents
-in a US court case revealed an Anthropic memo describing ``Project Panama''
-as ``our effort to destructively scan all the books in the world''
-\parencite{james2026anthropicbooks}. Books were bought in bulk, their spines cut
-off, the pages scanned and the rest thrown away. Destructive scanning is faster and cheaper
-than careful scanning, and buying a book avoids negotiating a licence.
-Volunteers have started racing to scan rare books non-destructively before they
-enter that pipeline \parencite{annasarchive2026scanning}. (This book was written
-with tools from the same company; the point stands.)
+Scaling laws have depended on ever larger datasets, and some leading
+researchers now say that the supply of high-quality text on the web is used up
+\parencite{aiindex2026}. Books remain one of the best sources of long,
+carefully written text, as Kathryn James, a rare-book librarian at Yale, points
+out \parencite{james2026anthropicbooks}. She describes what the documents of a
+US court case, \emph{Bartz v.\ Anthropic}, revealed. An internal Anthropic memo called
+``Project Panama'' ``our effort to destructively scan all the books in the
+world''. Vendors cut the books from their bindings, scanned the pages and
+discarded the paper. Anthropic had first used pirated copies, a decision behind
+its \$1.5 billion settlement with authors. The judge ruled that training a
+model on books did not in itself infringe copyright. James's objection is that
+buying and destroying books proved easier than paying the people who wrote
+them, and that no endangered list protects rare printed works. (I wrote this
+book with tools from the same company; the point stands.)
 
-For biodiversity this is not abstract. The Biodiversity Heritage Library holds
-taxonomic literature back to the eighteenth century --- original species
-descriptions, type designations, expedition reports --- much of it in one or a
-few physical copies. It is both the foundation of nomenclature and an attractive
-training corpus, and the institutions holding it are not funded to defend it.
+For biodiversity this is not abstract. The Biodiversity Heritage Library offers
+millions of scanned pages of older biodiversity literature in open access
+\parencite{nguyen2019copious}: original species descriptions, type
+designations, expedition reports. Because those pages are already open, the
+cutter is not the main risk to them. They are both the foundation of
+nomenclature and an attractive training corpus. A model trained on them also
+takes in the errors of optical character recognition (OCR), the software that
+turned the page images into text. In 2012, \textcite{thessen2012nlp} reported
+an estimate that more than 35 per cent of taxon names in the library's OCR
+files contained an error. Whether such use credits or sustains the people who
+built the library is the question of \Cref{ch:aireadydata}.
 
 \begin{keypoint}
 Ecology's data commons was built by people, over decades, to be shared.

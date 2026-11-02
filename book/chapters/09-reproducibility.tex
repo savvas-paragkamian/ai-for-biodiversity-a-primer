@@ -2,12 +2,19 @@
 \label{ch:reproducibility}
 
 Reproducibility covers several distinct questions, described in
-\Cref{tab:reproducibility}. Language models add a difficulty to these familiar
-questions: a step in the pipeline may give a different answer each time it runs.
+\Cref{tab:reproducibility}. The words are not used the same way everywhere.
+\textcite{barba2018terminologies} found two camps that swap
+\emph{reproduce} and \emph{replicate}, and recommends defining the terms you
+use. The table follows the more common camp: reproducing uses the same data
+and code, replicating uses new data. Language models add a difficulty to these
+familiar questions: a step in the pipeline may give a different answer each
+time it runs.
 
 \begin{table}[htbp]
 \centering
-\caption{Terms of art, and what each one assesses.}
+\caption{Terms of art, and what each one assesses. The last row is not a
+standard term; it is the version of the reference data a result was computed
+against.}
 \label{tab:reproducibility}
 \footnotesize
 \begin{tabularx}{\textwidth}{lXXXX}
@@ -23,6 +30,8 @@ Replicability & Independent teams, comparable conclusions from new data & Questi
 Reusability & Data or code repurposed for other ends & Digital assets & Purpose, context & Long-term usefulness \\
 \addlinespace
 Provenance & Documented origin and processing history & Metadata, logs & Execution snapshot & Transparency \\
+\addlinespace
+Reference version & The backbone, reference database or annotation release used & Data, code, environment & Release of the reference & Dependence on the reference \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -30,26 +39,42 @@ Provenance & Documented origin and processing history & Metadata, logs & Executi
 \section{Where a language model breaks this}
 
 \textbf{Sampling is random.} The same input can give different outputs. Setting
-the temperature to zero and fixing a seed gives approximate, not exact,
-repeatability \parencite{ouyang2024nondeterminism,coqueret2026randomness}.
-Record the settings (\Cref{fig:variation}).
+the temperature to zero reduces the variation but does not remove it
+\parencite{ouyang2024nondeterminism,coqueret2026randomness}. What remains
+comes from how a server batches requests, from the hardware and from silent
+model updates. Several hosted reasoning models do not accept a temperature at
+all, and always taking the most probable token can cost performance. A seed
+repeats the random draws only while everything else stays the same
+\parencite{coqueret2026randomness}. I use temperature zero where a model
+allows it, unless its developers advise against it. Whatever the settings,
+record them (\Cref{fig:variation}), keep the raw outputs, and rerun a sample
+to see how much they vary. \textcite{keck2026interactions} reran 100
+paragraphs 100 times each at temperature zero, and the runs did not always
+agree.
 
 \textbf{The model changes underneath you.} A hosted model with a fixed name is
 not a fixed thing; providers update it without notice. A local model file with a
 known checksum does not change --- the strongest argument for open weights in
-research.
+research. The file is not the whole instrument, though. Outputs also depend on
+the program that runs it, the numerical precision, the processor and its
+drivers, and how requests are batched, so these go in the log too
+\parencite{coqueret2026randomness}.
 
 \textbf{A generated claim has no provenance.} Keep the model out of the chain of
 inference. Use it to write code or a query, which you read and run; the code is
-the artefact you keep. Do not let it produce a number that goes into a result
-(\Cref{fig:chain}).
+the artefact you keep. Do not let it produce a number that goes into a result,
+unless you have measured how often it is wrong. That is the third path in
+\Cref{fig:chain}: the model as an instrument, whose output enters the analysis
+only through a validation step (\Cref{sec:outputasdata}).
 
 \begin{figure}[htbp]
 \centering
 \fig{ch09-chain-of-inference}
-\caption{Keep the model out of the chain of inference. Generated code is read,
-run and committed, so the result can be reproduced; a generated number has no
-provenance.}
+\caption{Three places for a model in an analysis. Generated code is read, run
+and committed, so the result can be reproduced. When the model's output is the
+data, it enters the analysis only through a sample checked by people, and its
+error rates go with it (\Cref{sec:outputasdata}). A generated number that skips
+both has no provenance.}
 \label{fig:chain}
 \end{figure}
 
@@ -77,47 +102,152 @@ artefact.
 
 \section{Log model calls like instrument readings}
 
-\begin{lstlisting}[caption={logs/2026-04-15\_taxon-matching.md}]
-Model: qwen3-coder:30b (local, ollama)   sha256:4f2a...c91
-Temperature: 0   Seed: 42   Fresh session   Harness: opencode 0.4.2
+\begin{lstlisting}[caption={logs/2026-10-15\_taxon-matching.md}]
+Model: qwen3-coder:30b, Q4_K_M, sha256:4f2a...c91
+Runtime: ollama 0.31.1   Harness: opencode 1.17.11   Context: 64K
+Temperature: 0   Seed: 42   Fresh session   Rules: AGENTS.md @ 7c1e2d0
 Prompt: Write an R script matching data/raw/species_list.csv against
   the GBIF backbone; keep unmatched rows as status="NO_MATCH".
+Reference: GBIF Backbone Taxonomy as of 2026-10-15, DOI in README.md
 Output: scripts/03_match_taxa.R (commit a3f9c21)
 Review: 1,847 rows in, 1,847 out. 23 NO_MATCH checked by hand:
-  19 typos fixed in a lookup table, 4 genuine nomina nuda.
+  19 typos fixed in a lookup table, 4 names not in the backbone
+  referred to a specialist.
 \end{lstlisting}
 
-Keep this record in plain Markdown alongside the analysis, and commit it with
-the code. A short record is enough if it lets someone check what was done.
+Each line records something that can change the result: the runtime and
+harness versions, the quantisation, the context length, the rules file the
+harness read, and the backbone the names were matched against. For a model
+with a reasoning setting, log that too. Keep this record in plain Markdown
+alongside the analysis, and commit it with the code. A short record is enough
+if it lets someone check what was done.
+
+\section{When the model's output is the data}
+\label{sec:outputasdata}
+
+The rule above, that a model should not produce a number that goes into a
+result, cannot cover every use. The extraction studies in
+\Cref{ch:applications} use a model to read traits, incidences and species
+names out of text, and the table it fills is the data. The model is then a
+measuring instrument, and an instrument is trusted only after it has been
+checked against a known standard. This is the third path in \Cref{fig:chain}.
+
+The check is a validation sample. Draw records at random from everything the
+model processed, have a person extract the same fields from the sources, and
+compare the two. Where some groups are rare, such as a taxon or a kind of
+source, stratify the sample so that each group is checked.
+\textcite{keck2026interactions} validated a workflow that extracts species
+interactions from the literature in this way. One ecologist annotated 500
+paragraphs chosen at random, and the workflow found 70 per cent of the
+interactions the annotator found (95 per cent interval 63 to 77). A second,
+stratified set covered rare taxa, but the authors note that it was drawn from
+the workflow's own output, so it cannot show what the workflow missed.
+
+Report the error of each field separately, with its interval, because a model
+can be reliable on one field and wrong on the next. In the plant-disease
+reports of \textcite{gougherty2024extraction}, names were mostly right, but
+the model wrote 100 per cent incidence for 53 reports that gave none
+(\Cref{ch:applications}). Such errors are not random noise; this one pushes
+incidence up. Agents that curate metadata make the same kind of error.
+Outside ecology, \textcite{youngblut2026scbasecount} had an agent label
+single-cell datasets from the Sequence Read Archive. They checked its labels
+against an independently curated repository for the datasets the two share.
+They also report that a study's disease label can be copied to its healthy
+controls.
+
+The error then has to be carried into the analysis. Treating model output as
+if it were measured without error gives intervals that are too narrow: in the
+Amazon deforestation example of \textcite{angelopoulos2023ppi}, such an
+interval missed the true value. Their prediction-powered inference, and the
+estimator that \textcite{egami2023surrogates} developed for language-model
+labels in social science, use the validated sample to correct estimates made
+from all the model's outputs. Egami and colleagues need the chance of each
+record entering the validation sample to be known, one more reason to draw it
+at random. Where neither method fits the analysis, rerun it on the validated
+records alone, or with the measured error rates applied, and report whether
+the conclusion changes.
+
+Last, mark the records before they leave the project. Records that reach GBIF
+or OBIS without a flag cannot be told apart from records a person made, and
+Darwin Core has terms for this \parencite{wieczorek2012darwincore}.
+\code{basisOfRecord} still says what the original record was: one read from a
+paper is a human observation or a material citation, not a machine
+observation, because the model read it rather than made it. Where the model
+assigned the name, \code{identifiedBy} can name it with its version, and
+\code{identificationVerificationStatus} can say that no person has checked it.
+Where the model copied an author's identification, say so in the record's
+remarks and in the dataset's methods.
 
 \section{The methods section}
 
-Journal policies have converged \parencite{naturemethods2026responsibly}: say
-which tool, model and version, when, for what, how the output was checked, and
-that the authors are responsible. A template:
+Nature Portfolio's policy, as \textcite{naturemethods2026responsibly}
+describe it, asks authors who use AI to help write a manuscript to declare it
+in the Methods section and to check the generated text. A model cannot be an
+author, because it cannot take responsibility for the content.
+\textcite{coqueret2026randomness} ask journals to require more when a model
+generates data: the model name and version, its settings, the full prompts,
+the date of each query, and the raw outputs in the replication package. Two
+templates, one for code and one for data:
 
 \begin{quote}\small
 Data processing scripts were drafted with \textit{[model, version]} via
 \textit{[tool]} in \textit{[month year]}. All generated code was reviewed,
 run locally and validated by \textit{[check]}. Prompts and settings are archived
 at \textit{[DOI]}. The authors are fully responsible for the content.
+
+Fields \textit{[names]} were extracted from \textit{[sources]} with
+\textit{[model, version]} at \textit{[settings]} in \textit{[month year]}. A
+random sample of \textit{[n]} records, stratified by \textit{[groups]}, was
+checked against the sources by \textit{[person]}; precision and recall per
+field, with 95\% intervals, are in \textit{[table]}. Errors were handled by
+\textit{[correction or sensitivity analysis]}. Raw model outputs are archived
+at \textit{[DOI]}.
 \end{quote}
 
 \section{Containers}
 
-A container pins the operating system and libraries. It does not remove model
-randomness. Including the model file and disabling the network at run time
-brings an AI-assisted pipeline as close to deterministic operation as currently
-possible. Even then, outputs can vary with the hardware and software that run the
-model, so record those as well \parencite{coqueret2026randomness}:
+A container pins the operating system, R and its packages. It does not remove
+model randomness, and it needs no model at all when the model only wrote code:
+the committed scripts are the pipeline. The image below restores the packages
+recorded by \code{renv}, and refuses to build if a raw file no longer matches
+the checksums written in \Cref{ch:organisation}:
 
-\begin{lstlisting}[style=shell]
+\begin{lstlisting}[style=shell,caption={Dockerfile}]
 FROM docker.io/rocker/r-ver:4.4.1
-COPY renv.lock .
-RUN R -e 'renv::restore()'
-COPY models/qwen3-coder-30b-q4.gguf /models/   # checksum verified at build
+WORKDIR /project
+# rocker/r-ver does not include renv
+RUN R -q -e 'install.packages("renv")'
+COPY renv.lock renv.lock
+RUN R -q -e 'renv::restore()'
+COPY data/raw.sha256 data/raw.sha256
+COPY data/raw data/raw
+# the build stops here if a raw file differs from its checksum
+RUN sha256sum -c data/raw.sha256
+COPY scripts scripts
 \end{lstlisting}
 
-That is only possible with open weights. A workflow built on a hosted API can be
+Comments go on lines of their own: after an instruction, Docker reads a
+\code{\#} and the words after it as more arguments. Pin the image to the R
+version recorded in \code{renv.lock}; the tag above is the one tested
+(\Cref{app:stateofplay}).
+
+When the model is the instrument (\Cref{sec:outputasdata}), the run also needs
+the weights and a program that runs them, such as llama.cpp or Ollama
+(\Cref{ch:stack}); this image includes neither. Keep the weights outside the
+image, check them against \code{models.sha256}, written as in
+\Cref{ch:organisation}, mount them read-only and turn the network off:
+
+\begin{lstlisting}[style=shell]
+docker build -t posidonia .
+shasum -a 256 -c models.sha256
+docker run --rm --network none -v "$PWD/models:/project/models:ro" \
+  posidonia Rscript scripts/main.R
+\end{lstlisting}
+
+\code{podman} takes the same commands. Where the licence allows, deposit the
+weights and their checksum in an archive such as Zenodo, so that the
+instrument itself can be cited. Open weights on a local stack you control give
+the best chance of exact reproduction, and only if the whole stack is recorded
+\parencite{coqueret2026randomness}. A workflow built on a hosted API can be
 documented, but not reproduced, because the instrument is not under your
 control.

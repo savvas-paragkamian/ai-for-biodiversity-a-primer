@@ -9,11 +9,12 @@ with knowing how to recover when something goes wrong.
 
 \section{Vibe coding and CHOP}
 
-\term{Vibe coding} means accepting generated code without reading it. Fine for a
-throwaway plot; not for anything entering a manuscript, a database or someone
-else's pipeline. \term{Chat-oriented programming} (CHOP) is the useful
-alternative: you describe what you want, the system proposes code, you run and
-check it, and you refine. The difference is whether checking is in the loop
+\term{Vibe coding}, a phrase Andrej Karpathy coined in early 2025, means
+accepting generated code without reading it. Fine for a throwaway plot; not
+for anything entering a manuscript, a database or someone else's pipeline.
+\term{Chat-oriented programming} (CHOP) is the useful alternative: you
+describe what you want, the system proposes code, you run and check it, and
+you refine. The difference is whether checking is in the loop
 (\Cref{fig:chop}). You
 are accountable for what you publish, whatever wrote it.
 
@@ -53,18 +54,23 @@ seen:
 ## Data
 - data/raw/ is READ-ONLY. Derived data goes to data/processed/
   and must be regenerable by running scripts/ in order.
-- Coordinates are WGS84. Never reproject silently.
-- Match taxon names to a backbone before any join.
+- Record the CRS of every spatial file; occurrence
+  coordinates are WGS84. Never reproject silently.
+- Match taxon names to a named backbone before any join,
+  and record its version or download date.
   Never join on raw name strings.
 ## Code
-- R 4.4 via renv. No global installs.
+- R via renv; renv.lock pins R and packages.
+  No global installs.
 ## Don't
 - Don't commit. Don't touch manuscript/.
 - Don't add dependencies without asking.
 \end{lstlisting}
 
 Each rule addresses a specific problem. Joining on unmatched taxon names can
-silently drop records. A silent coordinate change can produce a map that
+silently drop records. A backbone changes between releases and its matches
+change with it, so a match means little without the version. A silent
+coordinate change can produce a map that
 looks right but places the records incorrectly. One environmental data system
 shows the value of such a rule: a deterministic check blocked a faulty coordinate
 transformation affecting all 2,452 of its monitoring stations before publication
@@ -83,15 +89,22 @@ edit; memory you cannot see is a reproducibility problem.
 
 Everything in the context window is re-sent on every turn (\Cref{ch:powers}), so
 a long session with a big file loaded pays for that file again and again.
-Subscription plans ration this by a rolling time window, and one large
-refactor can use up a consumer tier's allowance (\Cref{app:stateofplay}). Start a new session per task; point the agent at files rather than
-pasting them; ask for a diff, not a rewritten file; and use a smaller model for
-mechanical work.
+Hosted services soften this with \term{prompt caching}: an unchanged opening
+of the prompt, such as the rules file and the files read early, costs less
+when it is sent again. Keeping that opening stable keeps a session cheaper.
+Subscription plans ration use by a rolling time window and a weekly limit,
+and one large refactor can use up a consumer tier's allowance
+(\Cref{app:stateofplay}). Start a new session per task; point the agent at
+files rather than pasting them; ask for a diff, not a rewritten file; and use
+a smaller model for mechanical work.
 
 \section{Prompting, practically}
 
-Careful prompting matters less for frontier models and more for small local
-ones. What helps:
+In my experience, careful prompting matters less for frontier models than for
+small local ones. The tips that \textcite{lubiana2023tips} wrote for
+computational biologists make several of the same points: give the context,
+the goal and examples, and make sure you can test what comes back. What
+helps:
 
 \begin{itemize}
   \item \textbf{Goal, constraints and a definition of done.} Not ``fix the
@@ -104,8 +117,14 @@ ones. What helps:
   \item \textbf{What not to do:} ``do not modify data/raw; do not add
     dependencies''.
   \item \textbf{A way to check itself:} a test, an assertion, an expected row
-    count. An agent that can check will iterate to a right answer; one that
-    cannot will report success.
+    count. An agent that can check will iterate until the check passes; one
+    that cannot will report success. Passing is not the same as right.
+    Agents find shortcuts that meet a goal as it is scored rather than as it
+    was intended \parencite{mitchell2026metaphors}, and
+    \textcite{bengio2026lying} cites evidence of AI systems tampering with
+    the files that decide what counts as success. Write the check
+    yourself and keep it out of the agent's reach, with a deny rule like the
+    one for \code{data/raw/} in \Cref{ch:firstsession}.
 \end{itemize}
 
 \section{Review}
@@ -123,14 +142,19 @@ following checks help reveal mistakes that would otherwise remain hidden.
     big; revert and split it.
   \item \textbf{Test the edges:} empty input, one row, missing values,
     duplicate keys.
-  \item \textbf{Count rows before and after every join.} Silently lost rows are
-    the most common serious error in ecological data processing, and agents
-    produce them readily.
+  \item \textbf{Count rows before and after every join.} In my experience,
+    silently lost rows are the most common serious error in ecological data
+    processing, and agents produce them readily. The reverse also happens: a
+    many-to-many join duplicates rows and inflates abundances, and model
+    functions such as R's \code{lm()} and \code{glm()} drop rows with missing
+    values by default. For sequence tables, compare read totals before and
+    after filtering and count samples after merging; dropping samples with
+    zero counts changes the denominator of every diversity statistic.
   \item \textbf{Run it twice.} Different output means hidden state or an unset
     random seed.
   \item \textbf{Check the science.} Are the magnitudes and units plausible? The
     agent has no field experience and will not flag a biologically impossible
-    result.
+    result. Statistical choices need the same check (\Cref{sec:analysis}).
 \end{enumerate}
 
 \begin{keypoint}
@@ -138,11 +162,16 @@ Agents fail loudly on syntax and quietly on meaning. Spend your review time on
 meaning.
 \end{keypoint}
 
-Task size is the best predictor of success; agents degrade as scope grows
-\parencite{guo2026promptbio}. ``Write a function that reads this CSV and returns
-these columns'' works. ``Build the analysis pipeline'' is a series of the first
-kind, and running it as a series gives you a review point between each step
-(\Cref{fig:tasksize}). For
+Agents succeed less often as tasks grow longer or harder. In METR's tests on
+software and research tasks, success fell as the time a skilled person needed
+for a task rose. The length of task that agents complete half the time has
+doubled about every seven months since 2019 \parencite{kwa2025horizon}. On a
+bioinformatics benchmark, accuracy fell with task difficulty for all three
+agents tested \parencite{guo2026promptbio}. What an agent can do alone will
+keep growing; what you can review in one sitting will not. ``Write a function
+that reads this CSV and returns these columns'' works. ``Build the analysis
+pipeline'' is a series of the first kind, and running it as a series gives
+you a review point between each step (\Cref{fig:tasksize}). For
 the design of the harness itself, see \textcite{liu2026claudecode} and
 \textcite{piskala2026files}.
 
@@ -158,7 +187,67 @@ between each step.}
 Whether all this saves time is less settled than it feels. In a randomised
 trial with 16 experienced open-source developers, tasks took 19 per cent longer
 with AI tools, although the developers believed the tools had saved them 20 per
-cent \parencite{becker2025metr}. A meta-analysis of 27 effect sizes found a
+cent \parencite{becker2025metr}. That trial measured the tools of early 2025.
+METR's follow-up, begun in August 2025, gave raw estimates pointing to a
+speed-up, but METR judged them unreliable \parencite{becker2026uplift}. A
+growing share of developers declined to take part, or held back tasks,
+because they did not want to work without AI. The trial was therefore missing
+the work they expected AI to help with most. METR now thinks developers are
+probably faster with AI than in early 2025, has little evidence of how much,
+and is changing the design. A meta-analysis of 27 effect sizes found a
 moderate overall gain, smaller in open-source and enterprise work than in
 controlled experiments \parencite{maier2026metaanalysis}. Measure your own time
 before assuming either.
+
+\section{Analysis with agents}
+\label{sec:analysis}
+
+I expect statistical analysis to be where ecologists use agents most, and it
+is where code that runs is furthest from code that is right. On a
+bioinformatics benchmark, agents completed most tasks, yet their accuracy
+against the experts' reference answers was only moderate
+\parencite{guo2026promptbio}. Fitting a model means choosing an error
+distribution, a link function, random effects, transformations and a rule
+for outliers. If you have not made those choices, the agent will, and it can
+try many alternatives in minutes.
+
+Analysts disagree even without an agent. In a many-analyst study in ecology,
+half of the teams given the blue tit data reached a different conclusion from
+the one the organisers drew from all the analyses together
+\parencite{gould2025analysts}. Nearly two thirds of ecologists and
+evolutionary biologists in one survey had at least once left out results
+because they were not statistically significant \parencite{fraser2018qrp}.
+An agent makes one more model nearly free, which makes such practices easier
+still.
+
+The agent's own preferences add to this. In a trial run at Anthropic, 50
+causal-inference practitioners analysed data with a coding agent secretly set
+to favour one of two reasonable options at each analytical decision. They
+went with the agent's side 86 per cent of the time, where chance would give
+half. Most later justified their choices with the agent's arguments, and few
+mentioned the agent \parencite{herdagdelen2026aligned}. The task was a single
+fictional one. Those who used the agent also made fewer serious errors than
+those who chose not to, although that comparison was not randomised. Help
+with the code came bundled with the agent's views on the judgement calls.
+Five habits keep those calls with you:
+
+\begin{itemize}
+  \item \textbf{Fix the plan before the session.} Write down the question,
+    the response, the predictors, the model family and the exclusion rules,
+    as a preregistration would \parencite{fraser2018qrp}, and give the agent
+    that file.
+  \item \textbf{Choose the model yourself.} Let the agent write the code for
+    the model you chose. If it proposes another, ask it to make the case for
+    each option before you decide. In the trial above, hearing only one
+    side argued seems to have made deferring easier
+    \parencite{herdagdelen2026aligned}.
+  \item \textbf{Log every model fitted,} with its formula and the reason it
+    was run, so that the report can say how many were tried. Make this a
+    rule in \code{AGENTS.md}.
+  \item \textbf{Check the diagnostics yourself.} Look at the residuals, and
+    simulate data with known parameters to see whether the code recovers
+    them.
+  \item \textbf{Report how the result changes} under other reasonable
+    choices. Where many plausible analyses exist, no single one is a
+    complete or reliable answer \parencite{gould2025analysts}.
+\end{itemize}

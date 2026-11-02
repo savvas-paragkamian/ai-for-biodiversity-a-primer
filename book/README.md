@@ -31,12 +31,13 @@ views.
 
 **Running example.** KYBELE, a literature assistant for Collembola built on the
 SIB Literature Services, is the worked example of biodiversity literature and
-knowledge retrieval (Chapter 11). It is being expanded; at the time of writing
-its serving layer runs and its orchestrator is designed but not built.
+knowledge retrieval (Chapter 12, "KYBELE: a design"). It is being expanded; at
+the time of writing its serving layer runs, its orchestrator is designed but
+not built, and its tests are planned, not run.
 
 ## Contents
 
-About 22,600 words, 94 pages.
+About 40,000 words, 149 pages (2 November 2026).
 
 | Part | Chapters |
 |---|---|
@@ -45,8 +46,8 @@ About 22,600 words, 94 pages.
 | II. Data | 5 AI-Ready Data · 6 Organising and Protecting Your Data |
 | III. Working with Agents | 7 The Agentic Coding Workflow · 8 The Software Stack · 9 Reproducibility When the Tool Varies · 10 A First Agent Session (hands-on, in R, with `../workshop/session`) · 11 A Weekly Literature Review (hands-on, in R, with `../workshop/literature`) |
 | IV. Local-First | 12 The Local-First Approach (with the KYBELE example) · 13 Hardware for Local Inference · 14 Testing a Model on Your Own Task (with an R exercise, `../workshop/testing`) |
-| V. Risk, Integrity and Keeping Up | 15 Security, Biorisk and Governance (ending in the wider frame: noosphere, evolvable AI, consciousness) · 16 Changes Across the Scientific Workflow · 17 How to Keep Up |
-| Appendices | A Glossary · B Checklists · C Tutorials (videos, newsletters, blogs, awesome lists, tool repositories) · D State of Play, September 2026 (prices, model versions, harnesses, usage limits) |
+| V. Risk, Integrity and Keeping Up | 15 Security, Biorisk and Governance · 16 Changes Across the Scientific Workflow · 17 How to Keep Up · 18 Epilogue: The Wider Frame (noosphere, evolvable AI, the inherited archive, consciousness) |
+| Appendices | A Glossary · B Checklists · C Tutorials (videos, newsletters, blogs, awesome lists, tool repositories) · D State of Play, September to October 2026 (prices, model versions, harnesses, usage limits) |
 
 If you read one chapter, read Chapter 3.
 
@@ -81,7 +82,7 @@ instead, change `\DeclareGraphicsExtensions{.png}` in `preamble.tex` to
 ```
 main.tex          parts and chapter includes
 preamble.tex      packages, formatting, biblatex setup
-references.bib    179 entries, grouped by theme
+references.bib    228 entries, grouped by theme
 figures/          44 diagrams: style.tex, tikz/ sources, pdf/ png/ svg/ outputs,
                   README.md with the style rules and an index
 chapters/
@@ -91,7 +92,7 @@ chapters/
   07-agentic-workflow  08-software-stack  09-reproducibility
   09b-first-agent-session  09c-weekly-literature
   10-local-first  11-hardware  11b-testing
-  12-security-and-biorisk  13-scientific-workflow  14-keeping-up
+  12-security-and-biorisk  13-scientific-workflow  14-keeping-up  14b-epilogue
   A1-glossary  A2-checklists  A3-tutorials  A4-state-of-play
 ```
 
@@ -100,10 +101,12 @@ chapters/
 Assembled from the `.bib`, `.ris` and `.bibtex` files in `../../literature/`,
 plus entries taken from the PDFs there.
 
-Verified on 14 October 2026: all 86 DOIs resolve through Crossref and all 52 arXiv IDs through the
-arXiv API, titles matching in every case. The remaining 41 entries are reports,
-books, blog posts and web pages with no such identifier, previously checked by hand. Every
-entry is cited at least once.
+Verified on 2 November 2026: all 111 DOIs resolve through Crossref (or
+DataCite) and all 69 arXiv IDs through the arXiv API, with title, first author
+and year matching in every case. The remaining 48 entries are reports, books,
+blog posts and web pages with no such identifier, checked by hand. Every entry
+is cited at least once, and every citation has a row in the claim audit
+(`../CLAIM_AUDIT_2026-10/`) giving the passage that supports it.
 
 Videos, newsletters, blogs and code repositories are not bibliography entries;
 they are listed in Appendix C, with names checked against YouTube, GitHub and
@@ -115,7 +118,7 @@ Run from the repository root. Each has a `--self-test` that plants errors and
 confirms they are caught. Needs `pandoc`, `pdftotext` and `hunspell`.
 
 ```bash
-python3 scripts/verify_bib.py          # every DOI and arXiv ID resolves, titles match
+python3 scripts/verify_bib.py          # every DOI and arXiv ID resolves; title, first author and year match
 python3 scripts/check_plagiarism.py    # 8-word verbatim overlap with ../literature
 python3 scripts/check_language.py      # British spelling, banned words, long sentences
 ```
@@ -156,11 +159,12 @@ updated, and the complete Stanford HAI open-weight article link appears there.
 See [`LITERATURE_REVIEW_2026-10-10.md`](../LITERATURE_REVIEW_2026-10-10.md)
 for the task-only diff, checks and remaining link limitations.
 
-- `openai2026huggingface` is cited in Chapters 5 and 14 for model files carrying
-  executable payloads; the source is about agents escaping a sandbox. Those two
-  sentences need another source or rewording. A source-supported replacement is
-  prepared in [`PROPOSED_SOURCE_CORRECTION.patch`](../PROPOSED_SOURCE_CORRECTION.patch),
-  awaiting the author's decision as required by `AGENTS.md`.
+- `openai2026huggingface` was cited in Chapters 5 and 15 for model files
+  carrying executable payloads, which the source does not discuss. Resolved:
+  the author approved the rewording in
+  [`PROPOSED_SOURCE_CORRECTION.patch`](../PROPOSED_SOURCE_CORRECTION.patch)
+  (D3, 22 October 2026), and both sentences now cite it for the sandbox escape
+  it reports.
 - KYBELE's expansion as the running example needs its design documents in
   `../../literature/` before it can be written up.
 - The combined Seth PDF supplied on 10 October contains both his target
@@ -204,8 +208,8 @@ for the task-only diff, checks and remaining link limitations.
   not bibliography entries.
 - Figures were added on 14 October 2026: 41 TikZ diagrams, two or three per
   chapter, each captioned and referenced in the prose, with SVG versions for
-  the workshop slides. See `figures/README.md`. Not yet reviewed by the
-  author.
+  the workshop slides. See `figures/README.md`. Reviewed by the author on
+  22 October 2026.
 - Two existing bibliography links could not be verified in the October 10
   audit: the Financial Times returned access errors, and the saved Anna's
   Archive address failed certificate validation. Neither was replaced with
@@ -221,8 +225,30 @@ for the task-only diff, checks and remaining link limitations.
   figure files of those chapters were renamed to match
   (`scripts/renumber_figures.sh`, run on the author's instruction). The
   repository the chapter describes is
-  built but not yet on GitHub, and the skill's live run was not performed.
-  Not yet reviewed by the author.
+  public at <https://github.com/savvas-paragkamian/weekly-literature>; the
+  skill's live run was not performed. Reviewed by the author on
+  22 October 2026.
+- On 17 October 2026 three AI agents reviewed the book as referees, with the
+  personas of an ecologist, a bioinformatician and a systems microbiologist.
+  All three recommend major revision. Their reports and 290 inline comments
+  are on the `review/*` branches; the book itself was not changed. The
+  author decides which revisions to accept. See Independent reviews in
+  `../AGENTS.md`.
+- The revision answering that review was carried out on 2 November 2026,
+  one agent per chapter, after the author's answers to fourteen decisions
+  (`../REVISION_PLAN_2026-10-22.md`, `../REVISION_PLAN_2026-11-02.md`). The
+  status of every comment is in `../REVIEW_TRIAGE_2026-10-22.tsv`, and a
+  claim audit with the supporting passage for every citation is in
+  `../CLAIM_AUDIT_2026-10/`. Main changes: a scope paragraph and subtitle;
+  training stages, scaling and mixture-of-experts in Part I; four new
+  sections (`sec:abs`, `sec:fitformodel`, `sec:analysis`,
+  `sec:outputasdata`); the security chapter rewritten (injection versus
+  jailbreaking, sandboxes, sequence models, sensitive localities); the
+  wider frame moved to an epilogue (Chapter 18); KYBELE presented as a
+  design; the co-authored microbiome study cited only in Chapter 4, with
+  the disclosure; the testing exercise rebuilt with nine fields and a
+  held-out set, and rerun; listings fixed and tested (checksums, Dockerfile,
+  DOI script, straight quotes in copied code).
 
 ## Conventions
 

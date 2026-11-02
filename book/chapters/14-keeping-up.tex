@@ -20,9 +20,10 @@ Sort what you might learn by how long it stays true.
 \textbf{Layer} & \textbf{Stays true for} & \textbf{Worth learning?} \\
 \midrule
 Model names and versions & Weeks & No. Look them up. \\
-Benchmark scores & Months & No. They do not transfer to your task. \\
+Benchmark scores & Months & Only as a first filter for which models to test on your own task. \\
 Prices and usage limits & Months & Only when buying. \\
 Tool names and options & 6--12 months & Lightly; read the documentation. \\
+Reference databases and taxonomic backbones & Months to years & Not to learn, but follow their release notes: a new release can change your results. \\
 Patterns (harness, RAG, agent loop) & Years & Yes. \\
 Failures (hallucination, sycophancy, injection) & Years & Yes, thoroughly. \\
 Data standards, provenance, reproducibility & Decades & Yes. This is what lasts. \\
@@ -38,17 +39,19 @@ lookup.
 
 \section{People worth following}
 
-A short list of people who are careful rather than fast.
+People who are careful rather than fast. The list includes everyone with three
+or more works in this book's bibliography, grouped where they work together,
+and a few of my own picks.
 
 \begin{description}
-  \item[Melanie Mitchell (Santa Fe Institute)] The most reliable sceptic of AI
-    capability claims
+  \item[Melanie Mitchell (Santa Fe Institute)] A careful sceptic of claims about
+    AI capability
     \parencite{mitchell2026jagged,krakauer2026emergence,mitchell2026metaphors}.
   \item[David C. Krakauer (Santa Fe Institute)] Complexity and the meaning of
     intelligence: co-author of the examination of emergence in language models
     \parencite{krakauer2026emergence} and of the model of dependence on AI
     \parencite{sole2026cognitivevirus}. His archive analogy connects this work
-    to the wider frame in \Cref{ch:security}.
+    to the wider frame in \Cref{ch:epilogue}.
   \item[Michael Levin (Allen Discovery Center, Tufts University)] Co-author of
     the study treating dependence on language models as a population process
     \parencite{sole2026cognitivevirus}. It asks when individual use becomes
@@ -58,21 +61,35 @@ A short list of people who are careful rather than fast.
     how they are trained, and argues for safety by design
     \parencite{bengio2026lying,lu2026safetybydesign}. Read him alongside
     Mitchell, who reads the same events differently (\Cref{ch:security}).
-  \item[Stephen Casper (MIT)] AI risk grounded in evidence: lead writer of the
-    Singapore Consensus, co-author of the AI risk repository and of a sober
-    look at AI and biorisk
+  \item[Amanda Askell and Ethan Perez (Anthropic)] How training shapes what
+    models do. Askell co-wrote the paper on training from human feedback
+    \parencite{ouyang2022instructgpt}. Both co-wrote the study of the
+    sycophancy that human preferences can encourage
+    \parencite{sharma2024sycophancy} and of classifiers that defend against
+    jailbreaks \parencite{sharma2025classifiers}.
+  \item[Stephen Casper (MIT)] AI risk grounded in evidence: one of the two lead
+    writers of the Singapore Consensus, co-author of the AI risk repository and
+    of a sober look at AI and biorisk
     \parencite{casper2026singapore,slattery2026riskrepository,peppin2025biorisk}.
+  \item[Joel Becker, Nate Rush and David Rein (METR)] Measuring what AI does to
+    real work. In their randomised trial, experienced open-source developers
+    took longer with AI tools than without \parencite{becker2025metr}, and they
+    have since redesigned the experiment \parencite{becker2026uplift}. They
+    also measure agents by how long the tasks they can complete take people
+    \parencite{kwa2025horizon}.
   \item[Blaise Ag\"uera y Arcas (Google)] Argues that prediction underlies both
     life and intelligence, so current models are intelligent in a real sense
     \parencite{aguerayarcas2025intelligence}. With Blake Richards, argues that
     life's computational character also makes artificial consciousness likely
     \parencite{richards2026computational}. Read their reply alongside Seth's
-    argument in \Cref{ch:security}.
+    argument in \Cref{ch:epilogue}.
   \item[Anil Seth (University of Sussex)] Consciousness and its biological
     basis. Argues that living processes may be necessary for experience
     \parencite{seth2026naturalism}, and co-authors a framework that compares
     this position with computational accounts
-    \parencite{chandaria2026consciousness}. Keep intelligence and consciousness
+    \parencite{chandaria2026consciousness}. With Ned Block and Giulio Tononi,
+    he gives three reasons why current AI is unlikely to be conscious
+    \parencite{seth2026threereasons}. Keep intelligence and consciousness
     distinct when reading the exchange.
   \item[Ewan Birney (EMBL-EBI)] Director of the European Bioinformatics
     Institute; a clear voice against hype from someone who lived through the
@@ -81,18 +98,31 @@ A short list of people who are careful rather than fast.
     benchmarks can prove \parencite{saezrodriguez2026benchmarking}, how to turn
     expert judgement into tests \parencite{carli2026karenina}, and a shared
     knowledge layer for agents \parencite{sigillo2026embllibrarian}.
-  \item[Boris Cherny (Anthropic)] One of the creators of Claude Code.
-    Their description is ``a Unix utility rather than a traditional product'',
-    made of the smallest pieces that are ``useful, understandable, and extensible''
-    \parencite{liu2026claudecode}. This is the argument of \Cref{ch:landscape}
-    from the people building the tool.
+  \item[Fabio Petroni (EMBL Rome)] Retrieval for language models. Co-author of
+    the original RAG paper \parencite{lewis2020rag} and of the finding that
+    models use evidence in the middle of a long context poorly
+    \parencite{liu2023lostmiddle}. More recently, co-author of the EMBL AI
+    Librarian \parencite{sigillo2026embllibrarian} and Karenina
+    \parencite{carli2026karenina}.
+  \item[Boris Cherny (Anthropic)] One of the creators of Claude Code. On a
+    podcast with Cat Wu, as quoted by \textcite{liu2026claudecode}, they
+    call it ``a Unix utility rather than a traditional product'', made of
+    the smallest pieces that are ``useful, understandable, and extensible''.
+    This is the argument of \Cref{ch:landscape} from the people building the
+    tool.
   \item[Christopher Manning (Stanford)] Foundations of language processing;
-    co-author of the best empirical test of retrieval's limits
+    co-author of a careful empirical test of retrieval's limits
     \parencite{magesh2025legalrag}.
+  \item[Luke Zettlemoyer (University of Washington)] Open language models and
+    the methods behind them. Co-author of OLMo, released with its training data
+    and code \parencite{groeneveld2024olmo}, and of OpenScholar, a retrieval
+    model for the scientific literature \parencite{asai2026openscholar}. With
+    Tim Dettmers, he made the case for 4-bit quantisation
+    \parencite{dettmers2022fourbit}.
   \item[Lars Juhl Jensen (Copenhagen)] Biomedical text mining with dictionaries
-    and practical tools --- still the right approach for many problems.
-    Co-author of the comparison between textual and biological relatedness
-    across microbiome studies \parencite{venetsianou2026relatedness}.
+    and practical tools --- in my view still the right approach for many
+    problems. His \emph{Seshat} adds PubMed results to a prompt before a local
+    model sees it (\Cref{ch:stack}).
   \item[Sophia Ananiadou (Manchester)] Biomedical text mining, in the department
     where Turing worked, applied to biodiversity too: co-author of a gold-standard
     corpus for extracting species occurrences from Biodiversity Heritage Library
@@ -101,6 +131,19 @@ A short list of people who are careful rather than fast.
   \item[Anne Thessen] Biodiversity informatics and ontologies: the data layer
     all of this depends on. Lead author of an early review of natural language
     processing in biodiversity science \parencite{thessen2012nlp}.
+  \item[Donat Agosti (Plazi)] Getting biodiversity knowledge out of the
+    published literature: taxonomic treatments as open digital objects
+    \parencite{agosti2022treatments}, Biodiversity PMC
+    \parencite{pasche2026biodivpmc}, and the Disentis Roadmap for the coming
+    decade \parencite{agosti2026disentis}.
+  \item[Shinichi Nakagawa and Malgorzata Lagisz (UNSW Sydney), Timothy H.
+    Parker (Whitman College)] How far ecological evidence can be trusted. All
+    three co-wrote PRISMA-EcoEvo \parencite{odea2021prismaecoevo} and the study
+    in which many analysts worked on the same ecological data
+    \parencite{gould2025analysts}. Parker and Nakagawa also surveyed
+    questionable research practices in ecology and evolution
+    \parencite{fraser2018qrp}. Lagisz and Nakagawa co-wrote the case for AI in
+    conservation evidence synthesis \parencite{bergertal2024evidence}.
   \item[Martin Kleppmann (Cambridge)] Local-first software and distributed
     systems \parencite{kleppmann2019localfirst}.
   \item[Hadley Wickham (Posit)] On agents and AI in data analysis, from someone
@@ -112,11 +155,13 @@ A short list of people who are careful rather than fast.
 
 \section{Sources}
 
-\textbf{Primary.} arXiv (\code{cs.CL}, \code{cs.AI}, \code{cs.IR}) and bioRxiv.
+\textbf{Primary.} arXiv (\code{cs.CL}, \code{cs.AI}, \code{cs.IR},
+\code{cs.LG} and \code{cs.SE} for agents and evaluation; \code{q-bio.QM} and
+\code{q-bio.PE} closer to ecology) and bioRxiv.
 Do not try to follow them; search them when you have a question, with alerts on
-narrow terms only. Once a year, read the AI Index \parencite{aiindex2026}, the
-best single overview. \textbf{Blogs and newsletters.} A few careful writers test
-things by hand and report what fails: Simon Willison on local models
+narrow terms only. Once a year, read the AI Index \parencite{aiindex2026}, in my
+view the best single overview. \textbf{Blogs and newsletters.} A few careful
+writers test things by hand and report what fails: Simon Willison on local models
 \parencite{willison2026qwen38}, Stephen Turner on AI in genomics and biosecurity
 \parencite{turner2026slop}. \textbf{Lists and tutorials.} ``Awesome'' lists on
 GitHub cover RAG and agents. The mailing lists of the tools you use and
@@ -125,10 +170,11 @@ updated before relying on it. \textbf{Documentation.} Hugging Face for models, O
 library for what runs locally, and your harness's own documentation, which
 changes faster than any guide about it.
 
-\textbf{Community.} Your domain community is more useful than the AI one. Surveys
-of computational capacity in environmental omics find that what holds groups
-back is training and keeping staff, not tools
-\parencite{theodosopoulou2022greek} --- a corrective when talk turns to
+\textbf{Community.} Your domain community is more useful than the AI one. A national
+survey of environmental omics researchers in Greece found that most had the
+hardware they needed through their institute; the gaps they named included
+expertise, training and bioinformatics staff
+\parencite{theodosopoulou2022greek}. That is a corrective when talk turns to
 hardware. Follow TDWG for biodiversity standards, ELIXIR for life-science computing,
 and the GBIF and OBIS community channels. The World Biodiversity Forum is
 another meeting point, where \textcite{pasche2026biodivpmc} and
@@ -153,20 +199,22 @@ that add up to about forty hours a year.}
 \end{figure}
 
 In my view, a small project is the fastest way to learn.
-Try a RAG system over your own reprints, a classifier for camera-trap images,
-or a pipeline that extracts information from species descriptions.
-An analysis you have been avoiding can also be a useful starting point.
-You will find that PDF extraction is the hard part, that chunking
-matters more than the model, and that the model is confidently wrong in ways you
-can now recognise. None of that transfers from a blog post
+Try a RAG system over your own reprints, or a pipeline that extracts
+information from species descriptions. For camera-trap images, start from an
+open detector such as MegaDetector, one of the tools listed by
+\textcite{tuia2022perspectives}. An analysis you have been avoiding can also be
+a useful starting point. In my experience, PDF extraction is the hard part and
+chunking can matter as much as the choice of model. You will also find the
+model confidently wrong in ways you can now recognise. None of that transfers
+from a blog post
 (\Cref{fig:smallproject}).
 
 \begin{figure}[htbp]
 \centering
 \fig{ch17-small-project}
-\caption{A small project over your own reprints. Extraction is the hard part,
-chunking matters more than the model, and the answers are confidently wrong in
-ways you learn to recognise.}
+\caption{A small project over your own reprints. In my experience extraction
+is the hard part, chunking can matter as much as the model, and the answers are
+confidently wrong in ways you learn to recognise.}
 \label{fig:smallproject}
 \end{figure}
 

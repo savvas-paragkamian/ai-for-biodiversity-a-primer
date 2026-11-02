@@ -46,7 +46,7 @@ the same two patterns.}
 \label{fig:lineages}
 \end{figure}
 
-In the author's view the pattern is repeating (\Cref{fig:lineages}). Frontier AI is an information
+In my view the pattern is repeating (\Cref{fig:lineages}). Frontier AI is an information
 utility: a few very large central systems, rented by the call, justified by the
 belief that bigger is better. Open-weight models on your own hardware are the
 Unix branch: smaller, inspectable, changeable, and yours. This book leans
@@ -61,54 +61,75 @@ question behind \Cref{ch:aireadydata}.
 
 \section{The model}
 
-A large language model is a function. It takes a sequence of \term{tokens} ---
-chunks of text, roughly three-quarters of a word each --- and returns a
-probability for every possible next token. Conversation, tool use, reasoning and
+A large language model is a function. It takes a sequence of \term{tokens}
+and returns a probability for every possible next token. A token is a chunk of
+text: roughly three-quarters of a word in English prose, and less for
+scientific names, code and other languages. Conversation, tool use, reasoning and
 refusal are all built on that one operation, repeated. The model has no memory
 of your last question, no files, no clock and no ability to act. Anything that
 looks like continuity is machinery around it.
 
 \term{Pretraining} fits that function to a very large body of text; this is
-where the model picks up grammar, facts, code and the shape of academic prose. A
-second stage, \term{instruction tuning}, teaches it to be helpful, follow
-instructions and decline some requests. That second stage is where sycophancy
-comes from (\Cref{ch:powers}) and where the model learns to guess confidently
-rather than admit it does not know \parencite{kalai2025hallucinate}.
+where the model picks up grammar, facts, code and the shape of academic prose.
+The result continues text but does not yet follow requests. Two more stages
+make it an assistant. In \term{instruction tuning}, people write example
+answers to requests and the model is fitted to them. In \term{preference
+tuning}, people rank the model's answers and reinforcement learning moves it
+towards those ranked highest; the same methods can teach it to refuse some
+requests \parencite{ouyang2022instructgpt}. Sycophancy is usually linked to
+preference tuning (\Cref{ch:powers}): people tend to prefer answers that agree
+with them, and optimising for their preferences can trade truth for agreement
+\parencite{sharma2024sycophancy}. \term{Reasoning models} add reinforcement
+learning on verifiable tasks, whose answers a program can check, such as
+mathematics and code. In DeepSeek-R1 the reward on
+such tasks depended only on whether the final answer was correct, and the model
+learned to write longer intermediate steps, checking and revising them
+\parencite{guo2025deepseekr1}. Hallucination has a different
+history. \textcite{kalai2025hallucinate} trace it to pretraining, where some
+false statements cannot be told apart from facts, and its persistence to
+evaluations that score a confident guess above an admission of uncertainty.
+
+Models of the same kind are also trained on DNA, to predict properties such as
+gene expression from sequence \parencite{stelzer2026nativebio}. Evo~2, for
+example, learned from about nine trillion base pairs across all domains of
+life, one nucleotide per token, with no instruction or preference tuning
+\parencite{brixi2026evo2}. It assigns probabilities to DNA sequences and
+generates new ones; it is not a chatbot. What this book says about
+instructions, conversation and refusal applies to text models only.
 
 How capable are these models? Some abilities are called \term{emergent}
-because they appear suddenly as models grow. That appearance partly depends
-on how tests are scored. Whether models have emergent \emph{intelligence}
-remains an open question
-\parencite{krakauer2026emergence}. \textcite{mitchell2026jagged} calls the
-practical problem \term{jagged intelligence}: a system that solves a
-research-level problem can fail at counting or at a reworded version of the same
-question. Benchmark scores therefore say little about your task.
-\textcite{coppola2026transformers} argues the architecture is more
-understandable than its reputation, proving that a transformer layer performs one
-round of a well-known statistical inference method (belief propagation). At the
-other pole, \textcite{aguerayarcas2025intelligence} argues that prediction is
-the basis of all intelligence, living or not, so a system trained to predict is
-intelligent in a real if partial sense. It is a serious argument, not a
-consensus.
+because they seem to appear suddenly as models grow. For several of them the
+jump comes from the scoring. An all-or-nothing score such as exact match makes
+an ability seem to switch on, while partial credit shows steady improvement
+\parencite{schaeffer2023mirage}. \textcite{krakauer2026emergence} note that
+other studies question how general this is, and they regard emergent
+\emph{intelligence}, as opposed to emergent capabilities, as unproven in these
+models. \textcite{aguerayarcas2025intelligence} takes the other side:
+prediction is the basis of intelligence, so models trained to predict are
+intelligent, if not in a human way. \textcite{mitchell2026jagged}
+describes the practical problem with the term \term{jagged intelligence}: a
+system that beats people at advanced mathematics can fail an elementary-school
+problem, or the same question worded differently. Benchmark scores therefore
+say little about your task.
 
 Intelligence also needs separating from \term{phenomenal consciousness}:
 subjective experience, or whether there is something it feels like to be a
-system. In a substantial preprint, \textcite{chandaria2026consciousness}
-distinguish this from making information available for reasoning and from
-representing oneself. A model's fluent account of its feelings cannot settle
-the question, because producing human-like accounts is part of its training.
-Equally, success on an ecological benchmark measures a capability, without
-establishing whether that capability involves experience. Whether the living
-processes behind such capabilities matter for experience is disputed;
-\Cref{ch:security} takes the question up in the book's wider frame.
+system. \textcite{chandaria2026consciousness} distinguish this from making
+information available for reasoning and from representing oneself. A model's
+fluent account of its feelings cannot settle the question, because it was
+trained on vast amounts of human self-description. The epilogue
+(\Cref{ch:epilogue}) returns to the question.
 
 \section{The chatbot}
 
 A chatbot is a model plus a conversation buffer plus a web page
 (\Cref{fig:modelchatbotagent}). The buffer
-re-sends the whole history on every turn, which is why long conversations get
-slow and expensive, forget their beginning, and are often fixed by starting
-again. Chatbots are good for drafting, explaining, translating and brainstorming.
+re-sends the whole history on every turn. Reusing the unchanged opening of the
+prompt (\term{prompt caching}) softens the cost, and agent harnesses summarise
+old turns \parencite{liu2026claudecode}. Long conversations still get slower and
+more expensive, use material in their middle less reliably
+\parencite{liu2023lostmiddle}, and are often fixed by starting again.
+Chatbots are good for drafting, explaining, translating and brainstorming.
 They are bad at verified fact, current information, and anything that requires
 acting in the world.
 
@@ -127,20 +148,22 @@ An \term{agent} is a model given tools and a loop. The \term{harness} is the
 program that runs the loop. It decides what the model sees, runs the requested
 tools and feeds back their results. It also enforces permissions and decides
 when to stop. \textcite{liu2026claudecode} examined a production coding agent and found
-the core is a simple loop; most of the code is the permission system, context
+the core is a simple loop. Most of the code is the permission system, context
 management, error recovery and memory around it. \textcite{wickham2026nobs}
 puts it in terms an R user already knows. A tool is a function with a
 description of when to call it. An agent is a chatbot with two tools:
 one to look at the world and one to change it.
 
-\begin{lstlisting}[style=shell,caption={The whole idea, in pseudocode}]
-while not done:
+\begin{lstlisting}[caption={The whole idea, in pseudocode}]
+while not done and turns < max_turns:   # <- a budget stops it too
     response = model(context)
+    context += response                 # the model's own turn
     if response.wants_tool:
         result = run_tool(response.tool, response.args)   # <- permissions here
         context += result
     else:
         done = True
+    turns += 1
 \end{lstlisting}
 
 \begin{figure}[htbp]
@@ -153,13 +176,17 @@ the model stops asking for tools.}
 \end{figure}
 
 The \code{run\_tool} line (\Cref{fig:agentloop}) is where a text generator becomes something that can
-delete your files, and where the security risk lives (\Cref{ch:security}). Two
+delete your files, and where the security risk lives (\Cref{ch:security}).
+Real harnesses also stop when a budget runs out; Claude Code, for example,
+stops after a configurable number of turns \parencite{liu2026claudecode}. Two
 harnesses running the same model can behave quite differently. They differ in
 what they put into the context, how well their tools report errors, what they
 allow without asking, and what they remember between sessions.
-\textcite{du2026memory} survey the many designs for agent memory; the one that
-works most reliably today is a plain file the agent reads at the start of each
-session.
+\textcite{du2026memory} surveys the many designs for agent memory, from plain
+text kept in the context to vector and database stores. Plain text, the survey
+notes, is the most transparent and needs no infrastructure. In my experience the
+design that works most reliably today is a plain file the agent reads at the
+start of each session.
 
 \subsection{Files are all you need}
 
@@ -179,17 +206,25 @@ have seen. Write it after something goes wrong, not before.
 \section{The ecosystem, briefly}
 
 Widely used harnesses include Claude Code, OpenCode and Codex;
-\Cref{app:stateofplay} lists more. Codex is open source and can drive other companies' models; its
+\Cref{app:stateofplay} lists more. OpenCode and Codex are open source; Claude
+Code is a commercial product \parencite{liu2026claudecode}. Codex can drive
+other companies' models; its
 developers describe the harness as a set of crutches for the model ---
 guardrails, steering, context --- that shrinks as models improve
-\parencite{orosz2026codex}. Life-science agents include Biomni \parencite{huang2025biomni},
-PantheonOS \parencite{xu2026pantheonos} and OmicClaw
-\parencite{zeng2026omicclaw}. At the far end, systems now attempt whole research
+\parencite{orosz2026codex}. Claude Code takes in tools from outside through
+the Model Context Protocol (MCP), a standard way to offer tools and data to a
+model \parencite{liu2026claudecode}; \Cref{ch:aireadydata} shows what that means
+for biodiversity databases. The life-science agents cited in this book are built
+for biomedical and omics analysis
+\parencite{huang2025biomni,xu2026pantheonos,zeng2026omicclaw};
+\Cref{ch:applications} describes them and two efforts aimed at biodiversity
+data. At the far end, systems now attempt whole research
 projects: generating ideas, running experiments and writing papers
 \parencite{lu2026aiscientist}, producing new mathematics
 \parencite{feng2026aletheia}, assembling manuscripts \parencite{song2026paperorchestra}
 or evolving solutions with many cooperating agents \parencite{qu2026coral}. On
-real bioinformatics tasks, though, agent performance drops sharply as tasks get
-harder \parencite{guo2026promptbio}. Names will change; the design --- model,
+244 expert-written bioinformatics tasks, though, the accuracy of all three
+agents tested fell markedly as tasks got harder \parencite{guo2026promptbio}.
+Names will change; the design --- model,
 loop, tools, permissions, files --- has been stable, and is the part worth
 learning.

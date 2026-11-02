@@ -12,7 +12,8 @@ between that and a lost field season.
 
 \section{PARA}
 
-PARA sorts material by how actionable it is rather than by topic:
+PARA is Tiago Forte's scheme for organising personal files. It sorts material
+by how actionable it is rather than by topic:
 \textbf{Projects} (active, with an end date), \textbf{Areas} (ongoing
 responsibilities such as a monitoring programme), \textbf{Resources} (reference
 material) and \textbf{Archive} (anything finished). When a project closes it
@@ -23,13 +24,23 @@ for you and for an agent.
 ~/work/
   10_projects/2026_posidonia_edna/
     README.md   AGENTS.md
-    data/raw/         # never edited, read-only, checksummed
-    data/processed/   # regenerable from raw + scripts
+    data/raw/             # never edited, read-only
+    data/raw.sha256       # checksums of data/raw, written before it is locked
+    data/samples.tsv      # the sample sheet: one row per sample, the record
+    data/accessions.tsv   # archive accessions of the reads
+    data/processed/       # regenerable from raw + scripts
     scripts/  results/  manuscript/
   20_areas/monitoring_network/
   30_resources/literature/
   40_archive/2024_thermal_tolerance/
 \end{lstlisting}
+
+The example is a sequencing project, and sequence data have a rule of their
+own. The raw reads belong in a public archive such as ENA or SRA
+(\Cref{ch:aireadydata}). The project keeps what points at them: the
+accessions, the checksums, and the sample sheet that maps each sample to its
+run. A second copy of the reads costs storage and cannot be cited; the
+archived copy can.
 
 \section{Naming}
 
@@ -41,22 +52,56 @@ fields in a fixed order so that a script can split the name:
 ^date     ^site        ^station  ^marker ^replicate
 \end{lstlisting}
 
-Put descriptions in the README, not in file names.
+Put descriptions in the README, not in file names. The name is a convenience
+for sorting and for scripts; the sample sheet is the record, and when the two
+disagree the sheet wins. An agent will readily derive metadata from file
+names, which is how a wrong marker or primer set in a name propagates into
+results.
 
 \section{Raw data is read-only}
 
-The most valuable rule in this chapter: never modify raw data. Make it
-read-only, record checksums, and derive everything else by script.
+The most valuable rule in this chapter: never modify raw data. Record
+checksums, make the folder read-only, and derive everything else by script.
+The shell listings in this book assume a Unix shell, as on macOS and Linux;
+\Cref{ch:stack} says what that means on Windows, and an R version follows.
 
-\begin{lstlisting}[style=shell]
+\begin{lstlisting}[style=shell,caption={Checksums first, then lock the folder}]
+find data/raw -type f -print0 | sort -z | xargs -0 shasum -a 256 > data/raw.sha256
 chmod -R a-w data/raw/
-find data/raw -type f -exec sha256sum {} + > data/raw/CHECKSUMS.sha256
-sha256sum -c data/raw/CHECKSUMS.sha256      # verify later
+shasum -a 256 -c data/raw.sha256     # verify later: every line OK, exit status 0
 \end{lstlisting}
+
+The order matters, and so does where the checksum file lives. Lock the folder
+first and the checksums cannot be written into it. Write them inside the
+folder and the file hashes itself, so one line fails at every check. Keeping
+\code{raw.sha256} beside the folder avoids both. \code{shasum -a 256} and
+\code{sha256sum} are two names for the same check; use whichever your system
+has.
+
+\begin{lstlisting}[caption={The same in R}]
+files <- list.files("data/raw", recursive = TRUE, full.names = TRUE)
+sums  <- tools::sha256sum(files)                       # R 4.5 or later
+writeLines(paste(sums, names(sums), sep = strrep(" ", 2)), "data/raw.sha256")
+Sys.chmod(files, "0444")                               # files read-only
+Sys.chmod(list.dirs("data/raw"), "0555")               # no files added or removed
+stored <- read.table("data/raw.sha256", col.names = c("sum", "file"))
+stopifnot(all(tools::sha256sum(stored$file) == stored$sum))   # verify later
+\end{lstlisting}
+
+Base R has had \code{tools::sha256sum()} since version 4.5, so no package is
+needed, and the file it writes is the one \code{shasum -c} reads. On Windows,
+mark the files read-only in the folder's Properties or with \code{attrib +R};
+the checksums are the check that matters on every system.
 
 An agent asked to clean a dataset will happily clean it in place. Read-only
 permissions turn that into a visible error instead of a silent loss
-(\Cref{fig:rawreadonly}).
+(\Cref{fig:rawreadonly}). They are a tripwire, not a wall. A process running
+as your user can run \code{chmod u+w} and write again, and an agent that
+meets a permission error may do exactly that. What it cannot undo from inside
+is a boundary set outside the session: the harness's sandbox, a container
+with the raw folder mounted read-only, or files owned by another user
+(\Cref{ch:security}). The checksums tell you afterwards whether anything
+changed, whatever got past the permissions.
 
 \begin{figure}[htbp]
 \centering
@@ -94,9 +139,20 @@ agent's \code{rm -rf} reach every disk at once.}
 \section{Version control}
 
 Use Git for code, always; with agents it stops being optional. Commit before an
-agent starts, read \code{git diff} afterwards, and \code{git checkout} to undo
-what you do not want. Keep large data out of the repository and record its
-location and checksum in the README; Zenodo gives the archived copy a DOI.
+agent starts, push that checkpoint to a remote, read \code{git diff}
+afterwards, and \code{git restore} what you do not want. Git protects only
+what is tracked and committed. Files an agent creates or deletes before the
+next commit are not recovered, and an agent with shell access can itself run
+\code{git reset --hard}, \code{git clean -fdx} or \code{git push --force}.
+Deny those subcommands in the harness configuration (\Cref{ch:firstsession}),
+so that the remote copy stays a checkpoint the session cannot rewrite.
+
+Keep large data out of the repository and record its location and checksum in
+the README. Choose the archive by what the data are. Occurrence data go to
+GBIF or OBIS through an Integrated Publishing Toolkit (IPT), with their
+metadata in Ecological Metadata Language (EML), where they stay discoverable
+as data. Other ecological data suit the Environmental Data Initiative (EDI)
+or Dryad. Zenodo suits code and gives the archived copy a DOI.
 
 \section{Plain text lasts}
 
@@ -104,4 +160,7 @@ The formats that survive are simple ones: plain text, Markdown, CSV, and open,
 well-specified formats such as Parquet and NetCDF. Text can be searched,
 compared, versioned and read in fifty years without special software. It is also
 what agents handle best, because it is what they were trained on. When a system
-offers a choice, take the text.
+offers a choice, take the text. The exception is sequence data. FASTQ, BAM,
+CRAM and HDF5 last because they are specified and indexed; converted to text
+they lose their quality encodings and stop working at scale. Prefer open,
+specified formats, and for sequence data use the domain's own.

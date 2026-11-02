@@ -9,8 +9,13 @@ keep the workflow reproducible.
 
 \begin{description}
   \item[Operating system] Linux is the path of least resistance; macOS is close
-    and has an advantage for local models (\Cref{ch:hardware}); Windows works
-    through WSL2.
+    and has an advantage for local models (\Cref{ch:hardware}). The shell
+    listings in this book assume one of the two. On Windows they need WSL2, a
+    Linux environment inside Windows, which an RStudio user has to install and
+    learn before the first listing runs. The R listings run unchanged. macOS
+    ships BSD versions of \code{grep}, \code{sed} and \code{find}, which lack
+    some GNU options, and a command that fails there with ``invalid option''
+    usually fails for that reason.
   \item[Languages and environments] R for ecological statistics, Python for
     machine learning; most projects use both. Pin packages with \code{renv}
     for R and \code{uv} or \code{conda} for Python.
@@ -27,14 +32,16 @@ explore and cannot be scripted. A text interface in the terminal (TUI) works
 over a remote connection. A command line (CLI) can be scripted and logged. An
 API does anything, if you write the code. For reproducibility the command line
 wins: a command is a record of what you did, a series of clicks is not.
-That is also why agent harnesses live in the terminal (\Cref{fig:layers}).
+Harnesses run in the terminal, inside editors and in the cloud; this book
+uses the terminal kind because a session there leaves a record that can be
+read and replayed (\Cref{fig:layers}).
 
 \begin{figure}[htbp]
 \centering
 \fig{ch08-layers}
 \caption{The layers an analysis depends on, and the four ways to talk to a
-system. The command line can be scripted and logged, which is why harnesses
-live there.}
+system. The command line can be scripted and logged, which is why this book's
+harnesses run there.}
 \label{fig:layers}
 \end{figure}
 
@@ -59,7 +66,10 @@ live there.}
 
 These practices also make an agent's work easier to check. A disorganised
 project lets mistakes spread quickly, even when the agent appears to be
-making progress.
+making progress. For biologists who want these skills from the start,
+\textcite{allesina2019computing} give a chapter each to the Unix shell,
+version control, writing good code, regular expressions, statistical
+computing and relational databases.
 
 \section{Local model tooling}
 
@@ -70,24 +80,37 @@ users at once; \textbf{LM Studio} is the point-and-click option. On Linux, run
 the runtime in a rootless container; \textcite{monshed2026ollamapodman} give a
 working Podman recipe that also solves GPU access. \textbf{Open WebUI} provides
 a familiar chat window over local and remote models. Interfaces with extensions
-can rewrite what goes in and out: Jensen's \emph{Seshat} adds PubMed results to
-a prompt before the model sees it --- a domain RAG layer as a plug-in.
+can rewrite what goes in and out: Lars Juhl Jensen's \emph{Seshat}, listed in
+\Cref{app:tutorials}, adds PubMed results to a prompt before the model sees
+it, a domain RAG layer as a plug-in. On Apple silicon, MLX, Apple's array
+framework, is the native route; LM Studio and Ollama both offer MLX builds,
+and the sessions in \Cref{ch:firstsession} ran on one (\Cref{app:stateofplay}).
+One warning: Ollama also serves models hosted on its own servers through the
+same command line, and a prompt sent to one of those leaves the machine.
+Check that a model is local before trusting it with data
+(\Cref{ch:localfirst}).
 
 \begin{lstlisting}[style=shell,caption={A local coding model with a usable context}]
-ollama pull gemma4:12b
-ollama run gemma4:12b
-  /set parameter num_ctx 32768     # the 4K default breaks agent loops
-  /save gemma4:12b-32k
-ollama ps                          # CONTEXT must read 32768
+ollama pull MODEL                  # a current tag is in Appendix D
+ollama run MODEL
+  /set parameter num_ctx 65536     # the default is sized for chat, not agents
+  /save MODEL-64k
+ollama ps                          # CONTEXT must show the new value
 \end{lstlisting}
 
 Two settings cause most local-agent failures (\Cref{fig:localtooling}). The harness must be told that
 the model supports tools (in OpenCode, \code{"tool\_call": true} in the model's
-entry). The context must
-also be enlarged; otherwise, information is cut from the loop and the agent
-appears unable to follow the task. A 12B
-local model is useful for small edits and explanation, and well behind frontier
-models on work spanning many files.
+entry). The context must also be enlarged. The runtime's default is sized for
+chat and depends on the machine's memory. An agent loop re-sends the whole
+session each turn and needs tens of thousands of tokens; otherwise information
+is cut and the agent appears unable to follow the task. Set it per model as
+above, or
+once for the server with \code{OLLAMA\_CONTEXT\_LENGTH} as
+\Cref{ch:firstsession} does. \Cref{app:stateofplay} gives the current defaults
+and the vendor's advice, and \Cref{ch:hardware} the memory a long context
+costs. A local model of about twelve billion parameters is useful for small
+edits and explanation, and well behind frontier models on work spanning many
+files.
 
 \begin{figure}[htbp]
 \centering
@@ -100,11 +123,16 @@ and the tool-calling flag cause most local-agent failures.}
 
 \section{Speech to text}
 
-\code{whisper.cpp} runs the Whisper transcription model locally; on Apple
-Silicon it can be about three times faster using the Neural Engine. Beware:
-Whisper invents text over silence, music or noise. In one study, about 1 per cent
-of transcripts contained whole phrases or sentences that were never spoken, more
-often when speakers paused for long stretches \parencite{koenecke2024whisper}.
+Speech to text is a different technology from the species-call classifiers
+used in acoustic monitoring, such as BirdNET, and nothing here carries over to
+them. \code{whisper.cpp} runs the Whisper transcription model locally. On
+Apple silicon its default build runs on the GPU. An optional Core ML build
+moves the encoder to the Neural Engine, which the project reports as more
+than three times faster than running on the CPU alone, not than the GPU
+build. Beware: Whisper invents text over silence, music or noise. In one
+study, roughly 1 per cent of audio transcriptions contained entire phrases or
+sentences that were never spoken, more often for speakers with long pauses
+\parencite{koenecke2024whisper}.
 
 Greek shows how this looks in practice. When \textcite{paraskevopoulos2024greekpodcast}
 transcribed 800 hours of Greek podcasts, Whisper wrote a subtitle credit,

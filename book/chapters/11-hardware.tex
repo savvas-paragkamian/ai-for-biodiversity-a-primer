@@ -7,52 +7,94 @@ is suitable for a particular task.
 
 \section{Memory, not compute}
 
-To generate each token, the model's weights are read through the processor
-once. A thousand tokens means reading the weights a thousand times, so speed is
-set by memory bandwidth --- and the model has to fit in memory at all before
-speed is a question. A graphics card with 16\,GB cannot run a model that needs
-40\,GB at any speed; a machine with 128\,GB of slower shared memory can.
+Generating an answer has two phases, and they stress different parts of a
+machine. First the model reads the whole prompt in one pass: the
+\term{prefill}. Then it writes the answer one token at a time: the
+\term{decode}. To generate each token, the model's weights are read through the
+processor once. A thousand tokens means reading the weights a thousand times,
+so decoding speed is set by memory bandwidth --- and the model has to fit in
+memory at all before speed is a question. A graphics card with 16\,GB cannot
+run a model that needs 40\,GB at any speed; a machine with 128\,GB of slower
+shared memory can.
+
+The prefill is different. The prompt's tokens are processed together, so the
+limit is arithmetic, not bandwidth. For a question of fifty words it takes no
+time. An agent, however, re-sends the whole session at every step: the rules
+file, the files it has read and every earlier turn (\Cref{ch:agentic}). Its
+prompts run to tens of thousands of tokens, and the wait before the first token
+of each answer is set by raw compute. That wait is where a machine built around
+a large pool of shared memory is weakest, and it is the wait an agent user
+feels most. Two rules follow. For the decode, the model must fit, and tokens
+per second is roughly bandwidth divided by the bytes read per token. For the
+prefill, compute sets how long the agent pauses at each turn. A runtime that
+keeps the unchanged part of the prompt between turns (prompt caching,
+\Cref{ch:agentic}) can remove much of that pause.
 
 We can estimate the memory needed from the number of parameters and their
-precision. Each parameter takes 2 bytes at full precision (FP16), 1 byte at
-8-bit, and about 0.5--0.7 bytes at 4-bit (Q4). A 7-billion-parameter (7B) model
-therefore needs about 14\,GB, 7\,GB or 4--5\,GB. Add 20--30\% for the context
-(the \term{KV cache}) and overheads. A 32\,GB machine comfortably runs a Q4 12B
-model with a 32K context; a 70B model wants 48\,GB or more (\Cref{fig:memory}).
+precision. Models are released at half precision (FP16 or BF16), 2 bytes per
+parameter; 8-bit takes 1 byte, and 4-bit (Q4) about 0.5--0.7 bytes. A
+7-billion-parameter (7B) model therefore needs about 14\,GB, 7\,GB or 4--5\,GB
+for its weights (\Cref{fig:memory}).
+
+The context needs memory too. For every token in the context the model keeps
+the attention keys and values it has already computed, so that it does not
+redo that work for each new token. This store is the \term{KV cache}. Its size
+does not follow the weights' precision but the model's shape and the context
+length: per token, 2 $\times$ layers $\times$ key-value heads $\times$ head
+dimension $\times$ bytes per value. The 8B model used in \Cref{ch:testing} has
+36 layers, 8 key-value heads and a head dimension of 128. A token therefore
+costs about 144\,KiB at 16-bit, and a 32K context about 4.5\,GiB, close to
+the 5\,GB of its four-bit weights. The cache grows in proportion to the context,
+so 128K would need four times as much. A model with fewer key-value heads
+needs less: the 30B mixture model in the listing below has four, and its cache
+at 32K is about 3\,GiB. Most runtimes can also keep the cache at 8-bit, which
+halves it. The old rule of adding a quarter for the context holds only at
+moderate context lengths; at the lengths agents use, the cache can rival the
+weights. A 32\,GB machine comfortably runs a Q4 12B model with a 32K context; a
+70B model wants 48\,GB or more.
 
 \begin{figure}[htbp]
 \centering
 \fig{ch13-memory-bandwidth}
 \caption{Memory, not compute. Every weight is read once per token, so the model
-must fit in memory first and speed follows from bandwidth; a 7B model needs
-14, 7 or 4--5\,GB depending on precision.}
+must fit in memory first and decoding speed follows from bandwidth; a 7B model
+needs 14, 7 or 4--5\,GB depending on precision, plus a cache that grows with
+the context. Reading a long prompt is limited by compute instead.}
 \label{fig:memory}
 \end{figure}
 
 \begin{keypoint}
-Capacity first: does the model fit? Bandwidth second: how fast can it be read?
-Compute third. Buying for raw processing power is the standard mistake.
+Capacity first: do the model and its context fit? Bandwidth sets how fast an
+answer streams; compute sets how long an agent waits before each answer. Buying
+for processing power alone is the common mistake; buying for memory alone is
+the mistake an agent user makes.
 \end{keypoint}
 
 \section{Unified memory}
 
 In a conventional PC, the graphics card has its own fixed memory, and anything
-it works on is copied there first. \term{Unified memory} puts processor and graphics on one shared pool,
-so a 64\,GB laptop can give most of it to a model. Examples include Apple
-Silicon, AMD's Ryzen AI Max, Qualcomm Snapdragon X and NVIDIA's desktop
-Grace Blackwell. That is why Apple hardware is so common in local AI work: an
-architectural advantage, not a brand preference. The trade-off is simple. A separate graphics
-card has far more bandwidth (1--3\,TB/s against 200--800\,GB/s) and is the only
-sensible choice for training, but it holds only 8--48\,GB and draws 300--700\,W.
-A shared-memory machine holds 16--512\,GB and draws 30--120\,W. If the model fits
-on the card, the card is faster. The shared-memory advantage is that large models
-fit at all (\Cref{fig:unified}).
+it works on is copied there first. \term{Unified memory} puts processor and
+graphics on one shared pool, so a 64\,GB laptop can give most of it to a model.
+Examples include Apple Silicon, AMD's Ryzen AI Max, Qualcomm Snapdragon X and
+NVIDIA's desktop Grace Blackwell. That is why Apple hardware is so common in
+local AI work: an architectural advantage, not a brand preference. The
+trade-off is simple. A separate graphics card has far more compute and is the
+only sensible choice for training. But the cards most people buy hold 8 to
+16\,GB, the largest consumer card 32\,GB, and professional cards up to 96\,GB,
+and the big ones draw up to 600\,W. A shared-memory machine holds 16 to
+512\,GB and draws far less. On bandwidth the two overlap. A professional card
+reaches 1.8\,TB/s, but the 16\,GB consumer cards use a narrow memory bus. The
+fastest unified-memory chips reach 614\,GB/s in a laptop and 1.2\,TB/s in a
+desktop, above those cards. If the model fits on the card, the card is faster,
+and much faster at reading a long prompt. The shared-memory advantage is that
+large models fit at all (\Cref{fig:unified}). \Cref{app:stateofplay} gives the
+figures for particular devices, with the dates they were checked.
 
 \begin{figure}[htbp]
 \centering
 \fig{ch13-unified-memory}
 \caption{A separate graphics card against unified memory. The card has more
-bandwidth but holds 8--48\,GB; a shared pool is slower per byte but holds
+compute and often more bandwidth but holds 8--96\,GB; a shared pool holds
 16--512\,GB, so large models fit at all.}
 \label{fig:unified}
 \end{figure}
@@ -64,75 +106,122 @@ Representative machines and their prices at the time of writing are in
 longer.
 
 As a guide, text classification needs 1--7B models; a small fine-tuned model
-often beats a large general one \parencite{chen2025bionlp}. Summarising and extraction need 7--14B.
-Scoped coding needs 12--32B with at least a 32K context, while agent work
-across several files needs 30--70B. Below that, expect frustration.
-Embedding models are under 1B and run
-on an ordinary processor; Whisper for transcription is 1.5B (\Cref{fig:sizes}).
+often beats a large general one \parencite{chen2025bionlp}. Summarising and
+extraction need 7--14B. Scoped coding needs 12--32B with at least a 32K
+context, while agent work across several files needs 30--70B. Below that,
+expect frustration. Text embedding models are under 1B and run on an ordinary
+processor; Whisper for transcription is 1.5B (\Cref{fig:sizes}). These sizes
+are total parameters, which is what sets the memory needed.
 
 \begin{figure}[htbp]
 \centering
 \fig{ch13-size-guide}
-\caption{A size guide. Parameters on a logarithmic scale, with the tasks each
-range serves; names change, but the ranges last longer.}
+\caption{A size guide. Total parameters on a logarithmic scale, with the tasks
+each range serves; names change, but the ranges last longer. A mixture-of-experts
+model sits on the scale by its total parameters for memory and runs at the
+speed of its active ones.}
 \label{fig:sizes}
 \end{figure}
 
+\section{Dense models and mixtures of experts}
+
+A \term{dense} model reads every weight for every token, so memory bandwidth
+slows it most. A \term{mixture-of-experts} model (MoE) divides most of its
+weights into groups called experts, and a small router picks a few of them for
+each token. Its total parameters set the memory it needs; its \term{active
+parameters}, the ones read for one token, set its decoding speed. A model
+named 30B-A3B has 30 billion parameters in all and about 3 billion active per
+token: it needs the memory of a 30B model and decodes like a 3B one. That is
+why such models run well on unified memory, where capacity is plentiful and
+bandwidth is modest. The same arithmetic rules out the largest mixtures for a
+laptop. A model of a trillion total parameters with 32 billion active decodes
+quickly, but its weights do not fit on any machine in this chapter; it is a
+hosted model for most readers. Read the size guide in total parameters for
+memory and in active parameters for speed. \Cref{app:stateofplay} lists both
+for the models named in this book.
+
 \section{Quantisation}
 
-\term{Quantisation} stores weights at lower precision. Q4\_K\_M, about four bits
-per weight, is the default worth starting from; use Q5 or Q6 if you have room
-and the task is sensitive; Q2 and Q3 degrade noticeably. For a fixed amount of
-memory, a larger model at Q4 beats a smaller one at Q8
-\parencite{dettmers2022fourbit}. These averages hide exceptions. At four bits,
-small models can lose much more accuracy than 70B-class ones, and the losses grow
-with long inputs and with text in languages other than English
+\term{Quantisation} stores weights at lower precision. Q4\_K\_M stores most
+weights at about four bits and the sensitive ones at a little more; it is the
+default worth starting from. Use Q5 or Q6 if you have room and the task is
+sensitive; Q2 and Q3 degrade noticeably. For a fixed amount of memory, a
+larger model at Q4 beats a smaller one at Q8 \parencite{dettmers2022fourbit}.
+These averages hide exceptions. At four bits, small models can lose much more
+accuracy than 70B-class ones, and the losses grow with long inputs and with
+text in languages other than English
 \parencite{lee2025quantisation,mekala2025quantlong}. Test the quantised model on
 your own documents before relying on it (\Cref{ch:testing}).
 
 \section{Reasoning effort}
 
 Many recent models write a hidden reasoning trace before answering, and
-\term{reasoning effort} sets how long it may run. Locally this setting matters
-more than the choice of model. \textcite{willison2026qwen38} found that Qwen 3.8 27B
-ships with effort at maximum. Asked for an SVG of a circle, it spent minutes
-planning an animated ``geometric study''. A drawing that took 21 minutes with
-full reasoning took just over two without. The reasoning also filled the default
-8,192-token context before any answer appeared. Start with reasoning low or off
-and raise it only when the output is wrong --- in his tests one small tool did
-need it. Give the model more context than the runtime's default. Turn on
-\term{multi-token prediction} where supported: a light add-on drafts the next
-few tokens and the full model confirms them in one pass. With this enabled,
-llama.cpp ran the same model about 72 per cent faster than the default
-LM Studio build.
+\term{reasoning effort} sets how long it may run. On a laptop this setting can
+matter as much as the choice of model. One practitioner's account shows why.
+\textcite{willison2026qwen38} found that Qwen 3.8 27B ships with effort at
+maximum. Asked for an SVG drawing, it spent minutes planning, and a drawing
+that took 21 minutes with full reasoning took just over two without. The
+reasoning also filled LM Studio's default context of 8,192 tokens before any
+answer appeared; the default differs by runtime (\Cref{ch:stack}). Start with
+reasoning low or off and raise it only when the output is wrong --- in his
+tests one small tool did need it. Give the model more context than the
+runtime's default. Turn on \term{multi-token prediction} where the model
+supports it: a cheaper mechanism built into the model guesses several tokens
+ahead, and the full model checks the guesses. In a benchmark he had an agent
+run, llama.cpp with this drafting, which also loaded a smaller copy of the
+model, was about 72 per cent faster than LM Studio's default build. The
+runtime, the build and the drafting all differed between the two, so the gain
+cannot be credited to drafting alone, but it shows how much the serving
+software matters on the same machine.
 
 \section{Models worth having}
 
 Names date quickly, but the categories are more stable. Start with a coding
-model of 12--30B, such as those in the Qwen, Gemma and Kimi families.
-Qwen 3.8 27B can drive a coding agent \parencite{willison2026qwen38};
-\Cref{app:stateofplay} lists versions current at the time of writing.
-Check tool-calling support before relying on a model for agents.
+model of 12--30B total parameters, such as those in the Qwen and Gemma
+families. Qwen 3.8 27B can drive a coding agent \parencite{willison2026qwen38};
+\Cref{app:stateofplay} lists versions current at the time of writing, with
+their total and active parameters. Check tool-calling support before relying
+on a model for agents.
 
 For summarising and extraction, keep a general instruct model of 7--30B.
-An embedding model (\code{bge-m3}) and a reranker (\code{bge-reranker}) serve
-retrieval, while Whisper handles transcription. A small 1--4B model is
-useful for high-volume classification. Dense models read every weight for every token, so
-memory bandwidth slows them most. Check each licence: several ``open'' models
-restrict use.
+A text embedding model (\code{bge-m3}) and a reranker (\code{bge-reranker})
+serve retrieval, while Whisper handles transcription. A small 1--4B model is
+useful for high-volume classification. Check each licence: several ``open''
+models restrict use.
 
 \section{Shared deployment}
 
-For a group, one good machine beats several mediocre ones: run vLLM on a
-128\,GB server, expose an OpenAI-compatible endpoint on the institutional
-network, and point everyone's tools at it.
+For a group, one good machine beats several mediocre ones. Run vLLM on a
+server with 128\,GB of memory the accelerator can use, expose an
+OpenAI-compatible endpoint on the institutional network, and point everyone's
+tools at it. For vLLM that means graphics-card memory, or unified memory on a
+machine such as a DGX Spark; ordinary system RAM next to a small card does not
+count.
 
 \begin{lstlisting}[style=shell,caption={Minimal shared serving}]
-vllm serve Qwen/Qwen3-30B-A3B-Instruct --host 0.0.0.0 --port 8000 \
-    --max-model-len 32768                          # on the server
-export OPENAI_BASE_URL=http://gpu-server.local:8000/v1   # on each workstation
-export OPENAI_API_KEY=not-used-but-required
+pip install "vllm==<the version you tested>"             # on the server
+vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507 --host 127.0.0.1 --port 8000 \
+    --max-model-len 32768 --api-key "$VLLM_API_KEY"
+# a reverse proxy (nginx or Caddy) terminates TLS on port 443
+# and forwards to 127.0.0.1:8000
+export OPENAI_BASE_URL=https://gpu-server.example.org/v1   # on each workstation
+export OPENAI_API_KEY=<the key the administrator gave you>
 \end{lstlisting}
 
-Keep it behind the institutional firewall. An open inference endpoint is free
-computing for whoever finds it, and it will be found.
+Give the server a key, bind it to the loopback address, and put a reverse
+proxy with TLS in front of it. The key does not cover every route a serving
+program exposes, so the proxy, not the firewall, is the boundary. An
+institutional network is not a trust boundary: a server with a known flaw is
+reachable from any compromised laptop on it. An open endpoint is free
+computing for whoever finds it, and it will be found. Pin the
+version you tested, and update it when its maintainers publish a fix.
+
+Many publicly funded groups already have what this section describes: a
+cluster with graphics cards, a batch scheduler such as Slurm, and no root
+access. That route needs no purchase. Ask the administrators three things. Is
+a container runtime such as Apptainer available? May a batch job open a port
+on a compute node for its duration? How is a node with enough accelerator
+memory requested? A job that starts vLLM or Ollama on a compute node and
+serves the endpoint to the login node gives a group interactive use. An offline
+job that runs a whole extraction over a file of prompts is simpler still:
+nothing has to stay running.

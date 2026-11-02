@@ -1,34 +1,50 @@
 % A model trained on biased records learns where people looked.
 \input{../style}
 \begin{document}
-\begin{tikzpicture}[c/.store in=\cell, c=14pt]
+\begin{tikzpicture}[c/.store in=\cell, c=12pt]
+  % sampled cells (A, C), occurrences (B, C, D), predicted presence (D)
+  \def\sampled{0/0,1/0,1/1,2/1,2/2,3/2,4/2,4/3,5/3}
+  \def\lives{0/0,1/1,2/2,3/2,4/3,0/3,1/3,3/0,4/0,5/1,2/3,5/2,0/2,3/1}
+  \def\records{0/0,1/1,2/2,3/2,4/3}
+  \def\predicted{0/0,1/0,0/1,1/1,2/1,2/2,3/2,4/2,3/3,4/3}
   % panel A: where people looked
   \begin{scope}
-    \foreach \i/\j in {0/0,1/0,1/1,2/1,2/2,3/2,4/2,4/3,5/3}
+    \foreach \i/\j in \sampled
       \fill[lightgrey] (\i*\cell,\j*\cell) rectangle ++(\cell,\cell);
     \draw[thin, black] (0,0) grid[step=\cell] (6*\cell,4*\cell);
-    \node[tag, below=4pt of current bounding box.south] {where people looked};
+    \node[tag, text width=86pt, anchor=north] at (3*\cell,-4pt) {where people looked};
   \end{scope}
   % panel B: where the species lives
-  \begin{scope}[shift={(118pt,0)}]
-    \foreach \i/\j in {0/0,1/1,2/2,3/2,4/3,0/3,1/3,3/0,4/0,5/1,2/3,5/2,0/2,3/1}
-      \fill (\i*\cell+\cell/2,\j*\cell+\cell/2) circle (1.4pt);
+  \begin{scope}[shift={(102pt,0)}]
+    \foreach \i/\j in \lives
+      \fill (\i*\cell+\cell/2,\j*\cell+\cell/2) circle (1.3pt);
     \draw[thin, black] (0,0) grid[step=\cell] (6*\cell,4*\cell);
-    \node[tag] at (3*\cell,-11pt) {where the species lives};
+    \node[tag, text width=86pt, anchor=north] at (3*\cell,-4pt) {where the species lives};
   \end{scope}
-  % panel C: what the model predicts
-  \begin{scope}[shift={(236pt,0)}]
-    \foreach \i/\j in {0/0,1/0,1/1,2/1,2/2,3/2,4/2,4/3,5/3,3/3}
+  % panel C: what the records show
+  \begin{scope}[shift={(204pt,0)}]
+    \foreach \i/\j in \sampled
       \fill[lightgrey] (\i*\cell,\j*\cell) rectangle ++(\cell,\cell);
-    \foreach \i/\j in {0/0,1/1,2/2,3/2,4/3}
-      \fill (\i*\cell+\cell/2,\j*\cell+\cell/2) circle (1.4pt);
+    \foreach \i/\j in \records
+      \fill (\i*\cell+\cell/2,\j*\cell+\cell/2) circle (1.3pt);
     \draw[thin, black] (0,0) grid[step=\cell] (6*\cell,4*\cell);
-    \node[tag] at (3*\cell,-11pt) {what the model predicts};
+    \node[tag, text width=86pt, anchor=north] at (3*\cell,-4pt) {what the records show};
   \end{scope}
-  \draw[->] (90pt,2*\cell) -- (112pt,2*\cell);
-  \draw[->] (208pt,2*\cell) -- (230pt,2*\cell);
-  \node[note, text width=352pt] at (160pt,-34pt)
-    {grey: sampled cells; dots: records. The prediction repeats the sampling pattern,
-     and a decision made on it carries the bias with a look of precision.};
+  % panel D: what a model trained on the records predicts
+  \begin{scope}[shift={(306pt,0)}]
+    \foreach \i/\j in \predicted
+      \fill[accent!30] (\i*\cell,\j*\cell) rectangle ++(\cell,\cell);
+    \foreach \i/\j in \lives
+      \fill (\i*\cell+\cell/2,\j*\cell+\cell/2) circle (1.3pt);
+    \draw[thin, black] (0,0) grid[step=\cell] (6*\cell,4*\cell);
+    \node[tag, text width=86pt, anchor=north] at (3*\cell,-4pt) {what a model trained on the records predicts};
+  \end{scope}
+  \draw[->] (77pt,2*\cell) -- (97pt,2*\cell);
+  \draw[->] (179pt,2*\cell) -- (199pt,2*\cell);
+  \draw[->] (281pt,2*\cell) -- (301pt,2*\cell);
+  \node[note, text width=370pt] at (189pt,-44pt)
+    {grey: cells where people looked; dots: where the species lives; tint: where
+     the model predicts the species. The prediction follows the band people
+     sampled and misses most of the range.};
 \end{tikzpicture}
 \end{document}

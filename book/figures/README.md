@@ -91,10 +91,10 @@ small capitals for panel titles, no decoration.
 | ch08-layers | 8 | fig:layers | The software stack and the four interfaces |
 | ch08-local-tooling | 8 | fig:localtooling | Clients, API, runtimes and engine for local models |
 | ch08-speech | 8 | fig:speech | Speech to text with the filters around Whisper |
-| ch09-chain-of-inference | 9 | fig:chain | Generated code is kept; a generated number is not |
+| ch09-chain-of-inference | 9 | fig:chain | Three places for a model: it writes code (kept), it is an instrument checked on a validation sample, or it produces the answer (avoided) |
 | ch09-variation | 9 | fig:variation | Five sources of variation in a model call and the remedy for each |
 | ch10-session-flow | 10 | fig:session | The first agent session as a flowchart with its checks |
-| ch10-three-layers | 10 | fig:threelayers | Rules file, harness configuration and file permissions around the raw data |
+| ch10-three-layers | 10 | fig:sessionlayers | Rules file, harness configuration, harness sandbox and file permissions around the raw data |
 | ch11-two-layers | 11 | fig:twolayers | Scripts on a clock above, the assistant skill below, and the verifier as the only way into the bibliography |
 | ch11-week-pipeline | 11 | fig:weekpipeline | Five sources to raw files, one merged table, and the check that keeps unresolved items out of the bibliography |
 | ch11-citation-check | 11 | fig:citationcheck | What a Consensus result must pass before the assistant may cite it |
@@ -107,8 +107,8 @@ small capitals for panel titles, no decoration.
 | ch14-procedure | 14 | fig:procedure | The six-step testing procedure |
 | ch14-scoring-grid | 14 | fig:scoring | Correct, wrong, missed and invented values in a 2 by 2 grid |
 | ch15-injection | 15 | fig:injection | Instructions and data as one stream of tokens |
-| ch15-fences | 15 | fig:fences | Five layers around an agent, each with its limit |
-| ch15-shared-layer | 15 | fig:sharedlayer | Both refusals live in the instruction-tuning layer that injection subverts |
+| ch15-fences | 15 | fig:fences | Six layers around an agent, including the harness's sandbox, each with its limit |
+| ch15-shared-layer | 15 | fig:sharedlayer | Where safeguards sit in a chat model and in a biological sequence model; injection acts on the agent |
 | ch16-workflow-checks | 16 | fig:workflow | Five stages of the research workflow, the use and the limit at each |
 | ch16-resolve | 16 | fig:resolve | Resolving every reference before it enters a manuscript |
 | ch17-routine | 17 | fig:routine | Weekly, monthly, quarterly and yearly slots adding up to forty hours |

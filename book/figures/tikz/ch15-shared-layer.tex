@@ -1,18 +1,26 @@
-% Refusals for malware and for pathogens live in the same layer, so injection defeats both.
+% Where the safeguards sit: a chat model's refusals come from safety training,
+% with classifiers added by some hosted services; a biological sequence model
+% has no refusal layer, and relies on what was left out of training and on the
+% screening of DNA orders. Prompt injection acts on the agent that uses either.
 \input{../style}
 \begin{document}
-\begin{tikzpicture}[node distance=10pt and 30pt, item/.style={box, text width=84pt, align=center, font=\footnotesize}]
-  \node[box, text width=330pt, align=center] (pre) at (0,0) {pretraining\\ \footnotesize grammar, facts, code, the shape of text};
-  \node[item] (rules) at (-130pt,58pt) {follow the instructions you are given};
-  \node[item, right=of rules] (mal) {refuse to write malware};
-  \node[item, right=of mal] (bio) {refuse to help engineer a pathogen};
-  \node[group, solid, fit=(rules) (mal) (bio), inner sep=8pt, label={[tag]above right:instruction tuning: one layer, one method}] (layer) {};
-  \node[badbox, above=30pt of rules] (inj) {prompt injection};
-  \draw[->, bad] (inj) -- node[note, right, text=accent] {subverts} (rules);
-  \draw[->, bad, dashed] (rules) -- node[note, above, text=accent] {and so} (mal);
-  \draw[->, bad, dashed] (mal) -- node[note, above, text=accent] {and so} (bio);
-  \node[note, below=10pt of pre, text width=330pt]
-    {separating instructions from data would strengthen cybersecurity and biosecurity at once;
-     weak injection defences open a biosecurity gap};
+\begin{tikzpicture}[col/.style={box, text width=168pt, minimum height=40pt}]
+  % a chat model, bottom to top
+  \node[col] (lpre) at (-108pt,0) {pretraining on text\\ \footnotesize grammar, facts, code};
+  \node[col, above=10pt of lpre] (lsafe) {safety training: refusals\\ \footnotesize can be edited out of open weights};
+  \node[col, above=10pt of lsafe] (lcls) {classifiers on inputs and outputs\\ \footnotesize added by some hosted services};
+  \node[group, fit=(lpre) (lcls), label={[title]below:a chat model}] (lgrp) {};
+  % a biological sequence model, bottom to top
+  \node[col] (rpre) at (108pt,0) {pretraining on genomes\\ \footnotesize viruses of eukaryotes left out; further training may undo this};
+  \node[badbox, col, draw=accent, dashed, above=10pt of rpre] (rnone) {no refusal layer\\ \footnotesize nothing to talk round};
+  \node[col, above=10pt of rnone] (rscr) {screening of DNA orders\\ \footnotesize finds known threats; uneven on novel or modified sequences};
+  \node[group, fit=(rpre) (rscr), label={[title]below:a biological sequence model}] (rgrp) {};
+  % the agent that uses either
+  \node[box, text width=380pt, above=34pt of $(lgrp.north)!0.5!(rgrp.north)$] (agent)
+    {an agent that reads untrusted text and runs tools};
+  \node[note, above=3pt of agent, text width=380pt]
+    {prompt injection acts here, on the agent, whichever model it uses; it can also carry a jailbreak};
+  \draw[->] (agent.south -| lgrp.north) -- (lgrp.north);
+  \draw[->] (agent.south -| rgrp.north) -- (rgrp.north);
 \end{tikzpicture}
 \end{document}

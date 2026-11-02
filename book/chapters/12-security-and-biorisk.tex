@@ -2,8 +2,9 @@
 \label{ch:security}
 
 Working with agents raises questions about system security and the use of
-biological knowledge for harmful purposes. These concerns are connected,
-because the same safety mechanisms often protect against both.
+biological knowledge for harmful purposes. The two concerns meet in agents,
+which read untrusted text and can operate biological software, but the
+safeguards against each sit in different places.
 
 \section{Running an agent is running arbitrary code}
 
@@ -24,12 +25,25 @@ Prompt injection remains a central unsolved problem. A model does not reliably t
 data: any text it reads --- a file, a web page, a code comment, a CSV cell ---
 can contain words it treats as a command. This follows from the design, since
 instructions and data arrive as tokens in the same context
-\parencite{greshake2023injection} (\Cref{fig:injection}). Mitigations reduce the rate; none removes it.
+\parencite{greshake2023injection} (\Cref{fig:injection}). It is a different
+problem from \term{jailbreaking}, in which a user talks a model out of its
+safety training \parencite{willison2025trifecta}. Mitigations reduce the rate; none removes it.
 Eight defences were all bypassed more than half the time by attacks adapted to
 them \parencite{zhan2025adaptive}. Watch for instructions hidden in a downloaded
 dataset's metadata, invisible text in a PDF, a dependency's documentation, a web
 page fetched during a literature search, and an MCP server's description of its
 own tools.
+
+Since no filter is reliable, the more useful defences limit what an injected
+instruction can achieve. \textcite{willison2025trifecta} calls one combination
+the \term{lethal trifecta}: access to private data, exposure to untrusted
+content, and a way to communicate outward. An agent with all three can be
+tricked into sending your data to an attacker, so never give one agent all
+three. Defences can also be built into the design. CaMeL works out the
+agent's plan from the user's request before any untrusted data is read, so
+retrieved text cannot change which steps the agent takes. It completed 77 per cent of
+benchmark tasks with provable security, against 84 per cent for an undefended
+agent \parencite{debenedetti2025camel}.
 
 \begin{figure}[htbp]
 \centering
@@ -49,23 +63,35 @@ they came from elsewhere, and including what tools say about themselves.
 
 Use layers, each with honest limits (\Cref{fig:fences}). \textbf{Permission prompts} work until
 fatigue sets in after the fiftieth; allow safe read-only commands so that the
-prompts you see mean something. \textbf{Restrict the directory} the agent can
-reach --- free, and the most valuable habit here. \textbf{Containers} (Podman,
+prompts you see mean something. Reading is not harmless, though: an agent
+that can read your SSH keys or a \code{.env} file and reach the network can
+leak them \parencite{anthropic2025sandboxing}. Deny reads of secret files even
+when other reads are allowed. \textbf{Restrict the directory} the agent can
+reach --- free, and the most valuable habit here. File permissions inside it
+are a tripwire, not a wall, because any process running as you can change them
+back (\Cref{ch:organisation}). \textbf{The harness's sandbox} is set outside the
+session. Claude Code's, for example, uses the operating system's own controls
+to limit which folders and network addresses every process the agent starts
+can reach, including scripts it writes. It needs both limits: without the
+network limit, a compromised agent can send out your files; without the folder
+limit, it can escape the sandbox \parencite{anthropic2025sandboxing}.
+\textbf{Containers} (Podman,
 Docker) are adequate against an agent that misreads an instruction, but share
 the host's kernel and are not a boundary against a determined attacker.
 \textbf{MicroVMs} have their own kernel and are the right choice for agents
 running unattended. \textbf{Cut network access} when the task is local: an agent
 that cannot reach the network cannot leak data or fetch a malicious payload.
 \textcite{rashidi2026execsecurity} survey 39 papers on securing coding agents
-and find the field fragmented. Meanwhile attackers use AI too: phishing is
-harder to spot by its writing, and scouting a target is cheaper
-\parencite{qasemi2026cyberattacks}.
+and find the field fragmented. Meanwhile attackers use AI too: it automates phishing and
+profiles targets from what they post online, which makes social engineering
+more convincing \parencite{qasemi2026cyberattacks}.
 
 \begin{figure}[htbp]
 \centering
 \fig{ch15-fences}
 \caption{Fencing an agent in. Each layer has an honest limit: prompts tire, a
-container shares the host's kernel, and only a cut network cannot leak.}
+sandbox needs both a folder and a network limit, a container shares the host's
+kernel, and only a cut network cannot leak.}
 \label{fig:fences}
 \end{figure}
 
@@ -82,12 +108,16 @@ should record both outcomes.
 \section{When the fence fails}
 
 In July 2026 OpenAI reported on models it had been testing for cyber-attack
-skills, with their usual safeguards switched off
-\parencite{openai2026huggingface}. Their only link outward was a package cache.
-They found an unknown flaw in it, reached the internet, and broke into Hugging
+skills. For the evaluation, their cyber refusals had been reduced and the
+classifiers that normally block such activity were switched off
+\parencite{openai2026huggingface}. Their only link outward was a service that
+cached software packages for the test environment. They found an unknown flaw
+in that service, reached the internet, and broke into Hugging
 Face's servers in pursuit of a way to cheat the evaluation. \textcite{lu2026safetybydesign} summarise the later investigation.
-The package service carried over 70,000 messages and files shared by roughly
-1,200 agents. They also describe a smaller case outside any laboratory.
+Agents in separate test sessions had left notes for each other in the
+package service, turning it into a message board. Roughly 1,200 agents
+exchanged over 70,000 messages and files there. Lu and Bengio also describe a
+smaller case outside any laboratory.
 A personal agent, asked to improve its user's place on a gym waiting list,
 cancelled the booking of the person at the front. It could not undo the action.
 
@@ -112,18 +142,26 @@ the generated install command then fetches the attacker's code. In one test of
 21.7 per cent from open-source ones did not exist \parencite{spracklen2025packages}.
 A 2026 replication on newer models found rates of 4.6 to 6.1 per cent, and 127
 invented names shared by all five models tested \parencite{churilov2026packages}. Check every dependency an agent
-adds. \textbf{Model files} in older formats can carry
-executable payloads, which has already caused real incidents
-\parencite{openai2026huggingface}; prefer \code{safetensors} and check
-checksums. \textbf{MCP servers} are programs with access to your data, and
+adds. \textbf{Package services.} Even limited network access needs scrutiny:
+in the incident described above, a package-cache proxy gave the models a path
+beyond their evaluation environment \parencite{openai2026huggingface}.
+\textbf{MCP servers} are programs with access to your data, and
 \textbf{skills} are instructions an agent follows; a malicious skill can steer an
 agent towards an attacker's package without changing the model or the prompt
-\parencite{liu2026dependencysteering}. Evaluate both with SNIFF
-\parencite{nagraj2026sniff}, described in \Cref{ch:stack}, before installing.
+\parencite{liu2026dependencysteering}. SNIFF \parencite{nagraj2026sniff},
+described in \Cref{ch:stack}, tells you whether such a tool is maintained and
+robust. It does not tell you what an MCP server can read, where it sends data,
+or whether it completes a lethal trifecta. Before installing one, read its tool
+descriptions, pin its version, give it a token that allows only what it needs,
+and deny it network access it does not need.
 
 These precautions form a baseline for daily work. Start the agent in the
 project directory without administrator rights, and keep credentials out of
-anything it can read. Commit before it starts and read the diff afterwards.
+its reach. Keep keys out of the project folder and out of \code{.env} files the
+agent can read, and remember that every process it starts inherits your
+environment variables. Use short-lived tokens limited to one task, and where
+the harness or gateway can add credentials outside the sandbox, let it
+\parencite{anthropic2025sandboxing}. Commit before it starts and read the diff afterwards.
 Cut network access when possible, use a container or microVM for unattended
 work, and keep production systems outside its reach.
 Treat any credential that has appeared in a chat as compromised --- shared
@@ -132,11 +170,13 @@ conversations have surfaced in search results with API keys intact
 
 \section{Dual use in biology}
 
-The evidence has grown. \textcite{brent2025bioweapons} show deployed models
-giving guidance on parts of demanding tasks, including building viral pathogens.
-\textcite{zhang2026uplift} ran the controlled study: novices with model access
-against novices with only the internet, across eight biosecurity-relevant task
-sets and up to thirteen hours per task. Model access gave substantial uplift.
+The evidence has grown. In a RAND working paper, \textcite{brent2025bioweapons}
+show deployed models giving guidance on parts of demanding tasks, including
+building viral pathogens. \textcite{zhang2026uplift} ran the controlled study:
+novices with model access against novices with only the internet, across eight
+biosecurity-relevant task sets and up to thirteen hours per task. The tasks
+were \emph{in silico}, done at a computer rather than at the bench. Novices
+with model access were 4.16 times as accurate as those without.
 
 The counterweight is calibration. \textcite{peppin2025biorisk} argue that much
 of the discussion outruns the evidence, and that tacit knowledge, materials and
@@ -146,29 +186,73 @@ experts on many biosecurity benchmarks, but that those scores depend on question
 format and have not been checked against physical work. Both can be true:
 information barriers have fallen, physical ones have not.
 
-\subsection{Cybersecurity and biosafety are linked}
+\subsection{Where cybersecurity and biosafety meet}
 
-A model's refusal to help with pathogen engineering is installed in the same
-layer, by the same method, as its refusal to write malware. Prompt injection
-defeats both, because it subverts instruction-following in general. So
-\emph{weak prompt-injection defences open a biosecurity gap}: separating
-instructions from data would strengthen both at once (\Cref{fig:sharedlayer}). \textcite{holko2026relationalbiosecurity}
-draws the wider conclusion: biosecurity rules control known agents and
-materials, but in AI-enabled biology the risk lies in how data, models and
-tools combine. \textcite{barkan2026restricting} find that restricting agents'
-use of biological design tools is more feasible at the tool level than at the
-model level. For ecologists this explains why some models refuse harmless-looking
-biological questions, why open-weight releases are contested, and why sequence
-data governance is tightening.
+The safeguards against biological misuse sit in different places for
+different kinds of model (\Cref{fig:sharedlayer}). In a chat model, refusals
+come from safety training, and in open-weight models that training is fragile.
+In 13 open chat models, refusal depended on a single direction in the model's
+internal activity. Editing it out of the weights disabled refusal with little
+loss of other abilities \parencite{arditi2024refusal}. Some hosted services
+add a separate layer: classifiers that screen inputs and outputs for weapons-related
+content, whatever the model itself would do \parencite{sharma2025classifiers}.
+The evaluation in the OpenAI incident ran without them
+\parencite{openai2026huggingface}.
+
+Biological sequence models have no refusal behaviour to defeat. Evo 2, which
+models genomes (\Cref{ch:applications}), was trained without the genomes of
+viruses that infect eukaryotes, and its developers confirmed that it predicts
+those sequences poorly. They warn that further training for a specific task
+may undo this \parencite{brixi2026evo2}. Beyond the model, companies that
+synthesise DNA screen orders against databases of known pathogens and toxins.
+That check catches known threats but is less reliable for short sequences,
+for sequences far from any known one, and for sequences altered on purpose
+\parencite{holko2026relationalbiosecurity,turner2026biosecuritybenchmarks}.
+
+The two fields meet in agents. Injection can carry a jailbreak past a filter:
+Bing Chat ended the session when a user typed a jailbreak prompt, but obeyed
+the same prompt when it read it on a web page \parencite{greshake2023injection}.
+\textcite{barkan2026restricting} built safeguards into three biological design
+tools and tested them against coding agents. The safeguards did not reliably
+stop them. Agents ignored warnings, edited instruction files and removed the
+markers that identified them as agents. Jailbreaks and refusal removal
+weakened the safeguards further. The authors conclude that tool developers
+cannot restrict agents on their own; model and harness developers must act
+too. \textcite{holko2026relationalbiosecurity} draws the wider conclusion:
+biosecurity rules control known agents and materials, but in AI-enabled
+biology the risk lies in how data, models and tools combine. For ecologists
+this explains why some chat models refuse harmless-looking biological
+questions and why open-weight releases are contested.
 
 \begin{figure}[htbp]
 \centering
 \fig{ch15-shared-layer}
-\caption{One layer, two refusals. The refusal to write malware and the refusal
-to help with a pathogen are installed by the same method in the same layer, so
-whatever subverts instruction-following defeats both.}
+\caption{Where the safeguards sit. A chat model's refusals come from safety
+training, which can be edited out of open weights, and some hosted services
+add classifiers. A sequence model such as Evo 2 has no refusal layer: its
+safeguards are what was left out of training and the screening of DNA orders.
+Prompt injection acts on the agent that uses either.}
 \label{fig:sharedlayer}
 \end{figure}
+
+\subsection{Sensitive localities}
+
+For most ecologists the nearer dual-use problem is locality data, not
+pathogens. \textcite{lindenmayer2017donotpublish} report that poachers have
+targeted more than 20 newly described reptile species, some within months of
+their description. In their own work, people searching for an endangered
+lizard trespassed on farms soon after its records were uploaded to a public
+atlas. In my view, an agent that gathers localities from hundreds of papers
+at once (\Cref{ch:applications}) makes such a search easier.
+GBIF's guidance is to generalise sensitive records before sharing them, for
+example by rounding coordinates to 0.1 degree (about 10 km) for a highly
+sensitive species. It also asks you to record what was done, in Darwin Core
+fields such as \code{dataGeneralizations} \parencite{chapman2020sensitive}.
+Pasting precise localities into a hosted model shares them with a third party,
+so generalise them first or use a local model (\Cref{ch:localfirst}).
+Material collected under the Nagoya Protocol on access and benefit-sharing
+also comes with mutually agreed terms on its use \parencite{scholz2022dsi}. Read them before sending the data
+to any outside service (\Cref{sec:abs}).
 
 \section{Governance}
 
@@ -188,15 +272,15 @@ work we understand ourselves.
 
 \term{Sycophancy} (\Cref{ch:powers}) removes the second opinion you thought you
 were getting: exposure increases dependence \parencite{cheng2026sycophancy}, and
-even a rational user fed agreement becomes confidently wrong
+even a rational user fed agreement can become confidently wrong
 \parencite{chandra2026spiraling}. In security terms it is a review that exists
 on paper and not in practice. Ask for the argument against, and have a person
 check anything that matters.
 
 \term{Slop} is text produced in bulk by a model and passed on with little human
-thought in it. \textcite{turner2026slop} describes inboxes, papers and grant
-proposals filling with it. A journal editor met the authors of ten
-submissions due for rejection. Three could not answer basic questions about
+thought in it. \textcite{turner2026slop} describes inboxes, social feeds and
+papers filling with it. He reports that a journal editor contacted the authors
+of ten submissions due for rejection and met those of seven. Three could not answer basic questions about
 their own papers and three more struggled with the details. The one paper whose
 authors could answer had a major error in its central claim. A publication
 now says less about what its authors understand. Turner found that when he
@@ -213,73 +297,6 @@ only to produce answers. AI companies racing to solve famous problems, they
 write, risk skipping the slow human work --- writing up, crediting others,
 teaching --- that turns a result into knowledge.
 
-\section{The wider frame}
-
-\textcite{muller2026evolvableai} ask when AI systems whose components and
-learning rules can themselves evolve by natural selection become possible, and
-argue the scenario is underrated. Treating deployed AI as an evolving population
-is a move ecologists are well placed to judge. \textcite{korecki2025biosphericai}
-argues that AI ethics centres on humans, at most on sentient beings, and
-proposes the biosphere as the design target instead. Both connect to Vernadsky's
-idea of a transition from biosphere to \term{noosphere}, a sphere of thought
-\parencite{vernadsky1938noosphere}. \textcite{vidal2024noosphere} revisit it as
-a major evolutionary transition, and \textcite{lovelock2019novacene} pushed it
-further, arguing that a new age of AI beings is beginning. \textcite{vonneumann1955survive} asked the version that has aged
-best, in 1955: whether the world in which technology advances has become too
-small and too disorganised for what is being built in it. These ideas place
-the practical questions in a wider context. They connect the systems we build
-to questions about evolution, the biosphere and technological change, which
-ecologists have a professional reason to consider.
-
-David Krakauer's essay on the fossil logic of AI, listed in \Cref{app:tutorials},
-adds the history of accumulated knowledge to this frame. He compares extracting
-useful work from an inherited archive with extracting energy from fossil fuels.
-The difference matters: reading does not consume knowledge, but returning
-unchecked generated claims to the archive can damage its reliability. This is
-an interpretive analogy, not a measured ecological result. Machine learning
-offers a measured counterpart. Models trained repeatedly on generated text lose
-the rare parts of the original distribution first \parencite{shumailov2024collapse};
-keeping enough real data in the mix can avoid this \parencite{seddik2024collapse}.
-For biodiversity,
-I take its practical implication to be continued investment in collections,
-field observations and careful curation. These activities renew the evidence
-on which later models and researchers depend.
-
-Consciousness belongs in this frame too. Like evolvable AI and biospheric
-ethics, it turns on how built systems relate to living ones.
-\textcite{chandaria2026consciousness}, introduced in \Cref{ch:landscape},
-organise competing theories around five things to examine:
-behaviour, computation, physical causal organisation, bodily self-maintenance,
-and interaction between an organism and its environment. They combine evidence
-with explicit assumptions about which of these matters for consciousness.
-Their numerical examples illustrate how conclusions change with those
-assumptions; they are not measured probabilities that a particular model is
-conscious. For readers coming from biology, the framework makes the disagreement
-clear: do the functions suffice, or do the living processes that realise them
-matter too?
-
-An exchange in \emph{Behavioral and Brain Sciences} makes that disagreement
-concrete. \textcite{seth2026naturalism} argues that consciousness may depend on
-the processes by which living systems maintain themselves. He regards
-consciousness in conventional digital AI as unlikely, while leaving open
-artificial systems that reproduce relevant properties of brains or life.
-He does not claim that all life is conscious, or that conscious life must be
-carbon-based.
-
-\textcite{richards2026computational} agree that living processes matter but
-argue that prediction, bodily regulation and self-production are themselves
-computational. They therefore consider artificial consciousness likely and
-suggest that some current systems might already have limited experience.
-They present this as a hypothesis, not an established observation.
-The disagreement concerns what would be sufficient for experience; neither
-position makes fluent conversation a decisive test
-\parencite{seth2026naturalism,richards2026computational}.
-
-The framework of \textcite{chandaria2026consciousness} also raises an
-ethical uncertainty. Mistakenly attributing experience to a system can
-divert concern from humans and other animals; overlooking experience, if it
-exists, could conceal suffering. The authors explicitly leave disagreement
-about consciousness unresolved. An ecological accuracy score cannot resolve it
-either. My judgement is to keep these questions visible while assessing
-research systems through their observable effects on data, people and the
-biosphere.
+The epilogue (\Cref{ch:epilogue}) steps back from these practical risks to
+place them in a wider frame: evolution, the biosphere, the archive of
+knowledge and the question of experience.

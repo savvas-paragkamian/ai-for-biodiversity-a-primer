@@ -5,8 +5,8 @@
   \node[box] (ref) {a reference};
   \node[decision, right=of ref] (id) {DOI or\\arXiv ID?};
   \node[box, right=of id, text width=78pt, align=center] (res) {resolve it\\ \footnotesize Crossref, arXiv, OpenAlex};
-  \node[decision, right=of res] (match) {title\\matches?};
-  \node[rounded, right=of match] (keep) {keep};
+  \node[decision, aspect=1.7, right=of res] (match) {title,\\author\\match?};
+  \node[rounded, right=of match] (keep) {read it};
   \node[box, below=of res] (hand) {check by hand: open the document};
   \draw[->] (ref) -- (id);
   \draw[->] (id) -- node[tag, above] {yes} (res);

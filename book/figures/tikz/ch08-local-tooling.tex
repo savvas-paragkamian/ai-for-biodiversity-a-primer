@@ -23,7 +23,7 @@
   \foreach \r in {ollama,vllm,lms} \draw (\r |- api.south) -- (\r);
   \foreach \r in {ollama,lms} \draw (\r) -- (\r |- engine.north);
   \node[note, below=6pt of engine, text width=330pt, text=accent]
-    {two settings cause most local-agent failures: the context length (the 4K default breaks agent loops)
+    {two settings cause most local-agent failures: the context length (the default is too small for an agent loop)
      and whether the harness is told the model supports tools};
 \end{tikzpicture}
 \end{document}

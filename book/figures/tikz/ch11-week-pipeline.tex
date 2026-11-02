@@ -10,7 +10,7 @@
   \node[grey, right=of s3, font=\footnotesize, align=center] (raw) {\texttt{data/raw/}\\as received};
   \foreach \s in {s1,s2,s3,s4,s5} \draw[->] (\s.east) -- (raw.west);
   \node[box, right=of raw, text width=46pt, align=center, font=\footnotesize] (norm) {merge by DOI, arXiv id, title};
-  \node[decision, right=of norm, font=\footnotesize] (q) {resolves,\\title\\matches?};
+  \node[decision, right=of norm, font=\footnotesize] (q) {resolves;\\title, first\\author match?};
   \node[box, above right=2pt and 16pt of q, font=\footnotesize, align=left] (ok) {review\\bibliography\\\texttt{seen.csv}};
   \node[badbox, below right=2pt and 16pt of q, font=\footnotesize, align=center] (bad) {listed as\\not verified;\\no entry};
   \draw[->] (raw) -- (norm);

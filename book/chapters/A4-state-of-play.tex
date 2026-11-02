@@ -1,67 +1,178 @@
-\chapter{State of Play, September 2026}
+\chapter{State of Play, September to October 2026}
 \label{app:stateofplay}
 
-The names, prices and limits below record the situation in September 2026.
-They will change, so the chapters explain the reasoning behind these choices
-and point here for the details available at the time of writing.
+The names, prices and limits below record the situation between September and
+October 2026. Each section carries the date on which its facts were checked,
+so a reader can tell how stale each part is. They will change, so the chapters
+explain the reasoning behind these choices and point here for the details
+available at the time of writing. Facts taken from a maker's own page are
+marked with the page and the date; they are not bibliography entries.
 
 \section{Machines and prices}
 
-Indicative prices in euros at the time of writing.
+Checked on 22 October 2026 against Apple's technical specification pages, the
+Framework store and NVIDIA's product page for the DGX Spark. Prices are in
+euros. Prices marked $^{a}$ were read from the maker's store on that day.
+Those marked $^{b}$ are the author's September 2026 figures for the previous
+generation of the same machine, not re-checked. The Apple ones in particular
+need re-checking against the M5 and M6 models that have since replaced the M4
+ones.
 
 \begin{table}[htbp]
 \centering
-\caption{Representative machines for local inference.}
+\caption{Representative machines for local inference, 22 October 2026.}
 \label{tab:hardware}
 \footnotesize
 \begin{tabularx}{\textwidth}{Xllll}
 \toprule
-\textbf{Machine} & \textbf{Memory} & \textbf{Price} & \textbf{Comfortably runs} & \textbf{Power} \\
+\textbf{Machine} & \textbf{Memory} & \textbf{Bandwidth} & \textbf{Comfortably runs} & \textbf{Price} \\
 \midrule
-Mac mini M4 Pro            & 24--64\,GB  & 1{,}600--2{,}800 & 12--32B Q4 & 65\,W \\
-Mac Studio M4 Max/Ultra    & 64--192\,GB & 3{,}000--7{,}000 & 30--120B Q4 & 150\,W \\
-MacBook Pro M4 Max         & 36--128\,GB & 3{,}000--6{,}000 & 12--70B Q4 & 90\,W \\
-Framework Desktop (AI Max+ 395) & 64--128\,GB & 2{,}000--2{,}800 & 30--70B Q4 & 120\,W \\
-Beelink GTR9 Pro / GMKtec EVO-X2 & 64--128\,GB & 1{,}800--2{,}500 & 30--70B Q4 & 120\,W \\
-NVIDIA DGX Spark (GB10)    & 128\,GB     & 3{,}000--4{,}000 & 70--120B Q4 & 170\,W \\
-Workstation + RTX 5090     & 32\,GB VRAM & 3{,}500--5{,}000 & 12--32B Q4, fast & 600\,W \\
+Mac mini (M6; M5 Pro)                & 16--64\,GB   & 153--307\,GB/s   & 12--32B Q4       & 1{,}600--2{,}800$^{b}$ \\
+MacBook Pro (M5 Max)                 & 36--128\,GB  & 460--614\,GB/s   & 12--70B Q4       & 3{,}000--6{,}000$^{b}$ \\
+Mac Studio (M5 Max; M5 Ultra)        & 36--512\,GB  & 460\,GB/s--1.2\,TB/s & 30--120B Q4  & from 3{,}000$^{b}$ \\
+Framework Desktop (Ryzen AI Max+ 395) & 64--128\,GB & --               & 30--70B Q4       & 2{,}209--3{,}889$^{a}$ \\
+Beelink GTR9 Pro / GMKtec EVO-X2     & 64--128\,GB  & --               & 30--70B Q4       & 1{,}800--2{,}500$^{b}$ \\
+NVIDIA DGX Spark (GB10)              & 128\,GB      & 273\,GB/s        & 70--120B Q4      & 3{,}000--4{,}000$^{b}$ \\
+Workstation + RTX 5090               & 32\,GB VRAM  & --               & 12--32B Q4, fast & 3{,}500--5{,}000$^{b}$ \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\textbf{Under 2,000 euros}, a 48\,GB Mac mini or a 64\,GB AMD mini-PC runs a
-30B model usefully: the entry point for serious local work. \textbf{Around
-3,000}, a 128\,GB Mac Studio or DGX Spark opens 70B models, where open weights
-become competitive for scoped work; for a group, one such machine can serve
-several people. \textbf{A separate graphics card} is the choice if you also need
-to train, or want maximum speed on models under 32\,GB. Its 600\,W affects
-cooling, the electricity bill and where the machine can live.
+\textbf{Around 2,200 euros}, a 64\,GB Framework Desktop (2,209 euros on
+22 October 2026) or a 64\,GB Mac mini runs a 30B model usefully: the entry
+point for serious local work. \textbf{Around 3,000 to 4,000}, a 128\,GB
+machine (the Framework at 3,889 euros, a DGX Spark, a Mac Studio) opens 70B
+models, where open weights become competitive for scoped work. For a group,
+one such machine can serve several people. \textbf{A separate graphics card}
+is the choice if you also need to train, want the fastest prefill on long
+agent prompts, or want maximum speed on models under 32\,GB. Its power draw
+affects cooling, the electricity bill and where the machine can live.
+
+\textbf{Memory bandwidth and power, by device.} Read on 22 October 2026 from
+the makers' pages named in parentheses. Apple M5: 153\,GB/s. M5 Pro:
+307\,GB/s. M5 Max: 460\,GB/s with the 32-core GPU and 614\,GB/s with the
+40-core GPU, which is also the only M5 Max with 128\,GB. M5 Ultra: 1.2\,TB/s
+with 96, 256 or 512\,GB. The Mac mini now starts with an M6 at 153 or
+170\,GB/s (Apple, technical specifications for Mac Studio, MacBook Pro and
+Mac mini). NVIDIA DGX Spark: 128\,GB of unified memory on a 256-bit bus,
+273\,GB/s, a 240\,W power supply and a 140\,W chip (NVIDIA, DGX Spark page).
+NVIDIA RTX PRO 6000 Blackwell: 96\,GB GDDR7, 1,792\,GB/s, 600\,W maximum
+(NVIDIA, RTX PRO 6000 page). NVIDIA GeForce RTX 4060 Ti: 8 or 16\,GB GDDR6 on
+a 128-bit bus, 160 to 165\,W (NVIDIA, RTX 4060 Ti page). That page gives no
+bandwidth figure; the 128-bit bus is a quarter of the professional card's.
+NVIDIA's page for the RTX 5060 Ti could not be read by script, so its figures
+are not given here.
 
 \section{Models}
 
-Coding and general models of 12--30B: the Gemma 4, Kimi K2.7 and Qwen 3.7--3.8
-families. Embedding: \code{bge-m3}; reranking: \code{bge-reranker}.
-Transcription: Whisper.
+Checked on 22 October 2026 on Hugging Face and the Ollama library. Sizes are
+total parameters; mixtures of experts also give active ones
+(\Cref{ch:hardware}).
+
+\begin{itemize}
+  \item \textbf{Gemma 4} (Google). Dense 12B: \code{gemma4:12b}, 7.7\,GB on
+    Ollama at four bits, 256K context. It has 26B and 31B siblings and small
+    \code{e2b} and \code{e4b} builds. Apache-2.0, which matters for the
+    licence discussion in \Cref{ch:aireadydata}.
+  \item \textbf{Qwen 3.8 27B} (Alibaba). Dense, Apache-2.0, 262K context,
+    17\,GB at Q4\_K\_M; the open release behind \textcite{willison2026qwen38}.
+    No open-weight ``Qwen 3.7'' exists on Hugging Face under the Qwen
+    organisation; the 3.7 names are hosted models. A 2.4T-parameter mixture
+    with 95B active was released beside the 27B and is a server model.
+  \item \textbf{Qwen3-30B-A3B-Instruct-2507} (Alibaba). Mixture of experts:
+    30B total and about 3B active (128 experts, 8 per token), with 4
+    key-value heads. It is the model in the serving example of
+    \Cref{ch:hardware}. The plain \code{Qwen3-30B-A3B-Instruct} id does not
+    exist.
+  \item \textbf{Kimi K2.7} (Moonshot). Mixture of experts, 1T total and 32B
+    active, so a hosted model for most readers; not a 12--30B model.
+  \item \textbf{Embedding and reranking.} \code{bge-m3} and
+    \code{bge-reranker}. \textbf{Transcription.} Whisper.
+\end{itemize}
 
 \section{Harnesses}
 
-In the terminal: Claude Code, OpenCode, Codex, Gemini CLI, Copilot CLI and
-Aider. Inside code editors: Cline and Continue. \Cref{app:tutorials} links to
-the open-source ones.
+Checked on 22 October 2026. In the terminal: Claude Code, OpenCode, Codex,
+Gemini CLI, Copilot CLI and Aider. Inside code editors: Cline and Continue,
+both open source. GitHub Copilot in VS Code includes an agent mode. Cursor is
+a proprietary editor built around an agent. Posit Assistant ships with
+Positron, Posit's data-science editor, from version 2026.07, and replaces the
+earlier Positron Assistant; Positron is distributed under Posit's own licence,
+not an open-source one. The R readership will meet the last of these first.
+\Cref{app:tutorials} links to the open-source ones. Of the terminal harnesses
+used in this book, OpenCode (MIT) and Codex (Apache-2.0) are open source;
+GitHub's API reports no licence for Claude Code, which is commercial (checked
+2 November 2026). Claude Code has offered a sandbox with file-system and
+network isolation since 20 October 2025, switched on with \code{/sandbox}
+\parencite{anthropic2025sandboxing}; it was not tested for this book. MCP, the protocol through which harnesses reach tools, is an
+open specification, donated in 2025 to the Linux Foundation's Agentic AI
+Foundation \parencite{liu2026claudecode}.
+
+\section{Ollama and local tooling}
+
+Checked on 22 October 2026. The chapters name the lasting tools and point
+here for the defaults and tags of the day.
+
+\begin{itemize}
+  \item \textbf{Context defaults.} Ollama sets the default context length by
+    the GPU memory available: 4K below 24\,GiB, 32K from 24 to 48\,GiB and
+    256K at 48\,GiB and above. Its cloud-hosted models default to their
+    maximum (docs.ollama.com/context-length, read 22 October 2026). A larger
+    context needs more memory for the KV cache (\Cref{ch:hardware}).
+  \item \textbf{Context for agents.} The same page advises at least 64,000
+    tokens of context for agents, web search and coding tools. Set it for the
+    whole server with \code{OLLAMA\_CONTEXT\_LENGTH=64000 ollama serve}, or
+    per model in a Modelfile.
+  \item \textbf{A coding model to start from.} The listing in \Cref{ch:stack}
+    uses a \code{MODEL} placeholder because tags date. On 22 October 2026 the
+    Ollama library's \code{qwen3-coder:30b} stood in for it: 19\,GB at four
+    bits, 256K context, a 30B mixture with 3B active. The newer entry is
+    \code{qwen3-coder-next}; the dense alternative the workshop used is
+    \code{gemma4:12b} (7.7\,GB).
+  \item \textbf{Apple silicon.} MLX builds are the native route on Apple
+    silicon: LM Studio runs MLX and llama.cpp under the hood, and Ollama tags
+    them \code{-mlx}; the session in \Cref{ch:firstsession} was completed with
+    \code{gemma4:12b-mlx-32k}, a four-bit (nvfp4) build saved with 32,768
+    tokens of context. Ollama's \code{cloud} tags run on Ollama's servers.
+    A prompt sent to one leaves the machine (\Cref{ch:localfirst}).
+  \item \textbf{Open WebUI.} BSD-3-Clause up to version 0.6.5. From 0.6.6
+    (April 2025) its licence adds a branding clause for deployments of more
+    than fifty users, so it is no longer under a plain open-source licence
+    (Open WebUI, licence page).
+  \item \textbf{Prompt caching.} Hosted APIs keep the unchanged prefix of a
+    prompt and charge less to read it again. Anthropic's documentation prices
+    a cache read at a tenth of the base input price, with lower rates on some
+    models (Anthropic, prompt-caching documentation). This is why an agent's
+    long, repeated prompts cost less than their token counts suggest
+    (\Cref{ch:agentic}).
+\end{itemize}
 
 \section{Versions used in the workshop, October 2026}
 
-The exercises in \Cref{ch:firstsession,ch:testing} were tested on
+The extraction runs of \Cref{ch:testing}, under its nine-field rules, were
+made on 2 November 2026 on the same machine with Ollama 0.40.13, R 4.5.1 and
+\code{ellmer} 0.5.0: \code{qwen3:8b} (Q4\_K\_M, loaded with 32,768 of its
+40,960 tokens of context), thinking on, temperature 0.6, top\_p 0.95, top\_k
+20, and seed 1 for the two fixed runs. The record is in the workshop's
+\code{answers/testing-run-2026-11-02/}.
+
+The exercises in \Cref{ch:firstsession,ch:testing} were first tested on
 11 October 2026 on a MacBook Pro with an Apple M1 Max chip and 32\,GB of
 unified memory. The local track used Ollama 0.31.1, OpenCode 1.17.11, R 4.5.1,
 \code{ellmer} 0.5.0 and Git 2.54. The models were \code{qwen3:8b} (Qwen3 8B,
-four-bit), used for the extraction exercise and the first agent tests, and
-Gemma 4 12B in its Apple-silicon build (\code{gemma4:12b-mlx}, saved with a 32K
-context). Only the 12B model completed the agent loop, so the companion's
+four-bit, Q4\_K\_M), used for the extraction exercise and the first agent
+tests, and Gemma 4 12B in its Apple-silicon build (\code{gemma4:12b-mlx-32k},
+four-bit nvfp4, saved with 32,768 tokens of context). Only the 12B model
+completed the agent loop, so the companion's
 \code{opencode.json} names \code{gemma4:12b}, the same model for other
 hardware, which was not itself tested. The hosted track was described from Claude
-Code's documentation for version 2.1.296 and was not run: reading
-\code{AGENTS.md} without a \code{CLAUDE.md} needs version 2.1.277 or later.
+Code's documentation for version 2.1.296 and was not run, nor was Claude
+Code's sandbox: reading \code{AGENTS.md} without a \code{CLAUDE.md} needs
+version 2.1.277 or later. The container listing of \Cref{ch:reproducibility}
+was built on 2 November 2026 with Podman 5.8.0 on Apple silicon, from
+\code{rocker/r-ver:4.4.1}, whose dated package snapshot supplied
+\code{renv} 1.0.11; it was not built with Docker Engine or on an Intel or AMD
+machine.
 
 \section{Versions used for the weekly literature review, October 2026}
 
@@ -78,6 +189,10 @@ bioRxiv's details API and Biodiversity PMC's search API, as they answered on
 14 October 2026, with Crossref and DataCite resolving the identifiers. The
 live week was ISO week 2026-W41, 5 to 11 October, with ten overlap days: 51
 queries, 2,482 items reported, 1,106 distinct after merging, 1,071 verified.
+That count comes from the title-only check; the first-author check was added
+later in October. The assistant was run twice on 19 October 2026, with
+Claude Opus 5.5 under Claude Code 2.1.303, at about three US dollars a run;
+the Consensus plan then allowed 500 searches a month.
 On that day a request to OpenAlex without a key drew on a free budget of
 1,000 credits a day for all machines behind one IP address, at 10 credits a
 request, reset at midnight UTC; Biodiversity PMC's full-text collection
@@ -87,5 +202,12 @@ week.
 
 \section{Subscription limits}
 
-Consumer subscription tiers ration use by a rolling five-hour window, on the
-order of tens of thousands of tokens per window.
+Checked on 22 October 2026 at Anthropic's help centre. Paid consumer plans
+(Pro, Max, Team) have two limits: a session limit that resets every five
+hours and a weekly limit. Use of the chat interface, Claude Code and the
+desktop application all count against the same allowance. The units are not
+published as tokens, and the allowance depends on the model, the features and
+the reasoning effort chosen, so no token figure is given here. A single agent
+turn re-sends the whole session, which is why one large refactor can use up a
+window (\Cref{ch:agentic}). Other vendors ration in similar ways and publish
+their own pages; check them before choosing a plan.

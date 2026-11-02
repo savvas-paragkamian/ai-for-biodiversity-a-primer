@@ -1,4 +1,6 @@
-% Three layers of protection around the raw data, each with its own weakness.
+% Layers of protection around the raw data, each with its own weakness:
+% the rules file, the harness configuration, the harness sandbox and the
+% file permissions. (The file name dates from when there were three.)
 \input{../style}
 \begin{document}
 \begin{tikzpicture}
@@ -7,10 +9,14 @@
   \node[tag, anchor=south west] at (perm.north west) {file permissions};
   \node[note, below=3pt of perm] (n1)
     {the operating system refuses the write, whoever asks;\\a determined process could change the permissions back};
-  \node[group, solid, fit=(perm) (n1), inner xsep=10pt, inner ysep=16pt] (conf) {};
+  \node[group, solid, fit=(perm) (n1), inner xsep=10pt, inner ysep=16pt] (sand) {};
+  \node[tag, anchor=south west] at (sand.north west) {harness sandbox, where there is one};
+  \node[note, below=3pt of sand] (n4)
+    {the operating system confines every process the agent starts, scripts included;\\by default the project folder stays writable};
+  \node[group, solid, fit=(sand) (n4), inner xsep=10pt, inner ysep=16pt] (conf) {};
   \node[tag, anchor=south west] at (conf.north west) {harness configuration};
   \node[note, below=3pt of conf] (n2)
-    {applied whatever the model decides, but only to the harness's own tools;\\a script the agent writes runs with your permissions};
+    {applied whatever the model decides, but only to the harness's own tools;\\a script the agent writes and runs is not covered};
   \node[group, solid, fit=(conf) (n2), inner xsep=10pt, inner ysep=16pt] (rules) {};
   \node[tag, anchor=south west] at (rules.north west) {AGENTS.md};
   \node[note, below=3pt of rules] (n3) {advice the model reads; it may misread or ignore it};

@@ -1,4 +1,4 @@
-% Which model size for which task (parameters, logarithmic scale).
+% Which model size for which task (total parameters, logarithmic scale).
 \input{../style}
 \begin{document}
 \begin{tikzpicture}[x=56pt]
@@ -6,7 +6,7 @@
   \draw[->] (-0.9,0) -- (6.7,0);
   \foreach \p/\l in {0/1B,1/2B,2/4B,2.81/7B,3.81/14B,4.91/30B,6.13/70B}
     \draw (\p,-2pt) -- (\p,2pt) node[tag, below=4pt] {\l};
-  \node[tag, anchor=east] at (6.7,10pt) {parameters};
+  \node[tag, anchor=east] at (6.7,10pt) {total parameters};
   % brackets
   \foreach \a/\b/\y/\l in {
       0/2.81/16/classification,
@@ -18,7 +18,9 @@
       \draw (\b,\y pt-2pt) -- (\b,\y pt+2pt);
       \node[tag, above=1pt] at ({(\a+\b)/2},\y pt) {\l}; }
   % marks below
-  \fill (-0.7,0) circle (1.4pt) node[tag, below=14pt, anchor=north west, xshift=-4pt] {embeddings, under 1B};
+  \fill (-0.7,0) circle (1.4pt) node[tag, below=14pt, anchor=north west, xshift=-4pt] {text embeddings, under 1B};
   \fill (0.58,0) circle (1.4pt) node[tag, below=26pt, anchor=north west, xshift=-4pt] {Whisper, 1.5B};
+  \node[note, anchor=north west, text width=330pt, align=left] at (-0.9,-46pt)
+    {a mixture-of-experts model (30B-A3B) sits here by its total parameters, 30B, for memory, and decodes at the speed of its active ones, 3B};
 \end{tikzpicture}
 \end{document}

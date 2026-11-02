@@ -5,8 +5,11 @@ This appendix brings together online books, videos, newsletters, blogs and code 
 collected in the author's notes and literature folder while writing this book.
 Titles and names were checked against YouTube, GitHub and the publishers'
 own sites in September 2026, with further readings and link checks on
-10 and 14 October 2026. Repositories that have moved are listed at their current address. Web material
-is taken down and renamed more often than papers, so some links will break.
+10, 14 and 22 October and 2 November 2026. Repositories that have moved are listed at their
+current address. Web material is taken down and renamed more often than
+papers, so some links will break. If one fails, prefix it with
+\url{https://web.archive.org/web/} to reach the Internet Archive's most
+recent copy, where one exists.
 
 % Smaller URLs so the playlist link fits the line; scoped to this appendix.
 \begingroup
@@ -43,6 +46,22 @@ The course's multilingual cheatsheet provides a compact reference for the
 terminology and equations used in the lectures.\\
 \url{https://cme295.stanford.edu/cheatsheet/}
 
+The training infrastructure of this book's own readership ages more slowly
+than videos and newsletters, and its courses are free. \emph{The
+Carpentries} teach foundational coding and data skills to researchers; the
+Data Carpentry ecology workshop starts from a species survey table. TeSS,
+ELIXIR's training portal, indexes courses and materials from the life-science
+research infrastructures of Europe. \emph{EMBL-EBI Training} offers
+on-demand courses on the EBI's data resources. GBIF's \emph{Biodiversity
+Data Use} course and \emph{The OBIS manual} cover the occurrence-data
+infrastructures that \Cref{ch:aireadydata} describes.\\
+\url{https://carpentries.org/lessons/}\\
+\url{https://datacarpentry.org/ecology-workshop/}\\
+\url{https://tess.elixir-europe.org/}\\
+\url{https://www.ebi.ac.uk/training/}\\
+\url{https://docs.gbif.org/course-data-use/en/}\\
+\url{https://manual.obis.org/}
+
 \section{Conference sessions}
 
 \begin{itemize}
@@ -58,9 +77,6 @@ terminology and equations used in the lectures.\\
   \item \emph{Your Own AI Infrastructure: Building a Complete Local AI Stack},
     Confidence Okoghenun, Local-First Conf.\\
     \url{https://www.youtube.com/watch?v=PB6m3PVNBBA}
-  \item \emph{How computers learn to recognize objects instantly}, Joseph
-    Redmon, TED.\\
-    \url{https://www.youtube.com/watch?v=Cgxsv1riJhI}
 \end{itemize}
 
 \section{Company channels}
@@ -78,8 +94,6 @@ terminology and equations used in the lectures.\\
 \begin{itemize}
   \item \emph{Neural networks}, 3Blue1Brown (playlist).\\
     \url{https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi}
-  \item \emph{YOLO Object Detection (TensorFlow tutorial)}, Siraj Raval.\\
-    \url{https://www.youtube.com/watch?v=4eIBisqx9_g}
   \item \emph{Building OpenCode with Dax Raad}, The Pragmatic Engineer.\\
     \url{https://www.youtube.com/watch?v=1VqKUrxR2C8}
   \item \emph{The Ultimate Local AI Coding Guide For 2026}, Zen van Riel.\\
@@ -160,7 +174,7 @@ terminology and equations used in the lectures.\\
   \item \emph{Blue Continuum}, David C. Krakauer's essay
     ``The Fossil Logic of the Industrial and AI Revolutions''
     (17 September 2026). An analogy between stored energy and accumulated
-    knowledge, discussed in \Cref{ch:security}.\\
+    knowledge, discussed in \Cref{ch:epilogue}.\\
     \url{https://blue-continuum.com/fossil-logic}
   \item \emph{Undark Magazine}, Jonathan Jacobs and Patrick Boyle's
     ``Opinion: AI-Driven Biology Is Only as Good as the Data Beneath It''
@@ -187,6 +201,10 @@ trusting it (\Cref{ch:keepingup}).
 \begin{itemize}
   \item \emph{awesome-ai-agents-2026}: agent frameworks, tools and platforms.\\
     \url{https://github.com/Zijian-Ni/awesome-ai-agents-2026}
+  \item \emph{awesome-cli-coding-agents}: coding agents that run in the
+    terminal, open source and commercial, and the tools that run several of
+    them at once (\Cref{ch:agentic}).\\
+    \url{https://github.com/bradAGI/awesome-cli-coding-agents}
   \item \emph{Awesome-RAG}: retrieval-augmented generation.\\
     \url{https://github.com/Danielskry/Awesome-RAG}
   \item \emph{Awesome-Deep-Research}: agentic deep research.\\
@@ -232,7 +250,8 @@ trusting it (\Cref{ch:keepingup}).
   \item \emph{local-deep-research}: deep research with local or hosted models.\\
     \url{https://github.com/LearningCircuit/local-deep-research}
   \item \emph{academic-research-skills}: Claude Code skills for research,
-    writing and review.\\
+    writing and review. A skill is instructions an agent will follow, so read
+    every file before installing one (\Cref{ch:security}).\\
     \url{https://github.com/Imbad0202/academic-research-skills}
   \item \emph{gensim}: topic modelling.\\
     \url{https://github.com/piskvorky/gensim}
@@ -242,9 +261,30 @@ trusting it (\Cref{ch:keepingup}).
   \item \emph{string-mcp}: an MCP server for the STRING protein network
     database.\\
     \url{https://github.com/meringlab/string-mcp}
+  \item \emph{interpro-mcp}: an MCP server for InterPro protein families and
+    domains, used in \Cref{ch:aireadydata}. Judge any MCP server as a program
+    with access to your data: its tool descriptions are untrusted input, so
+    read its code and give it the least access it needs (\Cref{ch:security}).\\
+    \url{https://github.com/ebi-pf-team/interpro-mcp}
   \item \emph{ellmer}: calls language models from R, local or hosted, and
     extracts structured data; used in \Cref{ch:testing}.\\
     \url{https://github.com/tidyverse/ellmer}
+  \item \emph{ragnar}: retrieval-augmented generation workflows in R, from
+    Posit; on CRAN.\\
+    \url{https://github.com/tidyverse/ragnar}
+  \item \emph{vitals}: large language model evaluation in R, from Posit; does
+    at scale what the scoring script of \Cref{ch:testing} does; on CRAN.\\
+    \url{https://github.com/tidyverse/vitals}
+  \item \emph{openalexR}: bibliographic records from OpenAlex, from rOpenSci;
+    on CRAN. An alternative to the hand-written calls of
+    \Cref{ch:weeklyliterature}.\\
+    \url{https://github.com/ropensci/openalexR}
+  \item \emph{europepmc}: the Europe PMC web service from R, from rOpenSci;
+    on CRAN.\\
+    \url{https://github.com/ropensci/europepmc}
+  \item \emph{rgbif}: the GBIF API from R, from rOpenSci, including backbone
+    matching of a checklist of names; on CRAN.\\
+    \url{https://github.com/ropensci/rgbif}
   \item \emph{weekly-literature}: the weekly literature review of
     \Cref{ch:weeklyliterature}: the R scripts, the fixture week, the
     assistant skill and the provenance logs of every run.\\

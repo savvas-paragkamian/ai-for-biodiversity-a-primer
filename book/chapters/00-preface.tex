@@ -6,6 +6,18 @@ people who keep the databases running. It assumes you can write a script and
 that someone has recently asked you what you are doing about AI. It does not
 assume you want to become a machine learning researcher.
 
+This is a pragmatic primer on how the work of ecologists changes as language
+models and coding agents enter it. It asks how the tools, the landscape and
+the challenges are changing, and what remains at the core of the work. In its
+current form it is mostly about ecological informatics, with the literature as
+the main source of data. Image, sound and species distribution models appear
+only briefly (\Cref{ch:applications}), and molecular and microbial biodiversity
+are outside its scope beyond that chapter. For image and sound,
+\textcite{tuia2022perspectives} describe machine learning for camera traps,
+acoustic recorders and other sensors in animal ecology.
+\textcite{pichler2023review} review machine and deep learning for ecologists
+more broadly, species distribution models included.
+
 \section*{Three arguments}
 
 \textbf{The real change is not the chatbot.} It is the loop that lets a model
@@ -13,10 +25,13 @@ read files, run commands, see the result and try again. Your job moves from
 writing code to specifying it, limiting what it can touch, and checking what
 comes back --- closer to running a system than to programming.
 
-\textbf{Data is the bottleneck, and ecology has already done most of the work.}
+\textbf{Data is the bottleneck, and ecology has already done much of the work.}
 ``AI-ready data'' arrived late to a community that has spent thirty years
 building Darwin Core, GBIF, ontologies and curated databases by hand. It is worth
-asking who built them, and on what terms they are now used.
+asking who built them, and on what terms they are now used. The formats and
+vocabularies exist; whether a dataset records what a model needs, such as
+sampling effort and non-detections, is a separate question
+(\Cref{sec:fitformodel}).
 
 \textbf{Running models on your own machine is a reasonable choice.} It costs
 more up front and less per query, keeps unpublished data at home, survives a
@@ -30,10 +45,13 @@ refuse. One of the papers behind it argues that ecology is \emph{not} ready
 
 Part~I covers what these systems are, why they arrived now, what they do well
 and where they fail. Part~II is data. Part~III is working with agents. Part~IV
-is running models locally. Part~V covers security, integrity and keeping up.
+is running models locally. Part~V covers security, integrity and keeping up,
+and an epilogue sets the book in a wider frame (\Cref{ch:epilogue}).
 Chapters are short and mostly independent. \Cref{ch:firstsession,ch:testing}
-are exercises, with invented data and R scripts in the book's \code{workshop}
-folder. If you read only one chapter, read \Cref{ch:powers}. Model names and prices were correct when written and will
+are exercises with invented data, and \Cref{ch:weeklyliterature} builds a
+weekly literature review from real records; the R scripts for all three are in
+the book's \code{workshop} folder. If you read only one chapter, read
+\Cref{ch:powers}. Model names and prices were correct when written and will
 date; the reasoning should not.
 
 \section*{How this book was written}
@@ -41,9 +59,12 @@ date; the reasoning should not.
 I used AI agents to draft text, read the literature and assemble the
 bibliography, following the practices described in this book. Every reference
 corresponds to a document in the project's literature folder; nothing was cited
-from a model's memory. Every DOI was resolved through Crossref and every arXiv
-identifier through the arXiv API by script, and the titles matched. The rest
-were checked by hand. The errors that remain are mine.
+from a model's memory. A script resolves every DOI through Crossref, or
+DataCite where Crossref has no record, and every arXiv identifier through the
+arXiv API. It checks that the title, the first author and the year returned
+match the entry. References with neither identifier were checked by hand, and
+I checked each claim against the source cited for it. The errors that remain
+are mine.
 
 \section*{Acknowledgements}
 

@@ -7,21 +7,24 @@ but their conditions are not always present in ecological research.
 
 \section{The pattern behind the successes}
 
-AlphaFold worked because protein folding had what deep learning needs. There
-was a large set of solved structures to learn from, a well-defined input and
-output, a physically constrained answer and an unambiguous score.
+As I read it, AlphaFold worked because protein folding had what deep learning
+needs. There was a large set of solved structures to learn from, a well-defined
+input and output, a physically constrained answer and an unambiguous score.
 \textcite{brixi2026evo2} apply the same logic to genomes across all domains of
 life, and \textcite{jiang2025aibioinformatics} survey the field's landmark
 results, such as near-atomic accuracy in structure prediction. Deep learning
 succeeds where there is a large, densely sampled, well-labelled corpus and a
-clear target. Ecological field data rarely has any of the three.
+clear target. Ecology has some large corpora, such as hundreds of millions of
+occurrence records \parencite{hughes2021sampling}. What it rarely has is a clear
+target: records contain false absences, sampling is uneven, and relationships
+change over time \parencite{mishra2026notready}.
 
 \section{What the ecology literature shows}
 
-Reviews written for ecologists are rare. \textcite{mammides2026llmecology} is
-the fullest so far: 129 documents on ecology and conservation (85 peer-reviewed
-articles, 38 preprints, 6 conference papers). The share of preprints shows how
-young the evidence is. The uses they found, with examples:
+Reviews of language models written for ecologists are still few, and
+\textcite{mammides2026llmecology} is the fullest I know. Of its 129 documents on
+ecology and conservation, 38 are preprints, which shows how young the evidence
+is. The uses they found, with examples:
 
 \begin{description}
   \item[Extracting data from text] Plant pathogens and their hosts from disease
@@ -39,15 +42,18 @@ young the evidence is. The uses they found, with examples:
   \item[Code] Writing, explaining and translating analysis code, notably from R
     to Python, in a field where programming training is often thin.
   \item[Images and sound] BioCLIP, trained on 10 million images of over 454{,}000
-    taxa, recognises species it was not trained on; WildCLIP finds rare events
-    in Serengeti camera-trap data; NatureLM-audio describes animal calls.
+    taxa, can classify species for which it was given no labelled examples;
+    its successor, BioCLIP 2, was trained on 214 million images
+    \parencite{gu2025bioclip2}. WildCLIP finds rare events in Serengeti
+    camera-trap data; NatureLM-audio describes animal calls.
   \item[Communication and policy] Editing and translation for non-native
     English speakers; OceanGPT, retrained on 67{,}000 ocean science documents;
     checking national biodiversity targets against the global ones.
 \end{description}
 
-The review also identifies substantial problems. Hallucination is worst on uncommon topics,
-which in ecology means most of them. Answers carry the bias of the training
+The review also identifies substantial problems. Hallucination persists,
+especially on less common topics, and in my judgement much of ecology is less
+common in the training data. Answers carry the bias of the training
 data: on ecological restoration, ChatGPT favoured researchers in high-income
 countries and underrepresented lower-income regions and Indigenous communities.
 Results are hard to reproduce. Paid access and the skills needed may widen the
@@ -56,52 +62,65 @@ model risks \term{deskilling} --- losing the skills needed to check it --- and
 there is a cost in energy and water. They also warn that field studies are
 already a shrinking share of the literature; if language models pull attention
 and money further from collecting primary observations, that would be a major
-loss. It is the point \textcite{mishra2026notready} makes from the data side.
-Their recommendations are the ones this book argues for: choose the model for
+loss. Their recommendations are the ones this book argues for: choose the model for
 the task, ground answers with retrieval, keep a person checking the output, and
 publish prompts and workflows.
 
 \section{Where ecology has real wins}
 
-\textbf{Images.} Camera traps, acoustic monitoring and remote sensing have large
-labelled datasets and clear targets. Species identification from camera-trap
-images routinely exceeds 90\% accuracy for common taxa
-\parencite{mishra2026notready}. However, rare species, often the priority for
-conservation, are classified worst. Models trained in one region also transfer
-poorly to another.
+\textbf{Images and sound.} Camera traps, passive acoustics and satellite remote
+sensing now produce more data than people can interpret by hand
+\parencite{roff2026shape}. Models that identify species in camera-trap images,
+deer, elephants and carnivores among them, often exceed 90 per cent accuracy
+\parencite{mishra2026notready}. They still generalise poorly across regions,
+between day and night, and between sensors. Species with few training images
+risk sharp drops in accuracy \parencite{tuia2022perspectives}. This book does
+not cover image and sound models further. \textcite{tuia2022perspectives} review
+them for wildlife conservation, and \textcite{pichler2023review} review machine
+learning for ecologists more broadly.
 
 \textbf{Collections.} Robotic imaging with AI transcription of specimen labels
-works at scale \parencite{johnson2026collections}, because the bottleneck was
-transcription speed, not judgement, and every output can be checked against the
-specimen.
+works at scale, about 30 times faster than transcribing by hand
+\parencite{johnson2026collections}. I think it works because the bottleneck was
+transcription speed, not judgement. Each transcription is also marked as
+machine-generated and linked to the image it came from, so it can be checked.
 
 \textbf{Literature.} Much biodiversity knowledge is locked in prose. Text mining
 has worked on it for decades \parencite{thessen2012nlp,farrell2024textmining}, and
-language models can now extract it \parencite{castro2024unstructured}. Some
+language models can now extract it. They have pulled species distribution
+records from news reports and papers \parencite{castro2024unstructured}.
+\textcite{keck2026interactions} extracted 144{,}402 species interactions from
+83{,}910 articles. Nine in ten extracted interactions were correct, but three in
+ten real ones were missed, and the results inherit the biases of the literature.
+\textcite{church2026corpus} take another route for taxonomic work. Their tool
+turns a clade's literature into a searchable store that an agent queries
+through MCP (\Cref{app:glossary}), so each answer traces to a page. Some
 entities remain hard even for people: in a gold-standard corpus built from
 Biodiversity Heritage Library texts, annotators agreed least on habitats
 \parencite{nguyen2019copious}. Historical sources are within reach too. In
 nineteenth-century records from W\"urttemberg, language models found species
 mentions with 95 per cent precision and 93 per cent recall. They linked 83 per
 cent of them to the correct GBIF identifier \parencite{teich2026wurttemberg}.
+
 \textcite{takola2026topicmodelling} traces topic modelling in conservation from
 early statistical methods to language models. Her conclusion is that the older
-methods remain valuable: they are interpretable, cheap and reproducible, and an
-LLM's topic assignment is none of those. \textcite{ioannou2025onehealth} show
-the value of large bibliometric maps, here of research on coastal and marine
-health across environment, animals and people. Biodiversity PMC \parencite{pasche2026biodivpmc} indexes
-biodiversity literature specifically, and \textcite{krug2026ipbes} ask whether
-AI in IPBES assessments is hype or salvation without deciding, which is right
-for work where every statement must trace to a source.
+methods remain valuable, being transparent and reproducible where an LLM is a
+black box, and that the two work best combined. \textcite{ioannou2025onehealth}
+show what a standard bibliometric map does without a language model: 154
+papers on coastal and marine One Health research, grouped by keyword into
+biomedical and environmental clusters. Biodiversity PMC \parencite{pasche2026biodivpmc} indexes
+biodiversity literature specifically. \textcite{krug2026ipbes} ask whether AI in
+IPBES assessments is hype or salvation and answer with neither. Their talk sets
+out where AI tools may help and where the need for traceability and expert
+oversight calls for caution.
 
 An extraction study shows why results need separating by field.
 \textcite{gougherty2024extraction} supplied a model with 100 short plant-disease
-reports and compared its answers with human extraction. Pathogen names were
-98.1\% accurate, host names 91.7\%, and countries 100\%. Processing took about
-five minutes against 268 minutes for the human reviewer. Yet disease incidence
-was only 23.8\% accurate: in 53 reports without an incidence value, the model
-supplied 100\%. Where incidence was reported, it recovered 25 of 26 values
-correctly. The same system could extract a stated number and invent an absent
+reports and compared its answers with human extraction. Pathogen and host names
+were over 90\% accurate, and the model was more than 50 times faster than the
+reviewer. Yet disease incidence was only 23.8\% accurate: in 53 reports without
+an incidence value, the model supplied 100\%. Where incidence was reported, it
+recovered 25 of 26 values correctly. The same system could extract a stated number and invent an absent
 one. These results concern short, preselected reports, not unrestricted searches
 through full papers.
 
@@ -114,16 +133,15 @@ select answer passages for numerical measurements. On the Plants of the World
 Online test data, DistilBERT reached mean \term{precision} of 90.6\% and
 \term{recall} of 88.5\% across the categorical traits. Precision measures how
 many positive predictions are correct; recall measures how many reference
-positives are recovered. Logistic regression reached 88.4\% and
-85.1\%, respectively, while keyword matching performed worse. These are useful
-gains from a relatively small model on a defined task. Rare trait classes
+positives are recovered. Logistic regression came close behind, and keyword
+matching performed worse. These are useful gains from a relatively small model on a defined task. Rare trait classes
 performed worse, and inconsistent definitions, such as leaf versus leaflet
 length, complicated numerical extraction. Predicted traits still need checking
 against the descriptions and the intended measurement.
 
 \textcite{schmidtlebuhn2025morphology} found the same problem in taxonomic
-descriptions. A hosted model filled a table of 51 characters from 1,121
-descriptions of Australian daisies. Checking 109 of the profiles found 5.8 per
+descriptions. A hosted model filled a table of morphological characters from
+descriptions of Australian daisies. A check of a sample found 5.8 per
 cent of filled cells wrong, mostly values placed under the wrong character, such
 as one kind of bract mistaken for another. When the run was repeated,
 one filled cell in six had a value in only one of the two runs, and a locally run
@@ -131,40 +149,39 @@ open model was less reproducible still (\Cref{ch:localfirst}).
 
 \textbf{Microbiomes.} \textcite{yu2026microbiomes} describe the shift from
 describing microbial communities to predicting them, and name the obstacles:
-interpretability, generalising across studies, and causal inference.
+interpretability, generalising across studies, and causal inference. I leave
+out AI that works on sequences and sequence databases, such as taxonomic
+assignment of reads, genome quality estimation and functional annotation. Most
+of those tools are classifiers trained for one task rather than language
+models, and they deserve their own treatment.
 
-Two new studies make the language-model applications concrete.
-\textcite{munch2026phenotypes} asked models to assign microbial traits from
-species names alone, without retrieving supporting documents. They compared
-predictions with curated phenotype records across ten traits.
-\term{Balanced accuracy} averages recall across classes, giving each equal
-weight. Its mean across models was 89.8\% for spore formation but 53.0\% for biofilm
-formation, with no model best across all traits. The best open-weight model
-was within one percentage point of the best proprietary model in their
-comparison. This supports testing local models for this task; it does not
-establish their suitability for other microbial questions.
+Two studies show language models at work on microbial data.
+\textcite{munch2026phenotypes} asked models to assign ten microbial traits from
+species names alone, without retrieving documents, and compared the answers
+with curated records. \term{Balanced accuracy} averages recall across classes,
+giving each equal weight. Its mean across models was 89.8\% for spore formation
+but 53.0\% for biofilm formation. Given 200 invented taxon names and allowed to
+say they did not know, models fabricated knowledge for 0.5--92\% of them,
+depending on the model. Their own confidence ratings tracked accuracy, which
+helps decide what a curator checks first. The best open-weight models,
+DeepSeek-R1 and gpt-oss-120b, came within one percentage point of the best
+proprietary ones. They are large, though: the smaller has about 120 billion
+parameters, too many to run comfortably on a laptop (\Cref{ch:hardware}). A
+name-only prediction cannot establish a strain's measured phenotype. I would use
+these assignments to prioritise curation and keep them apart from measured
+records until the evidence has been checked.
 
-The same study tested 57 models on 200 invented taxon names, allowing them to
-say they did not know. Depending on the model, 0.5--92\% of these prompts
-elicited fabricated knowledge \parencite{munch2026phenotypes}. High performance
-on familiar names therefore needs a separate test of unfamiliar and non-existent
-ones. Nor can a name-only prediction establish a strain's measured phenotype.
-I would use these assignments to prioritise curation, retaining a separate
-record of predictions until supporting evidence has been checked.
+In a study I co-authored, \textcite{venetsianou2026relatedness} used a locally
+run model to judge how related 16{,}194 pairs of MGnify microbiome studies were,
+from their titles, descriptions, biomes and linked abstracts. Those judgements
+agreed more strongly with similarity in functional profiles than in taxonomic
+profiles. That suggests a way to find studies worth comparing even when their
+microbes differ. However, generic descriptions and shared annotation pipelines
+affect the result, and the comparison is not an expert validation of the
+model's judgements.
 
-\textcite{venetsianou2026relatedness} used a locally run model to compare
-16{,}194 pairs of microbiome studies from MGnify. It judged relatedness from
-study titles, descriptions, biome information and linked abstracts. Those
-judgements agreed more strongly with similarities in functional profiles than
-with similarities in taxonomic profiles. This suggests a way to find studies
-worth comparing even when their microbial membership differs. However, the
-authors identify effects from generic descriptions and shared annotation
-pipelines, and the comparison is not a comprehensive expert validation of
-the model's judgements. Biological similarity supplies another line of evidence,
-not a guarantee that studies answer the same research question.
-
-\textbf{Curation.} AI-assisted curation of biological knowledgebases works with
-a person in the loop \parencite{pombase2026curation}: the model suggests, the
+\textbf{Curation.} Curators of biological knowledgebases propose AI-assisted
+curation with a person in the loop \parencite{pombase2026curation}: the model suggests, the
 curator decides (\Cref{fig:curation}). An error in a knowledgebase spreads into every analysis that
 uses it. This makes the curator's judgement essential throughout the process.
 
@@ -180,8 +197,12 @@ gets in reaches every analysis that uses it.}
 \textbf{Queries.} Writing SPARQL queries against life-science knowledge graphs
 is a specialist skill; language models can now generate them from plain
 questions \parencite{smeros2025sparqlllm}. Generating a query is safer than
-generating an answer: you can read the query, the database supplies the facts,
-and a wrong query usually fails loudly.
+generating an answer, because you can read the query and the database supplies
+the facts. A wrong query rarely fails loudly, though. A wrong predicate or a
+missing filter usually returns an empty or partial result with no error.
+SPARQL-LLM checks each generated query against the database's schema before
+running it. I would also test any generated query on questions whose answers
+you already know.
 
 \section{Where the claims outrun the evidence}
 
@@ -198,7 +219,7 @@ mostly of easy absences would therefore give a misleading impression of
 ecological usefulness. A benchmark across 21,955 Red List species separates
 looking up from judging. Five models placed species correctly in the taxonomy
 94.9 per cent of the time but gave the right conservation status only 27.2 per
-cent of the time, and they did worse on invertebrates than on vertebrates
+cent of the time. They also did worse on invertebrates than on vertebrates
 \parencite{uryu2026redlist}. These findings concern the tested models and conditions;
 \Cref{ch:testing} explains how to build a comparison for your own application.
 
@@ -211,25 +232,47 @@ that cannot, and absent values tend to be invented.}
 \label{fig:twoways}
 \end{figure}
 
-For \textcite{mishra2026notready}, ecology is not ready. This is the most
-important dissent in this literature. Ecological data is patchy,
-biased in space and time, sparse for the taxa that matter most, and produced by
-causal processes. Across 742 million records, only 6.74 per cent of the globe had
-been sampled for animals, and citizen science added to the biases rather than
-correcting them \parencite{hughes2021sampling}. A model that predicts species occurrence from environmental
-variables learns where people looked as readily as where species live
+For \textcite{mishra2026notready}, ecology is not yet ready for AI. This is the
+most important dissent in this literature. She argues that ecological data are
+observational and uneven: occurrence records contain false absences, databases
+are taxonomically biased, and long-term series are fragmented. Many models
+assume that relationships stay stable, that training data represent the future
+and that observations are independent, and ecology routinely violates all
+three. A model can then score well while missing the ecological process. In
+742 million records, \textcite{hughes2021sampling} found that only 6.74 per
+cent of the globe had been sampled for animals, counted at a 5-kilometre grain.
+Citizen science added to the biases rather than correcting them. A model that
+predicts species occurrence from environmental variables learns where people looked as readily as where species live
 (\Cref{fig:samplingbias}). Used for
 conservation decisions, it turns that bias into policy with a look of
-precision. Point predictions hide uncertainty that decisions need, and a model
-that cannot be interpreted cannot be told apart from one that fits for the wrong
-reason.
+precision.
+
+Ecology has methods for this problem. Statistical and model-based corrections
+for uneven sampling are common, though even the best still need checking
+against observations \parencite{hughes2021sampling}. Cross-validation designed
+for structured data, and checks that flag predictions outside the conditions
+sampled, also help \parencite{pichler2023review}. Combining several kinds of
+data despite uneven sampling remains an open problem
+\parencite{tuia2022perspectives}. In my view no language model removes the need
+for these methods. Records extracted by a model add another layer, since they
+inherit the biases of the literature they came from \parencite{keck2026interactions}.
+
+\textcite{roff2026shape} replied that readiness is uneven rather than absent,
+that underuse also has costs, and that ecologists should shape these models
+rather than stand outside their development. \textcite{mishra2026reply} agreed
+that ecologists should shape AI but kept her central point. Success in
+detection, classification and monitoring does not necessarily imply readiness
+for inference or for prediction under new conditions. That is the line this
+chapter draws between its real wins and the claims that outrun the evidence.
 
 \begin{figure}[htbp]
 \centering
 \fig{ch04-sampling-bias}
-\caption{Sampling bias becomes prediction. Grey cells are where records were
-collected and dots are where the species lives. A model trained on the records
-reproduces the sampling pattern, and a decision made on it inherits the bias.}
+\caption{Sampling bias becomes prediction. Grey cells are where people looked
+and dots are where the species lives; the records are the dots inside grey
+cells. A model trained on the records predicts presence (tinted cells) along
+the band people sampled and misses most of the range, so a decision made on it
+inherits the bias.}
 \label{fig:samplingbias}
 \end{figure}
 
@@ -244,10 +287,12 @@ inference.
 
 Beyond models that classify are agents that run analyses: Biomni
 \parencite{huang2025biomni}, PantheonOS \parencite{xu2026pantheonos} and
-OmicClaw \parencite{zeng2026omicclaw}. On 244 expert-written bioinformatics
-tasks, leading agents performed similarly and declined sharply with difficulty
-\parencite{guo2026promptbio}: useful for well-specified tasks, unreliable where
-judgement is needed about whether the analysis is the right one. Environmental
+OmicClaw \parencite{zeng2026omicclaw}. PromptBio-Bench compared three agents
+on 244 expert-written tasks in omics analysis and data science
+\parencite{guo2026promptbio}. Accuracy fell for all three as tasks got harder,
+from 0.90 on easy tasks to below 0.70 on hard ones for the best two. Finishing a
+task was not the same as getting it right. The authors work for the company
+that makes one of the three agents. Environmental
 work looks similar: on 349 multi-step GIS tasks drawn from practitioners'
 questions, the best agent completed 32.7 per cent under strict scoring
 \parencite{pothuri2026gisagentbench}.
@@ -255,24 +300,32 @@ questions, the best agent completed 32.7 per cent under strict scoring
 The most striking result so far comes from inside a model company.
 \textcite{yoon2026art} set Claude Code agents to survey reverse transcriptases
 (enzymes that copy RNA into DNA) across 1.9 billion protein clusters. Worker
-agents ran tasks, supervisor agents reviewed them and opened new ones: 119 tasks
-and 949 sessions over 21.5 hours, with no human intervention. Of 17 candidate
-partner genes, 14 turned out to be annotation errors or known systems. But one
-agent, reading raw DNA, noticed a run of repeats beside a phage enzyme, which
-became a new family whose repeat arrays resemble CRISPR arrays. Two caveats: the
-paper comes from the model's makers, and, as the authors say, it is a prediction
-from sequence alone --- the enzyme's activity is untested. The agents noticed an
-anomaly, which is where discovery starts; confirming it is still bench work.
+agents ran tasks and supervisor agents reviewed them and opened new ones, for
+21.5 hours with no human intervention. One agent, reading raw DNA, noticed a
+run of repeats beside a phage enzyme. It became a new family whose repeat
+arrays resemble CRISPR arrays. In published infection data, the array's RNAs
+were among the most abundant phage transcripts. At the bench, the array
+expressed in \emph{Escherichia coli} gave discrete short RNAs. The authors have
+not shown that the enzyme is active or what the system does. The
+discovery also did not reproduce. In ten reruns of the same campaign the agents
+never read the DNA beside the enzyme, and missed the array every time. In
+fixed tests, the strongest models recognised the array in at least 90 per cent
+of attempts when given the sequence in the prompt. Given it as files with
+tools, some fell to 32 per cent, often because they never read enough of the
+sequence. The paper also comes from the model's makers. The agents noticed an
+anomaly, which is where discovery starts, but one run is not a method
+(\Cref{ch:reproducibility}).
 
 \section{Domain assistants}
 
 UNEP's EnvironmentGPT \parencite{unep2026environmentgpt} restricts retrieval to
-a curated library of UNEP publications: narrower coverage in exchange for
-citable answers. \textcite{sigillo2026embllibrarian} go a step further, proposing
+a curated library of documents from UNEP and some of its partners: narrower
+coverage in exchange for citable answers. \textcite{sigillo2026embllibrarian} go a step further, proposing
 a shared life-science knowledge layer that agents query instead of every group
-building its own pipeline over the same literature. For assistants of this kind,
-a curated set of documents with citations beats a larger model without them
-(\Cref{ch:localfirst} works through an example).
+building its own pipeline over the same literature. For literature questions,
+the evidence so far suggests that better retrieval with citations helps more
+than a larger model alone \parencite{sigillo2026embllibrarian,asai2026openscholar};
+\Cref{ch:localfirst} works through an example.
 
 Two efforts are aimed at biodiversity data directly. In iChatBio
 \parencite{elliott2025ichatbio} a general chat agent splits a request into parts
@@ -285,5 +338,5 @@ TIB, has shown the design in a prototype
 \parencite{auer2025tibvision,oelen2025tibaissistant}. Single-task assistants
 pass results through a shared store and the researcher approves each step. The
 outputs are exported with their provenance as an RO-Crate, a standard bundle of
-files and their metadata. Neither has
+files and their metadata \parencite{soilandreyes2022rocrate}. Neither has
 published an evaluation yet; judge them by what they deliver.

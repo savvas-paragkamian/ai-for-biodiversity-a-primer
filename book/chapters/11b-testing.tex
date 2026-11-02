@@ -12,22 +12,23 @@ finish.
 
 \section{More than one number}
 
-A single accuracy score hides most of what matters. Three examples show other
+A single accuracy score hides most of what matters. Four examples show other
 ways to test.
 
 \textbf{Test several things at once.} Karenina, from EMBL-EBI, lets experts
-say in plain language what a sound answer needs and what behaviour to test, and turns that into runnable checks \parencite{carli2026karenina}. On
-144 drug-discovery questions, giving seven models live access to the Open
-Targets database raised accuracy from 51 to 81 per cent. However, 11 per cent
-of the answers given with that access were correct but unsupported by the
-retrieved evidence. Invented PubMed identifiers gave way to real papers cited
-for claims they do not make. Tool use also cost 24 to 121 times more tokens.
-When a user confidently
-pushed back with false information, models abandoned correct answers 57 per cent
-of the time --- sycophancy, measured (\Cref{ch:powers}). A second model acting
-as a guard flagged 97 per cent of those reversals. On an agent benchmark,
-switching the harness alone moved one model from 50 to 65 per cent, and reading
-the agents' saved code separated flawed biology from failed computing.
+say in plain language what a sound answer needs and what behaviour to test,
+and turns that into runnable checks. Its authors describe it in a preprint of
+September 2026, not yet peer reviewed \parencite{carli2026karenina}. On 144
+drug-discovery questions, live access to the Open Targets database raised the
+average accuracy of seven models. Yet 11 per cent of the answers given with
+that access were correct but unsupported by the retrieved evidence. Invented PubMed
+identifiers gave way to real papers cited for claims they do not make, and
+tool use cost many times more tokens. When a user confidently pushed back with
+false information, models often abandoned correct answers: sycophancy,
+measured (\Cref{ch:powers}). A second model acting as a guard flagged almost
+all of those reversals. On an agent benchmark, switching the harness alone
+changed one model's score, and reading the agents' saved code separated flawed
+biology from failed computing.
 
 \textbf{Ask what a benchmark can prove.} \textcite{saezrodriguez2026benchmarking}
 argue that foundation models are hard to benchmark because they are meant to
@@ -41,21 +42,39 @@ the new version's annotations of all Swiss-Prot proteins with the old one's. The
 found near-identical precision and sensitivity, at about twice the speed on large
 proteomes \parencite{blum2026interproscan}.
 
+\textbf{Test the work as it is done.} OmicsBench, also a preprint, poses a
+bioinformatics study to an agent as a chain of dependent steps, one turn at a
+time, rather than as a single prompt \parencite{shaked2026omicsbench}. Agents
+scored lower on steps that built on their own earlier answers. Its graders
+match genes and organisms through reference databases, so a valid synonym is
+not marked wrong. Of its 97 tasks, all but three are kept private, so that the
+benchmark can still test models released later. Among the failures the
+authors describe are agents that wrote answers from memory without opening the
+data.
+
 \section{A procedure for ecological tasks}
 
 The ecological examples in \Cref{ch:applications} suggest a procedure of their
 own. The following is my proposal for comparing extraction, classification and
 study-retrieval workflows, drawing on their different successes and failures
-\parencite{gougherty2024extraction,domazetoski2025traits,dorm2026ecologicalknowledge,munch2026phenotypes,venetsianou2026relatedness}
+\parencite{gougherty2024extraction,domazetoski2025traits,dorm2026ecologicalknowledge,munch2026phenotypes}
 (\Cref{fig:procedure}).
 
 \begin{enumerate}
   \item \textbf{Fix the task and the reference answers.} Specify the fields,
-    trait definitions, units and acceptable evidence. Have experts independently
-    annotate a sample, resolve disagreements and retain uncertain cases as
-    uncertain. Set aside a final test set before adjusting prompts or thresholds.
+    trait definitions, units and acceptable evidence. Have two experts annotate
+    a sample independently, report how often they agreed, resolve disagreements
+    and retain uncertain cases as uncertain. Record the
+    \term{reference-database version} that the key relies on, such as the
+    taxonomic backbone or sequence database, for the key and for the system
+    under test, and score again when either changes. Set aside a final test set
+    before adjusting prompts, rules or thresholds, or writing a baseline.
     Keep descriptions of the same species, or samples from the same study,
-    together when testing transfer to new species or studies.
+    together when testing transfer to new species or studies. For medicine,
+    \textcite{salaudeen2026failures} recommend testing on held-out hospitals,
+    periods or patient groups, because models that score well where they were
+    developed can fail elsewhere. For field notes, the equivalent is notes from
+    another observer, site or season.
   \item \textbf{Compare like with like.} Run keyword matching or a simple
     classifier alongside the language model. Include the established domain
     method where one exists. Test unaided answers, answers given a fixed source
@@ -65,25 +84,35 @@ study-retrieval workflows, drawing on their different successes and failures
     and recall for each field, plus how often missing information becomes an
     invented value. Check numerical errors after converting units, stating any
     transformation used. For traits, show each class's results and balanced
-    accuracy, so common classes cannot conceal failure on rare ones.
+    accuracy, so common classes cannot conceal failure on rare ones. For names,
+    report results by taxonomic rank as well as overall, since accuracy at
+    genus level can hide failure at species level.
     Count malformed outputs, failures and unanswered cases across the full test
     set, even when calculating accuracy only on valid answers.
   \item \textbf{Test uncertainty and unfamiliar cases.} Include absent fields,
-    rare taxa, invented names and difficult negative examples. Report
+    rare taxa and difficult negative examples. Add controls for benchmark
+    contamination (\Cref{ch:powers}), since public reference data may be in a
+    model's training data. Invented names cannot have been memorised
+    \parencite{munch2026phenotypes}, and models know least about the most
+    specific ranks \parencite{sun2024taxoglimpse}. Report
     \term{coverage}, the proportion of cases receiving an answer, alongside
     accuracy. If confidence controls which answers are accepted, check whether
-    higher confidence actually predicts fewer errors. Measure the errors and
+    higher confidence predicts fewer errors. Measure the errors and
     coverage again at each proposed threshold.
   \item \textbf{Evaluate retrieval and evidence separately.} For literature
     assistants, measure how many expert-selected relevant papers appear in the
     first few results. Then check whether each generated claim is supported by
-    its cited passage. For microbiome comparisons, add independent expert
+    its cited passage. If a second model does that checking, compare its
+    verdicts with an expert's on a sample first (\Cref{ch:localfirst}).
+    For microbiome comparisons, add independent expert
     judgements of study compatibility. Agreement between text and biological
     profiles is useful corroboration, but does not substitute for those checks.
   \item \textbf{Measure variation and the whole cost.} Repeat runs and modest
     prompt changes, checking agreement on individual records. Report results
     by taxon, biome or source collection, with sample sizes and uncertainty
-    intervals. Record runtime, token use, hardware and human correction time.
+    intervals computed over the right unit, and compare systems on the same
+    items (the exercise below shows how). Record runtime, token use, hardware
+    and human correction time.
     Judge a replacement by verified output per unit of work and by unacceptable
     errors, with the acceptance criteria fixed before comparing models.
 \end{enumerate}
@@ -96,43 +125,71 @@ answers to measuring variation and the whole cost.}
 \label{fig:procedure}
 \end{figure}
 
-In the microbiome relatedness study, the authors also tested the similarity
-measures themselves by reducing sequencing depth and asking whether profiles
-still retrieved their original counterparts \parencite{venetsianou2026relatedness}.
-This is a useful distinction: a benchmark's comparison method needs checking
-as well as the language model. Repeating a judgement consistently establishes
-repeatability; an independent reference is needed to assess correctness.
+A benchmark's comparison method needs checking as well as the language model.
+Where a score rests on a matching rule or a similarity measure, try the rule on
+cases whose answer is known. The exercise below scores a free-text effort field
+by accepting a phrase when either contains the other. In one test run, that
+rule accepted ``Deep soil core'' for ``Deep soil core, 10 to 20 cm'' and so
+lost the depth. Repeating a judgement consistently establishes repeatability;
+an independent reference is needed to assess correctness.
 
-\section{An exercise: ten field notes}
+\section{An exercise: field notes}
 
 The \code{workshop/testing} folder applies the procedure to a task small
-enough to finish in an afternoon. Ten invented field notes from the survey of
+enough to finish in an afternoon. Invented field notes from the survey of
 \Cref{ch:firstsession} each record a station, a date, a habitat and at most one
-species with its count. The task is to turn each note into one row of a table.
-Two notes record failed samples, one gives only an approximate count, one names
-a place without a station number, one mentions a species that was searched for
-and not found, and one misspells a name. These are the absent fields and
-difficult negative examples of step~4.
+species with its count. The task is to turn each note into one row of a table
+with nine fields. Ten notes, N01 to N10, are the \term{development set}, and
+the baseline below was written with them in view. Fifteen more, N11 to N25, were
+written after the baseline as the \term{held-out set}. The baseline runs on
+them unchanged, and the rules were fixed before any model saw them. Both sets
+include failed samples, rough and partial counts, places without a station
+number, species searched for and not found, tentative identifications and
+misspelt names. These are the absent fields and difficult negative examples of
+step~4.
+
+\textbf{Keep the records ecology needs.} An earlier version of the exercise had
+five fields and did not record a species that was searched for and not found.
+The rules now keep it, with \code{status} set to \code{absent}, the habitat
+searched and the effort spent. A lost or untaken sample is \code{not\_sampled},
+and a number that covers only the first tray is marked \code{partial} in
+\code{count\_qualifier}. An abundance or occupancy analysis needs exactly this
+information to tell an absence from a gap (\Cref{sec:fitformodel}). The fields
+also expose the most serious error an extractor can make here, the
+\term{false zero}. This is a count of 0 written for a sample that was lost or
+never taken, and it enters an analysis as a true absence.
 
 \textbf{Fix the rules first.} \code{RULES.md} defines each field before
-anything is run. A count is recorded only when an exact number is stated, so
-``roughly a dozen'' is empty rather than 12. Names are copied as written,
-misspellings included, because checking them is a separate step. Habitats come
-from a closed list of six. Before looking at \code{key/key.csv}, annotate the
-ten notes yourself and compare. Where you disagree with the key, decide whether
-the rule or your reading was at fault, and change the rules only now, before
-any model is tested.
+anything is run. A count is recorded only when an exact number is stated, in
+digits or words, and it is never 0: ``roughly a dozen'' leaves it empty, with
+\code{count\_qualifier} set to \code{approximate}. Names are copied as written,
+misspellings and ``cf.'' included, because checking them is a separate step.
+Habitats come from a closed list of six. Before looking at the keys in
+\code{key/}, annotate the development notes yourself, ideally with a colleague
+working separately, and note how often the two of you agree. Where you
+disagree with the key, decide whether the rule or your reading was at fault,
+and change the rules only now, before any model is tested.
 
 \textbf{Run a baseline.} \code{R/01\_baseline.R} uses patterns and keywords
-only: a regular expression for the station code, three date formats, an exact
-match against the checklist, and the number nearest to the name. It needs no
-model and gives the same answer every time.
+only. It has a regular expression for the station code, three date formats, an
+exact match against the checklist and the number nearest the name, with keyword
+lists for status, effort and the two qualifiers. It needs no model and gives
+the same answer every time. Its patterns were written while looking at the
+development notes, so its score there measures how well it fits them. Only the held-out
+notes show how it does on notes it was not written for. The script also sets
+the time locale to C, because month names such as ``May'' are otherwise read in
+the computer's language. Without that line, it loses every long-form date on a
+Greek or German system.
 
-\textbf{Run a model.} \code{R/02\_extract.R} sends each note to a local model
-through Ollama, using the \code{ellmer} package, and asks for output that fits
-a fixed structure:
+\textbf{Run a model.} \code{R/02\_extract.R} sends each note, in a fresh
+conversation, to a local model through Ollama, using the \code{ellmer} package.
+It asks for output that fits a fixed structure:
 
-\begin{lstlisting}[language=R,caption={The structure the model must fill}]
+\begin{lstlisting}[language=R,caption={Sampling settings and the structure the model must fill, abridged from \code{R/02\_extract.R}}]
+sampling <- list(temperature = 0.6, top_p = 0.95, top_k = 20)
+p <- params(temperature = sampling$temperature, top_p = sampling$top_p,
+            top_k = sampling$top_k, seed = if (is.na(seed)) NULL else seed)
+
 type_note <- type_object(
   station = type_string("Station code S1 to S5, as written",
                         required = FALSE),
@@ -141,62 +198,145 @@ type_note <- type_object(
                         required = FALSE),
   count   = type_integer("Exact number of individuals", required = FALSE),
   habitat = type_enum(c("litter", "soil", "moss", "bark", "compost", "cave"),
-                      required = FALSE)
+                      required = FALSE),
+  # ... status, effort, count_qualifier and id_qualifier: see the script
 )
-chat <- chat_ollama(model = model, system_prompt = rules)
-out  <- parallel_chat_structured(chat, as.list(notes$text), type = type_note)
+chat <- chat_ollama(
+  model = model,
+  system_prompt = paste("Extract one record from a field note.", rules, sep = "\n\n"),
+  params = p
+)
+c1  <- chat$clone()                      # a fresh conversation for each note
+rec <- c1$chat_structured(notes$text[i], type = type_note)
 \end{lstlisting}
 
 Each field is optional, so the model is allowed to leave it empty. Without
 that, a model must fill every field and is pushed towards inventing values.
-The script takes a label, so that repeated runs are kept apart:
+\code{status} and \code{count\_qualifier} are closed lists, like
+\code{habitat}; \code{effort} and \code{id\_qualifier} are free text. Every run
+uses the same sampling settings, taken from the model's documentation.
+\textcite{miller2024errorbars} advises against lowering the temperature to
+steady the scores, because that changes the model under test. An optional seed
+makes the sampling repeatable. The script keeps every raw response, including
+the reasoning that Qwen3 writes before its answer, and records the settings and
+timings beside the output. Its arguments are the run's label, the set and, if
+wanted, the seed. From inside \code{workshop/testing}:
 
-\begin{lstlisting}[style=shell,caption={Baseline, three model runs, and a score}]
-Rscript R/01_baseline.R
-for run in run1 run2 run3; do Rscript R/02_extract.R $run; done
-Rscript R/03_score.R
+\begin{lstlisting}[style=shell,caption={Baseline, three free runs, two seeded runs and a score, for each set}]
+for set in dev heldout; do
+  Rscript R/01_baseline.R $set
+  for run in run1 run2 run3; do Rscript R/02_extract.R $run $set; done
+  for run in fixedA fixedB; do Rscript R/02_extract.R $run $set 1; done
+  Rscript R/03_score.R $set
+done
 \end{lstlisting}
 
 \textbf{Score the errors that matter.} \code{R/03\_score.R} compares every file
-in \code{results/} with the key, field by field. It separates wrong values,
-missed values and invented values, where the key is empty but the output is
-not, and then prints each disagreement so that it can be read, not only
-counted (\Cref{fig:scoring}).
+in \code{results/<set>/} with that set's key, field by field. It separates
+wrong values, missed values and invented values, where the key is empty but the
+output is not (\Cref{fig:scoring}). Every field must match exactly except
+\code{effort}, which counts as correct when either phrase contains the other.
+The script then prints each disagreement, so that it can be read, not only
+counted.
 
 \begin{figure}[htbp]
 \centering
 \fig{ch14-scoring-grid}
 \caption{Scoring against the key. Wrong, missed and invented values are
-different failures; an invented value, where the key is empty and the output
-is not, is the one that corrupts a database most quietly.}
+different failures. An invented value, where the key is empty and the output
+is not, corrupts a database most quietly; a count of 0 for a lost sample, a
+false zero, is one.}
 \label{fig:scoring}
 \end{figure}
 
-When the exercise was tested for this book, the baseline got 46 of the 50
-cells right. Its four errors were the cases that need reading rather than
-matching: counts written as words, the misspelt name, and pine needles, which
-the rules count as litter. An 8-billion-parameter local model handled those
-cases correctly in three of four runs, and still scored lower, between 36 and
-41.
-It left station codes empty in four to six notes, and for both failed samples
-it invented a count of zero and a habitat. With the temperature set to zero and
-a fixed seed, two runs gave identical output, and both scored 39. The runs had
-become repeatable without becoming more correct. Each run of ten notes took
-two and a half to three minutes on a laptop.
+When the exercise was tested for this book, on 2 November 2026, the baseline
+got 83 of the 90 development cells right and 98 of the 135 held-out cells, the
+same under a Greek locale. Qwen3 8B, a local model with 8 billion parameters,
+scored 72 to 76 on the development notes, below the baseline in every run. On
+the held-out notes it scored 107 to 115, above the baseline in every run.
+There, the baseline missed dates in formats it had not seen, counts written as
+words and names that did not match its checklist exactly. Twice it took the
+wrong number as the count. The model's errors were of another kind. In every
+run it wrote a count of 0 for a lost or unsampled note, a false zero, and a
+habitat for a sample that was never taken. It also left a station code empty in
+up to three notes per run. Its raw responses show that each time, its
+reasoning had named the right station; the field was lost when the answer was
+written out. The two seeded runs gave identical output, so the runs became
+repeatable without becoming more correct. A run took about five minutes for ten
+notes and eleven to thirteen for fifteen, on a laptop with other work running.
 
-These numbers describe one small model on ten notes, and your runs will
-differ. The pattern is the reason to test. The model was best where the
-baseline was weakest, and worst at leaving a field empty, which is the failure
-that would corrupt a database most quietly. A sensible design here might use
-the model only for the fields that need reading. That is a decision the scores
-support and the model's fluency does not.
+\textbf{Count notes, not cells.} The nine cells of a note are not independent:
+a note that is hard to read tends to produce several wrong cells at once. The
+\term{unit of replication} is therefore the note, and with ten or fifteen notes
+any interval is wide. \code{03\_score.R} prints two 95 per cent intervals for
+each run. The exact binomial (Clopper--Pearson) interval from
+\code{binom.test()} treats every cell as independent. The bootstrap interval resamples whole notes, so it
+respects the unit, and it is often wider. For the seeded runs' 115 of 135
+held-out cells, they run from 0.78 to 0.91 and from 0.75 to 0.95. Ignoring
+such grouping makes an evaluation look more precise than it is
+\parencite{miller2024errorbars}. With tens of items, \textcite{bowyer2025clt}
+find that intervals from the bootstrap and from the textbook normal
+approximation are often too narrow, while the exact binomial interval errs on
+the wide side. They recommend the Wilson interval, which
+\code{prop.test(x, n, correct = FALSE)} gives, or a Bayesian one. For items in
+groups, only their Bayesian method that models the groups kept its stated
+coverage.
 
-\textbf{Take it further.} Try a larger model, or a hosted one through another
-of \code{ellmer}'s chat functions, and add it to the same table. Record the
-time each run takes and how long you spend checking the output, as step~6
-asks. Then write twenty notes of your own, from your own field books, and keep
-them aside as the test set for the next model you are offered.
+\textbf{Compare on the same notes.} When two systems are scored on the same
+items, compare them item by item, because some items are easy or hard for both
+\parencite{miller2024errorbars}. McNemar's test, \code{mcnemar.test()} in R,
+does this for right-or-wrong scores. It sets aside the cells that both systems
+got right or both got wrong, and asks whether the remaining disagreements lean
+one way. On the held-out notes, the seeded runs were right where the baseline
+was wrong in 34 cells and the reverse in 17, with $p = 0.025$. The three free
+runs gave 0.27, 0.20 and 0.034. The script runs the test on cells, so it
+shares the binomial interval's optimism, and I would not read $p = 0.025$ from
+fifteen notes as a finding.
+
+\textbf{Decide how many items you need.} The binomial arithmetic is simple. To
+measure an error rate near 5 per cent to within 2 percentage points takes about
+460 items ($1.96^2 \times 0.05 \times 0.95 / 0.02^2$), and even then
+\code{binom.test(23, 460)} gives 3.2 to 7.4 per cent. Telling two systems apart
+takes more. In a worked example with assumptions he calls reasonable,
+\textcite{miller2024errorbars} needs about a thousand independent items to
+detect a difference of 3 percentage points with 80 per cent power. Repeated runs belong in the same
+account: the three free runs on the held-out notes ranged from 107 to 114.
+Miller suggests answering each item several times and averaging its scores,
+and OmicsBench averages each task's runs before computing any statistic
+\parencite{shaked2026omicsbench}. Ten or fifteen notes can show what kinds of
+error a system makes, but not which system makes fewer.
+
+These numbers describe one small model, twenty-five notes and one afternoon,
+and your runs will differ. They do not show that the model is better than the
+baseline: the intervals overlap, and the paired test counted cells. What they
+show is narrower. A baseline tuned on the notes it was scored on beat the model
+there and fell behind it on notes written later, so a score on development
+items says little about the next ones. The disagreements say more than the
+totals. The baseline failed on formats it had not seen; the model failed at
+leaving a count empty, the error that would corrupt an abundance table most
+quietly. Keeping the patterns where they never failed, such as station codes,
+and using the model elsewhere might beat either. That is a hypothesis for the
+next held-out set, not a result of this one.
+
+\textbf{Take it further.} Change \code{03\_score.R} so that the paired test, or
+a bootstrap of the differences, works on notes rather than cells, and see how
+much of the held-out difference survives. The model sometimes wrote the word
+``empty'' into \code{id\_qualifier}, which is free text; make it a closed list,
+as \code{status} is. Try a larger model, or a hosted one through another of
+\code{ellmer}'s chat functions, and add it to the same table. Record the time
+each run takes and how long you spend checking the output, as step~6 asks. The
+\code{vitals} package does at scale what \code{03\_score.R} does
+(\Cref{app:tutorials}). Then write twenty notes of your own, from your own
+field books, and keep them aside as the test set for the next model you are
+offered. Once anything has been tuned on them, they are development notes, and
+the next test needs new ones.
 
 The same discipline applies to every choice in \Cref{ch:localfirst,ch:hardware}.
 A quantised model, a fine-tuned one or a new release earns its place by passing
-the tests the previous one passed, judged against criteria fixed in advance.
+the tests the previous one passed, judged against criteria fixed in advance. It
+keeps that place only while a sample of its output keeps passing. In a review
+of AI in health care, \textcite{salaudeen2026failures} describe an AI scribe
+whose accuracy in assigning diagnosis codes fell from 79 to 35 per cent after a
+change to note templates. Systematic monitoring caught the drop. When a model's
+output becomes the data, \Cref{sec:outputasdata} describes the validation
+sample that carries this check into the analysis.

@@ -1,4 +1,6 @@
-% Keep the model out of the chain of inference: generated code, not generated answers.
+% Three places for a model in an analysis: it writes code (keep), it is an
+% instrument whose output enters only through a validation step (measure),
+% or it produces the answer (avoid).
 \input{../style}
 \begin{document}
 \begin{tikzpicture}[node distance=10pt and 18pt]
@@ -11,12 +13,21 @@
   \draw[->] (q1) -- (m1); \draw[->] (m1) -- (code); \draw[->] (code) -- (run); \draw[->] (run) -- (r1);
   \node[note, below=4pt of run] {the code is the artefact you keep: anyone can rerun it};
 
-  \node[title, anchor=west] (t2) at (0,-84pt) {Avoid: the model produces the answer};
+  \node[title, anchor=west] (t3) at (0,-78pt) {Measure: the model is the instrument};
+  \node[box, below=6pt of t3.west, anchor=north west] (q3) {source texts\\or records};
+  \node[grey, right=of q3] (m3) {model};
+  \node[box, right=of m3] (ext) {extracted\\values};
+  \node[box, right=of ext] (val) {a random sample\\checked by people};
+  \node[box, right=of val] (r3) {result,\\with its error};
+  \draw[->] (q3) -- (m3); \draw[->] (m3) -- (ext); \draw[->] (ext) -- (val); \draw[->] (val) -- (r3);
+  \node[note, below=4pt of val, text width=200pt] {an error rate for each field, carried into the analysis; records flagged as machine-derived};
+
+  \node[title, anchor=west] (t2) at (0,-164pt) {Avoid: the model produces the answer};
   \node[box, below=6pt of t2.west, anchor=north west] (q2) {a question\\about the data};
   \node[grey, right=of q2] (m2) {model};
   \node[badbox, right=of m2] (num) {a number\\or a claim};
   \node[box, right=of num] (r2) {result};
   \draw[->] (q2) -- (m2); \draw[->] (m2) -- (num); \draw[->] (num) -- (r2);
-  \node[note, below=4pt of num, text=accent, text width=180pt] {no provenance, and no way to reproduce it: sampling is random and a hosted model changes without notice};
+  \node[note, below=4pt of num, text width=180pt, text=accent] {no provenance, and no way to reproduce it: sampling is random and a hosted model changes without notice};
 \end{tikzpicture}
 \end{document}
