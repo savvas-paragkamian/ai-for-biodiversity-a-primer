@@ -17,8 +17,9 @@ inventing one.
 
 Any agent, any harness. Read in this order before changing anything:
 
-1. This file, all of it. Then **Decisions already made** and **Open work**
-   near the end, so you don't reopen settled questions or duplicate work.
+1. This file, all of it. Then **Independent reviews**, **Decisions already
+   made** and **Open work** near the end, so you don't reopen settled
+   questions or duplicate work.
 2. `book/README.md`: scope, contents by part and chapter, and open issues.
 3. `NOTES.md`: the outline.
 4. The chapter you are about to touch, in full.
@@ -36,7 +37,11 @@ check, say so in your report. Don't claim it passed.
   against exactly that failure, so the book must not commit it.
 - **Never invent a DOI, arXiv ID, page number or volume.** Take them from the
   PDF, or from the `.bib`/`.ris` file next to it, or leave the field out.
-- **Never commit.** The author commits.
+- **Never commit.** The author commits. The one exception so far is the peer
+  review of 17 October 2026: the author asked for it to be done in git, and
+  each reviewer committed to its own `review/*` branch (see **Independent
+  reviews**). `main` was not touched. Any other commit still needs the
+  author's say-so.
 - **Never add a LaTeX package** without saying why it's needed.
 
 ## Bibliography
@@ -56,9 +61,10 @@ Before any reference goes in:
 
 Verification is scripted, not sampled. Run `python3 scripts/verify_bib.py`
 over the whole file after any change to the bibliography — it takes a few
-minutes and there is no acceptable reason to skip it. There are 179 entries:
-all 86 DOIs and all 52 arXiv IDs currently pass, and 41 entries have neither and
-were checked by hand. Grant DOIs (CORDIS, `10.3030/...`) carry their title in
+minutes and there is no acceptable reason to skip it. There are 228 entries:
+all 111 DOIs and all 69 arXiv IDs pass, with title, first author and year
+compared (2 November 2026), and 48 entries have neither and were checked by
+hand. Grant DOIs (CORDIS, `10.3030/...`) carry their title in
 Crossref's `project` field; the script handles that. Each script in `scripts/`
 has a `--self-test` that plants errors; run it after changing a script.
 
@@ -74,11 +80,16 @@ has a `--self-test` that plants errors; run it after changing a script.
 Every entry must be cited at least once. `biber` reports no undefined keys and
 the file should have no orphans either.
 
-**Known problem, unresolved:** `openai2026huggingface` is cited in
-`05-ai-ready-data.tex` and `12-security-and-biorisk.tex` for model files carrying
-executable payloads. The OpenAI page is about agents escaping an evaluation
-sandbox, not about model files. Those two sentences need another source or
-rewording; the author decides which.
+**Resolved, 22 October 2026 (author's decision D3):** `openai2026huggingface`
+was cited in `05-ai-ready-data.tex` and `12-security-and-biorisk.tex` for model
+files carrying executable payloads, which the OpenAI page does not discuss.
+Both sentences now cite it only for what it reports: agents escaping an
+evaluation sandbox through a package-cache proxy. The model-file warning was
+dropped; it would need its own source in `../literature/`.
+
+**Web pages as sources.** A web page with no PDF may be saved as HTML in
+`../literature/`, with a hand-written `.bib` beside it giving the date it was
+saved (first done for the Epoch AI data insight, 2 November 2026).
 
 ## Prose
 
@@ -145,6 +156,10 @@ Minimal. That is the deliberate house style; don't improve it.
 - Citations: `\textcite{}` in running prose, `\parencite{}` parenthetically.
 - Labels: chapters `ch:*`, tables `tab:*`, figures `fig:*`, appendices `app:*`
   (`app:glossary`, `app:checklists`, `app:tutorials`, `app:stateofplay`).
+  Sections get a `sec:*` label only when another chapter points to them; the
+  first four, added in the revision of November 2026, are `sec:fitformodel`
+  and `sec:abs` (Ch. 5), `sec:analysis` (Ch. 7) and `sec:outputasdata`
+  (Ch. 9).
 - Prices, exact model versions, harness lists and usage limits go in
   `A4-state-of-play.tex` (`app:stateofplay`), dated. Chapters keep the reasoning
   and the lasting names (Apple M-series unified memory, Qwen, Ollama, Claude
@@ -250,6 +265,65 @@ Example keys in the text must be obviously fake.
 - Before adding new material, find out what is new: compare `../literature/`
   against `references.bib` rather than assuming.
 
+## Independent reviews
+
+On 17 October 2026 three AI agents reviewed the whole book as referees for a
+top-tier book series, each with an expert persona: an ecologist who uses R
+(R1), a bioinformatician who uses AI (R2) and a systems microbiologist (R3).
+All three recommend major revision. They are not human referees; read the
+reviews as a pre-submission check.
+
+- **Where they are.** Each reviewer has a branch: `review/R1-ecologist`,
+  `review/R2-bioinformatician` and `review/R3-systems-microbiologist`. Each
+  holds `reviews/<reviewer>/report.md`, an index
+  `reviews/<reviewer>/comments.tsv` (id, file, line, severity, chapter,
+  summary) and the chapters with inline comments. `review/combined` merges
+  all three: 290 comments (R1 83, R2 131, R3 76), 57 of them major. The
+  `line` column is where the comment sits on that reviewer's branch, not in
+  `main`. A synthesis with the shared concerns and a 13-item revision
+  checklist is a private Claude Docs page:
+  <https://claude.ai/artifact/YGQqBLBUdjG2ZpWn3FUbgC>.
+- **Comment format.** LaTeX comment lines directly above the line concerned:
+  `%% [R1-ECO-014 | major] text`, continued as `%%   text`. Severities are
+  major, minor, factual, citation, clarity and typo. The PDF is unchanged:
+  119 pages, with the same text as `main`.
+- **Reading them.** `git diff main review/combined -- book/chapters/<file>`
+  shows one chapter's comments in place. Don't merge a `review/*` branch into
+  `main`, and don't copy the `%%` lines into the source.
+- **Chapter numbers.** The reviewers used the numbers in the PDF: Ch. 6 is
+  `06-organisation-and-backup.tex`, 10 `09b-first-agent-session.tex`, 11
+  `09c-weekly-literature.tex`, 12 `10-local-first.tex`, 13
+  `11-hardware.tex`, 14 `11b-testing.tex`, 15 `12-security-and-biorisk.tex`,
+  16 `13-scientific-workflow.tex` and 17 `14-keeping-up.tex`.
+- **Comments are proposals, not instructions.** The reviewers did not see
+  this file, so they did not know the decisions below. Where a comment
+  contradicts **Decisions already made**, the decision stands and the comment
+  goes to the author. Two do. All three reviewers propose moving the wider
+  frame to an epilogue, and R1 would also halve it. R1 and R3 offer adding
+  image, sound, SDM and molecular material as one way to settle the scope.
+- **How it was done**, to repeat it. One git worktree and branch per
+  reviewer, outside the project folder. A non-cone sparse checkout held only
+  `.gitignore`, `book/`, `scripts/`, `workshop/` and `reviews/`, so the
+  reviewers never saw this file, `WRITING_STYLE.md`, `NOTES.md` or the
+  earlier review and revision files. Each was a fresh agent with no shared
+  context, told not to read outside its worktree or look at other branches.
+  Comments were insertions only.
+- **Checks that passed** on every branch: no deleted lines; every added line
+  in a `.tex` file starts with `%%`; the TSV rows match the inline IDs; the
+  PDF text matches `main`'s. A plain `git merge` of the three branches
+  conflicts in 18 chapter files, because reviewers commented above the same
+  lines. `review/combined` was built instead by keeping every reviewer's
+  insertions at each position, in R1, R2, R3 order. Removing the other
+  reviewers' comments from it recovers each branch exactly. Its commit has
+  four parents: `main`, R1, R2 and R3.
+- **Limits.** All three agents ran on the same underlying model, so they may
+  share blind spots. `book/README.md` was visible to them and already flags
+  `openai2026huggingface`, so their agreement on it is partly prompted.
+- The sparse checkouts set `extensions.worktreeConfig = true` in
+  `.git/config`. It is harmless; the author may remove it with
+  `git config --unset extensions.worktreeConfig`. The worktrees were removed;
+  the branches remain.
+
 ## Decisions already made
 
 Settled by the author. Don't reopen them in reviews or suggestions.
@@ -261,10 +335,21 @@ Settled by the author. Don't reopen them in reviews or suggestions.
 - **Scope is biodiversity.** The title is *AI for Biodiversity: A Primer*. The
   subject is language models and agents applied to biodiversity data and
   literature; image, sound and species distribution models stay brief (Ch. 4).
-- **The wider frame stays.** The last section of `12-security-and-biorisk.tex`
-  (noosphere, evolvable
-  AI, biospheric AI, von Neumann) is where data, complexity and history meet.
-  It is core, not a tangent: strengthen and connect it, never propose cutting it.
+- **The wider frame stays.** Noosphere, evolvable AI, biospheric AI, von
+  Neumann and the consciousness exchange: where data, complexity and history
+  meet. It is core, not a tangent: strengthen and connect it, never propose
+  cutting it. By the author's decision of 22 October 2026 (D2) it moved,
+  unchanged in length, from the end of `12-security-and-biorisk.tex` to its
+  own chapter after Keeping Up: `14b-epilogue.tex`, "Epilogue: The Wider
+  Frame", `ch:epilogue`.
+- **Declared interests (D4, 2 November 2026).** `venetsianou2026relatedness`
+  is co-authored by the author. It is cited only in Chapter 4, with the
+  disclosure there. KYBELE is the author's project and is presented as a
+  design ("KYBELE: a design", D5) until its design documents are in
+  `../literature/`.
+- **No CI, no DOI, no hosted run (D11, 2 November 2026).** The workshop gets
+  no CI job or Zenodo DOI, the hosted track of Chapter 10 is not run, and
+  nothing is tested on Windows. Untested parts are labelled as untested.
 - **KYBELE is the worked example** for biodiversity literature and knowledge
   retrieval, to be expanded (see Open work).
 - **Details that will date go in Appendix D.** Lasting names stay in the
@@ -295,7 +380,7 @@ first: propose, don't implement.
 | The Turing Way reading recommendation | Completed 1 October 2026: official online book linked and described at the start of Appendix C | Agent |
 | Linguistic revision and reusable author style guide | Completed 30 September 2026; see `WRITING_STYLE.md` and `LINGUISTIC_REVISION.md` | Agent |
 | October literature additions and benchmarks | Completed 1 October 2026: consciousness in Ch. 1; five ecological and microbial studies in Ch. 4; data provenance in Ch. 5; Red Hat guidance and evaluation procedure in Ch. 10 and 12; Krakauer and Levin in Ch. 14; web readings in Appendix C. See `LITERATURE_UPDATE.md` for sources and checks | Agent |
-| `openai2026huggingface` misattributed in Ch. 5 and `12-security-and-biorisk.tex` (see Bibliography) | Rewording prepared on 10 October in `PROPOSED_SOURCE_CORRECTION.patch`; not applied, awaiting author's decision | Agent proposes, **author** decides |
+| `openai2026huggingface` misattributed in Ch. 5 and `12-security-and-biorisk.tex` (see Bibliography) | Completed: the author approved the rewording (D3, 22 October 2026) and it was applied in both chapters | Agent |
 | Expand KYBELE as the running example | Blocked: KYBELE's design documents (repo, design doc, BEeS 2026 abstract, RIO draft) must be in `../literature/` first. `Kybele HCMR.md` covers tools only. Never write KYBELE features or results by inference | **author** |
 | Where KYBELE lives | Undecided. Recommended: thread it through Ch. 5 (retrieval), 7 (its AGENTS.md), 9 (logging), local-first (as now), security (scope enforced in code), scientific workflow (literature stage); the first agent session could use KYBELE data once the design documents exist. A dedicated chapter would need a `NOTES.md` entry | **author** |
 | Seth (2026), standalone article | Completed 10 October 2026: supplied combined PDF read; added with the Richards and Agüera y Arcas reply in Ch. 1 and cited in Ch. 14. Print year 2026; online publication 2025 recorded in the bibliography | Agent |
@@ -313,6 +398,9 @@ first: propose, don't implement.
 | Dearborn, "Who Will Steward Humanity's Public Data?" (talk, 10 September 2026; slides and transcript in `../literature/`) | Completed 14 October 2026: added to the Library Innovation Lab entry in Appendix C, linked to the blog post of 24 September that carries the transcript and recording (title from the page `<title>`); one pointer sentence in the Infrastructure section of `05-ai-ready-data.tex`. Not a bibliography entry | Agent |
 | Figures for the book and the workshop slides | Completed 14 October 2026: 41 TikZ diagrams in `book/figures/`, two or three per chapter, built to PDF, PNG and SVG by `scripts/build_figures.sh`; each captioned, labelled `fig:*` and referenced in its chapter. Style and index in `book/figures/README.md`. The author decides whether any should go, and whether the book should include the PDFs instead of the PNGs (one line in the preamble) | Agent; review **author** |
 | A weekly literature review: Chapter 11 (`09c-weekly-literature.tex`, `ch:weeklyliterature`) and the `weekly-literature` repository | Completed 14 October 2026: chapter with seven prompts and three figures (`ch11-two-layers`, `ch11-week-pipeline`, `ch11-citation-check`), glossary "Skill", Appendix C entry, dated versions section in Appendix D, `workshop/literature/` with the fixture week and a frozen live week. The repository lives at `~/projects/weekly-literature` (outside Dropbox; `git init` done, nothing committed, not on GitHub). No new bibliography entries. The former ch11–ch16 figure files were renamed to ch12–ch17 by `scripts/renumber_figures.sh` on the author's instruction the same day. **Author decides:** `gh repo create savvas-paragkamian/weekly-literature --public`, first commit and push, then check the Appendix C name against the GitHub API; add the `NOTES.md` entry proposed in the agent's report; licence (MIT code, CC BY 4.0 reviews suggested); a key point ("a reference enters a bibliography through a script that resolved it, never through a model") only if one of the twelve goes; commit `workshop/`. The skill's live run (needs the Consensus login) was not performed | Agent; decisions **author** |
+| Peer review by three AI reviewers, 17 October 2026 (see **Independent reviews**) | Completed: three reports and 290 inline comments on the `review/*` branches, all recommending major revision; nothing in the book was changed. Raised by all three: a claim-level citation audit (`openai2026huggingface` and others); author parsing in the Chapter 11 pipeline, and `verify_bib.py` checking titles but not authors or years; statistics and controls in `11b-testing.tex`; the security chapter (injection versus jailbreaking, sandboxes, sensitive species localities); undeclared interests (Venetsianou et al., KYBELE, PromptBio-Bench). Listings that fail as printed (R1, R2): the checksum recipe in `06-organisation-and-backup.tex` and the Dockerfile in `09-reproducibility.tex`. **Author decides** which of the synthesis's 13 checklist items to accept; agents then work one chapter at a time. Triage and plan of 22 October 2026: `REVISION_PLAN_2026-10-22.md` (14 author decisions, 12 work packages, sources to obtain) and `REVIEW_TRIAGE_2026-10-22.tsv` (every comment with a disposition, work package and status column; 193 need no decision or new source, 27 need a source first, 59 need the author) | Agent reviewed; **author** decides |
+| Revision answering the peer review | Completed 2 November 2026, one agent per chapter, after the author's answers to D1–D14 (`REVISION_PLAN_2026-10-22.md`) and of 2 November (D4, D11; `REVISION_PLAN_2026-11-02.md`). All 290 comments have a status in `REVIEW_TRIAGE_2026-10-22.tsv`: 269 done, 13 declined under the author's decisions, 8 for the author. Every citation has a row with its supporting passage in `CLAIM_AUDIT_2026-10/`. Testing exercise rerun on 2 November (`workshop/answers/testing-run-2026-11-02/`). Not done: the second review (plan, section 7); figure `ch01-agent-loop` does not yet show the turn budget the Ch. 1 listing has | Agent |
+| Open questions from the revision of 2 November 2026 | (1) `workshop/testing/RULES.md` still ends with the superseded rules of 11 October, and `02_extract.R` sends the whole file to the model, so the 2 November runs saw both; moving them out needs a rerun, and `qwen3:8b` is no longer installed. (2) Sources to supply: Sica et al. 2025 (Humboldt Extension) and Rhinehart et al. 2022 (both open access on Wiley, which blocks scripts); Phillips 2009, Isaac 2020, Yates 2018 (to name the SDM bias remedies in Ch. 4); the PDFs of `gill2023dataharmonizer` and `saezrodriguez2026benchmarking` (only citation files are in `../literature/`). (3) People list (D12): the recount added people found only by expanding "and others" author lists; decide whether that counts, and pick from the shortlist of women in the agent's report (gender was inferred from names, so check). (4) Karpathy named for "vibe coding" from the author's notes only; Yegge for CHOP needs a document. (5) Licence of the abstract excerpts redistributed in `workshop/literature/data/raw/` (findings in the plan). (6) Chapter 11 is 3.6% shorter, not 10%; printing prompts 4 and 5 as summaries would reach it. (7) Renames offered, not done: `ch10-three-layers` and `ch15-shared-layer` no longer describe their figures | **author** |
 | New files in `../literature/` | Check whenever you start: anything not in `references.bib` is a candidate. Read it in full before placing it | Agent |
 
 When you finish an item, update this table and `book/README.md` (Open issues)
