@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-733",
+  "object": "chat.completion",
+  "created": 1793634558,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\"station\": \"\", \"date\": \"2025-06-05\", \"species\": \"Folsomia candida\", \"count\": 1, \"habitat\": \"soil\", \"status\": \"present\", \"effort\": \"\", \"count_qualifier\": \"exact\", \"id_qualifier\": \"\"}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"June 5 2025, no station, roadside bank near the village. Dry soil, a single Folsomia candida.\" I need to extract one record based on the rules given.\n\nFirst, I'll parse each part of the note. The date is \"June 5 2025\". The rules say to format the date as YYYY-MM-DD. So converting that, it becomes 2025-06-05. The station is \"no station\", so that field should be empty.\n\nNext, the location is \"roadside bank near the village\". The rules don't mention specific fields for location, so I think that's part of the effort or maybe not included. Wait, the fields we need are station, date, species, count, habitat, status, effort, count_qualifier, and id_qualifier. The location details might not be part of any specific field here. The note mentions \"roadside bank\" which might relate to habitat, but according to the rules, habitat is one of litter, soil, moss, bark, compost, cave. The note says \"Dry soil\", so habitat should be soil.\n\nThe species is \"Folsomia candida\", which is written exactly as in the note. The count is \"a single\", which translates to 1. So count is 1. The count_qualifier is exact because it's the whole sample. Since the note mentions a single individual, there's no qualifier doubt, so id_qualifier is empty.\n\nStatus is present because a specimen was found. Effort isn't mentioned here, so effort is empty. The note doesn't mention any effort methods like sampling techniques, so effort remains empty. The note doesn't have any qualifiers like \"tentative\" or \"cf.\", so id_qual, count_qualifier are empty except for count_qualifier being exact.\n\nPutting it all together: station is empty, date is 2025-06-05, species is Folsomia candida, count is 1, habitat is soil, status is present, effort is empty, count_qualifier is exact, id_qualifier is empty. Let me double-check the rules to make sure I didn't miss anything. The rules say that if a species is found, status is present. Since they found a single individual, status is present. Effort isn't mentioned, so it's empty. The count is exact, so count_qualifier is exact. All looks good.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 985,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 601,
+    "total_tokens": 1586
+  }
+}

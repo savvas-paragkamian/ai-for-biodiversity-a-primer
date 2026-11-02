@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-657",
+  "object": "chat.completion",
+  "created": 1793630989,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S5\",\n\"date\": \"2025-05-16\",\n\"species\": \"Ceratophysella denticulata\",\n\"count\": 40,\n\"count_qualifier\": \"partial\",\n\"id_qualifier\": \"empty\"\n}",
+        "reasoning": "Okay, let's tackle this. The user wants me to extract one record from the field note provided. The note is: \"S5, 16/05/2025. Compost heap behind the field station: Ceratophysella denticulata swarming, 40 counted in the first tray.\"\n\nFirst, I need to apply the annotation rules given. Let me go through each field step by step.\n\nStarting with the station. The note mentions \"S5,\" so that's straightforward. Station is S5.\n\nNext, the date. The original date is \"16/05/2025.\" The rules say to use YYYY-MM-DD format. So converting that, it would be 2025-05-16. I need to make sure the order is correct. Since the date is written as day/month/year, 16/05 is 16th May, so the correct format is 2025-05-16.\n\nSpecies is \"Ceratophysella denticulata.\" The rules state to copy it exactly as written, including any qualifiers. There's no mention of \"cf.\" or misspellings here, so species is Ceratophysella denticulata.\n\nCount: The note says \"40 counted in the first tray.\" The count field should have an exact number. Since it's \"40,\" that's a digit, so count is 40. The count_qualifier here is \"partial\" because it's only part of the sample (the first tray). So count_qualifier is partial.\n\nHabitat: The location is \"compost heap,\" which according to the rules maps to \"compost.\" So habitat is compost.\n\nStatus: The note mentions \"swarming,\" which implies the species was found. So status is present.\n\nEffort: The note doesn't mention any specific sampling method or effort beyond the location. The rules say effort is the method as written. Since there's no mention of traps, time, etc., effort is empty.\n\nId_qualifier: The note doesn't indicate any uncertainty in identification. So id_qualifier is empty.\n\nWait, the rules mention that if a species is found and another is searched for, only the found one is recorded. But in this note, it's just Ceratophysella denticulata being found. No mention of searching for another species. So that's fine.\n\nDouble-checking the date conversion. The original date is 16/05/2025. In some countries, this is day/month/year, so May 16th. The correct ISO format is 2025-05-16. Correct.\n\nHabitat: \"Compost heap\" is listed as compost. Correct.\n\nCount_qualifier: \"40 counted in the first tray\" is partial because it's only part of the sample. So count_qualifier is partial.\n\nEffort: The note doesn't mention any effort like traps or time, so effort is left empty.\n\nStatus is present because the species was found and counted.\n\nSo putting it all together, the record should have station S5, date 2025-05-16, species Ceratophysella denticulata, count 40, count_qualifier partial, habitat compost, status present, effort empty, and id_qualifier empty.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 998,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 772,
+    "total_tokens": 1770
+  }
+}

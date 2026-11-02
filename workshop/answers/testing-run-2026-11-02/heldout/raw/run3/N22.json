@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-645",
+  "object": "chat.completion",
+  "created": 1793633813,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"date\": \"2025-06-02\",\n\"species\": \"Isotoma virdis\",\n\"count\": 11,\n\"habitat\": \"soil\",\n\"status\": \"present\",\n\"count_qualifier\": \"exact\"\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"2 Jun 2025, S2. Phrygana soil under thyme. Isotoma virdis, nine adults and two juveniles; eleven in all.\" \n\nFirst, I need to extract one record based on the rules given. Let me go through each field step by step.\n\nStarting with the date. The note says \"2 Jun 2025\". The date format should be YYYY-MM-DD. So converting that, it becomes 2025-06-02. That's straightforward.\n\nNext is the station. It mentions \"S2\", which is a station number. So station is S2.\n\nNow, the species. The note states \"Isotoma virdis\". According to the rules, the species should be copied exactly as written, including any qualifiers. Here, there are no qualifiers like \"cf.\" or misspellings, so species is \"Isotoma virdis\".\n\nCount: The note says \"nine adults and two juveniles; eleven in all.\" The count field requires an exact number. Here, they mention \"eleven in all\", which is the total. So count is 11. The count_qualifier should be exact since it's the total of the sample. So count_qualifier is exact.\n\nHabitat: The note mentions \"Phrygana soil under thyme.\" According to the rules, soil is one of the habitat options. \"Phrygana soil\" likely refers to soil, so habitat is soil.\n\nStatus: The note mentions a specimen in hand (the count of individuals), so status is present.\n\nEffort: The note doesn't mention any specific sampling method or effort, so effort is empty.\n\nId_qualifier: There's no indication of tentative identification, so it's empty.\n\nWait, the note mentions \"Phrygana soil under thyme.\" The rules specify that soil is a valid habitat. So habitat is soil. The count is 11, which is exact. The status is present because they found the species and counted them. Effort isn't mentioned, so it's empty. No qualifiers for id, so id_qualifier is empty. \n\nI should check if there's any other species mentioned. The note only talks about Isotoma virdis, so no other species. The rules say if a note reports a species found and another searched for without success, record the found one. But here, it's just the found species. \n\nAlso, the count_qualifier is exact because the total is given. The note doesn't mention any partial counts or approximations. So all fields are filled accordingly. \n\nSo the final record should have date 2025-06-02, station S2, species Isotoma virdis, count 11, habitat soil, status present, effort empty, count_qualifier exact, id_qualifier empty.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 993,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 673,
+    "total_tokens": 1666
+  }
+}

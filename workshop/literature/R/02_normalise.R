@@ -3,7 +3,60 @@
 # identifier, then by normalised title.
 # Run from the repository root: Rscript R/02_normalise.R [YYYY-WW]
 # Writes data/normalised/<week>.csv and prints the counts after each merge.
+#   --self-test  parse a planted record from each of the five sources and check that
+#                every author comes out "Surname, Given"; then merge three records
+#                that disagree and check that the structured one wins and gives the key
 source("R/00_common.R")
+
+self_test <- function() {
+  dir <- tempfile("normalise-selftest"); dir.create(dir)
+  w <- function(name, x) { p <- file.path(dir, name); writeLines(x, p, useBytes = TRUE); p }
+  j <- function(x) jsonlite::toJSON(x, auto_unbox = TRUE)
+  # one planted raw file per source; the paper is the same, the names are written as each source writes them
+  f_epmc <- w("europepmc__selftest__01.json", j(list(resultList = list(result = list(
+    list(id = "1", source = "MED", doi = "10.1234/selftest", title = "Inter-row cover crops and springtails", firstPublicationDate = "2026-10-01",
+         authorString = "Blaya R, Rocher L.",
+         authorList = list(author = list(list(lastName = "Blaya", firstName = "Romane", initials = "R"),
+                                         list(lastName = "Rocher", firstName = "L\u00e9o", initials = "L")))),
+    list(id = "2", source = "MED", doi = "10.1234/selftest-initials", title = "A record with an author string only", firstPublicationDate = "2026-10-01",
+         authorString = "Wang Y, Cai C."))))))
+  f_oa <- w("openalex__selftest__01.json", j(list(results = list(list(
+    id = "https://openalex.org/W1", doi = "https://doi.org/10.1234/selftest", title = "Inter-row cover crops and springtails",
+    publication_date = "2026-10-01", type = "article",
+    authorships = list(list(author = list(display_name = "Romane Blaya")), list(author = list(display_name = "L\u00e9o Rocher"))))))))
+  f_ax <- w("arxiv__selftest__01.xml", c('<?xml version="1.0" encoding="UTF-8"?>',
+    '<feed xmlns="http://www.w3.org/2005/Atom"><entry><id>http://arxiv.org/abs/2601.00099v1</id>',
+    '<title>Inter-row cover crops and springtails</title><published>2026-10-01T00:00:00Z</published>',
+    '<author><name>Romane Blaya</name></author><author><name>L\u00e9o Rocher</name></author><summary>x</summary></entry></feed>'))
+  f_bx <- w("biorxiv__selftest__01.json", j(list(collection = list(list(
+    doi = "10.1101/2026.10.01.000001", title = "Inter-row cover crops and springtails", authors = "Blaya, R.; Rocher, L.",
+    date = "2026-10-01", version = "1", category = "ecology", abstract = "x")))))
+  f_bp <- w("biodivpmc__selftest_medline__01.json", j(list(collection = "medline", elastic_output = list(hits = list(hits = list(
+    list(`_id` = "1", `_source` = list(title = "Inter-row cover crops and springtails", publication_date = "2026-10-01",
+         authors = c("Blaya Romane", "Rocher L\u00e9o", "Van Berkel Derek B", "de la Cruz Maria", "Gomes da Silva Juliane", "Nguyen Van Anh T", "Le Minh"))),
+    list(`_id` = "2", `_source` = list(title = "A record with author fields", publication_date = "2026-10-01",
+         authors = list(list(surname = "Dickschat", given_names = "Jeroen S"))))))))))
+  want <- c(
+    europepmc_list = "Blaya, Romane and Rocher, L\u00e9o", europepmc_string = "Wang, Y and Cai, C",
+    openalex = "Blaya, Romane and Rocher, L\u00e9o", arxiv = "Blaya, Romane and Rocher, L\u00e9o", biorxiv = "Blaya, R. and Rocher, L.",
+    biodivpmc = "Blaya, Romane and Rocher, L\u00e9o and Van Berkel, Derek B and de la Cruz, Maria and Gomes da Silva, Juliane and Nguyen, Van Anh T and Le, Minh",
+    biodivpmc_fields = "Dickschat, Jeroen S")
+  got <- c(europepmc_list = parse_raw(f_epmc)$authors[1], europepmc_string = parse_raw(f_epmc)$authors[2],
+           openalex = parse_raw(f_oa)$authors[1], arxiv = parse_raw(f_ax)$authors[1], biorxiv = parse_raw(f_bx)$authors[1],
+           biodivpmc = parse_raw(f_bp)$authors[1], biodivpmc_fields = parse_raw(f_bp)$authors[2])
+  ok <- TRUE
+  for (n in names(want)) { hit <- identical(unname(got[n]), unname(want[n])); ok <- ok && hit; say(if (hit) "ok    " else "WRONG ", sprintf("%-17s %s", n, got[n])) }
+  # three sources disagree about the same paper: the structured names win, and the key follows them
+  g <- bind(list(parse_raw(f_bx), parse_raw(f_oa), parse_raw(f_bp)[1, ]))
+  g$authors[2] <- "Romane, Blaya and L\u00e9o, Rocher"   # what the old parser produced
+  ba <- best_authors(g)
+  key <- bib_key(first_surname(ba$authors), "2026", g$title[1])
+  merge_ok <- identical(ba$source, "biodivpmc (structured)") && key == "blaya2026inter"
+  say(if (merge_ok) "ok    " else "WRONG ", "merge keeps ", ba$source, "; key ", key)
+  if (ok && merge_ok) { say("SELF-TEST PASSED: every source's authors parse to \"Surname, Given\"; the structured names win a disagreement; key blaya2026inter"); quit(status = 0) }
+  say("SELF-TEST FAILED"); quit(status = 1)
+}
+if (has_flag("--self-test")) self_test()
 
 cfg <- load_config()
 week <- week_arg()
@@ -81,10 +134,11 @@ merged <- lapply(split(recs, gid), function(g) {
   # a preprint found on its server and in Europe PMC's preprint index: name the server
   pre_venues <- c(pre$venue[pre$venue != "Europe PMC preprint"], pre$venue)
   venue <- if (nrow(art) > 0) pick(art$venue) else pick(pre_venues)
+  ba <- best_authors(g)   # the best-ranked author string among the sources, not the longest
   data.frame(
     doi = pick(g$doi), arxiv_id = pick(g$arxiv_id), pmid = pick(g$pmid), pmcid = pick(g$pmcid),
     title = longest(g$title), title_norm = pick(g$title_norm),
-    authors = longest(g$authors), first_author = first_surname(longest(g$authors)),
+    authors = ba$authors, authors_source = ba$source, first_author = first_surname(ba$authors),
     year = substr(pick(g$date), 1, 4), date = pick(sort(g$date)),
     venue = venue, type = type,
     preprint_server = if (type == "preprint") pick(c(pre$preprint_server[!grepl("^Europe PMC", pre$preprint_server)], pre$preprint_server)) else NA_character_,

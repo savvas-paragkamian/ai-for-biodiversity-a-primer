@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-816",
+  "object": "chat.completion",
+  "created": 1793634334,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S4\",\n\"date\": \"2025-05-29\",\n\"species\": \"Entomobrya nivalis\",\n\"status\": \"absent\",\n\"effort\": \"searched for Entomobrya nivalis for half an hour\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"tentative\"\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"29th May 2025, S4. Bark of the old pine searched for Entomobrya nivalis for half an hour; nothing.\" \n\nFirst, I need to extract the relevant fields according to the rules. Let's break it down step by step.\n\nStarting with the date. The note says \"29th May 2025.\" The rules specify the date should be in YYYY-MM-DD format. So converting that, it becomes 2025-05-29.\n\nNext, the station is S4. That's straightforward; the station field should be S4.\n\nNow, the species. The note mentions \"Entomobrya nivalis,\" but the context is that they searched for this species and found nothing. According to the rules, if a species is searched for but not found, we still record it with status absent. However, the note says \"nothing\" was found, so the species searched for is Entomobrya nivalis. But wait, the rules state that if a note reports a species found and another searched for without success, we record the found species. However, in this case, nothing was found. So the species field should be Entomob, but wait, the note says they searched for Entomobrya nivalis. Wait, the note says \"searched for Entomobrya nivalis for half an hour; nothing.\" So they were looking for that species but didn't find it. So according to the rules, when a species is searched for but not found, we record the species searched for with status absent. So species would be Entomobrya nivalis, status absent.\n\nWait, but the rules say: \"A note records at most one species: the one with a specimen in hand. If a note reports a species found and another searched for without success, record the species found and keep the search in effort.\" But in this case, they didn't find any species. So according to the rules, if a species is searched for but not found, it's recorded with status absent. But the note doesn't mention any found species. Therefore, the species field should be Entomobrya nivalis, status absent. But wait, the note says they searched for Entomobrya nivalis and found nothing. So the species is the one they searched for, which is Entomobrya nivalis, and status is absent because they didn't find it. But the rules mention that if a note reports a species found and another searched for without success, we record the found species. But here, there's no found species. So the species is the one searched for, with status absent. So species is Entomobrya nivalis, status absent.\n\nThen, the habitat. The note says \"Bark of the old pine.\" According to the rules, habitat is one of the specified options. Bark or under bark is bark. So habitat is bark.\n\nEffort: The note says \"searched for Entomobrya nivalis for half an hour.\" The effort field is the sampling effort or method as written. So the effort here is \"searched for Entomobrya nivalis for half an hour.\" But the rules say to trim to the phrase. So maybe \"searched for Entomobrya nivalis for half an hour\" is the effort. But the note says \"Bark of the old pine searched for Entomobrya nivalis for half an hour; nothing.\" So the effort is \"searched for Entomobrya nivalis for half an hour.\" But the rules mention that the reason for a failed sample (like the funnel flooding) is not effort. Here, the reason is \"nothing,\" which is the result, not the effort. So the effort is the method, which is searching for the species for half an hour. So the effort field would be \"searched for Entomobrya nivalis for half an hour.\"\n\nCount: The note doesn't mention any count, so count is empty. Since they didn't find anything, count is not present.\n\nStatus: Since they searched for the species but found nothing, status is absent.\n\nHabitat is bark.\n\nSo putting it all together:\n\nstation: S4\ndate: 2025-05-29\nspecies: Entomobrya nivalis\nstatus: absent\nhabitat: bark\neffort: searched for Entomobrya nivalis for half an hour\n\nWait, but the rules say that when status is absent, the species searched for is recorded. So species is Entomobrya nivalis, status absent. The effort is the method, which is the time spent searching. The count is empty because there's no count. The habitat is bark.\n\nI think that's it. Let me check again.\n\nThe note says they searched the bark of the old pine for Entomobrya nivalis for half an hour and found nothing. So the species is the one they searched for, status absent. Effort is the method: searching for the species for half an hour. Habitat is bark. Count is empty. So the final record should have these fields.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 990,
+    "prompt_tokens_details": {
+      "cached_tokens": 949
+    },
+    "completion_tokens": 1201,
+    "total_tokens": 2191
+  }
+}

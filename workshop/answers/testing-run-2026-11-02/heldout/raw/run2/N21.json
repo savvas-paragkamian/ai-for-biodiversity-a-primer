@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-936",
+  "object": "chat.completion",
+  "created": 1793633030,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\"station\": \"S3\", \"date\": \"2025-06-01\", \"species\": \"Folsomia candida\", \"count\": 0, \"habitat\": \"moss\", \"status\": \"present\", \"effort\": \"\", \"count_qualifier\": \"approximate\", \"id_qualifier\": \"\"}",
+        "reasoning": "Okay, let's tackle this query. The user provided a field note and wants me to extract one record according to the annotation rules. Let me start by reading the note carefully.\n\nThe note says: \"1 June 2025, S3. Moss on the terrace wall. Folsomia candida, about 30, not counted properly.\"\n\nFirst, I need to parse each part of the note into the respective fields: station, date, species, count, habitat, status, effort, count_qualifier, and id_qualifier.\n\nStarting with the date. The note mentions \"1 June 2025\". The rules specify that the date should be in YYYY-MM-DD format. So converting that to 2025-06-01.\n\nNext, the station is S3. According to the rules, station should be S1 to S5 as written, so S3 is correct.\n\nNow, the species is \"Folsomia candida\". The rules state to copy the species exactly as written, including any qualifiers. Here, there's no qualifier mentioned, so species is Folsomia candida.\n\nCount: The note says \"about 30\". The rules mention that count is only when an exact number is stated. Since \"about 30\" is a rough number, count should be empty. Also, the count_qualifier would be approximate because it's a rough estimate. However, the note also says \"not counted properly,\" which might relate to the count_qualifier. But according to the rules, count_qualifier is exact, partial, or approximate. Since the count is approximate, count_qualifier is approximate, and count remains empty.\n\nHabitat: The note mentions \"Moss on the terrace wall.\" The rules specify that moss is one of the habitat options. So habitat is moss.\n\nStatus: The rules state that status is present when a specimen was sorted, seen, or counted. The note mentions \"not counted properly,\" which suggests that the count wasn't done correctly, but the species was still recorded. However, the count is approximate, so status might still be present because the species was found. Wait, the rules say status is absent when a species was searched for but not found, and not_sampled when no sample was taken. Here, the species was found (Folsomia candida), so status is present.\n\nEffort: The note doesn't mention any specific sampling method or effort. The rules say effort is the sampling method as written. Since there's no mention of effort here, effort is empty.\n\nId_qualifier: The note doesn't mention any doubt in identification. The rules say id_qualifier is tentative if there's doubt. Since there's no indication of that here, id_qualifier is empty.\n\nPutting it all together:\n\nstation: S3\ndate: 2025-06-01\nspecies: Folsomia candida\ncount: (empty)\nhabitat: moss\nstatus: present\neffort: (empty)\ncount_qualifier: approximate\nid_qualifier: (empty)\n\nWait, but the note says \"not counted properly.\" Does that affect the count_qualifier? The count_qualifier is approximate because the count is a rough number. The note says \"about 30,\" which is approximate, so count_qualifier is approximate. The count itself is empty because it's not exact. The status is present because the species was found, even if the count wasn't properly done. Effort isn't mentioned, so it's empty. No id_qualifier mentioned, so empty. That seems correct.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 988,
+    "prompt_tokens_details": {
+      "cached_tokens": 949
+    },
+    "completion_tokens": 823,
+    "total_tokens": 1811
+  }
+}

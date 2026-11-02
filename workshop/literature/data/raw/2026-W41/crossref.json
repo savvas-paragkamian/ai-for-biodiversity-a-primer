@@ -586,7 +586,9 @@
   "10.1016/j.biocon.2026.112133": {
     "status": "ok",
     "title": "Enhancing Antarctic terrestrial conservation through biodiversity informatics",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Liu",
+    "year": 2026
   },
   "10.1016/j.ecoinf.2026.104075": {
     "status": "ok",
@@ -688,12 +690,16 @@
   "10.1002/advs.77591": {
     "status": "ok",
     "title": "Functional–Taxonomic Scaling Resolves Conflicting Average Genome Size Estimates Across Environmental Gradients",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Zhu",
+    "year": 2026
   },
   "10.1016/j.plaphy.2026.111810": {
     "status": "ok",
     "title": "Genotype-dependent phosphorus acquisition responses of two soybean genotypes under combined low phosphorus and salt stress: evidence from root traits, exudates and rhizosphere microbiome",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Zhou",
+    "year": 2026
   },
   "10.64898/2026.09.21.753266": {
     "status": "ok",
@@ -708,17 +714,23 @@
   "10.64898/2026.09.27.754832": {
     "status": "ok",
     "title": "Seasonal population structure and adaptive signatures across long-term marine microbial time series",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Huang",
+    "year": 2026
   },
   "10.1016/j.ejsobi.2026.103882": {
     "status": "ok",
     "title": "AM fungi reshape rhizosphere microbiome and N-cycle genes under soda saline-alkali stress, implying nitrogen retention",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Li",
+    "year": 2026
   },
   "10.1007/s11802-027-6632-5": {
     "status": "ok",
     "title": "Genomic Characterization of vB_PaeP_P39, a Mitomycin C-Induced Temperate Phage of Pseudomonas aeruginosa Representing a Putative Viral Family Within Caudoviricetes",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Yu",
+    "year": 2026
   },
   "10.64898/2026.09.28.755039": {
     "status": "ok",
@@ -728,7 +740,9 @@
   "10.1016/j.micres.2026.128601": {
     "status": "ok",
     "title": "Metabolic filtering as a putative mechanism linking soil metabolome and microbial community assembly along a lake expansion gradient",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Wang",
+    "year": 2026
   },
   "10.64898/2026.09.28.755120": {
     "status": "ok",
@@ -738,12 +752,16 @@
   "10.64898/2026.09.28.752058": {
     "status": "ok",
     "title": "Thermococcales pangenome uncovers new genera and modular evolution",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Catchpole",
+    "year": 2026
   },
   "10.1186/s40793-026-00966-9": {
     "status": "ok",
     "title": "Phragmites australis invasions linked to shifts in soil microbial community composition and functional potential in a Northeastern U.S. salt marsh",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Negi",
+    "year": 2026
   },
   "10.64898/2026.10.02.756148": {
     "status": "ok",
@@ -758,17 +776,23 @@
   "10.64898/2026.10.06.756956": {
     "status": "ok",
     "title": "High-fidelity long-read metagenomics reveals the metabolic functions of dominant termite gut bacteria",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Prokhorova",
+    "year": 2026
   },
   "10.64898/2026.10.06.756941": {
     "status": "ok",
     "title": "Conserved synteny reveals a saccharolytic lifestyle across Kiritimatiellia",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Oliver",
+    "year": 2026
   },
   "10.64898/2026.09.29.755473": {
     "status": "ok",
     "title": "Leveraging genomes and metagenome-assembled genomes unveils novel diversity and transmission between public transport and clinical settings in <i>Acinetobacter<\/i>",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "López-Sánchez",
+    "year": 2026
   },
   "10.64898/2026.10.06.756670": {
     "status": "ok",
@@ -778,27 +802,37 @@
   "10.21203/rs.3.rs-7323824/v1": {
     "status": "ok",
     "title": "Ground-Dwelling Arthropod Community Structure in Endangered Taxus contorta Stands in Northwest Himalayan Temperate Forests",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Devi",
+    "year": 2026
   },
   "10.1098/rspb.2026.1207": {
     "status": "ok",
     "title": "A giant Jurassic hunter: the earliest dipluran and its implications for hexapod body pattern evolution",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Wang",
+    "year": 2026
   },
   "10.1016/j.jenvman.2026.131106": {
     "status": "ok",
     "title": "Inter-row vegetation benefits soil invertebrates in Mediterranean organic vineyards",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Blaya",
+    "year": 2026
   },
   "10.11646/zootaxa.5884.3.6": {
     "status": "ok",
     "title": "Contribution to the genus Entomobrya Rondani, 1861 (Collembola, Entomobryidae, Entomobryinae) from Iran, with description of a new species",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "WINKLER",
+    "year": 2026
   },
   "10.1093/forestry/cpag081": {
     "status": "ok",
     "title": "The MESOSCAN dataset: a collection of mesofauna images from UK forest and peatland soils",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Lukins",
+    "year": 2026
   },
   "10.29038/ncbio.26.1-3": {
     "status": "unresolved",
@@ -807,27 +841,37 @@
   "10.1016/j.jes.2026.01.025": {
     "status": "ok",
     "title": "Ecotoxicity of Folsomia candida induced by 1,2,4-TCB: Insights from multi-level experiments and molecular simulations",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Du",
+    "year": 2026
   },
   "10.1016/j.chemosphere.2026.145098": {
     "status": "ok",
     "title": "Effects of thiamethoxam on Hypoaspis aculeifer: the role of predator–prey interactions and soil properties",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Gomes da Silva",
+    "year": 2026
   },
   "10.11646/zootaxa.5886.1.5": {
     "status": "ok",
     "title": "Indian species of the genus Folsomia Willem, 1902 (Collembola: Isotomidae) with description of two new species, redescription of Folsomia arunachalensis Mandal, 2018 and notes on Folsomia penicula Bagnall, 1939 from the Nilgiris area",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "ANJOORIYA",
+    "year": 2026
   },
   "10.1002/anie.2037917": {
     "status": "ok",
     "title": "Evolutionary, Functional and Mechanistic Characterisation of Microbial Terpene Synthase‐Like Genes From Springtails",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Wang",
+    "year": 2026
   },
   "10.1016/j.ecss.2026.110304": {
     "status": "ok",
     "title": "Hawksbill turtle (Eretmochelys imbricata) nesting enhances meiofaunal abundance and structure in an urban sandy beach",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "Vilanova",
+    "year": 2026
   },
   "10.64898/2026.10.05.756615": {
     "status": "ok",
@@ -837,7 +881,9 @@
   "10.3897/bdj.14.e207059": {
     "status": "ok",
     "title": "Two new species of Neotropical Lepidocyrtus Bourlet, 1839 (Collembola, Entomobryidae, Lepidocyrtinae) from Colombia",
-    "registrar": "Crossref"
+    "registrar": "Crossref",
+    "first_author": "González Montaña",
+    "year": 2026
   },
   "10.64898/2026.04.28.721477": {
     "status": "ok",

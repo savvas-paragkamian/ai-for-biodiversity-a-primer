@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-356",
+  "object": "chat.completion",
+  "created": 1793631224,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"date\": \"2025-05-15\",\n\"species\": \"Entomobrya nivalis\",\n\"habitat\": \"moss\",\n\"status\": \"present\",\n\"count_qualifier\": \"approximate\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this field note extraction. The user provided the note: \"15 May 2025, S4. Moss cushion on a north-facing rock. Roughly a dozen Entomobrya nivalis; did not count exactly.\" \n\nFirst, I need to parse each field according to the annotation rules. Starting with the date. The note says \"15 May 2025,\" which should be formatted as YYYY-MM-DD. So that's 2025-05-15.\n\nNext, the station is S4, which is straightforward. \n\nFor species, the note mentions \"Entomobrya nivalis.\" Since the rules say to copy the species name exactly as written, including any qualifiers, and here it's a specific species without any qualifiers like \"cf.\" or misspellings, so species is \"Entomobrya nivalis.\"\n\nCount: The note says \"roughly a dozen,\" which is an approximate number. According to the rules, count is only when an exact number is stated. Since \"roughly\" indicates an approximation, count should be empty. Also, the note mentions \"did not count exactly,\" reinforcing that the count isn't exact. So count is empty.\n\nHabitat: The note refers to a \"moss cushion on a north-facing rock.\" The rules specify that moss cushion is categorized as \"moss.\" So habitat is \"moss.\"\n\nStatus: The note mentions that they found \"roughly a dozen\" of the species, so a specimen was counted, meaning status is present. \n\nEffort: The note doesn't mention any specific sampling method or effort, so effort is empty.\n\nCount_qualifier: Since the count is approximate (\"roughly a dozen\"), the count_qualifier is \"approximate.\"\n\nId_qualifier: There's no indication of tentative identification here, so id_qualifier is empty.\n\nPutting it all together, the record should have the date, station, species, habitat, status, count_qualifier, and the other fields as per the rules. Let me double-check each field against the rules to ensure compliance.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 993,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 502,
+    "total_tokens": 1495
+  }
+}

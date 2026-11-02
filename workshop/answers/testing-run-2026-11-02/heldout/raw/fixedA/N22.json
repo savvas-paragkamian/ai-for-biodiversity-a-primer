@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-810",
+  "object": "chat.completion",
+  "created": 1793634447,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S2\",\n\"date\": \"2025-06-02\",\n\"species\": \"Isotoma virdis\",\n\"count\": 11,\n\"habitat\": \"soil\",\n\"status\": \"present\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"2 Jun 2025, S2. Phrygana soil under thyme. Isotoma virdis, nine adults and two juveniles; eleven in all.\" \n\nFirst, I need to extract one record based on the rules given. Let's break down each field.\n\nStarting with the date. The note says \"2 Jun 2025\". The date format should be YYYY-MM-DD. So converting that, it becomes 2025-06-02. That's straightforward.\n\nNext, the station is S2. According to the rules, station should be S1 to S5 as written. So S2 is correct here.\n\nNow, the species. The note mentions \"Isotoma virdis\". The rules state to copy the species exactly as written, including any qualifiers. There's no mention of \"cf.\" or misspellings here, so species is \"Isotoma virdis\".\n\nCount: The note says \"nine adults and two juveniles; eleven in all.\" The count should be an exact number. Here, they total eleven, so count is 11. The count_qualifier is exact because it's the total of the sample. So count_qualifier is exact.\n\nHabitat: The note mentions \"Phrygana soil under thyme.\" According to the rules, soil is one of the habitat options. Even though it's \"soil under thyme,\" the habitat is soil. So habitat is soil.\n\nStatus: The note has a specimen in hand (the count is given), so status is present.\n\nEffort: The note doesn't mention any specific sampling method or effort, so effort is empty.\n\nId_qualifier: The note doesn't indicate any doubt in identification, so it's empty.\n\nWait, the note says \"Phrygana soil under thyme.\" Wait, Phrygana might be a genus or a type of habitat? Wait, the rules mention habitat categories like litter, soil, moss, etc. The note says \"soil under thyme,\" so the habitat is soil. The \"Phrygana\" part might be part of the location or a specific term, but according to the rules, we should map it to the habitat categories. Since \"soil under thyme\" is soil, that's the habitat.\n\nAlso, the note mentions both adults and juveniles, but the count is total 11. So count is 11, and count_qualifier is exact.\n\nNo mention of effort, so effort is empty. Status is present because there's a specimen counted.\n\nSo putting it all together:\n\nstation: S2\ndate: 2025-06-02\nspecies: Isotoma virdis\ncount: 11\nhabitat: soil\nstatus: present\ncount_qualifier: exact\nid_qualifier: (empty)\n\nEffort isn't mentioned, so it's empty. The note doesn't have any qualifiers for the species identification, so id_qualifier is empty.\n\nI think that's all. Let me check again. The note doesn't mention any effort, so effort is empty. The status is present because they have a count. The habitat is soil. The count is exact. Yes, that seems right.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 993,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 763,
+    "total_tokens": 1756
+  }
+}

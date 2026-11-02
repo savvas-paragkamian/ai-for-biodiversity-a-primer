@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-925",
+  "object": "chat.completion",
+  "created": 1793634359,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S5\",\n\"date\": \"2025-05-30\",\n\"species\": \"Heteromurus cf. nitidus\",\n\"count\": 2,\n\"habitat\": \"cave\",\n\"status\": \"present\",\n\"effort\": \"\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"tentative\" }",
+        "reasoning": "Okay, let's tackle this query. The user provided a field note and wants me to extract one record according to the given annotation rules. Let me start by breaking down the note.\n\nFirst, the note says: \"30 May 2025, S5. Cave, 15 m in from the entrance. Heteromurus cf. nitidus, two, both damaged.\"\n\nI need to parse each part. The date is \"30 May 2025\". The rules say to convert the date to YYYY-MM-DD. So that becomes 2025-05-30.\n\nNext, the station is S5. That's straightforward, so station is S5.\n\nThe location is a cave, 15 meters in from the entrance. The habitat field should be one of the specified options. The note mentions \"Cave\", which is one of the allowed habitats (cave, litter, soil, moss, bark, compost). So habitat is cave.\n\nNow the species: \"Heteromurus cf. nitidus\". The rules state to copy the species name exactly as written, including qualifiers like \"cf.\" So species is \"Heteromurus cf. nitidus\".\n\nCount: \"two\". The rules say to use exact numbers in digits or words. \"Two\" is the word form, so count is 2. The note also mentions \"both damaged\", but the count is about the number of specimens, so that's okay.\n\nStatus: The note mentions that the specimens were found (\"Heteromurus cf. nitidus, two, both damaged.\"). Since there's a specimen in hand, status is present.\n\nEffort: The note doesn't mention any specific sampling method or effort, so effort is empty.\n\nCount_qualifier: The note gives an exact count (\"two\"), so count_qualifier is exact.\n\nId_qualifier: The species is written as \"cf. nitidus\", which indicates a tentative identification. So id_qualifier is tentative.\n\nPutting it all together, the record should have all these fields filled appropriately. Let me check the rules again to make sure I didn't miss anything. The status is present because there's a specimen. Effort is empty because there's no mention of sampling method. The count is 2, and the qualifiers are exact and tentative. Habitat is cave. The date is correctly formatted. The station is S5. Species is exactly as written. Everything seems to fit the rules.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 993,
+    "prompt_tokens_details": {
+      "cached_tokens": 949
+    },
+    "completion_tokens": 593,
+    "total_tokens": 1586
+  }
+}

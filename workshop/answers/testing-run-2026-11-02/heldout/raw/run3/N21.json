@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-259",
+  "object": "chat.completion",
+  "created": 1793633784,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S3\",\n\"date\": \"2025-06-01\",\n\"species\": \"Folsomia candida\",\n\"count\": 0,\n\"habitat\": \"moss\",\n\"status\": \"present\",\n\"effort\": \"\",\n\"count_qualifier\": \"approximate\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this query. The user provided a field note and wants me to extract one record according to the given annotation rules. Let me start by breaking down the note.\n\nThe note says: \"1 June 2025, S3. Moss on the terrace wall. Folsomia candida, about 30, not counted properly.\"\n\nFirst, I need to parse each part. The date is \"1 June 2025\". According to the rules, the date should be in YYYY-MM-DD format. So I'll convert that to 2025-06-01.\n\nNext, the station is \"S3\", which is straightforward. The station field should be S1 to S5 as written, so S3 stays as is.\n\nThen, the habitat part: \"Moss on the terrace wall.\" The rules specify that moss is one of the allowed habitats. The note mentions \"moss on the terrace wall,\" so habitat should be moss. The location detail (terrace wall) isn't part of the habitat field, so I'll just put moss.\n\nThe species is \"Folsomia candida\". The rules say to copy the species exactly as written, including any qualifiers. There's no qualifier here, so species is Folsomia candida.\n\nNow, the count: \"about 30\". The rules state that count is only when an exact number is stated. \"About 30\" is a rough number, so count should be empty. But the note also mentions \"not counted properly,\" which might relate to the count qualifier. The count_qualifier can be approximate here because the note gives a rough number. So count_qualifier is approximate, and count is empty.\n\nStatus: The note mentions that the count wasn't done properly. Since the species was found (Folsomia candida) and there's a count mentioned (even though it's approximate), the status should be present. The rules say status is present when a specimen was sorted, seen, or counted. Even though the count wasn't proper, the species was found, so status is present.\n\nEffort: The note doesn't mention any specific sampling method or effort, so effort is empty.\n\nId_qualifier: The note doesn't mention any doubts about identification, so id_qualifier is empty.\n\nPutting it all together, the record should have station S3, date 2025-06-01, species Folsomia candida, count empty, habitat moss, status present, effort empty, count_qualifier approximate, and id_qualifier empty. Let me double-check the rules to ensure I didn't miss anything. The count_qualifier is approximate because the note says \"about 30,\" which is a rough number. The count is empty because it's not exact. Status is present because the species was found. That seems correct.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 988,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 673,
+    "total_tokens": 1661
+  }
+}

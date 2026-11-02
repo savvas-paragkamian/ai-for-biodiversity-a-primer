@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-313",
+  "object": "chat.completion",
+  "created": 1793633375,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S2\",\n\"date\": \"2025-05-23\",\n\"species\": \"Lepidocyrtus lanuginosus\",\n\"count\": 7,\n\"habitat\": \"soil\",\n\"status\": \"present\",\n\"effort\": \"two pitfall traps, emptied after 24 h\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this query. The user provided a field note and wants me to extract one record according to the annotation rules. Let me start by breaking down the note.\n\nFirst, the date is \"May 23, 2025.\" The rules say to format the date as YYYY-MM-DD. So I'll convert that to 2025-05-23.\n\nNext, the station is \"S2,\" which is straightforward. I'll note that as station S2.\n\nNow, the note mentions \"Two pitfall traps in the phrygana soil, emptied after 24 h.\" According to the rules, the effort field should capture the sampling method and any details. The phrase here is \"two pitfall traps, emptied after 24 h,\" so I'll trim that to \"two pitfall traps, emptied after 24 h\" for the effort field.\n\nThen there's the species: \"Lepidocyrtus lanuginosus.\" The rules state to copy the species name exactly as written, including any qualifiers. Since there's no qualifier here, I'll put that as the species.\n\nThe count is \"n = 7.\" The rules specify that count should be a number when an exact count is given. Here, \"n = 7\" translates to 7, so count is 7. The count_qualifier should be exact since the count covers the whole sample. So count_qualifier is exact.\n\nHabitat is \"phrygana soil.\" Wait, the rules say habitat should be one of the specified options: litter, soil, moss, bark, compost, cave. \"Phrygana soil\" isn't one of these. But the note mentions \"soil,\" so maybe the habitat here is soil. The mention of \"phrygana\" might refer to the vegetation type, but the habitat field is about the substrate. Since the note says \"soil,\" I'll assign habitat as soil. However, the original note says \"phrygana soil,\" which might be a specific type. But according to the rules, any soil is considered soil. So I'll put habitat as soil.\n\nStatus: The note mentions a specimen was found (\"n = 7\"), so status is present. The rules state that if a specimen was sorted, seen, or counted, status is present. Since they counted 7 individuals, status is present.\n\nEffort is already handled as \"two pitfall traps, emptied after 24 h.\" The rules mention that effort is the sampling method as written, trimmed. So that's correct.\n\nId_qualifier: The note doesn't mention any doubt in identification, so it's empty.\n\nNo mention of not_sampled or absent status here, so all fields are filled except where specified. Let me check again.\n\nWait, the note says \"Two pitfall traps in the phrygana soil, emptied after 24 h: Lepidocyrtus lanuginosus, n = 7.\" The colon separates the effort from the species and count. So the effort is the part before the colon, and the species and count are after. So effort is \"Two pitfall traps in the phrygana soil, emptied after 24 h.\" But according to the rules, effort should be the sampling method as written, trimmed. So maybe I should trim \"two pitfall traps, emptied after 24 h\" as the effort. The \"phrygana soil\" might be part of the habitat, but the rules say habitat is one of the specified types. Since the note mentions \"soil,\" I'll take habitat as soil. The \"phrygana\" might be a qualifier, but the rules don't mention that. So habitat is soil.\n\nPutting it all together:\n\nstation: S2\ndate: 2025-05-23\nspecies: Lepidocyrtus lanuginosus\ncount: 7\nhabitat: soil\nstatus: present\neffort: two pitfall traps, emptied after 24 h\ncount_qualifier: exact\nid_qualifier: (empty)\n\nI think that's all. Let me double-check the rules to make sure I didn't miss anything. The count_qualifier is exact because the count covers the whole sample. The effort is the trimmed version of the method. The habitat is soil. Status is present because a specimen was counted. Everything else looks good.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1005,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 1016,
+    "total_tokens": 2021
+  }
+}

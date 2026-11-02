@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-606",
+  "object": "chat.completion",
+  "created": 1793630193,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S1\",\n\"date\": \"2025-05-12\",\n\"species\": \"Isotoma viridis\",\n\"count\": 14,\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"exact\" }",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"12 May 2025, station S1. Oak litter, Berlese sample ran 48 h. Sorted 14 Isotoma viridis, all adults.\" \n\nFirst, I need to extract the information according to the rules given. Let's break down each field.\n\nStarting with the date. The note says \"12 May 2025\". The date format should be YYYY-MM-DD. So converting that to 2025-05-12. That's straightforward.\n\nNext, the station is mentioned as \"S1\". According to the rules, station should be S1 to S5 as written. So station is S1.\n\nNow, the species. The note states \"Sorted 14 Isotoma viridis\". The species is copied exactly as written, including any qualifiers. Here, \"Isotoma viridis\" is the species name. There's no mention of cf. or other qualifiers, so species is \"Isotoma viridis\".\n\nCount: The note says \"14 Isotoma viridis\". The count is only when an exact number is stated. Here, 14 is an exact number, so count is 14. The count_qualifier is exact because the count covers the whole sample. So count_qualifier is exact.\n\nHabitat: The note mentions \"Oak litter\". According to the rules, litter of any kind (like oak litter) is categorized as \"litter\". So habitat is \"litter\".\n\nStatus: The note says \"Sorted 14 Isotoma viridis\", which indicates that a specimen was sorted. Therefore, status is present.\n\nEffort: The note states \"Berle, sample ran 48 h\". The effort is the sampling method as written. The rule says to trim to the phrase. So effort is \"Berlese sample ran 48 h\".\n\nID qualifier: There's no mention of tentative identification or doubts. The note states \"Sorted 14 Isotoma viridis\" without any qualifiers, so id_qualifier is empty.\n\nChecking if there's any other species or if a search was done. The note mentions a Berlese sample, which is a method, and they found Isotoma viridis. No mention of searching for another species, so only the found species is recorded.\n\nPutting it all together, the fields should be filled as per the rules. Let me double-check each field against the rules to ensure compliance.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 994,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens": 586,
+    "total_tokens": 1580
+  }
+}

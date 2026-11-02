@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-570",
+  "object": "chat.completion",
+  "created": 1793633103,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S4\",\n\"date\": \"2025-06-03\",\n\"species\": \"Xenylla maritima\",\n\"count\": 16,\n\"habitat\": \"litter\",\n\"status\": \"present\",\n\"effort\": \"Berlese 24 h\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note and wants me to extract one record according to the given rules. Let me start by breaking down the note.\n\nFirst, the note says: \"3 June 2025, S4. Pine litter, Berlese 24 h only. Xenylla maritima, 16 ind., a species not on our list.\"\n\nI need to parse each part. The date is \"3 June 2025\". The rules say to convert the date to YYYY-MM-DD. So that would be 2025-06-03. The station is S4, which is straightforward.\n\nNext, the habitat is \"Pine litter\". According to the rules, any type of litter, including pine needles, is categorized as \"litter\". So habitat should be \"litter\".\n\nThe effort part is \"Berlese 24 h only\". The rules mention that effort should be the sampling method as written, trimmed. So \"Berlese 24 h\" is the effort. The note says \"only\", but maybe that's part of the effort description. Wait, the example in the rules includes \"Berlese sample ran 48 h\" as effort. So here, \"Berlese 2, 24 h only\" might be trimmed to \"Berlese 24 h\". The \"only\" might be extra, so I'll take \"Berlese 24 h\" as the effort.\n\nNow, the species is \"Xenylla maritima\". The rules say to copy the species name exactly as written, including any qualifiers. Since there's no qualifier here, it's just \"Xenylla maritima\".\n\nThe count is \"16 ind.\" which is \"16 individuals\". The rules state that count should be a number in digits or words. \"16 ind.\" is exact, so count is 16. The count_qualifier here is \"exact\" because the count covers the whole sample.\n\nThe note also mentions \"a species not on our list\". The rules mention that if the species is found and another is searched for without success, record the found species. But here, it seems like they found Xenylla maritima, which isn't on their list. The rules don't mention excluding species not on the list, so we still include it. The status is \"present\" because a specimen was found. The id_qualifier might be \"tentative\" if there's doubt, but the note doesn't mention that. So id_qualifier is empty.\n\nPutting it all together, the record should have station S4, date 2025-06-03, species Xenylla maritima, count 16, habitat litter, status present, effort \"Berlese 24 h\", count_qualifier exact, and id_qualifier empty. The note doesn't mention effort details beyond the method, so that's covered. The mention of the species not being on their list doesn't affect the annotation rules as per the instructions.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 997,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 732,
+    "total_tokens": 1729
+  }
+}

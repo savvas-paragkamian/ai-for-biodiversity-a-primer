@@ -131,6 +131,9 @@ excerpt <- function(x, words = 60) {
 }
 
 # "Given Surname" -> "Surname, Given"; "Surname I." stays. Returns one string.
+# Only for names written given name first (OpenAlex display names, arXiv). A
+# source that writes surnames first (Biodiversity PMC, MEDLINE) has its own parser
+# below: this function would make the given name the surname.
 author_bib <- function(names) {
   names <- names[!is.na(names) & names != ""]
   if (length(names) == 0) return(NA_character_)
@@ -186,6 +189,93 @@ authors_from_biorxiv <- function(s) {
   paste(trimws(strsplit(s, ";", fixed = TRUE)[[1]]), collapse = " and ")
 }
 
+# Europe PMC authorList (resultType=core): separate lastName and firstName fields
+# -> "Surname, Given and ...". Falls back to fullName for a name without a surname
+# field (a collective name). The authorString ("Wang Y, Cai C.") is used only when
+# the list is absent, as in the fixture week.
+authors_from_epmc_list <- function(al) {
+  a <- al$author
+  if (is.null(a) || length(a) == 0) return(NA_character_)
+  out <- vapply(a, function(x) {
+    ln <- trimws(x$lastName %||% ""); fn <- trimws(x$firstName %||% x$initials %||% "")
+    if (ln == "") return(trimws(x$fullName %||% x$collectiveName %||% ""))
+    if (fn == "") ln else paste0(ln, ", ", fn)
+  }, character(1))
+  out <- out[out != ""]
+  if (length(out) == 0) return(NA_character_)
+  paste(out, collapse = " and ")
+}
+epmc_authors <- function(r) {
+  al <- r$authorList
+  if (!is.null(al) && length(al$author %||% list())) return(list(authors = authors_from_epmc_list(al), quality = "structured"))
+  list(authors = authors_from_epmc(r$authorString %||% NA), quality = "initials")
+}
+
+# Biodiversity PMC authors are written surname first, as in MEDLINE:
+# "Taskaeva Anastasia A", "Rebez E B", "Van Berkel Derek B" -> "Taskaeva, Anastasia A",
+# "Rebez, E B", "Van Berkel, Derek B". author_bib() expects "Given Surname" and made
+# the first given name or the last initial the surname. Particles stay with the
+# surname: leading ones ("de la Cruz Maria") and lowercase ones after the first word
+# ("Gomes da Silva Juliane"; "Nguyen Van Anh T" keeps "Van" as a given name).
+# Separate surname and given_names fields are taken as they are.
+SURNAME_PARTICLES <- c("van", "von", "der", "den", "de", "del", "della", "di", "da", "dos", "das", "du", "ten", "ter")
+authors_from_biodivpmc <- function(a) {
+  if (is.null(a) || length(a) == 0) return(NA_character_)
+  out <- vapply(a, function(x) {
+    if (is.list(x)) {
+      if (!is.null(x$surname)) return(trimws(paste0(x$surname, ", ", x$given_names %||% "")))
+      x <- x$name
+    }
+    x <- trimws(as.character(x %||% ""))
+    if (x == "" || grepl(",", x)) return(x)
+    p <- strsplit(x, "\\s+")[[1]]
+    if (length(p) < 2) return(x)
+    k <- 1
+    repeat {
+      if (k < length(p) - 1 && (tolower(p[k]) %in% SURNAME_PARTICLES ||
+                                (k > 1 && tolower(p[k]) %in% c("la", "le", "los", "las")))) k <- k + 1
+      else if (k < length(p) - 2 && p[k + 1] %in% c(SURNAME_PARTICLES, "la", "le", "los", "las")) k <- k + 2
+      else break
+    }
+    paste0(paste(p[1:k], collapse = " "), ", ", paste(p[-(1:k)], collapse = " "))
+  }, character(1), USE.NAMES = FALSE)
+  out <- out[out != ""]
+  if (length(out) == 0) return(NA_character_)
+  paste(out, collapse = " and ")
+}
+
+# A surname reduced to lowercase ASCII letters, for comparisons; NA when nothing is
+# left (a name in another script, which to_ascii cannot transliterate).
+norm_name <- function(x) {
+  if (is.null(x) || length(x) == 0 || is.na(x)) return(NA_character_)
+  y <- gsub("[^a-z]", "", tolower(to_ascii(x)))
+  if (y == "") NA_character_ else y
+}
+
+# Do two surnames name the same person? Equal after normalisation, or one contains
+# the other, so that "Gomes da Silva" and "Silva", or "Quevedo Vilanova" and
+# "Vilanova", agree. NA when either cannot be compared.
+same_surname <- function(a, b) {
+  a <- norm_name(a); b <- norm_name(b)
+  if (is.na(a) || is.na(b)) return(NA)
+  a == b || grepl(a, b, fixed = TRUE) || grepl(b, a, fixed = TRUE)
+}
+
+# How an author string was obtained, best first: "structured" (separate surname and
+# given-name fields, or a source that writes surnames first and is parsed as such),
+# "given-first" (full names written given name first and split by author_bib),
+# "initials" (surname and initials only). When sources disagree, the merge keeps the
+# best-ranked string, and the longest among equals.
+AUTHOR_RANK <- c(structured = 1, "given-first" = 2, initials = 3)
+best_authors <- function(g) {
+  ok <- !is.na(g$authors) & g$authors != ""
+  if (!any(ok)) return(list(authors = NA_character_, source = NA_character_))
+  r <- unname(AUTHOR_RANK[g$author_quality]); r[is.na(r)] <- 4L
+  cand <- which(ok & r == min(r[ok]))
+  i <- cand[which.max(nchar(g$authors[cand]))]
+  list(authors = g$authors[i], source = paste0(g$source[i], " (", g$author_quality[i] %||% "unknown", ")"))
+}
+
 # OpenAlex abstract_inverted_index -> text
 abstract_from_inverted <- function(idx) {
   if (is.null(idx) || length(idx) == 0) return(NA_character_)
@@ -197,8 +287,8 @@ abstract_from_inverted <- function(idx) {
 # --- parsers: one per source; each returns a data frame of raw records -----------
 
 REC_COLS <- c("source", "topic", "src_id", "doi", "arxiv_id", "pmid", "pmcid", "title",
-              "authors", "venue", "date", "type", "preprint_server", "url", "abstract",
-              "version", "published_doi", "oa")
+              "authors", "author_quality", "venue", "date", "type", "preprint_server", "url",
+              "abstract", "version", "published_doi", "oa")
 
 empty_records <- function() {
   as.data.frame(setNames(replicate(length(REC_COLS), character(0), simplify = FALSE), REC_COLS),
@@ -225,9 +315,10 @@ parse_europepmc <- function(path, topic) {
   bind(lapply(res, function(r) {
     pp <- identical(r$source, "PPR")
     doi <- norm_doi(r$doi %||% NA)
+    au <- epmc_authors(r)
     rec(source = "europepmc", topic = topic, src_id = paste0(r$source, ":", r$id),
         doi = doi, pmid = r$pmid %||% NA, pmcid = r$pmcid %||% NA,
-        title = r$title, authors = authors_from_epmc(r$authorString %||% NA),
+        title = r$title, authors = au$authors, author_quality = au$quality,
         venue = if (pp) "Europe PMC preprint" else (r$journalTitle %||% r$journalInfo$journal$title %||% NA),
         date = r$firstPublicationDate %||% NA,
         type = if (pp) "preprint" else "article",
@@ -250,6 +341,7 @@ parse_openalex <- function(path, topic) {
         doi = if (!is.na(ax)) NA else doi, arxiv_id = ax,
         title = r$title %||% r$display_name %||% NA,
         authors = author_bib(vapply(r$authorships, function(a) a$author$display_name %||% NA_character_, character(1))),
+        author_quality = "given-first",
         venue = src, date = r$publication_date %||% NA,
         type = if (pp) "preprint" else "article",
         preprint_server = if (pp) (src %||% "preprint") else NA,
@@ -272,6 +364,7 @@ parse_arxiv <- function(path, topic) {
         doi = doi,
         title = txt(e, "a:title"),
         authors = author_bib(xml2::xml_text(xml2::xml_find_all(e, "a:author/a:name", ns))),
+        author_quality = "given-first",
         venue = "arXiv", date = substr(txt(e, "a:published"), 1, 10),
         type = "preprint", preprint_server = "arXiv",
         url = paste0("https://arxiv.org/abs/", id),
@@ -290,6 +383,7 @@ parse_biorxiv <- function(path, topic) {
     if (!is.na(pub) && pub %in% c("na", "")) pub <- NA
     rec(source = "biorxiv", topic = topic, src_id = paste0(doi, "v", r$version %||% "1"),
         doi = doi, title = r$title, authors = authors_from_biorxiv(r$authors %||% NA),
+        author_quality = "initials",
         venue = "bioRxiv", date = r$date %||% NA, type = "preprint",
         preprint_server = paste0("bioRxiv (", r$category %||% "", ")"),
         url = paste0("https://www.biorxiv.org/content/", doi, "v", r$version %||% "1"),
@@ -305,11 +399,9 @@ parse_biodivpmc <- function(path, topic) {
   bind(lapply(hits, function(h) {
     s <- h$`_source`
     doi <- norm_doi(s$doi %||% NA)
-    authors <- s$authors
-    if (is.list(authors)) authors <- vapply(authors, function(a) if (is.list(a)) (a$name %||% paste(a$surname %||% "", a$given_names %||% "")) else as.character(a), character(1))
     rec(source = "biodivpmc", topic = topic, src_id = paste0(j$collection %||% "col", ":", h$`_id`),
         doi = doi, pmid = s$pmid %||% NA, pmcid = s$pmcid %||% NA,
-        title = s$title, authors = author_bib(as.character(authors %||% character())),
+        title = s$title, authors = authors_from_biodivpmc(s$authors), author_quality = "structured",
         venue = s$journal %||% s$medline_ta %||% NA, date = s$publication_date %||% NA,
         type = "article",
         url = if (!is.na(doi)) paste0("https://doi.org/", doi) else paste0("https://biodiversitypmc.sibils.org/"),

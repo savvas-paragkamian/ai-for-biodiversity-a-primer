@@ -1,10 +1,20 @@
 {
   "permissions": {
+    "allow": [
+      "Edit(/scripts/**)",
+      "Edit(/data/processed/**)",
+      "Edit(/logs/**)",
+      "Bash(Rscript scripts/*)"
+    ],
     "deny": [
       "Edit(/data/raw/**)",
       "Bash(curl *)",
       "Bash(wget *)",
-      "WebFetch"
+      "WebFetch",
+      "WebSearch",
+      "Bash(git reset --hard *)",
+      "Bash(git clean *)",
+      "Bash(git push *)"
     ]
   }
 }

@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-807",
+  "object": "chat.completion",
+  "created": 1793631444,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"date\": \"2025-05-21\",\n\"status\": \"not_sampled\",\n\"effort\": \"Too dry to sample; will return after rain\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"empty\" }",
+        "reasoning": "Okay, let's tackle this query. The user provided a field note: \"21 May 2025, S3. Too dry to sample; will return after rain.\" I need to extract one record based on the annotation rules provided.\n\nFirst, I'll break down the note. The date is \"21 May 2025,\" which should be formatted as YYYY-MM-DD. So that's 2025-05-21. The station is S3, which is straightforward.\n\nNext, the species. The note doesn't mention any species found or searched for. The user mentioned \"Too dry to sample,\" which implies they didn't take a sample. According to the rules, if no specimen was sorted, species should be empty. But wait, there's a part about status. The status is present when a specimen was sorted, seen, or counted. Since they couldn't sample due to dryness, maybe the status is absent. But the note says they'll return after rain, so maybe they searched but didn't find anything. However, the rules state that if a species was searched for but not found, it's recorded with status absent. But in this case, the note doesn't mention searching for a specific species. It just says the conditions were too dry. So perhaps there's no species recorded here.\n\nLooking at the status: if no sample was taken, status is not_sampled. The rules mention that status is absent when a species was searched for but not found. But here, the note doesn't state that they searched for a species. They just couldn't sample. So maybe status is not_sampled. But the rules say status is present when a specimen was sorted, seen, or counted. Since they didn't take a sample, status would be not_sampled.\n\nHabitat: The note doesn't mention where they were sampling, so habitat is empty.\n\nEffort: The note mentions \"Too dry to sample; will return after rain.\" This is about the reason for not sampling, not the effort method. So effort is empty.\n\nCount and count_qualifier: Since no sample was taken, count is empty.\n\nId_qualifier: Not applicable here since no identification was done.\n\nPutting it all together, the record would have date 2025-05-21, station S3, status not_sampled, and other fields empty. Wait, but the rules say that if a species was searched for but not found, it's recorded with status absent. But in this case, they didn't search for any species; they just couldn't sample. So status is not_sampled. Therefore, species is empty, status is not_sampled, and the rest are empty.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 977,
+    "prompt_tokens_details": {
+      "cached_tokens": 949
+    },
+    "completion_tokens": 620,
+    "total_tokens": 1597
+  }
+}

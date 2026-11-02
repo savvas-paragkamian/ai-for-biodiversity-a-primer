@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-80",
+  "object": "chat.completion",
+  "created": 1793630804,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"date\": \"2025-05-21\",\n\"species\": \"\",\n\"count\": 0,\n\"habitat\": \"cave\",\n\"status\": \"not_sampled\",\n\"effort\": \"\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"tentative\"\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"21 May 2025, S3. Too dry to sample; will return after rain.\" I need to extract one record based on the given rules.\n\nFirst, I'll parse the date. The note says \"21 May 2025,\" which should be formatted as YYYY-MM-DD. So the date is 2025-05-21.\n\nNext, the station is S3, so that's straightforward. No mention of other stations, so station is S3.\n\nNow, the species. The note doesn't mention any species found. It just says they couldn't sample because it was too dry. According to the rules, if a species was searched for but not found, we still record it with status absent. But wait, the note doesn't mention searching for a specific species. It's stating a reason for not sampling. So maybe there's no species recorded here. But the rules say that if a species was searched for but not found, we record it. However, in this case, the note doesn't mention searching for any species. It's just noting the condition. So maybe species is empty.\n\nStatus: The note doesn't mention a specimen being sorted or counted. The status is present when a specimen was sorted, seen, or counted. Since they couldn't sample, status would be absent? Wait, the rules say status is absent when a species was searched for, none found, and nothing else recorded. But here, they didn't search for any species; they just couldn't sample. So maybe status is not_sampled? Wait, the rules state that status is not_sampled when no sample was taken or the sample was lost before sorting. Since they couldn't sample due to dryness, maybe status is not_sampled.\n\nEffort: The note mentions the reason for not sampling, which is \"Too dry to sample; will return after rain.\" But according to the rules, effort is the sampling method or method as written. However, the reason for failure (the funnel flooded) isn't effort. Here, the reason is the dryness, which is not effort. So effort is empty.\n\nHabitat: The note doesn't mention habitat, so it's empty.\n\nCount: Since there's no count mentioned, it's empty.\n\nCount_qualifier and id_qualifier: These are empty since there's no count or identification.\n\nPutting it all together: The note doesn't mention any species found, so species is empty. Status is not_sampled because no sample was taken. Effort is empty. Habitat, count, etc., are all empty. But wait, the rules say that if a species was searched for but not found, we record it. However, in this note, there's no indication that a species was searched for. The note is just stating that they couldn't sample. So maybe the status is not_sampled, and species is empty. Let me double-check the rules.\n\nThe rules state: \"status: present when a specimen was sorted, seen or counted; absent when a species was searched for, none was found, and nothing else was recorded; not_sampled when no sample was taken or the sample was lost before sorting.\" \n\nIn this case, the note doesn't mention searching for a species. They just couldn't sample. So status would be not_sampled. Therefore, species is empty, status is not_sample, effort is empty, habitat is empty, etc.\n\nSo the final record would have date 2025-05-21, station S3, and the rest empty. But wait, the user's example might have different fields. Let me check again.\n\nAlternatively, maybe the note implies that they were trying to sample but couldn't. If they were trying to sample, perhaps the status is absent? Wait, no. The status is absent when a species was searched for, none found, and nothing else recorded. But if they didn't search for any species, then status is not_sampled. So the correct fields would be date, station, status not_sampled, and others empty.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 977,
+    "prompt_tokens_details": {
+      "cached_tokens": 949
+    },
+    "completion_tokens": 921,
+    "total_tokens": 1898
+  }
+}

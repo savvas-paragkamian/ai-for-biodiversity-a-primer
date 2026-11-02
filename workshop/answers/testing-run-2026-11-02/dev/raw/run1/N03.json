@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-418",
+  "object": "chat.completion",
+  "created": 1793630241,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\"station\": \"S2\", \"date\": \"2025-05-14\", \"species\": \"\", \"count\": 0, \"habitat\": \"cave\", \"status\": \"not_sampled\", \"effort\": \"\", \"count_qualifier\": \"exact\", \"id_qualifier\": \"tentative\"}",
+        "reasoning": "Okay, let's tackle this query. The user provided a field note: \"Station S2 on 14 May 2025. The funnel flooded overnight and the sample was lost; nothing sorted.\" I need to extract one record based on the annotation rules provided.\n\nFirst, I'll parse the note. The station is clearly S2. The date is 14 May 2025, which should be formatted as YYYY-MM-DD, so 2025-05-14.\n\nNext, the species. The note mentions nothing was sorted, so there's no species recorded here. According to the rules, if no specimen was sorted, the species field is empty. Also, the status should be not_sampled because the sample was lost before sorting. \n\nThe count is empty since there's no exact number mentioned. The habitat isn't specified here, so it remains empty. The effort is mentioned as \"the funnel flooded overnight,\" but according to the rules, effort is the sampling method or method. However, the note says the sample was lost due to the funnel flooding, which is a reason for failure, not the effort. So effort should be empty. \n\nWait, the rules state that effort is the sampling effort or method as written. The note says \"the funnel flooded overnight,\" which might be part of the effort, but since the sample was lost, maybe it's not considered effort. The rules mention that the reason for a failed sample isn't effort. So effort remains empty.\n\nThe count_qualifier and id_qualifier are also empty since there's no count or identification involved. \n\nPutting it all together: station S2, date 2025-05-14, species empty, count empty, habitat empty, status not_sampled, effort empty. The note doesn't mention any species found, so the record should reflect that no species was sorted, hence status not_sampled.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 982,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 469,
+    "total_tokens": 1451
+  }
+}

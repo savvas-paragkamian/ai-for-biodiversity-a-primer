@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-104",
+  "object": "chat.completion",
+  "created": 1793632325,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S3\",\n\"date\": \"2025-06-01\",\n\"species\": \"Folsomia candida\",\n\"count\": 0,\n\"count_qualifier\": \"approximate\",\n\"id_qualifier\": \"\"}",
+        "reasoning": "Okay, let's tackle this. The user provided a field note and wants me to extract one record according to the annotation rules. Let me start by breaking down the note.\n\nFirst, the note says: \"1 June 2025, S3. Moss on the terrace wall. Folsomia candida, about 30, not counted properly.\" \n\nI need to parse each part. The date is \"1 June 2025\". According to the rules, the date should be in YYYY-MM-DD format. So converting that, it becomes 2025-06-01. \n\nNext, the station is \"S3\", which is straightforward. \n\nThe species mentioned is \"Folsomia candida\". The rules say to copy the species name exactly as written, including any qualifiers. Here, there's no qualifier, so species is \"Folsomia candida\".\n\nNow, the count part: \"about 30\". The rules state that count should only be present if an exact number is stated. \"About 30\" is a rough number, so count is empty. However, there's a count_qualifier mentioned. The note says \"not counted properly\", which might relate to the count_qualifier. The rules mention count_qualifier can be exact, partial, or approximate. Since the count is approximate (\"about 30\"), count_qualifier should be \"approximate\". But wait, the note says \"not counted properly\" which might indicate that the count is partial. Hmm, need to check the exact wording. The count_qualifier is \"approximate\" when the note gives a rough number, which \"about 30\" is. So count_qualifier is \"approximate\", and count is empty.\n\nHabitat: \"Moss on the terrace wall\". The rules specify habitat as one of the listed types. Moss is one of the options, so habitat is \"moss\".\n\nStatus: The note mentions \"not counted properly\". According to the rules, status is present when a specimen was sorted, seen, or counted. Since they did count (even if not properly), status should be \"present\". Wait, but the count is approximate. Wait, the rules say status is present if there was a specimen sorted, seen, or counted. The note mentions \"Folsomia candida, about 30\", which implies they did count, even if not properly. So status is \"present\".\n\nEffort: The note doesn't mention any specific effort, so effort is empty.\n\nId_qualifier: The note doesn't mention any doubts in identification, so it's empty.\n\nWait, but the note says \"not counted properly\". Does that affect the status? The status is about whether a specimen was sorted, seen, or counted. Since they did count (even if not properly), status is present. The count_qualifier is approximate because the count is rough. \n\nPutting it all together:\n\nstation: S3\ndate: 2025-06-01\nspecies: Folsomia candida\ncount: (empty)\ncount_qualifier: approximate\nhabitat: moss\nstatus: present\neffort: (empty)\nid_qualifier: (empty)\n\nWait, but the rules say that if the status is present, then count_qualifier applies. Since the count is approximate, count_qualifier is \"approximate\". The count field is empty because it's approximate. \n\nYes, that seems right. Let me double-check the rules again. The count is only when exact, so \"about 30\" makes count empty. The count_qualifier is approximate. Habitat is moss. Status is present because they counted (even if not properly). Effort isn't mentioned, so empty. No id_qualifier. \n\nSo the final record should have those fields filled accordingly.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 988,
+    "prompt_tokens_details": {
+      "cached_tokens": 949
+    },
+    "completion_tokens": 855,
+    "total_tokens": 1843
+  }
+}

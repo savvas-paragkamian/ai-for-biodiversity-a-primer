@@ -1,0 +1,24 @@
+{
+  "run": "fixedB",
+  "set": "dev",
+  "notes_file": "data/notes.csv",
+  "notes": 10,
+  "model": "qwen3:8b",
+  "quantization": "Q4_K_M",
+  "model_context_length": "40960",
+  "context_loaded": "32768",
+  "thinking": "model default (on)",
+  "sampling": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20
+  },
+  "seed": 1,
+  "ollama_version": "ollama version is 0.40.13",
+  "ellmer_version": "0.5.0",
+  "r_version": "R version 4.5.1 (2025-06-13)",
+  "platform": "aarch64-apple-darwin24.4.0",
+  "started": "2026-11-02 16:57:25 EET",
+  "seconds_per_note": [30, 33.4, 23.2, 21.7, 27.3, 44.1, 28.8, 68.9, 29.3, 28.1],
+  "seconds_total": 334.9
+}

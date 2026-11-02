@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-797",
+  "object": "chat.completion",
+  "created": 1793631149,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"date\": \"2025-05-12\",\n\"species\": \"Isotoma viridis\",\n\"count\": 14,\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"empty\"\n}",
+        "reasoning": "Okay, let's tackle this field note extraction. The user provided the note: \"12 May 2025, station S1. Oak litter, Berlese sample ran 48 h. Sorted 14 Isotoma viridis, all adults.\" \n\nFirst, I need to parse each part according to the annotation rules. Let's start with the date. The note says \"12 May 2025,\" which should be formatted as YYYY-MM-DD. So that's 2025-05-12.\n\nNext, the station is mentioned as S1, so that's straightforward. \n\nThe habitat part is \"Oak litter.\" According to the rules, any type of litter, including oak litter, is categorized as \"litter.\" So habitat is \"litter.\"\n\nThe effort is described as \"Berlese sample ran 48 h.\" The rules state that effort should be the sampling method and duration. So effort is \"Berlese sample ran 48 h.\"\n\nNow, the species: \"Sorted 14 Isotoma viridis, all adults.\" The note mentions that they sorted 14 individuals of Isotoma viridis. Since they were sorted, the status is \"present.\" The species is exactly as written, including the scientific name. So species is \"Isotoma viridis.\"\n\nCount is 14, which is an exact number. The count_qualifier here is \"exact\" because it covers the whole sample. So count is 14 and count_qualifier is \"exact.\"\n\nThe id_qualifier isn't mentioned here, so it's empty. There's no indication of tentative identification, so id_qualifier remains empty.\n\nStatus is \"present\" because a specimen was sorted. The note doesn't mention anything about not finding a species or lost samples, so status is present. \n\nEffort is already covered. No mention of effort being absent. \n\nHabitat is \"litter\" as established. \n\nNo other species are mentioned, so only one row per note. \n\nLet me check again for any missed details. The note doesn't mention any effort issues like the funnel flooding, so effort is correctly captured. The count is exact, and the habitat is correctly categorized. All fields seem to be filled according to the rules. I think that's all.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 994,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 533,
+    "total_tokens": 1527
+  }
+}

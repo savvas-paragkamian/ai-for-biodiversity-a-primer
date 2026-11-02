@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-507",
+  "object": "chat.completion",
+  "created": 1793631581,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S5\",\n\"date\": \"2025-05-16\",\n\"species\": \"Ceratophysella denticulata\",\n\"count\": 40,\n\"habitat\": \"compost\",\n\"status\": \"present\",\n\"effort\": \"\",\n\"count_qualifier\": \"partial\",\n\"id_qualifier\": \"\"}",
+        "reasoning": "Okay, let's tackle this query. The user provided a field note and wants me to extract one record according to the given annotation rules. Let me start by breaking down the note.\n\nFirst, the note says: \"S5, 16/05/2025. Compost heap behind the field station: Ceratophysella denticulata swarming, 40 counted in the first tray.\"\n\nAlright, so the first thing is to parse each field as per the rules. Let's go step by step.\n\n**Station:** The note starts with \"S5\", which is a station number. According to the rules, station should be S1 to S5 as written. So station is S5.\n\n**Date:** The date is given as \"16/05/2025\". The rules say to convert it to YYYY-MM-DD. So that would be 2025-05-16.\n\n**Species:** The species mentioned is \"Ceratophysella denticulata\". The rules state to copy it exactly as written, including any qualifiers. There's no qualifier here, so species is \"Ceratophysella denticulata\".\n\n**Count:** The note says \"40 counted in the first tray\". The count field requires an exact number. Since \"40\" is a precise number, count is 40. The count_qualifier here is \"partial\" because it's only part of the sample (the first tray). So count_qualifier is partial.\n\n**Habitat:** The location is \"compost heap\". According to the rules, compost is one of the allowed habitats. So habitat is compost.\n\n**Status:** The note mentions \"swarming\" and \"counted\", which indicates that a specimen was found and counted. So status is present.\n\n**Effort:** The note doesn't mention any specific effort like sampling methods or duration. It just describes the location and what was found. So effort is empty.\n\n**Id_qualifier:** There's no indication of tentative identification here. The note states the species directly, so id_qualifier is empty.\n\nWait, let me double-check. The note says \"Ceratophysella denticulata swarming\". Since they counted 40 in the first tray, that's a count. The habitat is compost. The status is present because they found the species. Effort isn't specified, so it's empty. The count_qualifier is partial because it's only part of the sample. No id_qualifier needed here. \n\nI think that's all. Let me make sure there's no other species mentioned. The note only talks about Ceratophysella denticulata, so no other species to consider. Also, the date conversion is correct. All fields seem to be filled according to the rules.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 998,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 664,
+    "total_tokens": 1662
+  }
+}

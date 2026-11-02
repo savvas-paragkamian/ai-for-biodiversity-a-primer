@@ -71,7 +71,7 @@ new_bib <- d[d$status %in% c("new", "published"), , drop = FALSE]
 entries <- vapply(seq_len(nrow(new_bib)), function(i) bib_entry(new_bib$key[i], as.list(new_bib[i, ])), character(1))
 dir.create("bib", showWarnings = FALSE)
 week_bib <- file.path("bib", paste0(week, ".bib"))
-header <- sprintf("%% Weekly literature review, %s: %d verified new items, written by R/04_write.R on %s.\n%% Every DOI resolved on Crossref and every arXiv identifier on the arXiv API with a matching title.\n\n",
+header <- sprintf("%% Weekly literature review, %s: %d verified new items, written by R/04_write.R on %s.\n%% Every DOI resolved on Crossref or DataCite and every arXiv identifier on the arXiv API, with a matching title and first author.\n\n",
                   week, nrow(new_bib), utc_now())
 writeLines(paste0(header, paste(entries, collapse = "\n")), week_bib, useBytes = TRUE)
 existing_all <- bib_keys_in("bib/all.bib")

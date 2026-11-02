@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-882",
+  "object": "chat.completion",
+  "created": 1793631126,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"date\": \"2025-05-21\",\n\"status\": \"absent\",\n\"effort\": \"Too dry to sample; will return after rain\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"empty\"\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"21 May 2025, S3. Too dry to sample; will return after rain.\" I need to extract one record based on the given rules.\n\nFirst, let's parse the date. The note says \"21 May 2025\". The date format should be YYYY-MM-DD. So converting that, it would be 2025-05-21. That's straightforward.\n\nNext, the station is S3. According to the rules, station should be S1 to S5 as written. So station is S3.\n\nNow, the species. The note doesn't mention any species found. It just says they couldn't sample because it was too dry. So species should be empty because there's no specimen sorted or found.\n\nStatus: The note mentions they couldn't sample, so status is absent. Because they searched (intended to sample) but couldn't, so status is absent.\n\nHabitat: The rules say habitat is one of the specified types. Since the note doesn't mention any habitat, it should be empty. Unless there's an implied habitat, but the note doesn't state that.\n\nEffort: The note says \"Too dry to sample; will return after rain.\" The effort here is the reason for not sampling. But according to the rules, effort is the sampling method or method as written. However, in this case, the note doesn't mention any effort; it's stating the reason for not sampling. The rules mention that the reason for a failed sample (like the funnel flooding) is not effort. So effort should be empty here.\n\nCount: Since there's no count mentioned, and status is absent, count is empty.\n\nCount_qualifier and id_qualifier: Since there's no count or species, these qualifiers are also empty.\n\nPutting it all together, the record should have date 2025-05-21, station S3, status absent, and the rest empty. Let me double-check the rules to make sure. The key points are that if a species is searched for but not found, status is absent, and the other fields like effort and habitat are handled accordingly. Since there's no species found, and the note is about not being able to sample, the status is absent, and other fields are empty. Yes, that seems right.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 977,
+    "prompt_tokens_details": {
+      "cached_tokens": 949
+    },
+    "completion_tokens": 552,
+    "total_tokens": 1529
+  }
+}

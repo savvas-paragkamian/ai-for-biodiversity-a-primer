@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-919",
+  "object": "chat.completion",
+  "created": 1793630853,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S3\",\n\"date\": \"2025-05-13\",\n\"species\": \"Folsomia candida\",\n\"count\": 6,\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"exact\"\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"S3, 2025-05-13. Pine needles over thin soil. Folsomia candida, 6 individuals, two juveniles among them.\" I need to extract one record based on the given rules.\n\nFirst, let's parse each part. The station is S3, which fits the S1-S5 format. The date is 2025-05-13, which is in YYYY-MM-DD format. \n\nNext, the species mentioned is \"Folsomia candida\". According to the rules, the species should be copied exactly as written, including any qualifiers. Here, there's no qualifier like \"cf.\", so species is \"Folsomia candida\".\n\nCount: The note says \"6 individuals\". Since it's an exact number, count is 6. The mention of \"two juveniles\" doesn't affect the count, as the count is the total individuals. The count_qualifier is \"exact\" because it's the whole sample. Wait, the rules mention count_qualifier: exact when the count covers the whole sample. Since they counted all individuals, it's exact. So count_qualifier is exact.\n\nHabitat: The note says \"Pine needles over thin soil\". According to the rules, pine needles are considered litter. So habitat is \"litter\".\n\nStatus: Since a specimen was found (Folsomia candida with count 6), status is present. Effort isn't mentioned here, so effort is empty. The note doesn't mention any effort details, so effort field remains empty.\n\nId_qualifier: There's no indication of tentative identification. The note states the species directly, so id_qualifier is empty.\n\nPutting it all together: station S3, date 2025-05-13, species Folsomia candida, count 6, count_qualifier exact, habitat litter, status present. Effort and id_qualifier are empty. Also, since they found the species, the status is present, and there's no mention of searching without success, so no need to consider absent or not_sampled here.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 993,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 519,
+    "total_tokens": 1512
+  }
+}

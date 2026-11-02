@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-354",
+  "object": "chat.completion",
+  "created": 1793630963,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S4\",\n\"date\": \"2025-05-15\",\n\"species\": \"Entomobrya nivalis\",\n\"count\": 0,\n\"habitat\": \"moss\",\n\"status\": \"present\",\n\"effort\": \"\",\n\"count_qualifier\": \"approximate\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this field note extraction. The note says: \"15 May 2025, S4. Moss cushion on a north-facing rock. Roughly a dozen Entomobrya nivalis; did not count exactly.\"\n\nFirst, I need to parse each field according to the rules provided. Starting with the date. The date is given as \"15 May 2025\". The rules say to format it as YYYY-MM-DD. So converting that would be 2025-05-15. Got that.\n\nNext is the station. The note mentions \"S4\", which is a station number. So station is S4.\n\nNow, the species. The note states \"Entomobrya nivalis\". According to the rules, the species should be copied exactly as written, including any qualifiers. There's no mention of \"cf.\" or misspellings here, so species is Entomobrya nivalis.\n\nCount: The note says \"Roughly a dozen\". The rules specify that count is only when an exact number is stated. Since \"roughly a dozen\" is a rough number, count should be empty. Also, the note mentions \"did not count exactly\", which reinforces that the count isn't exact. So count is empty.\n\nHabitat: The note mentions \"Moss cushion on a north-facing rock\". The rules say moss cushion is moss. So habitat is moss.\n\nStatus: The note mentions that they found Entomobrya nivalis, so status is present because a specimen was found. If they had searched and not found, status would be absent, but here they did find it.\n\nEffort: The note doesn't mention any specific sampling method or effort, so effort is empty.\n\nCount_qualifier: The note says \"Roughly a dozen\" and \"did not count exactly\", which indicates an approximate count. So count_qualifier is approximate. But wait, the rules say count_qualifier is approximate when the note gives a rough number, in which case count is empty. Since count is already empty, count_qualifier would be approximate.\n\nId_qualifier: There's no mention of tentative identification or doubts, so id_qualifier is empty.\n\nPutting it all together, the fields would be:\n\nstation: S4\ndate: 2025-05-15\nspecies: Entomobrya nivalis\ncount: (empty)\nhabitat: moss\nstatus: present\neffort: (empty)\ncount_qualifier: approximate\nid_qualifier: (empty)\n\nWait, but the rules mention that count_qualifier is approximate when the note gives a rough number. Since the count is empty, count_qualifier should be approximate. So that's correct.\n\nAlso, the note doesn't mention any effort, so effort is empty. The status is present because they found the species. The id_qualifier is empty because there's no indication of tentative identification. All other fields are filled accordingly.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 993,
+    "prompt_tokens_details": {
+      "cached_tokens": 949
+    },
+    "completion_tokens": 701,
+    "total_tokens": 1694
+  }
+}

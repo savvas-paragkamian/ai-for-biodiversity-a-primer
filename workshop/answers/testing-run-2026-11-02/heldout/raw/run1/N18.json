@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-446",
+  "object": "chat.completion",
+  "created": 1793632144,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S4\",\n\"date\": \"2025-05-29\",\n\"species\": \"Entomobrya nivalis\",\n\"status\": \"absent\",\n\"effort\": \"half an hour\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"empty\"\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"29th May 2025, S4. Bark of the old pine searched for Entomobrya nivalis for half an hour; nothing.\" \n\nFirst, I need to extract the information according to the rules given. Let's break it down step by step.\n\nStarting with the date. The note says \"29th May 2025.\" The rules specify the date should be in YYYY-MM-DD format. So converting that, it becomes 2025-05-29. That's straightforward.\n\nNext, the station. The note mentions \"S4,\" which is a station number. So station is S4.\n\nNow, the species. The note says \"searched for Entomobrya nivalis.\" According to the rules, if a species is searched for but not found, we still record it with status absent. However, the rules also mention that if a note reports a species found and another searched without success, we record the found species. But in this case, the note says \"nothing\" was found. So the species searched for is Entomobrya nivalis, but since nothing was found, the status is absent. Wait, but the rules state that if a species is searched for but not found, it's recorded with status absent. However, the note doesn't mention finding another species. So maybe the species here is Entomobry, but since nothing was found, the species field would be empty? Wait, no. Let me check the rules again.\n\nLooking back at the rules: \"A note records at most one species: the one with a specimen in hand. If a note reports a species found and another searched for without success, record the species found and keep the search in effort. If a species is searched for but not found, record it with status absent, along with the effort and habitat searched.\"\n\nWait, the original rules (revised 22 October 2026) say that if a note reports a species found and another searched for without success, record the found species. But if the note is about a species searched for but not found, then the species is that searched one, with status absent. However, the note here says \"searched for Entomobrya nivalis for half an hour; nothing.\" So they searched for Entomobrya nivalis but found nothing. Therefore, the species field should be Entomobrya nivalis, and status is absent.\n\nWait, but the rules mention that if a note reports a species found and another searched for without success, record the found species. But here, there's no found species, only a search without success. So according to the rules, the species is the one searched for (Entomobrya nivalis), status is absent, and the effort is the time spent (half an hour). Also, the habitat searched is bark of the old pine, which would be bark.\n\nSo, putting it all together:\n\nstation: S4\ndate: 2025-05-29\nspecies: Entomobrya nivalis\nstatus: absent\neffort: half an hour\nhabitat: bark\n\nWait, but the note says \"Bark of the old pine searched for...\" So the habitat is bark. The effort is \"half an hour.\" But the rules say effort is the sampling effort or method as written, trimmed. So \"half an hour\" would be the effort. Also, the count is empty because nothing was found. The count_qualifier is empty. The id_qualifier is empty. \n\nSo the final row would have:\n\nstation: S4\ndate: 2025-05-29\nspecies: Entomobrya nivalis\nstatus: absent\neffort: half an hour\nhabitat: bark\n\nBut let me check again. The original note says \"searched for Entomobrya nivalis for half an hour; nothing.\" So the species searched for is Entomobrya nivalis, but nothing was found. Therefore, the species field is Entomobrya nivalis, status absent, effort is \"half an hour,\" and habitat is bark. The count is empty because no specimen was found. The count_qualifier and id_qualifier are empty. The effort is \"half an hour,\" which is trimmed. \n\nYes, that seems correct. So the final answer should have these fields.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 990,
+    "prompt_tokens_details": {
+      "cached_tokens": 949
+    },
+    "completion_tokens": 1018,
+    "total_tokens": 2008
+  }
+}

@@ -7,6 +7,13 @@ author's Mac, from a plan the author approved; see `AGENTS.md` for the
 record. The prompts below are the ones the book's Chapter 11 prints; an agent
 given them with the facts in `AGENTS.md` should produce equivalent scripts.
 
+Prompts 3, 6 and 7 were revised on 22 October 2026 after the book's peer
+review, so that an agent given them produces the scripts as they now are:
+the verifier compares the first author and the year as well as the title,
+the workflow carries the permissions block, pinned actions and a concurrency
+group, and the skill's deny rules cover its own tests and rules. The
+revised sentences are the ones that name those things.
+
 The author's request, verbatim:
 
 > write a plan on how to create a personal weekly literature review using
@@ -65,17 +72,23 @@ fetch https://api.crossref.org/works/<doi>, and if Crossref answers 404 fetch
 https://api.datacite.org/dois/<doi>, where Zenodo and Figshare register.
 Compare the returned title with ours after normalising, using 1 minus the
 edit distance over the longer length, threshold 0.85; also accept the pair
-when one title is the other without its subtitle. Set verified TRUE or
-FALSE with a reason. Check arXiv identifiers through the arXiv API id_list,
-at most 100 per request, three seconds apart. Save the responses under
-data/raw/<week>/crossref.json and arxiv-ids.xml (one file per batch) and
-read them instead of the network when --offline is given. Skip identifiers
-already in data/seen.csv: they were verified when first seen. Write
-data/normalised/<week>-checked.csv. Add --self-test with a good DOI, a DOI
-that does not exist, a real DOI with a deliberately wrong title, a good
-arXiv identifier and one that does not exist; it passes only if the three
-bad cases fail and the two good ones pass. Done when
-Rscript R/03_check.R --self-test prints SELF-TEST PASSED and names the three
+when one title is the other without its subtitle. Compare also the first
+author's surname (Crossref author family, DataCite creators, the arXiv
+author names) with ours in lowercase ASCII, accepting one that contains the
+other, and the year, accepting a difference of one. A different surname or
+a year more than one apart fails; a record without an author is verified by
+title and says so in its reason. Set verified TRUE or FALSE with a reason.
+Check arXiv identifiers through the arXiv API id_list, at most 100 per
+request, three seconds apart. Save the responses, with title, first author
+and year, under data/raw/<week>/crossref.json and arxiv-ids.xml (one file
+per batch) and read them instead of the network when --offline is given.
+Skip identifiers already in data/seen.csv: they were verified when first
+seen. Write data/normalised/<week>-checked.csv. Add --self-test with a good
+DOI, a DOI that does not exist, a real DOI with a deliberately wrong title,
+a real DOI with a deliberately wrong first author, a good arXiv identifier
+and one that does not exist; it passes only if the four bad cases fail and
+the two good ones pass. Done when
+Rscript R/03_check.R --self-test prints SELF-TEST PASSED and names the four
 failures.
 ```
 
@@ -131,10 +144,15 @@ with the week input if given, upload data/raw/ as an artifact, and commit
 reviews/, bib/, data/normalised/, data/seen.csv, provenance/ and index.md
 with the message "Week <week>: <n> new items" when there is anything to
 commit. OPENALEX_API_KEY comes from a repository secret; the scripts read
-it from the environment and never print it.
-Store no other secret. Done when a workflow_dispatch run for 2026-W41 is
-green, its commit is on main, and the job log shows the self-test passed
-before the fetch.
+it from the environment and never print it. Store no other secret. Set
+permissions: contents: write, because the default token is read-only. Pin
+every action to a full commit SHA and name the release in a comment. Add a
+concurrency group so a manual run and the scheduled run cannot write at
+once. Say in a comment that an artifact of a public repository can be
+downloaded by any signed-in user and expires. Done when a workflow_dispatch
+run for 2026-W41 is green, its commit is on main, the job log shows the
+self-tests passed before the fetch, and the file shows the permissions
+block, the pinned SHAs and the concurrency group.
 ```
 
 ## Prompt 7, the skill
@@ -154,14 +172,18 @@ entry to bib/<week>-consensus.bib itself. The skill then writes
 notes/<week>.md: per topic, a few sentences from the abstracts, every
 sentence tied to a bib key in square brackets or a verified DOI, preprints
 marked, and "Searches found no new items on ... this week" when there is
-nothing. It edits no other file and never commits. Also write
-R/skill_verify.R, with the same Crossref title check as R/03_check.R, and
-tests/check_notes.R, which exits with an error if the notes cite anything
-not in the week's bib files or the search log, and has a --self-test that
-plants one bad key and one unlogged URL. Done when /weekly-literature
-2026-W42 produces notes that pass tests/check_notes.R, and the number of
-queries added to search-log.md equals the number of Consensus calls in the
-session.
+nothing. It edits no other file and never commits. allowed-tools only
+pre-approves the tools it names and restricts nothing, so add deny rules in
+.claude/settings.json for R/, data/, bib/, reviews/, config/, tests/,
+docs/, .claude/, .github/ and launchd/, and for curl, wget, git commit and
+git push. Also write R/skill_verify.R, with the same Crossref check as
+R/03_check.R, and tests/check_notes.R, which exits with an error if the
+notes cite anything not in the week's bib files or the search log, and has
+a --self-test that plants one bad key and one unlogged URL. Done when
+/weekly-literature 2026-W42 produces notes that pass tests/check_notes.R,
+the number of queries added to search-log.md equals the number of Consensus
+calls in the session, and an attempt to edit tests/check_notes.R in that
+session is refused.
 ```
 
 The interests file, `config/interests.yml`, is deliberately not a prompt:

@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-840",
+  "object": "chat.completion",
+  "created": 1793632478,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S4\",\n\"date\": \"2025-05-22\",\n\"species\": \"Sminthurinus\",\n\"status\": \"absent\",\n\"effort\": \"searched the moss cushions on the north slope for Sminthurinus, about thirty minutes\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"tentative\"\n}",
+        "reasoning": "Okay, let's tackle this. The user provided a field note: \"22 May 2025, S4. Searched the moss cushions on the north slope for Sminthurinus, about thirty minutes; none found.\" I need to extract one record based on the annotation rules given.\n\nFirst, the date is \"22 May 2025\". The rules say to convert it to YYYY-MM-DD. So that becomes 2025-05-22.\n\nNext, the station is S4. That's straightforward.\n\nThe note mentions searching for Sminthurinus but not finding any. According to the rules, if a species is searched for but not found, we record the species with status absent. However, if another species was found in the same note, we record that one. But here, the note says \"none found,\" so the species searched for is Sminthurinus, and the status is absent.\n\nHabitat: The note says \"moss cushions,\" which according to the rules, moss is one of the allowed habitats. So habitat is moss.\n\nEffort: The note states \"searched the moss cushions on the north slope for Sminthurinus, about thirty minutes.\" The effort should be the sampling method or method. Here, the effort is \"searched the moss cushions on the north slope for Sminthurinus, about thirty minutes.\" But the rules mention trimming to the phrase. Maybe the key phrase is \"searched the moss cushions on the north slope for Sminthurinus, about thirty minutes.\" But maybe it's better to trim to the effort part. Wait, the rules say effort is the sampling effort or method as written, trimmed to the phrase. So perhaps \"searched the moss cushions on the north slope for Sminthurinus, about thirty minutes\" is the effort. But maybe the key phrase is \"searched the moss cushions on the north slope for Sminthurinus, about thirty minutes.\" However, the rules mention that the reason for a failed sample isn't effort. Here, the note doesn't mention a reason for failure, just that none were found. So the effort is the time spent searching, which is \"about thirty minutes.\"\n\nCount: Since the note says \"none found,\" there's no count. So count is empty.\n\nStatus: Since the species was searched for but not found, status is absent.\n\nSpecies: Sminthurinus, as that's the species searched for. Even though it wasn't found, the rules say to record the species searched for when status is absent.\n\nId_qualifier: The note doesn't mention any doubts about identification, so it's empty.\n\nCount_qualifier: Since there's no count, this is also empty.\n\nPutting it all together, the record should have:\n\n- station: S4\n- date: 2025-05-22\n- species: Sminthurinus\n- status: absent\n- effort: \"searched the moss cushions on the north slope for Sminthurinus, about thirty minutes\"\n- habitat: moss\n\nWait, but the rules say that if a note reports a species found and another searched for without success, record the found one. But here, the note is about searching for Sminthurinus and not finding it. So the species is Sminthurinus, status absent. The effort is the time spent searching, which is \"about thirty minutes.\" The habitat is moss. So the final record should have these fields filled accordingly.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 990,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 807,
+    "total_tokens": 1797
+  }
+}

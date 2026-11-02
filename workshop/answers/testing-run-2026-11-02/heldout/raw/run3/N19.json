@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-933",
+  "object": "chat.completion",
+  "created": 1793633722,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S5\",\n\"date\": \"2025-05-30\",\n\"species\": \"Heteromurus cf. nitidus\",\n\"count\": 2,\n\"habitat\": \"cave\",\n\"status\": \"present\",\n\"effort\": \"\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"tentative\" }",
+        "reasoning": "Okay, let's tackle this field note extraction. The user provided the note: \"30 May 2025, S5. Cave, 15 m in from the entrance. Heteromurus cf. nitidus, two, both damaged.\" \n\nFirst, I need to parse each part according to the annotation rules. Let's break it down step by step.\n\nStarting with the date. The note says \"30 May 2025\". The rules specify the date should be in YYYY-MM-DD format. So converting that, it becomes 2025-05-30. That's straightforward.\n\nNext, the station is mentioned as \"S5\". The rules say to use S1 to S5 as written, so station is S5.\n\nThe habitat part: \"Cave\" is mentioned. The allowed habitats are litter, soil, moss, bark, compost, cave. Since \"cave\" is one of the options, habitat is cave. The note also mentions \"15 m in from the entrance\", but that's additional detail, so it's not part of the habitat field. The habitat field is just 'cave'.\n\nNow, the species: \"Heteromurus cf. nitidus\". The rules state to copy the species name exactly as written, including qualifiers like 'cf.'. So species is \"Heteromurus cf. nitidus\".\n\nCount: \"two\" is stated. The rules say count is only when an exact number is given, in digits or words. \"Two\" is the word form, so count is 2. The note also mentions \"both damaged\", but that's additional info and doesn't affect the count field.\n\nStatus: The rules mention status is present when a specimen was sorted, seen, or counted. Since there's a count (two) and the species is recorded, status should be present.\n\nEffort: The note doesn't mention any specific sampling method or effort, so effort is empty.\n\nCount_qualifier: The note says \"two\" exactly, which covers the whole sample, so count_qualifier is exact.\n\nId_qualifier: The species is \"cf. nitidus\", which indicates a tentative identification. So id_qualifier is tentative.\n\nPutting it all together, the fields should be:\n\n- station: S5\n- date: 2025-05-30\n- species: Heteromurus cf. nitidus\n- count: 2\n- habitat: cave\n- status: present\n- effort: (empty)\n- count_qualifier: exact\n- id_qualifier: tentative\n\nI need to make sure there's no other species mentioned. The note only mentions Heteromurus cf. nitidus, so no other species to consider. Also, since there's a count and status present, the note isn't about a search without finding, so no need to mark status as absent. The 'damaged' part is part of the species description but doesn't affect the fields. All fields are filled according to the rules.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 993,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 715,
+    "total_tokens": 1708
+  }
+}

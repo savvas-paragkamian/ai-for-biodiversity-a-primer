@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-341",
+  "object": "chat.completion",
+  "created": 1793630275,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S4\",\n\"date\": \"2025-05-15\",\n\"species\": \"Entomobrya nivalis\",\n\"count\": 0,\n\"habitat\": \"moss\",\n\"status\": \"present\",\n\"effort\": \"\",\n\"count_qualifier\": \"approximate\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"15 May 2025, S4. Moss cushion on a north-facing rock. Roughly a dozen Entomobrya nivalis; did not count exactly.\" \n\nFirst, I need to extract the information according to the rules provided. Let me go through each field step by step.\n\nStarting with the date. The note says \"15 May 2025\". The date format should be YYYY-MM-DD. So converting that, it's 2025-05-15. That's straightforward.\n\nNext, the station. The note mentions \"S4\". According to the rules, station is S1 to S5 as written. So station is S4.\n\nNow, the species. The note states \"Entomobrya nivalis\". The rules say to copy the species exactly as written, including any qualifiers. There's no mention of \"cf.\" or misspellings here, so species is \"Entomobrya nivalis\".\n\nCount: The note says \"Roughly a dozen\". The rules specify that count is only when an exact number is stated. Since \"roughly a dozen\" is a rough number, count should be empty. Also, the note mentions \"did not count exactly\", which reinforces that the count isn't exact. So count is empty.\n\nHabitat: The note says \"Moss cushion on a north-facing rock\". The rules state that moss cushion is categorized as 'moss'. So habitat is moss.\n\nStatus: The rules mention that status is present when a specimen was sorted, seen, or counted. Here, the note mentions seeing the species (\"Roughly a dozen...\") but didn't count exactly. However, the count is approximate, so status should be present because they observed the species, even if they didn't count exactly. Wait, the rules say status is absent when a species was searched for but not found. But in this case, they found the species, so status is present. But wait, the note says \"did not count exactly\", but they did find the species. So status is present.\n\nEffort: The rules mention effort is the sampling method. The note doesn't mention any specific effort like traps or methods, just the habitat. So effort is empty.\n\nCount_qualifier: The note says \"Roughly a dozen\" and \"did not count exactly\". The count_qualifier is approximate when the note gives a rough number. So count_qualifier is approximate.\n\nId_qualifier: The note doesn't mention any doubt in identification, so id_qualifier is empty.\n\nPutting it all together, the fields would be:\n\nstation: S4\ndate: 2025-05-15\nspecies: Entomobrya nivalis\ncount: (empty)\nhabitat: moss\nstatus: present\neffort: (empty)\ncount_qualifier: approximate\nid_qualifier: (empty)\n\nWait, but the original rules for the 22 October 2026 version include status, effort, count_qualifier, and id_qualifier. So I need to make sure all these fields are filled according to the latest rules.\n\nDouble-checking the status: Since they found the species, even if they didn't count exactly, status is present. The note doesn't mention searching for another species, so it's the only species recorded. Therefore, status is present.\n\nEffort is empty because there's no mention of the method used. The note talks about the habitat but not the effort. So effort is empty.\n\nCount_qualifier is approximate because the count is a rough number. The count itself is empty.\n\nId_qualifier is empty because there's no indication of tentative identification.\n\nSo the final record should have all these fields filled accordingly.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 993,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 871,
+    "total_tokens": 1864
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-509",
+  "object": "chat.completion",
+  "created": 1793633895,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S5\",\n\"date\": \"2025-06-04\",\n\"species\": \"Ceratophysella denticulata\",\n\"count\": 18,\n\"habitat\": \"compost\",\n\"status\": \"present\",\n\"effort\": \"\",\n\"count_qualifier\": \"partial\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this. The user provided a field note and wants me to extract one record according to the annotation rules. Let me start by understanding the note: \"4 June 2025, S5. Compost. Ceratophysella denticulata, first tray 18, second tray not sorted yet.\"\n\nFirst, I need to parse each part. The date is \"4 June 2025\". The rules say to convert the date to YYYY-MM-DD. So that would be 2025-06-04. The station is S5, which is straightforward.\n\nNext, the habitat is \"Compost\". According to the rules, compost is one of the allowed habitats, so that's filled in.\n\nThe species mentioned is \"Ceratophysella denticulata\". The rules state to copy the species name exactly as written, including any qualifiers. Since there's no qualifier here, it's just the species name.\n\nNow, the count part: \"first tray 18, second tray not sorted yet.\" The count is only when an exact number is stated. The first tray has 18, which is exact. The second tray isn't sorted yet, so that's not counted. So the count is 18. But wait, the note mentions two trays. The rules say count is only when an exact number is stated. The first tray has 18, which is exact. The second tray isn't sorted yet, so maybe that's not counted. However, the note might imply that the total count is 18 from the first tray, and the second tray isn't counted yet. So the count is 18.\n\nStatus: The note says \"first tray 18, second tray not sorted yet.\" Since the first tray was sorted and counted, and the second is not, but the species was found (since they mention the count), the status should be present. Because the note records the species found, even if part of the sample isn't sorted yet. So status is present.\n\nEffort: The note mentions \"first tray\" and \"second tray\", but the effort isn't explicitly stated. The rules say effort is the sampling method or method as written. Since the note doesn't mention the effort (like Berlese sample, pitfall traps, etc.), effort is empty. Wait, but maybe the trays are part of the effort? The rules say effort is the method, so if they used trays, maybe that's part of the effort. But the note doesn't specify the method, just the trays. Hmm. The rules state that effort is the sampling effort or method as written. The note says \"first tray 18, second tray not sorted yet.\" The mention of trays might be part of the effort, but the exact method isn't specified. So perhaps effort is empty here.\n\nCount qualifier: The note says \"first tray 18\". Since the count is exact, but it's only part of the sample (since the second tray isn't sorted), the count qualifier would be partial. Because the count covers only part of the sample. So count_qualifier is partial.\n\nId qualifier: The note doesn't mention any doubts about the identification, so id_qualifier is empty.\n\nPutting it all together:\n\nstation: S5\ndate: 2025-06-04\nspecies: Ceratophysella denticulata\ncount: 18\nhabitat: compost\nstatus: present\neffort: (empty)\ncount_qualifier: partial\nid_qualifier: (empty)\n\nWait, but the rules say count_qualifier is exact when the count covers the whole sample. Here, the count is only from the first tray, and the second isn't sorted yet. So the count_qualifier is partial. That makes sense.\n\nSo the final record should have those fields filled accordingly.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 990,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 884,
+    "total_tokens": 1874
+  }
+}

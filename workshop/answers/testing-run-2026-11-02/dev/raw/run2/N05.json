@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-942",
+  "object": "chat.completion",
+  "created": 1793630626,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S5\",\n\"date\": \"2025-05-16\",\n\"species\": \"Ceratophysella denticulata\",\n\"count\": 40,\n\"count_qualifier\": \"partial\",\n\"id_qualifier\": \"empty\"\n}",
+        "reasoning": "Okay, let's tackle this query. The user provided a field note and wants me to extract one record according to the annotation rules. Let me start by breaking down the note.\n\nFirst, the note says: \"S5, 16/05/2025. Compost heap behind the field station: Ceratophysella denticulata swarming, 40 counted in the first tray.\"\n\nSo, I need to parse each part according to the rules.\n\nStarting with the station. The first part is \"S5\", which is straightforward. Station is S5.\n\nNext, the date is \"16/05/2025\". The rules say to use YYYY-MM-DD format. So I need to convert that. Since the day is first, it's 16 May 2025. So the date should be 2025-05-16.\n\nThen, the species is \"Ceratophysella denticulata\". The rules say to copy exactly as written, including any qualifiers. There are no qualifiers here, so species is exactly that.\n\nCount: The note says \"40 counted in the first tray.\" The count field is for exact numbers. Since it's \"40\", that's an exact number. But there's a qualifier here: \"counted in the first tray\" which might indicate a partial count. The count_qualifier should be \"partial\" because it's only part of the sample. So count is 40, count_qualifier is partial.\n\nHabitat: The location is \"compost heap\", which according to the rules maps to \"compost\". So habitat is compost.\n\nStatus: The note mentions that the species was found (\"swarming\"), so status is present.\n\nEffort: The note doesn't mention any specific effort like sampling methods, so effort is empty.\n\nId_qualifier: The note doesn't indicate any doubt in identification, so it's empty.\n\nWait, the rules mention that if a species is found and another is searched for, but here it seems like only Ceratophysella denticulata is mentioned. The note says \"swarming\" which implies they were found, so status is present. No mention of searching for another species, so no conflict here.\n\nLet me check the rules again. The key points:\n\n- station: S5\n- date: 2025-03-16? Wait, original date is 16/05/2025. Depending on the format, if it's day/month/year, then it's 16 May 2025, so 2025-05-16. If it's month/day/year, it would be 2025-05-16 either way. So correct.\n\nSpecies is exactly as written.\n\nCount is 40, count_qualifier is partial because it's \"counted in the first tray\".\n\nHabitat is compost.\n\nStatus is present because they were found.\n\nEffort is empty because no effort details are given.\n\nId_qualifier is empty.\n\nSo putting it all together, the record should have:\n\nstation: S5\ndate: 2025-05-16\nspecies: Ceratophysella denticulata\ncount: 40\ncount_qualifier: partial\nhabitat: compost\nstatus: present\neffort: (empty)\nid_qualifier: (empty)\n\nWait, the original note says \"Ceratophysella denticulata swarming, 40 counted in the first tray.\" So the count is 40, and the count_qualifier is partial. The rest seems correct. Let me make sure there are no other fields. The effort isn't mentioned, so it's empty. The status is present because they were found. The id_qualifier is empty since there's no doubt in identification. Yes, that seems right.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 998,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 883,
+    "total_tokens": 1881
+  }
+}

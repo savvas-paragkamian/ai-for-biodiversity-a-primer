@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-20",
+  "object": "chat.completion",
+  "created": 1793631508,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S3\",\n\"date\": \"2025-05-13\",\n\"species\": \"Folsomia candida\",\n\"count\": 6,\n\"habitat\": \"litter\",\n\"status\": \"present\",\n\"effort\": \"\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"S3, 2025-05-13. Pine needles over thin soil. Folsomia candida, 6 individuals, two juveniles among them.\" \n\nFirst, I need to extract one record based on the rules provided. Let's break down each field.\n\nStarting with the station. The note mentions \"S3,\" so station is S3. That's straightforward.\n\nNext, the date. The note says \"2025-05-13,\" which is already in YYYY-MM-DD format. So date is 2025-05-13.\n\nNow, the species. The note states \"Folsomia candida,\" which is the species found. Since they have a specimen in hand, species is Folsomia candida. No qualifiers here, so we copy it exactly.\n\nCount: The note mentions \"6 individuals.\" That's an exact number, so count is 6. The count_qualifier might be exact since it's the whole sample. But the rules say count_qualifier is exact when the count covers the whole sample. Here, they counted 6 individuals, so count_qualifier is exact.\n\nHabitat: The note says \"Pine needles over thin soil.\" According to the rules, pine needles are considered litter. So habitat is litter.\n\nStatus: Since a specimen was found and counted, status is present.\n\nEffort: The note doesn't mention any specific sampling method or effort beyond the habitat description. The rules state effort is the method as written. Since there's no mention of effort like traps or duration, effort is empty.\n\nId_qualifier: The note doesn't mention any uncertainty in identification, so id_qualifier is empty.\n\nWait, the note also mentions \"two juveniles among them.\" Does that affect count? The count is 6 individuals, and juveniles are part of that count. So the count remains 6, and the count_qualifier is exact because they counted all individuals. The mention of juveniles doesn't change the count or qualifier.\n\nPutting it all together, the record should have station S3, date 2025-05-13, species Folsomia candida, count 6, habitat litter, status present. Effort and qualifiers are empty unless specified. Since there's no effort mentioned, effort is empty. No id_qualifier or count_qualifier issues here. \n\nDouble-checking the rules: count is only when exact number, which 6 is. Habitat is litter. Status is present because a specimen was found. Effort is not mentioned, so empty. All other fields are filled as per the note.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 993,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 639,
+    "total_tokens": 1632
+  }
+}

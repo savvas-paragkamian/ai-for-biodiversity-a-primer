@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-215",
+  "object": "chat.completion",
+  "created": 1793630657,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S1\",\n\"date\": \"2025-05-17\",\n\"species\": \"Orchesella cincta\",\n\"count\": 2,\n\"habitat\": \"bark\",\n\"status\": \"present\",\n\"effort\": \"Searched the bark of three oaks for Entomobrya\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"17 May 2025 at S1. Searched the bark of three oaks for Entomobrya; none found. Two Orchesella cincta under loose bark instead.\" \n\nFirst, I need to parse this according to the rules given. The main points here are that the note mentions searching for Entomobrya but found none, and instead found two Orchesella cincta. \n\nStarting with the fields:\n\n- **station**: The note says \"at S1\", so station is S1.\n- **date**: The date is \"17 May 2025\". The format needs to be YYYY-MM-DD, so converting that gives 2025-05-17.\n- **species**: The note mentions two species. However, the rules state that a note records at most one species if a specimen is in hand. Here, they found Orchesella cincta, which is a specimen, so that's the species to record. The search for Entomobrya is part of the effort but since they found another species, we focus on that.\n- **count**: They found two individuals, so count is 2. Since it's an exact number, count_qualifier should be exact.\n- **habitat**: The species was found under loose bark, which falls under 'bark' as per the habitat categories.\n- **status**: Since they found a specimen (Orchesella cincta), status is present.\n- **effort**: The effort here is searching the bark of three oaks for Entomobrya. The note mentions \"Searched the bark of three oaks for Entomobrya; none found.\" So effort is \"Searched the bark of three oaks for Entomobrya\".\n- **count_qualifier**: Since the count is exact (two individuals), it's exact.\n- **id_qualifier**: There's no indication of tentative identification here, so it's empty.\n\nWait, but the note says \"Two Orchesella cincta under loose bark instead.\" So the species is Orchesella cincta. The effort is about searching for Entomobrya, but since they found another species, the effort is recorded as part of the note. Also, the status is present because they found the specimen. The count is 2, and habitat is bark. \n\nI need to check if there's any other information. The rules mention that if a note reports a species found and another searched for without success, record the found species. So in this case, the found species is Orchesella cincta, and the search for Entomobry, which is not found, is part of the effort. So the effort field should capture the search for Entomobrya on three oaks. \n\nSo putting it all together:\n\nstation: S1\ndate: 2025-05-17\nspecies: Orchesella cincta\ncount: 2\nhabitat: bark\nstatus: present\neffort: Searched the bark of three oaks for Entomobrya\ncount_qualifier: exact\nid_qualifier: \n\nWait, the note says \"two Orchesella cincta\", so count is 2, and count_qualifier is exact. The id_qualifier is empty because there's no mention of tentative identification. \n\nI think that's all. Let me make sure I didn't miss any rules. The rules mention that if a species is found and another searched for, the found one is recorded. The effort is the method used for the search, which is included here. The habitat is bark. Status is present because a specimen was found. Count is exact. All looks good.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 998,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 891,
+    "total_tokens": 1889
+  }
+}

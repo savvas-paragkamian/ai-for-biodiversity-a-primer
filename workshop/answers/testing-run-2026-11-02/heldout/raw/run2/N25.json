@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-455",
+  "object": "chat.completion",
+  "created": 1793633229,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"date\": \"2025-06-05\",\n\"species\": \"Folsomia candida\",\n\"count\": 1,\n\"habitat\": \"soil\",\n\"status\": \"present\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"}",
+        "reasoning": "Okay, let's tackle this query. The user provided a field note: \"June 5 2025, no station, roadside bank near the village. Dry soil, a single Folsomia candida.\" They want me to extract one record from this note following the annotation rules.\n\nFirst, I need to parse the note according to the rules. Let me go through each field step by step.\n\nStarting with the date. The note says \"June 5 2025.\" The rule specifies the date should be in YYYY-MM-DD format. So converting that, it becomes 2025-06-05. That's straightforward.\n\nNext, the station. The note mentions \"no station,\" so according to the rules, the station field should be empty. No need to fill anything here.\n\nNow, the habitat. The note states \"Dry soil.\" According to the rules, soil is one of the allowed habitats. So habitat should be \"soil.\"\n\nSpecies: The note mentions \"a single Folsomia candida.\" The species field requires the exact name as written, including any qualifiers. Here, it's \"Folsomia candida\" without any qualifiers like \"cf.\" or misspellings. So species is \"Folsomia candida.\"\n\nCount: The note says \"a single,\" which translates to 1. The count field should have the exact number in digits. So count is 1.\n\nStatus: The note mentions a specimen was found (\"a single...\"), so status is present. The rules state that if a specimen was sorted, seen, or counted, status is present. Since they found one, status is \"present.\"\n\nEffort: The note doesn't mention any specific sampling method or effort, like traps or duration. The rules say effort is the method as written, but here there's no mention of effort. So effort is empty.\n\nCount_qualifier: The note states \"a single,\" which is an exact count. So count_qualifier is \"exact.\"\n\nId_qualifier: The note doesn't mention any doubt in identification, so id_qualifier is empty.\n\nPutting it all together, the record should have the date, station as empty, species, count, habitat, status, and the qualifiers. The effort is empty since there's no mention of the method used. Let me double-check the rules to ensure I didn't miss anything. The key points are that if a species is found, status is present, and count is exact. The habitat is soil. The station is empty. Effort isn't mentioned, so it's left blank. Everything seems to align with the rules.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 985,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 607,
+    "total_tokens": 1592
+  }
+}

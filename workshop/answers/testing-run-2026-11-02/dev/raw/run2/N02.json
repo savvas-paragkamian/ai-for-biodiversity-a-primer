@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-792",
+  "object": "chat.completion",
+  "created": 1793630530,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S3\",\n\"date\": \"2025-05-13\",\n\"species\": \"Folsomia candida\",\n\"count\": 6,\n\"habitat\": \"litter\",\n\"status\": \"present\",\n\"effort\": \"\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this. The user provided a field note and wants me to extract one record according to the annotation rules. Let me start by breaking down the note.\n\nFirst, the note is: \"S3, 2025-05-13. Pine needles over thin soil. Folsomia candida, 6 individuals, two juveniles among them.\"\n\nAlright, so the first part is the station and date. The station is S3, which fits the rule where station is S1 to S5. The date is given as 2025-05-13, which is in YYYY-MM-DD format. That's straightforward.\n\nNext, the habitat. The note mentions \"Pine needles over thin soil.\" According to the rules, pine needles are considered litter. So the habitat should be \"litter\". The thin soil part might be part of the habitat description, but since the main component here is pine needles, which are litter, that's the category to use.\n\nThen, the species is \"Folsomia candida\". The rules state to copy the species name exactly as written, including any qualifiers. There's no mention of cf. or misspellings here, so that's straightforward. The species is present, so status is present.\n\nCount: The note says \"6 individuals\". That's an exact number, so count is 6. The mention of two juveniles doesn't affect the count; it's just additional info. The count_qualifier is exact because it's the whole sample.\n\nEffort: The note doesn't mention any specific sampling method or effort, so effort is empty. The user didn't mention anything about traps or time spent, so that's not needed here.\n\nStatus: Since a specimen was found (Folsomia candida), status is present. The note doesn't mention anything about the sample being lost or not sampled, so status is present.\n\nNo mention of not_sampled or absent status here. The note clearly states the species found, so all fields are filled except effort, which is empty. The count_qualifier is exact because the count is the total number of individuals. There's no qualifier like tentative or approximate here, so id_qualifier is empty.\n\nPutting it all together, the record should have station S3, date 2025-05-13, species Folsomia candida, count 6, habitat litter, status present, effort empty, count_qualifier exact, and id_qualifier empty. Let me double-check the rules to make sure I didn't miss anything. The rules mention that if a species is found and another is searched for, but here only Folsomia candida is mentioned. The note doesn't mention searching for another species, so it's okay. The count is exact, so count_qualifier is exact. Effort isn't stated, so it's empty. Everything looks good.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 993,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 679,
+    "total_tokens": 1672
+  }
+}

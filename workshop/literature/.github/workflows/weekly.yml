@@ -1,0 +1,84 @@
+# The clock: every Monday at 06:00 UTC, fetch the week that just ended, verify
+# every identifier, write the review and the bibliography, and commit them.
+# No model runs here. The one secret is OPENALEX_API_KEY: without a key,
+# OpenAlex meters requests against a free daily budget shared by every machine
+# behind the runner's IP address (observed 14 October 2026), which a shared
+# runner cannot rely on. The scripts read the key from the environment and
+# never print it.
+#
+# Three things a reviewer should check in this file:
+# - permissions: contents: write. The default GITHUB_TOKEN of a repository
+#   created since February 2023 is read-only, so without this the commit step
+#   cannot push.
+# - every action pinned to a full commit SHA, with the release it was taken
+#   from in a comment. A moving tag such as @v4 can be re-pointed by whoever
+#   controls the action's repository (tj-actions/changed-files, March 2025,
+#   CVE-2025-30066). Update the SHA when you update the release.
+# - a concurrency group, so a manual run and the scheduled run cannot write
+#   the same week at once.
+# The raw responses go to a workflow artifact. In a public repository any
+# signed-in GitHub user can download an artifact, and it is deleted after the
+# retention period, so this is a convenience, not a private or durable store:
+# use a private repository or institutional storage for a durable copy.
+name: weekly literature
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+    inputs:
+      week:
+        description: 'ISO week to run, e.g. 2026-W42 (empty: the week that ended yesterday)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-literature
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: r-lib/actions/setup-r@f9a764fea8d5c63df6ef9a5c7795bf7deb5d7e05 # v2, 2026
+        with:
+          r-version: '4.5.1'
+          use-public-rspm: true
+
+      - name: System libraries for xml2, curl and openssl
+        run: sudo apt-get update && sudo apt-get install -y libxml2-dev libcurl4-openssl-dev libssl-dev
+
+      - uses: r-lib/actions/setup-renv@f9a764fea8d5c63df6ef9a5c7795bf7deb5d7e05 # v2, 2026
+
+      - name: Checks that can fail, before the run
+        run: |
+          Rscript R/03_check.R --self-test
+          Rscript R/02_normalise.R --self-test
+
+      - name: Run the week
+        run: Rscript R/run_week.R ${{ inputs.week }}
+        env:
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
+
+      - name: Keep the raw responses as an artifact (not in git; public in a public repository; expires)
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: raw-${{ github.run_id }}
+          path: data/raw/
+          retention-days: 90
+
+      - name: Commit the week
+        run: |
+          git config user.name "weekly-literature"
+          git config user.email "actions@users.noreply.github.com"
+          git add reviews bib data/normalised data/seen.csv provenance index.md
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          week=$(ls provenance/*.log.md | sort | tail -1 | xargs -n1 basename | sed 's/\.log\.md$//')
+          new=$(grep -o '[0-9]* new' "provenance/$week.log.md" | head -1)
+          git commit -m "Week $week: ${new:-run}"
+          git push

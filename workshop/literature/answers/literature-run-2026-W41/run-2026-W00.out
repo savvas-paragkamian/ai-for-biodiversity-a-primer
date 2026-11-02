@@ -1,14 +1,14 @@
---- R/02_normalise.R (0.4 s, exit 0)
+--- R/02_normalise.R (0.5 s, exit 0)
 bioRxiv: 1 records in the fetched categories; 1 matched a topic's terms (2 topic assignments); 0 set aside
 outside the window and dropped: 0
 6 records read; 7 kept (0 bioRxiv records matched no topic); 4 after the DOI merge; 4 after the arXiv-identifier merge; 3 after the title merge; wrote data/normalised/2026-W00.csv
---- R/03_check.R (0.3 s, exit 0)
-ok       10.1101/fixture-2  Crossref title matches (1.00)
-ok       10.1234/fixture-1  Crossref title matches (1.00)
-FAIL     10.5555/fixture-3  Crossref title differs (0.20): Sediment transport in braided rivers of the northern plains
+--- R/03_check.R (0.5 s, exit 0)
+ok       10.1101/fixture-2  Crossref title matches (1.00); first author matches (Tester)
+ok       10.1234/fixture-1  Crossref title matches (1.00); first author matches (Example)
+FAIL     10.5555/fixture-3  Crossref title differs (0.20): Sediment transport in braided rivers of the northern plains; first author differs: ours Model, registrar Riverman
 3 DOIs and 0 arXiv identifiers checked from the cached answers; 2 verified, 1 not
 wrote data/normalised/2026-W00-checked.csv
---- R/04_write.R (0.4 s, exit 0)
+--- R/04_write.R (0.6 s, exit 0)
 3 items in; 2 new; 0 now published; 0 updated preprints; 0 seen before; 1 not verified; 2 bibliography entries written to bib/2026-W00.bib (2 appended to bib/all.bib)
 
 wrote provenance/2026-W00.log.md

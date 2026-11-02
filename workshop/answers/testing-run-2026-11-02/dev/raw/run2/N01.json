@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-185",
+  "object": "chat.completion",
+  "created": 1793630505,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S1\",\n\"date\": \"2025-05-12\",\n\"species\": \"Isotoma viridis\",\n\"count\": 14,\n\"habitat\": \"litter\",\n\"status\": \"present\",\n\"effort\": \"Berlese sample ran 48 h\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this. The user provided a field note and wants me to extract one record according to the given annotation rules. Let me start by breaking down the note.\n\nFirst, the date is \"12 May 2025\". The rules say to format the date as YYYY-MM-DD. So that would be 2025-05-12. Got that.\n\nNext, the station is \"S1\". That's straightforward, just S1 as written. \n\nNow, the species part. The note mentions \"Sorted 14 Isotoma viridis, all adults.\" The rules state to copy the species exactly as written, including any qualifiers. Here, \"Isotoma viridis\" is the species name, and \"all adults\" might be a qualifier. Wait, but the rules mention that species should include misspellings and qualifiers like \"cf.\" But in this case, \"all adults\" isn't a qualifier for the species name itself. Wait, maybe the count_qualifier is for the count. Let me check again.\n\nThe note says \"Sorted 14 Isotoma viridis, all adults.\" So the species is Isotoma viridis. The count is 14, and \"all adults\" might be part of the count_qualifier. Wait, the count_qualifier is either exact, partial, or approximate. Since they counted all individuals (all adults), that's an exact count. So count_qualifier would be exact. But the count field is the number, so 14. \n\nHabitat is \"Oak litter\". According to the rules, litter includes oak litter, so habitat is litter. \n\nStatus: The note says \"Sorted 14 Isotoma viridis\", which means a specimen was sorted, so status is present. \n\nEffort: The note mentions \"Berlese sample ran 48 h\". So effort is \"Berlese sample ran 48 h\". \n\nCount_qualifier: Since they counted all individuals (all adults), that's exact. So count_qualifier is exact. \n\nId_qualifier: The note doesn't mention any doubt in identification, so id_qualifier is empty. \n\nWait, the note says \"Sorted 14 Isotoma viridis, all adults.\" So the count is 14, and the count_qualifier is exact because they counted all. \n\nPutting it all together:\n\nstation: S1\ndate: 2025-05-12\nspecies: Isotoma viridis\ncount: 14\nhabitat: litter\nstatus: present\neffort: Berlese sample ran 48 h\ncount_qualifier: exact\nid_qualifier: \n\nWait, the user's example might have different fields. Let me check the rules again. The original rules mention that count_qualifier is exact when the count covers the whole sample. Here, since they counted all adults, that's exact. So count_qualifier is exact. \n\nAlso, the note doesn't mention any tentative identification, so id_qualifier is empty. \n\nSo the final record should have all these fields filled accordingly. Let me make sure there's no other species mentioned. The note only mentions Isotoma viridis, so that's the only species. No other species found or searched for. So the record is correct.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 994,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 778,
+    "total_tokens": 1772
+  }
+}

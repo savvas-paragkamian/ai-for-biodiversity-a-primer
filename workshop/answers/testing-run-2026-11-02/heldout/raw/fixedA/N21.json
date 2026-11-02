@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-943",
+  "object": "chat.completion",
+  "created": 1793634412,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S3\",\n\"date\": \"2025-06-01\",\n\"species\": \"Folsomia candida\",\n\"count\": 0,\n\"habitat\": \"moss\",\n\"status\": \"present\",\n\"effort\": \"\",\n\"count_qualifier\": \"approximate\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"1 June 2025, S3. Moss on the terrace wall. Folsomia candida, about 30, not counted properly.\" I need to extract one record based on the given rules.\n\nFirst, I'll break down the note. The date is \"1 June 2025,\" which should be formatted as YYYY-MM-DD. So that's 2025-06-01. The station is S3, which is straightforward.\n\nNext, the species mentioned is \"Folsomia candida.\" According to the rules, the species should be copied exactly as written, including any qualifiers. Here, there's no qualifier, so species is \"Folsomia candida.\"\n\nNow, the count part: \"about 30.\" The rules state that count is only when an exact number is stated. \"About 30\" is a rough number, so count should be empty. However, there's a count_qualifier mentioned. The note says \"not counted properly,\" which might indicate a partial count. But the count_qualifier options are exact, partial, or approximate. Since \"about 30\" is approximate, count_qualifier should be approximate, and count remains empty.\n\nHabitat is \"Moss on the terrace wall.\" The rules specify that moss is one of the habitat options. So habitat is \"moss.\"\n\nStatus: The note mentions \"not counted properly,\" which suggests that the specimen was present but the count wasn't accurate. According to the rules, status is present when a specimen was sorted, seen, or counted. Even though the count wasn't proper, the species was found, so status should be present.\n\nEffort: The note doesn't mention any specific sampling method or effort. So effort is empty.\n\nId_qualifier: There's no mention of tentative identification, so it's empty.\n\nPutting it all together, the record should have station S3, date 2025-06-01, species Folsomia candida, count empty, habitat moss, status present, effort empty, count_qualifier approximate, and id_qualifier empty. Wait, the count_qualifier is approximate because the count was rough. But the rules say count_qualifier is approximate when the note gives a rough number, making count empty. So yes, count_qualifier is approximate here.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 988,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 580,
+    "total_tokens": 1568
+  }
+}

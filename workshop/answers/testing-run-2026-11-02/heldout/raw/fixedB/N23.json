@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-736",
+  "object": "chat.completion",
+  "created": 1793635133,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S4\",\n\"date\": \"2025-06-03\",\n\"species\": \"Xenylla maritima\",\n\"count\": 16,\n\"habitat\": \"litter\",\n\"status\": \"present\",\n\"effort\": \"Berlese 24 h\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note and wants me to extract one record according to the given rules. Let me start by breaking down the note.\n\nFirst, the note says: \"3 June 2025, S4. Pine litter, Berlese 24 h only. Xenylla maritima, 16 ind., a species not on our list.\"\n\nI need to parse each part. The date is \"3 June 2025\". The rules say to convert the date to YYYY-MM-DD. So that becomes 2025-06-03. The station is S4, which is straightforward.\n\nNext, the habitat is \"Pine litter\". According to the rules, any type of litter (like pine needles, grass litter, etc.) is categorized as \"litter\". So habitat should be \"litter\".\n\nThe effort part is \"Berlese 24 h only\". The rules mention that effort is the sampling method as written, trimmed to the phrase. So \"Berlese 24 h\" would be the effort. The note says \"only\", but maybe that's part of the effort description. Wait, the example in the rules has \"Berlese sample ran 48 h\" as an effort. So here, \"Berlese 24 h only\" would be trimmed to \"Berle, 24 h\" or maybe just \"Berlese 24 h\". The exact trimming might depend on how strict it is, but the key is to capture the method and duration. So \"Berlese 24 h\" seems right.\n\nNow, the species is \"Xenylla maritima\". The rules state to copy exactly as written, including qualifiers. Since there's no qualifier here, species is \"Xenylla maritima\".\n\nCount is \"16 ind.\" which translates to 16. The rules say count is only when an exact number is stated. \"ind.\" stands for individuals, so count is 16. The count_qualifier should be exact because it's the whole sample. So count_qualifier is \"exact\".\n\nThe note mentions \"a species not on our list\". The rules say that if a species is found, even if not on the list, it's recorded. The status is present because a specimen was found. So status is \"present\".\n\nThe id_qualifier: The note doesn't mention any doubt in identification, so it's empty.\n\nNow, checking if there's a search for another species. The note says \"a species not on our list\", but it's the only species mentioned. So no other species searched for. Therefore, the record is for Xenylla maritima with the given fields.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 997,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 660,
+    "total_tokens": 1657
+  }
+}

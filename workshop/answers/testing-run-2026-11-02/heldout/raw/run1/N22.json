@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-393",
+  "object": "chat.completion",
+  "created": 1793632349,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\"station\": \"S2\", \"date\": \"2025-06-02\", \"species\": \"Isotoma virdis\", \"count\": 11, \"habitat\": \"soil\", \"status\": \"present\", \"effort\": \"\", \"count_qualifier\": \"exact\", \"id_qualifier\": \"\"}",
+        "reasoning": "Okay, let's tackle this. The user provided a field note and wants me to extract one record according to the given rules. Let me start by breaking down the note.\n\nFirst, the date is \"2 Jun 2025\". The rules say to convert the date into YYYY-MM-DD format. So that becomes 2025-06-02. The station is S2, which is straightforward.\n\nNext, the species mentioned are \"Phrygana soil under thyme\" and \"Isotoma virdis, nine adults and two juveniles; eleven in all.\" Wait, the rules state that a note records at most one species if there's a specimen in hand. But here, there are two mentions. However, the note says \"Isotoma virdis\" with counts, so that's the species found. The \"Phrygana soil under thyme\" might be the habitat. Let me check the habitat rules. Habitat should be one of the specified categories. \"Soil\" is one of them, so that's habitat: soil.\n\nThe count is \"nine adults and two juveniles; eleven in all.\" The rules say count is only when an exact number is stated. Here, they mention nine and two, totaling eleven. So count should be 11. The count_qualifier would be exact since it's the whole sample. \n\nStatus is present because there's a specimen counted. Effort isn't mentioned here, so effort is empty. The id_qualifier is empty because there's no indication of tentative identification. \n\nWait, the note starts with \"Phrygana soil under thyme.\" Is that part of the habitat? The rules mention that habitat is one of the categories. \"Soil\" is a valid habitat, so that's habitat: soil. The \"Phrygana\" might be a genus, but the species is Isotoma virdis. \n\nSo putting it all together: station S2, date 2025-06-02, species Isotoma virdis, count 11, habitat soil, status present. Effort is empty since it's not mentioned. Count_qualifier is exact. Id_qualifier is empty. \n\nI need to make sure there's no other species. The note mentions Phrygana, but that's part of the habitat description, not a species. So the species is Isotoma virdis. The count is 11, which is exact. All other fields follow the rules. Looks good.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 993,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 604,
+    "total_tokens": 1597
+  }
+}

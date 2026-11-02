@@ -1,0 +1,16 @@
+note_id,station,date,species,count,habitat,status,effort,count_qualifier,id_qualifier
+N11,S4,2025-05-22,Sminthurinus,,moss,absent,about thirty minutes,,
+N12,S2,2025-05-23,Lepidocyrtus lanuginosus,7,soil,present,"two pitfall traps, emptied after 24 h",exact,
+N13,S5,2025-05-24,Ceratophysella denticulata,25,compost,present,,partial,
+N14,S1,2025-05-25,,,,not_sampled,Berlese 48 h,,
+N15,S3,2025-05-26,Isotoma viridis,12,litter,present,"hand search, twenty minutes",exact,
+N16,S2,2025-05-27,Pseudosinella alba,4,soil,present,Deep soil core 10-20 cm,exact,tentative
+N17,,2025-05-28,Sminthurinus aureus,2,litter,present,,exact,
+N18,S4,2025-05-29,Entomobrya nivalis,,bark,absent,half an hour,,
+N19,S5,2025-05-30,Heteromurus cf. nitidus,2,cave,present,,exact,tentative
+N20,S1,2025-05-31,,,,not_sampled,,,
+N21,S3,2025-06-01,Folsomia candida,,moss,present,,approximate,
+N22,S2,2025-06-02,Isotoma virdis,11,soil,present,,exact,
+N23,S4,2025-06-03,Xenylla maritima,16,litter,present,Berlese 24 h,exact,
+N24,S5,2025-06-04,Ceratophysella denticulata,18,compost,present,,partial,
+N25,,2025-06-05,Folsomia candida,1,soil,present,,exact,

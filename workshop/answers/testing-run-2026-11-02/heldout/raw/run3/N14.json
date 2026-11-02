@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-773",
+  "object": "chat.completion",
+  "created": 1793633505,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S1\",\n\"date\": \"2025-05-25\",\n\"species\": \"\",\n\"count\": 0,\n\"habitat\": \"litter\",\n\"status\": \"absent\",\n\"effort\": \"Berlese 48 h\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this field note extraction. The note says: \"25 May 2025, S1. Oak litter, Berlese 48 h. The tube cracked in transit and the sample dried out; nothing usable.\"\n\nFirst, I need to parse each field according to the rules provided. Let's start with the date. The date is given as \"25 May 2025\". The rule says to convert it to YYYY-MM-DD. So that would be 2025-05-25.\n\nNext, the station is \"S1\", which is straightforward. So station is S1.\n\nThe habitat is mentioned as \"Oak litter\". According to the rules, any type of litter (like oak litter) is categorized as \"litter\". So habitat should be \"litter\".\n\nNow, the effort. The note mentions \"Berlese 48 h\". The rules state that effort is the sampling method as written, trimmed to the phrase. So \"Berlese 48 h\" becomes \"Berle. 48 h\" after trimming? Wait, maybe it's just \"Berlese 48 h\" as written. Wait, the example in the rules had \"Berlese sample ran 48 h\" which was trimmed to \"Berlese sample ran 48 h\" but maybe the trimming is to remove unnecessary words. Wait, the user instruction says to trim to the phrase. So \"Berlese 48 h\" is probably the effort here. So effort is \"Berlese 48 h\".\n\nNow, the status. The note says \"nothing usable\", which implies that the sample was not successful. According to the rules, status is present when a specimen was sorted, seen, or counted. Since nothing was usable, the status is absent. So status is \"absent\".\n\nThe count: the note doesn't mention any exact number. The count is only when an exact number is stated. Since they found nothing, there's no count. So count is empty.\n\nSpecies: The note mentions searching for something but found nothing. However, the rules state that if a species was searched for but not found, it's recorded with status absent. Wait, but in this case, the note doesn't specify which species was searched for. Wait, the note says \"Oak litter\" which is the habitat, but maybe the species searched for is not mentioned here. Wait, the note says \"nothing usable\" but doesn't mention a species found. Wait, the initial line says \"Oak litter\" which is the habitat. But the user's instruction says that if a note reports a species found and another searched for without success, record the found species. However, in this note, it seems like they were searching for something in the oak litter but found nothing. But the note doesn't mention a specific species. Wait, maybe the species is empty here because no species was found. Wait, the rules say that if a species was searched for but not found, record it with status absent. But the note doesn't mention a species searched for. Wait, maybe the note is about the habitat and the effort, but no species was found. So species would be empty. Wait, but the rules state that if a note reports a species found and another searched for without success, record the found species. But in this note, it's not clear if a species was found. The note says \"nothing usable\", so maybe no species was found. Therefore, species is empty.\n\nWait, but the note starts with \"Oak litter, Berlese 48 h.\" So maybe the species is not mentioned here. So species would be empty. But the rules say that if a species was searched for but not found, it's recorded with status absent. However, the note doesn't mention which species was searched for. So perhaps species is empty, status is absent, and effort is \"Berlese 48 h\".\n\nWait, but maybe the note is about the effort and the habitat, but no species. So species would be empty. Also, the count is empty. The status is absent. So putting it all together:\n\nstation: S1\n\ndate: 2025-05-25\n\nspecies: (empty)\n\ncount: (empty)\n\nhabitat: litter\n\nstatus: absent\n\neffort: Berlese 48 h\n\nBut wait, the note says \"nothing usable\" which implies that the sample was taken but failed. So status is absent. The count is empty. The species is empty. Effort is Berlese 48 h. Habitat is litter.\n\nSo the final answer should have those fields.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 992,
+    "prompt_tokens_details": {
+      "cached_tokens": 991
+    },
+    "completion_tokens": 1047,
+    "total_tokens": 2039
+  }
+}

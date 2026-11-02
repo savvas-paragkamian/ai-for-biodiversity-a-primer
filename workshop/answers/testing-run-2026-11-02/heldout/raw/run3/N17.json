@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-36",
+  "object": "chat.completion",
+  "created": 1793633605,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"date\": \"2025-05-28\",\n\"species\": \"Sminthurinus aureus\",\n\"count\": 2,\n\"habitat\": \"litter\",\n\"status\": \"present\",\n\"count_qualifier\": \"exact\"\n}",
+        "reasoning": "Okay, let's tackle this field note extraction. The user provided the note: \"28 May 2025. Carob grove south of the road, station number not assigned. Leaf litter: Sminthurinus aureus x 2.\"\n\nFirst, I need to parse each field according to the rules. Let's start with the date. The note says \"28 May 2025.\" The date format should be YYYY-MM-DD. So converting that, it's 2025-05-28. That's straightforward.\n\nNext, the station. The note mentions \"station number not assigned,\" so the station field should be empty. The rules state that if there's no station number, it's left blank. So station is empty here.\n\nNow, the species. The note says \"Sminthurinus aureus x 2.\" According to the rules, the species should be copied exactly as written, including any qualifiers. Here, \"x 2\" is part of the count, not the species name. So the species is \"Sminthurinus aureus.\" The count is 2, which is an exact number. So count is 2.\n\nHabitat: The note mentions \"leaf litter.\" The rules specify that any type of litter, like leaf litter, is categorized as \"litter.\" So habitat is \"litter.\"\n\nStatus: The rules mention that status is present when a specimen was sorted, seen, or counted. Since they found two specimens (\"x 2\"), status should be \"present.\"\n\nEffort: The note doesn't mention any specific sampling method or effort beyond the habitat. The rules state that effort is the sampling method as written. Since there's no mention of effort here, effort is empty.\n\nCount_qualifier: The note states \"x 2,\" which is an exact count. So count_qualifier is \"exact.\"\n\nId_qualifier: There's no indication of tentative identification or doubts. The note doesn't mention \"cf.\" or \"probably,\" so id_qualifier is empty.\n\nPutting it all together, the record should have date 2025-05-28, station empty, species Sminthurinus aureus, count 2, habitat litter, status present, effort empty, count_qualifier exact, and id_qualifier empty. Let me double-check the rules to ensure I didn't miss anything. The rules mention that if a species is found, even if another was searched for, it's recorded. Here, only Sminthurinus aureus is mentioned, so that's correct. The count is exact, so count_qualifier is exact. Effort isn't mentioned, so it's empty. All looks good.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 991,
+    "prompt_tokens_details": {
+      "cached_tokens": 949
+    },
+    "completion_tokens": 618,
+    "total_tokens": 1609
+  }
+}

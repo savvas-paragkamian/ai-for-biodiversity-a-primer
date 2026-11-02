@@ -1,0 +1,16 @@
+"note_id","station","date","species","count","habitat","status","effort","count_qualifier","id_qualifier"
+"N11","S4","2025-05-22",,,"moss","absent",,"approximate",
+"N12","S2",,"Lepidocyrtus lanuginosus",24,"soil","present","24 h: Lepidocyrtus lanuginosus","exact",
+"N13","S5",,"Ceratophysella denticulata",,"compost","present",,,
+"N14","S1","2025-05-25",,,"litter","absent","Berlese 48 h",,
+"N15","S3",,"Isotoma viridis",,"litter","present",,,
+"N16","S2","2025-05-27","Pseudosinella alba",,"soil","present",,,"tentative"
+"N17",,"2025-05-28","Sminthurinus aureus",2,"litter","present",,"exact",
+"N18","S4",,"Entomobrya nivalis",,"bark","present",,,
+"N19","S5","2025-05-30",,,"cave",,,,"tentative"
+"N20","S1","2025-05-31",,,,"not_sampled",,,
+"N21","S3","2025-06-01","Folsomia candida",,"moss","present",,"approximate",
+"N22","S2","2025-06-02",,,"soil",,,,
+"N23","S4","2025-06-03",,,"litter",,"Berlese 24 h",,
+"N24","S5","2025-06-04","Ceratophysella denticulata",2025,"compost","present",,"partial",
+"N25",,,"Folsomia candida",,"soil","present",,,

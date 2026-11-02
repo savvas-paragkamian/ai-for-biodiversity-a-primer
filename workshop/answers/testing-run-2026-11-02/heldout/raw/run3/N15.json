@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-842",
+  "object": "chat.completion",
+  "created": 1793633536,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S3\",\n\"date\": \"2025-05-26\",\n\"species\": \"Isotoma viridis\",\n\"count\": 12,\n\"habitat\": \"litter\",\n\"status\": \"present\",\n\"effort\": \"hand search, twenty minutes\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"}",
+        "reasoning": "Okay, let's tackle this query. The user provided a field note and wants me to extract one record according to the annotation rules. Let me start by breaking down the note.\n\nFirst, the note is: \"2025/05/26, S3. Grass litter, hand search, twenty minutes. Isotoma viridis, twelve individuals, all adults.\"\n\nI need to parse each part. The date is \"2025/05/26\". The rules say to format the date as YYYY-MM-DD, so I'll convert that to 2025-05-26.\n\nNext, the station is \"S3\", which is already in the correct format. So station is S3.\n\nThen, \"Grass litter\" is mentioned. According to the rules, habitat should be one of the specified categories. Grass litter falls under \"litter\", so habitat is litter.\n\nThe next part is \"hand search, twenty minutes.\" This seems like the effort. The rules mention that effort is the sampling method as written, trimmed to a phrase. So \"hand search\" is the method, and \"twenty minutes\" is the duration. Combining these, effort would be \"hand search, twenty minutes\".\n\nThen the species is \"Isotoma viridis\". The rules say to copy the species name exactly as written, including any qualifiers. There's no qualifier here, so species is Isotoma viridis.\n\nCount is \"twelve individuals\". The rules specify that count is only when an exact number is stated. \"Twelve\" is exact, so count is 12. The count_qualifier here is \"exact\" because it's the whole sample. The note also mentions \"all adults\", but the count_qualifier is about whether the count covers the whole sample. Since all individuals are counted, it's exact.\n\nStatus: The note mentions a specimen in hand (\"Isotoma viridis, twelve individuals\"), so status is present. The rules state that status is present when a specimen was sorted, seen, or counted. Here, they counted twelve individuals, so status is present.\n\nEffort is already covered as \"hand search, twenty minutes\".\n\nId_qualifier: The note doesn't mention any doubt in identification, so it's empty.\n\nNow, checking if there's any other species. The note only mentions Isotoma viridis, so no other species. Also, since they found the species, the status is present, and the effort is recorded. The count is exact. All fields seem to be filled correctly. I need to make sure that the count_qualifier is exact, and the effort is properly formatted. The date is correctly converted. The habitat is litter. The station is S3. Everything seems to fit the rules. No need to leave any fields empty except where specified. The answer should be a row with all these fields filled.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 990,
+    "prompt_tokens_details": {
+      "cached_tokens": 949
+    },
+    "completion_tokens": 675,
+    "total_tokens": 1665
+  }
+}

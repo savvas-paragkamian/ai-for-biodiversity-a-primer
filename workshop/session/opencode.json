@@ -16,19 +16,39 @@
             "context": 32768,
             "output": 8192
           }
+        },
+        "gemma4:12b-mlx-32k": {
+          "name": "Gemma 4 12B, Apple MLX build (local, used in the test runs)",
+          "tool_call": true,
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          }
+        },
+        "qwen3:8b": {
+          "name": "Qwen3 8B (local, used in the test runs)",
+          "tool_call": true,
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          }
         }
       }
     }
   },
   "permission": {
     "edit": {
-      "*": "ask",
-      "data/raw/*": "deny"
+      "*": "deny",
+      "scripts/*": "allow",
+      "data/processed/*": "allow",
+      "logs/*": "allow"
     },
     "bash": {
-      "*": "ask",
-      "curl *": "deny",
-      "wget *": "deny"
+      "*": "deny",
+      "Rscript scripts/*": "allow",
+      "git reset --hard*": "deny",
+      "git clean*": "deny",
+      "git push*": "deny"
     },
     "webfetch": "deny"
   }

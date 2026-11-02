@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-194",
+  "object": "chat.completion",
+  "created": 1793630446,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"\",\n\"date\": \"2025-05-20\",\n\"species\": \"Sminthurinus aureus\",\n\"count\": 5,\n\"habitat\": \"litter\",\n\"status\": \"present\",\n\"effort\": \"\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"}",
+        "reasoning": "Okay, let's tackle this query. The user provided a field note: \"20 May 2025. Olive grove near the village, no station number assigned yet. Grass litter, 5 Sminthurinus aureus.\" They want me to extract one record based on the given annotation rules.\n\nFirst, I need to parse each part of the note. The date is \"20 May 2025.\" According to the rules, the date should be in YYYY-MM-DD format. So I'll convert that to 2025-05-20.\n\nNext, the station is mentioned as \"no station number assigned yet,\" so the station field should be empty.\n\nThe location is \"Olive grove near the village,\" but the rules don't specify handling locations beyond station numbers. Since the station is empty, maybe the location isn't needed here, but the rules don't mention it. Wait, the rules don't have a 'location' field, so maybe it's not part of the output. The user's example output doesn't include location, so I'll ignore that.\n\nNow, the habitat: \"Grass litter\" falls under the 'litter' category as per the rules. So habitat is 'litter'.\n\nThe species is \"Sminthurinus aureus\" exactly as written. The count is \"5,\" which is an exact number, so count is 5. The count_qualifier is 'exact' since it's the whole sample.\n\nStatus is 'present' because a specimen was counted. Effort isn't mentioned here, so effort is empty. The note doesn't mention any qualifiers like tentative or approximate, so id_qualifier is empty.\n\nPutting it all together, the record should have station: (empty), date: 2025-05-20, species: Sminthurinus aureus, count: 5, habitat: litter, status: present. The other fields like effort, count_qualifier, and id_qualifier are as per the rules.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 989,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 493,
+    "total_tokens": 1482
+  }
+}

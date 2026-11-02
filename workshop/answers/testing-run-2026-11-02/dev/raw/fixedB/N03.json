@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-172",
+  "object": "chat.completion",
+  "created": 1793631531,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S2\",\n\"date\": \"2025-05-14\",\n\"species\": \"\",\n\"count\": 0,\n\"habitat\": \"cave\",\n\"status\": \"not_sampled\",\n\"effort\": \"\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this query. The user provided a field note: \"Station S2 on 14 May 2025. The funnel flooded overnight and the sample was lost; nothing sorted.\" I need to extract one record according to the annotation rules given.\n\nFirst, I'll parse the note. The station is clearly S2. The date is 14 May 2025, which should be formatted as YYYY-MM-DD, so 2025-05-14.\n\nNext, the species. The note mentions nothing was sorted, so there's no species recorded here. The status should be not_sampled because the sample was lost before sorting. The count, habitat, and effort fields are empty since there's no specimen. However, the note mentions the funnel flooded and the sample was lost. According to the rules, the reason for a failed sample (like the funnel flooding) is not considered effort. So effort remains empty. The count is empty because there's no exact number stated. Habitat is also empty since no sampling occurred. \n\nWait, the rules state that if a species was searched for but not found, it's recorded with status absent. But in this case, the note doesn't mention searching for a species; it just says the sample was lost. So maybe the status is not_sampled. The key points here are that the sample was lost, so no specimen was sorted. Therefore, species is empty, status is not_sampled, and other fields are empty. \n\nI need to make sure I'm not missing any details. The note doesn't mention any effort like the method used, just the reason for failure. So effort is empty. The count is empty because there's no number given. Habitat is empty as no sample was taken. So the final record should have station S2, date 2025-05-14, species empty, count empty, habitat empty, status not_sampled, and effort empty. Wait, but the rules mention that if a species was searched for but not found, it's recorded with status absent. However, in this note, the user didn't mention searching for a species; they just had a sample that was lost. So maybe status is not_sampled. The rules say that status is not_sampled when no sample was taken or the sample was lost before sorting. So this case fits not_sampled. Therefore, the record should have status as not_sampled, and other fields as empty except station and date.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 982,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 588,
+    "total_tokens": 1570
+  }
+}

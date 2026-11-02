@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-387",
+  "object": "chat.completion",
+  "created": 1793632675,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S3\",\n\"date\": \"2025-05-26\",\n\"species\": \"Isotoma viridis\",\n\"count\": 12,\n\"habitat\": \"litter\",\n\"status\": \"present\",\n\"effort\": \"hand search, twenty minutes\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this. The user provided a field note and wants me to extract one record following the annotation rules. Let me start by breaking down the note.\n\nFirst, the date is \"2025/05/26\". The rules say to convert it to YYYY-MM-DD, so that becomes 2. Next, the station is \"S3\", which is straightforward. \n\nNow, the note mentions \"Grass litter, hand search, twenty minutes.\" The habitat is specified as grass litter, which according to the rules falls under \"litter\". The effort here is \"hand search, twenty minutes\", which should be trimmed to \"hand search\" as the effort. Wait, the rules say effort is the sampling method as written, trimmed to the phrase. So \"hand search\" is the effort, and \"twenty minutes\" might be part of the effort description. But the example in the rules shows \"Berlese sample ran 48 h\" as effort, so maybe the entire phrase is kept. Wait, the rules say \"trimmed to the phrase\" but the example includes the time. Hmm, maybe the entire effort phrase is kept as is. Let me check the rules again. The rules mention that effort is the sampling effort or method as written, trimmed to the phrase. So \"hand search, twenty minutes\" would be trimmed to \"hand search\" or kept as \"hand search, twenty minutes\"? The example given was \"Berlese sample ran 48 h\" which is kept. So perhaps the entire phrase is kept unless it's a reason for failure. So here, \"hand search, twenty minutes\" would be the effort.\n\nThen the species is \"Isotoma viridis\", which is exact as written. The count is \"twelve individuals\", which is an exact number, so count is 12. The count_qualifier should be exact since it's the whole sample. The note says \"all adults\", but the count_qualifier is about whether the count covers the whole sample. Since all individuals are counted, it's exact. The id_qualifier is empty because there's no indication of uncertainty. \n\nStatus is present because a specimen was counted. The note doesn't mention anything about being lost or not sampled, so status is present. \n\nPutting it all together, the fields would be:\n\nstation: S3\ndate: 2025-05-26\nspecies: Isotoma viridis\ncount: 12\nhabitat: litter\nstatus: present\neffort: hand search, twenty minutes\ncount_qualifier: exact\nid_qualifier: \n\nWait, the user's example in the rules had \"effort\" as \"Berlese sample ran 48 h\", which includes the time. So maybe \"hand search, twenty minutes\" is kept as effort. Also, the count_qualifier is exact because the count covers the whole sample. The id_qualifier is empty since there's no tentative mention. \n\nI think that's all. Let me make sure there's no other info. The note doesn't mention any other species, so only one record. The status is present because they found the species and counted individuals. Effort includes the method and time. All fields filled accordingly.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 990,
+    "prompt_tokens_details": {
+      "cached_tokens": 989
+    },
+    "completion_tokens": 754,
+    "total_tokens": 1744
+  }
+}

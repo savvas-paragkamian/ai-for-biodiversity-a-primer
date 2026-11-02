@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-450",
+  "object": "chat.completion",
+  "created": 1793631326,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S5\",\n\"date\": \"2025-05-18\",\n\"species\": \"Heteromurus nitidis\",\n\"count\": 1,\n\"habitat\": \"cave\",\n\"status\": \"present\",\n\"effort\": \"\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"tentative\"\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"18 May 2025. Cave entrance at S5. One Heteromurus nitidis, damaged, identification tentative.\" \n\nFirst, I need to extract the information according to the rules given. Let's break it down step by step.\n\nStarting with the date. The note says \"18 May 2025.\" The rules specify the date should be in YYYY-MM-DD format. So converting that, it becomes 2025-05-18. That's straightforward.\n\nNext, the station. The note mentions \"Cave entrance at S5.\" The station is S1 to S5 as written. So S5 is correct here. No issues there.\n\nNow, the species. The note states \"One Heteromurus nitidis...\" The rules say to copy the species exactly as written, including any qualifiers. Here, the species is Heteromurus nitidis. The note also mentions \"damaged\" and \"identification tentative,\" but those are qualifiers. Wait, the rules mention id_qualifier: tentative when the note doubts the identification. So the species is Heteromurus nitidis, and the id_qualifier is tentative. So species field is \"Heteromurus nitidis\" and id_qualifier is \"tentative.\"\n\nCount: The note says \"One,\" which is an exact number. So count is 1. The count_qualifier here is exact because it's the whole sample. So count_qualifier is \"exact.\"\n\nHabitat: The note says \"Cave entrance.\" According to the rules, habitat should be one of the specified options. Cave is listed as an option. So habitat is \"cave.\"\n\nStatus: The rules mention status is present when a specimen was sorted, seen, or counted. Here, they found one specimen, even though it's damaged. So status is \"present.\"\n\nEffort: The note doesn't mention any specific effort or method. The rules say effort is the sampling method as written. Since there's no mention of effort here, effort is empty.\n\nAlso, checking if there's any other species found. The note only mentions Heteromurus nitidis, so no other species. \n\nNow, checking for any possible mistakes. The note says \"damaged\" but that's part of the species description, not affecting the species name. The count is exact, so count_qualifier is exact. The identification is tentative, so id_qualifier is tentative. Habitat is cave. Status is present because they found a specimen. Effort isn't mentioned, so it's empty. \n\nEverything seems to fit the rules. Let me make sure I didn't miss any other fields. The rules mention status, effort, count_qualifier, and id_qualifier. All are accounted for. The date is correctly formatted. Station is S5. Species is correctly noted. \n\nI think that's all. Let me put it all together in the required format.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 983,
+    "prompt_tokens_details": {
+      "cached_tokens": 949
+    },
+    "completion_tokens": 697,
+    "total_tokens": 1680
+  }
+}

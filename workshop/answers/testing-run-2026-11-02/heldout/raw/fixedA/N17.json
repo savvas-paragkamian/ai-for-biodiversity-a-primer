@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-832",
+  "object": "chat.completion",
+  "created": 1793634281,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"date\": \"2025-05-28\",\n\"species\": \"Sminthurinus aureus\",\n\"count\": 2,\n\"habitat\": \"litter\",\n\"status\": \"present\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this. The user provided a field note and wants me to extract one record according to the given annotation rules. Let me start by breaking down the note.\n\nFirst, the date is \"28 May 2025.\" The rules say to convert the date to YYYY-MM-DD format. So that becomes 2025-05-28.\n\nNext, the station is mentioned as \"Carob grove south of the road, station number not assigned.\" The rules specify that station should be S1 to S5 as written. Since the note says the station number isn't assigned, the station field should be empty.\n\nNow, the species part: \"Leaf litter: Sminthurinus aureus x 2.\" The species name is written as \"Sminthurinus aureus,\" and the count is \"x 2.\" According to the rules, species should be copied exactly as written, including any qualifiers. So species is \"Sminthurinus aureus.\" The count here is \"x 2,\" which translates to 2. Since it's an exact number, count is 2. The count_qualifier should be exact because the count covers the whole sample.\n\nHabitat is \"leaf litter,\" which according to the rules maps to \"litter.\" So habitat is \"litter.\"\n\nStatus: The note mentions a specimen in hand (\"Leaf litter: Sminthurinus aureus x 2\"), so status is present. Effort isn't mentioned here, so effort is empty. The id_qualifier is empty because there's no indication of tentative identification. \n\nPutting it all together, the record should have date 2025-05-28, station empty, species Sminthurinus aureus, count 2, habitat litter, status present, effort empty, count_qualifier exact, and id_qualifier empty. Let me double-check the rules to ensure I didn't miss anything. The count_qualifier is exact here because the entire sample was counted. The note doesn't mention any effort, so that's empty. Status is present because a specimen was found. Looks good.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 991,
+    "prompt_tokens_details": {
+      "cached_tokens": 949
+    },
+    "completion_tokens": 504,
+    "total_tokens": 1495
+  }
+}

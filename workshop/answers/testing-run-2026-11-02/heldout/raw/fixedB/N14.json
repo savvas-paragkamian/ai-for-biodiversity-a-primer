@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-462",
+  "object": "chat.completion",
+  "created": 1793634804,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S1\",\n\"date\": \"2025-05-25\",\n\"species\": \"\",\n\"count\": 0,\n\"habitat\": \"litter\",\n\"status\": \"not_sampled\",\n\"effort\": \"Berlese 48 h\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"tentative\"\n}",
+        "reasoning": "Okay, let's tackle this. The user provided a field note and wants me to extract one record according to the given annotation rules. Let me start by reading the note carefully.\n\nThe note says: \"25 May 2025, S1. Oak litter, Berlese 48 h. The tube cracked in transit and the sample dried out; nothing usable.\"\n\nFirst, I need to parse each part. The date is \"25 May 2025\". According to the rules, the date should be in YYYY-MM-DD format. So I'll convert that to 2025-05-25.\n\nNext, the station is \"S1\", which is straightforward. So station is S1.\n\nThe habitat is mentioned as \"Oak litter\". The rules specify that any litter, including oak litter, should be categorized as \"litter\". So habitat is litter.\n\nThen there's \"Berlese 48 h\". The Berlese method is part of the sampling effort. The rules mention that effort should be the sampling method as written, trimmed. So effort here is \"Berlese 48 h\".\n\nThe note then explains that the tube cracked and the sample dried out, resulting in nothing usable. According to the rules, if a sample was taken but nothing was found, the status should be absent. However, the note mentions that the sample was lost (dried out) before sorting. The status rules state that if the sample was lost before sorting, the status is not_sampled. Wait, let me check the rules again.\n\nLooking back, the status field is present when a specimen was sorted, seen, or counted. If the sample was lost before sorting, the status is not_sampled. In this case, the sample was lost (dried out), so status should be not_sampled. But the note says \"nothing usable\", which might mean that the sample was taken but couldn't be used. However, the rules mention that if the sample was lost before sorting, status is not_sample, but if the sample was searched for but not found, status is absent. Wait, the original note says that the sample was taken (Berlese sample), but it was lost. So according to the rules, if the sample was taken but lost before sorting, status is not_sampled. Therefore, status is not_sampled.\n\nThe species field: since the sample was lost and nothing usable, there's no species recorded. So species is empty.\n\nCount: The note doesn't mention any count, so count is empty. Also, since status is not_sampled, count is empty by default.\n\nEffort is \"Berlese 48 h\" as per the rules.\n\nHabitat is litter as established.\n\nNow, checking the count_qualifier and id_qualifier. Since there's no count, those fields are empty. Also, since the species wasn't found, id_qualifier is empty.\n\nPutting it all together:\n\nstation: S1\ndate: 2025-05-25\nspecies: (empty)\ncount: (empty)\nhabitat: litter\nstatus: not_sampled\neffort: Berlese 48 h\ncount_qualifier: (empty)\nid_qualifier: (empty)\n\nWait, but the original note mentions that the sample was taken (Berlese sample) but then the tube cracked and the sample dried out. According to the rules, if the sample was taken but lost before sorting, status is not_sampled. So status is not_sampled. But the note doesn't mention searching for a species; it's about a sample that was taken but failed. Therefore, the species is not recorded, and status is not_sampled. Effort is the method used, which is Berlese 48 h. The count is empty because no count was made. So the final record should have station, date, habitat, effort, and status as not_sampled, with other fields empty.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 992,
+    "prompt_tokens_details": {
+      "cached_tokens": 949
+    },
+    "completion_tokens": 904,
+    "total_tokens": 1896
+  }
+}

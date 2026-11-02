@@ -1,0 +1,11 @@
+"note_id","station","date","species","count","habitat","status","effort","count_qualifier","id_qualifier"
+"N01","S1","2025-05-12","Isotoma viridis",14,"litter","present","Berlese sample ran 48 h","exact",
+"N02","S3","2025-05-13","Folsomia candida",6,"soil","present",,"exact",
+"N03","S2","2025-05-14",,,,"not_sampled",,,
+"N04","S4","2025-05-15","Entomobrya nivalis",,"moss","present",,"approximate",
+"N05","S5","2025-05-16","Ceratophysella denticulata",40,"compost","present",,"partial",
+"N06","S1","2025-05-17","Orchesella cincta",,"bark","present","three oaks",,
+"N07","S5","2025-05-18",,,"cave",,,,"tentative"
+"N08","S2","2025-05-19","Pseudosinella alba",3,"soil","present","Deep soil core, 10 to 20 cm","exact",
+"N09",,"2025-05-20","Sminthurinus aureus",5,"litter","present",,"exact",
+"N10","S3","2025-05-21",,,,"not_sampled",,,

@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-504",
+  "object": "chat.completion",
+  "created": 1793631298,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S1\",\n\"date\": \"2025-05-17\",\n\"species\": \"Orchesella cincta\",\n\"count\": 2,\n\"habitat\": \"bark\",\n\"status\": \"present\",\n\"effort\": \"Searched the bark of three oaks for Entomobrya\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this field note extraction. The user provided a note: \"17 May 2025 at S1. Searched the bark of three oaks for Entomobrya; none found. Two Orchesella cincta under loose bark instead.\" \n\nFirst, I need to parse each part according to the annotation rules. Let me start by breaking down the note.\n\nThe date is \"17 May 2025\". The rules say to convert the date to YYYY-MM-DD. So that becomes 2025-05-17.\n\nThe station is mentioned as \"S1\", so that's straightforward. \n\nNext, the species. The note mentions searching for Entomobrya but found Orchesella cincta instead. According to the rules, if a note reports a species found and another searched for without success, we record the species found. So the species here should be \"Orchesella cincta\". \n\nNow, status: since they found a specimen (Orchesella cincta), status is present. \n\nCount: The note says \"Two Orchesella cincta\", so count is 2. \n\nHabitat: The search was under loose bark, so habitat is bark. \n\nEffort: The effort is \"Searched the bark of three oaks for Entomobrya\". But according to the rules, effort is the sampling method as written. The note mentions searching three oaks, so effort should be \"Searched the bark of three oaks for Entomobrya\". Wait, but the rules say to trim to the phrase. Maybe it's \"Searched three oaks for Entomobrya\"? Or maybe keep the exact phrase as written. The example in the rules includes phrases like \"Berlese sample ran 48 h\", so maybe we should take the exact effort phrase. The original note says \"Searched the bark of three oaks for Entomobrya\", so that's the effort. \n\nWait, but the note also mentions \"under loose bark instead\". So the actual finding was under loose bark. But the effort is the method used for searching. The effort here is the search for Entomobrya, which was done on the bark of three oaks. So the effort is \"Searched the bark of three oaks for Entomobrya\". \n\nThen, the count_qualifier: since they found exactly two, it's exact. \n\nId_qualifier: The note doesn't mention any doubt in identification, so it's empty. \n\nStatus is present because a specimen was found. \n\nSo putting it all together:\n\nstation: S1\ndate: 2025-05-17\nspecies: Orchesella cincta\ncount: 2\nhabitat: bark\nstatus: present\neffort: Searched the bark of three oaks for Entom. (Wait, the original note says \"Entomobrya\", but the species found is Orchesella cincta. The effort is about searching for Entomobrya, which wasn't found. So the effort is \"Searched the bark of three oaks for Entomobrya\". But the note says \"Searched the bark of three oaks for Entomobrya; none found. Two Orchesella cincta under loose bark instead.\" So the effort is the search for Entomobrya, which is part of the note. So the effort field should capture that search method. \n\nTherefore, the effort is \"Searched the bark of three oaks for Entomobrya\". \n\nBut the rules mention that effort is the sampling effort or method as written, trimmed to the phrase. So maybe we can trim it to \"Searched three oaks for Entomobrya\" or similar. But the exact phrase is better. \n\nAlso, the count_qualifier is exact because they found exactly two. \n\nSo the final fields would be:\n\nstation: S1\ndate: 2025-05-17\nspecies: Orchesella cincta\ncount: 2\nhabitat: bark\nstatus: present\neffort: Searched the bark of three oaks for Entomobrya\ncount_qualifier: exact\nid_qualifier: \n\nWait, the note says \"Two Orchesella cincta under loose bark instead.\" So the habitat for the found species is under loose bark, which is bark. So habitat is bark. \n\nSo all fields are filled in. The status is present because a specimen was found. The effort is the search method. The count is 2, exact. No id_qualifier since no doubt mentioned.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 998,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 1089,
+    "total_tokens": 2087
+  }
+}

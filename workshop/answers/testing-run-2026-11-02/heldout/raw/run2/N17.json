@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-450",
+  "object": "chat.completion",
+  "created": 1793632803,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"date\": \"2025-05-28\",\n\"species\": \"Sminthurinus aureus\",\n\"count\": 2,\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"28 May 2025. Carob grove south of the road, station number not assigned. Leaf litter: Sminthurinus aureus x 2.\"\n\nFirst, I need to extract the information according to the rules provided. Let's break down each field.\n\nStarting with the date. The note says \"28 May 2025.\" The rules specify the date should be in YYYY-MM-DD format. So converting that, it would be 2025-05-28. That's straightforward.\n\nNext, the station. The note mentions \"station number not assigned,\" so the station field should be empty. The rules state that if there's no station number, it's left blank.\n\nNow, the species. The note lists \"Sminthurinus aureus x 2.\" According to the rules, the species should be copied exactly as written, including any qualifiers. Here, \"x 2\" is part of the count, not the species name. So the species is \"Sminthurinus aureus.\" The count is 2, which is an exact number, so count is 2. The count_qualifier is exact since it's the whole sample.\n\nHabitat is \"leaf litter.\" The rules mention that any kind of litter is categorized as \"litter.\" So habitat should be \"litter.\"\n\nStatus: The note mentions a specimen was found (\"x 2\"), so status is present. The rules state that if a specimen was sorted, seen, or counted, status is present.\n\nEffort: The note doesn't mention any specific sampling method or effort, so effort is empty.\n\nId_qualifier: There's no indication of tentative identification, so it's empty.\n\nChecking if there's any other species or effort mentioned. The note only mentions Sminthurinus aureus and the count. No other species or effort details. So all fields are filled accordingly.\n\nPutting it all together, the record should have date 2025-05-28, station empty, species Sminthurinus aureus, count 2, habitat litter, status present, effort empty, count_qualifier exact, id_qualifier empty.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 991,
+    "prompt_tokens_details": {
+      "cached_tokens": 990
+    },
+    "completion_tokens": 517,
+    "total_tokens": 1508
+  }
+}

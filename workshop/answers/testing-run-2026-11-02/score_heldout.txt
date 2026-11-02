@@ -1,0 +1,231 @@
+Set: heldout | 15 notes x 9 fields = 135 cells
+
+           file           field correct wrong missed invented
+   baseline.csv         station      15     0      0        0
+   baseline.csv            date      10     0      5        0
+   baseline.csv         species      11     0      4        0
+   baseline.csv           count       6     2      7        0
+   baseline.csv         habitat      14     0      0        1
+   baseline.csv          status      10     2      3        0
+   baseline.csv          effort      10     1      4        0
+   baseline.csv count_qualifier       7     0      7        1
+   baseline.csv    id_qualifier      15     0      0        0
+ llm_fixedA.csv         station      14     0      1        0
+ llm_fixedA.csv            date      15     0      0        0
+ llm_fixedA.csv         species      15     0      0        0
+ llm_fixedA.csv           count      12     0      0        3
+ llm_fixedA.csv         habitat      10     0      3        2
+ llm_fixedA.csv          status      14     0      1        0
+ llm_fixedA.csv          effort      14     0      1        0
+ llm_fixedA.csv count_qualifier      11     0      0        4
+ llm_fixedA.csv    id_qualifier      10     0      0        5
+ llm_fixedB.csv         station      14     0      1        0
+ llm_fixedB.csv            date      15     0      0        0
+ llm_fixedB.csv         species      15     0      0        0
+ llm_fixedB.csv           count      12     0      0        3
+ llm_fixedB.csv         habitat      10     0      3        2
+ llm_fixedB.csv          status      14     0      1        0
+ llm_fixedB.csv          effort      14     0      1        0
+ llm_fixedB.csv count_qualifier      11     0      0        4
+ llm_fixedB.csv    id_qualifier      10     0      0        5
+   llm_run1.csv         station      14     0      1        0
+   llm_run1.csv            date      15     0      0        0
+   llm_run1.csv         species      15     0      0        0
+   llm_run1.csv           count      10     0      1        4
+   llm_run1.csv         habitat       8     0      5        2
+   llm_run1.csv          status      10     1      4        0
+   llm_run1.csv          effort      14     0      1        0
+   llm_run1.csv count_qualifier      10     0      1        4
+   llm_run1.csv    id_qualifier      11     0      0        4
+   llm_run2.csv         station      14     0      1        0
+   llm_run2.csv            date      15     0      0        0
+   llm_run2.csv         species      14     0      0        1
+   llm_run2.csv           count      12     0      1        2
+   llm_run2.csv         habitat       9     0      5        1
+   llm_run2.csv          status      11     1      3        0
+   llm_run2.csv          effort      12     0      2        1
+   llm_run2.csv count_qualifier      10     0      1        4
+   llm_run2.csv    id_qualifier      11     0      0        4
+   llm_run3.csv         station      14     0      1        0
+   llm_run3.csv            date      15     0      0        0
+   llm_run3.csv         species      15     0      0        0
+   llm_run3.csv           count      11     0      0        4
+   llm_run3.csv         habitat      11     0      2        2
+   llm_run3.csv          status      13     1      1        0
+   llm_run3.csv          effort      13     0      1        1
+   llm_run3.csv count_qualifier      11     0      0        4
+   llm_run3.csv    id_qualifier      11     0      0        4
+
+Per file. 'binomial' treats cells as independent; 'bootstrap' resamples notes,
+which is the unit of replication here. McNemar compares each file with the
+baseline on the same cells: b = baseline right and file wrong, c = the reverse.
+
+           file correct total accuracy binomial_low binomial_high bootstrap_low
+   baseline.csv      98   135    0.726        0.643         0.799         0.652
+ llm_fixedA.csv     115   135    0.852        0.781         0.907         0.748
+ llm_fixedB.csv     115   135    0.852        0.781         0.907         0.748
+   llm_run1.csv     107   135    0.793        0.714         0.858         0.696
+   llm_run2.csv     108   135    0.800        0.723         0.864         0.704
+   llm_run3.csv     114   135    0.844        0.772         0.901         0.748
+ bootstrap_high  b  c mcnemar_p exact_p
+          0.807 NA NA        NA      NA
+          0.948 17 34     0.025   0.024
+          0.948 17 34     0.025   0.024
+          0.889 22 31     0.272   0.272
+          0.889 20 30     0.203   0.203
+          0.926 17 33     0.034   0.033
+
+Disagreements:
+baseline.csv     N12 date             key: 2025-05-23                   got: (empty)
+baseline.csv     N13 date             key: 2025-05-24                   got: (empty)
+baseline.csv     N15 date             key: 2025-05-26                   got: (empty)
+baseline.csv     N18 date             key: 2025-05-29                   got: (empty)
+baseline.csv     N25 date             key: 2025-06-05                   got: (empty)
+baseline.csv     N11 species          key: Sminthurinus                 got: (empty)
+baseline.csv     N19 species          key: Heteromurus cf. nitidus      got: (empty)
+baseline.csv     N22 species          key: Isotoma virdis               got: (empty)
+baseline.csv     N23 species          key: Xenylla maritima             got: (empty)
+baseline.csv     N12 count            key: 7                            got: 24
+baseline.csv     N13 count            key: 25                           got: (empty)
+baseline.csv     N15 count            key: 12                           got: (empty)
+baseline.csv     N16 count            key: 4                            got: (empty)
+baseline.csv     N19 count            key: 2                            got: (empty)
+baseline.csv     N22 count            key: 11                           got: (empty)
+baseline.csv     N23 count            key: 16                           got: (empty)
+baseline.csv     N24 count            key: 18                           got: 2025
+baseline.csv     N25 count            key: 1                            got: (empty)
+baseline.csv     N14 habitat          key: (empty)                      got: litter
+baseline.csv     N14 status           key: not_sampled                  got: absent
+baseline.csv     N18 status           key: absent                       got: present
+baseline.csv     N19 status           key: present                      got: (empty)
+baseline.csv     N22 status           key: present                      got: (empty)
+baseline.csv     N23 status           key: present                      got: (empty)
+baseline.csv     N11 effort           key: about thirty minutes         got: (empty)
+baseline.csv     N12 effort           key: two pitfall traps, emptied after 24 h got: 24 h: Lepidocyrtus lanuginosus
+baseline.csv     N15 effort           key: hand search, twenty minutes  got: (empty)
+baseline.csv     N16 effort           key: Deep soil core 10-20 cm      got: (empty)
+baseline.csv     N18 effort           key: half an hour                 got: (empty)
+baseline.csv     N11 count_qualifier  key: (empty)                      got: approximate
+baseline.csv     N13 count_qualifier  key: partial                      got: (empty)
+baseline.csv     N15 count_qualifier  key: exact                        got: (empty)
+baseline.csv     N16 count_qualifier  key: exact                        got: (empty)
+baseline.csv     N19 count_qualifier  key: exact                        got: (empty)
+baseline.csv     N22 count_qualifier  key: exact                        got: (empty)
+baseline.csv     N23 count_qualifier  key: exact                        got: (empty)
+baseline.csv     N25 count_qualifier  key: exact                        got: (empty)
+llm_fixedA.csv   N20 station          key: S1                           got: (empty)
+llm_fixedA.csv   N14 count            key: (empty)                      got: 0
+llm_fixedA.csv   N20 count            key: (empty)                      got: 0
+llm_fixedA.csv   N21 count            key: (empty)                      got: 0
+llm_fixedA.csv   N11 habitat          key: moss                         got: (empty)
+llm_fixedA.csv   N12 habitat          key: soil                         got: (empty)
+llm_fixedA.csv   N14 habitat          key: (empty)                      got: litter
+llm_fixedA.csv   N18 habitat          key: bark                         got: (empty)
+llm_fixedA.csv   N20 habitat          key: (empty)                      got: cave
+llm_fixedA.csv   N12 status           key: present                      got: (empty)
+llm_fixedA.csv   N12 effort           key: two pitfall traps, emptied after 24 h got: (empty)
+llm_fixedA.csv   N11 count_qualifier  key: (empty)                      got: exact
+llm_fixedA.csv   N14 count_qualifier  key: (empty)                      got: exact
+llm_fixedA.csv   N18 count_qualifier  key: (empty)                      got: exact
+llm_fixedA.csv   N20 count_qualifier  key: (empty)                      got: exact
+llm_fixedA.csv   N11 id_qualifier     key: (empty)                      got: tentative
+llm_fixedA.csv   N12 id_qualifier     key: (empty)                      got: empty
+llm_fixedA.csv   N14 id_qualifier     key: (empty)                      got: tentative
+llm_fixedA.csv   N18 id_qualifier     key: (empty)                      got: tentative
+llm_fixedA.csv   N20 id_qualifier     key: (empty)                      got: tentative
+llm_fixedB.csv   N20 station          key: S1                           got: (empty)
+llm_fixedB.csv   N14 count            key: (empty)                      got: 0
+llm_fixedB.csv   N20 count            key: (empty)                      got: 0
+llm_fixedB.csv   N21 count            key: (empty)                      got: 0
+llm_fixedB.csv   N11 habitat          key: moss                         got: (empty)
+llm_fixedB.csv   N12 habitat          key: soil                         got: (empty)
+llm_fixedB.csv   N14 habitat          key: (empty)                      got: litter
+llm_fixedB.csv   N18 habitat          key: bark                         got: (empty)
+llm_fixedB.csv   N20 habitat          key: (empty)                      got: cave
+llm_fixedB.csv   N12 status           key: present                      got: (empty)
+llm_fixedB.csv   N12 effort           key: two pitfall traps, emptied after 24 h got: (empty)
+llm_fixedB.csv   N11 count_qualifier  key: (empty)                      got: exact
+llm_fixedB.csv   N14 count_qualifier  key: (empty)                      got: exact
+llm_fixedB.csv   N18 count_qualifier  key: (empty)                      got: exact
+llm_fixedB.csv   N20 count_qualifier  key: (empty)                      got: exact
+llm_fixedB.csv   N11 id_qualifier     key: (empty)                      got: tentative
+llm_fixedB.csv   N12 id_qualifier     key: (empty)                      got: empty
+llm_fixedB.csv   N14 id_qualifier     key: (empty)                      got: tentative
+llm_fixedB.csv   N18 id_qualifier     key: (empty)                      got: tentative
+llm_fixedB.csv   N20 id_qualifier     key: (empty)                      got: tentative
+llm_run1.csv     N15 station          key: S3                           got: (empty)
+llm_run1.csv     N11 count            key: (empty)                      got: 0
+llm_run1.csv     N14 count            key: (empty)                      got: 0
+llm_run1.csv     N16 count            key: 4                            got: (empty)
+llm_run1.csv     N20 count            key: (empty)                      got: 0
+llm_run1.csv     N21 count            key: (empty)                      got: 0
+llm_run1.csv     N13 habitat          key: compost                      got: (empty)
+llm_run1.csv     N14 habitat          key: (empty)                      got: litter
+llm_run1.csv     N16 habitat          key: soil                         got: (empty)
+llm_run1.csv     N18 habitat          key: bark                         got: (empty)
+llm_run1.csv     N20 habitat          key: (empty)                      got: cave
+llm_run1.csv     N21 habitat          key: moss                         got: (empty)
+llm_run1.csv     N24 habitat          key: compost                      got: (empty)
+llm_run1.csv     N13 status           key: present                      got: (empty)
+llm_run1.csv     N14 status           key: not_sampled                  got: absent
+llm_run1.csv     N16 status           key: present                      got: (empty)
+llm_run1.csv     N21 status           key: present                      got: (empty)
+llm_run1.csv     N24 status           key: present                      got: (empty)
+llm_run1.csv     N16 effort           key: Deep soil core 10-20 cm      got: (empty)
+llm_run1.csv     N11 count_qualifier  key: (empty)                      got: exact
+llm_run1.csv     N14 count_qualifier  key: (empty)                      got: exact
+llm_run1.csv     N16 count_qualifier  key: exact                        got: (empty)
+llm_run1.csv     N18 count_qualifier  key: (empty)                      got: exact
+llm_run1.csv     N20 count_qualifier  key: (empty)                      got: exact
+llm_run1.csv     N11 id_qualifier     key: (empty)                      got: empty
+llm_run1.csv     N13 id_qualifier     key: (empty)                      got: empty
+llm_run1.csv     N18 id_qualifier     key: (empty)                      got: empty
+llm_run1.csv     N24 id_qualifier     key: (empty)                      got: exact
+llm_run2.csv     N22 station          key: S2                           got: (empty)
+llm_run2.csv     N20 species          key: (empty)                      got: oaks
+llm_run2.csv     N14 count            key: (empty)                      got: 0
+llm_run2.csv     N16 count            key: 4                            got: (empty)
+llm_run2.csv     N21 count            key: (empty)                      got: 0
+llm_run2.csv     N11 habitat          key: moss                         got: (empty)
+llm_run2.csv     N12 habitat          key: soil                         got: (empty)
+llm_run2.csv     N14 habitat          key: (empty)                      got: litter
+llm_run2.csv     N16 habitat          key: soil                         got: (empty)
+llm_run2.csv     N17 habitat          key: litter                       got: (empty)
+llm_run2.csv     N18 habitat          key: bark                         got: (empty)
+llm_run2.csv     N12 status           key: present                      got: (empty)
+llm_run2.csv     N14 status           key: not_sampled                  got: absent
+llm_run2.csv     N16 status           key: present                      got: (empty)
+llm_run2.csv     N17 status           key: present                      got: (empty)
+llm_run2.csv     N12 effort           key: two pitfall traps, emptied after 24 h got: (empty)
+llm_run2.csv     N13 effort           key: (empty)                      got: counted 25 in the first of three trays and stopped
+llm_run2.csv     N16 effort           key: Deep soil core 10-20 cm      got: (empty)
+llm_run2.csv     N11 count_qualifier  key: (empty)                      got: exact
+llm_run2.csv     N14 count_qualifier  key: (empty)                      got: exact
+llm_run2.csv     N16 count_qualifier  key: exact                        got: (empty)
+llm_run2.csv     N18 count_qualifier  key: (empty)                      got: exact
+llm_run2.csv     N20 count_qualifier  key: (empty)                      got: exact
+llm_run2.csv     N11 id_qualifier     key: (empty)                      got: tentative
+llm_run2.csv     N12 id_qualifier     key: (empty)                      got: tentative
+llm_run2.csv     N18 id_qualifier     key: (empty)                      got: tentative
+llm_run2.csv     N20 id_qualifier     key: (empty)                      got: tentative
+llm_run3.csv     N22 station          key: S2                           got: (empty)
+llm_run3.csv     N11 count            key: (empty)                      got: 0
+llm_run3.csv     N14 count            key: (empty)                      got: 0
+llm_run3.csv     N20 count            key: (empty)                      got: 0
+llm_run3.csv     N21 count            key: (empty)                      got: 0
+llm_run3.csv     N14 habitat          key: (empty)                      got: litter
+llm_run3.csv     N18 habitat          key: bark                         got: (empty)
+llm_run3.csv     N20 habitat          key: (empty)                      got: cave
+llm_run3.csv     N23 habitat          key: litter                       got: (empty)
+llm_run3.csv     N14 status           key: not_sampled                  got: absent
+llm_run3.csv     N23 status           key: present                      got: (empty)
+llm_run3.csv     N13 effort           key: (empty)                      got: counted in the first of three trays and stopped
+llm_run3.csv     N23 effort           key: Berlese 24 h                 got: (empty)
+llm_run3.csv     N11 count_qualifier  key: (empty)                      got: exact
+llm_run3.csv     N14 count_qualifier  key: (empty)                      got: exact
+llm_run3.csv     N18 count_qualifier  key: (empty)                      got: partial
+llm_run3.csv     N20 count_qualifier  key: (empty)                      got: approximate
+llm_run3.csv     N11 id_qualifier     key: (empty)                      got: tentative
+llm_run3.csv     N18 id_qualifier     key: (empty)                      got: tentative
+llm_run3.csv     N20 id_qualifier     key: (empty)                      got: tentative
+llm_run3.csv     N23 id_qualifier     key: (empty)                      got: tentative

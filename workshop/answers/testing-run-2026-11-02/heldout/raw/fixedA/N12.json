@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-925",
+  "object": "chat.completion",
+  "created": 1793634023,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S2\",\n\"date\": \"2025-05-23\",\n\"species\": \"Lepidocyrtus lanuginosus\",\n\"count\": 7,\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"empty\"\n}",
+        "reasoning": "Okay, let's tackle this. The user provided a field note and wants me to extract one record according to the given annotation rules. Let me start by breaking down the note.\n\nFirst, the date is \"May 23, 2025\". The rules say to convert this into YYYY-MM-DD format. So that becomes 2025-05-23.\n\nNext, the station is \"S2\". That's straightforward, so station is S2.\n\nNow, the note mentions \"Two pitfall traps in the phrygana soil, emptied after 2,4 h: Lepidocyrtus lanuginosus, n = 7.\" \n\nFor species, I need to copy it exactly as written. The species here is \"Lepidocyrtus lanuginosus\". The colon after the traps might be part of the effort description, but the species is clearly listed after the colon. So species is Lepidocyrtus lanuginosus.\n\nCount: The note says \"n = 7\". The count should be a number. Since \"n = 7\" is an exact number, count is 7. The count_qualifier here is exact because it's the whole sample. So count_qualifier is exact.\n\nHabitat: The note mentions \"phrygana soil\". According to the rules, soil includes soil cores, humus, or bare soil. Phrygana is a type of vegetation, but the key says \"soil\" is one of the habitat options. So habitat is soil.\n\nStatus: Since a specimen was found (n=7), status is present.\n\nEffort: The effort is described as \"Two pitfall traps in the phrygana soil, emptied after 24 h\". The rules say effort is the sampling method as written, trimmed to the phrase. So effort should be \"two pitfall traps, emptied after 24 h\". The \"phrygana soil\" might be part of the habitat, but the effort is about the method. Wait, the note says \"in the phrygana soil\" which might be part of the habitat, but the effort is the traps and the duration. So effort is \"two pitfall traps, emptied after 24 h\".\n\nID qualifier: There's no mention of tentative identification, so id_qualifier is empty.\n\nNow, checking if there's any other species. The note lists Lepidocyrtus lanuginosus, so only one species. No other species found, so no conflict.\n\nPutting it all together, the record should have station S2, date 2025-05-23, species Lepidocyrtus lanuginosus, count 7, count_qualifier exact, habitat soil, status present, effort \"two pitfall traps, emptied after 24 h\", and id_qualifier empty. The note doesn't mention any effort reason, so effort is correctly captured as the method.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1005,
+    "prompt_tokens_details": {
+      "cached_tokens": 1004
+    },
+    "completion_tokens": 685,
+    "total_tokens": 1690
+  }
+}

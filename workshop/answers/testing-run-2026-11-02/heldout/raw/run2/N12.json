@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-31",
+  "object": "chat.completion",
+  "created": 1793632510,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S2\",\n\"date\": \"2025-05-23\",\n\"species\": \"Lepidocyrtus lanuginosus\",\n\"count\": 7,\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"tentative\" }",
+        "reasoning": "Okay, let's tackle this. The user provided a field note and wants me to extract one record according to the annotation rules. Let me start by breaking down the note.\n\nFirst, the date is \"May 23, 2025\". The rules say to convert this to YYYY-MM-DD. So that becomes 2025-05-23. Got that.\n\nNext, the station is \"S2\". That's straightforward, just S2.\n\nNow, the species: \"Lepidocyrtus lanuginosus\". The rules say to copy it exactly as written, including any qualifiers. There's no mention of \"cf.\" or misspellings here, so species is Lepidocyrtus lanuginosus.\n\nCount: The note says \"n = 7\". The count field should have the exact number. Since \"n = 7\" is an exact number, count is 7. The count_qualifier here is \"exact\" because it's the whole sample. Wait, the note says \"n = 7\", which is exact, so count_qualifier is exact.\n\nHabitat: The note mentions \"phrygana soil\". According to the rules, soil is one of the allowed habitats. So habitat is soil.\n\nStatus: The note mentions a count (n=7), so status is present.\n\nEffort: The note says \"Two pitfall traps in the phrygana soil, emptied after 24 h\". The effort should be the sampling method. The rules say to trim to the phrase. So effort is \"Two pitfall traps, emptied after 24 h\".\n\nWait, the original note has \"Two pitfall traps in the phrygana soil, emptied after 24 h\". The rules say to trim to the phrase. So maybe \"Two pitfall traps, emptied after 24 h\" is the effort. The \"in the phrygana soil\" part might be part of the habitat description, but the effort is the method. So effort is \"Two pitfall traps, emptied after 24 h\".\n\nAlso, check if there's any id_qualifier. The note doesn't mention anything like \"tentative\" or \"probably\", so id_qualifier is empty.\n\nPutting it all together:\n\nstation: S2\ndate: 2025-05-23\nspecies: Lepidocyrtus lanuginosus\ncount: 7\ncount_qualifier: exact\nhabitat: soil\nstatus: present\neffort: Two pitfall traps, emptied after 24 h\nid_qualifier: \n\nWait, the original note also mentions \"n = 7\" which is the count. So count is 7, count_qualifier is exact. The habitat is soil. The effort is the pitfall traps part. Also, the note says \"in the phrygana soil\" which might be part of the habitat, but the rules say habitat is one of the specified terms. Since \"phrygana soil\" is a type of soil, habitat is soil. The effort is the method, which is the pitfall traps and the emptying after 24h. So effort is \"Two pitfall traps, emptied after 24 h\".\n\nI think that's all. Let me double-check the rules to make sure. The count_qualifier is exact because the count is the whole sample. The status is present because there's a count. Effort is the method as written, trimmed. Yes, that seems right.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1005,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 804,
+    "total_tokens": 1809
+  }
+}

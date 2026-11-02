@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-414",
+  "object": "chat.completion",
+  "created": 1793634853,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S3\",\n\"date\": \"2025-05-26\",\n\"species\": \"Isotoma viridis\",\n\"count\": 12,\n\"habitat\": \"litter\",\n\"status\": \"present\",\n\"effort\": \"hand search twenty minutes\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note and wants me to extract one record according to the rules given. Let me start by breaking down the note.\n\nFirst, the note is: \"2025/05/26, S3. Grass litter, hand search, twenty minutes. Isotoma viridis, twelve individuals, all adults.\"\n\nI need to parse each part. The date is \"2025/05/26\". The rules say to format the date as YYYY-MM-DD. So that becomes 2025-05-26.\n\nNext, the station is \"S3\", which is straightforward. The rules mention stations S1 to S5, so S3 is valid.\n\nThen, the habitat is mentioned as \"Grass litter\". According to the rules, any type of litter (like pine needles, grass litter, etc.) is categorized as \"litter\". So habitat should be \"litter\".\n\nThe next part is \"hand search, twenty minutes\". This seems like the effort. The rules state that effort is the sampling method or method as written. So \"hand search, twenty minutes\" would be the effort. But the note says \"hand search\" and \"twenty minutes\" as separate parts. Wait, the example in the rules includes phrases like \"Berlese sample ran 48 h\" or \"three oaks\". So maybe the effort here is \"hand search, twenty minutes\". I should trim it to the phrase, so maybe \"hand search twenty minutes\" or keep it as is. The rules mention that effort is free text and counts as correct if the key's phrase and output contain each other after lower-casing and removing punctuation. So I'll include both parts.\n\nMoving on, the species is \"Isotoma viridis\". The rules say to copy it exactly as written, including qualifiers. Since there's no qualifier here, species is \"Isotoma viridis\".\n\nCount is \"twelve individuals\". The rules state that count is only when an exact number is stated. \"Twelve\" is exact, so count is 12. The note also mentions \"all adults\", but the count is already specified as twelve, so that's covered.\n\nStatus: The rules mention that status is present when a specimen was sorted, seen, or counted. Since there's a count and species recorded, status is \"present\".\n\nHabitat is already determined as \"litter\".\n\nEffort is \"hand search, twenty minutes\".\n\nNow, checking if there's any other information. The note mentions \"hand search\" as the method, which is part of the effort. The date is correctly formatted. The station is S3. The species is present, so status is present. Count is 12. Habitat is litter. Effort is the method and time. \n\nWait, the rules also mention count_qualifier. The note says \"twelve individuals\", which is exact, so count_qualifier is \"exact\". But the original note doesn't mention anything about partial or approximate counts, so count_qualifier is empty unless specified. Wait, the rules say count_qualifier is exact when the count covers the whole sample. Since the note says \"twelve individuals\" without any qualifiers, count_qualifier is \"exact\".\n\nId_qualifier: The note doesn't mention any doubts in identification, so id_qualifier is empty.\n\nPutting it all together, the record should have:\n\nstation: S3\ndate: 2025-01-05? Wait, original date is 2025/05/26. So formatted as 2025-05-26.\n\nspecies: Isotoma viridis\ncount: 12\nhabitat: litter\nstatus: present\neffort: hand search twenty minutes\ncount_qualifier: exact\nid_qualifier: (empty)\n\nWait, the note says \"twelve individuals, all adults.\" The count is twelve, which is exact. The \"all adults\" might be part of the count_qualifier? Or is it just additional info? The rules don't mention including additional info unless it's a qualifier. Since the count_qualifier is about whether the count is exact, partial, or approximate. Since the count is exact, count_qualifier is \"exact\". The \"all adults\" isn't a qualifier but perhaps part of the note's description. But according to the rules, count_qualifier is only for the count's accuracy. So \"exact\" is correct here.\n\nSo the final record would include all these fields. Let me check again for any missed rules. The note doesn't mention any effort reasons (like the funnel flooded), so effort is just the method and time. The status is present because there's a count and species. The note doesn't mention any status as not_sampled or absent. So all fields are filled except id_qualifier, which is empty.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 990,
+    "prompt_tokens_details": {
+      "cached_tokens": 949
+    },
+    "completion_tokens": 1097,
+    "total_tokens": 2087
+  }
+}

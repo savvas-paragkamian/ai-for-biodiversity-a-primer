@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-232",
+  "object": "chat.completion",
+  "created": 1793631952,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S1\",\n\"date\": \"2025-05-25\",\n\"species\": \"\",\n\"count\": 0,\n\"habitat\": \"litter\",\n\"status\": \"absent\",\n\"effort\": \"Berlese 48 h\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"25 May 2025, S1. Oak litter, Berlese 48 h. The tube cracked in transit and the sample dried out; nothing usable.\" \n\nFirst, I need to extract one record based on the rules provided. Let me recall the annotation rules. \n\nStarting with the date. The note says \"25 May 2025,\" which should be converted to YYYY-MM-DD format. So that's 2025-05-25.\n\nNext, the station is S1, which is straightforward. \n\nNow, the species. The note mentions \"Oak litter,\" but I need to check if they found a species. The note ends with \"nothing usable,\" which suggests that no specimen was sorted. According to the rules, if no specimen was found, the species field is empty. But wait, there's a mention of \"Oak litter\" which might be the habitat. Let me check the habitat rules. Habitat is one of litter, soil, etc. Since they collected oak litter, the habitat should be \"litter.\" \n\nThe status: the note says nothing usable, which implies that even though they tried, they didn't get a specimen. So status should be absent. \n\nEffort: The note mentions \"Berlese 48 h\" which is the sampling method and duration. Also, there's a reason for failure: the tube cracked and sample dried out. But according to the rules, effort is the method, and the reason for failure isn't part of effort. So effort should be \"Berlese 48 h.\" \n\nCount and count_qualifier: Since there's no specimen, count is empty. \n\nId_qualifier: Not mentioned, so empty. \n\nPutting it all together: station S1, date 2025-05-25, habitat litter, status absent, effort \"Berlese 48 h.\" Species is empty because no specimen was found. \n\nWait, but the note says \"Oak litter\" which might be the habitat. The species isn't mentioned here, so species remains empty. \n\nYes, that seems correct. Let me double-check the rules. The status is absent when a species was searched but not found, and nothing else recorded. Since they did a Berlese sample but nothing usable, status is absent. Effort is the method, so \"Berlese 48 h.\" Habitat is litter. All other fields are empty where applicable.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 992,
+    "prompt_tokens_details": {
+      "cached_tokens": 949
+    },
+    "completion_tokens": 604,
+    "total_tokens": 1596
+  }
+}

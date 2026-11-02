@@ -46,4 +46,8 @@ weakened by a prompt.
    sentences each), "Connections" to KYBELE, TREC and the book, "Questions to
    follow", "Not used: unverified", and the grounding-check output. Never
    edit `reviews/`, `bib/` (except through the verifier), `data/`, `config/`
-   or anything under `R/`; never commit.
+   or anything under `R/`; never commit. The skill's `allowed-tools` list
+   only pre-approves the tools it names; it removes none. The deny rules in
+   `.claude/settings.json` are what prevent writes to `R/`, `tests/`, `docs/`,
+   `config/`, `data/`, `bib/`, `reviews/`, `.claude/`, `.github/` and
+   `launchd/`, and they apply whatever a prompt says.

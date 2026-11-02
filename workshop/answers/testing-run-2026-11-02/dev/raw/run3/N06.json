@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-596",
+  "object": "chat.completion",
+  "created": 1793631016,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S1\",\n\"date\": \"2025-05-17\",\n\"species\": \"Orchesella cincta\",\n\"count\": 2,\n\"habitat\": \"bark\",\n\"status\": \"present\",\n\"effort\": \"searched the bark of three oaks\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"17 May 2025 at S1. Searched the bark of three oaks for Entomobrya; none found. Two Orchesella cincta under loose bark instead.\" \n\nFirst, I need to parse this into the required fields. The rules mention that each note should have at most one species, which is the one with a specimen in hand. Here, the note mentions searching for Entomobrya but found Orchesella cincta instead. So the species recorded should be Orchesella cincta.\n\nStation is S1, so that's straightforward. The date is 17 May 2025, which should be formatted as YYYY-MM-DD, so 2025-05-17.\n\nStatus: Since they found a specimen (Orchesella cincta), status is present. The note says \"none found\" for Entomobrya, but since they found another species, the status for the recorded species is present.\n\nEffort: The effort here is searching the bark of three oaks for Entomobrya. But according to the rules, effort is the sampling method. The note mentions \"searched the bark of three oaks\", so the effort should be \"searched the bark of three oaks\".\n\nHabitat: The species was found under loose bark, which falls under 'bark' as per the habitat categories. \n\nCount: They found two individuals, so count is 2. The count_qualifier is exact since it's the whole sample. \n\nId_qualifier: The note doesn't mention any uncertainty, so it's empty. \n\nWait, the note says \"none found\" for Entomobry, but since they found Orchesella, that's the species recorded. The effort for searching Entomobrya is part of the effort field. But according to the rules, the effort is the method used. The note mentions searching the bark of three oaks for Entomobrya, so the effort should be \"searched the bark of three oaks\".\n\nSo putting it all together:\n\nstation: S1\ndate: 2025-05-17\nspecies: Orchesella cincta\ncount: 2\nhabitat: bark\nstatus: present\neffort: searched the bark of three oaks\ncount_qualifier: exact\nid_qualifier: \n\nWait, the original note says \"Two Orchesella cincta under loose bark instead.\" So the habitat is bark. The count is 2, exact. The effort is the method used to find them, which was searching the bark of three oaks for Entomobrya, but since they found Orchesella, the effort is part of the effort field. The rules say effort is the sampling effort or method as written. So the effort is \"searched the bark of three oaks\".\n\nAlso, the status is present because they found a specimen. The count_qualifier is exact because they counted all individuals. No id_qualifier since there's no indication of uncertainty. \n\nSo the final row should have all these fields filled accordingly.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 998,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 754,
+    "total_tokens": 1752
+  }
+}

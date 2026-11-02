@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-44",
+  "object": "chat.completion",
+  "created": 1793633854,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S4\",\n\"date\": \"2025-06-03\",\n\"species\": \"Xenylla maritima\",\n\"count\": 16,\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"tentative\" }",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note and wants me to extract one record according to the given rules. First, I need to parse the note carefully.\n\nThe note says: \"3 June 2025, S4. Pine litter, Berlese 24 h only. Xenylla maritima, 16 ind., a species not on our list.\"\n\nBreaking it down:\n\n- Date: \"3 June 2025\" should be formatted as YYYY-MM-DD. So that's 2025-06-03.\n- Station: \"S4\" is straightforward.\n- Habitat: \"Pine litter\" falls under \"litter\" as per the rules. Even though it's pine, the rule says any litter is categorized as litter.\n- Effort: \"Berlese 24 h only\" is the sampling method. The effort field should capture this phrase. The note mentions \"Berlese 24 h only,\" so I'll trim that to \"Berlese 24 h\" or maybe keep the \"only\" part? Wait, the rules say to trim to the phrase. The example given in the rules includes \"Berlese sample ran 48 h\" as an effort. So here, \"Berlese 24 h only\" would be trimmed to \"Berle. 24 h\" or maybe \"Berlese 24 h\". The exact phrasing might matter, but the key is to capture the method and duration. The note says \"Berlese 24 h only,\" so the effort is \"Berlese 24 h only\" but perhaps trimmed to \"Berlese 24 h\" as the main part. Wait, the example in the rules has \"Berlese sample ran 48 h\" as effort. So maybe the exact phrase is \"Berlese 24 h only\" but the user might have written \"Berlese 24 h only\" as the effort. So I should keep that as is, but maybe trim any extra words. The instruction says to trim to the phrase. So maybe \"Berlese 24 h\" is sufficient. Wait, the example has \"Berlese sample ran 48 h\" as effort. So perhaps the exact phrase is \"Berlese 24 h only\" but the key is to capture the method and duration. So I'll go with \"Berlese 24 h only\" as the effort.\n\nNext, the species: \"Xenylla maritima\" is the species found. The note mentions \"a species not on our list,\" but according to the rules, the species is copied exactly as written, including qualifiers. So species is \"Xenylla maritima\".\n\nCount: \"16 ind.\" is an exact number. The count_qualifier is exact since it's the whole sample. So count is 16, count_qualifier is exact.\n\nStatus: Since a specimen was found (16 ind.), status is present.\n\nHabitat is litter as discussed.\n\nNow, the note mentions \"a species not on our list.\" But according to the rules, the species is recorded as written, regardless of whether it's on the list. The name checking is a separate step. So species is \"Xenylla maritima\".\n\nSo putting it all together:\n\nstation: S4\ndate: 2025-06-03\nspecies: Xenylla maritima\ncount: 16\ncount_qualifier: exact\nhabitat: litter\nstatus: present\neffort: Berlese 24 h only\nid_qualifier: ? The note doesn't mention anything about the identification being tentative. The note says \"a species not on our list,\" but that's about the list, not the identification. So id_qualifier is empty.\n\nWait, the rules say id_qualifier is tentative if the note doubts the identification. The note here doesn't mention doubt, so id_qualifier is empty.\n\nSo the final record should have all these fields filled accordingly.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 997,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 925,
+    "total_tokens": 1922
+  }
+}

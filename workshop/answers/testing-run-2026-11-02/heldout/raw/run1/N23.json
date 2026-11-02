@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-319",
+  "object": "chat.completion",
+  "created": 1793632393,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S4\",\n\"date\": \"2025-06-03\",\n\"species\": \"Xenylla maritima\",\n\"count\": 16,\n\"habitat\": \"litter\",\n\"status\": \"present\",\n\"effort\": \"Berlese 24 h\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this. The user provided a field note and wants me to extract one record according to the annotation rules. Let me start by reading the note carefully.\n\nThe note says: \"3 June 2025, S4. Pine litter, Berlese 24 h only. Xenylla maritima, 16 ind., a species not on our list.\"\n\nFirst, I need to parse each part. The date is \"3 June 2025\". The rules say to convert the date to YYYY-MM-DD. So that would be 2025-06-03. The station is S4, which is straightforward.\n\nNext, the habitat is \"Pine litter\". According to the rules, any type of litter, including pine needles, is categorized as \"litter\". So habitat should be \"litter\".\n\nThe effort part is \"Berlese 24 h only\". The rules mention that effort should be the sampling method as written, trimmed. So \"Berlese 24 h\" is the effort. The note mentions \"only\" here, but maybe that's part of the effort description. The example given in the rules includes phrases like \"Berlese sample ran 48 h\", so \"Berle,se 24 h\" would be the effort. Wait, the note says \"Berlese 24 h only\". The \"only\" might be part of the effort description, so I should include it as part of the effort phrase. But the rules say to trim to the phrase. So maybe just \"Berlese 24 h\" is enough. Wait, the example in the rules includes \"Berlese sample ran 48 h\" as effort. So perhaps \"Berlese 24 h\" is the effort. The \"only\" might be extra, but the rules say to trim. So I'll take \"Berlese 24 h\" as the effort.\n\nNow, the species is \"Xenylla maritima\". The rules state that species should be copied exactly as written, including misspellings and qualifiers. Since the note says \"a species not on our list\", but the species name is still written, so species is \"Xenylla maritima\".\n\nCount is \"16 ind.\" which is an exact number. The rules say count is only when an exact number is stated. \"16 ind.\" translates to 16. So count is 16. The count_qualifier is exact because the count covers the whole sample. So count_qualifier is \"exact\".\n\nStatus: The note mentions that the species is not on their list, but the rules say that if a species is found, status is present. Since they found Xenylla maritima, status is present. The rules mention that status is present when a specimen was sorted, seen, or counted. Since they have a count, status is present. So status is \"present\".\n\nEffort is \"Berlese 24 h\" as discussed. The note says \"Berlese 24 h only\", but the rules say to trim. So \"Berlese 24 h\" is the effort.\n\nNow, checking if there's any other information. The note mentions the species is not on their list, but according to the rules, that doesn't affect the recording of the species. The rules state that even if the species isn't on the list, it's still recorded. So species remains \"Xenylla maritima\".\n\nId_qualifier: The note doesn't mention any doubt in identification, so id_qualifier is empty.\n\nHabitat is \"litter\" as discussed.\n\nPutting it all together, the record should have:\n\nstation: S4\ndate: 2025-06-03\nspecies: Xenylla maritima\ncount: 16\nhabitat: litter\nstatus: present\neffort: Berlese 24 h\ncount_qualifier: exact\nid_qualifier: (empty)\n\nWait, but the rules mention that if the species is searched for but not found, it's recorded with status absent. However, in this case, the note says they found Xenylla maritima, so status is present. The part about \"not on our list\" doesn't affect the status. The status is based on whether a specimen was found, not on the list. So status is present.\n\nAlso, the count_qualifier is exact because the count is the total. The note says \"16 ind.\", which is an exact number, so count_qualifier is exact.\n\nSo the final record should have all these fields filled accordingly.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 997,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 1062,
+    "total_tokens": 2059
+  }
+}

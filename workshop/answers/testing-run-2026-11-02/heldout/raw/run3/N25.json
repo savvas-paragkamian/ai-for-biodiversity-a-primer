@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-134",
+  "object": "chat.completion",
+  "created": 1793633919,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"date\": \"2025-06-05\",\n\"species\": \"Folsomia candida\",\n\"count\": 1,\n\"habitat\": \"soil\",\n\"status\": \"present\",\n\"effort\": \"\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"\n}",
+        "reasoning": "Okay, let's tackle this annotation. The user provided a field note: \"June 5 2025, no station, roadside bank near the village. Dry soil, a single Folsomia candida.\" I need to extract one record based on the given rules.\n\nFirst, let's parse the date. The note says \"June 5 2025,\" which should be formatted as YYYY-MM-DD. So that's 2025-06-05.\n\nNext, the station. The note mentions \"no station,\" so the station field should be empty.\n\nThe location is \"roadside bank near the village.\" The rules don't specify how to handle location details except for station numbers. Since there's no station, we don't need to fill that in. The habitat is mentioned as \"Dry soil,\" which according to the rules maps to \"soil.\"\n\nNow, the species: \"a single Folsomia candida.\" The species should be copied exactly as written, including the genus and species name. So species is \"Folsomia candida.\"\n\nCount: The note says \"a single,\" which translates to 1. So count is 1. Since it's an exact number, count_qualifier is \"exact.\"\n\nStatus: Since a specimen was found (\"a single...\"), status is \"present.\"\n\nEffort: The note doesn't mention any specific sampling method or effort, so effort is empty.\n\nHabitat is \"soil\" as per the note. The rules specify that dry soil is categorized under \"soil.\"\n\nNo qualifiers like \"tentative\" or \"cf.\" are mentioned, so id_qualifier is empty.\n\nPutting it all together, the record should have date 2025-06-05, station empty, species Folsomia candida, count 1, habitat soil, status present. Effort and count_qualifier are empty, and id_qualifier is empty. Let me double-check the rules to ensure I didn't miss anything. The count_qualifier is \"exact\" because the count covers the whole sample. Since the note states \"a single,\" that's an exact count. Effort isn't mentioned, so it's empty. The status is present because the specimen was found. Everything seems to fit.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 985,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 544,
+    "total_tokens": 1529
+  }
+}

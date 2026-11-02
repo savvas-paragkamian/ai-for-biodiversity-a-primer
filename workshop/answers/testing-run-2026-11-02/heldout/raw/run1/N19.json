@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-636",
+  "object": "chat.completion",
+  "created": 1793632175,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"station\": \"S5\",\n\"date\": \"2025-05-30\",\n\"species\": \"Heteromurus cf. nitidus\",\n\"count\": 2,\n\"habitat\": \"cave\",\n\"status\": \"present\",\n\"effort\": \"\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"tentative\" }",
+        "reasoning": "Okay, let's tackle this query. The user provided a field note and wants me to extract one record according to the given annotation rules. Let me start by breaking down the note.\n\nFirst, the note says: \"30 May 2025, S5. Cave, 15 m in from the entrance. Heteromurus cf. nitidus, two, both damaged.\" \n\nI need to parse each part. The date is \"30 May 2025\". The rules say to convert the date to YYYY-MM-DD. So that would be 2025-05-30. \n\nNext, the station is S5. That's straightforward as per the rules. \n\nThen, the location is \"Cave, 15 m in from the entrance.\" The habitat field should be one of the specified options: litter, soil, moss, bark, compost, cave. Since it's a cave, habitat is \"cave\". The distance from the entrance is extra info, but the rules don't mention including that in the habitat field, so I'll leave it as \"cave\".\n\nMoving on to species: \"Heteromurus cf. nitidus\". The rules state to copy the species name exactly as written, including qualifiers like \"cf.\" So species is \"Heteromurus cf. nitidus\".\n\nCount: \"two\". The rules specify that count is only when an exact number is stated. \"Two\" is exact, so count is 2. The note mentions both are damaged, but the count is still 2. The count_qualifier isn't mentioned here, so it's empty. Wait, the rules mention count_qualifier as exact, partial, or approximate. Since the count is exact (two), count_qualifier is \"exact\".\n\nStatus: The note mentions the specimens are damaged. But the rules say status is present when a specimen was sorted, seen, or counted. Since they were counted (two) and the status isn't not_sampled, it's present. So status is \"present\".\n\nEffort: The note doesn't mention any effort, like sampling methods. So effort is empty.\n\nId_qualifier: The species is \"cf. nitidus\", which indicates a tentative identification. So id_qualifier is \"tentative\".\n\nPutting it all together, the record should have station S5, date 2025-05-30, species as written, count 2, habitat cave, status present, effort empty, count_qualifier exact, id_qualifier tentative. \n\nWait, the original note says \"both damaged\". Does that affect the status? The rules say status is present if a specimen was sorted, seen, or counted. Since they were counted, status is present. The damage is part of the note but doesn't change the status. \n\nAlso, check if there's any mention of effort. The note doesn't state any effort, so effort remains empty. \n\nEverything seems to fit. Let me make sure there are no other fields. The rules mention that if a species was searched but not found, it's recorded with status absent, but here the species was found, so status is present. \n\nYes, this should be the correct extraction.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 993,
+    "prompt_tokens_details": {
+      "cached_tokens": 948
+    },
+    "completion_tokens": 752,
+    "total_tokens": 1745
+  }
+}

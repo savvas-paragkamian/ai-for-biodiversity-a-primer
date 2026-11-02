@@ -1,0 +1,24 @@
+{
+  "run": "fixedB",
+  "set": "heldout",
+  "notes_file": "data/notes_heldout.csv",
+  "notes": 15,
+  "model": "qwen3:8b",
+  "quantization": "Q4_K_M",
+  "model_context_length": "40960",
+  "context_loaded": "32768",
+  "thinking": "model default (on)",
+  "sampling": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20
+  },
+  "seed": 1,
+  "ollama_version": "ollama version is 0.40.13",
+  "ellmer_version": "0.5.0",
+  "r_version": "R version 4.5.1 (2025-06-13)",
+  "platform": "aarch64-apple-darwin24.4.0",
+  "started": "2026-11-02 17:49:18 EET",
+  "seconds_per_note": [78.7, 31.9, 92.4, 42.2, 49.5, 57.5, 24.3, 52.6, 26.3, 29.2, 25.7, 35.9, 28.8, 68.9, 23.8],
+  "seconds_total": 667.7
+}

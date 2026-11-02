@@ -1,0 +1,26 @@
+{
+  "id": "chatcmpl-173",
+  "object": "chat.completion",
+  "created": 1793631995,
+  "model": "qwen3:8b",
+  "system_fingerprint": "fp_ollama",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n\n\"date\": \"2025-05-26\",\n\"species\": \"Isotoma viridis\",\n\"count\": 12,\n\"habitat\": \"litter\",\n\"status\": \"present\",\n\"effort\": \"hand search, twenty minutes\",\n\"count_qualifier\": \"exact\",\n\"id_qualifier\": \"\"}",
+        "reasoning": "Okay, let's tackle this query. The user provided a field note and wants me to extract one record according to the annotation rules. Let me start by breaking down the note.\n\nFirst, the note is: \"2025/05/26, S3. Grass litter, hand search, twenty minutes. Isotoma viridis, twelve individuals, all adults.\"\n\nI need to parse this into the specified fields: station, date, species, count, habitat, status, effort, count_qualifier, id_qualifier.\n\nStarting with the date. The first part is \"2025/05/26\". The rules say the date should be in YYYY-MM-DD format. So converting that, it's 2025-05-26. That's straightforward.\n\nNext, the station is \"S3\". According to the rules, station should be S1 to S5 as written. So S3 is correct here.\n\nNow, the habitat. The note mentions \"Grass litter\". The rules state that any kind of litter (like pine needles, grass litter, etc.) is categorized as \"litter\". So habitat should be \"litter\".\n\nThen there's \"hand search, twenty minutes\". This seems like the effort. The rules mention effort is the sampling method as written, trimmed to a phrase. So \"hand search, twenty minutes\" would be the effort. But wait, the rules say to trim to the phrase. Maybe it's just \"hand search\" or \"hand search, twenty minutes\"? The example given in the rules includes phrases like \"Berlese sample ran 48 h\", so including the time here makes sense. So effort is \"hand search, twenty minutes\".\n\nMoving on to species: \"Isotoma viridis\". The rules say to copy exactly as written, including qualifiers. Since there's no qualifier here, species is \"Isotoma viridis\".\n\nCount: \"twelve individuals\". The rules specify that count is only when an exact number is stated. \"Twelve\" is exact, so count is 12. The note also mentions \"all adults\", but that's part of the count description, not the count itself. So count is 12.\n\nStatus: The rules say status is present when a specimen was sorted, seen, or counted. Since they counted twelve individuals, status is \"present\".\n\nCount_qualifier: The note says \"twelve individuals, all adults\". The rules mention count_qualifier as exact, partial, or approximate. Since they counted all individuals (twelve), it's exact. So count_qualifier is \"exact\".\n\nId_qualifier: The note doesn't mention any doubt in identification. The rules say id_qualifier is tentative if there's doubt. Since there's no such mention, it's empty.\n\nPutting it all together, the record should have:\n\n- date: 2025-03-26 (Wait, wait, original date was 2025/05/26. So correct date is 2025-05-26)\n- station: S3\n- species: Isotoma viridis\n- count: 12\n- habitat: litter\n- status: present\n- effort: hand search, twenty minutes\n- count_qualifier: exact\n- id_qualifier: (empty)\n\nWait, the original note's date is 2025/05/26. The user wrote \"2025/05/26, S3.\" So the date should be 2025-05-26. I need to make sure that's formatted correctly.\n\nAlso, check if there's any other information. The note mentions \"all adults\" but that's part of the count description, not affecting count_qualifier. Since they counted all individuals, count_qualifier is exact.\n\nEffort is \"hand search, twenty minutes\" as per the rules. The rules allow effort to include the time spent, so that's correct.\n\nNo mention of status being absent or not_sampled, so status is present.\n\nEverything seems to fit. Let me double-check the rules again to ensure I didn't miss anything. The key points are: count only when exact, habitat as litter, effort as the method and time, status present because they counted, count_qualifier exact. Yes, that's all correct.\n"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 990,
+    "prompt_tokens_details": {
+      "cached_tokens": 949
+    },
+    "completion_tokens": 983,
+    "total_tokens": 1973
+  }
+}
