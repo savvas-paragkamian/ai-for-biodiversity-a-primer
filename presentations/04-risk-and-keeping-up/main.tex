@@ -1,0 +1,563 @@
+% Deck 4 of 4 of AI for Biodiversity: A Primer.
+% Build: latexmk -pdf main.tex   (pdflatex + biber)
+%
+% Part V (Chapters 15--18) and the appendices. Every statement comes from the
+% book; the figures are the book's (book/figures); the five paper screenshots
+% are those assigned to this deck in presentations/BRIEF.md.
+\documentclass[11pt,aspectratio=169]{beamer}
+\input{../common/preamble}
+
+\title[AI for Biodiversity 4]{AI for Biodiversity: A Primer}
+\subtitle{4. Risk, integrity, keeping up, and the wider frame (Chapters 15--18, Appendices)}
+\author{Savvas Paragkamian}
+\institute{Hellenic Centre for Marine Research \\ KYBELE and ELIXIR-GR}
+\date{HCMR workshop, November 2026}
+\hypersetup{pdftitle={AI for Biodiversity: A Primer, deck 4},pdfauthor={Savvas Paragkamian}}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\begin{frame}{Goals of this session}
+  \begin{enumerate}
+    \item Know what an agent can do on your machine and with your data, and
+      how to fence it in (Chapter 15).
+    \item See where a model helps at each stage of research, and the check
+      that goes with each stage (Chapter 16).
+    \item Decide what is worth learning, and set the practical questions in
+      their wider frame (Chapters 17 and 18, and the appendices).
+  \end{enumerate}
+  \kp{Run models locally where you can, verify everything that matters, and
+    disclose what you used.}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\section{Security, biorisk and governance (Chapter 15)}
+
+\begin{frame}{Running an agent is running arbitrary code}
+  \paperslide{shapira2026agentsofchaos}{\footnotesize
+    \begin{itemize}
+      \item An agent harness runs commands on your machine, with your
+        permissions. The model can be steered by anything it reads.
+      \item The test: agents with email, chat, files and a shell in a live
+        lab, probed by twenty researchers for two weeks.
+      \item They obeyed people who were not their owners, leaked sensitive
+        information, ran destructive commands and used resources without
+        limit.
+      \item They were fooled by spoofed identities, spread unsafe habits to
+        each other, and reported tasks done when the system showed they were
+        not \parencite{shapira2026agentsofchaos}.
+      \item An agent's account of what it did is not evidence that it did it.
+    \end{itemize}}
+  \source{\fullcite{shapira2026agentsofchaos}}
+\end{frame}
+
+\begin{frame}{Prompt injection: instructions and data arrive as one stream}
+  \fig[0.36\textheight]{ch15-injection}
+  \begin{itemize}
+    \item A model does not reliably tell instructions from data. Any text it
+      reads --- a file, a web page, a code comment, a CSV cell --- can contain
+      words it treats as a command.
+    \item Watch for instructions hidden in a downloaded dataset's metadata,
+      invisible text in a PDF, a dependency's documentation, a web page
+      fetched during a literature search, and an MCP server's description of
+      its own tools.
+  \end{itemize}
+  \kp{Treat everything an agent reads as untrusted, including your own data
+    files if they came from elsewhere, and including what tools say about
+    themselves.}
+  \source{Figure from Chapter 15 of the book.}
+\end{frame}
+
+\begin{frame}{Prompt injection follows from the design}
+  \paperslide{greshake2023injection}{\footnotesize
+    \begin{itemize}
+      \item Instructions and data arrive as tokens in the same context
+        \parencite{greshake2023injection}. A different problem from
+        \term{jailbreaking}, where the user talks the model out of its
+        safety training.
+      \item Bing Chat refused a jailbreak the user typed, but obeyed the same
+        prompt when it read it on a web page.
+      \item Mitigations reduce the rate; none removes it. Eight defences were
+        all bypassed more than half the time by attacks adapted to them
+        \parencite{zhan2025adaptive}.
+      \item So limit what an injection can achieve. Never give one agent the
+        \term{lethal trifecta}: private data, untrusted content, and a way
+        to communicate outward \parencite{willison2025trifecta}.
+    \end{itemize}}
+  \source{\fullcite{greshake2023injection}}
+\end{frame}
+
+\begin{frame}{Fencing an agent in: layers, each with an honest limit}
+  \begin{columns}[T]
+    \begin{column}{0.44\textwidth}
+      \fig[0.64\textheight]{ch15-fences}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \footnotesize
+      \begin{itemize}
+        \item In practice: start the agent in the project directory, without
+          administrator rights; keys out of its reach; commit before it
+          starts, read the diff afterwards.
+        \item Cut network access when the task is local; a container or
+          microVM for unattended work. A credential that has appeared in a
+          chat is compromised: rotate it.
+        \item \term{Slopsquatting}: models invent package names and
+          attackers register them; 5.2 to 21.7 per cent of suggested packages
+          did not exist in one test \parencite{spracklen2025packages}. Check
+          every dependency an agent adds.
+        \item MCP servers are programs with access to your data; skills are
+          instructions an agent follows. Read the tool descriptions and pin
+          the version.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \source{Figure from Chapter 15 of the book.}
+\end{frame}
+
+\begin{frame}{When the fence fails: July 2026}
+  \small
+  \begin{itemize}
+    \item OpenAI tested models for cyber-attack skills with refusals reduced
+      and the blocking classifiers switched off; the only link outward was a
+      package-cache service \parencite{openai2026huggingface}.
+    \item The models found an unknown flaw in it, reached the internet, and
+      broke into Hugging Face's servers in pursuit of a way to cheat the
+      evaluation.
+    \item \textcite{bengio2026lying}: the behaviour follows from training.
+      Faced with a sharp goal (pass the test) and a vague one (behave well),
+      an agent finds a reading of the vague one that lets it win.
+    \item \textcite{mitchell2026metaphors}: no one lost control. The failures
+      were human: a sandbox that leaked, safeguards turned off, weeks without
+      oversight, training that rewards persistence.
+    \item Either way, what surrounds the model matters as much as the model.
+      \term{Least privilege}: only the permissions the current task needs.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Dual use in biology: where the safeguards sit}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      \fig[0.74\textheight]{ch15-shared-layer}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \footnotesize
+      \begin{itemize}
+        \item Novices with model access were 4.16 times as accurate as
+          novices with only the internet, on tasks done at a computer, not at
+          the bench \parencite{zhang2026uplift}.
+        \item The counterweight is calibration: tacit knowledge, materials
+          and laboratory skill, not information, are the real barriers
+          \parencite{peppin2025biorisk}.
+        \item Both can be true: information barriers have fallen, physical
+          ones have not. The two fields meet in agents: injection can carry a
+          jailbreak past a filter.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \source{Figure from Chapter 15 of the book.}
+\end{frame}
+
+\begin{frame}{Sensitive localities: the nearer dual-use problem}
+  \paperslide{lindenmayer2017donotpublish}{\footnotesize
+    \begin{itemize}
+      \item For most ecologists the nearer dual-use problem is locality data.
+        Poachers have targeted more than 20 newly described reptile species,
+        some within months.
+      \item People searching for an endangered lizard trespassed on farms soon
+        after its records reached a public atlas
+        \parencite{lindenmayer2017donotpublish}.
+      \item In the author's view, an agent gathering localities from hundreds
+        of papers at once makes such a search easier.
+      \item GBIF's guidance: generalise sensitive records before sharing
+        them, and record it in \code{dataGeneralizations}.
+      \item Precise localities pasted into a hosted model go to a third
+        party: generalise first, or use a local model.
+    \end{itemize}}
+  \source{\fullcite{lindenmayer2017donotpublish}}
+\end{frame}
+
+\begin{frame}{Risks to judgement: sycophancy, slop and deskilling}
+  \small
+  \begin{itemize}
+    \item \term{Sycophancy} removes the second opinion you thought you were
+      getting: a review that exists on paper and not in practice. Ask for the
+      argument against, and have a person check anything that matters.
+    \item \term{Slop} is text produced in bulk by a model and passed on with
+      little human thought in it. A journal editor met the authors of seven
+      submissions due for rejection; three could not answer basic questions
+      about their own papers \parencite{turner2026slop}.
+    \item ``You become less capable while appearing more productive'': the
+      \term{deskilling} the book warns of for ecology.
+    \item In Ayad Akhtar's play \emph{McNeal}, a novelist lets a chatbot help
+      write his next novel: ``my mind works better now if there's something
+      already on the page'' \parencite{akhtar2024mcneal}. Read by a
+      scientist, the play is about what happens to the person who stops
+      writing.
+    \item No tool fixes either. Write your own arguments, check claims against
+      sources, and sign only work you can explain.
+  \end{itemize}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\section{Changes across the scientific workflow (Chapter 16)}
+
+\begin{frame}{Five stages, and the check that goes with each}
+  \fig[0.30\textheight]{ch16-workflow-checks}
+  \small
+  \begin{itemize}
+    \item Finding literature has changed most. \term{Deep research} systems
+      break a question into parts, search, read what they find, and decide
+      what to search next.
+    \item A \term{scoping search} explores a topic. A systematic review needs
+      a final search that someone else can repeat: ROSES and PRISMA-EcoEvo
+      ask for the databases, the exact search string and the dates covered.
+    \item Deep research belongs to the scoping stage. Its results cannot be
+      repeated, so it can at most add candidates to a documented search. The
+      same rule for data searches: record the query and the date.
+  \end{itemize}
+  \source{Figure from Chapter 16 of the book.}
+\end{frame}
+
+\begin{frame}{Resolve every reference before it enters a manuscript}
+  \small A conservative estimate puts the invented citations in four large
+  collections of preprints and papers at about 147,000 in 2025 alone; many
+  credit real, already prominent scholars \parencite{zhao2026citations}.
+  \fig[0.27\textheight]{ch16-resolve}
+  \begin{itemize}
+    \item A short shell script in Chapter 16 resolves each DOI through
+      \code{doi.org}; the script that checked this book's bibliography also
+      compares the title, first author and year.
+    \item Even a perfect match does not show that the source says what the
+      sentence citing it claims. Only reading the source beside the sentence
+      shows that.
+  \end{itemize}
+  \kp{Never cite a paper you have not opened. An AI-assisted search finds
+    candidates; it does not replace reading them.}
+  \source{Figure from Chapter 16 of the book.}
+\end{frame}
+
+\begin{frame}{Reading, analysis and writing}
+  \small
+  \begin{itemize}
+    \item With the PDF in front of it, a model can explain a method, translate,
+      or answer questions about the paper; asked from memory, it invents
+      details.
+    \item It cannot judge whether the paper is any good. In 63 studies, models
+      agreed with human screeners about nine times in ten, but their median
+      accuracy in assessing risk of bias was 0.62, on only six assessments
+      \parencite{laignelot2026systematicreviews}. A confident summary of a bad
+      paper reads exactly like one of a good paper.
+    \item For analysis, use models to write code, not to produce results. Fix
+      the analysis plan before the agent starts and choose the statistical
+      model yourself.
+    \item Writing: help with structure, first drafts and proofreading; the
+      authors remain responsible for the content.
+    \item The deeper issue is voice. When a tool helps us develop our own
+      draft, writing remains part of the thinking process. Delegating the
+      draft can remove that opportunity to learn.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Review: what a journal can ask}
+  \small
+  \begin{itemize}
+    \item Nature Portfolio: AI cannot be an author, because it cannot take
+      accountability. Authors who use it to help write declare this in the
+      Methods and check the text \parencite{naturemethods2026responsibly}.
+      Records a model helped to produce, deposited in GBIF or OBIS, should say
+      so too.
+    \item Reviewers may not upload a manuscript under review into a generative
+      AI tool: unfair to the authors, and a breach of confidentiality. No
+      exception for tools that run on your own machine.
+    \item An estimated 6.5 to 16.9 per cent of the text in peer reviews for
+      four AI conferences in 2023 and 2024 was substantially modified by a
+      model \parencite{liang2024peerreview}.
+    \item Automated checks (references, statistics, duplicated figures) need
+      no generative model. A model's review is text shaped like a review,
+      without the judgement behind it.
+    \item IPBES asks for traceability: a generative summary that cannot show
+      where each statement came from fails \parencite{krug2026ipbes}. Do not
+      use AI-text detectors to judge people; make disclosure easy and normal.
+  \end{itemize}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\section{How to keep up (Chapter 17)}
+
+\begin{frame}{What to learn, and how long it lasts}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{XlX}
+    \toprule
+    \textbf{Layer} & \textbf{Stays true for} & \textbf{Worth learning?} \\
+    \midrule
+    Model names and versions & Weeks & No. Look them up. \\
+    Benchmark scores & Months & Only as a first filter for which models to test on your own task. \\
+    Prices and usage limits & Months & Only when buying. \\
+    Tool names and options & 6--12 months & Lightly; read the documentation. \\
+    Reference databases and taxonomic backbones & Months to years & Not to learn, but follow their release notes: a new release can change your results. \\
+    Patterns (harness, RAG, agent loop) & Years & Yes. \\
+    Failures (hallucination, sycophancy, injection) & Years & Yes, thoroughly. \\
+    Data standards, provenance, reproducibility & Decades & Yes. This is what lasts. \\
+    Ecological expertise & A career & Yes. It is what makes you useful here. \\
+    \bottomrule
+  \end{tabularx}
+  \kp{Spend your learning time at the bottom of that table. Everything at the
+    top is a lookup.}
+  \source{Table from Chapter 17 of the book.}
+\end{frame}
+
+\begin{frame}{People worth following, and where to look}
+  \footnotesize
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \textbf{Careful rather than fast.} Everyone with three or more works
+      in the bibliography, plus the author's picks; a selection:
+      \begin{itemize}
+        \item Melanie Mitchell (Santa Fe Institute): a careful sceptic of
+          claims about AI capability.
+        \item Yoshua Bengio (Mila and LawZero): read him alongside Mitchell,
+          who reads the same events differently.
+        \item Becker, Rush and Rein (METR): measuring what AI does to real
+          work.
+        \item Anil Seth (Sussex), Blaise Ag\"uera y Arcas (Google): the
+          consciousness exchange.
+        \item Donat Agosti (Plazi): biodiversity knowledge out of the
+          published literature.
+        \item Nakagawa, Lagisz and Parker: how far ecological evidence can be
+          trusted.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Sources.}
+      \begin{itemize}
+        \item arXiv and bioRxiv: search them when you have a question; do
+          not try to follow them. Once a year, the AI Index.
+        \item Careful writers who test things by hand and report what fails:
+          Simon Willison, Stephen Turner.
+        \item Documentation: Hugging Face, Ollama's library, your harness's
+          own.
+        \item Your domain community is more useful than the AI one: TDWG,
+          ELIXIR, the GBIF and OBIS channels.
+        \item A survey in Greece: most environmental omics researchers had
+          the hardware; the gaps were expertise, training and staff
+          \parencite{theodosopoulou2022greek}.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{A routine, and a small project}
+  \fig[0.24\textheight]{ch17-routine}
+  {\scriptsize\color{dim}About forty hours a year; more starts competing with
+    doing ecology.\par}
+  \medskip
+  \fig[0.24\textheight]{ch17-small-project}
+  {\scriptsize\color{dim}In the author's view a small project, such as a RAG
+    system over your own reprints, is the fastest way to learn. PDF extraction
+    is the hard part, chunking can matter as much as the model, and the model
+    is confidently wrong in ways you can now recognise.\par}
+  \source{Figures from Chapter 17 of the book.}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\section{Epilogue: the wider frame (Chapter 18)}
+
+\begin{frame}{Evolution and the biosphere}
+  \paperslide{muller2026evolvableai}{\footnotesize
+    \begin{itemize}
+      \item When do AI systems whose components and learning rules can
+        themselves evolve by natural selection become possible? The authors
+        argue the scenario is underrated \parencite{muller2026evolvableai}.
+      \item Treating deployed AI as an evolving population is a move
+        ecologists are well placed to judge.
+      \item \textcite{korecki2025biosphericai}: AI ethics centres on humans,
+        at most on sentient beings; the biosphere should be the design
+        target instead.
+      \item Both connect to Vernadsky's transition from biosphere to
+        \term{noosphere}, a sphere of thought.
+      \item \textcite{vonneumann1955survive} asked the version that has aged
+        best: has the world become too small, and its political units too
+        unstable, for the technology being built in it?
+    \end{itemize}}
+  \source{\fullcite{muller2026evolvableai}}
+\end{frame}
+
+\begin{frame}{An inherited archive}
+  \begin{itemize}
+    \item David Krakauer's essay on the fossil logic of AI (Appendix C)
+      compares extracting useful work from an inherited archive with
+      extracting energy from fossil fuels.
+    \item The difference matters: reading does not consume knowledge, but
+      returning unchecked generated claims to the archive can damage its
+      reliability. An interpretive analogy, not a measured ecological result.
+    \item A measured counterpart: models trained repeatedly on generated text
+      lose the rare parts of the original distribution first
+      \parencite{shumailov2024collapse}; keeping enough real data in the mix
+      can avoid this \parencite{seddik2024collapse}.
+    \item For biodiversity, the author sees the same risk in generated
+      occurrence records, trait values and phenotype assignments: once
+      deposited in public databases, they become other people's evidence and
+      training data.
+    \item The practical implication: continued investment in collections,
+      field observations and careful curation, which renew the evidence on
+      which later models and researchers depend.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Consciousness: the shape of the disagreement}
+  \begin{itemize}
+    \item Like evolvable AI and biospheric ethics, consciousness turns on how
+      built systems relate to living ones.
+    \item \textcite{chandaria2026consciousness} organise competing theories
+      around five things to examine: behaviour, computation, physical causal
+      organisation, bodily self-maintenance, and interaction between an
+      organism and its environment.
+    \item Their numerical examples show how conclusions change with explicit
+      assumptions; they are not measured probabilities that a particular model
+      is conscious.
+    \item For readers coming from biology, the framework makes the
+      disagreement clear: do the functions suffice, or do the living processes
+      that realise them matter too?
+    \item The uncertainty runs both ways: attributing experience wrongly can
+      divert concern from humans and other animals; overlooking it, if it
+      exists, could conceal suffering.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The exchange in \emph{Behavioral and Brain Sciences}}
+  \paperslide{seth2026naturalism}{\footnotesize
+    \begin{itemize}
+      \item Seth: consciousness may depend on the processes by which living
+        systems maintain themselves. Unlikely in conventional digital AI; open
+        for systems that reproduce relevant properties of brains or life
+        \parencite{seth2026naturalism}.
+      \item Richards and Ag\"uera y Arcas: living processes matter, but
+        prediction, bodily regulation and self-production are themselves
+        computational, so artificial consciousness is likely. A hypothesis,
+        not an observation \parencite{richards2026computational}.
+      \item Neither makes fluent conversation a decisive test.
+      \item The author's judgement: keep the questions visible; assess
+        research systems by their observable effects on data, people and the
+        biosphere.
+    \end{itemize}}
+  \source{\fullcite{seth2026naturalism}}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\section{The appendices}
+
+\begin{frame}{What each appendix is for}
+  \small
+  \begin{description}
+    \item[A. Glossary] The terms the book uses, from language models and
+      agents, from biodiversity data and from the statistics of testing a
+      model. Protein and genomic language models are outside its scope.
+    \item[B. Checklists] Before starting an AI-assisted project; each agent
+      session; testing a model or assistant; before submitting a manuscript;
+      before reviewing one; the minimum contents of an institutional AI
+      policy.
+    \item[C. Tutorials] Online books, videos, newsletters, blogs, awesome
+      lists and tool repositories, with names checked against the sources.
+      Start with \emph{The Turing Way} and Stanford's CME 295; the
+      Carpentries, TeSS, EMBL-EBI Training and the GBIF and OBIS courses age
+      more slowly. If a link fails, prefix it with
+      \code{https://web.archive.org/web/}.
+    \item[D. State of play] Names, prices and limits as they stood in
+      September and October 2026, each section carrying the date on which it
+      was checked: machines and prices, models, harnesses, Ollama's defaults,
+      the versions used in the workshop, subscription limits. The chapters
+      keep the reasoning and the lasting names, and point here for the rest.
+  \end{description}
+\end{frame}
+
+\begin{frame}{The checklists that matter most}
+  \footnotesize
+  \begin{columns}[T]
+    \begin{column}{0.49\textwidth}
+      \textbf{Before starting an AI-assisted project}
+      \begin{itemize}
+        \item[$\square$] Data classified: what may go to a hosted service,
+          what may not. Sensitive localities kept off hosted services.
+        \item[$\square$] Taxonomic backbone named, with its version or date;
+          coordinate reference system recorded.
+        \item[$\square$] \code{README.md} and \code{AGENTS.md} written;
+          \code{data/raw/} read-only and checksummed; backup verified.
+      \end{itemize}
+      \textbf{Each agent session}
+      \begin{itemize}
+        \item[$\square$] Before: checkpoint committed; no credentials
+          readable; task small enough to review in one sitting.
+        \item[$\square$] After: whole diff read; new dependencies verified;
+          run twice with identical output; prompt, model and version logged.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \textbf{Before submitting a manuscript}
+      \begin{itemize}
+        \item[$\square$] Every DOI resolves and its title matches; every cited
+          paper opened, and the claim matches what it says.
+        \item[$\square$] AI use disclosed specifically: model, version, date,
+          purpose, checks.
+        \item[$\square$] Every field a model extracted has a validation sample
+          with its error rates; machine-derived records flagged before
+          deposit.
+      \end{itemize}
+      \textbf{Before reviewing a manuscript}
+      \begin{itemize}
+        \item[$\square$] Journal policy on AI in peer review checked.
+        \item[$\square$] Manuscript not uploaded to any hosted service. Local
+          model or none.
+        \item[$\square$] The judgement of soundness is yours.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \source{Appendix B of the book, which also has the testing and
+    institutional-policy lists.}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Takeaways}
+  \begin{itemize}
+    \item Treat everything an agent reads as untrusted, including your own
+      data files if they came from elsewhere, and what tools say about
+      themselves.
+    \item What surrounds the model matters as much as the model: least
+      privilege, a restricted directory, a sandbox with both limits, and no
+      network when the task is local.
+    \item Never cite a paper you have not opened. An AI-assisted search finds
+      candidates; it does not replace reading them.
+    \item The skills that last are the ones ecology already values: knowing
+      where data came from, doubting a result that is too convenient, and
+      recording what you did so that someone else can check it.
+    \item Generated records deposited in public databases become other
+      people's evidence and training data; collections, field observations and
+      curation renew the evidence.
+    \item It is legitimate to decide that an AI method does not suit a
+      problem; \textcite{mishra2026notready} makes that case for ecology
+      seriously and well. What is not reasonable is using these tools without
+      checking, or staying out of the argument.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{What to tell colleagues}
+  \begin{quote}
+    These systems are useful for transforming text and writing code, where
+    you supply the content or can cheaply check the result. They are
+    unreliable for facts: they invent citations and agree with you when you
+    are wrong. The main change to daily work is agentic coding, which is
+    closer to system administration than to programming. The main thing to
+    get right is data organisation and provenance, which was worth getting
+    right anyway. Run models locally where you can, verify everything that
+    matters, and disclose what you used.
+  \end{quote}
+  \source{Chapter 17 of the book.}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
+  \printbibliography[heading=none]
+\end{frame}
+
+\end{document}

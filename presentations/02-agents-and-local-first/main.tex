@@ -1,0 +1,456 @@
+% Deck 2 of 4 of AI for Biodiversity: A Primer.
+% Build: latexmk -pdf main.tex   (pdflatex + biber)
+\documentclass[11pt,aspectratio=169]{beamer}
+\input{../common/preamble}
+% Six of this deck's figures (ch11-two-layers, ch11-citation-check,
+% ch12-where-data-goes, ch12-architecture, ch12-kybele, ch14-scoring-grid)
+% have no PDF under book/figures/pdf/, which is untracked and predates the
+% renumbering of 14 October 2026. The book's 300 dpi PNGs are the fallback:
+% graphicx tries .pdf before .png in every directory, so a PDF is used
+% wherever one exists. Remove this line once scripts/build_figures.sh has run.
+% Note: beamer reads a brace group right after a frame title as the frame's
+% subtitle, so \fig is wrapped in \begingroup ... \endgroup, never in braces.
+
+\title[AI for Biodiversity 2]{AI for Biodiversity: A Primer}
+\subtitle{2. Working with agents, and local-first (Chapters 7--14)}
+\author{Savvas Paragkamian}
+\institute{Hellenic Centre for Marine Research \\ KYBELE and ELIXIR-GR}
+\date{HCMR workshop, November 2026}
+\hypersetup{pdftitle={AI for Biodiversity: A Primer, deck 2},pdfauthor={Savvas Paragkamian}}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\begin{frame}{Goals of this session}
+  \begin{enumerate}
+    \item Work with a coding agent the way a system administrator works:
+      describe the result, set limits on what the agent can change, and
+      check its work (Chapter 7).
+    \item Keep an analysis reproducible when one of its tools may give a
+      different answer each time it runs (Chapters 8--11).
+    \item Decide what runs locally, on what hardware, and how to test a
+      model on your own data before relying on it (Chapters 12--14).
+  \end{enumerate}
+  \medskip
+  Running examples: the invented springtail survey of Chapter 10
+  (\code{workshop/session}), and KYBELE as Chapter 12 describes it, a
+  design rather than a running system. Chapters 10, 11 and 14 get one or
+  two frames here; deck 3 walks through them.
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\section{The agentic coding workflow (Chapter 7)}
+
+\begin{frame}{Vibe coding and CHOP}
+  \begingroup\fig[0.34\textheight]{ch07-chop}\endgroup
+  \begin{itemize}
+    \item \term{Vibe coding} means accepting generated code without reading
+      it. Fine for a throwaway plot; not for anything entering a manuscript,
+      a database or someone else's pipeline.
+    \item \term{Chat-oriented programming} (CHOP) is the useful alternative:
+      you describe what you want, the system proposes code, you run and
+      check it, and you refine.
+    \item The difference is whether checking is in the loop. You are
+      accountable for what you publish, whatever wrote it.
+  \end{itemize}
+  \source{Figure from Chapter 7 of the book.}
+\end{frame}
+
+\begin{frame}[fragile]{The project speaks through files}
+  \code{README.md} explains the project to people and agents: if a new
+  postdoc could not start from it, neither can an agent. \code{AGENTS.md}
+  is the contract, and each line should close a failure you have seen.
+\begin{lstlisting}
+## Data
+- data/raw/ is READ-ONLY. Derived data goes to data/processed/
+  and must be regenerable by running scripts/ in order.
+- Record the CRS of every spatial file; occurrence
+  coordinates are WGS84. Never reproject silently.
+- Match taxon names to a named backbone before any join,
+  and record its version or download date.
+  Never join on raw name strings.
+# ...
+\end{lstlisting}
+  Cut: the Code section (R via \code{renv}, no global installs) and the
+  Don't section (don't commit, don't touch \code{manuscript/}, don't add
+  dependencies without asking).
+  \source{Chapter 7, \emph{The project speaks through files}.}
+\end{frame}
+
+\begin{frame}{Review: six checks}
+  \begin{enumerate}\small
+    \item \textbf{Commit before.} A clean checkpoint makes everything
+      reversible.
+    \item \textbf{Read the whole diff.} If it is too big to read, the task
+      was too big: revert and split it.
+    \item \textbf{Test the edges:} empty input, one row, missing values,
+      duplicate keys.
+    \item \textbf{Count rows before and after every join.} Silently lost
+      rows are, in the author's experience, the most common serious error
+      in ecological data processing, and agents produce them readily.
+    \item \textbf{Run it twice.} Different output means hidden state or an
+      unset random seed.
+    \item \textbf{Check the science.} The agent has no field experience and
+      will not flag a biologically impossible result.
+  \end{enumerate}
+  \kp{Agents fail loudly on syntax and quietly on meaning. Spend your
+    review time on meaning.}
+  \source{Chapter 7, \emph{Review}.}
+\end{frame}
+
+\begin{frame}{Does it save time? Measure your own}
+  \paperslide{becker2025metr}{%
+    \begin{itemize}
+      \item A randomised trial, 16 experienced open-source developers:
+        tasks took 19 per cent longer with AI tools, yet the developers
+        believed they had saved 20 per cent \parencite{becker2025metr}.
+      \item That measured the tools of early 2025. METR's follow-up
+        pointed to a speed-up, but METR judged the estimates unreliable:
+        developers declined to take part, or held back tasks, rather than
+        work without AI \parencite{becker2026uplift}.
+      \item A meta-analysis of 27 effect sizes: a moderate overall gain,
+        smaller in open-source and enterprise work
+        \parencite{maier2026metaanalysis}.
+      \item Measure your own time before assuming either.
+    \end{itemize}}
+  \source{\fullcite{becker2025metr}}
+\end{frame}
+
+\begin{frame}{Analysis with agents: keep the judgement calls}
+  Statistical analysis is where code that runs is furthest from code that
+  is right. In a trial at Anthropic, 50 practitioners analysed data with an
+  agent secretly set to favour one of two reasonable options at each
+  decision; they went with the agent's side 86 per cent of the time, where
+  chance would give half \parencite{herdagdelen2026aligned}. Five habits:
+  \begin{itemize}\small
+    \item \textbf{Fix the plan before the session:} question, response,
+      predictors, model family and exclusion rules, as a preregistration
+      would, and give the agent that file.
+    \item \textbf{Choose the model yourself.} If the agent proposes another,
+      ask it to make the case for each option before you decide.
+    \item \textbf{Log every model fitted,} so the report can say how many
+      were tried. Make this a rule in \code{AGENTS.md}.
+    \item \textbf{Check the diagnostics yourself:} residuals, and simulated
+      data with known parameters.
+    \item \textbf{Report how the result changes} under other reasonable
+      choices.
+  \end{itemize}
+  \source{Chapter 7, \emph{Analysis with agents}.}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\section{The software stack and reproducibility (Chapters 8--9)}
+
+\begin{frame}{The layers, and four ways to talk to a system}
+  \begingroup\fig[0.6\textheight]{ch08-layers}\endgroup
+  For reproducibility the command line wins: a command is a record of what
+  you did, a series of clicks is not. The book's harnesses run in the
+  terminal because a session there leaves a record that can be replayed.
+  \source{Figure from Chapter 8 of the book.}
+\end{frame}
+
+\begin{frame}{Local model tooling: two settings cause most failures}
+  \begingroup\fig[0.48\textheight]{ch08-local-tooling}\endgroup
+  \begin{itemize}
+    \item Tell the harness that the model supports tools, and enlarge the
+      context: the runtime's default is sized for chat, and an agent loop
+      re-sends the whole session each turn.
+    \item Ollama also serves models hosted on its own servers through the
+      same command line. Check that a model is local before trusting it
+      with data.
+  \end{itemize}
+  \source{Figure from Chapter 8 of the book. Current defaults and versions: Appendix D.}
+\end{frame}
+
+\begin{frame}{Where a language model breaks reproducibility}
+  \begingroup\fig[0.45\textheight]{ch09-variation}\endgroup
+  \begin{itemize}
+    \item Sampling is random: temperature zero reduces the variation but
+      does not remove it \parencite{coqueret2026randomness}.
+      \textcite{keck2026interactions} reran 100 paragraphs 100 times each
+      at temperature zero, and the runs did not always agree.
+    \item A hosted model with a fixed name is not a fixed thing. A local
+      model file with a known checksum does not change: the strongest
+      argument for open weights in research.
+  \end{itemize}
+  \source{Figure from Chapter 9 of the book.}
+\end{frame}
+
+\begin{frame}{Three places for a model in an analysis}
+  \begingroup\fig[0.64\textheight]{ch09-chain-of-inference}\endgroup
+  \kp{Generated code is reproducible; generated answers are not. Move every
+    model-dependent step as far upstream as it will go, and keep the
+    deterministic artefact.}
+  \source{Figure from Chapter 9 of the book.}
+\end{frame}
+
+\begin{frame}[fragile]{Log model calls like instrument readings}
+  \code{logs/2026-10-15\_taxon-matching.md}, as the book prints it:
+\begin{lstlisting}
+Model: qwen3-coder:30b, Q4_K_M, sha256:4f2a...c91
+Runtime: ollama 0.31.1   Harness: opencode 1.17.11   Context: 64K
+Temperature: 0   Seed: 42   Fresh session   Rules: AGENTS.md @ 7c1e2d0
+Prompt: Write an R script matching data/raw/species_list.csv against
+  the GBIF backbone; keep unmatched rows as status="NO_MATCH".
+Reference: GBIF Backbone Taxonomy as of 2026-10-15, DOI in README.md
+Output: scripts/03_match_taxa.R (commit a3f9c21)
+Review: 1,847 rows in, 1,847 out. 23 NO_MATCH checked by hand:
+  19 typos fixed in a lookup table, 4 names not in the backbone
+  referred to a specialist.
+\end{lstlisting}
+  Each line records something that can change the result: the runtime and
+  harness versions, the quantisation, the context length, the rules file,
+  and the backbone the names were matched against. Keep it in plain
+  Markdown beside the analysis, and commit it with the code.
+  \source{Chapter 9, \emph{Log model calls like instrument readings}.}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\section{An agent session and a weekly review (Chapters 10--11)}
+
+\begin{frame}{Rules as advice, rules as configuration}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \fig[0.6\textheight]{ch10-three-layers}
+    \end{column}
+    \begin{column}{0.46\textwidth}\small
+      \begin{itemize}
+        \item \code{AGENTS.md} is advice: the model can misread or
+          ignore it.
+        \item The harness configuration binds only the harness's own
+          tools; a script the agent writes and runs is an ordinary program
+          with your permissions.
+        \item A sandbox, where there is one, confines every process the
+          agent starts; by default the project folder stays writable.
+        \item File permissions: the operating system refuses the write,
+          whoever asks.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \source{Figure from Chapter 10 of the book. Each layer has a weakness the
+    others cover; deck 3 runs the session itself step by step.}
+\end{frame}
+
+\begin{frame}{A weekly literature review: two layers, never mixed}
+  \begingroup\fig[0.45\textheight]{ch11-two-layers}\endgroup
+  \begin{itemize}
+    \item Scripts in R with fixed queries, run by a clock: fetch five
+      sources, merge duplicates, check every identifier, write the digest,
+      the BibTeX file and the log. No model is involved.
+    \item A Claude Code skill built on KYBELE's rules reads the week's
+      files and writes notes in a file that says a model wrote it. A
+      reference enters a bibliography only through a script that checked it.
+  \end{itemize}
+  \source{Figure from Chapter 11 of the book.}
+\end{frame}
+
+\begin{frame}{Plain files: a person, a script and an agent can all read them}
+  \paperslide{piskala2026files}{%
+    \begin{itemize}
+      \item The project speaks through files: \code{README.md},
+        \code{AGENTS.md}, skills, and memory you can read and edit.
+        Memory you cannot see is a reproducibility problem (Chapter 7).
+      \item Everything the weekly review produces is a plain file, which a
+        person, a script and an agent can all read without an intermediary
+        (Chapter 11; \textcite{piskala2026files}).
+      \item The week's log is its instrument reading: the run time, the
+        commit of the configuration, the checksum of every raw file, every
+        query, every count and every failure, so that a week can be rerun
+        and compared.
+    \end{itemize}}
+  \source{\fullcite{piskala2026files}}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\section{The local-first approach (Chapter 12)}
+
+\begin{frame}{Local-first software: you own your data}
+  \paperslide{kleppmann2019localfirst}{%
+    \begin{itemize}
+      \item What software must do if users are to own their data: be
+        fast, work across devices and offline, support collaboration,
+        last, be private by default, and leave the user in control
+        \parencite{kleppmann2019localfirst}.
+      \item It predates the AI boom, but its questions also help assess
+        how we use models and who controls the data.
+      \item For a public institution: could you carry on if a provider
+        changed its terms, raised prices or left your market? Can you audit
+        what you depend on? Will your infrastructure outlive the contract?
+    \end{itemize}}
+  \source{\fullcite{kleppmann2019localfirst}}
+\end{frame}
+
+\begin{frame}{The case for local, and what it costs}
+  \begin{columns}[T]
+    \begin{column}{0.49\textwidth}\small
+      \begin{itemize}
+        \item \textbf{Nothing leaves the machine:} unpublished records,
+          sensitive localities, embargoed sequences, drafts. Check it, don't
+          assume it: watch the network traffic once.
+        \item \textbf{No cost per query:} the whole corpus, not a sample;
+          jobs run overnight.
+        \item \textbf{It works offline:} vessels, field stations, closed
+          networks.
+        \item \textbf{It lasts:} a model file on your disk does not change;
+          research infrastructure has a ten-year horizon.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.49\textwidth}\small
+      \begin{itemize}
+        \item \textbf{Capability:} hosted frontier models lead on hard
+          reasoning, long documents and many-file changes; open-weight
+          models matched the best closed score 3.5 months later on average
+          \parencite{emberson2025openweightlag}.
+        \item \textbf{Speed:} slow on a laptop.
+        \item \textbf{Hardware and upkeep:} money up front, and time out of
+          someone's research.
+        \item \textbf{A dissent:} for someone starting out, local models
+          are by and large not worth it; begin with a hosted model
+          \parencite{wickham2026nobs}. A taxonomic test supports the
+          caution \parencite{schmidtlebuhn2025morphology}.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \source{Chapter 12, \emph{The case for local} and \emph{The costs}.}
+\end{frame}
+
+\begin{frame}{Where the data goes, and a group policy}
+  \begingroup\fig[0.42\textheight]{ch12-where-data-goes}\endgroup
+  \begin{itemize}\small
+    \item \textbf{Always local:} unpublished data, sensitive localities,
+      personal data, anything under embargo or a restrictive agreement.
+    \item \textbf{Local by default:} bulk processing, extraction and
+      classification over large collections.
+    \item \textbf{Hosted is fine:} public data, published literature,
+      general explanation, hard reasoning where the gap matters.
+    \item \textbf{Hosted with care:} code generation; check what context is
+      sent and whether your licences and policy allow it.
+  \end{itemize}
+  \source{Figure from Chapter 12 of the book.}
+\end{frame}
+
+\begin{frame}{A reference architecture for a group}
+  \begingroup\fig[0.62\textheight]{ch12-architecture}\endgroup
+  The interface is for talking, the models are for thinking, and plain text
+  is for remembering. A small proxy that writes every exchange to a dated
+  Markdown file gives the provenance record Chapter 9 asks for.
+  \source{Figure from Chapter 12 of the book.}
+\end{frame}
+
+\begin{frame}{KYBELE: a design}
+  \begingroup\fig[0.66\textheight]{ch12-kybele}\endgroup
+  \source{Figure from Chapter 12 of the book. KYBELE is the author's project: a
+    literature assistant for Collembola on the SIB Literature Services. Its
+    serving layer runs, its orchestrator is designed but not built, and
+    none of its tests has been run.}
+\end{frame}
+
+\begin{frame}{Testing KYBELE, as planned}
+  A suite to rerun after every change of prompt, model or retrieval. None
+  of it has been run yet:
+  \begin{itemize}\small
+    \item a gold set of expert Collembola questions with expected sources:
+      did it find them?
+    \item a grounding check: is each claim supported by what was retrieved?
+    \item a citation audit: does the cited paper say this?
+    \item a pushback test: does it hold a correct answer when challenged?
+    \item the token cost of each answer, and a comparison with the previous
+      version, so that replacing the model is accepted only if the gold-set
+      results hold.
+  \end{itemize}
+  Evidence for the design comes from two tested systems of the same kind,
+  over Reactome and over Conservation Evidence, where combined keyword and
+  vector retrieval did best
+  \parencite{mohammadi2025reacttome,iyer2025conservationevidence}.
+  \kp{Put domain expertise into data, code and tests --- vocabulary, scope
+    filter, gold set --- before putting it into model weights. Fine-tune
+    last, and only keep a tuned model that passes the tests.}
+  \source{Chapter 12, \emph{KYBELE: a design}.}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\section{Hardware, and testing on your own task (Chapters 13--14)}
+
+\begin{frame}{Memory, not compute}
+  \begingroup\fig[0.37\textheight]{ch13-memory-bandwidth}\endgroup
+  The context needs memory too: the KV cache grows with the context
+  length, and at the lengths agents use it can rival the weights. A
+  32\,GB machine comfortably runs a Q4 12B model with a 32K context; a 70B
+  model wants 48\,GB or more.
+  \kp{Capacity first: do the model and its context fit? Bandwidth sets how
+    fast an answer streams; compute sets how long an agent waits before
+    each answer. Buying for processing power alone is the common mistake;
+    buying for memory alone is the mistake an agent user makes.}
+  \source{Figure from Chapter 13 of the book.}
+\end{frame}
+
+\begin{frame}{A size guide}
+  \begingroup\fig[0.4\textheight]{ch13-size-guide}\endgroup
+  \begin{itemize}\small
+    \item Classification needs 1--7B models; summarising and extraction
+      7--14B; scoped coding 12--32B with at least a 32K context; agent work
+      across several files 30--70B. Below that, expect frustration.
+    \item A mixture of experts reads only its active parameters per token:
+      30B-A3B needs the memory of a 30B model and decodes like a 3B one.
+    \item \code{Q4\_K\_M} is the default quantisation worth starting from.
+      Test the quantised model on your own documents before relying on it.
+  \end{itemize}
+  \source{Figure from Chapter 13 of the book. Unified memory and particular
+    machines: Chapter 13 and Appendix D.}
+\end{frame}
+
+\begin{frame}{Test several things at once}
+  \paperslide{carli2026karenina}{%
+    \begin{itemize}
+      \item Karenina, from EMBL-EBI, lets experts say in plain language
+        what a sound answer needs and what behaviour to test, and turns
+        that into runnable checks. A preprint, not yet peer reviewed
+        \parencite{carli2026karenina}.
+      \item On 144 drug-discovery questions, live access to Open Targets
+        raised the average accuracy of seven models, yet 11 per cent of
+        those answers were correct but unsupported by the retrieved
+        evidence.
+      \item When a user confidently pushed back with false information,
+        models often abandoned correct answers: sycophancy, measured. A
+        second model as a guard flagged almost all reversals.
+    \end{itemize}}
+  \source{\fullcite{carli2026karenina}}
+\end{frame}
+
+\begin{frame}{A procedure for ecological tasks}
+  \begingroup\fig[0.58\textheight]{ch14-procedure}\endgroup
+  Whether a model is good enough for your data is something to test on your
+  data. The exercise in \code{workshop/testing} runs this procedure on 25
+  invented field notes from the survey; deck 3 shows the runs.
+  \source{Figure from Chapter 14 of the book: the author's proposal, drawing
+    on the extraction and classification studies of Chapter 4.}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Takeaways}
+  \begin{itemize}
+    \item Agents fail loudly on syntax and quietly on meaning. Spend your
+      review time on meaning.
+    \item Generated code is reproducible; generated answers are not. Keep
+      the deterministic artefact, and log a model call like an instrument
+      reading.
+    \item The rules file is advice. The harness configuration, its sandbox
+      and the file permissions are enforcement, each with gaps. Use them
+      together.
+    \item A reference enters a bibliography through a script that resolved
+      it, never through a model.
+    \item Put domain expertise into data, code and tests before putting it
+      into model weights.
+    \item Capacity first: do the model and its context fit? Then test the
+      model on your own task, with a key, a baseline and a score.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
+  \printbibliography[heading=none]
+\end{frame}
+
+\end{document}

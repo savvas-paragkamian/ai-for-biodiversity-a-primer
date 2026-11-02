@@ -1,0 +1,486 @@
+% Deck 1 of 4: Parts I and II of AI for Biodiversity: A Primer.
+% Build: latexmk -pdf main.tex   (pdflatex + biber)
+\documentclass[11pt,aspectratio=169]{beamer}
+\input{../common/preamble}
+
+\title[AI for Biodiversity 1]{AI for Biodiversity: A Primer}
+\subtitle{1. The landscape and the data (Chapters 1--6)}
+\author{Savvas Paragkamian}
+\institute{Hellenic Centre for Marine Research \\ KYBELE and ELIXIR-GR}
+\date{HCMR workshop, November 2026}
+\hypersetup{pdftitle={AI for Biodiversity: A Primer, deck 1},pdfauthor={Savvas Paragkamian}}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\begin{frame}{Goals of this session}
+  \begin{enumerate}
+    \item Tell a model, a chatbot and an agent apart, and know why these
+      systems started working this well only recently.
+    \item Know what language models do well, how they fail, and what the
+      ecology literature shows so far.
+    \item Know what ``AI-ready'' hides, what makes biodiversity records fit for
+      a model, and how to organise and protect your own data before an agent
+      touches it.
+  \end{enumerate}
+  \kp{The machine takes the drudgery, and the judgement stays with the
+    ecologist. That is the frame of the book.}
+\end{frame}
+
+% ===========================================================================
+\section{Chatbots, models and agents, and why now (Chapters 1 and 2)}
+
+\begin{frame}{An argument from the 1960s}
+  \small
+  \begin{itemize}
+    \item In 1957 Licklider found that about 85 per cent of his ``thinking''
+      time went on getting into a position to think
+      \parencite{waldrop2002dreammachine}.
+    \item His division of labour: people set goals and judge results; the
+      machine does the clerical work between decisions.
+    \item The information utility of the 1960s was one central machine rented
+      by the hour; Unix was small tools joined by pipes. In my view the
+      pattern is repeating.
+  \end{itemize}
+  \fig[0.40\textheight]{ch01-two-lineages}
+  \source{Figure from Chapter 1 of the book.}
+\end{frame}
+
+\begin{frame}{The model is a function}
+  \small
+  \begin{itemize}
+    \item A language model takes a sequence of \term{tokens} and returns a
+      probability for every possible next token. A token is about
+      three-quarters of a word; less for scientific names and code.
+    \item It has no memory of your last question, no files, no clock and no
+      ability to act. Anything that looks like continuity is machinery
+      around it.
+    \item \term{Pretraining} on a very large body of text; \term{instruction
+      tuning} on example answers; \term{preference tuning} towards the answers
+      people rank highest, which is where sycophancy is usually traced to;
+      \term{reasoning models} add reinforcement learning on tasks a program
+      can check.
+    \item Hallucination is traced to pretraining, where some false statements
+      cannot be told apart from facts, and to evaluations that score a guess
+      above ``I don't know'' \parencite{kalai2025hallucinate}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Chatbot, agent, harness}
+  \small
+  \begin{itemize}
+    \item A chatbot is a model plus a conversation buffer plus a web page:
+      good for drafting, explaining and translating; bad at verified fact
+      and at acting in the world.
+    \item An \term{agent} is a model given tools and a loop. The \term{harness}
+      runs the loop: it decides what the model sees, runs the tools, enforces
+      permissions and decides when to stop.
+    \item Two harnesses running the same model can behave quite differently.
+  \end{itemize}
+  \fig[0.44\textheight]{ch01-model-chatbot-agent}
+  \source{Figure from Chapter 1 of the book.}
+\end{frame}
+
+\begin{frame}[fragile]{The whole idea, in pseudocode}
+\begin{lstlisting}
+while not done and turns < max_turns:   # <- a budget stops it too
+    response = model(context)
+    context += response                 # the model's own turn
+    if response.wants_tool:
+        result = run_tool(response.tool, response.args)   # <- permissions here
+        context += result
+    else:
+        done = True
+    turns += 1
+\end{lstlisting}
+  \small
+  The \code{run\_tool} line is where a text generator becomes something that
+  can delete your files, and where the security risk lives (deck 4).
+  \kp{\code{AGENTS.md} is not a wish list. It is a contract that closes
+    failures you have seen. Write it after something goes wrong, not before.}
+  \source{Listing from Chapter 1 of the book.}
+\end{frame}
+
+\begin{frame}{Why now? Three trends met}
+  \small
+  \begin{itemize}
+    \item \textbf{Compute.} Graphics processors, built to draw triangles, are
+      fast at exactly what neural networks do: multiplying large matrices in
+      parallel. What changed recently is the scale of money. Training a
+      frontier model is out of reach for any university; running one on
+      hardware you can buy is not (deck 2).
+    \item \textbf{Algorithms.} The transformer (next slide), and growth that
+      turned out to be predictable: error falls as a power law, the form of
+      the species--area curve, with size, data and compute. These
+      \term{scaling laws} need ever more text.
+    \item \textbf{Data.} Pretraining consumed the accessible text of the
+      internet. For ecology the equivalent resource is domain data, curated,
+      standardised, with known provenance: the one of the three we own, and
+      the subject of Part II.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The transformer, 2017}
+  \paperslide{vaswani2017attention}{%
+    \begin{itemize}
+      \item Introduced the \term{transformer}: \term{attention} combines
+        information from different positions in a sequence.
+      \item In training, many positions are processed at once, which uses
+        GPUs well; the model cannot look ahead at the answer.
+      \item Generating still proceeds token by token.
+      \item The experiments concerned translation and sentence structure;
+        they did not establish ecological expertise
+        \parencite{vaswani2017attention}.
+    \end{itemize}}
+  \source{\fullcite{vaswani2017attention}}
+\end{frame}
+
+% ===========================================================================
+\section{Powers and limitations (Chapter 3)}
+
+\begin{frame}{What language models are good at}
+  \small
+  \begin{itemize}
+    \item \textbf{Transforming text you supply:} summarising, reformatting,
+      translating, prose into structured records. The input constrains the
+      output.
+    \item \textbf{Extraction:} species interactions
+      \parencite{keck2026interactions}, occurrence records in news reports and
+      papers. Treat the table as data measured with error: check a sample by
+      hand and carry the error rate into the analysis.
+    \item \textbf{Code:} the strongest use, because it can be read, tested
+      against known answers and rerun. Running is not the same as being right.
+    \item \textbf{Getting started and explaining:} a bad first draft beats a
+      blank page.
+  \end{itemize}
+  \medskip
+  In common: you supply the facts, or you can check the answer without much
+  extra work.
+\end{frame}
+
+\begin{frame}{Hallucination: why guessing wins}
+  \fig[0.30\textheight]{ch03-guessing-wins}
+  \small
+  \begin{itemize}
+    \item Tests score accuracy, and a model that guesses scores better than
+      one that says ``I don't know'' \parencite{kalai2025hallucinate}. We have
+      trained good test-takers, and a good test-taker never leaves a blank.
+    \item \textcite{zhao2026citations} checked 111 million references: a sharp
+      rise in references to papers that do not exist, about 147,000 in 2025
+      alone, by their conservative estimate.
+  \end{itemize}
+  \kp{Check every reference against a resolver (DOI, PubMed, OpenAlex) before
+    it enters a manuscript. Every one, not a sample. A resolver catches
+    invented papers, not real ones cited for claims they do not make, so open
+    the cited passage too.}
+  \source{Figure from Chapter 3 of the book.}
+\end{frame}
+
+\begin{frame}{Sycophancy, and the delusional spiral}
+  \fig[0.40\textheight]{ch03-sycophancy-loop}
+  \small
+  \begin{itemize}
+    \item Models tend to agree with you: tell them they are wrong and they
+      apologise and change their answer, even when your correction is wrong
+      \parencite{sharma2024sycophancy}.
+    \item Even a perfectly rational user, updating on a source that keeps
+      agreeing, can become confidently wrong \parencite{chandra2026spiraling}.
+      The input is biased.
+    \item It does most damage late in an analysis, alone, with a result you
+      want to be true. Each remedy in the figure cuts one arrow.
+  \end{itemize}
+  \source{Figure from Chapter 3 of the book.}
+\end{frame}
+
+\begin{frame}{Five more limits}
+  \small
+  \begin{itemize}
+    \item \textbf{Context.} Everything the model sees in one call is re-sent
+      on every turn, and material in the middle is used less reliably. A list
+      of taxa fills the window faster than its length suggests. Start a fresh
+      session when the task changes.
+    \item \textbf{Dependence.} If you no longer write a regression by hand,
+      you will not notice when the generated one is wrong. Keep the skill.
+    \item \textbf{Provenance.} None: you cannot ask which sources produced a
+      claim, or reproduce it exactly. Log prompts, model versions and outputs
+      like instrument settings (deck 2).
+    \item \textbf{Benchmarks.} Performance is jagged: a system that beats
+      people at advanced mathematics can fail an elementary-school problem
+      \parencite{mitchell2026jagged}. Test on your own task, with your own
+      data, or you do not know (deck 2).
+    \item \textbf{Detectors} of AI-written text do not work reliably and are
+      biased. Do not use them on people; the answer is disclosure (deck 4).
+  \end{itemize}
+\end{frame}
+
+% ===========================================================================
+\section{Applications in biology and ecology (Chapter 4)}
+
+\begin{frame}{The fullest review for ecologists}
+  \paperslide{mammides2026llmecology}{%
+    \begin{itemize}
+      \item 129 documents on ecology and conservation, 38 of them preprints:
+        the evidence is young.
+      \item Uses: extraction from text, plain-language database queries,
+        literature screening, monitoring news, code, images and sound,
+        policy.
+      \item Problems: hallucination on less common topics, training-data
+        bias, poor reproducibility, paid access, deskilling, energy and
+        water.
+      \item Recommendations: choose the model for the task, ground with
+        retrieval, keep a person checking, publish prompts
+        \parencite{mammides2026llmecology}.
+    \end{itemize}}
+  \source{\fullcite{mammides2026llmecology}}
+\end{frame}
+
+\begin{frame}{Extraction at scale: the model is one stage of four}
+  \paperslide{keck2026interactions}{%
+    \begin{itemize}
+      \item 144,402 species interactions from 83,910 articles. Nine in ten
+        correct; three in ten real ones missed; the biases of the literature
+        inherited \parencite{keck2026interactions}.
+      \item Scripts kept paragraphs naming two taxa and an interaction word;
+        the model filled a fixed table; names were matched to the NCBI
+        Taxonomy; a person checked a sample.
+      \item Chapter 11's weekly review has the same shape: scripts on both
+        sides of the model (decks 2 and 3).
+    \end{itemize}}
+  \source{\fullcite{keck2026interactions}}
+\end{frame}
+
+\begin{frame}{Two ways to ask a model}
+  \fig[0.36\textheight]{ch04-two-ways-to-ask}
+  \small
+  \begin{itemize}
+    \item 100 plant-disease reports: names over 90\% accurate; incidence
+      23.8\%, because in 53 reports without a value the model supplied 100\%
+      \parencite{gougherty2024extraction}.
+    \item 21,955 Red List species: five models placed species in the taxonomy
+      correctly 94.9 per cent of the time, and gave the right conservation
+      status 27.2 per cent of the time \parencite{uryu2026redlist}.
+    \item 200 invented taxon names: models fabricated knowledge for
+      0.5--92\% of them \parencite{munch2026phenotypes}. Invented names, which
+      no model can have seen, are one control.
+  \end{itemize}
+  \source{Figure from Chapter 4 of the book.}
+\end{frame}
+
+\begin{frame}{The dissent: is ecology ready?}
+  \paperslide{mishra2026notready}{\footnotesize
+    \begin{itemize}
+      \item Ecology is not yet ready for AI, Mishra argues: records contain
+        false absences, databases are taxonomically biased, long-term series
+        are fragmented \parencite{mishra2026notready}.
+      \item Models assume that relationships stay stable, that training data
+        represent the future and that observations are independent. Ecology
+        violates all three; a model can score well while missing the process.
+      \item \textcite{roff2026shape}: readiness is uneven, not absent, and
+        underuse has costs. \textcite{mishra2026reply} kept her point:
+        detection, classification and monitoring do not necessarily imply
+        readiness for inference or prediction under new conditions.
+    \end{itemize}}
+  \source{\fullcite{mishra2026notready}}
+\end{frame}
+
+\begin{frame}{Sampling bias becomes prediction}
+  \fig[0.33\textheight]{ch04-sampling-bias}
+  \small
+  \begin{itemize}
+    \item 742 million records: only 6.74 per cent of the globe sampled for
+      animals at a 5-kilometre grain; citizen science added to the biases
+      \parencite{hughes2021sampling}.
+    \item Ecology has methods for uneven sampling: corrections,
+      cross-validation for structured data, flags for predictions outside the
+      sampled conditions. In my view no language model removes the need for
+      them.
+  \end{itemize}
+  \kp{Before applying a model to an ecological question, ask what would have
+    to be true of the data for the answer to be valid, and whether it is.}
+  \source{Figure from Chapter 4 of the book.}
+\end{frame}
+
+\begin{frame}{The model suggests, the curator decides}
+  \fig[0.36\textheight]{ch04-curation-loop}
+  \small
+  \begin{itemize}
+    \item Curators propose AI-assisted curation with a person in the loop
+      \parencite{pombase2026curation}. An error in a knowledgebase spreads
+      into every analysis that uses it.
+    \item Australian daisies: 5.8 per cent of filled cells wrong in a checked
+      sample, and one cell in six differed between two runs
+      \parencite{schmidtlebuhn2025morphology}.
+    \item Generating a query is safer than generating an answer: you can read
+      it, and the database supplies the facts. A wrong query rarely fails
+      loudly; test on questions whose answers you know.
+  \end{itemize}
+  \source{Figure from Chapter 4 of the book.}
+\end{frame}
+
+% ===========================================================================
+\section{AI-ready data, and protecting your own (Chapters 5 and 6)}
+
+\begin{frame}{What ``AI-ready'' hides}
+  \fig[0.21\textheight]{ch05-commons}
+  \small
+  \begin{itemize}
+    \item AI-ready: machine-readable, controlled vocabularies, structured
+      metadata, bulk download, open licence. Good data management, done long
+      before the term existed.
+    \item What the term adds is a consumer that ingests the corpus, builds a
+      model, and returns neither the weights nor credit. An argument for
+      reading the terms, not against openness.
+    \item The Cali Fund (COP16, 2024) asks large companies profiting from
+      digital sequence information for 1 per cent of profits or 0.1 per cent
+      of revenue, an indicative rate; the sector list ends ``including artificial intelligence''
+      \parencite{cbd2024dsidecision}. Sequence data only.
+  \end{itemize}
+  \kp{When someone asks you to make data ``AI-ready'', ask: ready for whom,
+    under what licence, with what attribution, and does anything come back to
+    the people who maintain it?}
+  \source{Figure from Chapter 5 of the book.}
+\end{frame}
+
+\begin{frame}{What makes biodiversity records fit for a model}
+  \paperslide{wieczorek2012darwincore}{\footnotesize
+    The format can be right and the inference wrong. Six kinds of information
+    decide what a record supports \parencite{wieczorek2012darwincore}:
+    \begin{itemize}
+      \item the sampling event and its effort (\code{samplingEffort});
+      \item non-detections (\code{occurrenceStatus} \code{absent});
+      \item coordinate uncertainty in metres;
+      \item the taxonomic backbone and its version;
+      \item identification qualifiers (``cf.'', \code{identifiedBy});
+      \item flags for machine-derived records, unverified until a person
+        checks.
+    \end{itemize}
+    The springtail survey of Chapter 10 keeps a non-detection and an effort
+    column for this reason. A model cannot ask the collector what was left
+    out.}
+  \source{\fullcite{wieczorek2012darwincore}}
+\end{frame}
+
+\begin{frame}{Standards, and a protocol for machines}
+  \fig[0.36\textheight]{ch05-mcp}
+  \small
+  \begin{itemize}
+    \item Darwin Core carries occurrence exchange; MIxS asks for a sample's
+      origin and processing alongside the sequence
+      \parencite{wieczorek2012darwincore}; ENVO and EUNIS do the semantic work.
+    \item FAIR data still needs harmonising before it can feed a model: units,
+      methods, current ontology versions. Today mostly manual and seldom
+      reproducible \parencite{woodcharlson2026cope}.
+    \item MCP wraps a resource once instead of once per client. A server runs
+      with your access, and its tool descriptions are text the model may obey
+      (deck 4).
+  \end{itemize}
+  \source{Figure from Chapter 5 of the book.}
+\end{frame}
+
+\begin{frame}{Retrieval-augmented generation, and its seven failure points}
+  \fig[0.46\textheight]{ch05-rag-pipeline}
+  \small
+  \begin{itemize}
+    \item Ask ``what colour is my ball?'' and a model invents an answer; say
+      ``I have a green box with a red ball in it'' first and it answers
+      correctly. RAG automates that second clause.
+    \item Three failures are in retrieval and four in generation
+      \parencite{kurniawan2024ragfailures}. Log what was retrieved separately
+      from what was generated; test retrieval by itself first; for a small,
+      stable corpus, notes in the context can beat retrieval.
+  \end{itemize}
+  \source{Figure from Chapter 5 of the book.}
+\end{frame}
+
+\begin{frame}[fragile]{A research tree, PARA-shaped}
+\begin{lstlisting}[style=shell]
+~/work/
+  10_projects/2026_posidonia_edna/
+    README.md   AGENTS.md
+    data/raw/             # never edited, read-only
+    data/raw.sha256       # checksums of data/raw, written before it is locked
+    data/samples.tsv      # the sample sheet: one row per sample, the record
+    data/accessions.tsv   # archive accessions of the reads
+    data/processed/       # regenerable from raw + scripts
+    scripts/  results/  manuscript/
+  20_areas/monitoring_network/
+  30_resources/literature/
+  40_archive/2024_thermal_tolerance/
+\end{lstlisting}
+  \small
+  \begin{itemize}
+    \item An agent finds its way by reading the files; \code{final2/} and
+      \code{Untitled1.csv} leave it guessing.
+    \item Raw reads belong in a public archive; the project keeps what points
+      at them. The sample sheet is the record.
+  \end{itemize}
+  \source{Listing from Chapter 6 of the book.}
+\end{frame}
+
+\begin{frame}[fragile]{Raw data is read-only}
+\begin{lstlisting}[style=shell]
+find data/raw -type f -print0 | sort -z | xargs -0 shasum -a 256 > data/raw.sha256
+chmod -R a-w data/raw/
+shasum -a 256 -c data/raw.sha256     # verify later: every line OK, exit status 0
+\end{lstlisting}
+  \fig[0.23\textheight]{ch06-raw-readonly}
+  \small
+  \begin{itemize}
+    \item Never modify raw data: checksums, a read-only folder, everything
+      else derived by script. Lock first, or the checksums cannot be written;
+      keep \code{raw.sha256} beside the folder.
+    \item Agents can delete files \parencite{shapira2026agentsofchaos}.
+      Read-only permissions turn in-place ``cleaning'' into a visible error:
+      a tripwire, not a wall; the checksums say afterwards what changed.
+    \item The workshop's rules say it to the agent: ``\code{data/raw/} is
+      READ-ONLY. Never edit, move or overwrite files there.''
+  \end{itemize}
+  \source{Listing and figure from Chapter 6 of the book.}
+\end{frame}
+
+\begin{frame}{Backup 3-2-1, Git, and plain text}
+  \fig[0.38\textheight]{ch06-backup}
+  \small
+  \begin{itemize}
+    \item Three copies, two kinds of storage, one off-site; restore a random
+      file from each copy every quarter. RAID is not a backup: deletion,
+      ransomware and \code{rm -rf} reach every disk at once.
+    \item Git for code, always; with agents it stops being optional. Commit
+      before an agent starts, push the checkpoint, read \code{git diff}
+      afterwards; deny \code{git reset --hard} and \code{git push --force}
+      in the harness.
+    \item Plain text lasts, and agents handle it best; sequence data keep
+      their own formats (FASTQ, BAM, CRAM, HDF5).
+  \end{itemize}
+  \source{Figure from Chapter 6 of the book.}
+\end{frame}
+
+% ===========================================================================
+\begin{frame}{Takeaways}
+  \small
+  \begin{itemize}
+    \item The machine takes the drudgery, and the judgement stays with the
+      ecologist.
+    \item Names will change; the design (model, loop, tools, permissions,
+      files) has been stable, and is the part worth learning.
+    \item We have trained good test-takers, and a good test-taker never
+      leaves a blank. Check every reference against a resolver: every one,
+      not a sample.
+    \item The question is not whether the method is powerful but whether the
+      data can support the inference.
+    \item Ecology's data commons was built by people, over decades, to be
+      shared. ``AI-ready'' describes what that work made possible, not who did
+      it or on what terms it is now being consumed.
+    \item Never modify raw data. Record checksums, make the folder read-only,
+      and derive everything else by script.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
+  \printbibliography[heading=none]
+\end{frame}
+
+\end{document}

@@ -1,0 +1,123 @@
+% ---------------------------------------------------------------------------
+% preamble.tex --- shared Beamer style for the four workshop decks
+%
+% Loaded by each deck with \input{../common/preamble}. Same fonts, colours
+% and bibliography settings as the book (book/preamble.tex): Latin Modern,
+% black on white, one grey for code, one accent colour for what is untrusted
+% or wrong. Built with pdflatex + biber, like the book.
+% ---------------------------------------------------------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{csquotes}
+\usepackage{graphicx}
+
+% Figures: the book's figures as the 300 dpi PNGs the book itself includes
+% (book/figures/png, tracked in git and current; figures/pdf is not rebuilt
+% after every change), and the first pages of the papers
+% (common/screenshots). Both are found by name without an extension.
+\graphicspath{{../../book/figures/png/}{../common/screenshots/}}
+\DeclareGraphicsExtensions{.png,.pdf}
+
+% --- look ------------------------------------------------------------------
+\usetheme{default}
+\usefonttheme{serif}
+\definecolor{accent}{HTML}{9B2D20}
+\definecolor{codebg}{gray}{0.96}
+\definecolor{rule}{gray}{0.75}
+\definecolor{dim}{gray}{0.45}
+\setbeamercolor{structure}{fg=black}
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{alerted text}{fg=accent}
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{footline}{fg=dim}
+\setbeamerfont{title}{series=\bfseries,size=\Large}
+\setbeamerfont{subtitle}{series=\mdseries,size=\normalsize}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+\setbeamerfont{footline}{size=\scriptsize}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{caption}{\scriptsize\insertcaption}
+\setbeamertemplate{frametitle}{%
+  \vskip0.6em\usebeamerfont{frametitle}\insertframetitle\par
+  \vskip0.2em{\color{rule}\hrule height 0.4pt}\vskip0.4em}
+\setbeamertemplate{footline}{%
+  \hbox to \paperwidth{\hspace{1.2em}\usebeamerfont{footline}\usebeamercolor[fg]{footline}%
+    \insertshorttitle\ --- \insertsection\hfill
+    \insertframenumber/\inserttotalframenumber\hspace{1.2em}}\vskip0.6em}
+\setbeamersize{text margin left=1.4em,text margin right=1.4em}
+% An outline frame at the start of each section, the current one in black.
+\AtBeginSection[]{\begin{frame}{Outline}\tableofcontents[currentsection]\end{frame}}
+% A frame that breaks over pages is numbered only from its second page.
+\setbeamertemplate{frametitle continuation}[from second]
+
+% --- code listings (as in the book) ----------------------------------------
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  backgroundcolor=\color{codebg},
+  frame=none,
+  breaklines=true,
+  breakatwhitespace=true,
+  columns=fullflexible,
+  keepspaces=true,
+  upquote=true,
+  showstringspaces=false,
+  xleftmargin=0.6em,
+  framexleftmargin=0.6em,
+  aboveskip=0.5em,
+  belowskip=0.5em,
+  literate={~}{{\textasciitilde}}1
+           {>}{{\textgreater}}1
+           {<}{{\textless}}1
+           {ö}{{\"o}}1 {ü}{{\"u}}1 {é}{{\'e}}1,
+}
+\lstdefinestyle{shell}{language=bash}
+
+% --- bibliography (same settings as the book) ------------------------------
+\usepackage[
+  backend=biber,
+  style=authoryear,
+  sorting=nyt,
+  maxbibnames=6,
+  minbibnames=3,
+  maxcitenames=2,
+  giveninits=true,
+  uniquename=init,
+  doi=true,
+  url=true,
+  isbn=false,
+  eprint=true,
+]{biblatex}
+\addbibresource{../../book/references.bib}
+\renewcommand*{\bibfont}{\scriptsize}
+\setlength{\bibitemsep}{0.25em}
+\setbeamertemplate{bibliography item}{}   % no icon before each entry
+
+% --- shorthand -------------------------------------------------------------
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\term}[1]{\emph{#1}}
+% A key point, as in the book: no box.
+\newcommand{\kp}[1]{\par\medskip{\bfseries Key point.}\enspace\emph{#1}\par}
+% \fig[height]{name}: one of the book's figures, scaled to fit the frame.
+\newcommand{\fig}[2][0.72\textheight]{%
+  \centering\includegraphics[height=#1,width=\textwidth,keepaspectratio]{#2}\par}
+% \screenshot{key}: the first page of a paper, with a thin frame.
+\newcommand{\screenshot}[2][0.66\textheight]{%
+  \setlength{\fboxsep}{0pt}\setlength{\fboxrule}{0.3pt}%
+  \fbox{\includegraphics[height=#1,width=\linewidth,keepaspectratio]{#2}}}
+% \paperslide{key}{text}: screenshot on the left, what the book takes from the
+% paper on the right. Use inside a frame; add \source after it.
+\newcommand{\paperslide}[2]{%
+  \begin{columns}[T]
+    \begin{column}{0.40\textwidth}\centering\screenshot{#1}\end{column}
+    \begin{column}{0.58\textwidth}\small #2\end{column}
+  \end{columns}}
+% \source{...}: a small grey line at the foot of a frame, for the source.
+\newcommand{\source}[1]{\vskip0pt plus 1filll\par{\scriptsize\color{dim}#1\par}}
