@@ -54,6 +54,9 @@ If you read one chapter, read Chapter 3.
 The chapters are written to last; names, prices and limits that will date live
 in Appendix D, and links that will rot live in Appendix C.
 
+Four Beamer decks for teaching the book are in `../presentations/`, built
+from these chapters, the figures and the bibliography (see its README).
+
 ## Licence
 
 Creative Commons Attribution 4.0 International (CC BY 4.0), stated on the
@@ -82,7 +85,7 @@ instead, change `\DeclareGraphicsExtensions{.png}` in `preamble.tex` to
 ```
 main.tex          parts and chapter includes
 preamble.tex      packages, formatting, biblatex setup
-references.bib    228 entries, grouped by theme
+references.bib    231 entries, grouped by theme
 figures/          44 diagrams: style.tex, tikz/ sources, pdf/ png/ svg/ outputs,
                   README.md with the style rules and an index
 chapters/
@@ -101,7 +104,7 @@ chapters/
 Assembled from the `.bib`, `.ris` and `.bibtex` files in `../../literature/`,
 plus entries taken from the PDFs there.
 
-Verified on 2 November 2026: all 111 DOIs resolve through Crossref (or
+Verified on 2 November 2026: all 114 DOIs resolve through Crossref (or
 DataCite) and all 69 arXiv IDs through the arXiv API, with title, first author
 and year matching in every case. The remaining 48 entries are reports, books,
 blog posts and web pages with no such identifier, checked by hand. Every entry
@@ -249,6 +252,21 @@ for the task-only diff, checks and remaining link limitations.
   the disclosure; the testing exercise rebuilt with nine fields and a
   held-out set, and rerun; listings fixed and tested (checksums, Dockerfile,
   DOI script, straight quotes in copied code).
+- A literature check the same evening found Krakauer's column on the memory
+  shortage and Keck et al.'s species-interaction workflow already cited by that
+  revision. Chapter 4 now describes the workflow's four stages (scripts on both
+  sides of the model), Chapter 2 adds Krakauer's remedy, and his entry in
+  Chapter 17 cites the column. Three sources not considered before were added:
+  Stahlman and Kouper on long-tail data (Chapters 5 and 6, glossary), Gadelha
+  et al.'s survey of biodiversity informatics (Chapters 5 and 6) and Ranjan,
+  Potter and Palmer's map of the cyberbiosecurity literature (Chapter 15,
+  glossary). The biomedical *Cell* papers stay out, as the triage of 2 November
+  recommended.
+- Workshop slides were added on 2 November 2026 in `../presentations/`: four
+  Beamer decks of 34 pages, one per pair of parts plus one for the exercises,
+  in the style of Stanford's CME 295 lectures, using the book's figures and
+  fifteen papers' first pages. Figure `ch03-guessing-wins` had an overlapping
+  label and was fixed in its TikZ source.
 
 ## Conventions
 

@@ -17,6 +17,23 @@ book/main.pdf
 # Figure PDFs are rebuilt by scripts/build_figures.sh; png/ and svg/ are tracked.
 book/figures/pdf/
 
+# The workshop decks' build products (same rule as the book); the deck PDFs
+# are kept out of the repository too and rebuilt with latexmk.
+presentations/*/main.aux
+presentations/*/main.bbl
+presentations/*/main.bcf
+presentations/*/main.blg
+presentations/*/main.fdb_latexmk
+presentations/*/main.fls
+presentations/*/main.log
+presentations/*/main.nav
+presentations/*/main.out
+presentations/*/main.run.xml
+presentations/*/main.snm
+presentations/*/main.toc
+presentations/*/main.vrb
+presentations/*/main.pdf
+
 # The plagiarism checker's cache: extracted full text of the papers in
 # ../literature, publishers' text. Never commit it.
 scripts/.cache/

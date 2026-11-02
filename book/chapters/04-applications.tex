@@ -92,6 +92,14 @@ records from news reports and papers \parencite{castro2024unstructured}.
 \textcite{keck2026interactions} extracted 144{,}402 species interactions from
 83{,}910 articles. Nine in ten extracted interactions were correct, but three in
 ten real ones were missed, and the results inherit the biases of the literature.
+The model was one stage of four. Scripts first kept only the paragraphs that
+named two taxa and an interaction word. The model then filled a fixed table
+for each paragraph. Afterwards every extracted name was matched to the NCBI
+Taxonomy, and interactions with an unmatched name were dropped; most such
+names were genes or environments, not organisms. Last, a person checked a
+random sample (\Cref{sec:outputasdata}). The weekly review in
+\Cref{ch:weeklyliterature} has the same shape, with scripts on both sides of
+the model.
 \textcite{church2026corpus} take another route for taxonomic work. Their tool
 turns a clade's literature into a searchable store that an agent queries
 through MCP (\Cref{app:glossary}), so each answer traces to a page. Some
