@@ -1,8 +1,8 @@
-\chapter{State of Play, September to October 2026}
+\chapter{State of Play, September to November 2026}
 \label{app:stateofplay}
 
 The names, prices and limits below record the situation between September and
-October 2026. Each section carries the date on which its facts were checked,
+November 2026. Each section carries the date on which its facts were checked,
 so a reader can tell how stale each part is. They will change, so the chapters
 explain the reasoning behind these choices and point here for the details
 available at the time of writing. Facts taken from a maker's own page are
@@ -108,6 +108,35 @@ network isolation since 20 October 2025, switched on with \code{/sandbox}
 open specification, donated in 2025 to the Linux Foundation's Agentic AI
 Foundation \parencite{liu2026claudecode}.
 
+\begin{sloppypar}
+\textbf{Rules and memory files.} Read on 4 November 2026 from each tool's
+documentation (\Cref{ch:agentic}). Claude Code 2.1.318 loads \code{CLAUDE.md}
+from the working directory and every directory above it. It also loads a user
+file at \code{\textasciitilde/.claude/CLAUDE.md}, an organisation-wide file
+(\code{/etc/claude-code/CLAUDE.md} on Linux; on macOS a \code{ClaudeCode}
+folder under \code{/Library/Application} \code{Support/}), a gitignored
+\code{CLAUDE.local.md} and topic files under \code{.claude/rules/}. It reads
+\code{AGENTS.md} when there is no \code{CLAUDE.md} or \code{CLAUDE.local.md}
+in the working directory or above it. Its auto memory is a directory per
+repository, \code{\textasciitilde/.claude/projects/}\allowbreak\code{PROJECT/memory/}, holding
+one Markdown file per memory and an index, \code{MEMORY.md}. The first 200
+lines or 25\,KB of the index are loaded at the start of every session; the
+topic files are read on demand. \code{/memory} lists and opens these files and
+switches auto memory off or on, and \code{autoMemoryEnabled} set to false in a
+project's settings turns it off there. The directory is local to the machine
+and is kept when old transcripts are deleted. OpenCode 1.17.11 reads
+\code{AGENTS.md} in the project root and
+\code{\textasciitilde/.config/opencode/AGENTS.md} for all projects. It falls
+back to \code{CLAUDE.md} and \code{\textasciitilde/.claude/CLAUDE.md}, and
+takes further files from an \code{instructions} list in \code{opencode.json};
+\code{/init} writes or improves \code{AGENTS.md}. Codex 0.162.1 reads
+\code{AGENTS.md}, or \code{AGENTS.override.md}, from
+\code{\textasciitilde/.codex/} and from the project root down to the working
+directory. The files are concatenated from the root downward and cut at
+32\,KiB by default; its page on these files describes no memory beyond them. None of the three
+enforces what the files say (\Cref{ch:firstsession}).
+\end{sloppypar}
+
 \section{Ollama and local tooling}
 
 Checked on 22 October 2026. The chapters name the lasting tools and point
@@ -211,3 +240,14 @@ the reasoning effort chosen, so no token figure is given here. A single agent
 turn re-sends the whole session, which is why one large refactor can use up a
 window (\Cref{ch:agentic}). Other vendors ration in similar ways and publish
 their own pages; check them before choosing a plan.
+
+\textcite{wickham2026tokencost}, writing on 3 November 2026, reports a
+SemiAnalysis estimate that a 200-dollar monthly plan returns between 2,000 and
+10,000 dollars of tokens at API prices. Such plans, he notes, are sold to
+individuals and small businesses, not to enterprises. His own costing of
+self-hosting Kimi K3 (\Cref{ch:localfirst}) starts from a recommended server
+of eight GB300 GPUs at about 550,000 dollars. With interest, colocation, power
+and bandwidth it comes to about 23,000 dollars a month. At 75 per cent
+utilisation that is about 0.25 dollars per million tokens, against a blended
+1.13 dollars at the dearer providers. He calls the analysis crude and says it
+leaves out the cost of training the model.

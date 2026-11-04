@@ -83,7 +83,57 @@ this makes the protocol executable rather than merely written down. Install only
 skills you have read: a malicious one can steer an agent towards an attacker's
 package \parencite{liu2026dependencysteering}.
 \textbf{Memory}, where a harness keeps it, should be files you can read and
-edit; memory you cannot see is a reproducibility problem.
+edit; memory you cannot see is a reproducibility problem. A harness has three
+kinds of memory. The context is the memory of one session and is gone when
+the session ends. The rules file is what you tell it at the start of every
+session. The third is the notes an agent writes for itself: what you
+corrected, what you prefer, which decisions were taken and why.
+\textcite{du2026memory} surveys the designs for this third kind, from text
+kept in the context to vector and database stores (\Cref{ch:landscape}). The
+production harness that \textcite{liu2026claudecode} examined keeps both its
+rules and its notes as plain text files, by design. A person can read, edit,
+version and delete any instruction the agent sees. What a vector index
+considers relevant cannot easily be inspected, and a database store needs
+infrastructure of its own. Its rules come from a hierarchy of files, from an
+organisation-wide file through the user's own to the project's. Its notes
+are files the harness scans by their headers and loads on demand, whole files
+at a time. The paths and limits of the day are in \Cref{app:stateofplay}.
+
+Three practices follow. First, keep what matters in the project. A
+harness's own store lives on one machine, outside the repository, and is
+lost with it. Whatever the next person or agent needs goes into
+\code{AGENTS.md} if it is a rule, or into a committed notes folder if it is
+something learnt. Second, one fact per file, dated, with an index. The index
+is a short file read at the start of every session; it says what is known
+and where. The detail is read only when needed, as a skill's instructions
+are (\Cref{ch:weeklyliterature}). The date matters because facts about
+models, prices and tool versions expire (\Cref{ch:keepingup}).
+\textcite{freeman1996lifestreams} made the case for time as the organising
+key thirty years ago. They proposed a time-ordered stream of documents,
+filtered into views on demand, in place of named files in fixed folders. The
+dated logs of \Cref{ch:reproducibility} follow the same idea. Third, review
+memory as you review a diff. The agent writes much of it, and a wrong note
+repeats a mistake in every later session until someone reads it. A note is
+also an instruction the model will follow next time, so anything an agent
+read in untrusted content and wrote down has crossed into its rules
+(\Cref{ch:security}).
+
+\begin{lstlisting}[style=shell,caption={A notes folder an agent can keep}]
+notes/
+  INDEX.md                        # one line per note; read every session
+  2026-10-11_backbone.md          # GBIF backbone pinned to the 2026-09 release
+  2026-10-15_join-dropped-rows.md # the join that lost 23 rows, and the fix
+  2026-11-02_model-retired.md     # model no longer installed; runs in results/
+\end{lstlisting}
+
+The file that governs the agents which wrote this book works this way: each
+of the author's decisions is recorded with its date, so that an agent in a
+later session does not reopen it. Rules and memory stay apart. The rules
+file says what must happen and is written by a person after something went
+wrong; memory records what was learnt and who decided it. A harness treats
+both as advice, delivered to the model as context, and its permission rules
+are the layer that enforces \parencite{liu2026claudecode};
+\Cref{ch:firstsession} shows the difference in practice.
 
 \section{Tokens, usage and cost}
 
@@ -97,6 +147,16 @@ and one large refactor can use up a consumer tier's allowance
 (\Cref{app:stateofplay}). Start a new session per task; point the agent at
 files rather than pasting them; ask for a diff, not a rewritten file; and use
 a smaller model for mechanical work.
+
+Whether the prices themselves will last is a separate question.
+\textcite{wickham2026tokencost} asked whether tokens are sold below cost. From
+a rough costing of hosting an open model himself, he concluded that per-token
+prices roughly track the cost of serving them, held down by competition among
+providers of the same open weights. The subsidy, he argues, lies in the
+subscription plans, which he reports as returning individuals many times
+their price in tokens. A workflow that depends on a subscription's generosity
+therefore rests on terms that can change, the fragility \Cref{ch:whynow}
+describes; \Cref{app:stateofplay} has his figures.
 
 \section{Prompting, practically}
 

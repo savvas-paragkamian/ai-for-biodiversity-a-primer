@@ -64,9 +64,9 @@ Before any reference goes in:
 
 Verification is scripted, not sampled. Run `python3 scripts/verify_bib.py`
 over the whole file after any change to the bibliography — it takes a few
-minutes and there is no acceptable reason to skip it. There are 231 entries:
-all 114 DOIs and all 69 arXiv IDs pass, with title, first author and year
-compared (2 November 2026), and 48 entries have neither and were checked by
+minutes and there is no acceptable reason to skip it. There are 236 entries:
+all 116 DOIs and all 70 arXiv IDs pass, with title, first author and year
+compared (4 November 2026), and 50 entries have neither and were checked by
 hand. Grant DOIs (CORDIS, `10.3030/...`) carry their title in
 Crossref's `project` field; the script handles that. Each script in `scripts/`
 has a `--self-test` that plants errors; run it after changing a script.
@@ -78,7 +78,15 @@ has a `--self-test` that plants errors; run it after changing a script.
   no separate commentary PDF is needed.
 - **Web articles:** take the URL from the PDF's page header only if it is
   complete. A truncated URL (`...`) means no `url` field. If the document is
-  undated, say in `note` how the year was inferred.
+  undated, say in `note` how the year was inferred. A page saved without its
+  address may carry the URL the live page resolved to, if the live page was
+  opened and its title matched; the `note` says so (first done for
+  `wickham2026tokencost`, 4 November 2026).
+- **Corporate first authors:** when arXiv lists a project as the first author
+  (`apertus2026report`, "Project Apertus"), enter it in double braces so the
+  script's first-author check matches. A Crossref record that splits a title
+  into `title` and `subtitle` is entered the same way
+  (`freeman1996lifestreams`), because the script compares `title` only.
 
 Every entry must be cited at least once. `biber` reports no undefined keys and
 the file should have no orphans either.
@@ -406,6 +414,7 @@ first: propose, don't implement.
 | Open questions from the revision of 2 November 2026 | (1) `workshop/testing/RULES.md` still ends with the superseded rules of 11 October, and `02_extract.R` sends the whole file to the model, so the 2 November runs saw both; moving them out needs a rerun, and `qwen3:8b` is no longer installed. (2) Sources to supply: Sica et al. 2025 (Humboldt Extension) and Rhinehart et al. 2022 (both open access on Wiley, which blocks scripts); Phillips 2009, Isaac 2020, Yates 2018 (to name the SDM bias remedies in Ch. 4); the PDFs of `gill2023dataharmonizer` and `saezrodriguez2026benchmarking` (only citation files are in `../literature/`). (3) People list (D12): the recount added people found only by expanding "and others" author lists; decide whether that counts, and pick from the shortlist of women in the agent's report (gender was inferred from names, so check). (4) Karpathy named for "vibe coding" from the author's notes only; Yegge for CHOP needs a document. (5) Licence of the abstract excerpts redistributed in `workshop/literature/data/raw/` (findings in the plan). (6) Chapter 11 is 3.6% shorter, not 10%; printing prompts 4 and 5 as summaries would reach it. (7) Renames offered, not done: `ch10-three-layers` and `ch15-shared-layer` no longer describe their figures | **author** |
 | Literature check of 2 November 2026, evening | Completed. The DRAM column (`krakauer2026dram`) and the species-interaction workflow (`keck2026interactions`) were already cited by the day's revision; Ch. 4 now gives the workflow's four stages, Ch. 2 adds Krakauer's remedy (keep machines in service longer) and his Ch. 17 entry cites the column. Three sources never considered before were added: Stahlman and Kouper (long-tail data; Chs. 5 and 6, glossary), Gadelha et al. (survey of biodiversity informatics; Chs. 5 and 6) and Ranjan, Potter and Palmer (cyberbiosecurity; Ch. 15, glossary; the DOI comes from the publisher's record saved beside the PDF). Left out: the *Cell* biomedical set (out of scope, per the triage of 2 November), Guo, Liu and Gore on superposition (no argument in the book needs it), Kleppmann's local-first meetup slides (no venue or URL), the author's own unpublished abstract *Knowledge Preservation in biodiversity* (not a source), and the two `citations-*.bibtex` files (citation records, not documents). Claim-audit rows added and line numbers shifted for the seven edited files | Agent |
 | Workshop slides, `presentations/` | Completed 2 November 2026: four Beamer decks of 34 pages each, one agent per deck from a shared brief (`presentations/BRIEF.md`) and a shared preamble (`presentations/common/preamble.tex`, Latin Modern, black on white, the book's figures from `book/figures/png/`, `references.bib` as the only bibliography). Deck 1 Parts I–II, deck 2 Parts III–IV, deck 3 the three exercises with `workshop/`, deck 4 Part V and the appendices. Fifteen cited papers appear as a screenshot of their first page (`presentations/common/screenshots/`). Every deck builds with zero errors and no biber warnings; 64 distinct keys cited, all in `references.bib`. Each deck's agent listed what it left out for the 34-page budget; the author reviews the slides as they review the book. The figure `ch03-guessing-wins` had an overlapping label, found while making deck 1 and fixed in its TikZ source the same day. Added the same evening at the author's request: deck 0, `00-setup` (installing Git, Ollama, OpenCode, Claude Code and Codex; Git in ten commands; the harness controls for model, effort, context and usage, permissions and one-shot runs), with the same text in `workshop/SETUP.md` for copying; commands taken from the tools' documentation and `--help` on 2 November 2026, not from the literature, and dated on each slide. Nothing was tested on Windows | Agent; review **author** |
+| Literature additions and agent memory, 4 November 2026 | Completed. Five documents added since 2 November are cited: Queen and Zou's web report on the shelf life of LLM findings (`queen2026shelflife`; Chs. 3, 15, 17), Wickham's post on token cost (`wickham2026tokencost`; Chs. 5, 7, 12, App. D), Freeman and Gelernter's Lifestreams (`freeman1996lifestreams`; Chs. 6, 7), the Apertus 1.5 report (`apertus2026report`; Chs. 2, 5) and BioAnalyst (`trantas2026bioanalyst`; Ch. 4). Stanford lectures 4 and 5 are described in App. C. Managing agent memory with files is now a passage in Ch. 7 (three kinds of memory, three practices, a notes-folder listing), with a glossary entry, a checklist item and a dated "Rules and memory files" paragraph in App. D from the Claude Code, OpenCode and Codex documentation read on 4 November; App. D is retitled "September to November 2026". Decks 0, 1, 2 and 4 and `workshop/SETUP.md` updated (a memory frame in deck 2, an open-source frame in deck 1, bullets elsewhere); decks 1 and 2 now run to 36 and 35 pages. Claim-audit rows added and line numbers remapped. Not done: Codex's separate "Memories" documentation page could not be fetched, so App. D says only what its `AGENTS.md` page says | Agent |
 | New files in `../literature/` | Check whenever you start: anything not in `references.bib` is a candidate. Read it in full before placing it | Agent |
 
 When you finish an item, update this table and `book/README.md` (Open issues)

@@ -162,7 +162,7 @@ while not done and turns < max_turns:   # <- a budget stops it too
 \end{frame}
 
 \begin{frame}{Hallucination: why guessing wins}
-  \fig[0.30\textheight]{ch03-guessing-wins}
+  \fig[0.22\textheight]{ch03-guessing-wins}
   \small
   \begin{itemize}
     \item Tests score accuracy, and a model that guesses scores better than
@@ -171,6 +171,9 @@ while not done and turns < max_turns:   # <- a budget stops it too
     \item \textcite{zhao2026citations} checked 111 million references: a sharp
       rise in references to papers that do not exist, about 147,000 in 2025
       alone, by their conservative estimate.
+    \item Findings age: re-tested on 20 models, the 2023 result that ChatGPT
+      invents most references had expired; RAG answers unsupported by the
+      evidence persisted \parencite{queen2026shelflife}.
   \end{itemize}
   \kp{Check every reference against a resolver (DOI, PubMed, OpenAlex) before
     it enters a manuscript. Every one, not a sample. A resolver catches
@@ -287,7 +290,7 @@ while not done and turns < max_turns:   # <- a budget stops it too
 \end{frame}
 
 \begin{frame}{Sampling bias becomes prediction}
-  \fig[0.33\textheight]{ch04-sampling-bias}
+  \fig[0.23\textheight]{ch04-sampling-bias}
   \small
   \begin{itemize}
     \item 742 million records: only 6.74 per cent of the globe sampled for
@@ -297,6 +300,10 @@ while not done and turns < max_turns:   # <- a budget stops it too
       cross-validation for structured data, flags for predictions outside the
       sampled conditions. In my view no language model removes the need for
       them.
+    \item BioAnalyst, a foundation model for European biodiversity, is judged
+      on an effort-controlled bird survey, not on the GBIF records it learnt
+      from, whose biases its authors say it carries
+      \parencite{trantas2026bioanalyst}.
   \end{itemize}
   \kp{Before applying a model to an ecological question, ask what would have
     to be true of the data for the answer to be valid, and whether it is.}
@@ -342,6 +349,28 @@ while not done and turns < max_turns:   # <- a budget stops it too
     under what licence, with what attribution, and does anything come back to
     the people who maintain it?}
   \source{Figure from Chapter 5 of the book.}
+\end{frame}
+
+\begin{frame}{Open weight is not open source}
+  \small
+  \begin{itemize}
+    \item \textbf{Open weight:} you can download the parameters, run the model
+      and fine-tune it. It does not mean you can see what it was trained on or
+      rebuild it.
+    \item \textbf{Open source}, as the Open Source Initiative defines it: the
+      weights, the complete code to train and run the model, and enough about
+      the training data to build a substantially equivalent system
+      \parencite{osi2024definition}.
+    \item Fully open models exist. OLMo released its training data, code and
+      logs \parencite{groeneveld2024olmo}. Apertus, from Swiss public
+      institutions, trains only on openly available data, honours crawler
+      opt-outs retroactively, and releases weights, pipelines and checkpoints
+      under Apache 2.0 \parencite{apertus2026report}.
+    \item Open weights are not enough for science: without the training data,
+      nobody can audit which regions, taxa and languages are under-represented
+      \parencite{hai2026openweight,torresani2026opening}.
+  \end{itemize}
+  \source{Chapter 5, \emph{Open weights and open source}.}
 \end{frame}
 
 \begin{frame}{What makes biodiversity records fit for a model}

@@ -283,12 +283,14 @@ git restore .                     # back to the checkpoint if it is beyond repai
     Permissions & \code{/permissions}; \code{Shift+Tab} cycles modes & \code{opencode.json}; \code{Tab} Plan/Build & \code{/permissions}; \code{-s}, \code{-a} \\
     Non-interactive & \code{claude -p "..."} & \code{opencode run "..."} & \code{codex exec "..."} \\
     Stop, compact & \code{Esc}; \code{/compact} & \code{Esc}; \code{/compact} & \code{/compact} \\
+    Rules and memory & \code{CLAUDE.md} or \code{AGENTS.md}; \code{/memory} & \code{AGENTS.md}; \code{/init} & \code{AGENTS.md}; \code{/init} \\
     \bottomrule
   \end{tabularx}
   \medskip
   Type \code{/} in any of them to see the list; names change between
   versions, the controls do not.
-  \source{The tools' documentation and \code{--help}, read 2 November 2026.}
+  \source{The tools' documentation and \code{--help}, read 2 November 2026;
+    the rules and memory row on 4 November 2026.}
 \end{frame}
 
 \begin{frame}{Claude Code: the controls}
@@ -308,8 +310,12 @@ git restore .                     # back to the checkpoint if it is beyond repai
     \item \code{claude --permission-mode plan} starts read-only, as Chapter 10
       does; \code{claude -p "prompt"} runs once and prints; \code{claude -c}
       continues the last session.
+    \item \code{/memory} lists the rules files and opens the auto-memory
+      folder: one Markdown note per file and an index loaded every session.
+      Switch auto memory off there if notes should not stay on the machine
+      (Chapter 7).
   \end{itemize}
-  \source{code.claude.com/docs/en/commands and /interactive-mode (read 2 November 2026).}
+  \source{code.claude.com/docs/en/commands, /interactive-mode (read 2 November 2026) and /memory (read 4 November 2026).}
 \end{frame}
 
 \begin{frame}{OpenCode: the controls}

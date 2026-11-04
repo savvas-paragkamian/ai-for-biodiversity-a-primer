@@ -70,6 +70,16 @@ tools sold as ``hallucination-free'' still hallucinate at substantial rates
 points at which such a pipeline can fail \parencite{kurniawan2024ragfailures};
 see \Cref{ch:aireadydata}.
 
+Such findings also age. \textcite{queen2026shelflife} re-tested 50 widely
+cited findings about language models on 20 models released between July 2024
+and September 2026. Within fifteen months of publication, most no longer held
+or had weakened. The 2023 finding that ChatGPT invented over half of the
+references in short literature reviews had expired: the recent models they
+tested rarely fabricated citations, though some still did. What persisted was
+mostly judgement rather than capability, including answering when the model
+should abstain, and retrieval-augmented answers that the retrieved evidence
+does not support. The check below costs minutes whichever way the rate moves.
+
 \begin{keypoint}
 Check every reference against a resolver --- DOI, PubMed, OpenAlex --- before
 it enters a manuscript. Every one, not a sample. It takes minutes by script.
@@ -93,6 +103,13 @@ models are rewarded for what people approve of, and a pleasing answer is often
 rated above a true one. \textcite{sharma2024sycophancy} found this in human
 preference data: a response that matched the user's views was more likely to
 be preferred.
+
+The form it takes is changing. In the re-test by \textcite{queen2026shelflife},
+the finding that a challenge makes models abandon a correct answer had expired,
+while praise that follows the user's preferences had strengthened. \textcite{carli2026karenina} still measured reversals under
+confident pushback in 2026 (\Cref{ch:testing}), so the habit has not gone. In
+my reading, the risk is moving from capitulation to flattery, which is harder
+to notice.
 
 It does most damage late in an analysis, alone, with a result you want to be
 true. Counter it by asking for the argument against, presenting your idea as

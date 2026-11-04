@@ -37,7 +37,7 @@ not built, and its tests are planned, not run.
 
 ## Contents
 
-About 40,000 words, 149 pages (2 November 2026).
+About 43,000 words, 152 pages (4 November 2026).
 
 | Part | Chapters |
 |---|---|
@@ -47,7 +47,7 @@ About 40,000 words, 149 pages (2 November 2026).
 | III. Working with Agents | 7 The Agentic Coding Workflow · 8 The Software Stack · 9 Reproducibility When the Tool Varies · 10 A First Agent Session (hands-on, in R, with `../workshop/session`) · 11 A Weekly Literature Review (hands-on, in R, with `../workshop/literature`) |
 | IV. Local-First | 12 The Local-First Approach (with the KYBELE example) · 13 Hardware for Local Inference · 14 Testing a Model on Your Own Task (with an R exercise, `../workshop/testing`) |
 | V. Risk, Integrity and Keeping Up | 15 Security, Biorisk and Governance · 16 Changes Across the Scientific Workflow · 17 How to Keep Up · 18 Epilogue: The Wider Frame (noosphere, evolvable AI, the inherited archive, consciousness) |
-| Appendices | A Glossary · B Checklists · C Tutorials (videos, newsletters, blogs, awesome lists, tool repositories) · D State of Play, September to October 2026 (prices, model versions, harnesses, usage limits) |
+| Appendices | A Glossary · B Checklists · C Tutorials (videos, newsletters, blogs, awesome lists, tool repositories) · D State of Play, September to November 2026 (prices, model versions, harnesses and their rules and memory files, usage limits) |
 
 If you read one chapter, read Chapter 3.
 
@@ -85,7 +85,7 @@ instead, change `\DeclareGraphicsExtensions{.png}` in `preamble.tex` to
 ```
 main.tex          parts and chapter includes
 preamble.tex      packages, formatting, biblatex setup
-references.bib    231 entries, grouped by theme
+references.bib    236 entries, grouped by theme
 figures/          44 diagrams: style.tex, tikz/ sources, pdf/ png/ svg/ outputs,
                   README.md with the style rules and an index
 chapters/
@@ -104,9 +104,9 @@ chapters/
 Assembled from the `.bib`, `.ris` and `.bibtex` files in `../../literature/`,
 plus entries taken from the PDFs there.
 
-Verified on 2 November 2026: all 114 DOIs resolve through Crossref (or
-DataCite) and all 69 arXiv IDs through the arXiv API, with title, first author
-and year matching in every case. The remaining 48 entries are reports, books,
+Verified on 4 November 2026: all 116 DOIs resolve through Crossref (or
+DataCite) and all 70 arXiv IDs through the arXiv API, with title, first author
+and year matching in every case. The remaining 50 entries are reports, books,
 blog posts and web pages with no such identifier, checked by hand. Every entry
 is cited at least once, and every citation has a row in the claim audit
 (`../CLAIM_AUDIT_2026-10/`) giving the passage that supports it.
@@ -269,6 +269,20 @@ for the task-only diff, checks and remaining link limitations.
   label and was fixed in its TikZ source. A setup deck (installation, Git basics, harness
   controls) and `../workshop/SETUP.md` were added the same evening; their
   commands come from the tools' documentation, dated, not from the book.
+- On 4 November 2026 five documents added to the literature folder since the
+  2 November check were cited: Queen and Zou's re-test of 50 published findings
+  about language models (Chapters 3, 15 and 17: invented citations have faded
+  in recent models, flattery has strengthened, injection has weakened but not
+  gone, and expired findings lasted about sixteen months); Wickham's costing of
+  tokens against self-hosting (Chapters 5, 7 and 12, figures in Appendix D);
+  Freeman and Gelernter's Lifestreams of 1996 on time-ordered storage
+  (Chapters 6 and 7); the Apertus 1.5 report, a fully open model family from
+  Swiss public institutions (Chapters 2 and 5); and BioAnalyst, a foundation
+  model for European biodiversity judged on an effort-controlled survey
+  (Chapter 4). Chapter 7 now says how to manage an agent's memory with files,
+  with a glossary entry, a checklist item and the harnesses' rules and memory
+  file locations in Appendix D, dated 4 November; Appendix D is retitled
+  "September to November 2026". The decks were updated to match.
 
 ## Conventions
 

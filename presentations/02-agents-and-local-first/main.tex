@@ -80,6 +80,33 @@
   \source{Chapter 7, \emph{The project speaks through files}.}
 \end{frame}
 
+\begin{frame}[fragile]{Memory in files}
+  A harness has three kinds of memory: the context (one session), the rules
+  file (what you tell it every session), and the notes it writes for itself.
+  All three should be files you can read; memory you cannot see is a
+  reproducibility problem.
+\begin{lstlisting}[style=shell]
+notes/
+  INDEX.md                        # one line per note; read every session
+  2026-10-11_backbone.md          # GBIF backbone pinned to the 2026-09 release
+  2026-10-15_join-dropped-rows.md # the join that lost 23 rows, and the fix
+\end{lstlisting}
+  \begin{itemize}\small
+    \item Keep what matters in the project, committed: a rule goes into
+      \code{AGENTS.md}, something learnt into the notes folder. The harness's
+      own store sits on one machine, outside the repository.
+    \item One fact per file, dated, with an index read every session and the
+      detail read on demand. Time as the organising key is an idea from 1996
+      \parencite{freeman1996lifestreams}.
+    \item Review memory as you review a diff: a wrong note repeats a mistake
+      every session, and a note is an instruction the model will follow next
+      time. Rules and notes are advice; permissions enforce
+      \parencite{liu2026claudecode}.
+  \end{itemize}
+  \source{Chapter 7, \emph{The project speaks through files}; the paths of the
+    day are in Appendix D.}
+\end{frame}
+
 \begin{frame}{Review: six checks}
   \begin{enumerate}\small
     \item \textbf{Commit before.} A clean checkpoint makes everything
@@ -285,7 +312,7 @@ Review: 1,847 rows in, 1,847 out. 23 NO_MATCH checked by hand:
 
 \begin{frame}{The case for local, and what it costs}
   \begin{columns}[T]
-    \begin{column}{0.49\textwidth}\small
+    \begin{column}{0.49\textwidth}\footnotesize
       \begin{itemize}
         \item \textbf{Nothing leaves the machine:} unpublished records,
           sensitive localities, embargoed sequences, drafts. Check it, don't
@@ -298,7 +325,7 @@ Review: 1,847 rows in, 1,847 out. 23 NO_MATCH checked by hand:
           research infrastructure has a ten-year horizon.
       \end{itemize}
     \end{column}
-    \begin{column}{0.49\textwidth}\small
+    \begin{column}{0.49\textwidth}\footnotesize
       \begin{itemize}
         \item \textbf{Capability:} hosted frontier models lead on hard
           reasoning, long documents and many-file changes; open-weight
@@ -306,7 +333,9 @@ Review: 1,847 rows in, 1,847 out. 23 NO_MATCH checked by hand:
           \parencite{emberson2025openweightlag}.
         \item \textbf{Speed:} slow on a laptop.
         \item \textbf{Hardware and upkeep:} money up front, and time out of
-          someone's research.
+          someone's research. Hosting a near-frontier open model yourself
+          only pays at a provider's utilisation
+          \parencite{wickham2026tokencost}.
         \item \textbf{A dissent:} for someone starting out, local models
           are by and large not worth it; begin with a hosted model
           \parencite{wickham2026nobs}. A taxonomic test supports the

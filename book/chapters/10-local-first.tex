@@ -101,6 +101,19 @@ overnight batch jobs it does not matter.
 \textbf{Hardware and upkeep.} Money up front (\Cref{ch:hardware}) and time
 spent on drivers, updates and debugging. In a small group that time comes out of
 someone's research, and it is usually left out of the comparison.
+The comparison also depends on the size of the model.
+\textcite{wickham2026tokencost} costed self-hosting Kimi K3, an open model
+close to the frontier. The recommended server costs several hundred thousand
+US dollars, and the monthly bill, with interest, colocation, power and
+bandwidth, runs to tens of thousands. At the utilisation an API provider
+reaches, that still serves tokens for less than the providers charge. That
+is why he concludes that per-token prices track costs rather than hide a
+subsidy; \Cref{app:stateofplay} has his figures. A research group cannot
+reach that utilisation on its own. A machine of the kind \Cref{ch:hardware}
+describes runs models of 30 to 120 billion parameters, depending on its
+memory (\Cref{app:stateofplay}). For the largest open models the realistic
+route is buying their tokens from a provider, which keeps the weights open
+but sends the data out (\Cref{tab:deployment}).
 
 \section{Open, closed, and in between}
 

@@ -180,10 +180,13 @@ Every harness has the same controls. Type `/` in any of them for the list.
 | Sessions | `/resume`; `claude -c` | `opencode run --continue` | `codex resume`; `codex exec resume --last` |
 | One prompt, no conversation | `claude -p "prompt"` | `opencode run "prompt"` (`-m ollama/gemma4:12b`) | `codex exec "prompt"` (`-o file`) |
 | Rules file | `CLAUDE.md`, or `AGENTS.md` when there is no `CLAUDE.md` | `AGENTS.md` (`/init` writes one) | `AGENTS.md` (`/init` writes one) |
+| Memory | `/memory` lists the rules files and opens the auto-memory folder (`~/.claude/projects/<project>/memory/`, one Markdown note per file, `MEMORY.md` index loaded every session); toggle it off there | none beyond `AGENTS.md` and `~/.config/opencode/AGENTS.md` | none beyond `AGENTS.md` and `~/.codex/AGENTS.md` |
 
 Sources: <https://code.claude.com/docs/en/commands>,
 <https://opencode.ai/docs/keybinds/>, <https://developers.openai.com/codex>,
-and each tool's `--help`, read 2 November 2026.
+and each tool's `--help`, read 2 November 2026; the Memory row from
+<https://code.claude.com/docs/en/memory>, <https://opencode.ai/docs/rules/>
+and the Codex `AGENTS.md` page, read 4 November 2026.
 
 **Tokens and context.** A token is about four characters (Chapter 7). An
 agent re-sends the whole session every step, so prompts reach tens of

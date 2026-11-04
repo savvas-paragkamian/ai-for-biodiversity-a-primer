@@ -82,7 +82,9 @@
         prompt when it read it on a web page.
       \item Mitigations reduce the rate; none removes it. Eight defences were
         all bypassed more than half the time by attacks adapted to them
-        \parencite{zhan2025adaptive}.
+        \parencite{zhan2025adaptive}; on the newest models basic injection has
+        weakened to about a quarter of its early effect, not to zero
+        \parencite{queen2026shelflife}.
       \item So limit what an injection can achieve. Never give one agent the
         \term{lethal trifecta}: private data, untrusted content, and a way
         to communicate outward \parencite{willison2025trifecta}.
@@ -288,7 +290,7 @@
 \section{How to keep up (Chapter 17)}
 
 \begin{frame}{What to learn, and how long it lasts}
-  \footnotesize
+  \scriptsize
   \begin{tabularx}{\textwidth}{XlX}
     \toprule
     \textbf{Layer} & \textbf{Stays true for} & \textbf{Worth learning?} \\
@@ -306,6 +308,9 @@
   \end{tabularx}
   \kp{Spend your learning time at the bottom of that table. Everything at the
     top is a lookup.}
+  {\scriptsize Measured: of 50 widely cited findings re-tested on 20 models, 44
+    per cent had expired by September 2026 and 34 per cent had weakened; what
+    lasted was judgement, not capability \parencite{queen2026shelflife}.\par}
   \source{Table from Chapter 17 of the book.}
 \end{frame}
 
@@ -465,10 +470,11 @@
       Carpentries, TeSS, EMBL-EBI Training and the GBIF and OBIS courses age
       more slowly. If a link fails, prefix it with
       \code{https://web.archive.org/web/}.
-    \item[D. State of play] Names, prices and limits as they stood in
-      September and October 2026, each section carrying the date on which it
-      was checked: machines and prices, models, harnesses, Ollama's defaults,
-      the versions used in the workshop, subscription limits. The chapters
+    \item[D. State of play] Names, prices and limits as they stood between
+      September and November 2026, each section carrying the date on which it
+      was checked: machines and prices, models, harnesses and where each keeps
+      its rules and memory, Ollama's defaults, the versions used in the
+      workshop, subscription limits. The chapters
       keep the reasoning and the lasting names, and point here for the rest.
   \end{description}
 \end{frame}

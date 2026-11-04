@@ -255,6 +255,17 @@ predicts species occurrence from environmental variables learns where people loo
 conservation decisions, it turns that bias into policy with a look of
 precision.
 
+The first foundation model built for biodiversity, as its authors describe
+it, shows the problem being handled rather than ignored. BioAnalyst was
+trained on twenty years of monthly European data that align GBIF occurrence
+densities with climate and remote-sensing layers, and fine-tuned to forecast
+bird abundance. It is judged not on those opportunistic records but on an
+effort-controlled benchmark built from a standardised national bird survey.
+The authors warn that a model which predicts such data well may be, in their
+words, ``right for the wrong reason''. The authors also state that the model's species channels
+carry GBIF's spatial and taxonomic biases, and they release the weights, the
+data cube and the benchmark \parencite{trantas2026bioanalyst}.
+
 Ecology has methods for this problem. Statistical and model-based corrections
 for uneven sampling are common, though even the best still need checking
 against observations \parencite{hughes2021sampling}. Cross-validation designed
