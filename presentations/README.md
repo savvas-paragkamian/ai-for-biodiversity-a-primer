@@ -17,11 +17,14 @@ documentation and `--help`, read on the date each slide states.
 | 3 | `03-workshop-walkthrough/` | The three hands-on exercises in action: Chapters 10, 11 and 14 with the companion in `../workshop/` |
 | 4 | `04-risk-and-keeping-up/` | Part V, Risk, Integrity and Keeping Up (Chapters 15–18) and the appendices |
 
+`AGENDA.md` is the one-day programme, in deck order 1, 2, 0, 3, 4, with a
+paragraph describing the course and the book.
+
 The structure follows Stanford's CME 295 lectures (in `../../literature/standford-class/`):
 goals, an outline repeated at each section, one idea per slide, a running
-example, and takeaways at the end. Fifteen important papers appear as a
-screenshot of their first page beside what the book takes from them, with
-the source line underneath.
+example, and takeaways at the end. Nineteen important sources (papers, a
+report and two web pages) appear as a screenshot of their first page beside
+what the book takes from them, with the source line underneath.
 
 ## Build
 
@@ -39,7 +42,11 @@ are read from `../book/figures/pdf/` and the paper screenshots from
 ## Screenshots
 
 `common/screenshots/<key>.png` is page 1 of the paper's PDF in
-`../../literature/`, rendered with `pdftoppm -r 110`. They are shown for
+`../../literature/`, rendered with `pdftoppm -r 110 -f 1 -l 1 -png`. The four
+added on 6 November 2026 (`pombase2026curation`, `apertus2026report`,
+`jiralerspong2026slopcliff`, `anthropic2026aiforscience`) were made the same
+way. `common/preamble.tex` drops the `note` field from cite commands, so a
+`\fullcite` source line does not print how a web page was saved. They are shown for
 teaching, with the full reference under each; check the publisher's terms
 before distributing the slides outside the workshop.
 

@@ -182,25 +182,23 @@
 \end{frame}
 
 \begin{frame}{Risks to judgement: sycophancy, slop and deskilling}
-  \small
-  \begin{itemize}
-    \item \term{Sycophancy} removes the second opinion you thought you were
-      getting: a review that exists on paper and not in practice. Ask for the
-      argument against, and have a person check anything that matters.
-    \item \term{Slop} is text produced in bulk by a model and passed on with
-      little human thought in it. A journal editor met the authors of seven
-      submissions due for rejection; three could not answer basic questions
-      about their own papers \parencite{turner2026slop}.
-    \item ``You become less capable while appearing more productive'': the
-      \term{deskilling} the book warns of for ecology.
-    \item In Ayad Akhtar's play \emph{McNeal}, a novelist lets a chatbot help
-      write his next novel: ``my mind works better now if there's something
-      already on the page'' \parencite{akhtar2024mcneal}. Read by a
-      scientist, the play is about what happens to the person who stops
-      writing.
-    \item No tool fixes either. Write your own arguments, check claims against
-      sources, and sign only work you can explain.
-  \end{itemize}
+  \paperslide{jiralerspong2026slopcliff}{\footnotesize
+    \begin{itemize}
+      \item \term{Sycophancy} removes the second opinion you thought you
+        were getting; alone, your results are checked only by you and the
+        model behind them \parencite{jiralerspong2026slopcliff}.
+      \item The \term{slop cliff}: actual productivity falls while perceived
+        productivity climbs. Can you explain your data and results without
+        asking the model?
+      \item \term{Slop}: of seven authors of papers due for rejection, three
+        could not answer basic questions about them
+        \parencite{turner2026slop}.
+      \item ``You become less capable while appearing more productive'': the
+        \term{deskilling} the book warns of for ecology. In \emph{McNeal}, a
+        novelist lets a chatbot write \parencite{akhtar2024mcneal}.
+      \item Sign only work you can explain.
+    \end{itemize}}
+  \source{\fullcite{jiralerspong2026slopcliff}}
 \end{frame}
 
 % ---------------------------------------------------------------------------
@@ -221,6 +219,26 @@
       same rule for data searches: record the query and the date.
   \end{itemize}
   \source{Figure from Chapter 16 of the book.}
+\end{frame}
+
+\begin{frame}{The tools arrive from above: funders and institutions}
+  \paperslide{anthropic2026aiforscience}{\footnotesize
+    \begin{itemize}
+      \item 28 October 2026: Anthropic's AI for Science programme (free
+        credits for its models) now runs through funders and institutions
+        \parencite{anthropic2026aiforscience}.
+      \item Sloan, Simons, Schmidt Sciences and the US National Science
+        Foundation will distribute credits; EMBL, Sanger and the Crick
+        will use them in-house.
+      \item Also announced: a specification for agents that operate
+        laboratory instruments (with HHMI Janelia); teams of agents
+        analysing the Allen Institute's open data.
+      \item A company's own statements; no amounts or criteria. A public
+        funder handing out a private provider's credits makes dependence
+        part of how science is paid for (Chapter 5).
+      \item The checks are yours, whoever paid for the tool.
+    \end{itemize}}
+  \source{\fullcite{anthropic2026aiforscience}}
 \end{frame}
 
 \begin{frame}{Resolve every reference before it enters a manuscript}
@@ -466,7 +484,8 @@
       policy.
     \item[C. Tutorials] Online books, videos, newsletters, blogs, awesome
       lists and tool repositories, with names checked against the sources.
-      Start with \emph{The Turing Way} and Stanford's CME 295; the
+      Start with \emph{The Turing Way}, Stanford's CME 295 and EMBL-EBI's
+      recorded webinar series on language models in bioinformatics; the
       Carpentries, TeSS, EMBL-EBI Training and the GBIF and OBIS courses age
       more slowly. If a link fails, prefix it with
       \code{https://web.archive.org/web/}.

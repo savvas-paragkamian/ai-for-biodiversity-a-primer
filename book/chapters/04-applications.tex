@@ -188,10 +188,25 @@ microbes differ. However, generic descriptions and shared annotation pipelines
 affect the result, and the comparison is not an expert validation of the
 model's judgements.
 
-\textbf{Curation.} Curators of biological knowledgebases propose AI-assisted
-curation with a person in the loop \parencite{pombase2026curation}: the model suggests, the
-curator decides (\Cref{fig:curation}). An error in a knowledgebase spreads into every analysis that
-uses it. This makes the curator's judgement essential throughout the process.
+\textbf{Curation.} Biological knowledgebases such as UniProt and the Gene
+Ontology are maintained by about 100 to 200 professional biocurators
+worldwide, against a literature that grows faster than they can read
+\parencite{pombase2026curation}. Writing from the ELIXIR Biocuration Focus
+Group, the curators of these resources propose AI-assisted curation with a
+person in the loop: the model suggests, the curator decides
+(\Cref{fig:curation}). The use they describe is modular. Models recommend
+papers, recognise entities, extract facts, write summaries, propose ontology
+terms and check consistency, and a curator reviews each step. Their
+best-documented example, GO-Flow, follows the Gene Ontology's own curation
+flowcharts. Applied to 6,996 uncurated articles, it proposed 1,826 candidate
+annotations in under 57 hours, and curators agreed with the chosen term in
+86.7 per cent of a reviewed sample. Because it shows the curator the
+extracted text and its reasoning, review took about 80 per cent less time
+than reading the article. The same curators record that no AI-extracted
+association enters a Global Core Biodata Resource or an ELIXIR Core Data
+Resource without human review (\Cref{ch:testing}). An error in a
+knowledgebase spreads into every analysis that uses it. This makes the
+curator's judgement essential throughout the process.
 
 \begin{figure}[htbp]
 \centering

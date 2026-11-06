@@ -149,6 +149,11 @@ the book's scope and are not defined here.
   it does what it was trained to refuse. Not the same as prompt injection,
   where content the model reads hijacks an application (\Cref{ch:security}).
 
+\item[Knowledgebase] A resource in which curators integrate experimental
+  findings from the literature into structured records linked to ontologies,
+  as UniProt and the Gene Ontology do. Distinct from a repository, where data
+  are deposited \parencite{pombase2026curation}.
+
 \item[KV cache] Memory holding the keys and values computed for every token in
   the context, so that each new token does not recompute them. Its size per
   token is twice the product of the number of layers, the key-value heads,
@@ -322,7 +327,9 @@ the book's scope and are not defined here.
   (\Cref{ch:weeklyliterature}).
 
 \item[Slop] Text produced in bulk by a model and passed on with little human
-  thought in it \parencite{turner2026slop}.
+  thought in it \parencite{turner2026slop}. The \emph{slop cliff} is the point
+  where actual productivity with a model falls while perceived productivity
+  keeps climbing \parencite{jiralerspong2026slopcliff}.
 
 \item[Slopsquatting] Registering package names that models invent, so generated
   install commands fetch an attacker's code.

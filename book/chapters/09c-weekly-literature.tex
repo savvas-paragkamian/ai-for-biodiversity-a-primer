@@ -63,7 +63,8 @@ science, including most of the work on language models that this book cites,
 appears first on arXiv. The bioRxiv API returns everything in a category for
 a date range, and the script keeps what matches a topic's terms. Biodiversity
 PMC \parencite{pasche2026biodivpmc} is the biodiversity-specific index built
-on the SIB Literature Services, which KYBELE also uses. Its \code{medline}
+on the SIB Literature Services, which KYBELE also uses and which knowledgebase
+curators use for triage \parencite{pombase2026curation}. Its \code{medline}
 collection is current; its full-text \code{pmc} collection ran about two
 months behind for my queries. The Plazi treatments it holds
 \parencite{agosti2022treatments} carry no publication date in the index, so
@@ -79,6 +80,9 @@ delays, so an item can appear in one source this week and in another next
 week. And a preprint and its journal version arrive weeks apart under
 different identifiers. The scripts therefore fetch some days before the week,
 remember everything they have listed, and merge by identifier before title.
+Europe PMC's Article Status Monitor records these transitions, from preprint
+versions to journal publication and retraction, and answers through a REST
+API \parencite{pombase2026curation}; the scripts do not use it yet.
 
 \section{Step 1: your interests, as queries}
 

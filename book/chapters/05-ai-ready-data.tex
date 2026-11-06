@@ -211,7 +211,12 @@ runs with your access, and its tool descriptions are text the model reads and
 may obey (\Cref{ch:security}). EMBL-EBI's InterPro server is a good
 example. An agent can ask in plain language which domains a protein has or
 which structures contain a family. The server calls the right InterPro services,
-with no account needed \parencite{interpro2026mcp}. For the literature, the corpus
+with no account needed \parencite{interpro2026mcp}. The curators' perspective
+asks every resource to do the same: provide an MCP server for its tools,
+register it in a catalogue such as BioContextAI, and refine it with the people
+building agents \parencite{pombase2026curation}. An agent that can query the
+live resource is less likely to invent its contents, and the same tools and
+prompts can be kept when the model behind them is replaced. For the literature, the corpus
 tool turns a clade's PDFs into an MCP server whose answers point to the source and
 page \parencite{church2026corpus}. SPARQL and RDF serve
 knowledge graphs, which models can now query \parencite{smeros2025sparqlllm}.
@@ -256,7 +261,11 @@ and it is not guaranteed. Jacqueline J. Dearborn's talk on who will steward
 public data, listed in \Cref{app:tutorials}, makes the point from inside the
 Biodiversity Heritage Library and other infrastructures. The people who
 maintain and interpret a resource are part of it, and grants favour building
-over keeping. TDWG governs
+over keeping. The curators of the core knowledgebases describe the same
+squeeze from inside: chronic underfunding against a literature that grows
+exponentially \parencite{pombase2026curation}. They add that any move to
+AI-assisted work must keep the existing curators, or the institutional
+knowledge goes with them. TDWG governs
 Darwin Core, ELIXIR coordinates European life-science data and names the Core
 Data Resources the community commits to sustaining, and the LF AI \& Data
 Foundation hosts much open model tooling. Open formats matter for the same
@@ -287,8 +296,8 @@ Apertus, trained by Swiss public institutions on their national
 supercomputer, releases its weights, intermediate checkpoints, data pipelines
 and training code under Apache 2.0. It trains only on openly available data
 and applies website owners' crawler opt-outs retroactively to earlier crawls
-\parencite{apertus2026report}. Its authors put the case plainly: infrastructure
-``built in the open, by public institutions, on documented data, is the
+\parencite{apertus2026report}. Its authors put the case plainly: ``infrastructure
+built in the open, by public institutions, on documented data, is the
 alternative to dependence on a few providers''.
 \textcite{wickham2026tokencost}, costing the other side of the
 ledger, hopes that governments will fund the training of open models as a

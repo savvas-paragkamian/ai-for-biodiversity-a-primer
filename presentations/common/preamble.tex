@@ -119,5 +119,9 @@
     \begin{column}{0.40\textwidth}\centering\screenshot{#1}\end{column}
     \begin{column}{0.58\textwidth}\small #2\end{column}
   \end{columns}}
+% Notes in references.bib record how a web source was saved and dated; they
+% belong in the reference list, not on a \source line, so cite commands
+% (including \fullcite) leave them out.
+\AtEveryCitekey{\clearfield{note}}
 % \source{...}: a small grey line at the foot of a frame, for the source.
 \newcommand{\source}[1]{\vskip0pt plus 1filll\par{\scriptsize\color{dim}#1\par}}

@@ -37,7 +37,7 @@ not built, and its tests are planned, not run.
 
 ## Contents
 
-About 43,000 words, 152 pages (4 November 2026).
+About 44,000 words, 153 pages (6 November 2026).
 
 | Part | Chapters |
 |---|---|
@@ -85,7 +85,7 @@ instead, change `\DeclareGraphicsExtensions{.png}` in `preamble.tex` to
 ```
 main.tex          parts and chapter includes
 preamble.tex      packages, formatting, biblatex setup
-references.bib    236 entries, grouped by theme
+references.bib    238 entries, grouped by theme
 figures/          44 diagrams: style.tex, tikz/ sources, pdf/ png/ svg/ outputs,
                   README.md with the style rules and an index
 chapters/
@@ -104,9 +104,9 @@ chapters/
 Assembled from the `.bib`, `.ris` and `.bibtex` files in `../../literature/`,
 plus entries taken from the PDFs there.
 
-Verified on 4 November 2026: all 116 DOIs resolve through Crossref (or
+Verified on 6 November 2026: all 116 DOIs resolve through Crossref (or
 DataCite) and all 70 arXiv IDs through the arXiv API, with title, first author
-and year matching in every case. The remaining 50 entries are reports, books,
+and year matching in every case. The remaining 52 entries are reports, books,
 blog posts and web pages with no such identifier, checked by hand. Every entry
 is cited at least once, and every citation has a row in the claim audit
 (`../CLAIM_AUDIT_2026-10/`) giving the passage that supports it.
@@ -283,6 +283,21 @@ for the task-only diff, checks and remaining link limitations.
   with a glossary entry, a checklist item and the harnesses' rules and memory
   file locations in Appendix D, dated 4 November; Appendix D is retitled
   "September to November 2026". The decks were updated to match.
+- On 6 November 2026 the curation perspective by Wood et al. from the ELIXIR
+  Biocuration Focus Group (`pombase2026curation`), until then cited once, was
+  worked through the book. Chapter 4 gives the number of biocurators, the six
+  uses of models in curation and GO-Flow's figures, and records that no
+  AI-extracted association enters a core resource without human review.
+  Chapters 3, 5, 11, 12 and 13 and the glossary take its points on superseded
+  findings persisting in models, an MCP server for every resource, the
+  curator workforce, literature triage and article status tracking, smaller
+  local models, and evaluation as the main cost of an agentic pipeline. Two
+  web sources were added: Jiralerspong's "slop cliff" (Chapters 7 and 15,
+  glossary, manuscript checklist) and Anthropic's expansion of AI for Science
+  to funders and institutions (Chapters 12 and 16, Appendix D). Appendix C
+  describes EMBL-EBI's 2025 webinar series on language models in
+  bioinformatics. The decks were updated, with four more first-page
+  screenshots.
 
 ## Conventions
 

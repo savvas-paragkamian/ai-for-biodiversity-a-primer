@@ -80,15 +80,19 @@ preamble generates. Check with `pdfinfo main.pdf`.
   `presentations/common/screenshots/<key>.png`. Use
   `\paperslide{key}{<bullets of what the book takes from it>}` followed by
   `\source{\fullcite{key}}`. Each deck shows the papers assigned to it, and
-  no others; do not render new screenshots.
+  no others. A new screenshot is page 1 of the PDF in `../literature/`,
+  rendered with `pdftoppm -r 110 -f 1 -l 1 -png` and named by its key.
   - Deck 1: `vaswani2017attention`, `mishra2026notready`,
-    `mammides2026llmecology`, `keck2026interactions`, `wieczorek2012darwincore`.
+    `mammides2026llmecology`, `keck2026interactions`, `wieczorek2012darwincore`,
+    `pombase2026curation`, `apertus2026report` (both added 6 November 2026).
   - Deck 2: `becker2025metr`, `piskala2026files`, `kleppmann2019localfirst`,
     `carli2026karenina`.
   - Deck 3: `zhao2026citations`; it may also reuse `keck2026interactions` and
     `carli2026karenina`.
   - Deck 4: `greshake2023injection`, `shapira2026agentsofchaos`,
-    `lindenmayer2017donotpublish`, `seth2026naturalism`, `muller2026evolvableai`.
+    `lindenmayer2017donotpublish`, `seth2026naturalism`, `muller2026evolvableai`,
+    `jiralerspong2026slopcliff`, `anthropic2026aiforscience` (both added
+    6 November 2026).
 - **Code:** copy listings from the book or from the workshop files word for
   word, in a `[fragile]` frame with `\begin{lstlisting}[style=shell]` or
   `\begin{lstlisting}`. Keep a listing under about twelve lines; cut with a

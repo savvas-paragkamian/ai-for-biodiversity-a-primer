@@ -311,20 +311,20 @@ while not done and turns < max_turns:   # <- a budget stops it too
 \end{frame}
 
 \begin{frame}{The model suggests, the curator decides}
-  \fig[0.36\textheight]{ch04-curation-loop}
-  \small
-  \begin{itemize}
-    \item Curators propose AI-assisted curation with a person in the loop
-      \parencite{pombase2026curation}. An error in a knowledgebase spreads
-      into every analysis that uses it.
-    \item Australian daisies: 5.8 per cent of filled cells wrong in a checked
-      sample, and one cell in six differed between two runs
-      \parencite{schmidtlebuhn2025morphology}.
-    \item Generating a query is safer than generating an answer: you can read
-      it, and the database supplies the facts. A wrong query rarely fails
-      loudly; test on questions whose answers you know.
-  \end{itemize}
-  \source{Figure from Chapter 4 of the book.}
+  \paperslide{pombase2026curation}{\footnotesize
+    \begin{itemize}
+      \item 100 to 200 biocurators maintain the core knowledgebases; the
+        literature grows faster than they can read. Their proposal: the
+        model suggests, the curator decides \parencite{pombase2026curation}.
+      \item GO-Flow: 6,996 articles, 1,826 candidate annotations in 57
+        hours; curators agreed with 86.7 per cent of a sample, and review
+        took 80 per cent less time.
+      \item No AI-extracted association enters a core resource without
+        human review. Their ask: an MCP server for every database.
+      \item Daisies: 5.8 per cent of filled cells wrong; one cell in six
+        differed between runs \parencite{schmidtlebuhn2025morphology}.
+    \end{itemize}}
+  \source{\fullcite{pombase2026curation}}
 \end{frame}
 
 % ===========================================================================
@@ -352,25 +352,22 @@ while not done and turns < max_turns:   # <- a budget stops it too
 \end{frame}
 
 \begin{frame}{Open weight is not open source}
-  \small
-  \begin{itemize}
-    \item \textbf{Open weight:} you can download the parameters, run the model
-      and fine-tune it. It does not mean you can see what it was trained on or
-      rebuild it.
-    \item \textbf{Open source}, as the Open Source Initiative defines it: the
-      weights, the complete code to train and run the model, and enough about
-      the training data to build a substantially equivalent system
-      \parencite{osi2024definition}.
-    \item Fully open models exist. OLMo released its training data, code and
-      logs \parencite{groeneveld2024olmo}. Apertus, from Swiss public
-      institutions, trains only on openly available data, honours crawler
-      opt-outs retroactively, and releases weights, pipelines and checkpoints
-      under Apache 2.0 \parencite{apertus2026report}.
-    \item Open weights are not enough for science: without the training data,
-      nobody can audit which regions, taxa and languages are under-represented
-      \parencite{hai2026openweight,torresani2026opening}.
-  \end{itemize}
-  \source{Chapter 5, \emph{Open weights and open source}.}
+  \paperslide{apertus2026report}{\footnotesize
+    \begin{itemize}
+      \item \textbf{Open weight:} download, run, fine-tune. Not: see the
+        training data, or rebuild it.
+      \item \textbf{Open source} (OSI): weights, the full training and
+        inference code, and enough about the data to build an equivalent
+        \parencite{osi2024definition}.
+      \item OLMo released data, code and logs \parencite{groeneveld2024olmo}.
+        Apertus, from Swiss public institutions: only openly available data,
+        crawler opt-outs honoured retroactively, Apache 2.0
+        \parencite{apertus2026report}.
+      \item Without the training data nobody can audit which regions, taxa
+        and languages are under-represented
+        \parencite{hai2026openweight,torresani2026opening}.
+    \end{itemize}}
+  \source{\fullcite{apertus2026report}}
 \end{frame}
 
 \begin{frame}{What makes biodiversity records fit for a model}
