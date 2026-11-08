@@ -1,4 +1,8 @@
-# Workshop slides for *AI for Biodiversity: A Primer*
+# Workshop slides: *AI in Practice, or: How I Learned to Stop Worrying and Love the Agent*
+
+The workshop's title (chosen 6 November 2026) is on every title page, with
+the subtitle *A toolbox and worked examples for biodiversity researchers,
+from the book* AI for Biodiversity: A Primer.
 
 Four Beamer decks of about thirty slides each, built from the book in
 `../book/`, and a shorter setup deck (deck 0) taught before the hands-on

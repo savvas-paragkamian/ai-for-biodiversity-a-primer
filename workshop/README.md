@@ -1,6 +1,9 @@
-# Workshop companion to *AI for Biodiversity: A Primer*
+# AI in Practice, or: How I Learned to Stop Worrying and Love the Agent
 
-Hands-on material for three chapters of the book, in R:
+A toolbox and worked examples for biodiversity researchers, from the book
+*AI for Biodiversity: A Primer*. This folder is the hands-on companion to
+the workshop (programme in `../presentations/AGENDA.md`, slides in
+`../presentations/`): material for three chapters of the book, in R:
 
 - Chapter 10, "A First Agent Session" (`book/chapters/09b-first-agent-session.tex`)
 - Chapter 11, "A Weekly Literature Review" (`book/chapters/09c-weekly-literature.tex`)
