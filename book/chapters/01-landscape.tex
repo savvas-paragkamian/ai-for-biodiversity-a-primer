@@ -3,7 +3,172 @@
 
 Chatbots, models and agents are often discussed as if they were the same thing.
 They do different jobs. Some history helps explain the distinction, because
-today's choices echo an earlier argument about computing.
+today's choices echo an earlier argument about computing. That argument was
+about the kind of work the founders of quantitative biology and ecology did by
+hand, so the chapter starts with them.
+
+\section{How the field worked before computers}
+
+The founders worked on paper. The calculation each is remembered for took an
+evening, a weekend or a season. The record-keeping, arithmetic, reading and
+writing around it took years, and much of that was done by assistants. The six
+portraits below follow the four jobs the rest of this book is about: gathering
+data, calculating, finding what has been written, and writing it up.
+
+D'Arcy Thompson (1860--1948) was scientific member of the Fishery Board for
+Scotland for more than forty years \parencite{lt1958scholarnaturalist}. By his
+daughter's account he also edited the statistical bulletin of the International
+Council for the Exploration of the Sea from 1902 to 1947
+\parencite{thompsonr1976dsb}. His 1905 tables of Aberdeen trawl landings were
+compiled from the Fishery Board's reports, and he noted what they could not
+show, such as the time each voyage spent fishing
+\parencite{thompson1905aberdeen}. His one field census, of the Bering Sea fur
+seals in 1896, was made alongside the American commission; he counted harems
+himself and left colleagues to repeat the October count of dead pups
+\parencite{thompson1897beringsea}. Calculation he left to others. The prefatory
+note to \emph{On Growth and Form} says ``I pretend to no mathematical skill''
+and credits two women, Doris Mackinnon and Helen Ogilvie, with ``much the
+greater part'' of its diagrams \parencite{thompson1917growthform}. The book was
+written ``at odd moments'' over some twenty years;
+\textcite{jarron2023growthform} traces this through Thompson's letters and
+quotes Dawkins's remark that almost every page of it ``cries out for a
+computer''.
+
+R.\,A. Fisher (1890--1962) was hired by Rothamsted in 1919 to re-examine the
+records of its long-term field experiments, a task he later called ``raking
+over the muck heap'' \parencite{yates1963fishermemoir}. The records went back
+more than seventy years \parencite{fisher1921cropvariation}. They had been made
+by hand: each plot's crop cut with scythes, bound into sheaves and threshed,
+with samples kept and rainfall measured since 1853
+\parencite{rothamsted2006guide}. His first paper fitted a fifth-degree
+polynomial to 67 years of yield from each plot
+\parencite{fisher1921cropvariation}. A calculating machine was rented for him
+in 1919. In 1921 or 1922 he bought a motor-driven Millionaire, one of the few
+machines that multiplied directly; the department's two slide rules cost a few
+pounds \parencite{parolini2015rothamsted}. The Millionaire's price was said to
+exceed \pounds200 \parencite{gower2015rothamstedcomputing}. The routine
+arithmetic fell to one or two assistant statisticians and a handful of human
+computers, mostly women without university education; a complex design took
+weeks or months \parencite{parolini2015rothamsted}. \emph{Statistical Methods
+for Research Workers} is ``a compilation of methods, without mathematical
+proofs'' \parencite{yates1963fishermemoir}, with tables computed for fixed
+probabilities so that the reader never computed one
+\parencite{parolini2015rothamsted}. In 1926 the Rothamsted laboratory offered
+to supply randomised layouts to any intending experimenter
+\parencite{fisher1926arrangement}. His 1943 paper on the apparent abundance of
+different species \parencite{yates1963fishermemoir} introduced the log-series
+parameter, which Margalef was fitting to phytoplankton counts by 1949
+\parencite{sherwin2019margalef}.
+
+Claude Shannon (1916--2001) made his measure of information with printed
+tables and a book opened at random; ecologists later borrowed it. His 1948
+approximations to English used a book of random numbers and two frequency tables, and
+he stopped where ``the labor involved becomes enormous''
+\parencite{shannon1948communication}. The same paper credits J.\,W. Tukey with
+the word ``bit'' \parencite{shannon1948communication}. His 1951 estimate of the
+entropy of English came from a guessing game on a hundred passages of fifteen
+letters; the paper says its bounds still carry ``considerable sampling error''
+\parencite{shannon1951entropy}. By 1956 he was warning that information theory
+``has perhaps been ballooned to an importance beyond its actual
+accomplishments''. Applying it to biology, he wrote, needed ``the slow tedious
+process of hypothesis and experimental verification''
+\parencite{shannon1956bandwagon}. Margalef proposed Shannon's formula for
+species abundances in 1957, in Spanish, and the paper was republished in
+English a year later \parencite{sherwin2019margalef}.
+
+John Tukey (1915--2000), who is credited with the first printed use of
+``software'' \parencite{anscombe2003quietcontributor}, ``did not use
+computers''. He calculated in his head or with pencil and paper
+\parencite{fernholz2003remembering}. In 1962 he measured the trade-off.
+Screening 36 values with pen, paper and slide rule took him two or three times
+as long as sums of squares on a desk calculator, and taught him two or three
+times as much \parencite{tukey1962future}. The computer, he concluded, was
+``important but not vital'' for small sets and indispensable for large,
+incomplete records, provided a statistician could ``spot and follow up clues in
+the print-out'' \parencite{tukey1962future}. He read whole journals, the Royal
+Statistical Society's Supplement from its first volume and \emph{Biometrika}
+for forty years \parencite{fernholz2000conversation}. From the 1960s he built a
+citation index of statistics, one of the first outside law, from reprints in
+120 file drawers with key-punched entry sheets
+\parencite{brillinger2002tukeylife,anscombe2003quietcontributor}. The line to
+this book's exercises runs through his department. Bell Labs' group
+``Statistics and Data Analysis Research'' began S at a meeting on 5 May 1976
+\parencite{chambers2020srdatascience}. Its members wanted to work on data with
+Tukey's techniques instead of writing Fortran for batch jobs
+\parencite{becker1994historyofs}. R was designed to replicate S in open source
+\parencite{chambers2020srdatascience}; it began in a Macintosh teaching
+laboratory, reached StatLib in 1993 and went under the GNU licence in 1995
+\parencite{ihaka1998rhistory}.
+
+Robert May (1936--2020) came to ecology from physics by reading a chapter of
+Ken Watt's book one evening. He saw that a model with many predators and prey
+would be less stable, not more \parencite{williams2008mayinterview}. He
+``preferred pencil and paper'' \parencite{krebs2020mayobituary}, worked with a
+fountain pen on yellow legal pads and dictated his correspondence
+\parencite{dobson2020mayresolution}. Of a later project he said that a
+collaborator did the computing ``because I like someone else to do that''
+\parencite{williams2008mayinterview}. He saw the period doublings in the
+population equations and asked, on the blackboard outside his office, what came
+next \parencite{williams2008mayinterview}. At Silwood Park each summer, Conway
+recalled, the group gave him a problem each morning and had a draft paper by
+the afternoon \parencite{smc2020may}. His rule for the literature was to read
+enough to grasp a problem, think it through, and only then read ``carefully and
+thoughtfully and respectfully'' what others had written
+\parencite{kingsland2020hrcnewsletter}. His papers on the number of species
+were, in his colleagues' words, ``a razor-sharp summary and analysis of the
+available evidence'' rather than models \parencite{krebs2022maymemoir}. In 2011
+he set the exact count of books in the Library of Congress against our
+ignorance of the number of species to within an order of magnitude. He blamed
+the lack of synoptic databases and the tangle of synonyms, and called
+collecting in the field the rate-limiting step
+\parencite{may2011howmanyspecies}.
+
+William Michener's career is the construction of the record-keeping the others
+did without. In 1982 he was the statistician and database administrator of a
+marine laboratory in South Carolina \parencite{michener2019cv}. With Susan
+Stafford he wrote the first proposal for an annual meeting of the data managers
+of the US Long Term Ecological Research network
+\parencite{stafford2021lterretrospective}. That network began in 1980, in
+Robbins's words ``before WIFI, before the internet, before generic email, even
+before the first IBM PC'' \parencite{robbins2011lterdata}. It set aside 15 per
+cent of each site's budget for data management
+\parencite{stafford2021lterretrospective}. The printed catalogue Michener
+edited in 1990 described at least ten core datasets per site, without the data
+themselves \parencite{porter2010datasharing}. The committee he sat on in 1995
+found long-term data ``only in paper form'', their documentation in the
+investigator's memory and notes, and field sheets discarded once the numbers
+were typed in \parencite{gross1995fled}. Michener's 1997 figure of
+``information entropy'' shows a dataset's information content decaying with
+time until an accident cuts it off \parencite{robbins2011lterdata}. His later
+writing codifies the workflow as a data life cycle: plan, collect, assure,
+describe, preserve, discover, integrate, analyse. Field data still arrive on
+hand-written sheets, and spreadsheets mix summaries with raw data
+\parencite{michener2012ecoinformatics}. DataONE, which he led as principal
+investigator, keeps data at the repositories that already serve a community
+\parencite{michener2011dataone}.
+
+The tools were shared. The record was paper arranged for re-sorting: Linnaeus's
+slips of a standard size, which look like index cards
+\parencite{charmantier2014paperslips}, and Grinnell's specimen labels in India
+ink, for a value realised ``possibly a century'' later
+\parencite{grinnell1910researchmuseum}. A century on, 1,068 observations from
+three of Junius Henderson's notebooks became Darwin Core records
+\parencite{thomer2012fieldnotebooks}. Calculation meant printed tables
+\parencite{pearson1914tables}, then punched cards, Rothamsted's first computer,
+programmed in machine code from paper tape, in 1954, and GENSTAT from 1972
+\parencite{gower2015rothamstedcomputing}. Finding the literature was the slow
+stage. Conventional indexes ran ``six months to three years behind'' until the
+Science Citation Index of 1964 \parencite{garfield2007evolution}, and reprints
+were requested by postcard \parencite{sarli2019reprint}. The first measured
+reading budget, from 1977, is 48 minutes per article and about 120 hours a
+year, with 58.5 per cent of articles found by browsing and 0.7 per cent by
+automated search \parencite{tenopir2008reading}. Writing meant double-spaced
+typescripts and graphs redrawn on Bristol board; \textcite{fyfe2026authorship}
+reads camera-ready copy, word processors and \LaTeX{} as successive shifts of
+labour from publisher to author. Agents are the next such shift. Nobody in this
+section timed the clerical steps between decisions. The earliest timing this
+book has found is a psychologist's, and the argument he started is the subject
+of the next section.
 
 \section{An argument from the 1960s}
 

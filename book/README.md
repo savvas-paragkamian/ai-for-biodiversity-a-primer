@@ -37,12 +37,12 @@ not built, and its tests are planned, not run.
 
 ## Contents
 
-About 44,000 words, 153 pages (6 November 2026).
+About 44,500 words, 158 pages (9 November 2026).
 
 | Part | Chapters |
 |---|---|
 | Preface | Audience, the three arguments, how the book was written |
-| I. The Landscape | 1 Chatbots, Models and Agents · 2 Why Now? · 3 Powers and Limitations · 4 Applications in Biology and Ecology |
+| I. The Landscape | 1 Chatbots, Models and Agents (opening with how the founders of quantitative biology and ecology worked) · 2 Why Now? · 3 Powers and Limitations · 4 Applications in Biology and Ecology |
 | II. Data | 5 AI-Ready Data · 6 Organising and Protecting Your Data |
 | III. Working with Agents | 7 The Agentic Coding Workflow · 8 The Software Stack · 9 Reproducibility When the Tool Varies · 10 A First Agent Session (hands-on, in R, with `../workshop/session`) · 11 A Weekly Literature Review (hands-on, in R, with `../workshop/literature`) |
 | IV. Local-First | 12 The Local-First Approach (with the KYBELE example) · 13 Hardware for Local Inference · 14 Testing a Model on Your Own Task (with an R exercise, `../workshop/testing`) |
@@ -85,7 +85,7 @@ instead, change `\DeclareGraphicsExtensions{.png}` in `preamble.tex` to
 ```
 main.tex          parts and chapter includes
 preamble.tex      packages, formatting, biblatex setup
-references.bib    238 entries, grouped by theme
+references.bib    284 entries, grouped by theme
 figures/          44 diagrams: style.tex, tikz/ sources, pdf/ png/ svg/ outputs,
                   README.md with the style rules and an index
 chapters/
@@ -104,10 +104,12 @@ chapters/
 Assembled from the `.bib`, `.ris` and `.bibtex` files in `../../literature/`,
 plus entries taken from the PDFs there.
 
-Verified on 6 November 2026: all 116 DOIs resolve through Crossref (or
+Verified on 9 November 2026: all 146 DOIs resolve through Crossref (or
 DataCite) and all 70 arXiv IDs through the arXiv API, with title, first author
-and year matching in every case. The remaining 52 entries are reports, books,
-blog posts and web pages with no such identifier, checked by hand. Every entry
+and year matching in every case but one, `thomer2012fieldnotebooks`, whose
+entry follows the PDF's author order where Crossref lists a different first
+author. The remaining 68 entries are reports, books, blog posts and web pages
+with no such identifier, checked by hand. Every entry
 is cited at least once, and every citation has a row in the claim audit
 (`../CLAIM_AUDIT_2026-10/`) giving the passage that supports it.
 
@@ -298,6 +300,18 @@ for the task-only diff, checks and remaining link limitations.
   describes EMBL-EBI's 2025 webinar series on language models in
   bioinformatics. The decks were updated, with four more first-page
   screenshots.
+
+- On 8 and 9 November 2026 Chapter 1 gained an opening section, "How the
+  field worked before computers": six portraits of D'Arcy Thompson, R. A.
+  Fisher, Claude Shannon, John Tukey, Robert May and William Michener, each
+  built from how they gathered data, calculated, read and wrote, closing with
+  the tools they shared and a hand-over to Licklider's 85 per cent. Its 46
+  sources form a new section of the bibliography, all from documents placed in
+  `../../literature/` on 8 November. Four wanted sources are not there and are
+  not cited (Fisher, Corbet and Williams 1943; Michener et al. 1997;
+  Spellerberg and Fedor 2003; Dobell 1949), and several copies carry
+  provenance flags for the author; see Open work in `../AGENTS.md`. The claim
+  audit for the chapter was rewritten with the new rows.
 
 ## Conventions
 
