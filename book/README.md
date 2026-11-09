@@ -236,7 +236,8 @@ for the task-only diff, checks and remaining link limitations.
 - On 17 October 2026 three AI agents reviewed the book as referees, with the
   personas of an ecologist, a bioinformatician and a systems microbiologist.
   All three recommend major revision. Their reports and 290 inline comments
-  are on the `review/*` branches; the book itself was not changed. The
+  are under the tag `review-2026-10-17` (the `review/*` branches until
+  9 November 2026); the book itself was not changed. The
   author decides which revisions to accept. See Independent reviews in
   `../AGENTS.md`.
 - The revision answering that review was carried out on 2 November 2026,
