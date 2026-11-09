@@ -26,8 +26,8 @@ paragraph describing the course and the book.
 
 The structure follows Stanford's CME 295 lectures (in `../../literature/standford-class/`):
 goals, an outline repeated at each section, one idea per slide, a running
-example, and takeaways at the end. Nineteen important sources (papers, a
-report and two web pages) appear as a screenshot of their first page beside
+example, and takeaways at the end. Twenty-three important sources (papers,
+reports and two web pages) appear as a screenshot of their first page beside
 what the book takes from them, with the source line underneath.
 
 ## Build
@@ -49,7 +49,13 @@ are read from `../book/figures/pdf/` and the paper screenshots from
 `../../literature/`, rendered with `pdftoppm -r 110 -f 1 -l 1 -png`. The four
 added on 6 November 2026 (`pombase2026curation`, `apertus2026report`,
 `jiralerspong2026slopcliff`, `anthropic2026aiforscience`) were made the same
-way. `common/preamble.tex` drops the `note` field from cite commands, so a
+way, as were the four added on 9 November 2026 for deck 1's frames on how the
+founders of the field worked (`thompson1905aberdeen`, `fisher1926arrangement`,
+`tukey1962future`, `michener2012ecoinformatics`); the Fisher and Michener
+files open with two sheets added by the repository or publisher, so their
+screenshots are page 3 of the PDF, the paper's own first page, and the Fisher
+scan is cropped to the text block to leave out a black strip from scanning
+(`-x 245 -y 0 -W 660 -H 1060`). `common/preamble.tex` drops the `note` field from cite commands, so a
 `\fullcite` source line does not print how a web page was saved. They are shown for
 teaching, with the full reference under each; check the publisher's terms
 before distributing the slides outside the workshop.
