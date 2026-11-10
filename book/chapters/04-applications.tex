@@ -206,7 +206,10 @@ than reading the article. The same curators record that no AI-extracted
 association enters a Global Core Biodata Resource or an ELIXIR Core Data
 Resource without human review (\Cref{ch:testing}). An error in a
 knowledgebase spreads into every analysis that uses it. This makes the
-curator's judgement essential throughout the process.
+curator's judgement essential throughout the process. Builders of learning
+agents draw a similar line. \textcite{mcshane2024agents} let their agents
+suggest values for properties already in the ontology, but say an agent should
+create a new property ``never---at least not without a human's approval''.
 
 \begin{figure}[htbp]
 \centering
@@ -349,6 +352,17 @@ tools, some fell to 32 per cent, often because they never read enough of the
 sequence. The paper also comes from the model's makers. The agents noticed an
 anomaly, which is where discovery starts, but one run is not a method
 (\Cref{ch:reproducibility}).
+
+Agents have also begun to work at the bench. \textcite{zou2026wetlab}
+describes AutoDNA, reported by Wu and colleagues, in which agents built on
+language models plan molecular-biology experiments and run more than twenty
+kinds of instrument, from liquid handlers to a sequencer. One experiment,
+storing a message in DNA, took 11,382 instrument operations over 200 hours. In
+a test for viral DNA the agents capped the reaction tubes without being asked,
+a detail that written protocols often leave out. People still chose the tasks,
+configured the platform, prepared reagents and cleared waste. Of 14 hardware
+errors, eight were recovered automatically and six needed a person, and the
+experiments that can be fully automated are still mainly standard assays.
 
 \section{Domain assistants}
 

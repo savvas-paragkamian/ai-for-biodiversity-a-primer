@@ -12,7 +12,10 @@ Data is called \term{AI-ready} when it is machine-readable, uses controlled
 vocabularies, carries structured metadata, can be downloaded in bulk and is
 openly licensed. Every one of those is good data management, which
 biodiversity informatics was doing long before the term existed
-\parencite{gadelha2021survey,stahlman2026longtail}. The FAIR
+\parencite{gadelha2021survey,stahlman2026longtail}. A review of more than a
+hundred sources, reported in a white paper for the AI Action Plan for
+Switzerland, found no agreed definition. The term is often used as if it meant
+high-quality or well-managed data \parencite{legner2026aireadydata}. The FAIR
 principles already asked, in 2016, for data that machines as well as people could
 find and reuse \parencite{wilkinson2016fair}. What the term
 adds is a consumer --- often a company that will ingest the corpus, build a
@@ -22,7 +25,11 @@ model, and return neither the weights nor credit to the curators
 end up in proprietary models that return no access, attribution or credit to
 the people who produced them. This is not an
 argument against openness, which has served ecology well. It is an argument for
-reading the terms.
+reading the terms. Some terms now name models directly. The open-access edition
+of a 2024 book on AI agents carries a Creative Commons licence. Its
+copyright page adds that no part of it ``may be used to train artificial
+intelligence systems'' unless the MIT Press agrees in writing
+\parencite{mcshane2024agents}.
 
 \begin{figure}[htbp]
 \centering
@@ -96,11 +103,37 @@ maintain it?
 \section{What makes biodiversity data fit for a model}
 \label{sec:fitformodel}
 
-The definition of AI-ready at the start of this chapter is about format. A
-table can meet all of it and still mislead a model, because ecological
-inference depends on how the records were made. A model fitted to occurrence
-records learns where people looked as readily as where species live
-(\Cref{fig:samplingbias}). Darwin Core groups its terms into classes such as
+The definition of AI-ready at the start of this chapter is about format.
+\textcite{legner2026aireadydata} define the term by use instead: datasets
+``documented, refined and extended to train or run AI system(s)'' for specific
+intended purposes. Readiness is then a state to be assessed against a purpose,
+not a property of the dataset. They describe it along six dimensions that
+depend on one another (\Cref{fig:sixdimensions}). Four extend established data
+management: understandability, the FAIR principles, quality, and security,
+privacy and compliance. Two are specific to AI. The data need enough volume and
+diversity to be representative, and they must be prepared for their function
+in the model. Data that are safe to retrieve can still be unsafe to
+train on, the authors note, because the access controls that apply when they
+are queried do not survive training.
+
+\begin{figure}[htbp]
+\centering
+\fig{ch05-six-dimensions}
+\caption{The six dimensions of AI-ready data, redrawn from Figure~5 of the
+Swiss white paper on AI-ready data \parencite{legner2026aireadydata}. The arrows
+mark that the dimensions depend on one another. The notes, added here, give
+what each dimension means for biodiversity records in this chapter.}
+\label{fig:sixdimensions}
+\end{figure}
+
+The notes in \Cref{fig:sixdimensions} place this chapter on that map: Darwin
+Core and MIxS under understandability, access and benefit-sharing and CARE
+under compliance, and the checks listed below under quality. A table can meet
+the format definition and still mislead a model, because ecological inference
+depends on how the records were made. A model fitted to occurrence records
+learns where people looked as readily as where species live
+(\Cref{fig:samplingbias}); the white paper names this sampling bias, under
+volume and diversity. Darwin Core groups its terms into classes such as
 event, location, occurrence, taxon and identification, so that people and machines can judge
 what a record can be used for \parencite{wieczorek2012darwincore}. Six kinds of
 information decide whether records can support an inference:
@@ -128,7 +161,8 @@ information decide whether records can support an inference:
     \code{identificationQualifier}, and the person in \code{identifiedBy}, tell
     a model how far to trust it.
   \item \textbf{Flags for machine-derived records.} A name proposed by an image
-    classifier, or a record extracted by a language model, should say so. Set
+    classifier, or a record extracted by a language model, should say so
+    \parencite{legner2026aireadydata}. Set
     \code{basisOfRecord} to \code{MachineObservation}, name the model and its
     version in \code{identifiedBy}, and leave
     \code{identificationVerificationStatus} unverified until a person checks it.
@@ -220,7 +254,11 @@ prompts can be kept when the model behind them is replaced. For the literature, 
 tool turns a clade's PDFs into an MCP server whose answers point to the source and
 page \parencite{church2026corpus}. SPARQL and RDF serve
 knowledge graphs, which models can now query \parencite{smeros2025sparqlllm}.
-Frameworks such as LangChain and LangGraph chain these pieces into applications,
+A survey of how such systems use graphs adds two cautions. Correct retrieval
+does not ensure a correct action, and an empty query result does not show that
+something is false, because the graph may be incomplete \parencite{liu2026graphllm}.
+For biodiversity I read the second as the non-detection problem again: a
+species absent from a graph may only be absent from its records. Frameworks such as LangChain and LangGraph chain these pieces into applications,
 and Ollama runs open models locally (\Cref{ch:stack}).
 
 \begin{figure}[htbp]
@@ -257,7 +295,12 @@ mediated by GBIF, and found that legacies of colonial science remain. Credit
 flows back less reliably: across 43,802 GBIF datasets, best practice for
 citing them was not yet common \parencite{khan2021gbifcitation}.
 The survival of these resources is a policy achievement, not a market outcome,
-and it is not guaranteed. Jacqueline J. Dearborn's talk on who will steward
+and it is not guaranteed. The Swiss white paper reaches the same view from
+outside biology. Preparing data for AI is continuing work, its authors write,
+and it depends on shared infrastructures whose operation and maintenance are
+funded on a durable basis. One of its cases, a legal chatbot for Luxembourg,
+puts it in a line: ``AI-readiness builds up over years and is consumed in
+months'' \parencite{legner2026aireadydata}. Jacqueline J. Dearborn's talk on who will steward
 public data, listed in \Cref{app:tutorials}, makes the point from inside the
 Biodiversity Heritage Library and other infrastructures. The people who
 maintain and interpret a resource are part of it, and grants favour building
@@ -366,6 +409,10 @@ what was retrieved separately from what was generated, or you cannot tell which
 half broke. Test retrieval by itself first, on a handful of questions whose
 answering passages you already know. For a small, stable corpus, a curated set of notes placed directly
 in the context can beat retrieval altogether; test before assuming you need RAG.
+The same holds for retrieval over a knowledge graph. In one comparison reported
+by \textcite{liu2026graphllm}, plain vector retrieval scored above a system that
+retrieves through a graph under one search workflow, and below it under
+another.
 
 \begin{figure}[htbp]
 \centering

@@ -37,7 +37,7 @@ not built, and its tests are planned, not run.
 
 ## Contents
 
-About 44,500 words, 158 pages (9 November 2026).
+About 45,500 words, 161 pages (10 November 2026).
 
 | Part | Chapters |
 |---|---|
@@ -85,8 +85,8 @@ instead, change `\DeclareGraphicsExtensions{.png}` in `preamble.tex` to
 ```
 main.tex          parts and chapter includes
 preamble.tex      packages, formatting, biblatex setup
-references.bib    284 entries, grouped by theme
-figures/          44 diagrams: style.tex, tikz/ sources, pdf/ png/ svg/ outputs,
+references.bib    290 entries, grouped by theme
+figures/          45 diagrams: style.tex, tikz/ sources, pdf/ png/ svg/ outputs,
                   README.md with the style rules and an index
 chapters/
   00-preface
@@ -104,11 +104,11 @@ chapters/
 Assembled from the `.bib`, `.ris` and `.bibtex` files in `../../literature/`,
 plus entries taken from the PDFs there.
 
-Verified on 9 November 2026: all 146 DOIs resolve through Crossref (or
-DataCite) and all 70 arXiv IDs through the arXiv API, with title, first author
+Verified on 10 November 2026: all 147 DOIs resolve through Crossref (or
+DataCite) and all 72 arXiv IDs through the arXiv API, with title, first author
 and year matching in every case but one, `thomer2012fieldnotebooks`, whose
 entry follows the PDF's author order where Crossref lists a different first
-author. The remaining 68 entries are reports, books, blog posts and web pages
+author. The remaining 71 entries are reports, books, blog posts and web pages
 with no such identifier, checked by hand. Every entry
 is cited at least once, and every citation has a row in the claim audit
 (`../CLAIM_AUDIT_2026-10/`) giving the passage that supports it.
@@ -313,6 +313,18 @@ for the task-only diff, checks and remaining link limitations.
   Spellerberg and Fedor 2003; Dobell 1949), and several copies carry
   provenance flags for the author; see Open work in `../AGENTS.md`. The claim
   audit for the chapter was rewritten with the new rows.
+- On 10 November 2026 six documents added to the literature folder were
+  cited. The Swiss white paper *AI-ready Data* (Legner et al.) now carries
+  Chapter 5's definition: readiness is a state assessed against an intended
+  purpose, along six dimensions, and a new figure redraws its six dimensions
+  with a biodiversity note for each (`ch05-six-dimensions`, also in deck 1).
+  Zou's account of an autonomous molecular-biology laboratory is in Chapters 4,
+  15 and 16; a survey of graph-based language-model systems in Chapter 5; the
+  MIT Press book by McShane, Nirenburg and English in Chapters 1 (dissent on
+  what models understand), 3, 4 and 5; and two papers by Hartl and colleagues
+  in the epilogue and Levin's entry in Chapter 17. Jan Korbel's quote on EMBL's
+  three pillars is prepared as `../KORBEL_QUOTE_2026-11-10.patch` and waits
+  for a copy of its source in `../../literature/`.
 
 ## Conventions
 

@@ -1,0 +1,41 @@
+% The six dimensions of AI-ready data, after Legner et al. (2026), Figure 5,
+% with the biodiversity counterpart of each as Chapter 5 describes it.
+\input{../style}
+\begin{document}
+\begin{tikzpicture}[
+    dim/.style={draw, circle, minimum size=68pt, inner sep=1pt,
+                align=center, fill=white},
+    side/.style={note, text width=80pt},
+  ]
+  \def\R{100pt}
+  % the ring: the six depend on one another
+  \draw[thin] (0,0) circle[radius=\R];
+  \foreach \a in {90,30,-30,-90,-150,150} {
+    \draw[thin, ->] ($(0,0)+(\a-21:\R)$)
+      arc[start angle=\a-21, end angle=\a-39, radius=\R];
+  }
+  % centre
+  \node[draw, circle, fill=lightgrey, minimum size=78pt, inner sep=1pt,
+        align=center] (c) at (0,0)
+    {AI-ready data\\[2pt]{\footnotesize\itshape for an intended}\\[-1pt]
+     {\footnotesize\itshape purpose}};
+  % the six dimensions, clockwise from the top, as in the source
+  \node[dim] (u) at (90:\R)   {Data\\understand-\\ability};
+  \node[dim] (m) at (30:\R)   {Function\\in the\\model};
+  \node[dim] (s) at (-30:\R)  {Security,\\privacy and\\compliance};
+  \node[dim] (v) at (-90:\R)  {Volume\\and\\diversity};
+  \node[dim] (q) at (-150:\R) {Data\\quality};
+  \node[dim] (f) at (150:\R)  {FAIR\\principles};
+  % what each means for biodiversity records
+  \node[note, above=3pt of u] {Darwin Core terms, EML, MIxS};
+  \node[side, right=5pt of m, align=left]
+    {training or retrieval: ready for one is not ready for the other};
+  \node[side, right=5pt of s, align=left]
+    {licence, access and benefit-sharing, CARE, sensitive localities};
+  \node[note, below=3pt of v] {sampling effort, non-detections, where people looked};
+  \node[side, left=5pt of q, align=right]
+    {coordinate checks, identification qualifiers, flags for machine records};
+  \node[side, left=5pt of f, align=right]
+    {persistent identifiers, controlled vocabularies, bulk download};
+\end{tikzpicture}
+\end{document}

@@ -1,6 +1,6 @@
 # Figures
 
-Forty-four diagrams, two or three per chapter, drawn in TikZ and built into
+Forty-five diagrams, two or three per chapter (four in Chapter 5), drawn in TikZ and built into
 three formats from one source. They are meant to be reused in the workshop
 slides as well as in the book.
 
@@ -81,6 +81,7 @@ small capitals for panel titles, no decoration.
 | ch04-sampling-bias | 4 | fig:samplingbias | A model trained on biased records predicts where people looked |
 | ch04-curation-loop | 4 | fig:curation | The model suggests, the curator decides, the knowledgebase feeds every analysis |
 | ch05-commons | 5 | fig:commons | The data commons and the return arrow that is not guaranteed |
+| ch05-six-dimensions | 5 | fig:sixdimensions | The six dimensions of AI-ready data around an intended purpose, redrawn from Legner et al. (2026, Figure 5), with a biodiversity note for each |
 | ch05-mcp | 5 | fig:mcp | One adapter per pair against one wrapper per resource |
 | ch05-rag-pipeline | 5 | fig:rag | The six steps of retrieval-augmented generation and the seven failure points |
 | ch06-raw-readonly | 6 | fig:rawreadonly | Raw data read-only, everything else derived by script |
