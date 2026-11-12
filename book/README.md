@@ -85,7 +85,7 @@ instead, change `\DeclareGraphicsExtensions{.png}` in `preamble.tex` to
 ```
 main.tex          parts and chapter includes
 preamble.tex      packages, formatting, biblatex setup
-references.bib    291 entries, grouped by theme
+references.bib    292 entries, grouped by theme
 figures/          45 diagrams: style.tex, tikz/ sources, pdf/ png/ svg/ outputs,
                   README.md with the style rules and an index
 chapters/
@@ -104,11 +104,11 @@ chapters/
 Assembled from the `.bib`, `.ris` and `.bibtex` files in `../../literature/`,
 plus entries taken from the PDFs there.
 
-Verified on 10 November 2026: all 147 DOIs resolve through Crossref (or
+Verified on 11 November 2026: all 147 DOIs resolve through Crossref (or
 DataCite) and all 72 arXiv IDs through the arXiv API, with title, first author
 and year matching in every case but one, `thomer2012fieldnotebooks`, whose
 entry follows the PDF's author order where Crossref lists a different first
-author. The remaining 72 entries are reports, books, blog posts and web pages
+author. The remaining 73 entries are reports, books, blog posts and web pages
 with no such identifier, checked by hand. Every entry
 is cited at least once, and every citation has a row in the claim audit
 (`../CLAIM_AUDIT_2026-10/`) giving the passage that supports it.
@@ -326,6 +326,12 @@ for the task-only diff, checks and remaining link limitations.
   EMBL's three pillars, from the Falling Walls Science Summit 2026, is quoted
   in Chapter 5's Infrastructure section, from the text the author supplied
   (filed in `../../literature/` with its provenance).
+- On 11 November 2026 A. Murat Eren's web tutorial on agentic coding for life
+  scientists was added to the bibliography and Eren to the people list in
+  Chapter 17, beside Wickham, with whom he disagrees on where beginners
+  should start. A 22-page tutorial built from the book, the workshop and his
+  method is in `../tutorial/` as a draft for the author; see its README for
+  what was tested.
 
 ## Conventions
 

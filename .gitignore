@@ -34,6 +34,20 @@ presentations/*/main.toc
 presentations/*/main.vrb
 presentations/*/main.pdf
 
+# The tutorial's build products (same rule as the book and the decks). The
+# figure's PDF is rebuilt from tutorial/figures/tikz; its PNG is tracked.
+tutorial/main.aux
+tutorial/main.bbl
+tutorial/main.bcf
+tutorial/main.blg
+tutorial/main.fdb_latexmk
+tutorial/main.fls
+tutorial/main.log
+tutorial/main.out
+tutorial/main.run.xml
+tutorial/main.pdf
+tutorial/figures/*.pdf
+
 # The plagiarism checker's cache: extracted full text of the papers in
 # ../literature, publishers' text. Never commit it.
 scripts/.cache/
