@@ -1,0 +1,126 @@
+% ---------------------------------------------------------------------------
+% preamble.tex --- the tutorial's formatting, pdflatex + biber
+%
+% The same packages and settings as the book (book/preamble.tex), adapted to
+% the article class: Latin Modern, no colour except the grey code background.
+% No package is loaded here that the book does not load. The figures are the
+% book's PNGs, the bibliography is the book's references.bib.
+% ---------------------------------------------------------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+\usepackage[a4paper,margin=3cm]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{csquotes}
+
+% --- figures ---------------------------------------------------------------
+% The book's figures (book/figures/png) and the one figure drawn for the
+% tutorial (figures/, built from figures/tikz; see README.md).
+\usepackage{graphicx}
+\graphicspath{{../book/figures/png/}{figures/}}
+\DeclareGraphicsExtensions{.png}
+% \fig{name}: a figure at its natural size, reduced to the text width only
+% when it is wider.
+\newsavebox{\figbox}
+\newcommand{\fig}[1]{%
+  \sbox{\figbox}{\includegraphics{#1}}%
+  \ifdim\wd\figbox>\linewidth
+    \includegraphics[width=\linewidth]{#1}%
+  \else
+    \usebox{\figbox}%
+  \fi}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalise,nameinlink]{cleveref}
+\hypersetup{
+  pdftitle={Agentic AI for Biodiversity: A Tutorial},
+  pdfauthor={Savvas Paragkamian},
+  bookmarksnumbered=true,
+}
+
+% --- bibliography (the book's file and settings) ---------------------------
+\usepackage[
+  backend=biber,
+  style=authoryear,
+  sorting=nyt,
+  maxbibnames=6,
+  minbibnames=3,
+  maxcitenames=2,
+  giveninits=true,
+  uniquename=init,
+  doi=true,
+  url=true,
+  isbn=false,
+  eprint=true,
+]{biblatex}
+\addbibresource{../book/references.bib}
+
+% --- spacing and headings --------------------------------------------------
+\setlength{\parskip}{0.6em}
+\setlength{\parindent}{0pt}
+\setlist{itemsep=0.15em,topsep=0.3em}
+
+\usepackage{titlesec}
+\titleformat{\part}[hang]{\Large\bfseries}{Part \thepart.}{0.6em}{}
+\titlespacing*{\part}{0pt}{2.2em}{0.6em}
+\titleformat{\section}{\large\bfseries}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.6em}{}
+
+% --- code listings (as in the book) ----------------------------------------
+\definecolor{codebg}{gray}{0.96}
+\lstset{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{codebg},
+  frame=none,
+  breaklines=true,
+  breakatwhitespace=true,
+  columns=fullflexible,
+  keepspaces=true,
+  upquote=true, % straight quotes, so text copied from the PDF runs
+  showstringspaces=false,
+  xleftmargin=0.8em,
+  framexleftmargin=0.8em,
+  aboveskip=0.8em,
+  belowskip=0.8em,
+  literate={~}{{\textasciitilde}}1
+           {>}{{\textgreater}}1
+           {<}{{\textless}}1,
+}
+\lstdefinestyle{shell}{language=bash}
+
+% --- a plain "key point" environment (no boxes, minimal) -------------------
+\newenvironment{keypoint}
+  {\par\medskip\noindent\textbf{Key point.}\enspace\itshape}
+  {\par\medskip}
+
+% --- shorthand -------------------------------------------------------------
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\term}[1]{\emph{#1}}
+
+% --- the book's chapters, by the numbers of the built book -----------------
+% Chapter numbers have changed twice (see AGENTS.md). They are kept here so
+% that a renumbering needs one edit. Checked against book/main.tex on
+% 11 November 2026.
+\newcommand{\bkLandscape}{Chapter~1}
+\newcommand{\bkPowers}{Chapter~3}
+\newcommand{\bkApplications}{Chapter~4}
+\newcommand{\bkData}{Chapter~5}
+\newcommand{\bkOrganising}{Chapter~6}
+\newcommand{\bkAgentic}{Chapter~7}
+\newcommand{\bkStack}{Chapter~8}
+\newcommand{\bkRepro}{Chapter~9}
+\newcommand{\bkSession}{Chapter~10}
+\newcommand{\bkLiterature}{Chapter~11}
+\newcommand{\bkLocal}{Chapter~12}
+\newcommand{\bkHardware}{Chapter~13}
+\newcommand{\bkTesting}{Chapter~14}
+\newcommand{\bkSecurity}{Chapter~15}
+\newcommand{\bkKeepingUp}{Chapter~17}
+\newcommand{\bkStateOfPlay}{Appendix~D}

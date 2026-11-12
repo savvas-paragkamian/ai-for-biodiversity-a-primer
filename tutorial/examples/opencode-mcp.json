@@ -1,0 +1,10 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "interpro": {
+      "type": "remote",
+      "url": "https://www.ebi.ac.uk/interpro/mcp",
+      "enabled": true
+    }
+  }
+}

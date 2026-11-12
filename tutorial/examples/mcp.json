@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "interpro": {
+      "type": "http",
+      "url": "https://www.ebi.ac.uk/interpro/mcp"
+    }
+  }
+}
