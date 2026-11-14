@@ -62,7 +62,16 @@ model risks \term{deskilling} --- losing the skills needed to check it --- and
 there is a cost in energy and water. They also warn that field studies are
 already a shrinking share of the literature; if language models pull attention
 and money further from collecting primary observations, that would be a major
-loss. Their recommendations are the ones this book argues for: choose the model for
+loss. An unpublished manuscript takes the warning further, thirty years
+after Reed Noss wrote that the naturalists were dying off
+\parencite{sun2026naturalists}. It cites a national assessment in Hungary in which no active expert
+was available to identify nearly half of about 36{,}000 recorded animal
+species. As such experts retire, the manuscript argues, the people able to
+check and correct what distribution models, trait databases and
+citizen-science platforms produce become scarcer. Its conclusion is not a
+retreat from analysis. It asks that field observation and taxonomy be built
+into data-intensive programmes, not left beside them. The review's
+recommendations are the ones this book argues for: choose the model for
 the task, ground answers with retrieval, keep a person checking the output, and
 publish prompts and workflows.
 
@@ -84,6 +93,13 @@ works at scale, about 30 times faster than transcribing by hand
 \parencite{johnson2026collections}. I think it works because the bottleneck was
 transcription speed, not judgement. Each transcription is also marked as
 machine-generated and linked to the image it came from, so it can be checked.
+Herbarium labels show the limits. A review of label digitisation finds that
+language models now map recognised text to Darwin Core fields, but that
+handwritten and multilingual labels still need a person's check
+\parencite{abbad2026herbarium}. One pipeline in its table got 95.4 per cent of
+fields right on printed Chinese labels and 64.7 per cent on handwritten ones.
+Only one reviewed system joins label detection, text recognition and
+structuring, so how an early error carries through is largely untested.
 
 \textbf{Literature.} Much biodiversity knowledge is locked in prose. Text mining
 has worked on it for decades \parencite{thessen2012nlp,farrell2024textmining}, and
@@ -161,7 +177,12 @@ interpretability, generalising across studies, and causal inference. I leave
 out AI that works on sequences and sequence databases, such as taxonomic
 assignment of reads, genome quality estimation and functional annotation. Most
 of those tools are classifiers trained for one task rather than language
-models, and they deserve their own treatment.
+models, and they deserve their own treatment. One recent example, Taxonova,
+assigns species to sequenced ribosomal RNA marker genes and falls back to the
+genus when its confidence is low \parencite{kakabra2026taxonova}. Its authors
+expect its species names to hold best for samples from the human body. In
+soil, sludge and natural waters many species are absent from the reference
+database (\Cref{ch:testing}).
 
 Two studies show language models at work on microbial data.
 \textcite{munch2026phenotypes} asked models to assign ten microbial traits from
@@ -283,6 +304,18 @@ The authors warn that a model which predicts such data well may be, in their
 words, ``right for the wrong reason''. The authors also state that the model's species channels
 carry GBIF's spatial and taxonomic biases, and they release the weights, the
 data cube and the benchmark \parencite{trantas2026bioanalyst}.
+
+A perspective by eighteen authors sets the bar higher
+\parencite{gardiner2026foundation}. It judges that no complete foundation model
+for ecology exists yet. Recent multi-modal extensions of distribution models,
+BioAnalyst among those it cites, still largely treat prediction tasks in
+isolation.
+Language models fall short too, the authors write: they know ecology from the
+published literature, not from the data as collected. Today's image and sound
+models serve mainly, in their account, to curate data. The gains of deep
+species-distribution models often shrink for rare species, under spatially
+structured validation and outside the training domain. What the authors offer
+is a design, not a tested model.
 
 Ecology has methods for this problem. Statistical and model-based corrections
 for uneven sampling are common, though even the best still need checking

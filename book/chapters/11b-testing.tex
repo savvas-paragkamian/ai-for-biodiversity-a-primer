@@ -34,7 +34,13 @@ biology from failed computing.
 argue that foundation models are hard to benchmark because they are meant to
 embody the processes that produced the data. They ask whether such models can be
 refuted, verified, or only judged by usefulness, and what part the scientific
-community should play in testing them.
+community should play in testing them. For ecology,
+\textcite{gardiner2026foundation} propose one test: probe a trained model for
+relationships that theory already predicts, such as those of metabolic theory
+between body size, temperature and biological rates. Recovering them would be
+evidence that the model learned ecological structure. They also ask that such
+models be judged on calibration and on transfer across taxa and regions, not
+on accuracy alone.
 
 \textbf{Test against the previous version.} When EMBL-EBI rewrote InterProScan,
 its protein annotation pipeline, as a Nextflow workflow, the authors compared
@@ -90,7 +96,10 @@ study-retrieval workflows, drawing on their different successes and failures
     Count malformed outputs, failures and unanswered cases across the full test
     set, even when calculating accuracy only on valid answers.
   \item \textbf{Test uncertainty and unfamiliar cases.} Include absent fields,
-    rare taxa and difficult negative examples. Add controls for benchmark
+    rare taxa and difficult negative examples. Where answers are read from
+    retrieved text, include passages that name only the genus of the species
+    asked for; in one preprint, models guessed from such passages
+    \parencite{rayeed2026clade}. Add controls for benchmark
     contamination (\Cref{ch:powers}), since public reference data may be in a
     model's training data. Invented names cannot have been memorised
     \parencite{munch2026phenotypes}, and models know least about the most
@@ -98,7 +107,13 @@ study-retrieval workflows, drawing on their different successes and failures
     \term{coverage}, the proportion of cases receiving an answer, alongside
     accuracy. If confidence controls which answers are accepted, check whether
     higher confidence predicts fewer errors. Measure the errors and
-    coverage again at each proposed threshold.
+    coverage again at each proposed threshold. A classifier of microbial
+    marker-gene sequences shows why. Taxonova reports a genus when it cannot
+    resolve the species \parencite{kakabra2026taxonova}. On one dataset of a
+    published benchmark it ranked first at its chosen thresholds while leaving
+    55.7 per cent of sequences with a known species unassigned; another
+    classifier left 5.8 per cent. Its authors therefore also compare
+    classifiers at equal coverage.
   \item \textbf{Evaluate retrieval and evidence separately.} For literature
     assistants, measure how many expert-selected relevant papers appear in the
     first few results. Then check whether each generated claim is supported by

@@ -37,7 +37,7 @@ not built, and its tests are planned, not run.
 
 ## Contents
 
-About 45,600 words, 162 pages (10 November 2026).
+About 46,800 words, 165 pages (14 November 2026).
 
 | Part | Chapters |
 |---|---|
@@ -85,7 +85,7 @@ instead, change `\DeclareGraphicsExtensions{.png}` in `preamble.tex` to
 ```
 main.tex          parts and chapter includes
 preamble.tex      packages, formatting, biblatex setup
-references.bib    292 entries, grouped by theme
+references.bib    299 entries, grouped by theme
 figures/          45 diagrams: style.tex, tikz/ sources, pdf/ png/ svg/ outputs,
                   README.md with the style rules and an index
 chapters/
@@ -104,11 +104,11 @@ chapters/
 Assembled from the `.bib`, `.ris` and `.bibtex` files in `../../literature/`,
 plus entries taken from the PDFs there.
 
-Verified on 11 November 2026: all 147 DOIs resolve through Crossref (or
-DataCite) and all 72 arXiv IDs through the arXiv API, with title, first author
+Verified on 14 November 2026: all 152 DOIs resolve through Crossref (or
+DataCite) and all 73 arXiv IDs through the arXiv API, with title, first author
 and year matching in every case but one, `thomer2012fieldnotebooks`, whose
 entry follows the PDF's author order where Crossref lists a different first
-author. The remaining 73 entries are reports, books, blog posts and web pages
+author. The remaining 74 entries are reports, books, blog posts and web pages
 with no such identifier, checked by hand. Every entry
 is cited at least once, and every citation has a row in the claim audit
 (`../CLAIM_AUDIT_2026-10/`) giving the passage that supports it.
@@ -332,6 +332,20 @@ for the task-only diff, checks and remaining link limitations.
   should start. A 22-page tutorial built from the book, the workshop and his
   method is in `../tutorial/` as a draft for the author; see its README for
   what was tested.
+- On 14 November 2026 seven sources added to the literature folder that week
+  were placed. Chapter 4 gains a perspective on foundation models for ecology
+  (no complete one exists yet; language models know ecology from the
+  literature, not from the data as collected), a review of herbarium label
+  digitisation, an unpublished manuscript on the loss of naturalists, and
+  Taxonova as an example of the sequence classifiers the book leaves out.
+  Chapter 5 gains a preprint on answers given from passages that name only a
+  genus or family; Chapter 15 a comment on biodiversity credits run by
+  agents, satellites and automatic payments; Chapter 1 a study in which
+  group leaders rated research ideas written by a model. Several of these
+  are cited a second time in Chapters 5, 9, 12, 14 and the epilogue.
+  Appendix C lists Stanford's CS 329Z, *Engineering AI Agents*. Decks 1, 2
+  and 4 show five of the papers' first pages. Provenance points for the
+  author are in Open work in `../AGENTS.md`.
 
 ## Conventions
 

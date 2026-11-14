@@ -26,7 +26,7 @@ paragraph describing the course and the book.
 
 The structure follows Stanford's CME 295 lectures (in `../../literature/standford-class/`):
 goals, an outline repeated at each section, one idea per slide, a running
-example, and takeaways at the end. Twenty-three important sources (papers,
+example, and takeaways at the end. Twenty-eight important sources (papers,
 reports and two web pages) appear as a screenshot of their first page beside
 what the book takes from them, with the source line underneath.
 
@@ -55,7 +55,12 @@ founders of the field worked (`thompson1905aberdeen`, `fisher1926arrangement`,
 files open with two sheets added by the repository or publisher, so their
 screenshots are page 3 of the PDF, the paper's own first page, and the Fisher
 scan is cropped to the text block to leave out a black strip from scanning
-(`-x 245 -y 0 -W 660 -H 1060`). `common/preamble.tex` drops the `note` field from cite commands, so a
+(`-x 245 -y 0 -W 660 -H 1060`). Five more were added on 14 November 2026, each page 1 of its PDF:
+`gardiner2026foundation`, `abbad2026herbarium` and `sun2026naturalists` (deck 1),
+`kakabra2026taxonova` (deck 2) and `millard2026credits` (deck 4). The Sun page is
+the title page of an unpublished manuscript and its frame says so; the Taxonova
+page carries the publisher's "uncorrected proof" stamp; the Gardiner article is
+not open access. `common/preamble.tex` drops the `note` field from cite commands, so a
 `\fullcite` source line does not print how a web page was saved. They are shown for
 teaching, with the full reference under each; check the publisher's terms
 before distributing the slides outside the workshop.

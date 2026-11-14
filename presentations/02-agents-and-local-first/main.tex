@@ -471,6 +471,25 @@ Review: 1,847 rows in, 1,847 out. 23 NO_MATCH checked by hand:
     on the extraction and classification studies of Chapter 4.}
 \end{frame}
 
+\begin{frame}{Report coverage beside accuracy}
+  \paperslide{kakabra2026taxonova}{\footnotesize
+    \begin{itemize}
+      \item Step 4 of the procedure: report \term{coverage}, the proportion
+        of cases receiving an answer, alongside accuracy, and measure both
+        again at each threshold.
+      \item Taxonova, a classifier of microbial marker-gene sequences,
+        reports a genus when it cannot resolve the species
+        \parencite{kakabra2026taxonova}.
+      \item On one dataset of a published benchmark it ranked first at its
+        chosen thresholds while leaving 55.7 per cent of sequences with a
+        known species unassigned; another classifier left 5.8 per cent.
+      \item Its authors expect its species names to hold best for samples
+        from the human body: in soil, sludge and natural waters many species
+        are absent from the reference database.
+    \end{itemize}}
+  \source{\fullcite{kakabra2026taxonova}}
+\end{frame}
+
 % ---------------------------------------------------------------------------
 \begin{frame}{Takeaways}
   \begin{itemize}

@@ -84,15 +84,17 @@ preamble generates. Check with `pdfinfo main.pdf`.
   rendered with `pdftoppm -r 110 -f 1 -l 1 -png` and named by its key.
   - Deck 1: `vaswani2017attention`, `mishra2026notready`,
     `mammides2026llmecology`, `keck2026interactions`, `wieczorek2012darwincore`,
-    `pombase2026curation`, `apertus2026report` (both added 6 November 2026).
+    `pombase2026curation`, `apertus2026report` (both added 6 November 2026),
+    `gardiner2026foundation`, `abbad2026herbarium`, `sun2026naturalists` (added
+    14 November 2026).
   - Deck 2: `becker2025metr`, `piskala2026files`, `kleppmann2019localfirst`,
-    `carli2026karenina`.
+    `carli2026karenina`, `kakabra2026taxonova` (added 14 November 2026).
   - Deck 3: `zhao2026citations`; it may also reuse `keck2026interactions` and
     `carli2026karenina`.
   - Deck 4: `greshake2023injection`, `shapira2026agentsofchaos`,
     `lindenmayer2017donotpublish`, `seth2026naturalism`, `muller2026evolvableai`,
     `jiralerspong2026slopcliff`, `anthropic2026aiforscience` (both added
-    6 November 2026).
+    6 November 2026), `millard2026credits` (added 14 November 2026).
 - **Code:** copy listings from the book or from the workshop files word for
   word, in a `[fragile]` frame with `\begin{lstlisting}[style=shell]` or
   `\begin{lstlisting}`. Keep a listing under about twelve lines; cut with a

@@ -211,7 +211,11 @@ literature left 7.1 per cent of strains with more than one oxygen requirement,
 and the labels had to be reorganised before a model could use them. My reading for
 biodiversity data is that a standard applied once is a starting point. Keeping
 records comparable is continuing work, and the people who report errors back
-to the database are part of it.
+to the database are part of it. The proponents of foundation models for
+ecology say the same of volume. \textcite{gardiner2026foundation} count more
+than 10 billion data products in about 30 large ecological datasets. Enough
+data is only part of the question, they conclude; the rest is whether the
+data can be harmonised and cleaned around their biases.
 
 Descriptions need as much care as the data files. When
 \textcite{youngblut2026scbasecount} had an agent annotate single-cell datasets
@@ -425,7 +429,15 @@ passages and adds them to the prompt. The steps:
 \textcite{kurniawan2024ragfailures} list seven ways it fails (\Cref{fig:rag}). Three are retrieval
 failures: the answer is not in the corpus, it is ranked too low, or it is cut
 from the context. Four are generation failures: the model misses it, uses the
-wrong format, is too general or too narrow, or gives an incomplete answer. Log
+wrong format, is too general or too narrow, or gives an incomplete answer. A
+passage can also be retrieved correctly and still be too coarse for the
+question. In a preprint, \textcite{rayeed2026clade} asked three open-weight
+models which species another species eats, parasitises or pollinates. The
+supplied Wikipedia text named only the partner's genus or family. The models
+declined less often than with text that named neither. Of the answers they
+gave, 22 to 28 per cent were right, where guessing among five options would
+give 20. One of the three models declined almost every such question, and the
+questions were multiple choice. Log
 what was retrieved separately from what was generated, or you cannot tell which
 half broke. Test retrieval by itself first, on a handful of questions whose
 answering passages you already know. For a small, stable corpus, a curated set of notes placed directly
@@ -433,7 +445,10 @@ in the context can beat retrieval altogether; test before assuming you need RAG.
 The same holds for retrieval over a knowledge graph. In one comparison reported
 by \textcite{liu2026graphllm}, plain vector retrieval scored above a system that
 retrieves through a graph under one search workflow, and below it under
-another.
+another. A graph gave no measured gain in generating research ideas either.
+Pairs of concepts chosen with a graph of concepts that occur together in 58
+million papers gave ideas that experts found no more interesting than ideas
+written from paper titles alone \parencite{gu2026scimuse}.
 
 \begin{figure}[htbp]
 \centering

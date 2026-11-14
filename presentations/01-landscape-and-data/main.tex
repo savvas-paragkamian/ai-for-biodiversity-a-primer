@@ -352,6 +352,24 @@ while not done and turns < max_turns:   # <- a budget stops it too
   \source{\fullcite{mammides2026llmecology}}
 \end{frame}
 
+\begin{frame}{Who is left to check? ``The naturalists are dying off'', thirty years on}
+  \paperslide{sun2026naturalists}{\footnotesize
+    \begin{itemize}
+      \item The review warns that field studies are a shrinking share of the
+        literature. An unpublished manuscript takes the warning further,
+        thirty years after Reed Noss \parencite{sun2026naturalists}.
+      \item It cites a national assessment in Hungary: no active expert was
+        available to identify nearly half of about 36,000 recorded animal
+        species.
+      \item As such experts retire, the people able to check and correct what
+        distribution models, trait databases and citizen-science platforms
+        produce become scarcer.
+      \item Not a retreat from analysis: build field observation and
+        taxonomy into data-intensive programmes, not beside them.
+    \end{itemize}}
+  \source{\fullcite{sun2026naturalists}}
+\end{frame}
+
 \begin{frame}{Extraction at scale: the model is one stage of four}
   \paperslide{keck2026interactions}{%
     \begin{itemize}
@@ -365,6 +383,24 @@ while not done and turns < max_turns:   # <- a budget stops it too
         sides of the model (decks 2 and 3).
     \end{itemize}}
   \source{\fullcite{keck2026interactions}}
+\end{frame}
+
+\begin{frame}{Collections: herbarium labels show the limits}
+  \paperslide{abbad2026herbarium}{\footnotesize
+    \begin{itemize}
+      \item Robotic imaging with AI transcription of specimen labels works at
+        scale, about 30 times faster than by hand
+        \parencite{johnson2026collections}.
+      \item A review of label digitisation: language models now map
+        recognised text to Darwin Core fields, but handwritten and
+        multilingual labels still need a person's check
+        \parencite{abbad2026herbarium}.
+      \item One pipeline in its table: 95.4 per cent of fields right on
+        printed Chinese labels, 64.7 per cent on handwritten ones.
+      \item Only one reviewed system joins detection, text recognition and
+        structuring; how an early error carries through is largely untested.
+    \end{itemize}}
+  \source{\fullcite{abbad2026herbarium}}
 \end{frame}
 
 \begin{frame}{Two ways to ask a model}
@@ -420,6 +456,25 @@ while not done and turns < max_turns:   # <- a budget stops it too
   \kp{Before applying a model to an ecological question, ask what would have
     to be true of the data for the answer to be valid, and whether it is.}
   \source{Figure from Chapter 4 of the book.}
+\end{frame}
+
+\begin{frame}{Foundation models for ecology: a design, not yet a model}
+  \paperslide{gardiner2026foundation}{\footnotesize
+    \begin{itemize}
+      \item A perspective by eighteen authors: no complete foundation model
+        for ecology exists yet \parencite{gardiner2026foundation}.
+      \item Language models know ecology from the published literature, not
+        from the data as collected.
+      \item Today's image and sound models serve mainly to curate data; the
+        gains of deep distribution models often shrink for rare species and
+        outside the training domain.
+      \item More than 10 billion data products in about 30 large datasets:
+        the open question is whether they can be harmonised and cleaned
+        around their biases (Chapter 5).
+      \item A test from theory (Chapter 14): can known relationships, such
+        as those of metabolic theory, be recovered from the trained model?
+    \end{itemize}}
+  \source{\fullcite{gardiner2026foundation}}
 \end{frame}
 
 \begin{frame}{The model suggests, the curator decides}
@@ -552,7 +607,7 @@ while not done and turns < max_turns:   # <- a budget stops it too
 \end{frame}
 
 \begin{frame}{Retrieval-augmented generation, and its seven failure points}
-  \fig[0.46\textheight]{ch05-rag-pipeline}
+  \fig[0.31\textheight]{ch05-rag-pipeline}
   \small
   \begin{itemize}
     \item Ask ``what colour is my ball?'' and a model invents an answer; say
@@ -562,6 +617,10 @@ while not done and turns < max_turns:   # <- a budget stops it too
       \parencite{kurniawan2024ragfailures}. Log what was retrieved separately
       from what was generated; test retrieval by itself first; for a small,
       stable corpus, notes in the context can beat retrieval.
+    \item A passage can be retrieved correctly and still be too coarse:
+      given text naming only a species' genus or family, models answered
+      anyway, and 22 to 28 per cent were right where chance was 20 (a
+      preprint, \cite{rayeed2026clade}).
   \end{itemize}
   \source{Figure from Chapter 5 of the book.}
 \end{frame}
